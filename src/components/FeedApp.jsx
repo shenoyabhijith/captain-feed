@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 import { loadTheme, saveTheme } from "../storage";
 import { useFeed } from "../hooks/useFeed";
@@ -58,24 +58,46 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
   const savedCount = feed.cards.filter((c) => feed.prefs.saved[c.id]).length;
   const [compact, setCompact] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [slotH, setSlotH] = useState(0);
   const lastY = useRef(0);
   const ticking = useRef(false);
+  const compactRef = useRef(false);
+  const headerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (compactRef.current) return;
+    const el = headerRef.current;
+    if (!el) return;
+    const h = Math.ceil(el.getBoundingClientRect().height);
+    if (h > 0) setSlotH((prev) => (prev === h ? prev : h));
+  }, [compact, feed.status, feed.meta.subtitle, feed.meta.title, installEvt]);
 
   useEffect(() => {
     lastY.current = window.scrollY || 0;
+    const DEAD = 12;
+    const COMPACT_Y = 80;
+    const EXPAND_Y = 24;
+
     const onScroll = () => {
       if (ticking.current) return;
       ticking.current = true;
       window.requestAnimationFrame(() => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
         const delta = y - lastY.current;
-        if (y < 24) {
-          setCompact(false);
-        } else if (delta > 8 && y > 64) {
-          setCompact(true);
-          setMenuOpen(false);
-        } else if (delta < -8) {
-          setCompact(false);
+        let next = compactRef.current;
+
+        if (y <= EXPAND_Y) {
+          next = false;
+        } else if (!compactRef.current && delta > DEAD && y >= COMPACT_Y) {
+          next = true;
+        } else if (compactRef.current && delta < -DEAD) {
+          next = false;
+        }
+
+        if (next !== compactRef.current) {
+          compactRef.current = next;
+          setCompact(next);
+          if (next) setMenuOpen(false);
         }
         lastY.current = y;
         ticking.current = false;
@@ -87,7 +109,14 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
 
   return (
     <>
-      <header className={`top ${compact ? "is-compact" : ""}`}>
+      <div
+        className="top-slot"
+        style={slotH ? { height: slotH } : undefined}
+      >
+      <header
+        ref={headerRef}
+        className={`top ${compact ? "is-compact" : ""}`}
+      >
         <div className="brand-row">
           <div>
             <h1>{feed.meta.title}</h1>
@@ -145,6 +174,7 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
           </p>
         ) : null}
       </header>
+      </div>
 
       {feed.status === "ready" ? (
         <CardList cards={feed.visible} prefs={feed.prefs} onSeen={feed.markSeen} />

@@ -43,15 +43,28 @@ body {
 
 .shell { max-width: 480px; margin: 0 auto; padding: 14px 14px 96px; }
 
-.top {
-  position: sticky; top: 0; z-index: 20;
+.top-slot {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin-bottom: 14px;
+  /* height locked from JS (expanded measure) so compact never shifts scrollY */
   backdrop-filter: blur(16px);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 14px;
   box-shadow: var(--shadow);
-  margin-bottom: 14px;
+  overflow: visible;
+}
+.top {
+  position: relative;
+  z-index: 21;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 14px;
+  box-shadow: none;
+  width: 100%;
 }
 .brand-row { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
 h1 { margin: 0; font-size: 1.35rem; letter-spacing: -0.03em; line-height: 1.1; }
@@ -178,10 +191,8 @@ h2 { margin: 0 0 8px; font-size: 1.18rem; letter-spacing: -0.02em; line-height: 
 .top .sub,
 .top .stats,
 .top .install-hint {
-  transition: opacity 0.18s ease, max-height 0.2s ease, margin 0.2s ease;
-  max-height: 4rem;
+  transition: opacity 0.15s ease;
   opacity: 1;
-  overflow: hidden;
 }
 .top .filters {
   transition: margin 0.2s ease, transform 0.2s ease;
@@ -202,26 +213,35 @@ h2 { margin: 0 0 8px; font-size: 1.18rem; letter-spacing: -0.02em; line-height: 
   letter-spacing: 0.08em;
 }
 .top.is-compact {
-  padding: 8px 10px;
+  /* keep padding/box size; only hide secondary rows so slot height stays stable */
+  padding: 14px;
 }
 .top.is-compact h1 {
-  font-size: 1.05rem;
+  font-size: 1.12rem;
 }
 .top.is-compact .sub,
 .top.is-compact .stats,
 .top.is-compact .install-hint {
-  max-height: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
   opacity: 0;
-  margin: 0;
   pointer-events: none;
+  max-height: none;
 }
 .top.is-compact .filters {
-  margin-top: 8px;
+  margin-top: 10px;
 }
 .top.is-compact .chip {
-  min-height: 34px;
-  padding: 0 11px;
-  font-size: 0.8rem;
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 0.82rem;
 }
 .top.is-compact .icon-btn {
   min-width: 40px;
