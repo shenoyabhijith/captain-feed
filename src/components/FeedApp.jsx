@@ -5,6 +5,7 @@ import { useFeed } from "../hooks/useFeed";
 import CategoryFilter from "./CategoryFilter.jsx";
 import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
+import { VIEW_ICONS, VIEW_LABELS, ICON_STROKE } from "./icons.js";
 
 export default function FeedApp() {
   const feed = useFeed();
@@ -187,21 +188,24 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
       )}
 
       <nav className="dock" aria-label="Feed views">
-        {[
-          ["all", "All"],
-          ["unread", "Unread"],
-          ["saved", "Saved"],
-        ].map(([id, label]) => (
-          <button
-            key={id}
-            type="button"
-            data-view={id}
-            aria-pressed={feed.view === id}
-            onClick={() => feed.setView(id)}
-          >
-            {label}
-          </button>
-        ))}
+        {["all", "unread", "saved"].map((id) => {
+          const Icon = VIEW_ICONS[id];
+          const label = VIEW_LABELS[id];
+          return (
+            <button
+              key={id}
+              type="button"
+              data-view={id}
+              aria-label={label}
+              title={label}
+              aria-pressed={feed.view === id}
+              onClick={() => feed.setView(id)}
+            >
+              <Icon size={18} strokeWidth={ICON_STROKE} aria-hidden="true" />
+              <span>{label}</span>
+            </button>
+          );
+        })}
       </nav>
     </>
   );

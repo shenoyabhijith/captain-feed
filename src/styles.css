@@ -98,6 +98,68 @@ h1 { margin: 0; font-size: 1.35rem; letter-spacing: -0.03em; line-height: 1.1; }
 .stats { margin-top: 10px; font-size: 0.8rem; color: var(--muted); }
 .install-hint { margin: 8px 0 0; font-size: 0.75rem; color: var(--muted); }
 
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.icon-filters { gap: 6px; }
+.icon-chip {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  color: var(--ink);
+  cursor: pointer;
+}
+.icon-chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff7f2;
+}
+[data-theme="dark"] .icon-chip[aria-pressed="true"] { color: #1c1917; }
+.icon-chip:active { transform: scale(0.96); }
+.chip.cat-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.78rem;
+  min-height: 28px;
+  padding: 0 10px 0 8px;
+}
+.chip.cat-icon .cat-label {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+}
+.dock button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+}
+.top.is-compact .icon-chip {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 12px;
+}
+
 .feed { display: grid; gap: 14px; }
 .card-link { color: inherit; text-decoration: none; display: block; }
 .card-link.is-read { opacity: 0.72; }
