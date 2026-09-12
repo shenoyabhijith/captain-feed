@@ -4,6 +4,20 @@
   "updated": "2026-09-12",
   "cards": [
     {
+      "id": "ops-feed-live-2026-09-12",
+      "category": "trending",
+      "title": "Your feed is live",
+      "body": "Morning book, tax, and trend cards land here automatically. Weekdays also get a Bedrock tip at lunch and a deals card mid-afternoon. Mark read, save keepers, flip light/dark.",
+      "source": "Firstmate",
+      "tags": [
+        "ops",
+        "feed"
+      ],
+      "accent": "ink",
+      "image": "https://picsum.photos/seed/captain-feed-live/800/520",
+      "link": "https://shenoyabhijith.github.io/captain-feed/"
+    },
+    {
       "id": "book-atomic-habits-1",
       "category": "book",
       "title": "1% better compounds",
