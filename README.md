@@ -1,31 +1,54 @@
 # Captain Feed
 
-Mobile-first daily-dose feed on GitHub Pages. Public-safe static site. No database and no login.
+React + PWA daily-dose feed on GitHub Pages.
 
 Live: https://shenoyabhijith.github.io/captain-feed/
 
-## Update cards
+## Android install
 
-Edit `data/feed.json`, then commit and push to `main`. Pages rebuilds from the repo root.
+1. Open the live URL in Chrome on Android.
+2. Tap the browser menu.
+3. Choose **Install app** or **Add to Home screen**.
+4. If an **Install** button shows in the feed header, you can use that too (`beforeinstallprompt`).
 
-Card shape:
+## Update cards (Firstmate)
+
+Edit `data/feed.json`, then from repo root:
+
+```bash
+npm run build
+git add data/feed.json docs
+git commit -m "Update feed cards"
+git push
+```
+
+Or ask Builder to rebuild after you push JSON-only changes.
+
+### Card schema
+
+List fields (required): `id`, `category` (`book|tax|trend|aws|deal|gym`), `title`, `body` (teaser), optional `source`, `tags`, `accent`, `image`, `link`.
+
+Detail fields (recommended):
 
 ```json
-{
-  "id": "unique-id",
-  "category": "book|tax|trend|aws|deal|gym",
-  "title": "Short headline",
-  "body": "One or two sentences.",
-  "source": "Attribution label",
-  "tags": ["optional"],
-  "accent": "coral|teal|amber|ink",
-  "image": "https://...",
-  "link": "https://optional-related-url"
+"detail": {
+  "summary": "Longer lede",
+  "sections": [{ "heading": "...", "body": "..." }],
+  "bullets": ["..."],
+  "steps": ["..."],
+  "actions": [{ "label": "...", "url": "https://..." }],
+  "sources": [{ "label": "...", "url": "https://..." }]
 }
 ```
 
-Progress (read / saved / seen) lives only in the visitor browser via `localStorage`.
+Old cards without `detail` still open; the teaser body is shown.
 
-## Local
+## Dev
 
-Open `index.html` through any static server from the repo root (fetch needs HTTP).
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+GitHub Pages serves the `docs/` folder from `main`.
