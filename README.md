@@ -13,7 +13,7 @@ Card shape:
 ```json
 {
   "id": "unique-id",
-  "category": "book|tax|trending|aws|deals|gym",
+  "category": "book|tax|trend|aws|deal|gym",
   "title": "Short headline",
   "body": "One or two sentences.",
   "source": "Attribution label",

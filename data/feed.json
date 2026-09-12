@@ -31,7 +31,7 @@
     },
     {
       "id": "trend-notebooklm",
-      "category": "trending",
+      "category": "trend",
       "title": "NotebookLM as a study desk",
       "body": "Drop PDFs and get grounded answers with citations. Useful for long docs when you need a map before you read cover to cover.",
       "source": "Trending finds (sample)",
@@ -57,7 +57,7 @@
     },
     {
       "id": "deal-ssd-checklist",
-      "category": "deals",
+      "category": "deal",
       "title": "SSD deal checklist",
       "body": "Match capacity, warranty years, and DRAM vs DRAMless. A cheap drive that dies mid-project is not a deal.",
       "source": "Deals desk (sample)",
