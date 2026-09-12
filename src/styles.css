@@ -171,6 +171,95 @@ h2 { margin: 0 0 8px; font-size: 1.18rem; letter-spacing: -0.02em; line-height: 
   background: var(--accent-soft); color: var(--accent); text-decoration: none; font-weight: 700;
 }
 
+
+.top {
+  transition: padding 0.2s ease, box-shadow 0.2s ease;
+}
+.top .sub,
+.top .stats,
+.top .install-hint {
+  transition: opacity 0.18s ease, max-height 0.2s ease, margin 0.2s ease;
+  max-height: 4rem;
+  opacity: 1;
+  overflow: hidden;
+}
+.top .filters {
+  transition: margin 0.2s ease, transform 0.2s ease;
+}
+.top h1 {
+  transition: font-size 0.2s ease;
+}
+.top-actions {
+  position: relative;
+  align-items: center;
+}
+.overflow-actions {
+  display: flex;
+  gap: 8px;
+}
+.icon-btn.more {
+  display: none;
+  letter-spacing: 0.08em;
+}
+.top.is-compact {
+  padding: 8px 10px;
+}
+.top.is-compact h1 {
+  font-size: 1.05rem;
+}
+.top.is-compact .sub,
+.top.is-compact .stats,
+.top.is-compact .install-hint {
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+  pointer-events: none;
+}
+.top.is-compact .filters {
+  margin-top: 8px;
+}
+.top.is-compact .chip {
+  min-height: 34px;
+  padding: 0 11px;
+  font-size: 0.8rem;
+}
+.top.is-compact .icon-btn {
+  min-width: 40px;
+  min-height: 40px;
+}
+.top.is-compact .icon-btn.more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.top.is-compact .overflow-actions {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  flex-direction: column;
+  padding: 8px;
+  border-radius: 16px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  z-index: 30;
+}
+.top.is-compact .overflow-actions.open {
+  display: flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .top,
+  .top .sub,
+  .top .stats,
+  .top .install-hint,
+  .top .filters,
+  .top h1 {
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .card, .icon-btn { transition: none; }
   .card-link:active .card, .icon-btn:active { transform: none; }

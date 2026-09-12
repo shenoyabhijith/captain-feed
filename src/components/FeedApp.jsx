@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 import { loadTheme, saveTheme } from "../storage";
 import { useFeed } from "../hooks/useFeed";
@@ -56,10 +56,38 @@ export default function FeedApp() {
 function Home({ feed, theme, setTheme, installEvt, onInstall }) {
   const readCount = feed.cards.filter((c) => feed.prefs.read[c.id]).length;
   const savedCount = feed.cards.filter((c) => feed.prefs.saved[c.id]).length;
+  const [compact, setCompact] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const lastY = useRef(0);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    lastY.current = window.scrollY || 0;
+    const onScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        const delta = y - lastY.current;
+        if (y < 24) {
+          setCompact(false);
+        } else if (delta > 8 && y > 64) {
+          setCompact(true);
+          setMenuOpen(false);
+        } else if (delta < -8) {
+          setCompact(false);
+        }
+        lastY.current = y;
+        ticking.current = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      <header className="top">
+      <header className={`top ${compact ? "is-compact" : ""}`}>
         <div className="brand-row">
           <div>
             <h1>{feed.meta.title}</h1>
@@ -73,22 +101,34 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
             ) : null}
             <button
               type="button"
-              className="icon-btn"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="icon-btn more"
+              aria-expanded={menuOpen}
+              aria-label="More actions"
+              onClick={() => setMenuOpen((v) => !v)}
             >
-              {theme === "dark" ? "Light" : "Dark"}
+              ···
             </button>
-            <button
-              type="button"
-              className="icon-btn"
-              onClick={() => {
-                if (confirm("Clear read, saved, and seen marks on this device?")) {
-                  feed.resetPrefs();
-                }
-              }}
-            >
-              Reset
-            </button>
+            <div className={`overflow-actions ${menuOpen ? "open" : ""}`}>
+              <button
+                type="button"
+                className="icon-btn"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark" ? "Light" : "Dark"}
+              </button>
+              <button
+                type="button"
+                className="icon-btn"
+                onClick={() => {
+                  if (confirm("Clear read, saved, and seen marks on this device?")) {
+                    feed.resetPrefs();
+                  }
+                  setMenuOpen(false);
+                }}
+              >
+                Reset
+              </button>
+            </div>
           </div>
         </div>
         <CategoryFilter value={feed.filter} onChange={feed.setFilter} />
