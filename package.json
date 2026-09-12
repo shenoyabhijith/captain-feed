@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "mkdir -p public/data && cp data/feed.json public/data/feed.json",
     "dev": "npm run prebuild && vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/pages-helpers.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
