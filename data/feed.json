@@ -1,0 +1,108 @@
+{
+  "title": "Captain Feed",
+  "subtitle": "Daily doses. Scroll, save, mark done.",
+  "updated": "2026-09-12",
+  "cards": [
+    {
+      "id": "book-atomic-habits-1",
+      "category": "book",
+      "title": "1% better compounds",
+      "body": "Tiny daily upgrades beat heroic one-offs. Pick one habit you can finish in under two minutes and protect it like a meeting.",
+      "source": "Atomic Habits (idea card)",
+      "tags": [
+        "habits",
+        "focus"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/feed-book1/800/520"
+    },
+    {
+      "id": "tax-w2-basics",
+      "category": "tax",
+      "title": "W-2 vs 1099 in one line",
+      "body": "W-2 means the employer withholds tax for you. 1099 usually means you set aside estimated tax yourself. Wrong bucket = surprise April bill.",
+      "source": "US tax tip (sample)",
+      "tags": [
+        "us-tax",
+        "basics"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/feed-tax1/800/520"
+    },
+    {
+      "id": "trend-notebooklm",
+      "category": "trending",
+      "title": "NotebookLM as a study desk",
+      "body": "Drop PDFs and get grounded answers with citations. Useful for long docs when you need a map before you read cover to cover.",
+      "source": "Trending finds (sample)",
+      "tags": [
+        "tools",
+        "ai"
+      ],
+      "accent": "ink",
+      "image": "https://picsum.photos/seed/feed-trend1/800/520"
+    },
+    {
+      "id": "aws-bedrock-guardrails",
+      "category": "aws",
+      "title": "Bedrock Guardrails first",
+      "body": "Before fancy agents, put content filters and topic blocks on the model path. Safer demos, fewer nasty surprises in shared accounts.",
+      "source": "AWS / Bedrock (sample)",
+      "tags": [
+        "bedrock",
+        "safety"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/feed-aws1/800/520"
+    },
+    {
+      "id": "deal-ssd-checklist",
+      "category": "deals",
+      "title": "SSD deal checklist",
+      "body": "Match capacity, warranty years, and DRAM vs DRAMless. A cheap drive that dies mid-project is not a deal.",
+      "source": "Deals desk (sample)",
+      "tags": [
+        "hardware"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/feed-deal1/800/520"
+    },
+    {
+      "id": "gym-push-short",
+      "category": "gym",
+      "title": "Short push day",
+      "body": "Incline push-ups, dumbbell press, lateral raises, overhead extension. Three hard sets each. Leave one rep in the tank.",
+      "source": "Optional gym card (sample)",
+      "tags": [
+        "hypertrophy"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/feed-gym1/800/520",
+      "link": "https://shenoyabhijith.github.io/pastel-workout-tracker/"
+    },
+    {
+      "id": "book-deep-work-block",
+      "category": "book",
+      "title": "Protect a deep block",
+      "body": "Schedule one 90-minute focus block with phone in another room. Shallow work expands to fill the day unless you fence it.",
+      "source": "Deep Work (idea card)",
+      "tags": [
+        "focus"
+      ],
+      "accent": "ink",
+      "image": "https://picsum.photos/seed/feed-book2/800/520"
+    },
+    {
+      "id": "tax-standard-deduction",
+      "category": "tax",
+      "title": "Standard deduction reality check",
+      "body": "Most filers take the standard deduction. Itemizing only wins if qualified expenses clearly beat that floor. Keep receipts either way.",
+      "source": "US tax tip (sample)",
+      "tags": [
+        "us-tax"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/feed-tax2/800/520"
+    }
+  ]
+}
