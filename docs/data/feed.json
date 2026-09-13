@@ -4,6 +4,92 @@
   "updated": "2026-09-13",
   "cards": [
     {
+      "id": "trend-20260913-bedrock-marengo-kb",
+      "category": "aws",
+      "title": "Bedrock KB: search video by meaning",
+      "body": "Managed Knowledge Base can embed video/audio/images with TwelveLabs Marengo 3.0 — natural-language search that jumps to the right clip, not just a transcript hit. Educational SA note, not a build mandate.",
+      "source": "AWS What's New · Sep 11, 2026",
+      "tags": [
+        "bedrock",
+        "knowledge-bases",
+        "multimodal",
+        "aws-sa"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/trend-marengo-kb-20260913/800/520",
+      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-multimodal-embeddings-twelvelabs-marengo/",
+      "detail": {
+        "summary": "As of Sep 11, 2026, Amazon Bedrock Managed Knowledge Base supports TwelveLabs Marengo 3.0 multimodal embeddings. Instead of only transcribing media to text, it can encode visual scenes, speech, and video cues so customers search S3 (and other) media with natural language and get segment start/end times. Useful talking point for media, training, security, and retail RAG demos.",
+        "sections": [
+          {
+            "heading": "What changed",
+            "body": "Managed KB already handled media via transcription + text embeddings. Marengo 3.0 adds true multimodal embeddings (compact 512-d vectors) so retrieval can match meaning that words alone miss — e.g. a specific play, UI state, or lecture beat. Results include segment timestamps so apps can seek to the moment."
+          },
+          {
+            "heading": "Why an SA cares",
+            "body": "Customers with large video/audio libraries often invent brittle custom pipelines. Point them at Managed KB + S3 sync first: no vector DB to babysit, configurable segmentation, and the same RAG path they already use for docs. Pair with auto sync scheduling (daily/weekly/monthly) so connectors stay fresh without Lambda timers."
+          },
+          {
+            "heading": "Migration gotcha",
+            "body": "Marengo Embed 2.7 embeddings are not compatible with 3.0 — you must regenerate the index if you upgrade. Confirm Region/model availability and pricing in Bedrock docs before you promise a PoC timeline."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "Pick one customer media folder in S3. Sketch whether they need concept search (multimodal) vs keyword-on-transcript. If concept search wins, open the What's New + Marengo model docs and price a thin Managed KB spike before proposing OpenSearch DIY."
+          }
+        ],
+        "bullets": [
+          "Posted Sep 11, 2026 on AWS What's New",
+          "Upload/sync from S3 (and other Managed KB connectors); search in natural language",
+          "Segment timestamps enable jump-to-moment UX",
+          "2.7 → 3.0 requires full re-embed; plan cutover",
+          "Educational only — verify Regions, quotas, and pricing for the account"
+        ],
+        "steps": [
+          "Skim the What's New post and Managed Knowledge Base product page",
+          "Check Marengo Embed 3.0 model card / parameters for API shape (InvokeModel vs StartAsyncInvoke)",
+          "For a PoC: point Managed KB at a small S3 media prefix, sync, run 5 natural-language queries",
+          "If upgrading from Marengo 2.7, budget a full re-index — vectors are not compatible"
+        ],
+        "actions": [
+          {
+            "label": "AWS What's New (Marengo in Managed KB)",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-multimodal-embeddings-twelvelabs-marengo/"
+          },
+          {
+            "label": "Marengo Embed 3.0 parameters",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-marengo-3.html"
+          },
+          {
+            "label": "Bedrock Knowledge Bases overview",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html"
+          },
+          {
+            "label": "Auto sync scheduling (bonus)",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-automatic-sync-scheduling-data-source-connectors/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS What's New: Multimodal embeddings with TwelveLabs Marengo 3.0",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-multimodal-embeddings-twelvelabs-marengo/"
+          },
+          {
+            "label": "Docs: TwelveLabs Marengo Embed 3.0 parameters",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-marengo-3.html"
+          },
+          {
+            "label": "Docs: Amazon Bedrock Knowledge Bases",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html"
+          },
+          {
+            "label": "AWS What's New: Automatic sync scheduling for Managed KB",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-automatic-sync-scheduling-data-source-connectors/"
+          }
+        ]
+      }
+    },
+    {
       "id": "tax-20260913-foreign-tax-credit-1116",
       "category": "tax",
       "title": "Foreign Tax Credit (Form 1116)",
