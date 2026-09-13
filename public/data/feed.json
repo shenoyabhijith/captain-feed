@@ -1,8 +1,62 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-12",
+  "updated": "2026-09-13",
   "cards": [
+    {
+      "id": "book-20260913-f-you-money",
+      "category": "book",
+      "title": "Build F-You Money first",
+      "body": "Enough invested capital that a bad boss or a dumb deal cannot own your week. Freedom is the product; luxury is optional.",
+      "source": "The Simple Path to Wealth \u00b7 JL Collins",
+      "tags": [
+        "money",
+        "independence",
+        "investing"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/book-fy-money-20260913/800/520",
+      "link": "https://github.com/tiagom87/simple-path-to-wealth",
+      "detail": {
+        "summary": "JL Collins's F-You Money is a runway of invested savings that lets you choose work and spending on your terms. It is not flashy wealth; it is optionality.",
+        "sections": [
+          {
+            "heading": "What it is",
+            "body": "F-You Money is cash and investments large enough that you can walk from a toxic job, wait out a bad market for a house, or say no to a deal that violates your values. Paycheck dependency shrinks when the portfolio can cover months or years of living costs."
+          },
+          {
+            "heading": "How Collins gets there",
+            "body": "Avoid high-interest consumer debt, raise the savings rate by living below your means, and put the surplus into low-cost broad index funds (he favors a simple total-stock approach like VTSAX). Stay invested through downturns; panic selling is how the path breaks."
+          },
+          {
+            "heading": "Today's move",
+            "body": "You do not need full FIRE tonight. Aim for a concrete runway: estimate monthly spend, then track how many months your liquid + invested buffer already covers. Automate the next contribution so the buffer grows without willpower."
+          }
+        ],
+        "bullets": [
+          "Freedom beats lifestyle inflation as the scoreboard",
+          "Savings rate is the throttle; index funds are the engine",
+          "Market noise is expected \u2014 the plan is to stay invested"
+        ],
+        "steps": [
+          "Write your real monthly burn (housing, food, transport, minimum debt)",
+          "Divide investable + emergency cash by that burn \u2192 months of runway",
+          "Automate one transfer this week into a low-cost total-market index fund or equivalent"
+        ],
+        "actions": [
+          {
+            "label": "Open GitHub notes",
+            "url": "https://github.com/tiagom87/simple-path-to-wealth"
+          }
+        ],
+        "sources": [
+          {
+            "label": "tiagom87 / simple-path-to-wealth (notes)",
+            "url": "https://github.com/tiagom87/simple-path-to-wealth"
+          }
+        ]
+      }
+    },
     {
       "id": "ops-feed-live-2026-09-12",
       "category": "trend",
