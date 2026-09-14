@@ -4,6 +4,83 @@
   "updated": "2026-09-14",
   "cards": [
     {
+      "id": "deal-20260914-anker-nano-13in1-dock",
+      "category": "deal",
+      "title": "Anker Nano 13-in-1 dock ~$120",
+      "body": "Desk dock + detachable travel hub: triple display (2×HDMI + DP), Ethernet, 100W PD — about $30 off list at Amazon. Solid ops upgrade; not the all-time low.",
+      "source": "TechRadar · Sep 14, 2026",
+      "tags": [
+        "hardware",
+        "dock",
+        "home-office",
+        "amazon"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/deal-anker-nano-dock-20260914/800/520",
+      "link": "https://www.amazon.com/dp/B0FCLC1RMM",
+      "detail": {
+        "summary": "TechRadar flagged the Anker Nano 13-in-1 USB-C dock at about $119.99 (was $149.99) on Amazon today — a desk dock with a detachable 6-in-1 hub for travel. Triple-display + 100W PD is a real home-office productivity unlock. Price check at checkout: trackers have seen it near $104–$112 earlier this month.",
+        "sections": [
+          {
+            "heading": "What you get",
+            "body": "13 ports including dual HDMI + DisplayPort (triple display on Windows), 10 Gbps USB-C, USB-A, Ethernet, audio, SD/TF, and up to 100W Power Delivery over one upstream cable. The clever bit: a detachable 6-in-1 hub so you leave the heavy dock on the desk and pocket the small hub for trips."
+          },
+          {
+            "heading": "Who it helps",
+            "body": "Remote workers and creators who want multi-monitor + wired Ethernet without a cable jungle, or anyone tired of buying a separate travel hub. One cable at the desk; detach and go."
+          },
+          {
+            "heading": "Catch before you buy",
+            "body": "macOS mirrors external displays on this single-cable MST setup (Windows gets extended desktops). Charging can slow when the dock is driving multiple displays + peripherals. If you only need one monitor and a couple of USB ports, a cheaper hub is enough."
+          },
+          {
+            "heading": "Price honesty",
+            "body": "TechRadar (Sep 14, 2026) cites ~$119.99 vs $149.99 list (~20% off). They note a prior tracker low around $104.49; Macworld/Android Authority covered ~$112 earlier in September. Confirm live Amazon price — deal pages go stale fast."
+          }
+        ],
+        "bullets": [
+          "~$30 off list per TechRadar today (~$119.99 / was $149.99)",
+          "Triple display on Windows; macOS mirrors",
+          "Detachable 6-in-1 hub = desk + travel without a second purchase",
+          "100W PD covers most mid-range laptops; verify wattage for yours",
+          "ASIN B0FCLC1RMM — recheck price before buy"
+        ],
+        "steps": [
+          "Confirm your laptop has a full-featured USB-C/Thunderbolt port and your OS needs (Windows extended vs Mac mirror)",
+          "Open the Amazon listing and verify current price vs ~$120 / list $150",
+          "If you need extended multi-monitor on Mac, skip this and look for a DisplayLink or native multi-stream dock instead"
+        ],
+        "actions": [
+          {
+            "label": "Buy on Amazon (ASIN B0FCLC1RMM)",
+            "url": "https://www.amazon.com/dp/B0FCLC1RMM"
+          },
+          {
+            "label": "TechRadar deal write-up",
+            "url": "https://www.techradar.com/pro/this-clever-anker-13-in-1-docking-station-deal-upgrades-your-laptop-into-a-serious-triple-monitor-workstation"
+          },
+          {
+            "label": "Compare: earlier Macworld coverage (~$112)",
+            "url": "https://www.macworld.com/article/3228628/this-13-in-1-anker-dock-solves-all-of-your-cable-problems-and-its-25-off.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "TechRadar · Anker Nano 13-in-1 dock deal (Sep 14, 2026)",
+            "url": "https://www.techradar.com/pro/this-clever-anker-13-in-1-docking-station-deal-upgrades-your-laptop-into-a-serious-triple-monitor-workstation"
+          },
+          {
+            "label": "Amazon product page · ASIN B0FCLC1RMM",
+            "url": "https://www.amazon.com/dp/B0FCLC1RMM"
+          },
+          {
+            "label": "Macworld · earlier Sep price note",
+            "url": "https://www.macworld.com/article/3228628/this-13-in-1-anker-dock-solves-all-of-your-cable-problems-and-its-25-off.html"
+          }
+        ]
+      }
+    },
+    {
       "id": "aws-20260914-managed-kb-agentic-retrieve",
       "category": "aws",
       "title": "Managed KB: agentic retrieve, not one-shot RAG",
