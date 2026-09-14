@@ -4,6 +4,60 @@
   "updated": "2026-09-14",
   "cards": [
     {
+      "id": "book-20260914-conscious-spending",
+      "category": "book",
+      "title": "Budget with guilt-free buckets",
+      "body": "Ramit’s Conscious Spending Plan: fix the big four buckets once, automate transfers, then spend freely inside the guilt-free slice. Restriction is optional; intention is the point.",
+      "source": "I Will Teach You To Be Rich · Ramit Sethi",
+      "tags": [
+        "money",
+        "spending",
+        "automation"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/book-csp-20260914/800/520",
+      "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
+      "detail": {
+        "summary": "Ramit Sethi replaces deprivation budgets with a Conscious Spending Plan: assign take-home pay to fixed costs, savings, investments, and a large guilt-free bucket, then automate so willpower is not the system.",
+        "sections": [
+          {
+            "heading": "The four buckets",
+            "body": "Fixed costs (about 50–60% of take-home): rent, utilities, insurance, groceries, transport, minimum debt, subscriptions. Savings (5–10%): emergency fund and near-term goals. Investments (5–10%): 401(k), IRA, brokerage for long-term wealth. Guilt-free spending (20–35%): dining, hobbies, travel — spend here without tracking every latte."
+          },
+          {
+            "heading": "Big wins beat latte math",
+            "body": "Obsessing over small daily costs while ignoring housing, salary, and automation is the trap. Negotiate pay, cut what you do not care about, and spend extravagantly on your money dials. The $3 coffee is rarely the bottleneck; an unused raise or a bloated rent often is."
+          },
+          {
+            "heading": "Automation is the product",
+            "body": "On payday, automatic transfers should move money to savings, investments, and bills before you see it. Sethi’s bar is under an hour a month managing money once the pipes are set. An 85% plan running today beats a perfect plan you never start."
+          }
+        ],
+        "bullets": [
+          "Design spending around values, not shame",
+          "Automate savings and investing on payday",
+          "Cut ruthlessly on low-joy categories so high-joy ones can be lavish"
+        ],
+        "steps": [
+          "Write last month’s take-home pay and list every fixed monthly cost",
+          "Assign rough % to the four buckets; if fixed costs exceed ~60%, mark one Big Win to cut or renegotiate",
+          "Set one automated transfer this week from checking into savings or investments on payday"
+        ],
+        "actions": [
+          {
+            "label": "Open source notes",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "felixgeelhaar / personal-finance-expert (Ramit / CSP section)",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          }
+        ]
+      }
+    },
+    {
       "id": "tax-20260914-feie-form-2555",
       "category": "tax",
       "title": "FEIE: exclude foreign wages (Form 2555)",
