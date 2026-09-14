@@ -1,8 +1,91 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-13",
+  "updated": "2026-09-14",
   "cards": [
+    {
+      "id": "tax-20260914-feie-form-2555",
+      "category": "tax",
+      "title": "FEIE: exclude foreign wages (Form 2555)",
+      "body": "Long stint working from India (or another foreign country)? Up to $132,900 of foreign earned income for 2026 may be excludable if you meet the tax-home + days/residence tests. Educational only, not tax advice.",
+      "source": "IRS · Form 2555 · Pub 54",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "feie",
+        "form-2555",
+        "expat"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-feie-2555-20260914/800/520",
+      "link": "https://www.irs.gov/individuals/international-taxpayers/foreign-earned-income-exclusion",
+      "detail": {
+        "summary": "The Foreign Earned Income Exclusion (FEIE) lets qualifying US citizens and resident aliens exclude foreign earned income from US taxable income — up to $132,900 per person for tax year 2026 — claimed on Form 2555. Useful for Indian-origin filers who relocate or work abroad for most of a year. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "US citizens and green-card / resident-alien filers with a tax home in India (or another foreign country) who either spend 330 full days abroad in a 12-month period (physical presence) or are bona fide residents of a foreign country for a full tax year. India–US treaty nationals who are US resident aliens can use the bona fide residence path when it fits."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "You need both a foreign tax home and either the physical presence test or the bona fide residence test. Foreign earned income means pay for personal services performed abroad (wages, salary, self-employment earnings) — not US government pay, most pensions, or passive India investment income. Claim on Form 2555 attached to Form 1040. FEIE cuts regular income tax on the excluded amount but does not reduce self-employment tax. Housing exclusion/deduction is a related add-on on the same form."
+          },
+          {
+            "heading": "India–US angle",
+            "body": "Common pattern: remote work or an India assignment while still filing a US return. Track calendar days carefully — partial US trip days often fail the physical presence count. Passive India bank/FD/MF income is not FEIE income (think Form 1116 / FTC instead). Choosing FEIE can interact with credits and brackets via the Foreign Earned Income Tax Worksheet — compare FTC vs FEIE with a cross-border pro when both apply."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "If you expect 330+ full days outside the US in any 12-month window that overlaps 2026 (or bona fide residence in India for all of 2026), open Form 2555 instructions and sketch a day log now — don't wait until April."
+          }
+        ],
+        "bullets": [
+          "2026 max exclusion: $132,900 per qualifying person (inflation-adjusted)",
+          "Need foreign tax home + physical presence (330 days) or bona fide residence",
+          "File Form 2555 with Form 1040 — exclusion is not automatic",
+          "Does not reduce self-employment tax; passive India income is out of scope",
+          "Educational only — revocation, housing amounts, and credit stacking have traps"
+        ],
+        "steps": [
+          "Confirm tax home is in a foreign country (not just short travel from a US abode)",
+          "Pick physical presence vs bona fide residence; start a day/visa log",
+          "Separate foreign earned wages/SE income from investment/pension income",
+          "Read IRS FEIE page + Form 2555 instructions; attach Form 2555 if you qualify"
+        ],
+        "actions": [
+          {
+            "label": "IRS: Foreign earned income exclusion",
+            "url": "https://www.irs.gov/individuals/international-taxpayers/foreign-earned-income-exclusion"
+          },
+          {
+            "label": "About Form 2555",
+            "url": "https://www.irs.gov/forms-pubs/about-form-2555"
+          },
+          {
+            "label": "Pub 54 (Tax Guide for US Citizens/Residents Abroad)",
+            "url": "https://www.irs.gov/forms-pubs/about-publication-54"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS: Foreign earned income exclusion",
+            "url": "https://www.irs.gov/individuals/international-taxpayers/foreign-earned-income-exclusion"
+          },
+          {
+            "label": "IRS: Figuring the foreign earned income exclusion",
+            "url": "https://www.irs.gov/individuals/international-taxpayers/figuring-the-foreign-earned-income-exclusion"
+          },
+          {
+            "label": "About Form 2555, Foreign Earned Income",
+            "url": "https://www.irs.gov/forms-pubs/about-form-2555"
+          },
+          {
+            "label": "About Publication 54",
+            "url": "https://www.irs.gov/forms-pubs/about-publication-54"
+          }
+        ]
+      }
+    },
     {
       "id": "trend-20260913-bedrock-marengo-kb",
       "category": "aws",
