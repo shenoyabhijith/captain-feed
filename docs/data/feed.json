@@ -4,6 +4,74 @@
   "updated": "2026-09-14",
   "cards": [
     {
+      "id": "trend-20260914-sap-c03-genai",
+      "category": "aws",
+      "title": "SAP-C03 adds Bedrock + AgentCore",
+      "body": "Solutions Architect – Professional updates Nov 17, 2026 with 11 GenAI/agentic skills (Bedrock, AgentCore, RAG, Guardrails). Registration opens Oct 27; SAP-C02 ends Nov 16. Study-plan note for SAs — not a must-sit mandate.",
+      "source": "AWS Training & Certification Blog · Sep 1, 2026",
+      "tags": [
+        "aws-sa",
+        "sap-c03",
+        "bedrock",
+        "agentcore",
+        "certification"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/trend-sap-c03-20260914/800/520",
+      "link": "https://aws.amazon.com/blogs/training-and-certification/september-2026-new-offerings/",
+      "detail": {
+        "summary": "AWS is refreshing Solutions Architect – Professional to SAP-C03. GA starts November 17, 2026; registration opens October 27; last day for SAP-C02 is November 16. The update adds GenAI/agentic design skills on Bedrock and AgentCore plus modern resilience, DevSecOps, and post-quantum crypto — aligned with how SA work actually looks in 2026.",
+        "sections": [
+          {
+            "heading": "Why this matters for an SA",
+            "body": "The Pro exam is catching up to customer asks: Bedrock integrations, agent architectures (AgentCore), RAG, Guardrails, and human-oversight workflows. If you sell or design GenAI on AWS, the new blueprint is a useful checklist of what AWS expects architects to defend in design reviews — even if you never sit the exam."
+          },
+          {
+            "heading": "Key dates",
+            "body": "Oct 27, 2026 — SAP-C03 registration opens (all current languages). Nov 16 — last day for SAP-C02. Nov 17 — SAP-C03 GA. Exam: 180 minutes, 75 questions, $300, Pearson VUE. Full exam guide lands when registration opens."
+          },
+          {
+            "heading": "What else landed in the same post",
+            "body": "MLA-C02 beta is open now (English; MLA-C01 English ends Sep 28, 2026). DVA-C03 follows with registration Oct 27 and GA Dec 1, 2026, leaning into AI-assisted development and Bedrock/AgentCore security skills. Same blog — useful if you coach a broader team."
+          },
+          {
+            "heading": "C02 vs C03 decision",
+            "body": "Sit SAP-C02 by Nov 16 if you are already ready and want the credential now (it stays valid to its normal expiry). Wait for SAP-C03 if you want the paper to validate GenAI/agentic and modern resilience skills alongside classic architecture."
+          }
+        ],
+        "bullets": [
+          "11 new GenAI/agentic skills: Bedrock, AgentCore, RAG, Guardrails, human oversight",
+          "Also: Fault Injection Service, Resilience Hub, VPC Lattice, lakehouse/Iceberg, KMS post-quantum",
+          "Five domains stay: cloud-native, security/governance, cost, resilience/migration, ops excellence"
+        ],
+        "steps": [
+          "Skim the Sep 2026 T&C blog and bookmark the dates (Oct 27 / Nov 16–17)",
+          "Map your last 2–3 customer designs to Bedrock, RAG, Guardrails, and AgentCore — note gaps",
+          "Decide by mid-October: sit SAP-C02 now, or wait for C03 and pull the exam guide on day one"
+        ],
+        "actions": [
+          {
+            "label": "Read the T&C update",
+            "url": "https://aws.amazon.com/blogs/training-and-certification/september-2026-new-offerings/"
+          },
+          {
+            "label": "Agentic AI Lens (Well-Architected)",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/agentic-ai-lens.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS T&C · September 2026 certification updates",
+            "url": "https://aws.amazon.com/blogs/training-and-certification/september-2026-new-offerings/"
+          },
+          {
+            "label": "AWS Well-Architected Agentic AI Lens",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/agentic-ai-lens.html"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260914-conscious-spending",
       "category": "book",
       "title": "Budget with guilt-free buckets",
