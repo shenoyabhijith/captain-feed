@@ -4,6 +4,85 @@
   "updated": "2026-09-15",
   "cards": [
     {
+      "id": "aws-20260915-agentcore-gateway-limits",
+      "category": "aws",
+      "title": "Bound agent spend at the Gateway, not in prompts",
+      "body": "AgentCore Gateway now rate-limits requests, tokens, and open connections per identity — and Dogwood temporal policies catch multi-step abuse that single-call Guardrails miss. Cost ceilings live in infra, not agent code.",
+      "source": "AWS ML Blog · Aug 6, 2026",
+      "tags": [
+        "bedrock",
+        "agentcore",
+        "gateway",
+        "cost",
+        "policy",
+        "dogwood"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-agentcore-gateway-limits-20260915/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/control-agent-behaviors-and-cost-beyond-a-single-action-new-capabilities-in-amazon-bedrock-agentcore/",
+      "detail": {
+        "summary": "Stateless per-call checks miss retry storms, budget drip, and out-of-order tool chains. Put ceilings on AgentCore Gateway (requests + tokens + connection time per OAuth/IAM identity) and add Dogwood temporal policies so sequence rules — prerequisites, session budgets, escalation — enforce outside the agent.",
+        "sections": [
+          {
+            "heading": "Why single-action Guardrails are not enough",
+            "body": "Each tool call can look legitimate while the session pattern is not: wrong-account transfer after a lookup, many under-threshold purchases, or an overnight retry loop burning tokens. Those failures only appear across the sequence. Enforcement has to sit in the platform layer the agent cannot prompt around."
+          },
+          {
+            "heading": "Three ceilings on AgentCore Gateway",
+            "body": "Rate limiting on the Gateway caps consumption per user across tools, models, and agents behind it, using identities you already manage (OAuth or IAM). Cover all three: request volume (retry loops), tokens (reasoning-heavy turns), and connection hold time (long research sessions with little traffic). Configure once — no agent code changes. Different teams/tools/models can carry different ceilings."
+          },
+          {
+            "heading": "Dogwood: temporal policies on sequences",
+            "body": "Dogwood (Apache 2.0, built on Cedar) evaluates whether a sequence of agent actions conforms as it unfolds: rate limits, time windows, prerequisite steps, and escalation triggers. Example: require that a transfer amount matches an earlier lookup; tally session spend and deny the next purchase past budget even if each buy is under the per-call limit; require recorded human approval before a high-impact step. Decisions are deterministic, deny-by-default, and logged with full context."
+          },
+          {
+            "heading": "Blog angle for Solutions Architects",
+            "body": "Frame the post as platform trust: controls belong in Gateway infrastructure, not in every agent repo. Contrast prompt-level 'please stay under budget' with enforceable Gateway rate limits + Dogwood sequence rules. Pair with Guardrails for content/PII/prompt-attack, and with AgentCore Evaluations/Observability for quality — this card is the cost and behavior boundary."
+          }
+        ],
+        "bullets": [
+          "Gateway rate limits: requests, tokens, and connection duration per identity",
+          "Temporal policies catch multi-step patterns single-call auth cannot see",
+          "Dogwood embeds Cedar + time/sequence constructs; open-source under Apache 2.0",
+          "Adopt Gateway limits and Dogwood independently — no agent rearchitecture required"
+        ],
+        "steps": [
+          "Map how your agents actually burn money: retries vs tokens vs long-held sessions",
+          "Set Gateway rate limits per identity (and per team/tool/model where needed) before polishing prompts",
+          "Encode 1–2 Dogwood temporal policies for your riskiest sequences (budget tally, prerequisite match, human approval)",
+          "Verify deny logs show why a call was blocked — then wire the same Gateway path into your SA blog demo"
+        ],
+        "actions": [
+          {
+            "label": "Read the AWS announcement",
+            "url": "https://aws.amazon.com/blogs/machine-learning/control-agent-behaviors-and-cost-beyond-a-single-action-new-capabilities-in-amazon-bedrock-agentcore/"
+          },
+          {
+            "label": "Gateway rate limits docs",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-rate-limits.html"
+          },
+          {
+            "label": "Temporal policies (Dogwood) docs",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-temporal.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — control agent behaviors and cost (Aug 6, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/control-agent-behaviors-and-cost-beyond-a-single-action-new-capabilities-in-amazon-bedrock-agentcore/"
+          },
+          {
+            "label": "AgentCore — Add rate limits to a gateway",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-rate-limits.html"
+          },
+          {
+            "label": "AgentCore — Temporal policies (Dogwood)",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-temporal.html"
+          }
+        ]
+      }
+    },
+    {
       "id": "trend-20260915-10y-yield-five-pct",
       "category": "trend",
       "title": "10-year yield at ~5%: why it matters",
