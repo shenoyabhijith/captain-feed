@@ -1,8 +1,460 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-14",
+  "updated": "2026-09-15",
   "cards": [
+    {
+      "id": "trend-20260915-10y-yield-five-pct",
+      "category": "trend",
+      "title": "10-year yield at ~5%: why it matters",
+      "body": "The US 10-year Treasury yield hit ~5% — a level barely seen since 2023 and otherwise not common since 2007. It is the market’s long-rate benchmark for mortgages, loans, and discounting cash flows. Educational only — not a trade signal.",
+      "source": "Reuters · CNN Business · Nikkei Asia (Sep 14–15, 2026)",
+      "tags": [
+        "investing",
+        "rates",
+        "treasury",
+        "fed",
+        "macro"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/trend-10y-yield-20260915/800/520",
+      "link": "https://www.reuters.com/world/africa/dollar-near-two-week-high-oil-surge-lifts-yields-fed-hike-bets-2026-09-15/",
+      "detail": {
+        "summary": "On Sep 14–15, 2026 the US 10-year Treasury yield traded around and above 5% — briefly the highest print in years as oil-driven inflation fears and heavy debt supply collided with a Fed meeting priced for a hike. This card is macro literacy only: no buy/sell, no price targets.",
+        "sections": [
+          {
+            "heading": "What just happened",
+            "body": "Benchmark 10-year yields climbed to the ~5% psychological line (prints around 5.00–5.02% depending on the session), a zone last touched briefly in Oct 2023 and otherwise associated with the mid-2000s. Reuters reported the yield near 5.00% on Tuesday with oil still elevated and CME FedWatch pricing a Wednesday rate hike as a near certainty (~90%+)."
+          },
+          {
+            "heading": "Why the 10-year is the dial people watch",
+            "body": "The 10-year is not the Fed funds rate. It is the market’s long-term risk-free-ish benchmark that feeds into mortgage quotes, many corporate borrowing costs, and the discount rates used to value distant cash flows (including growth/tech multiples). When it jumps, financing gets pricier and long-duration assets often feel more pressure — even if overnight rates have not moved yet."
+          },
+          {
+            "heading": "What is driving the move (this week)",
+            "body": "Public reporting points to a stack: sticky inflation after hotter August CPI, energy prices near multi-month highs on Middle East supply risk, large government/corporate issuance absorbing demand, and a Fed decision this week that futures already treat as a hike. Separately, risk assets (including AI-linked names) were already soft into the meeting — correlation ≠ causation; treat headlines as context, not a signal list."
+          },
+          {
+            "heading": "Captain-useful framing (not advice)",
+            "body": "If you track money/ops: re-check any floating-rate or refinance assumptions, and remember portfolio math changes when the risk-free yardstick moves. If you track AWS/AI spend: higher long rates raise the bar on multi-year ROI stories — same product thesis, tougher discount rate. Educational only — not tax, investment, or trade advice."
+          }
+        ],
+        "bullets": [
+          "10-year ≈ long-rate benchmark for mortgages, loans, and discounting — distinct from Fed funds",
+          "~5% prints Sep 14–15, 2026: rare since 2023 / uncommon since 2007",
+          "Drivers cited publicly: inflation + oil + issuance + Fed hike odds ~90%+",
+          "Higher long yields → pricier financing and tougher math on long-duration cash flows",
+          "Educational only — not a buy/sell list or trade signal"
+        ],
+        "steps": [
+          "Skim one primary wire (Reuters/CNN) for the yield print and Fed calendar — ignore ticker FOMO lists",
+          "Note the Fed decision window this week; treat FedWatch probabilities as market pricing, not prophecy",
+          "If you have a mortgage/refi or floating credit line in play, re-check the quote assumptions against the 10-year context",
+          "For any long-horizon project ROI, ask: “Does this still clear if the discount rate is sticky near 5%?”"
+        ],
+        "actions": [
+          {
+            "label": "Reuters: dollar, yields, Fed hike odds",
+            "url": "https://www.reuters.com/world/africa/dollar-near-two-week-high-oil-surge-lifts-yields-fed-hike-bets-2026-09-15/"
+          },
+          {
+            "label": "CNN Business: why 5% matters",
+            "url": "https://www.cnn.com/2026/09/14/investing/bond-yields-market-turmoil"
+          },
+          {
+            "label": "Nikkei Asia: yield + Fed week",
+            "url": "https://asia.nikkei.com/business/markets/10-year-treasury-yield-touches-5-as-all-eyes-on-fed"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Reuters · Dollar / 10-year / FedWatch (Sep 15, 2026)",
+            "url": "https://www.reuters.com/world/africa/dollar-near-two-week-high-oil-surge-lifts-yields-fed-hike-bets-2026-09-15/"
+          },
+          {
+            "label": "CNN Business · 10-year at 5% (Sep 14, 2026)",
+            "url": "https://www.cnn.com/2026/09/14/investing/bond-yields-market-turmoil"
+          },
+          {
+            "label": "Nikkei Asia · Yield touches 5% ahead of Fed (Sep 15, 2026)",
+            "url": "https://asia.nikkei.com/business/markets/10-year-treasury-yield-touches-5-as-all-eyes-on-fed"
+          },
+          {
+            "label": "UPI · 10-year briefly at 5% (Sep 14, 2026)",
+            "url": "https://www.upi.com/Top_News/US/2026/09/14/10-year-treasury-yields-5-percent-federal-reserve/4151789410074/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tax-20260915-form-3520-india-gifts",
+      "category": "tax",
+      "title": "Form 3520: large gifts from India family",
+      "body": "Wire from parents in India can be tax-free as a gift — but if related NRA gifts top $100k in a year, Form 3520 Part IV is usually required. Miss it and IRC 6039F penalties can hit 5%/month (cap 25%). Educational only, not tax advice.",
+      "source": "IRS · Form 3520 · Gifts from foreign person",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "form-3520",
+        "foreign-gifts",
+        "nra"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-3520-india-gifts-20260915/800/520",
+      "link": "https://www.irs.gov/businesses/gifts-from-foreign-person",
+      "detail": {
+        "summary": "Genuine gifts from nonresident alien (NRA) family in India are generally not US income — but US persons who receive more than $100,000 in aggregate gifts/bequests in a year from an NRA individual or foreign estate (counting related foreign donors) must file Form 3520, Part IV. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US citizens and residents who receive large parental / family support wires, wedding gifts, inheritance bequests, or property transfers from relatives who are nonresident aliens (or from a foreign estate). Also anyone who might lump related family donors without realizing aggregation applies."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Part IV of Form 3520 reports large foreign gifts — it is information reporting, not a tax on the gift itself when it is a true gift. Threshold for NRA individuals / foreign estates: more than $100,000 aggregate in the tax year, including gifts from foreign persons you know (or have reason to know) are related. Once over $100k, separately identify each gift over $5,000. Purported gifts from foreign corporations/partnerships use a lower inflation-adjusted threshold ($20,573 for 2026) and the IRS may recharacterize them. Qualified tuition or medical payments made directly on your behalf are generally carved out of “foreign gift.” File Form 3520 separately from Form 1040 (mail to Ogden); calendar-year filers typically due April 15, with Form 4868 extending Form 3520 (generally not past Oct 15)."
+          },
+          {
+            "heading": "India–US angle",
+            "body": "Classic trap: $70k from mom + $40k from a related uncle in the same year crosses $100k via related-party aggregation. Another trap: treating a wire from an India Pvt Ltd / family company as a “gift” — corporate thresholds are much lower and recharacterization risk is real. Keep bank memos, gift letters, and donor relationship notes. FBAR (FinCEN 114) and Form 8938 may still apply if money lands in or moves through foreign accounts."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "Add up 2026 wires/gifts/bequests from India relatives (and related foreign persons). If the total looks near or over $100k, open the IRS “Gifts from foreign person” page and Form 3520 Part IV instructions now — don’t wait until April."
+          }
+        ],
+        "bullets": [
+          "True NRA family gifts are usually not US taxable income — reporting is the issue",
+          "Form 3520 Part IV when aggregate NRA/foreign-estate gifts exceed $100,000 (related donors count)",
+          "Over the threshold: separately ID each gift over $5,000",
+          "Foreign corp/partnership “gifts”: $20,573 threshold for 2026 + recharacterization risk",
+          "Late/incomplete Part IV: up to 5% of the gift per month, capped at 25% (IRC 6039F)",
+          "Educational only — not tax advice"
+        ],
+        "steps": [
+          "List 2026 gifts/bequests from India NRA individuals, foreign estates, and related foreign persons",
+          "Aggregate related donors; compare to the $100k Part IV line (or corp/partnership threshold if applicable)",
+          "Keep gift letters + wire proofs; note any tuition/medical payments made directly to providers",
+          "If over threshold, complete Form 3520 Part IV and file separately per IRS instructions (check Box 1k if you extended Form 1040)"
+        ],
+        "actions": [
+          {
+            "label": "IRS: Gifts from foreign person",
+            "url": "https://www.irs.gov/businesses/gifts-from-foreign-person"
+          },
+          {
+            "label": "About Form 3520",
+            "url": "https://www.irs.gov/forms-pubs/about-form-3520"
+          },
+          {
+            "label": "Instructions for Form 3520",
+            "url": "https://www.irs.gov/instructions/i3520"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS · Gifts from foreign person",
+            "url": "https://www.irs.gov/businesses/gifts-from-foreign-person"
+          },
+          {
+            "label": "IRS · About Form 3520",
+            "url": "https://www.irs.gov/forms-pubs/about-form-3520"
+          },
+          {
+            "label": "IRS · Instructions for Form 3520",
+            "url": "https://www.irs.gov/instructions/i3520"
+          }
+        ]
+      }
+    },
+    {
+      "id": "book-20260915-save-more-tomorrow",
+      "category": "book",
+      "title": "Commit raises to savings first",
+      "body": "Thaler’s Save More Tomorrow: pledge a slice of future raises into retirement before the money hits your lifestyle. Present-you stays comfortable; future-you compounds.",
+      "source": "Richard Thaler · Nudge / Misbehaving (via felixgeelhaar notes)",
+      "tags": [
+        "money",
+        "behavior",
+        "automation",
+        "savings"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/book-smart-20260915/800/520",
+      "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
+      "detail": {
+        "summary": "Present bias makes “save more starting today” feel painful. Thaler’s Save More Tomorrow (SMarT) flips that: you commit now to divert a portion of future salary increases into savings or investments, so today’s lifestyle barely changes while the savings rate ratchets up with each raise.",
+        "sections": [
+          {
+            "heading": "The behavioral bug",
+            "body": "People systematically overvalue money in hand and undervalue the future self. Asking someone to cut spending this paycheck fights present bias head-on. Asking them to earmark next year’s raise feels almost free — that is the nudge."
+          },
+          {
+            "heading": "How SMarT works",
+            "body": "On payday after a raise, automation moves a pre-agreed share of the increase into savings or retirement before the new “normal” spending level locks in. You still get a raise in take-home; the rest compounds. Classic companion rule from money notes: treat found money (bonuses, refunds) the same way — most of it should not feel spendable."
+          },
+          {
+            "heading": "Why it sticks",
+            "body": "Defaults and commitment devices beat willpower. Auto-enrollment and auto-escalation in workplace plans use the same idea at scale. Design the environment so the smart action is the path of least resistance."
+          },
+          {
+            "heading": "One action today",
+            "body": "Write a one-line rule: “Next raise, X% of the increase goes to [account] on payday.” If you already have a raise pending or a bonus calendar, set the transfer now while motivation is high."
+          }
+        ],
+        "bullets": [
+          "Present bias: future self feels like a stranger — automation bridges the gap",
+          "SMarT: commit a % of future raises before lifestyle expands",
+          "Pair with payday automation (savings + investments leave checking first)",
+          "Reasonable plan you keep beats perfect plan you abandon",
+          "Education only — not personalized financial advice"
+        ],
+        "steps": [
+          "Name the destination account (emergency fund, IRA/401k, taxable brokerage)",
+          "Pick a raise-split rule you can live with (e.g. 50% of the increase)",
+          "Schedule or note the auto-transfer for the next raise/bonus date",
+          "Optional: raise your recurring contribution by 1% this month as a dry run"
+        ],
+        "actions": [
+          {
+            "label": "Source notes (personal-finance-expert)",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          },
+          {
+            "label": "Related: Siegel money principles notes",
+            "url": "https://github.com/mgp/book-notes/blob/master/why-dont-they-teach-me-this-in-school.markdown"
+          }
+        ],
+        "sources": [
+          {
+            "label": "felixgeelhaar/skills · personal-finance-expert (Thaler SMarT)",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          },
+          {
+            "label": "mgp/book-notes · Why Didn't They Teach Me This in School",
+            "url": "https://github.com/mgp/book-notes/blob/master/why-dont-they-teach-me-this-in-school.markdown"
+          }
+        ]
+      }
+    },
+    {
+      "id": "deal-20260914-anker-nano-13in1-dock",
+      "category": "deal",
+      "title": "Anker Nano 13-in-1 dock ~$120",
+      "body": "Desk dock + detachable travel hub: triple display (2×HDMI + DP), Ethernet, 100W PD — about $30 off list at Amazon. Solid ops upgrade; not the all-time low.",
+      "source": "TechRadar · Sep 14, 2026",
+      "tags": [
+        "hardware",
+        "dock",
+        "home-office",
+        "amazon"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/deal-anker-nano-dock-20260914/800/520",
+      "link": "https://www.amazon.com/dp/B0FCLC1RMM",
+      "detail": {
+        "summary": "TechRadar flagged the Anker Nano 13-in-1 USB-C dock at about $119.99 (was $149.99) on Amazon today — a desk dock with a detachable 6-in-1 hub for travel. Triple-display + 100W PD is a real home-office productivity unlock. Price check at checkout: trackers have seen it near $104–$112 earlier this month.",
+        "sections": [
+          {
+            "heading": "What you get",
+            "body": "13 ports including dual HDMI + DisplayPort (triple display on Windows), 10 Gbps USB-C, USB-A, Ethernet, audio, SD/TF, and up to 100W Power Delivery over one upstream cable. The clever bit: a detachable 6-in-1 hub so you leave the heavy dock on the desk and pocket the small hub for trips."
+          },
+          {
+            "heading": "Who it helps",
+            "body": "Remote workers and creators who want multi-monitor + wired Ethernet without a cable jungle, or anyone tired of buying a separate travel hub. One cable at the desk; detach and go."
+          },
+          {
+            "heading": "Catch before you buy",
+            "body": "macOS mirrors external displays on this single-cable MST setup (Windows gets extended desktops). Charging can slow when the dock is driving multiple displays + peripherals. If you only need one monitor and a couple of USB ports, a cheaper hub is enough."
+          },
+          {
+            "heading": "Price honesty",
+            "body": "TechRadar (Sep 14, 2026) cites ~$119.99 vs $149.99 list (~20% off). They note a prior tracker low around $104.49; Macworld/Android Authority covered ~$112 earlier in September. Confirm live Amazon price — deal pages go stale fast."
+          }
+        ],
+        "bullets": [
+          "~$30 off list per TechRadar today (~$119.99 / was $149.99)",
+          "Triple display on Windows; macOS mirrors",
+          "Detachable 6-in-1 hub = desk + travel without a second purchase",
+          "100W PD covers most mid-range laptops; verify wattage for yours",
+          "ASIN B0FCLC1RMM — recheck price before buy"
+        ],
+        "steps": [
+          "Confirm your laptop has a full-featured USB-C/Thunderbolt port and your OS needs (Windows extended vs Mac mirror)",
+          "Open the Amazon listing and verify current price vs ~$120 / list $150",
+          "If you need extended multi-monitor on Mac, skip this and look for a DisplayLink or native multi-stream dock instead"
+        ],
+        "actions": [
+          {
+            "label": "Buy on Amazon (ASIN B0FCLC1RMM)",
+            "url": "https://www.amazon.com/dp/B0FCLC1RMM"
+          },
+          {
+            "label": "TechRadar deal write-up",
+            "url": "https://www.techradar.com/pro/this-clever-anker-13-in-1-docking-station-deal-upgrades-your-laptop-into-a-serious-triple-monitor-workstation"
+          },
+          {
+            "label": "Compare: earlier Macworld coverage (~$112)",
+            "url": "https://www.macworld.com/article/3228628/this-13-in-1-anker-dock-solves-all-of-your-cable-problems-and-its-25-off.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "TechRadar · Anker Nano 13-in-1 dock deal (Sep 14, 2026)",
+            "url": "https://www.techradar.com/pro/this-clever-anker-13-in-1-docking-station-deal-upgrades-your-laptop-into-a-serious-triple-monitor-workstation"
+          },
+          {
+            "label": "Amazon product page · ASIN B0FCLC1RMM",
+            "url": "https://www.amazon.com/dp/B0FCLC1RMM"
+          },
+          {
+            "label": "Macworld · earlier Sep price note",
+            "url": "https://www.macworld.com/article/3228628/this-13-in-1-anker-dock-solves-all-of-your-cable-problems-and-its-25-off.html"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aws-20260914-managed-kb-agentic-retrieve",
+      "category": "aws",
+      "title": "Managed KB: agentic retrieve, not one-shot RAG",
+      "body": "When answers span multiple corpora, put a reasoning agent in front of Managed Knowledge Bases: route across KBs, call AgenticRetrieveStream via AgentCore Gateway (MCP), and wire CloudWatch/eval from day one — no DIY vector DB.",
+      "source": "AWS ML Blog · Aug 31, 2026",
+      "tags": [
+        "bedrock",
+        "knowledge-bases",
+        "agentcore",
+        "rag",
+        "observability"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-managed-kb-agentic-20260914/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/build-observable-enterprise-agentic-retrieval-using-managed-amazon-bedrock-knowledge-base-with-aws-cloudformation/",
+      "detail": {
+        "summary": "Classic RAG does one retrieve + one generate. Enterprise agentic retrieval lets an agent decide which Managed Knowledge Base to hit, run multi-step AgenticRetrieveStream inside that KB, then return a cited answer — while AgentCore Runtime auto-emits OpenTelemetry so you can actually operate it.",
+        "sections": [
+          {
+            "heading": "Why Managed (Type: MANAGED) matters",
+            "body": "AgenticRetrieveStream and the native AgentCore Gateway bedrock-knowledge-bases connector exist on Managed Knowledge Bases only. Bedrock owns ingestion, embeddings/reranking (managed models by default), and the datastore — so you skip provisioning and patching a vector DB. Customer-managed (DIY) KBs still work for classic Retrieve; they do not unlock this agentic path."
+          },
+          {
+            "heading": "Two-level routing pattern",
+            "body": "Cross-KB: give the agent one MCP tool per knowledge base (e.g. finance vs weather/docs) and prompt it to pick by topic. Within-KB: AgenticRetrieveStream plans sub-queries, retrieves iteratively, and synthesizes a grounded, citation-backed answer (set generateResponse false if you want chunks only). Separate KBs beat one KB with two data sources when you need a real routing decision and clean per-KB metrics."
+          },
+          {
+            "heading": "Ship observability with the agent",
+            "body": "The reference CloudFormation chain stands up KBs → Gateway → AgentCore Runtime → dashboards. Seven layers cover KB health, ingestion, retrieval quality, Gateway/MCP latency, full OTEL span trees, token usage, and evaluation scores (on-demand + online). Runtime auto-instruments the reason-and-act loop — do not bolt telemetry on after go-live."
+          },
+          {
+            "heading": "Cost control on eval",
+            "body": "Online evaluation samples live sessions with LLM-as-judge. The sample sets SamplingPercentage to 100 for the demo — not a production default. Tune OnlineEvaluationConfig sampling to budget; use on-demand eval while iterating, then modest continuous sampling in prod."
+          }
+        ],
+        "bullets": [
+          "Prefer Managed KB when you need AgenticRetrieveStream + Gateway MCP tools",
+          "One tool per KB so the agent can semantically route",
+          "Design CloudWatch/X-Ray/eval stacks in the same deploy as the agent",
+          "Cap online-eval sampling — 100% is a blog experiment, not an ops policy"
+        ],
+        "steps": [
+          "Sketch corpora that should stay isolated (access, cost, routing clarity) as separate Managed Knowledge Bases",
+          "Expose each KB’s AgenticRetrieveStream through AgentCore Gateway as its own MCP tool (no custom Lambda glue)",
+          "Host the router agent on AgentCore Runtime with OTEL on; confirm spans and Gateway metrics before polishing prompts",
+          "Enable continuous eval at a low sampling % only after on-demand scores look stable"
+        ],
+        "actions": [
+          {
+            "label": "Read the AWS how-to",
+            "url": "https://aws.amazon.com/blogs/machine-learning/build-observable-enterprise-agentic-retrieval-using-managed-amazon-bedrock-knowledge-base-with-aws-cloudformation/"
+          },
+          {
+            "label": "Managed KB Gateway connector docs",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-managed-kb.html"
+          },
+          {
+            "label": "aws-samples path (deploy scripts)",
+            "url": "https://github.com/aws-samples/amazon-bedrock-samples"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — observable enterprise agentic retrieval (Aug 31, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/build-observable-enterprise-agentic-retrieval-using-managed-amazon-bedrock-knowledge-base-with-aws-cloudformation/"
+          },
+          {
+            "label": "AgentCore — Managed Knowledge Bases as Gateway target",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-managed-kb.html"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trend-20260914-sap-c03-genai",
+      "category": "aws",
+      "title": "SAP-C03 adds Bedrock + AgentCore",
+      "body": "Solutions Architect – Professional updates Nov 17, 2026 with 11 GenAI/agentic skills (Bedrock, AgentCore, RAG, Guardrails). Registration opens Oct 27; SAP-C02 ends Nov 16. Study-plan note for SAs — not a must-sit mandate.",
+      "source": "AWS Training & Certification Blog · Sep 1, 2026",
+      "tags": [
+        "aws-sa",
+        "sap-c03",
+        "bedrock",
+        "agentcore",
+        "certification"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/trend-sap-c03-20260914/800/520",
+      "link": "https://aws.amazon.com/blogs/training-and-certification/september-2026-new-offerings/",
+      "detail": {
+        "summary": "AWS is refreshing Solutions Architect – Professional to SAP-C03. GA starts November 17, 2026; registration opens October 27; last day for SAP-C02 is November 16. The update adds GenAI/agentic design skills on Bedrock and AgentCore plus modern resilience, DevSecOps, and post-quantum crypto — aligned with how SA work actually looks in 2026.",
+        "sections": [
+          {
+            "heading": "Why this matters for an SA",
+            "body": "The Pro exam is catching up to customer asks: Bedrock integrations, agent architectures (AgentCore), RAG, Guardrails, and human-oversight workflows. If you sell or design GenAI on AWS, the new blueprint is a useful checklist of what AWS expects architects to defend in design reviews — even if you never sit the exam."
+          },
+          {
+            "heading": "Key dates",
+            "body": "Oct 27, 2026 — SAP-C03 registration opens (all current languages). Nov 16 — last day for SAP-C02. Nov 17 — SAP-C03 GA. Exam: 180 minutes, 75 questions, $300, Pearson VUE. Full exam guide lands when registration opens."
+          },
+          {
+            "heading": "What else landed in the same post",
+            "body": "MLA-C02 beta is open now (English; MLA-C01 English ends Sep 28, 2026). DVA-C03 follows with registration Oct 27 and GA Dec 1, 2026, leaning into AI-assisted development and Bedrock/AgentCore security skills. Same blog — useful if you coach a broader team."
+          },
+          {
+            "heading": "C02 vs C03 decision",
+            "body": "Sit SAP-C02 by Nov 16 if you are already ready and want the credential now (it stays valid to its normal expiry). Wait for SAP-C03 if you want the paper to validate GenAI/agentic and modern resilience skills alongside classic architecture."
+          }
+        ],
+        "bullets": [
+          "11 new GenAI/agentic skills: Bedrock, AgentCore, RAG, Guardrails, human oversight",
+          "Also: Fault Injection Service, Resilience Hub, VPC Lattice, lakehouse/Iceberg, KMS post-quantum",
+          "Five domains stay: cloud-native, security/governance, cost, resilience/migration, ops excellence"
+        ],
+        "steps": [
+          "Skim the Sep 2026 T&C blog and bookmark the dates (Oct 27 / Nov 16–17)",
+          "Map your last 2–3 customer designs to Bedrock, RAG, Guardrails, and AgentCore — note gaps",
+          "Decide by mid-October: sit SAP-C02 now, or wait for C03 and pull the exam guide on day one"
+        ],
+        "actions": [
+          {
+            "label": "Read the T&C update",
+            "url": "https://aws.amazon.com/blogs/training-and-certification/september-2026-new-offerings/"
+          },
+          {
+            "label": "Agentic AI Lens (Well-Architected)",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/agentic-ai-lens.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS T&C · September 2026 certification updates",
+            "url": "https://aws.amazon.com/blogs/training-and-certification/september-2026-new-offerings/"
+          },
+          {
+            "label": "AWS Well-Architected Agentic AI Lens",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/agentic-ai-lens.html"
+          }
+        ]
+      }
+    },
     {
       "id": "book-20260914-conscious-spending",
       "category": "book",
