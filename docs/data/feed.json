@@ -4,6 +4,86 @@
   "updated": "2026-09-15",
   "cards": [
     {
+      "id": "tax-20260915-form-3520-india-gifts",
+      "category": "tax",
+      "title": "Form 3520: large gifts from India family",
+      "body": "Wire from parents in India can be tax-free as a gift — but if related NRA gifts top $100k in a year, Form 3520 Part IV is usually required. Miss it and IRC 6039F penalties can hit 5%/month (cap 25%). Educational only, not tax advice.",
+      "source": "IRS · Form 3520 · Gifts from foreign person",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "form-3520",
+        "foreign-gifts",
+        "nra"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-3520-india-gifts-20260915/800/520",
+      "link": "https://www.irs.gov/businesses/gifts-from-foreign-person",
+      "detail": {
+        "summary": "Genuine gifts from nonresident alien (NRA) family in India are generally not US income — but US persons who receive more than $100,000 in aggregate gifts/bequests in a year from an NRA individual or foreign estate (counting related foreign donors) must file Form 3520, Part IV. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US citizens and residents who receive large parental / family support wires, wedding gifts, inheritance bequests, or property transfers from relatives who are nonresident aliens (or from a foreign estate). Also anyone who might lump related family donors without realizing aggregation applies."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Part IV of Form 3520 reports large foreign gifts — it is information reporting, not a tax on the gift itself when it is a true gift. Threshold for NRA individuals / foreign estates: more than $100,000 aggregate in the tax year, including gifts from foreign persons you know (or have reason to know) are related. Once over $100k, separately identify each gift over $5,000. Purported gifts from foreign corporations/partnerships use a lower inflation-adjusted threshold ($20,573 for 2026) and the IRS may recharacterize them. Qualified tuition or medical payments made directly on your behalf are generally carved out of “foreign gift.” File Form 3520 separately from Form 1040 (mail to Ogden); calendar-year filers typically due April 15, with Form 4868 extending Form 3520 (generally not past Oct 15)."
+          },
+          {
+            "heading": "India–US angle",
+            "body": "Classic trap: $70k from mom + $40k from a related uncle in the same year crosses $100k via related-party aggregation. Another trap: treating a wire from an India Pvt Ltd / family company as a “gift” — corporate thresholds are much lower and recharacterization risk is real. Keep bank memos, gift letters, and donor relationship notes. FBAR (FinCEN 114) and Form 8938 may still apply if money lands in or moves through foreign accounts."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "Add up 2026 wires/gifts/bequests from India relatives (and related foreign persons). If the total looks near or over $100k, open the IRS “Gifts from foreign person” page and Form 3520 Part IV instructions now — don’t wait until April."
+          }
+        ],
+        "bullets": [
+          "True NRA family gifts are usually not US taxable income — reporting is the issue",
+          "Form 3520 Part IV when aggregate NRA/foreign-estate gifts exceed $100,000 (related donors count)",
+          "Over the threshold: separately ID each gift over $5,000",
+          "Foreign corp/partnership “gifts”: $20,573 threshold for 2026 + recharacterization risk",
+          "Late/incomplete Part IV: up to 5% of the gift per month, capped at 25% (IRC 6039F)",
+          "Educational only — not tax advice"
+        ],
+        "steps": [
+          "List 2026 gifts/bequests from India NRA individuals, foreign estates, and related foreign persons",
+          "Aggregate related donors; compare to the $100k Part IV line (or corp/partnership threshold if applicable)",
+          "Keep gift letters + wire proofs; note any tuition/medical payments made directly to providers",
+          "If over threshold, complete Form 3520 Part IV and file separately per IRS instructions (check Box 1k if you extended Form 1040)"
+        ],
+        "actions": [
+          {
+            "label": "IRS: Gifts from foreign person",
+            "url": "https://www.irs.gov/businesses/gifts-from-foreign-person"
+          },
+          {
+            "label": "About Form 3520",
+            "url": "https://www.irs.gov/forms-pubs/about-form-3520"
+          },
+          {
+            "label": "Instructions for Form 3520",
+            "url": "https://www.irs.gov/instructions/i3520"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS · Gifts from foreign person",
+            "url": "https://www.irs.gov/businesses/gifts-from-foreign-person"
+          },
+          {
+            "label": "IRS · About Form 3520",
+            "url": "https://www.irs.gov/forms-pubs/about-form-3520"
+          },
+          {
+            "label": "IRS · Instructions for Form 3520",
+            "url": "https://www.irs.gov/instructions/i3520"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260915-save-more-tomorrow",
       "category": "book",
       "title": "Commit raises to savings first",
