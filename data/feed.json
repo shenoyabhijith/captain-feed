@@ -1,8 +1,78 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-14",
+  "updated": "2026-09-15",
   "cards": [
+    {
+      "id": "book-20260915-save-more-tomorrow",
+      "category": "book",
+      "title": "Commit raises to savings first",
+      "body": "Thaler’s Save More Tomorrow: pledge a slice of future raises into retirement before the money hits your lifestyle. Present-you stays comfortable; future-you compounds.",
+      "source": "Richard Thaler · Nudge / Misbehaving (via felixgeelhaar notes)",
+      "tags": [
+        "money",
+        "behavior",
+        "automation",
+        "savings"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/book-smart-20260915/800/520",
+      "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
+      "detail": {
+        "summary": "Present bias makes “save more starting today” feel painful. Thaler’s Save More Tomorrow (SMarT) flips that: you commit now to divert a portion of future salary increases into savings or investments, so today’s lifestyle barely changes while the savings rate ratchets up with each raise.",
+        "sections": [
+          {
+            "heading": "The behavioral bug",
+            "body": "People systematically overvalue money in hand and undervalue the future self. Asking someone to cut spending this paycheck fights present bias head-on. Asking them to earmark next year’s raise feels almost free — that is the nudge."
+          },
+          {
+            "heading": "How SMarT works",
+            "body": "On payday after a raise, automation moves a pre-agreed share of the increase into savings or retirement before the new “normal” spending level locks in. You still get a raise in take-home; the rest compounds. Classic companion rule from money notes: treat found money (bonuses, refunds) the same way — most of it should not feel spendable."
+          },
+          {
+            "heading": "Why it sticks",
+            "body": "Defaults and commitment devices beat willpower. Auto-enrollment and auto-escalation in workplace plans use the same idea at scale. Design the environment so the smart action is the path of least resistance."
+          },
+          {
+            "heading": "One action today",
+            "body": "Write a one-line rule: “Next raise, X% of the increase goes to [account] on payday.” If you already have a raise pending or a bonus calendar, set the transfer now while motivation is high."
+          }
+        ],
+        "bullets": [
+          "Present bias: future self feels like a stranger — automation bridges the gap",
+          "SMarT: commit a % of future raises before lifestyle expands",
+          "Pair with payday automation (savings + investments leave checking first)",
+          "Reasonable plan you keep beats perfect plan you abandon",
+          "Education only — not personalized financial advice"
+        ],
+        "steps": [
+          "Name the destination account (emergency fund, IRA/401k, taxable brokerage)",
+          "Pick a raise-split rule you can live with (e.g. 50% of the increase)",
+          "Schedule or note the auto-transfer for the next raise/bonus date",
+          "Optional: raise your recurring contribution by 1% this month as a dry run"
+        ],
+        "actions": [
+          {
+            "label": "Source notes (personal-finance-expert)",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          },
+          {
+            "label": "Related: Siegel money principles notes",
+            "url": "https://github.com/mgp/book-notes/blob/master/why-dont-they-teach-me-this-in-school.markdown"
+          }
+        ],
+        "sources": [
+          {
+            "label": "felixgeelhaar/skills · personal-finance-expert (Thaler SMarT)",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          },
+          {
+            "label": "mgp/book-notes · Why Didn't They Teach Me This in School",
+            "url": "https://github.com/mgp/book-notes/blob/master/why-dont-they-teach-me-this-in-school.markdown"
+          }
+        ]
+      }
+    },
     {
       "id": "deal-20260914-anker-nano-13in1-dock",
       "category": "deal",
