@@ -4,6 +4,90 @@
   "updated": "2026-09-17",
   "cards": [
     {
+      "id": "aws-20260917-agentcore-stage1-replatform",
+      "category": "aws",
+      "title": "Replatform the agent before you rewrite it",
+      "body": "LangGraph on your laptop isn’t production: you still own session isolation, tool auth, and durable state. Stage 1 of AgentCore moves Runtime + Gateway + Memory with the graph unchanged — stop there until ops burden drops, then choose Strands planning or the harness.",
+      "source": "AWS ML Blog · Sep 3, 2026",
+      "tags": [
+        "bedrock",
+        "agentcore",
+        "langgraph",
+        "migration",
+        "gateway",
+        "runtime",
+        "aws-sa"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-agentcore-stage1-replatform-20260917/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/migrate-agentic-workloads-to-amazon-bedrock-agentcore/",
+      "detail": {
+        "summary": "An agent that works in a notebook still leaves you patching OS, isolating sessions, signing every tool call, and holding conversation state in-process. AWS’s Sep 3, 2026 how-to migrates a LangGraph support agent onto Amazon Bedrock AgentCore in stages: Stage 1 keeps the graph and sheds five ops burdens (Runtime microVM, Gateway MCP tools, Memory checkpoints); Stage 2 optionally swaps hand-written routing for Strands model-driven planning; Stage 3 hands the loop to an AgentCore harness. For SA blogs: teach staged migration, not a big-bang rewrite.",
+        "sections": [
+          {
+            "heading": "What Stage 1 actually moves",
+            "body": "Runtime wraps your existing loop in BedrockAgentCoreApp with an @app.entrypoint — one microVM per session, so OS patching and auto-scaling stop being yours (you still own VPC, WAF, IAM, secrets). Put shared tools (e.g. lookup_order, process_return) behind AgentCore Gateway as MCP Lambda targets with GATEWAY_IAM_ROLE; keep agent-local tools (search_faq) in-process. Swap MemorySaver for AgentCoreMemorySaver keyed on actor_id + session_id so state survives process death and multi-replica deploys. Inference already on Bedrock does not move."
+          },
+          {
+            "heading": "Deploy traps that burn a day",
+            "body": "CreateAgentRuntime accepts a code zip in S3 with dependencies vendored beside source — no ECR required. Two silent killers: (1) pip install -t on an x86 laptop installs the wrong wheels — vendor for manylinux2014_aarch64 and the Runtime Python version (blog uses 3.12); (2) a requirements.txt inside the zip is inert — missing modules show up as “Runtime initialization time exceeded … 30s,” not ModuleNotFoundError. Prove POST /invocations locally with app.run() before CreateAgentRuntime. Gateway tools arrive as supportTools___lookup_order — assert the prefixed name in tests, not the original."
+          },
+          {
+            "heading": "When to take Stage 2 and 3",
+            "body": "Stage 2 only when route_intent / conditional edges are the ceiling: Strands Agent replaces the branch with model-driven planning, reusing Stage 1’s gateway, target, and Memory. You lose a deterministic, auditable branch — put Cedar Policy on the Gateway so every tool call is default-deny in the data plane (Guardrails on model output are too late; the tool already ran). Stage 3 is harness-as-config (model, prompt, tools, memory, limits) — dependency updates move; graph-shaped agents must become a single loop first. Stop at Stage 1 if the graph is already trusted."
+          },
+          {
+            "heading": "Blog angle for Solutions Architects",
+            "body": "Frame as “retire ops that aren’t reasoning”: map ten burdens to Runtime / Gateway / Memory / Policy / Observability / Identity, then show a before/after of the same LangGraph answers with five burdens gone. Demo pitfalls: in-process state after idleRuntimeSessionTimeout (default 15m), outcome-based acceptance (not reply wording parity), and Guardrails at every stage for injection/grounding. Pair with yesterday’s CI eval gate and Gateway rate limits for the full production path — this card is the migration order."
+          }
+        ],
+        "bullets": [
+          "Stage 1: same graph, managed compute + MCP tools + durable Memory — valid stopping point",
+          "Vendor ARM64 Linux wheels for Runtime; don’t trust laptop pip into the zip",
+          "Cedar on Gateway is default-deny; Guardrails ≠ tool-call authorization",
+          "idleRuntimeSessionTimeout ends the execution environment — put next-turn facts in Memory"
+        ],
+        "steps": [
+          "Clone aws-samples/sample-migrate-agents-to-amazon-bedrock-agentcore; record Stage 0 baseline (tools called + final graph message)",
+          "Wrap BedrockAgentCoreApp; register shared tools on Gateway; wire AgentCoreMemorySaver; vendor aarch64 deps and deploy",
+          "Diff Stage 1 vs Stage 0 with an assertion on supportTools___… payloads — not eyeballing reply text",
+          "Only if routing is the bottleneck: Stage 2 Strands + Cedar Policy; consider harness last"
+        ],
+        "actions": [
+          {
+            "label": "Read the AWS migration how-to (Sep 3, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/migrate-agentic-workloads-to-amazon-bedrock-agentcore/"
+          },
+          {
+            "label": "Sample repo — migrate agents to AgentCore",
+            "url": "https://github.com/aws-samples/sample-migrate-agents-to-amazon-bedrock-agentcore"
+          },
+          {
+            "label": "Import existing Bedrock Agents (starter toolkit)",
+            "url": "https://aws.github.io/bedrock-agentcore-starter-toolkit/user-guide/import-agent/quickstart.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — Migrate agentic workloads to Amazon Bedrock AgentCore (Sep 3, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/migrate-agentic-workloads-to-amazon-bedrock-agentcore/"
+          },
+          {
+            "label": "aws-samples — sample-migrate-agents-to-amazon-bedrock-agentcore",
+            "url": "https://github.com/aws-samples/sample-migrate-agents-to-amazon-bedrock-agentcore"
+          },
+          {
+            "label": "AgentCore starter toolkit — Import Agent quickstart",
+            "url": "https://aws.github.io/bedrock-agentcore-starter-toolkit/user-guide/import-agent/quickstart.html"
+          },
+          {
+            "label": "AWS Migration Blog — Mass-migrating AI agents to AgentCore",
+            "url": "https://aws.amazon.com/blogs/migration-and-modernization/mass-migrating-ai-agents-to-amazon-bedrock-agentcore/"
+          }
+        ]
+      }
+    },
+    {
       "id": "trend-20260917-gpt6-astra-bedrock",
       "category": "aws",
       "title": "GPT-6 Astra GA on Bedrock",
