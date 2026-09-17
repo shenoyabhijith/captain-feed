@@ -1,8 +1,74 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-16",
+  "updated": "2026-09-17",
   "cards": [
+    {
+      "id": "book-20260917-two-minute-rule",
+      "category": "book",
+      "title": "Start so small you can’t skip",
+      "body": "Clear’s Two-Minute Rule: scale any new habit down to ≤2 minutes. Master showing up first; intensity comes after the habit exists.",
+      "source": "James Clear · Atomic Habits (via lijubjohn notes)",
+      "tags": [
+        "habits",
+        "two-minute-rule",
+        "productivity",
+        "friction"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/book-two-minute-20260917/800/520",
+      "link": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md",
+      "detail": {
+        "summary": "Motivation fails when the first step feels heavy. Atomic Habits’ Make It Easy law includes the Two-Minute Rule: shrink the habit until it takes two minutes or less. You’re not lowering standards forever — you’re practicing the gateway action so the real habit can form. Read one page, put on gym shoes, open the brokerage app. Consistency beats heroic sessions you skip.",
+        "sections": [
+          {
+            "heading": "Why tiny beats ambitious",
+            "body": "A behavior that never starts never compounds. Friction at the response stage kills habits even when the cue and craving are there. Downscaling to two minutes removes the negotiation: the bar is so low that skipping needs an excuse, not a mood."
+          },
+          {
+            "heading": "Gateway habits, not forever-lite",
+            "body": "The point isn’t to stay tiny. Two minutes is the on-ramp: once “put on shoes and walk to the mat” is automatic, you already showed up — and most days you’ll keep going. Standardize before you optimize. Ritual first, volume second."
+          },
+          {
+            "heading": "Pair with environment and stacking",
+            "body": "Make the cue obvious (shoes by the door), stack after something you already do (“After coffee, I open the workout site for two minutes”), and prime the space so the next step is frictionless. Easy beats willpower when you’re tired."
+          },
+          {
+            "heading": "One action today",
+            "body": "Pick one stalled habit. Rewrite it as a ≤2-minute version and schedule: I will [tiny behavior] at [time] in [place]. Do only that; extra reps are optional bonus."
+          }
+        ],
+        "bullets": [
+          "Scale new habits to two minutes or less so you can’t negotiate out",
+          "Master showing up before you chase intensity or duration",
+          "Treat the tiny version as a gateway, not a permanent downgrade",
+          "Cut friction: environment design + habit stacking beat motivation",
+          "Never miss twice — a two-minute reset beats a guilt spiral"
+        ],
+        "steps": [
+          "Name one habit you’ve been skipping or overplanning",
+          "Rewrite it as a ≤2-minute gateway (e.g. “open workout site + first set of inverted rows” → “open the site and do one rep”)",
+          "Schedule: I will [tiny behavior] at [time] in [place]",
+          "If energy remains after two minutes, continue — but credit the win either way"
+        ],
+        "actions": [
+          {
+            "label": "Source notes (Atomic Habits)",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          },
+          {
+            "label": "lijubjohn/book-notes repo",
+            "url": "https://github.com/lijubjohn/book-notes"
+          }
+        ],
+        "sources": [
+          {
+            "label": "lijubjohn/book-notes · atomic-habits.md",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          }
+        ]
+      }
+    },
     {
       "id": "aws-20260916-agentcore-ci-eval-gate",
       "category": "aws",
