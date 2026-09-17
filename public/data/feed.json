@@ -4,6 +4,86 @@
   "updated": "2026-09-17",
   "cards": [
     {
+      "id": "tax-20260917-pfic-form-8621-india-mf",
+      "category": "tax",
+      "title": "PFIC trap: India mutual funds (Form 8621)",
+      "body": "India mutual funds and many foreign ETFs are often PFICs for US persons — Form 8621 per fund, and the default excess-distribution rules can be harsh. Inventory holdings before you buy or sell more. Educational only, not tax advice.",
+      "source": "IRS · Form 8621 · PFIC / QEF",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "pfic",
+        "form-8621",
+        "mutual-funds",
+        "cross-border"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-pfic-8621-india-mf-20260917/800/520",
+      "link": "https://www.irs.gov/forms-pubs/about-form-8621",
+      "detail": {
+        "summary": "A Passive Foreign Investment Company (PFIC) is generally a foreign corporation that meets an income test (≥75% passive income) or an asset test (≥50% assets that produce passive income). Many India mutual funds and foreign ETFs fit that profile for US citizens and resident aliens. When they do, Form 8621 is often in play — and the default IRC §1291 “excess distribution” regime can allocate gain across prior years with interest. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US citizens, green-card holders, and resident aliens who still hold India mutual funds (direct or via NRE/NRO brokerage), foreign ETFs that are non-US corporations, or older SIPs started before moving to the US. Especially useful if you treat India MFs like US Vanguard/Fidelity funds — the US tax treatment is usually not the same."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "PFIC status is tested at the foreign corporation level (income or asset test). US persons who are shareholders generally file Form 8621 when they receive certain distributions, recognize gain on disposition, report/make a QEF or mark-to-market election, make another Part II election, or must file an annual report under §1298(f). A separate Form 8621 is generally required for each PFIC. Without a timely QEF or mark-to-market election (when available), the default §1291 regime can tax “excess distributions” and disposition gains in a punitive, look-back way. India AMC funds rarely hand US investors the annual PFIC statements needed for an easy QEF election — so many filers face default treatment or need specialist help."
+          },
+          {
+            "heading": "India–US angle",
+            "body": "Classic pattern: SIPs in India equity/debt MFs kept after becoming a US tax resident, or family gifting/transferring MF units. Those units can also count toward Form 8938 / FBAR thresholds (yesterday’s tip), but Form 8621 is a separate PFIC information return with its own tax consequences. US-domiciled funds that hold foreign stocks are generally not PFICs — the “foreign corporation” piece is the key. Do not assume “no distribution this year” means no Form 8621 obligation; annual reporting rules can still apply."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "List every India mutual fund / foreign ETF ticker and approximate value you (or your spouse) still hold. Open the IRS About Form 8621 page and the Instructions for Form 8621, then book a cross-border CPA before you redeem, switch, or start a new SIP — selling without a plan can crystallize PFIC tax under §1291."
+          }
+        ],
+        "bullets": [
+          "India MFs and many foreign ETFs are often PFICs for US persons",
+          "Form 8621 is generally filed per PFIC when IRS triggers apply (distributions, dispositions, elections, §1298(f))",
+          "Default §1291 excess-distribution rules can be much harsher than US mutual-fund tax",
+          "QEF / mark-to-market elections need timing and (often) fund statements many India AMCs don’t provide",
+          "Separate from Form 8938 / FBAR — you may need all of them; educational only, not tax advice"
+        ],
+        "steps": [
+          "Inventory every India MF / foreign ETF still in your name (or spouse’s), including dormant SIPs",
+          "Note purchase dates, current value, and any 2025–2026 redemptions or switches",
+          "Read IRS About Form 8621 + Instructions (Rev. Dec 2025) for filing triggers and elections",
+          "Before buying or selling more India MFs, get a cross-border tax pro to map PFIC exposure"
+        ],
+        "actions": [
+          {
+            "label": "IRS: About Form 8621",
+            "url": "https://www.irs.gov/forms-pubs/about-form-8621"
+          },
+          {
+            "label": "Form 8621 (PDF)",
+            "url": "https://www.irs.gov/pub/irs-pdf/f8621.pdf"
+          },
+          {
+            "label": "Instructions for Form 8621 (PDF)",
+            "url": "https://www.irs.gov/pub/irs-pdf/i8621.pdf"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS · About Form 8621",
+            "url": "https://www.irs.gov/forms-pubs/about-form-8621"
+          },
+          {
+            "label": "IRS · Form 8621 (Rev. December 2025)",
+            "url": "https://www.irs.gov/pub/irs-pdf/f8621.pdf"
+          },
+          {
+            "label": "IRS · Instructions for Form 8621 (Rev. December 2025)",
+            "url": "https://www.irs.gov/pub/irs-pdf/i8621.pdf"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260917-two-minute-rule",
       "category": "book",
       "title": "Start so small you can’t skip",
