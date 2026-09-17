@@ -4,6 +4,83 @@
   "updated": "2026-09-17",
   "cards": [
     {
+      "id": "trend-20260917-gpt6-astra-bedrock",
+      "category": "aws",
+      "title": "GPT-6 Astra GA on Bedrock",
+      "body": "OpenAI’s GPT-6 Astra is generally available on Amazon Bedrock (Sep 8): up to 1M input tokens, deeper reasoning, and computer/browser use — call via Bedrock APIs or point ChatGPT Work / Codex at Bedrock. AWS controls + no training on your inference data.",
+      "source": "AWS What’s New · Sep 8, 2026",
+      "tags": [
+        "bedrock",
+        "openai",
+        "gpt-6-astra",
+        "agents",
+        "aws-sa",
+        "enterprise"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/trend-gpt6-astra-bedrock-20260917/800/520",
+      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/",
+      "detail": {
+        "summary": "On Sep 8, 2026 AWS announced general availability of OpenAI GPT-6 Astra on Amazon Bedrock. Astra is positioned as OpenAI’s latest frontier model for demanding business workflows: deeper reasoning and judgment, professional writing/design, and advanced computer and browser use, with a context window up to 1 million input tokens. You invoke it through supported Bedrock APIs, or configure ChatGPT Work and Codex to use the model on Bedrock. Educational product brief for AWS SA work — not a vendor pitch or buy signal.",
+        "sections": [
+          {
+            "heading": "What shipped",
+            "body": "GPT-6 Astra is callable on Amazon Bedrock’s inference engine for production scale, security, and audit. AWS emphasizes established account controls for access governance and model-invocation auditing, and that inference data isn’t used for model training. Alongside the Bedrock GA, OpenAI is introducing enterprise plugins for ChatGPT Work that extend Astra’s browser-use capabilities across common business apps — useful framing when a customer already lives in ChatGPT Work but wants Bedrock-backed inference."
+          },
+          {
+            "heading": "Why it matters for Solutions Architects",
+            "body": "Large-context + judgment across competing inputs is the pitch: long contracts, big codebases, multi-doc packs, agent loops that need tool/browser use. The Bedrock path keeps the usual SA conversation: IAM, VPC endpoints, CloudWatch logging, Guardrails, inference profiles, regional availability, and cost controls — without standing up a separate OpenAI-only stack if the customer’s bar is ‘stay in AWS.’ Pair with AgentCore (runtime, gateway spend limits, eval gates) when the use case is agents, not one-shot chat."
+          },
+          {
+            "heading": "How to try it without boiling the ocean",
+            "body": "Start in the Bedrock console or via supported Bedrock APIs. Confirm Regions, inference profiles, and pricing in the Bedrock docs before promising a customer demo. For ChatGPT Work / Codex customers, check whether configuring those products to use Astra on Bedrock is available in their account path. Smoke-test: one long-document reconciliation prompt and one agent-ish tool/browser task, then compare latency, quality, and $ vs your current Claude / prior GPT Bedrock models."
+          },
+          {
+            "heading": "Captain next step",
+            "body": "If you’re drafting an AI-on-AWS talk track this week, add Astra as the OpenAI frontier option on Bedrock next to Claude Fable 5.1. Lead with controls (IAM, audit, no training on inference) and the 1M-token window, then ask which workflow needs judgment across a big corpus vs cheap/fast models for simple classify/summarize. Read the What’s New post + Sep 14 Weekly Roundup for the surrounding launch cluster (Quick desktop, Lambda 90-min Managed Instances, etc.)."
+          }
+        ],
+        "bullets": [
+          "GA on Amazon Bedrock as of Sep 8, 2026 (OpenAI GPT-6 Astra)",
+          "Up to ~1M input tokens; reasoning, writing/design, computer + browser use",
+          "Invoke via Bedrock APIs; optional ChatGPT Work / Codex on Bedrock",
+          "AWS: secure, govern, audit invocations; inference not used for training",
+          "Educational only — check Regions, profiles, and pricing before customer demos"
+        ],
+        "steps": [
+          "Open Bedrock console → model catalog / inference profiles; confirm Astra availability in your demo Region",
+          "Read What’s New + Bedrock docs for APIs, endpoints, pricing",
+          "Run two smoke prompts: long multi-doc reconcile + one agent/browser-style task",
+          "Note Guardrails + logging path you’d recommend for a production account",
+          "Update your SA talk track: OpenAI frontier option sits on Bedrock alongside Claude"
+        ],
+        "actions": [
+          {
+            "label": "AWS What’s New: GPT-6 Astra on Bedrock",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/"
+          },
+          {
+            "label": "AWS Weekly Roundup (Sep 14, 2026)",
+            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-openai-gpt-6-astra-on-amazon-bedrock-amazon-quick-desktop-ga-kiro-for-students-and-more-september-14-2026/"
+          },
+          {
+            "label": "Amazon Bedrock (product)",
+            "url": "https://aws.amazon.com/bedrock/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS · What’s New · GPT-6 Astra on Bedrock (Sep 8, 2026)",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/"
+          },
+          {
+            "label": "AWS News Blog · Weekly Roundup (Sep 14, 2026)",
+            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-openai-gpt-6-astra-on-amazon-bedrock-amazon-quick-desktop-ga-kiro-for-students-and-more-september-14-2026/"
+          }
+        ]
+      }
+    },
+    {
       "id": "tax-20260917-pfic-form-8621-india-mf",
       "category": "tax",
       "title": "PFIC trap: India mutual funds (Form 8621)",
