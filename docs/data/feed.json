@@ -4,6 +4,86 @@
   "updated": "2026-09-17",
   "cards": [
     {
+      "id": "deal-20260917-hyper-tb5-dock",
+      "category": "deal",
+      "title": "Hyper Thunderbolt 5 dock — $319.99 Amazon low",
+      "body": "HyperDrive Next TB5 dock with built-in M.2 SSD slot is back at $319.99 ($80 off ~$400) on Hyper’s Amazon storefront — same low 9to5toys tracked for Prime Day. Triple-display capable (host-limited), 140W PD, 2.5GbE. Verify price before checkout; HyperShop still lists $399.99.",
+      "source": "9to5toys · Sep 17, 2026 · Amazon (Hyper)",
+      "tags": [
+        "hardware",
+        "dock",
+        "thunderbolt",
+        "home-office",
+        "ssd",
+        "ops"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/deal-hyper-tb5-dock-20260917/800/520",
+      "link": "https://9to5toys.com/2026/09/17/hyper-thunderbolt-5-dock-best-price-mac/",
+      "detail": {
+        "summary": "On Sep 17, 2026, 9to5toys flagged Hyper’s official Amazon listing for the 2026 HyperDrive Next Thunderbolt 5 Dock with SSD Enclosure at $319.99 shipped — $80 off the ~$400 list and matching the all-time Amazon low they tracked (including June Prime Day). Hyper’s own shop still shows $399.99, so the savings are on the Amazon channel. This is a heavy desk dock: TB5 bandwidth, built-in M.2 NVMe slot, up to 140W host charging, and multi-display support that depends on your laptop OS/chip.",
+        "sections": [
+          {
+            "heading": "What you get",
+            "body": "Metal TB5 dock with upstream TB5, multiple TB5 downstream ports, USB-A 10Gbps ports, built-in full-size M.2 PCIe Gen4/Gen3 NVMe slot (2230–2280, up to 16TB claimed), 2.5Gbps Ethernet, 3.5mm audio, security locks, and up to 140W USB-C PD (PD 3.1 EPR for the full 140W; PD 3.0 hosts max ~100W). Included: TB5 cable and 180W AC adapter per Hyper’s product page."
+          },
+          {
+            "heading": "Display reality check",
+            "body": "Marketing says up to three 4K@60Hz or one 8K@144Hz — but macOS/Chrome OS typically top out at two extended displays; Windows and MacBook Pro M5 Pro/Max (2026) are called out for triple. Your host chip and OS set the ceiling, not just the dock. Confirm before you buy if triple-monitor is the reason you’re spending."
+          },
+          {
+            "heading": "Who it’s for",
+            "body": "Home-office / workstation ops where one cable should carry power, Ethernet, storage, and monitors — especially if you want an internal M.2 instead of another dangling enclosure. Overkill if you only need a cheap USB-C hub (see prior Anker cards)."
+          },
+          {
+            "heading": "Price honesty",
+            "body": "Cited deal: $319.99 on Hyper’s Amazon storefront as of the Sep 17, 2026 9to5toys write-up (4:06 am PT). Same low has come and gone for months — recheck the live Amazon price at checkout; it can expire quietly. HyperShop.com product page fetched today still shows $399.99, so don’t assume manufacturer-direct is discounted. SSD not included — budget a separate M.2 if you want the enclosure filled."
+          }
+        ],
+        "bullets": [
+          "$319.99 Amazon (Hyper storefront) vs ~$400 list — $80 off; 9to5toys Sep 17, 2026",
+          "Built-in M.2 NVMe slot + 2.5GbE + up to 140W PD — one-cable desk ops",
+          "Triple display is host-limited (Mac often dual extended; check your chip)",
+          "HyperShop still $399.99 today — buy path is Amazon; verify price before pay",
+          "SSD sold separately; enclosure alone does not add capacity"
+        ],
+        "steps": [
+          "Confirm your laptop has Thunderbolt 3/4/5 or USB4 (USB 3.x alone is not enough)",
+          "Decide if you need triple displays — if yes, check OS/chip support first",
+          "Open Hyper’s Amazon listing via the 9to5toys article and confirm $319.99 still shows",
+          "Optional: price-compare HyperShop ($399.99) and add an M.2 NVMe only if you’ll use the slot"
+        ],
+        "actions": [
+          {
+            "label": "9to5toys deal write-up (Sep 17) — Amazon path",
+            "url": "https://9to5toys.com/2026/09/17/hyper-thunderbolt-5-dock-best-price-mac/"
+          },
+          {
+            "label": "Search Amazon: HyperDrive Next Thunderbolt 5 Dock",
+            "url": "https://www.amazon.com/s?k=HyperDrive+Next+Thunderbolt+5+Dock+SSD+Enclosure"
+          },
+          {
+            "label": "Compare: HyperShop official ($399.99 as of fetch)",
+            "url": "https://www.hypershop.com/products/hyperdrive-next-thunderbolt-5-dock"
+          }
+        ],
+        "sources": [
+          {
+            "label": "9to5toys · Hyper 2026 Thunderbolt 5 Dock Amazon low (Sep 17, 2026)",
+            "url": "https://9to5toys.com/2026/09/17/hyper-thunderbolt-5-dock-best-price-mac/"
+          },
+          {
+            "label": "HyperShop · HyperDrive Next Thunderbolt 5 Dock (HD2801GL)",
+            "url": "https://www.hypershop.com/products/hyperdrive-next-thunderbolt-5-dock"
+          },
+          {
+            "label": "9to5toys · prior same-price Amazon low (Aug 13, 2026)",
+            "url": "https://9to5toys.com/2026/08/13/hyper-2026-thunderbolt-5-dock-deal-mac/"
+          }
+        ]
+      }
+    },
+    {
       "id": "aws-20260917-agentcore-stage1-replatform",
       "category": "aws",
       "title": "Replatform the agent before you rewrite it",
