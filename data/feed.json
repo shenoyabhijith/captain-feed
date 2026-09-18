@@ -1,8 +1,75 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-17",
+  "updated": "2026-09-18",
   "cards": [
+    {
+      "id": "book-20260918-keystone-habits",
+      "category": "book",
+      "title": "Change one habit that moves the rest",
+      "body": "Duhigg’s keystone habits (exercise, family meals, making the bed) start chain reactions. Pick one lever habit; small wins cascade into other routines.",
+      "source": "Charles Duhigg · The Power of Habit (via mgp notes)",
+      "tags": [
+        "habits",
+        "keystone",
+        "productivity",
+        "self-help"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/book-keystone-20260918/800/520",
+      "link": "https://github.com/mgp/book-notes/blob/master/the-power-of-habit.markdown",
+      "detail": {
+        "summary": "You do not need to overhaul every behavior at once. In The Power of Habit, Charles Duhigg calls out keystone habits — a few routines that start a process that, over time, remakes other parts of life. Exercise, eating with family, and making the bed are classic examples: they create small wins, structures that help other habits stick, and a culture of values you remember under stress. Find one lever, not fifty tweaks.",
+        "sections": [
+          {
+            "heading": "What a keystone habit does",
+            "body": "Keystone habits matter more than other habits because they trigger chain reactions. Success rarely means getting every detail right; it means identifying a few priorities and turning them into levers. When the keystone is in place, related behaviors often improve without a separate willpower campaign for each one."
+          },
+          {
+            "heading": "Small wins that rewrite the story",
+            "body": "Keystones work partly through small wins — victories whose influence is outsized relative to their size. A made bed or a completed workout is not the whole goal; it is proof that change is possible, which makes the next hard choice easier. Those tiny advantages compound into patterns and, eventually, a new default identity."
+          },
+          {
+            "heading": "Structures and culture, not just motivation",
+            "body": "Keystones also create structures where other good habits can grow, and cultures that make values stick when you are tired or uncertain. That is why willpower treated as a muscle and trained in one domain often spills into others — the keystone is teaching a broader pattern of follow-through."
+          },
+          {
+            "heading": "One action today",
+            "body": "Name one keystone candidate tied to a goal you care about (training consistency, money automation, deep work). Make it so small you cannot skip it, schedule it for a fixed time and place, and protect it for seven days before adding anything else."
+          }
+        ],
+        "bullets": [
+          "Keystone habits start chain reactions that remake other routines",
+          "Focus on a few lever priorities instead of fixing everything at once",
+          "Small wins convince you bigger change is available",
+          "Keystones build structures and cultures that make hard choices easier",
+          "Train one domain of follow-through; strength often spills over"
+        ],
+        "steps": [
+          "Pick one life area that feels stuck (health, money, focus)",
+          "Choose one keystone habit that would pull other behaviors with it",
+          "Shrink it to a non-negotiable daily version (≤10 minutes if needed)",
+          "Schedule: I will [habit] at [time] in [place] for the next 7 days",
+          "Only after a week of showing up, stack a second related habit"
+        ],
+        "actions": [
+          {
+            "label": "Source notes (Power of Habit)",
+            "url": "https://github.com/mgp/book-notes/blob/master/the-power-of-habit.markdown"
+          },
+          {
+            "label": "mgp/book-notes repo",
+            "url": "https://github.com/mgp/book-notes"
+          }
+        ],
+        "sources": [
+          {
+            "label": "mgp/book-notes · the-power-of-habit.markdown",
+            "url": "https://github.com/mgp/book-notes/blob/master/the-power-of-habit.markdown"
+          }
+        ]
+      }
+    },
     {
       "id": "deal-20260917-hyper-tb5-dock",
       "category": "deal",
