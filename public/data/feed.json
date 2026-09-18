@@ -4,6 +4,85 @@
   "updated": "2026-09-18",
   "cards": [
     {
+      "id": "trend-20260918-fed-hike-375-4",
+      "category": "trend",
+      "title": "Fed hikes to 3.75%–4% (first since 2023)",
+      "body": "On Sep 16, 2026 the FOMC unanimously raised the federal funds target range by 25 bp to 3.75%–4% — the first hike since July 2023 — and signaled another possible increase this year. Educational only — not a trade signal.",
+      "source": "CNBC · Federal Reserve (Warsh press conf) · Reuters/MarketScreener",
+      "tags": [
+        "investing",
+        "fed",
+        "rates",
+        "macro",
+        "fomc"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/trend-fed-hike-20260918/800/520",
+      "link": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html",
+      "detail": {
+        "summary": "The Federal Open Market Committee voted 12–0 on Sep 16, 2026 to lift the federal funds target range by a quarter point to 3.75%–4%, citing elevated inflation and aiming for a timelier return to the 2% goal. Chair Kevin Warsh said inflation has been too high for too long and the confidence standard for holding was not met. Updated projections imply another hike is likely this year for most participants. This card is macro literacy only — not investment, tax, or trade advice.",
+        "sections": [
+          {
+            "heading": "What just happened",
+            "body": "First FOMC rate increase since July 2023. Unanimous 25 bp hike to 3.75%–4%. Statement: inflation remains elevated; the move supports a timelier return to 2%. Warsh press conference: economy and labor are strong, but underlying inflation is not clearly moving to target at sufficient speed; Middle East energy pressure was part of the context."
+          },
+          {
+            "heading": "What the dots say (context, not prophecy)",
+            "body": "SEP/dot plot: 16 of 18 participants (Warsh does not submit a dot) expect another increase this year; four of those see two more as possible. Median year-end funds rate around 4.1%. Officials nudged 2026 PCE inflation expectations up slightly (headline ~3.7%, core ~3.4%). Markets had priced the Sep hike as highly likely; CME FedWatch after the meeting still priced meaningful odds of another hike later in 2026."
+          },
+          {
+            "heading": "Market follow-through (Sep 17)",
+            "body": "After an initial post-decision wobble, major US indexes rebound the next session as oil eased and Treasury yields pulled back from highs (reports: S&P 500 ~+1.1%, Nasdaq ~+1.6%). Treat one-day moves as noise — the durable story is higher-for-longer overnight rates plus sticky long yields, not a ticker list."
+          },
+          {
+            "heading": "Captain-useful framing (not advice)",
+            "body": "Ops/money: re-check floating-rate debt, cash yields, and any near-term refinance assumptions against a funds rate now in the high-3s with hike risk still on the table. Investing literacy: Fed funds ≠ the 10-year; mortgages and long-duration project math still track the long end (already near ~5%). AWS/AI ROI stories: higher discount rates raise the bar on multi-year payback — same product thesis, tougher hurdle. Educational only."
+          }
+        ],
+        "bullets": [
+          "25 bp hike to 3.75%–4% on Sep 16, 2026 — first since July 2023",
+          "Unanimous FOMC vote; Warsh: inflation too high for too long",
+          "Most dots imply another hike possible before year-end",
+          "Sep 17: stocks rebound as oil/yields ease — one day ≠ a signal",
+          "Educational only — not a buy/sell list or trade advice"
+        ],
+        "steps": [
+          "Read the CNBC decision write-up or the Fed press-conference transcript for the primary facts",
+          "Separate Fed funds (overnight) from the 10-year (long benchmark) in your own notes",
+          "If you have floating credit or a refinance window, refresh the quote assumptions against post-hike pricing",
+          "For any multi-year project ROI, ask whether the story still clears if rates stay sticky"
+        ],
+        "actions": [
+          {
+            "label": "CNBC: Sep 16 Fed decision",
+            "href": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html"
+          },
+          {
+            "label": "Fed: Warsh press conference opening (PDF)",
+            "href": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf"
+          },
+          {
+            "label": "Market follow-through (Sep 17)",
+            "href": "https://www.marketscreener.com/news/wall-st-rebounds-after-fed-s-first-rate-hike-in-years-as-oil-treasury-yields-dip-ce785bd3de8df625"
+          }
+        ],
+        "sources": [
+          {
+            "label": "CNBC — Fed rate decision September 2026",
+            "href": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html"
+          },
+          {
+            "label": "Federal Reserve — Chairman Warsh press conference opening statement (Sep 16, 2026)",
+            "href": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf"
+          },
+          {
+            "label": "MarketScreener/Reuters — Wall St rebound Sep 17",
+            "href": "https://www.marketscreener.com/news/wall-st-rebounds-after-fed-s-first-rate-hike-in-years-as-oil-treasury-yields-dip-ce785bd3de8df625"
+          }
+        ]
+      }
+    },
+    {
       "id": "tax-20260918-fbar-fincen-114",
       "category": "tax",
       "title": "FBAR: India accounts over $10k (FinCEN 114)",
