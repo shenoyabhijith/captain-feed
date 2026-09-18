@@ -4,6 +4,85 @@
   "updated": "2026-09-18",
   "cards": [
     {
+      "id": "aws-20260918-invokeguardrailchecks",
+      "category": "aws",
+      "title": "Per-step Guardrails without a guardrail resource",
+      "body": "InvokeGuardrailChecks is detect-only, resourceless, and returns numeric scores so your agent loop decides block / escalate / log at each turn — no CreateGuardrail sprawl for every stage.",
+      "source": "AWS ML Blog · Jun 16, 2026",
+      "tags": [
+        "bedrock",
+        "guardrails",
+        "agents",
+        "invokeguardrailchecks",
+        "safety",
+        "aws-sa"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-invokeguardrailchecks-20260918/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/safeguard-your-agentic-ai-applications-with-the-amazon-bedrock-guardrails-invokeguardrailchecks-api/",
+      "detail": {
+        "summary": "ApplyGuardrail is great when you want one versioned policy that blocks or masks for you. Agentic loops are different: each turn (user input, tool output, final reply) has a different risk profile, and spinning up CreateGuardrail resources per stage does not scale. AWS’s Jun 16, 2026 post introduces InvokeGuardrailChecks — a resourceless, detect-only API that returns severity/confidence scores so your app chooses block, escalate, retry, or log. For SA blogs: teach when to use scores-in-the-loop vs a managed ApplyGuardrail policy.",
+        "sections": [
+          {
+            "heading": "Why uniform Guardrails break on agents",
+            "body": "Classic chat: one prompt in, one response out, one guardrail on both. Agents plan, call tools, and iterate for many turns — often without a human in the loop. Prompt-injection risk peaks on user input; PII often shows up in follow-ups or tool payloads; harmful content can arrive from a web/search tool before the model ever speaks. One shared ApplyGuardrail resource forces the same thresholds everywhere, or you create/version/delete ephemeral guardrails per step — untenable when a single query fans into dozens of loop iterations."
+          },
+          {
+            "heading": "What InvokeGuardrailChecks actually gives you",
+            "body": "Resourceless: you name the checks inline (contentFilter, promptAttack, sensitiveInformation) — no guardrail ID or version to manage. Detect-only: it does not block, mask, or rewrite; it returns findings with discrete scores in {0, 0.2, 0.4, 0.6, 0.8, 1.0}. Content filters and prompt attack return severity scores; sensitive information returns confidence plus character offsets for client-side redaction. Prompt attack is a standalone check (jailbreak / prompt injection / prompt leakage), not buried inside content filters as on ApplyGuardrail. IAM action is bedrock:InvokeGuardrailChecks with Resource \"*\" (there is no guardrail ARN) — scope with conditions like aws:RequestedRegion or principal tags."
+          },
+          {
+            "heading": "Pattern: adaptive thresholds in the agent loop",
+            "body": "Wire hooks where risk changes: before model invoke (promptAttack on system+user), after tool call (contentFilter + PII on tool text), after final reply (full contentFilter). Example score policy from the blog: severity ≥ 0.8 block; ≥ 0.4 escalate to human review; else log. Financial apps may block earlier; creative tools may only block at the top band. Pair with Strands (or any framework) lifecycle hooks so safety lives next to the loop, not only on the last Converse call. Still use ApplyGuardrail when you want centralized, versioned, automatic enforce/mask for simple request-response gateways."
+          },
+          {
+            "heading": "Blog angle for Solutions Architects",
+            "body": "Frame as “safety is per-stage, not per-app”: contrast CreateGuardrail sprawl with inline checks + app-owned decisions. Diagram the three check families against agent stages, then show one adaptive evaluate_and_act helper. Call out complementarity with AgentCore Gateway Cedar (tool authorization) and Gateway rate limits (cost/abuse) — Guardrails scores catch content/injection/PII; they do not authorize tool calls. Close with the decision table: InvokeGuardrailChecks for agentic per-step control; ApplyGuardrail for uniform gateway enforcement."
+          }
+        ],
+        "bullets": [
+          "Resourceless + detect-only: scores in, your policy decides block/escalate/log",
+          "Prompt attack is a first-class check (jailbreak, injection, leakage) separate from content filters",
+          "PII findings include offsets — mask in the client before the next model turn",
+          "Use ApplyGuardrail when you want automatic block/mask from a versioned resource"
+        ],
+        "steps": [
+          "Grant bedrock:InvokeGuardrailChecks (Resource *) and constrain Region / principal tags",
+          "Add BeforeInvocation: promptAttack on system+user; AfterToolCall: contentFilter + sensitiveInformation; AfterInvocation: contentFilter on the final reply",
+          "Implement thresholds (e.g. ≥0.8 block, ≥0.4 escalate) and log scores with request IDs for audit",
+          "Keep ApplyGuardrail on any shared multi-provider gateway that needs uniform enforce/mask"
+        ],
+        "actions": [
+          {
+            "label": "Read the AWS InvokeGuardrailChecks blog (Jun 16, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/safeguard-your-agentic-ai-applications-with-the-amazon-bedrock-guardrails-invokeguardrailchecks-api/"
+          },
+          {
+            "label": "Docs — Use InvokeGuardrailChecks",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-invoke-guardrail-checks.html"
+          },
+          {
+            "label": "Docs — ApplyGuardrail (compare)",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-independent-api.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — Safeguard agentic AI with InvokeGuardrailChecks (Jun 16, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/safeguard-your-agentic-ai-applications-with-the-amazon-bedrock-guardrails-invokeguardrailchecks-api/"
+          },
+          {
+            "label": "Amazon Bedrock User Guide — InvokeGuardrailChecks",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-invoke-guardrail-checks.html"
+          },
+          {
+            "label": "Amazon Bedrock User Guide — ApplyGuardrail API",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-independent-api.html"
+          }
+        ]
+      }
+    },
+    {
       "id": "trend-20260918-fed-hike-375-4",
       "category": "trend",
       "title": "Fed hikes to 3.75%–4% (first since 2023)",
