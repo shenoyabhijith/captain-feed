@@ -4,6 +4,86 @@
   "updated": "2026-09-18",
   "cards": [
     {
+      "id": "deal-20260918-dewalt-192-mechanics",
+      "category": "deal",
+      "title": "DeWalt 192-pc mechanics set — $164.99 Amazon",
+      "body": "DWMT75049 socket/ratchet kit is $164.99 on Amazon (was $289.99, ~43% off) — SAE + metric, three drive sizes, hard case. Verified live tonight; Bob Vila flagged it this morning. Garage/home-ops staple if you still borrow sockets.",
+      "source": "Bob Vila · Sep 18, 2026 · Amazon live $164.99",
+      "tags": [
+        "hardware",
+        "tools",
+        "dewalt",
+        "garage",
+        "home-ops",
+        "hand-tools"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/deal-dewalt-192-mechanics-20260918/800/520",
+      "link": "https://www.amazon.com/DEWALT-DWMT75049-Mechanics-Tools-Piece/dp/B01BHJE0J4",
+      "detail": {
+        "summary": "Amazon’s early Prime Big Deal Days clearance still has the DeWalt DWMT75049 192-piece mechanics tool set at $164.99 (list $289.99). Bob Vila published that price the morning of Sep 18, 2026; a live Amazon page fetch tonight still showed displayPrice $164.99 against $289.99. Full SAE + metric coverage across 1/4\", 3/8\", and 1/2\" drives in a hard case — useful if your Frisco garage/home kit is still incomplete or you’re tired of borrowing sockets for car and furniture jobs.",
+        "sections": [
+          {
+            "heading": "What you get",
+            "body": "192 pieces: pear-head ratchets in 1/4\", 3/8\", and 1/2\" drives; deep and shallow sockets (SAE + metric); spark-plug sockets; bit sockets; extensions/adapters/universal joints; and hex-key sets. Chrome vanadium with DirectTorque 6-point sockets aimed at reducing fastener rounding. Ships in a molded hard case so it stays organized in a trunk or garage shelf."
+          },
+          {
+            "heading": "Why it fits home/ops",
+            "body": "One kit covers most DIY auto (oil/plugs/battery terminals), bike, patio furniture, and appliance fastener sizes without buying piecemeal. Lifetime DeWalt warranty on the hand tools is the usual brand claim — still verify the Amazon listing warranty line at checkout."
+          },
+          {
+            "heading": "Price honesty",
+            "body": "Cited deal: $164.99 on Amazon ASIN B01BHJE0J4 as of this run (Fri Sep 18, 2026 evening CT), matching Bob Vila’s Sep 18 morning roundup. Some aggregators (e.g. Yahoo Shopping) still show higher Amazon mirrors around ~$222 — treat those as stale alternate paths. Recheck the live Amazon price before you pay; clearance tags move fast ahead of Oct 6–7 Prime Big Deal Days."
+          },
+          {
+            "heading": "Skip if",
+            "body": "You already own a complete SAE/metric set, or you only need a few sockets (a $20 partial set wins). This is bulk garage value, not a desk-ops buy like the recent dock/hub cards."
+          }
+        ],
+        "bullets": [
+          "$164.99 Amazon live tonight vs $289.99 list (~43% off) — ASIN B01BHJE0J4 / DWMT75049",
+          "Bob Vila Sep 18, 2026 roundup led with this set; price still matched on fetch",
+          "1/4 + 3/8 + 1/2 drives, SAE + metric, hard case — one kit for car/home fasteners",
+          "DirectTorque 6-point sockets; DeWalt lifetime warranty claim — confirm on listing",
+          "Price can jump; some mirrors still show ~$220 — verify before checkout"
+        ],
+        "steps": [
+          "Open the Amazon DWMT75049 listing and confirm $164.99 still shows (not a third-party markup)",
+          "Skim what’s already in your garage — skip if you already have a full SAE/metric set",
+          "Optional: compare DeWalt.com / big-box stock for local pickup if shipping is slow",
+          "Check sold-by and fulfillment (prefer Amazon/DeWalt) before paying"
+        ],
+        "actions": [
+          {
+            "label": "Buy on Amazon — DWMT75049 ($164.99 cited)",
+            "url": "https://www.amazon.com/DEWALT-DWMT75049-Mechanics-Tools-Piece/dp/B01BHJE0J4"
+          },
+          {
+            "label": "Bob Vila deal roundup (Sep 18, 2026)",
+            "url": "https://www.bobvila.com/reviews/amazon-dewalt-tools-sept-2026/"
+          },
+          {
+            "label": "DeWalt official product page",
+            "url": "https://www.dewalt.com/en-us/product/dwmt75049/mechanics-tool-set-192-piece"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Bob Vila — Amazon DeWalt tools up to 66% off (Sep 18, 2026)",
+            "url": "https://www.bobvila.com/reviews/amazon-dewalt-tools-sept-2026/"
+          },
+          {
+            "label": "Amazon — DEWALT DWMT75049 192-Piece Mechanics Tool Set",
+            "url": "https://www.amazon.com/DEWALT-DWMT75049-Mechanics-Tools-Piece/dp/B01BHJE0J4"
+          },
+          {
+            "label": "DeWalt — Mechanics Tool Set (192-Piece) DWMT75049",
+            "url": "https://www.dewalt.com/en-us/product/dwmt75049/mechanics-tool-set-192-piece"
+          }
+        ]
+      }
+    },
+    {
       "id": "aws-20260918-invokeguardrailchecks",
       "category": "aws",
       "title": "Per-step Guardrails without a guardrail resource",
