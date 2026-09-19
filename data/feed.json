@@ -4,6 +4,86 @@
   "updated": "2026-09-19",
   "cards": [
     {
+      "id": "tax-20260919-gift-annual-exclusion-india",
+      "category": "tax",
+      "title": "Gift $19k/person to India family tax-free (annual exclusion)",
+      "body": "US donors can give $19,000 per recipient in 2026 without using lifetime exemption — each India parent/sibling is a separate donee; married couples can gift-split to $38,000 each. Over that → Form 709. Educational only, not tax advice.",
+      "source": "IRS · Gift tax FAQs · Form 709 · annual exclusion 2026",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "gift-tax",
+        "form-709",
+        "annual-exclusion",
+        "family",
+        "cross-border"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-gift-annual-exclusion-india-20260919/800/520",
+      "link": "https://www.irs.gov/businesses/small-businesses-self-employed/frequently-asked-questions-on-gift-taxes",
+      "detail": {
+        "summary": "The federal gift-tax annual exclusion lets a US donor transfer up to $19,000 per donee in calendar year 2026 without eating into the lifetime gift/estate exemption and generally without gift tax. Each recipient counts separately, so gifts to both parents (and siblings) stack. Married couples who elect gift-splitting can give $38,000 per donee. Amounts above the exclusion usually require Form 709 even when no tax is due because of the lifetime exemption. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US citizens, green-card holders, and resident aliens who regularly remit or gift cash to parents, siblings, or other relatives in India. Complements yesterday’s inbound Form 3520 tip: this is about US → India transfers you make as the donor, not gifts you receive from India family."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "For 2026 the annual exclusion is $19,000 per donee (same as 2025 per IRS gift-tax FAQs). Count present-interest gifts only. Each donee gets their own $19,000 bucket. Spouses who own or fund gifts together can elect gift-splitting on Form 709 so each spouse’s exclusion applies ($38,000 combined per donee). Gifts over the exclusion reduce the unified lifetime exclusion (basic exclusion amount $15,000,000 for 2026) and generally require filing Form 709 by the April due date of the following year. Direct payments of tuition or medical expenses to the provider can qualify for separate unlimited exclusions if rules are met."
+          },
+          {
+            "heading": "India–US angle",
+            "body": "Classic stack: father $19k + mother $19k = $38k from one donor; with gift-splitting a married couple can double that to $76k across two parents without touching lifetime exemption — the pattern many US→India parent-support plans use. Wire/remittance apps do not change US gift-tax rules: the donor still tracks calendar-year totals per person. India may treat the receipt differently for local tax/FEMA purposes; this tip is US gift tax only. True gifts are generally not deductible on Form 1040."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "List every person in India you gifted or plan to gift in 2026 and sum calendar-year transfers per person (cash, Venmo/Wise/remit, property). If any one person will exceed $19,000 ($38,000 with gift-splitting), open IRS Form 709 / gift-tax FAQ pages and calendar a Form 709 filing — and keep wire confirmations."
+          }
+        ],
+        "bullets": [
+          "2026 annual exclusion: $19,000 per donee (IRS gift-tax FAQs)",
+          "Gift-splitting: married couple can reach $38,000 per donee",
+          "Each India parent/sibling is a separate donee — stacks add up",
+          "Over exclusion → usually Form 709 (even if lifetime exemption covers tax)",
+          "Separate unlimited exclusions may apply for tuition/medical paid to providers"
+        ],
+        "steps": [
+          "Tally 2026 gifts to each India relative by calendar year and recipient",
+          "Compare each total to $19,000 (or $38,000 if you will gift-split with a spouse)",
+          "If over the line, prepare Form 709 and keep remittance records; if under, still keep a simple per-donee log for next year"
+        ],
+        "actions": [
+          {
+            "label": "IRS gift tax FAQs (annual exclusion table)",
+            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/frequently-asked-questions-on-gift-taxes"
+          },
+          {
+            "label": "About Form 709",
+            "url": "https://www.irs.gov/forms-pubs/about-form-709"
+          },
+          {
+            "label": "Estate and gift tax — what's new",
+            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/whats-new-estate-and-gift-tax"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS — Frequently asked questions on gift taxes (2026 annual exclusion $19,000)",
+            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/frequently-asked-questions-on-gift-taxes"
+          },
+          {
+            "label": "IRS — What's new — Estate and gift tax (basic exclusion $15M for 2026)",
+            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/whats-new-estate-and-gift-tax"
+          },
+          {
+            "label": "IRS — About Form 709",
+            "url": "https://www.irs.gov/forms-pubs/about-form-709"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260919-reasonable-over-rational",
       "category": "book",
       "title": "Reasonable beats perfectly rational",
