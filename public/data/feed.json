@@ -4,6 +4,86 @@
   "updated": "2026-09-19",
   "cards": [
     {
+      "id": "trend-20260919-agentcore-memory-ingestdata",
+      "category": "aws",
+      "title": "AgentCore Memory: LTM without short-term events",
+      "body": "IngestData (Sep 8) sends conversational or JSON payloads straight into long-term memory strategies — no CreateEvent, no STM tax. Adopt LTM alone when you already keep raw logs elsewhere.",
+      "source": "AWS What’s New · Sep 8, 2026 · AgentCore Memory",
+      "tags": [
+        "bedrock",
+        "agentcore",
+        "memory",
+        "ingestdata",
+        "long-term-memory",
+        "aws-sa"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/trend-agentcore-memory-ingestdata-20260919/800/520",
+      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/agentcore-memory-direct-ingest/",
+      "detail": {
+        "summary": "Until Sep 8, 2026, AgentCore Memory required every fact to land as a short-term event (CreateEvent) before long-term strategies could extract records. IngestData removes that coupling: you submit content, it fans out to the memory’s configured LTM strategies, and records show up via the same RetrieveMemoryRecords / ListMemoryRecords path — with no short-term event to store or retrieve. SA angle: teach when to adopt long-term memory independently of short-term session history.",
+        "sections": [
+          {
+            "heading": "What changed",
+            "body": "New data-plane API IngestData on bedrock-agentcore. Accepts conversational payloads (USER/ASSISTANT text) and JSON payloads (behavioral events, activity logs, system events up to the documented size limits). Optional metadata feeds the same extraction pipeline as CreateEvent. A successful call means accepted for async processing — not that records are instantly queryable."
+          },
+          {
+            "heading": "When IngestData is the right tool",
+            "body": "Use it when you need distilled LTM records but will never call GetEvent / ListEvents / ListSessions on that raw turn, or when your app already retains verbatim interactions elsewhere and only wants preference / semantic / episodic extracts in AgentCore. Keep CreateEvent when you need retrievable short-term events, branching, or session replay."
+          },
+          {
+            "heading": "Ops after ingest",
+            "body": "Verify with ListMemoryRecords or RetrieveMemoryRecords (seconds to minutes depending on size/strategies). Stream create/update/delete via Kinesis if you want push instead of poll. Failed extractions land in a per-memory queue — ListMemoryExtractionJobs + StartMemoryExtractionJob to redrive; watch FailedExtraction in CloudWatch. IAM action: bedrock-agentcore:IngestData."
+          },
+          {
+            "heading": "Blog angle for Solutions Architects",
+            "body": "Frame as “LTM is no longer hostage to STM”: diagram CreateEvent (STM→extract→LTM) vs IngestData (payload→extract→LTM only). Call out JSON ingest for CRM/loyalty/system events next to chat turns, namespace + actorId + sessionId scoping, and complementarity with Stage-1 AgentCore MemorySaver (durable checkpoints) — different problem than preference extraction. Pair with prior feed cards on AgentCore Stage-1 replatform and Gateway rate limits for a production Memory talk track."
+          }
+        ],
+        "bullets": [
+          "IngestData → LTM strategies without creating a short-term event",
+          "Payloads: conversational (role+text) and JSON (events/logs) in one request",
+          "Same retrieve APIs as any other LTM records after async extraction",
+          "Use CreateEvent when you still need GetEvent / session branching",
+          "Redrive failures via ListMemoryExtractionJobs; optional Kinesis record stream"
+        ],
+        "steps": [
+          "Confirm AgentCore Memory is enabled in your demo Region and note configured LTM strategies (skip self-managed)",
+          "Grant bedrock-agentcore:IngestData; call ingest_data with memoryId, actorId, contentTimestamp, and inline payload",
+          "Poll RetrieveMemoryRecords / ListMemoryRecords (or Kinesis) until expected records appear",
+          "For a SA demo: ingest one preference chat turn + one JSON loyalty event, then retrieve — contrast with a CreateEvent path that leaves an STM event behind"
+        ],
+        "actions": [
+          {
+            "label": "AWS What’s New — direct LTM ingest (Sep 8, 2026)",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/agentcore-memory-direct-ingest/"
+          },
+          {
+            "label": "Docs — Ingest content into long-term memory",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/long-term-ingest-data.html"
+          },
+          {
+            "label": "CLI — bedrock-agentcore ingest-data",
+            "url": "https://docs.aws.amazon.com/cli/latest/reference/bedrock-agentcore/ingest-data.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS What’s New — AgentCore Memory direct ingestion (Sep 8, 2026)",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/agentcore-memory-direct-ingest/"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Ingest content into long-term memory",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/long-term-ingest-data.html"
+          },
+          {
+            "label": "AWS CLI — ingest-data",
+            "url": "https://docs.aws.amazon.com/cli/latest/reference/bedrock-agentcore/ingest-data.html"
+          }
+        ]
+      }
+    },
+    {
       "id": "tax-20260919-gift-annual-exclusion-india",
       "category": "tax",
       "title": "Gift $19k/person to India family tax-free (annual exclusion)",
