@@ -1,8 +1,76 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-18",
+  "updated": "2026-09-19",
   "cards": [
+    {
+      "id": "book-20260919-reasonable-over-rational",
+      "category": "book",
+      "title": "Reasonable beats perfectly rational",
+      "body": "Housel’s rule: a good-enough money plan you can stick with through a crash beats the optimal plan you abandon. Design for the human, not the spreadsheet.",
+      "source": "Morgan Housel · The Psychology of Money (via felixgeelhaar notes)",
+      "tags": [
+        "money",
+        "psychology",
+        "investing",
+        "behavior"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/book-reasonable-20260919/800/520",
+      "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
+      "detail": {
+        "summary": "In The Psychology of Money, Morgan Housel argues that the mathematically optimal strategy you cannot stick with is worse than a good-enough strategy you can. You are not a spreadsheet. A slightly suboptimal portfolio you hold through a crash beats the perfect portfolio you panic-sell. Aim for reasonable, not rational.",
+        "sections": [
+          {
+            "heading": "Why perfect plans fail",
+            "body": "Money decisions happen at dinner tables and in meetings, not on clean models. Ego, history, fear, and incentives scramble the math. A plan that looks best on paper but breaks your sleep or forces a sale in a downturn is not actually best. Survival of the plan is part of the return."
+          },
+          {
+            "heading": "Reasonable in practice",
+            "body": "Reasonable often means a savings rate and asset mix you will keep when markets fall 30–40%, cash buffers that let you avoid forced sales, and fewer clever bets. Volatility is the fee for long-term equity returns — Housel and related notes treat it as a price you prepay by staying invested, not a fine you try to dodge by timing."
+          },
+          {
+            "heading": "Getting vs staying wealthy",
+            "body": "Getting money can reward optimism and risk-taking. Keeping it rewards humility and avoiding ruin. Good investing is often less about brilliant calls and more about consistently not screwing up — which is exactly what a stickable, reasonable plan protects."
+          },
+          {
+            "heading": "One action today",
+            "body": "Write one sentence: the money rule you will still follow after a bad month (for example, keep auto-investing, or never sell long-term holdings for lifestyle upgrades). If your current plan would fail that test, simplify until it passes."
+          }
+        ],
+        "bullets": [
+          "Optimal-but-abandoned < good-enough-and-held",
+          "Design for behavior under stress, not peak calm",
+          "Cash margin and boring allocation are features, not laziness",
+          "Volatility is a fee for compounding — stay solvent enough to pay it"
+        ],
+        "steps": [
+          "Name the financial rule you would break first in a crash or tight month",
+          "Replace it with a simpler default you can automate (auto-invest, fixed savings %, no-touch long-term account)",
+          "Add one margin of safety (emergency cash, lower withdrawal assumption, or less leverage) so the plan survives surprise"
+        ],
+        "actions": [
+          {
+            "label": "Open source notes (felixgeelhaar)",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          },
+          {
+            "label": "Chemaclass reading notes",
+            "url": "https://github.com/Chemaclass/chemaclass.es/blob/master/content/readings/2022-02-27-the-psychology-of-money.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "felixgeelhaar / personal-finance-expert (Psychology of Money section)",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          },
+          {
+            "label": "Chemaclass — The Psychology of Money notes",
+            "url": "https://github.com/Chemaclass/chemaclass.es/blob/master/content/readings/2022-02-27-the-psychology-of-money.md"
+          }
+        ]
+      }
+    },
     {
       "id": "deal-20260918-dewalt-192-mechanics",
       "category": "deal",
