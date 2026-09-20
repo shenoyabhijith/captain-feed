@@ -4,6 +4,73 @@
   "updated": "2026-09-20",
   "cards": [
     {
+      "id": "trend-20260920-etf-boom-active-fee-trap",
+      "category": "trend",
+      "title": "ETF boom ≠ free: most new funds are pricey active",
+      "body": "2026 ETF inflows are record-hot, but ~80% of new launches are actively managed with higher fees and niche risk. Stick to broad low-cost index ETFs for the core — educational only, not a trade signal.",
+      "source": "Money · Motley Fool · Sep 2026",
+      "tags": [
+        "investing",
+        "etf",
+        "fees",
+        "index-funds",
+        "active-etf",
+        "bogleheads"
+      ],
+      "accent": "emerald",
+      "image": "https://picsum.photos/seed/trend-etf-boom-active-fee-20260920/800/520",
+      "link": "https://money.com/etf-boom-new-funds-investor-risks/",
+      "detail": {
+        "summary": "U.S. ETFs are on pace for another record inflow year (~$5.7B/day early Aug per ETF Trends; July alone ~$193B, ~$1.23T YTD through July per Motley Fool). The wrapper no longer means “cheap by default.” FactSet: 1,023 new U.S. ETFs Jan–Aug 2026 (+52% YoY). Money reports ~80% of new launches are actively managed, often with higher expense ratios and concentrated or leveraged strategies. Morningstar mid-2026: more active ETFs (~3,200+) than passive (~2,100). Wall Street’s fee mix is shifting toward active products (e.g. Fool cites active ETF inflows +75% YoY to ~$466B through July; example iShares Systematic Alternatives Active ETF IALT expense ratio 0.99%). Educational only — not investment advice or a trade signal.",
+        "sections": [
+          {
+            "heading": "What changed",
+            "body": "Early ETFs competed on tracking big indexes at tiny fees (e.g. VOO ~0.03%). With few broad indexes left to clone, issuers launched niche, thematic, single-name leveraged, and fully active ETFs that look like mutual funds in an ETF shell — and price closer to active mutual funds. Easy commission-free apps plus social media amplify FOMO for the shiny ticker."
+          },
+          {
+            "heading": "Why it matters for an ETF-first plan",
+            "body": "An ETF-first core still works if the core is broad, low-cost, and boring (total market / S&P 500 / international / bonds). The risk is assuming every new ETF is “cheap diversification.” High expense ratios, short track records, concentrated themes, and daily 2x products can quietly tax returns or blow up on a bad day — even when the ticker says ETF."
+          },
+          {
+            "heading": "Practical filter (before you buy)",
+            "body": "Check expense ratio first. Prefer long-running broad index funds over debut themes. Skip daily leveraged/inverse single-stock products for long-term wealth building. If a sleeve is for growth mega-caps, buy the stocks or a known broad tech/large-cap index — don’t need a brand-new active “ecosystem” fund to get exposure. Past performance ≠ future results."
+          }
+        ],
+        "bullets": [
+          "Inflows still huge: ~$5.7B/day pace early Aug 2026; July ~$193B; ~$1.23T YTD through July",
+          "1,023 new U.S. ETFs Jan–Aug 2026 (+52% YoY, FactSet via Money)",
+          "~80% of new launches actively managed; mid-2026 more active ETFs than passive (Morningstar)",
+          "Active ETF inflows +75% YoY to ~$466B through July (Motley Fool); fee mix favors Wall Street",
+          "Core still: broad low-cost index ETFs; ignore FOMO wrappers — educational only"
+        ],
+        "steps": [
+          "Open your brokerage ETF screener and sort holdings by expense ratio — flag anything above ~0.20% unless you can explain why",
+          "For the long-term core, keep (or rebuild toward) broad total-market / S&P / international / bond index ETFs",
+          "Before adding any 2025–2026 launch, read the prospectus: active vs index, leverage, concentration, and fee"
+        ],
+        "actions": [
+          {
+            "label": "Money — ETF boom / new-fund risks",
+            "url": "https://money.com/etf-boom-new-funds-investor-risks/"
+          },
+          {
+            "label": "Motley Fool — record inflows + fee mix",
+            "url": "https://www.fool.com/investing/2026/09/06/etf-inflows-set-a-record-in-july-the-fee-mix-moved/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Money — The ETF Boom Is Getting Weird (Sep 16, 2026)",
+            "url": "https://money.com/etf-boom-new-funds-investor-risks/"
+          },
+          {
+            "label": "Motley Fool — ETF inflows record; fee mix shifted (Sep 6, 2026)",
+            "url": "https://www.fool.com/investing/2026/09/06/etf-inflows-set-a-record-in-july-the-fee-mix-moved/"
+          }
+        ]
+      }
+    },
+    {
       "id": "tax-20260920-savers-credit-form-8880",
       "category": "tax",
       "title": "Saver’s Credit: free money on 401(k)/IRA contributions (Form 8880)",
@@ -2729,47 +2796,6 @@
           "Warm-up 3 minutes",
           "Run the four lifts",
           "Optional finisher: close-grip push-ups to near failure"
-        ]
-      }
-    },
-    {
-      "id": "book-deep-work-block",
-      "category": "book",
-      "title": "Protect a deep block",
-      "body": "Schedule one 90-minute focus block with the phone in another room.",
-      "source": "Deep Work (idea card)",
-      "tags": [
-        "focus"
-      ],
-      "accent": "ink",
-      "image": "https://picsum.photos/seed/feed-book2/800/520",
-      "detail": {
-        "summary": "Shallow work expands to fill the calendar. Deep work needs a fence, not wishful multitasking.",
-        "sections": [
-          {
-            "heading": "The rule",
-            "body": "One protected block beats eight fragmented attempts. Put it on the calendar like a meeting with someone you respect."
-          },
-          {
-            "heading": "Environment",
-            "body": "Phone elsewhere, notifications off, single document or IDE focused. Start with a written finish line for the block."
-          }
-        ],
-        "bullets": [
-          "Same time of day builds a cue",
-          "Start with 50-90 minutes, not a heroic half day",
-          "End by writing the next block's first step"
-        ],
-        "sources": [
-          {
-            "label": "Deep Work (Cal Newport)",
-            "url": "https://www.calnewport.com/books/deep-work/"
-          }
-        ],
-        "steps": [
-          "Pick tomorrow's deep block time",
-          "Define the output in one sentence",
-          "Remove the phone before you sit down"
         ]
       }
     }
