@@ -57,27 +57,28 @@ export default function FeedApp() {
 function Home({ feed, theme, setTheme, installEvt, onInstall }) {
   const readCount = feed.cards.filter((c) => feed.prefs.read[c.id]).length;
   const savedCount = feed.cards.filter((c) => feed.prefs.saved[c.id]).length;
-  const [compact, setCompact] = useState(false);
+  const [chromeHidden, setChromeHidden] = useState(false);
+  const [atTop, setAtTop] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [slotH, setSlotH] = useState(0);
+  const [headerH, setHeaderH] = useState(0);
   const lastY = useRef(0);
   const ticking = useRef(false);
-  const compactRef = useRef(false);
+  const hiddenRef = useRef(false);
   const headerRef = useRef(null);
 
   useLayoutEffect(() => {
-    if (compactRef.current) return;
     const el = headerRef.current;
     if (!el) return;
-    const h = Math.ceil(el.getBoundingClientRect().height);
-    if (h > 0) setSlotH((prev) => (prev === h ? prev : h));
-  }, [compact, feed.status, feed.meta.subtitle, feed.meta.title, installEvt]);
+    // Measure while visible (not translated away)
+    const h = Math.ceil(el.offsetHeight);
+    if (h > 0) setHeaderH((prev) => (prev === h ? prev : h));
+  }, [feed.status, feed.meta.subtitle, feed.meta.title, installEvt, theme]);
 
   useEffect(() => {
     lastY.current = window.scrollY || 0;
     const DEAD = 12;
-    const COMPACT_Y = 80;
-    const EXPAND_Y = 24;
+    const HIDE_Y = 80;
+    const TOP_Y = 24;
 
     const onScroll = () => {
       if (ticking.current) return;
@@ -85,21 +86,24 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
       window.requestAnimationFrame(() => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
         const delta = y - lastY.current;
-        let next = compactRef.current;
+        let nextHidden = hiddenRef.current;
+        let nextAtTop = y <= TOP_Y;
 
-        if (y <= EXPAND_Y) {
-          next = false;
-        } else if (!compactRef.current && delta > DEAD && y >= COMPACT_Y) {
-          next = true;
-        } else if (compactRef.current && delta < -DEAD) {
-          next = false;
+        if (y <= TOP_Y) {
+          nextHidden = false;
+        } else if (!hiddenRef.current && delta > DEAD && y >= HIDE_Y) {
+          nextHidden = true;
+        } else if (hiddenRef.current && delta < -DEAD) {
+          // soft reveal on scroll-up
+          nextHidden = false;
         }
 
-        if (next !== compactRef.current) {
-          compactRef.current = next;
-          setCompact(next);
-          if (next) setMenuOpen(false);
+        if (nextHidden !== hiddenRef.current) {
+          hiddenRef.current = nextHidden;
+          setChromeHidden(nextHidden);
+          if (nextHidden) setMenuOpen(false);
         }
+        setAtTop((prev) => (prev === nextAtTop ? prev : nextAtTop));
         lastY.current = y;
         ticking.current = false;
       });
@@ -108,15 +112,16 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Flow spacer only when chrome is the in-flow top bar (at top + revealed).
+  // Mid-feed soft reveal overlays without reserving height.
+  const spacerH = !chromeHidden && atTop ? headerH : 0;
+
   return (
     <>
-      <div
-        className="top-slot"
-        style={slotH ? { height: slotH } : undefined}
-      >
+      <div className="top-spacer" style={{ height: spacerH }} aria-hidden="true" />
       <header
         ref={headerRef}
-        className={`top ${compact ? "is-compact" : ""}`}
+        className={`top ${chromeHidden ? "is-hidden" : ""} ${!atTop && !chromeHidden ? "is-peek" : ""}`}
       >
         <div className="brand-row">
           <div>
@@ -175,7 +180,6 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
           </p>
         ) : null}
       </header>
-      </div>
 
       {feed.status === "ready" ? (
         <CardList cards={feed.visible} prefs={feed.prefs} onSeen={feed.markSeen} />

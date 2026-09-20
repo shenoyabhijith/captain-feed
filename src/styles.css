@@ -43,33 +43,41 @@ body {
 
 .shell { max-width: 480px; margin: 0 auto; padding: 14px 14px 96px; }
 
-.top-slot {
-  position: sticky;
+.top-spacer {
+  width: 100%;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+.top {
+  position: fixed;
   top: 0;
-  z-index: 20;
-  margin-bottom: 14px;
-  /* height locked from JS (expanded measure) so compact never shifts scrollY */
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  width: min(480px, 100%);
+  z-index: 40;
+  box-sizing: border-box;
+  padding: 14px;
+  margin: 0;
   backdrop-filter: blur(16px);
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-top: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
-  overflow: visible;
+  transition: transform 200ms ease;
+  will-change: transform;
 }
-.top {
-  position: relative;
-  z-index: 21;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  padding: 14px;
-  box-shadow: none;
-  width: 100%;
+.top.is-hidden {
+  transform: translate3d(-50%, calc(-100% - 8px), 0);
+  pointer-events: none;
+}
+.top.is-peek {
+  box-shadow: var(--shadow);
 }
 .brand-row { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
 h1 { margin: 0; font-size: 1.35rem; letter-spacing: -0.03em; line-height: 1.1; }
 .sub { margin: 4px 0 0; color: var(--muted); font-size: 0.86rem; }
-.top-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.top-actions { position: relative; display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; align-items: center; }
 .icon-btn {
   border: 1px solid var(--line); background: var(--bg-elev); color: var(--ink);
   min-width: 44px; min-height: 44px; border-radius: 999px; font: inherit; font-weight: 700; cursor: pointer; padding: 0 12px;
@@ -152,13 +160,7 @@ h1 { margin: 0; font-size: 1.35rem; letter-spacing: -0.03em; line-height: 1.1; }
   font-size: 0.68rem;
   letter-spacing: 0.02em;
 }
-.top.is-compact .icon-chip {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  border-radius: 12px;
-}
+
 
 .feed { display: grid; gap: 14px; }
 .card-link { color: inherit; text-decoration: none; display: block; }
@@ -267,59 +269,12 @@ h2 { margin: 0 0 8px; font-size: 1.18rem; letter-spacing: -0.02em; line-height: 
   align-items: center;
 }
 .overflow-actions {
-  display: flex;
-  gap: 8px;
-}
-.icon-btn.more {
-  display: none;
-  letter-spacing: 0.08em;
-}
-.top.is-compact {
-  /* keep padding/box size; only hide secondary rows so slot height stays stable */
-  padding: 14px;
-}
-.top.is-compact h1 {
-  font-size: 1.12rem;
-}
-.top.is-compact .sub,
-.top.is-compact .stats,
-.top.is-compact .install-hint {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-  opacity: 0;
-  pointer-events: none;
-  max-height: none;
-}
-.top.is-compact .filters {
-  margin-top: 10px;
-}
-.top.is-compact .chip {
-  min-height: 36px;
-  padding: 0 12px;
-  font-size: 0.82rem;
-}
-.top.is-compact .icon-btn {
-  min-width: 40px;
-  min-height: 40px;
-}
-.top.is-compact .icon-btn.more {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.top.is-compact .overflow-actions {
   display: none;
   position: absolute;
   right: 0;
   top: calc(100% + 6px);
   flex-direction: column;
+  gap: 8px;
   padding: 8px;
   border-radius: 16px;
   background: var(--bg-elev);
@@ -327,19 +282,27 @@ h2 { margin: 0 0 8px; font-size: 1.18rem; letter-spacing: -0.02em; line-height: 
   box-shadow: var(--shadow);
   z-index: 30;
 }
-.top.is-compact .overflow-actions.open {
+.overflow-actions.open {
   display: flex;
 }
+.icon-btn.more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.08em;
+}
+
+
+
+
+
+
+
+
+
 
 @media (prefers-reduced-motion: reduce) {
-  .top,
-  .top .sub,
-  .top .stats,
-  .top .install-hint,
-  .top .filters,
-  .top h1 {
-    transition: none;
-  }
+  .top { transition: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
