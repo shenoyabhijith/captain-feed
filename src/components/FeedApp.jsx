@@ -1,11 +1,14 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import { loadTheme, saveTheme } from "../storage";
 import { useFeed } from "../hooks/useFeed";
 import CategoryFilter from "./CategoryFilter.jsx";
 import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
 import { VIEW_ICONS, VIEW_LABELS, ICON_STROKE } from "./icons.js";
+
+/** Persist feed window scroll across Home ↔ Detail (HashRouter remounts Home). */
+let savedFeedScrollY = 0;
 
 export default function FeedApp() {
   const feed = useFeed();
@@ -73,6 +76,20 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
     const h = Math.ceil(el.offsetHeight);
     if (h > 0) setHeaderH((prev) => (prev === h ? prev : h));
   }, [feed.status, feed.meta.subtitle, feed.meta.title, installEvt, theme]);
+
+  // Restore feed scroll on Back; save in layout cleanup before Detail scrolls to 0.
+  useLayoutEffect(() => {
+    const y = savedFeedScrollY || 0;
+    window.scrollTo(0, y);
+    lastY.current = y;
+    const top = y <= 24;
+    setAtTop(top);
+    hiddenRef.current = false;
+    setChromeHidden(false);
+    return () => {
+      savedFeedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    };
+  }, []);
 
   useEffect(() => {
     lastY.current = window.scrollY || 0;
@@ -217,7 +234,13 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
 
 function DetailRoute({ feed }) {
   const { id } = useParams();
+  const location = useLocation();
   const card = feed.cards.find((c) => c.id === decodeURIComponent(id || ""));
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname, id]);
+
   return (
     <CardDetail
       card={card}
