@@ -1,8 +1,75 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-19",
+  "updated": "2026-09-20",
   "cards": [
+    {
+      "id": "book-20260920-vtsax-wealth-tool",
+      "category": "book",
+      "title": "Own the whole market, then stay put",
+      "body": "Collins’ simple wealth engine: buy a low-cost total-market index (VTSAX/VTI), automate contributions, and let compounding do the heavy lifting — not stock picking.",
+      "source": "JL Collins · The Simple Path to Wealth (via tiagom87 notes)",
+      "tags": [
+        "money",
+        "investing",
+        "index-funds",
+        "VTSAX",
+        "compounding"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/book-vtsax-20260920/800/520",
+      "link": "https://github.com/tiagom87/simple-path-to-wealth",
+      "detail": {
+        "summary": "In The Simple Path to Wealth, JL Collins treats the stock market as a long-term wealth-building tool, not a casino. His core move during accumulation: put surplus cash into a single low-cost total U.S. stock market index fund (he prefers Vanguard’s VTSAX; the ETF twin VTI is fine) and keep buying through ups and downs. Complexity is the enemy; matching the market at tiny fees usually beats trying to outsmart it.",
+        "sections": [
+          {
+            "heading": "Why a total-market index",
+            "body": "A fund like VTSAX owns essentially the entire publicly traded U.S. market in one ticker. You get broad diversification and rock-bottom expense ratios without researching individual companies. Notes summarizing Collins stress that low-cost passive funds track overall market performance and sidestep the stress and underperformance risk of stock picking."
+          },
+          {
+            "heading": "The market as the engine",
+            "body": "Historically, broad U.S. equity benchmarks have delivered roughly ~10% nominal (~7% real) average annual returns over long stretches — with painful short-term crashes along the way. At ~7% real, money roughly doubles about every decade if you stay invested. Collins’ point: volatility is the fee you pay for ownership; panic selling turns a temporary dip into a permanent loss."
+          },
+          {
+            "heading": "Index vs. stock picking (odds, not heroics)",
+            "body": "Public notes on the book highlight a brutal probability gap: only a small minority of individual stock pickers beat the S&P 500 over a decade, while an index fund gives you a high chance of at least matching market returns with far less time and drama. Same expected math if you somehow pick well — worse odds if you don’t. Simplicity wins on process reliability."
+          },
+          {
+            "heading": "How to run it day to day",
+            "body": "Spend less than you earn, avoid high-interest debt, automate investments into VTSAX/VTI (or a comparable total-market / S&P 500 fund at any low-cost broker), and ignore noise. Rebalance only as needed for your stock/bond mix as you age; during pure accumulation Collins keeps the portfolio stock-heavy. The strategy is boring on purpose."
+          }
+        ],
+        "bullets": [
+          "Core holding in accumulation: low-cost total stock market index (VTSAX) or ETF equivalent (VTI)",
+          "S&P 500 index (e.g. VFIAX/VOO) is an acceptable cousin — still broad, still cheap",
+          "Fees matter: tiny expense ratios compound in your favor vs. active funds",
+          "Automate contributions so consistency beats timing",
+          "Stay invested through crashes; history favors owners who don’t sell the dip"
+        ],
+        "steps": [
+          "If you don’t already have one, open a tax-advantaged account (401k/IRA/brokerage) that offers a total-market or S&P 500 index",
+          "Pick one low-cost fund/ETF (VTSAX, VTI, or equivalent) as the default destination for surplus cash",
+          "Set an automatic monthly buy sized to your savings rate — no waiting for a ‘good’ entry",
+          "Write a one-line rule: no selling equity index shares because of headlines; review allocation only on a calendar schedule"
+        ],
+        "actions": [
+          {
+            "label": "Source notes (Simple Path to Wealth)",
+            "url": "https://github.com/tiagom87/simple-path-to-wealth"
+          },
+          {
+            "label": "tiagom87 README summary (raw)",
+            "url": "https://raw.githubusercontent.com/tiagom87/simple-path-to-wealth/main/README.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "tiagom87/simple-path-to-wealth — JL Collins summary notes",
+            "url": "https://github.com/tiagom87/simple-path-to-wealth"
+          }
+        ]
+      }
+    },
     {
       "id": "trend-20260919-agentcore-memory-ingestdata",
       "category": "aws",
