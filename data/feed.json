@@ -4,6 +4,91 @@
   "updated": "2026-09-20",
   "cards": [
     {
+      "id": "tax-20260920-savers-credit-form-8880",
+      "category": "tax",
+      "title": "Saver’s Credit: free money on 401(k)/IRA contributions (Form 8880)",
+      "body": "Low- and moderate-AGI filers can claim 10–50% of up to $2,000 ($4,000 MFJ) of 401(k)/IRA/Roth contributions — max credit $1,000 ($2,000 MFJ) for 2026. Often missed by early-career Indian-origin households. Educational only, not tax advice.",
+      "source": "IRS · Saver’s Credit · Form 8880 · Notice 2025-67",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "savers-credit",
+        "form-8880",
+        "retirement",
+        "401k",
+        "ira",
+        "credit"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-savers-credit-form-8880-20260920/800/520",
+      "link": "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-credit-savers-credit",
+      "detail": {
+        "summary": "The Retirement Savings Contributions Credit (Saver’s Credit) is a nonrefundable credit on Form 8880 for eligible contributions to an IRA, Roth IRA, 401(k), 403(b), governmental 457(b), SARSEP, SIMPLE, certain after-tax plan contributions, or an ABLE account (as designated beneficiary). For 2026, the top AGI cutoffs are $80,500 married filing jointly, $60,375 head of household, and $40,250 for other filers. Credit rate is 50%, 20%, or 10% of qualifying contributions, capped at $2,000 of contributions per person ($4,000 jointly), so the max credit is $1,000 ($2,000 jointly). Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US residents and dual-career households with modest AGI who already (or can) contribute to a workplace 401(k)/403(b) or an IRA/Roth — especially early-career tech/consulting arrivals, spouses on lower W-2 income, or years with a temporary income dip. High earners above the AGI caps get $0; this tip is for people under those lines who still save."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Eligible contributions (not rollovers) count toward a $2,000 per-person base ($4,000 MFJ). Multiply by 50%, 20%, or 10% based on AGI bands from IRS Notice 2025-67 / 2026 Form 8880 draft: MFJ 50% up to $48,500, 20% to $52,500, 10% to $80,500; HoH $36,375 / $39,375 / $60,375; other filers $24,250 / $26,250 / $40,250. You must be 18+, not a full-time student, and not claimed as a dependent. Recent distributions can reduce eligible contributions. The credit is nonrefundable (offsets tax, no refund beyond tax). It can stack with an IRA deduction on Schedule 1."
+          },
+          {
+            "heading": "India–US angle",
+            "body": "Many first years in the US (or a spouse’s lower-income year while the other remits to India family) land inside Saver’s Credit AGI bands even when household lifestyle feels middle-class. Remittances do not create this credit — retirement deferrals/IRA contributions do. If you contribute only to India EPF/PPF and nothing US-qualified, Form 8880 generally does not apply; US 401(k)/IRA dollars are the trigger."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "Estimate 2026 AGI against the $40,250 / $60,375 / $80,500 caps for your filing status. If under the line, confirm YTD 401(k)/IRA contributions and open Form 8880 (and the IRS Saver’s Credit page) so your software or preparer actually files the credit — do not assume TurboTax auto-claims it without the form."
+          }
+        ],
+        "bullets": [
+          "2026 AGI caps (10% band top): $80,500 MFJ · $60,375 HoH · $40,250 other (Notice 2025-67)",
+          "Credit rate 50% / 20% / 10% of eligible contributions by AGI band",
+          "Contribution base capped at $2,000 ($4,000 MFJ) → max credit $1,000 ($2,000 MFJ)",
+          "Qualifying: traditional/Roth IRA, 401(k)/403(b)/gov 457(b)/SIMPLE/SARSEP, some after-tax, ABLE",
+          "Must be 18+, not a dependent, not a full-time student; nonrefundable; claim on Form 8880"
+        ],
+        "steps": [
+          "Check projected 2026 AGI vs your filing-status cap on the IRS Saver’s Credit page / Notice 2025-67",
+          "If eligible, increase or document 401(k)/IRA contributions that count (not rollovers)",
+          "File Form 8880 with your return (or confirm tax software generated it) and keep contribution statements"
+        ],
+        "actions": [
+          {
+            "label": "IRS — Saver’s Credit overview",
+            "url": "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-credit-savers-credit"
+          },
+          {
+            "label": "About Form 8880",
+            "url": "https://www.irs.gov/forms-pubs/about-form-8880"
+          },
+          {
+            "label": "IRS newsroom — 2026 retirement limits (incl. Saver’s Credit AGI)",
+            "url": "https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS — Retirement Savings Contributions Credit (Saver’s Credit)",
+            "url": "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-credit-savers-credit"
+          },
+          {
+            "label": "IRS — About Form 8880",
+            "url": "https://www.irs.gov/forms-pubs/about-form-8880"
+          },
+          {
+            "label": "IRS Notice 2025-67 (2026 COLA — §25B Saver’s Credit AGI limits)",
+            "url": "https://www.irs.gov/pub/irs-drop/n-25-67.pdf"
+          },
+          {
+            "label": "IRS newsroom — 2026 401(k)/IRA limits and Saver’s Credit AGI",
+            "url": "https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260920-vtsax-wealth-tool",
       "category": "book",
       "title": "Own the whole market, then stay put",
@@ -2685,52 +2770,6 @@
           "Pick tomorrow's deep block time",
           "Define the output in one sentence",
           "Remove the phone before you sit down"
-        ]
-      }
-    },
-    {
-      "id": "tax-standard-deduction",
-      "category": "tax",
-      "title": "Standard deduction reality check",
-      "body": "Most filers take the standard deduction. Itemizing only wins above that floor.",
-      "source": "US tax tip (sample)",
-      "tags": [
-        "us-tax"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/feed-tax2/800/520",
-      "detail": {
-        "summary": "Do not assume itemizing is virtuous. Math first, paperwork second.",
-        "sections": [
-          {
-            "heading": "Standard deduction",
-            "body": "A fixed amount based on filing status. If your eligible itemized expenses are below it, the standard route usually wins."
-          },
-          {
-            "heading": "When itemizing can win",
-            "body": "Large mortgage interest, big charitable gifts, high state/local taxes (subject to caps), or major medical expenses above thresholds."
-          },
-          {
-            "heading": "Habit",
-            "body": "Keep receipts anyway. Year-end is a bad time to reconstruct donations and medical costs."
-          }
-        ],
-        "bullets": [
-          "Check the current-year IRS standard deduction table",
-          "SALT deduction caps matter for many households",
-          "Software comparisons are fine; verify weird results"
-        ],
-        "actions": [
-          {
-            "label": "IRS deductions index",
-            "url": "https://www.irs.gov/credits-deductions"
-          }
-        ],
-        "sources": [
-          {
-            "label": "IRS credits and deductions",
-            "url": "https://www.irs.gov/credits-deductions"
-          }
         ]
       }
     }
