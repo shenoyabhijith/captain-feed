@@ -78,6 +78,28 @@ body {
 h1 { margin: 0; font-size: 1.35rem; letter-spacing: -0.03em; line-height: 1.1; }
 .sub { margin: 4px 0 0; color: var(--muted); font-size: 0.86rem; }
 .top-actions { position: relative; display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; align-items: center; }
+.icon-btn.more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.08em;
+}
+.overflow-actions {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  z-index: 30;
+}
+.overflow-actions.open { display: flex; }
+
 .icon-btn {
   border: 1px solid var(--line); background: var(--bg-elev); color: var(--ink);
   min-width: 44px; min-height: 44px; border-radius: 999px; font: inherit; font-weight: 700; cursor: pointer; padding: 0 12px;
@@ -248,49 +270,6 @@ h2 { margin: 0 0 8px; font-size: 1.18rem; letter-spacing: -0.02em; line-height: 
   background: var(--accent-soft); color: var(--accent); text-decoration: none; font-weight: 700;
 }
 
-
-.top {
-  transition: padding 0.2s ease, box-shadow 0.2s ease;
-}
-.top .sub,
-.top .stats,
-.top .install-hint {
-  transition: opacity 0.15s ease;
-  opacity: 1;
-}
-.top .filters {
-  transition: margin 0.2s ease, transform 0.2s ease;
-}
-.top h1 {
-  transition: font-size 0.2s ease;
-}
-.top-actions {
-  position: relative;
-  align-items: center;
-}
-.overflow-actions {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: calc(100% + 6px);
-  flex-direction: column;
-  gap: 8px;
-  padding: 8px;
-  border-radius: 16px;
-  background: var(--bg-elev);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  z-index: 30;
-}
-.overflow-actions.open {
-  display: flex;
-}
-.icon-btn.more {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.08em;
-}
 
 
 
