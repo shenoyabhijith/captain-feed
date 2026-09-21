@@ -249,7 +249,7 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
           <div className="brand-lockup">
             <img
               className="brand-mark"
-              src={`${import.meta.env.BASE_URL}icons/mark-28.png`}
+              src={`${import.meta.env.BASE_URL}icons/${theme === "dark" ? "mark-28-dark.png" : "mark-28-light.png"}`}
               width={28}
               height={28}
               alt=""

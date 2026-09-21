@@ -8,7 +8,20 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png", "icons/mark-28.png", "icons/mark-56.png", "data/feed.json"],
+      includeAssets: [
+        "favicon.ico",
+        "favicon.png",
+        "icons/icon-192.png",
+        "icons/icon-512.png",
+        "icons/icon-192-maskable.png",
+        "icons/icon-512-maskable.png",
+        "icons/apple-touch-icon.png",
+        "icons/mark-28.png",
+        "icons/mark-28-light.png",
+        "icons/mark-28-dark.png",
+        "icons/mark-56.png",
+        "data/feed.json"
+      ],
       manifest: {
         name: "Captain Feed",
         short_name: "Captain Feed",
@@ -24,13 +37,25 @@ export default defineConfig({
             src: "icons/icon-192.png",
             sizes: "192x192",
             type: "image/png",
-            purpose: "any maskable"
+            purpose: "any"
           },
           {
             src: "icons/icon-512.png",
             sizes: "512x512",
             type: "image/png",
-            purpose: "any maskable"
+            purpose: "any"
+          },
+          {
+            src: "icons/icon-192-maskable.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "maskable"
+          },
+          {
+            src: "icons/icon-512-maskable.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable"
           }
         ]
       },
