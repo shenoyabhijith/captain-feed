@@ -1,3 +1,5 @@
+import { CATEGORY_LABELS } from "../icons.js";
+
 export default function DetailShell({
   eyebrow,
   title,
@@ -5,9 +7,16 @@ export default function DetailShell({
   children,
   tags,
 }) {
+  const label =
+    eyebrow && CATEGORY_LABELS[eyebrow]
+      ? CATEGORY_LABELS[eyebrow]
+      : eyebrow
+        ? String(eyebrow).replace(/^./, (c) => c.toUpperCase())
+        : null;
+
   return (
     <div className="detail-shell">
-      {eyebrow ? <p className="detail-eyebrow">{eyebrow}</p> : null}
+      {label ? <p className="detail-eyebrow">{label}</p> : null}
       <h1>{title}</h1>
       {summary ? <p className="detail-summary">{summary}</p> : null}
       {tags?.length ? (

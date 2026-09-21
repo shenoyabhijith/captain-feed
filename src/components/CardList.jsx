@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import CardChip from "./CardChip.jsx";
+import FeedCard from "./FeedCard.jsx";
 
 export default function CardList({ cards, prefs, onSeen }) {
   if (!cards.length) {
@@ -11,31 +10,18 @@ export default function CardList({ cards, prefs, onSeen }) {
   }
   return (
     <div className="feed">
-      {cards.map((c) => {
+      {cards.map((c, index) => {
         const read = Boolean(prefs.read[c.id]);
         const saved = Boolean(prefs.saved[c.id]);
         return (
-          <Link
+          <FeedCard
             key={c.id}
-            to={`/card/${encodeURIComponent(c.id)}`}
-            className={`card-link ${read ? "is-read" : ""} ${saved ? "is-saved" : ""}`}
-            onClick={() => onSeen(c.id)}
-          >
-            <article className="card">
-              {c.image ? (
-                <img className="media" loading="lazy" alt="" src={c.image} />
-              ) : null}
-              <div className="body">
-                <div className="meta-row">
-                  <CardChip category={c.category} accent={c.accent} />
-                  <span className="source">{c.source || ""}</span>
-                </div>
-                <h2>{c.title}</h2>
-                <p className="copy">{c.body}</p>
-                <div className="tap-hint">Tap for full brief</div>
-              </div>
-            </article>
-          </Link>
+            card={c}
+            index={index}
+            read={read}
+            saved={saved}
+            onSeen={onSeen}
+          />
         );
       })}
     </div>
