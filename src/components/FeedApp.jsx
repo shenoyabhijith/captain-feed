@@ -1,4 +1,11 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  isStandaloneDisplayMode,
+  shouldShowInstallButton,
+  shouldShowInstallHint,
+  readInstallDismissed,
+  writeInstallDismissed,
+} from "../installGate.js";
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import { loadTheme, saveTheme } from "../storage";
 import { useFeed } from "../hooks/useFeed";
@@ -14,15 +21,53 @@ export default function FeedApp() {
   const feed = useFeed();
   const [theme, setTheme] = useState(loadTheme);
   const [installEvt, setInstallEvt] = useState(null);
+  const [isInstalled, setIsInstalled] = useState(() => {
+    return isStandaloneDisplayMode() || readInstallDismissed();
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     saveTheme(theme);
   }, [theme]);
 
+  const refreshInstalled = useCallback(async () => {
+    let next = isStandaloneDisplayMode() || readInstallDismissed();
+    if (!next && typeof navigator !== "undefined" && navigator.getInstalledRelatedApps) {
+      try {
+        const apps = await navigator.getInstalledRelatedApps();
+        if (Array.isArray(apps) && apps.length > 0) next = true;
+      } catch {
+        /* API may reject; ignore */
+      }
+    }
+    setIsInstalled(next);
+    if (next) setInstallEvt(null);
+  }, []);
+
+  useEffect(() => {
+    refreshInstalled();
+    const medias = ["standalone", "fullscreen", "minimal-ui"].map((mode) =>
+      window.matchMedia(`(display-mode: ${mode})`),
+    );
+    const onMode = () => {
+      refreshInstalled();
+    };
+    medias.forEach((m) => m.addEventListener?.("change", onMode));
+    const onInstalled = () => {
+      setInstallEvt(null);
+      setIsInstalled(true);
+    };
+    window.addEventListener("appinstalled", onInstalled);
+    return () => {
+      medias.forEach((m) => m.removeEventListener?.("change", onMode));
+      window.removeEventListener("appinstalled", onInstalled);
+    };
+  }, [refreshInstalled]);
+
   useEffect(() => {
     const handler = (e) => {
       e.preventDefault();
+      if (isStandaloneDisplayMode() || readInstallDismissed()) return;
       setInstallEvt(e);
     };
     window.addEventListener("beforeinstallprompt", handler);
@@ -34,7 +79,23 @@ export default function FeedApp() {
     installEvt.prompt();
     await installEvt.userChoice;
     setInstallEvt(null);
+    refreshInstalled();
   }
+
+  function dismissInstall() {
+    writeInstallDismissed();
+    setInstallEvt(null);
+    setIsInstalled(true);
+  }
+
+  const showInstallBtn = shouldShowInstallButton({
+    bipAvailable: Boolean(installEvt),
+    isInstalled,
+  });
+  const showInstallHint = shouldShowInstallHint({
+    bipAvailable: Boolean(installEvt),
+    isInstalled,
+  });
 
   return (
     <div className="shell">
@@ -46,8 +107,10 @@ export default function FeedApp() {
               feed={feed}
               theme={theme}
               setTheme={setTheme}
-              installEvt={installEvt}
+              showInstallBtn={showInstallBtn}
+              showInstallHint={showInstallHint}
               onInstall={install}
+              onDismissInstall={dismissInstall}
             />
           }
         />
@@ -57,7 +120,7 @@ export default function FeedApp() {
   );
 }
 
-function Home({ feed, theme, setTheme, installEvt, onInstall }) {
+function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstall, onDismissInstall }) {
   const readCount = feed.cards.filter((c) => feed.prefs.read[c.id]).length;
   const savedCount = feed.cards.filter((c) => feed.prefs.saved[c.id]).length;
   const [chromeHidden, setChromeHidden] = useState(false);
@@ -75,7 +138,7 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
     // Measure while visible (not translated away)
     const h = Math.ceil(el.offsetHeight);
     if (h > 0) setHeaderH((prev) => (prev === h ? prev : h));
-  }, [feed.status, feed.meta.subtitle, feed.meta.title, installEvt, theme]);
+  }, [feed.status, feed.meta.subtitle, feed.meta.title, showInstallBtn, showInstallHint, theme]);
 
   // Restore feed scroll on Back; save in layout cleanup before Detail scrolls to 0.
   useLayoutEffect(() => {
@@ -146,7 +209,7 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
             <p className="sub">{feed.meta.subtitle}</p>
           </div>
           <div className="top-actions">
-            {installEvt ? (
+            {showInstallBtn ? (
               <button type="button" className="icon-btn accent" onClick={onInstall}>
                 Install
               </button>
@@ -180,6 +243,18 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
               >
                 Reset
               </button>
+              {showInstallBtn || showInstallHint ? (
+                <button
+                  type="button"
+                  className="icon-btn"
+                  onClick={() => {
+                    onDismissInstall();
+                    setMenuOpen(false);
+                  }}
+                >
+                  Hide install tip
+                </button>
+              ) : null}
             </div>
           </div>
         </div>
@@ -191,7 +266,7 @@ function Home({ feed, theme, setTheme, installEvt, onInstall }) {
               ? "Could not load feed.json"
               : `${readCount}/${feed.cards.length} read · ${savedCount} saved`}
         </div>
-        {!installEvt ? (
+        {showInstallHint ? (
           <p className="install-hint">
             Android Chrome: menu → Install app or Add to Home screen
           </p>
