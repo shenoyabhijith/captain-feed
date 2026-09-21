@@ -303,8 +303,12 @@ h1 {
   display: flex;
   gap: var(--space-2);
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   margin-top: var(--space-3);
+  margin-inline: calc(var(--space-3) * -1);
   padding-bottom: 2px;
+  padding-inline: var(--space-3) var(--space-5);
+  scroll-padding-inline: var(--space-3) var(--space-5);
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -316,8 +320,9 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  min-height: 44px;
-  height: 44px;
+  min-height: 48px;
+  height: 48px;
+  min-width: 48px;
   padding: 0 var(--space-3);
   border-radius: var(--radius-chip);
   border: 1px solid var(--line);
@@ -328,6 +333,7 @@ h1 {
   font-size: var(--type-label-m);
   cursor: pointer;
   white-space: nowrap;
+  touch-action: manipulation;
 }
 .rail-chip[aria-pressed="true"] {
   background: var(--surface);
@@ -697,9 +703,10 @@ h1 {
   opacity: 0.82;
 }
 .btn.on {
-  background: color-mix(in srgb, var(--teal) 16%, var(--surface));
-  border-color: color-mix(in srgb, var(--teal) 40%, var(--line));
+  background: transparent;
+  border-color: var(--teal);
   color: var(--teal);
+  font-weight: 700;
 }
 
 .detail-shell {
