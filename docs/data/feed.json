@@ -4,6 +4,81 @@
   "updated": "2026-09-21",
   "cards": [
     {
+      "id": "trend-20260921-cursor-projects-coordinator",
+      "category": "trend",
+      "title": "Cursor Projects: one coordinator for long-lived agent work",
+      "body": "Cursor launched Projects (Sep 10): a coordinator agent that keeps shared context for months, fans out cloud subagents, and can subscribe to Slack/PRs/schedules. Built for features, migrations, and ongoing “gardening” — not one-shot chats. Educational ops note.",
+      "source": "Cursor Blog · Sep 10, 2026",
+      "tags": [
+        "productivity",
+        "cursor",
+        "agents",
+        "orchestration",
+        "devops",
+        "migrations",
+        "ai-tools"
+      ],
+      "accent": "indigo",
+      "image": "https://picsum.photos/seed/trend-cursor-projects-20260921/800/520",
+      "link": "https://cursor.com/blog/projects",
+      "detail": {
+        "summary": "On Sep 10, 2026 Cursor shipped Projects in beta. A Project is a long-lived body of work (feature, migration, or standing job) directed through one coordinator agent. The coordinator does not write code itself — it delegates to many cloud (and when needed local) agents, keeps shared context that grows over months, and can act on subscriptions (Slack, schedules, PR events) without waiting for a fresh prompt. Cursor reports new users merge ~30% more PRs; heavy Projects users merge about 6× as many. Educational productivity note — not a product endorsement or purchase advice.",
+        "sections": [
+          {
+            "heading": "What changed vs a normal chat",
+            "body": "Chats are short-lived and amnesiac across sessions. A Project owns durable shared files that sync to every machine its agents use: research, artifacts, repo learnings, and how you prefer work done. If one agent figures out how to test a service, later agents reuse those instructions. That moves the unit of work up from “one prompt” to “a body of work that outlives a single session.”"
+          },
+          {
+            "heading": "Coordinator pattern (why it stays responsive)",
+            "body": "You chat with the coordinator. It directs other agents that execute. Because it delegates instead of coding inline, it is less likely to get blocked mid-task and can keep taking direction while workers run in parallel. Cloud-by-default means closing your laptop does not stop the fleet; a local agent can still be spun up when something must run on your machine."
+          },
+          {
+            "heading": "Three patterns Cursor highlights",
+            "body": "Feature work: research → shared context → parallel implement/test → optional local try → post-ship monitoring with the same context. Migrations: agree a safe approach once, then apply it across hundreds of PRs with declining review intensity as quality holds. Gardening: standing quality work (design-system lint, CI fixes, bug triage) driven by PR/Slack/schedule subscriptions so the coordinator acts when signals appear."
+          },
+          {
+            "heading": "Why this maps to an SA / multi-agent ops lane",
+            "body": "If you already run orchestrator + specialist agents (or Bedrock agent fleets), Projects is the IDE-side cousin of that pattern: durable context, parallel workers, event-driven wakeups. Useful mental model even if you stay on AWS-native stacks — the product lesson is “promote work that outlives a chat into a supervised project with subscriptions,” not “buy this tool.”"
+          }
+        ],
+        "bullets": [
+          "Launched Sep 10, 2026 — Projects beta rolling out in Cursor",
+          "Coordinator directs agents; shared context grows across months",
+          "Cloud-by-default fleet; local agents when the laptop must run something",
+          "Subscriptions: Slack, schedules, PR open/merge/CI-style wakes",
+          "Cursor claim: ~30% more merges for new users; ~6× for heavy Projects users",
+          "Best fit: multi-PR features, long migrations, standing gardening jobs",
+          "Educational only — evaluate against your own security/review bar"
+        ],
+        "steps": [
+          "Open Cursor → left nav → start a Project and describe a body of work that will outlive one chat (e.g. a multi-PR feature or migration).",
+          "Seed shared context early: architecture notes, test recipes, review bar — so every subagent inherits them.",
+          "Add one subscription that matches how work arrives (PR stream, Slack triage channel, or a weekday schedule) instead of relying on manual re-prompts.",
+          "For the first week, review every PR closely; loosen only after the coordinator’s pattern holds."
+        ],
+        "actions": [
+          {
+            "label": "Cursor blog — Introducing Projects",
+            "url": "https://cursor.com/blog/projects"
+          },
+          {
+            "label": "Cursor product site",
+            "url": "https://cursor.com/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Cursor — Introducing Projects (Sep 10, 2026)",
+            "url": "https://cursor.com/blog/projects"
+          },
+          {
+            "label": "Cursor — product overview",
+            "url": "https://cursor.com/"
+          }
+        ]
+      }
+    },
+    {
       "id": "tax-20260921-health-fsa-3400",
       "category": "tax",
       "title": "Health FSA: $3,400 pre-tax medical dollars for 2026 (not an HSA)",
@@ -2809,53 +2884,6 @@
           "Upload 2-5 source files",
           "Ask for outline + open questions",
           "Verify two citations by hand"
-        ]
-      }
-    },
-    {
-      "id": "aws-bedrock-guardrails",
-      "category": "aws",
-      "title": "Bedrock Guardrails first",
-      "body": "Put content filters and topic blocks on the model path before you stack agents.",
-      "source": "AWS / Bedrock (sample)",
-      "tags": [
-        "bedrock",
-        "safety"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/feed-aws1/800/520",
-      "detail": {
-        "summary": "Guardrails are cheaper than incident review. Wire them early on shared accounts and demos.",
-        "sections": [
-          {
-            "heading": "Why first",
-            "body": "Prompt-only safety instructions drift. Guardrails apply consistently across models and apps in the account."
-          },
-          {
-            "heading": "What to configure",
-            "body": "Content filters for hate/insults/sexual/violence/misconduct, denied topics for your domain, and optional word/PII filters."
-          },
-          {
-            "heading": "Ops tip",
-            "body": "Log interventions. If guardrails fire constantly, your product prompt or retrieval is the bug, not the filter."
-          }
-        ],
-        "bullets": [
-          "Attach the same guardrail ARN in every env",
-          "Test with red-team prompts before launch",
-          "Prefer deny-by-default on sensitive topics"
-        ],
-        "actions": [
-          {
-            "label": "Bedrock Guardrails docs",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS docs: Guardrails",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html"
-          }
         ]
       }
     }

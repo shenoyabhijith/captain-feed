@@ -4,6 +4,163 @@
   "updated": "2026-09-21",
   "cards": [
     {
+      "id": "trend-20260921-cursor-projects-coordinator",
+      "category": "trend",
+      "title": "Cursor Projects: one coordinator for long-lived agent work",
+      "body": "Cursor launched Projects (Sep 10): a coordinator agent that keeps shared context for months, fans out cloud subagents, and can subscribe to Slack/PRs/schedules. Built for features, migrations, and ongoing “gardening” — not one-shot chats. Educational ops note.",
+      "source": "Cursor Blog · Sep 10, 2026",
+      "tags": [
+        "productivity",
+        "cursor",
+        "agents",
+        "orchestration",
+        "devops",
+        "migrations",
+        "ai-tools"
+      ],
+      "accent": "indigo",
+      "image": "https://picsum.photos/seed/trend-cursor-projects-20260921/800/520",
+      "link": "https://cursor.com/blog/projects",
+      "detail": {
+        "summary": "On Sep 10, 2026 Cursor shipped Projects in beta. A Project is a long-lived body of work (feature, migration, or standing job) directed through one coordinator agent. The coordinator does not write code itself — it delegates to many cloud (and when needed local) agents, keeps shared context that grows over months, and can act on subscriptions (Slack, schedules, PR events) without waiting for a fresh prompt. Cursor reports new users merge ~30% more PRs; heavy Projects users merge about 6× as many. Educational productivity note — not a product endorsement or purchase advice.",
+        "sections": [
+          {
+            "heading": "What changed vs a normal chat",
+            "body": "Chats are short-lived and amnesiac across sessions. A Project owns durable shared files that sync to every machine its agents use: research, artifacts, repo learnings, and how you prefer work done. If one agent figures out how to test a service, later agents reuse those instructions. That moves the unit of work up from “one prompt” to “a body of work that outlives a single session.”"
+          },
+          {
+            "heading": "Coordinator pattern (why it stays responsive)",
+            "body": "You chat with the coordinator. It directs other agents that execute. Because it delegates instead of coding inline, it is less likely to get blocked mid-task and can keep taking direction while workers run in parallel. Cloud-by-default means closing your laptop does not stop the fleet; a local agent can still be spun up when something must run on your machine."
+          },
+          {
+            "heading": "Three patterns Cursor highlights",
+            "body": "Feature work: research → shared context → parallel implement/test → optional local try → post-ship monitoring with the same context. Migrations: agree a safe approach once, then apply it across hundreds of PRs with declining review intensity as quality holds. Gardening: standing quality work (design-system lint, CI fixes, bug triage) driven by PR/Slack/schedule subscriptions so the coordinator acts when signals appear."
+          },
+          {
+            "heading": "Why this maps to an SA / multi-agent ops lane",
+            "body": "If you already run orchestrator + specialist agents (or Bedrock agent fleets), Projects is the IDE-side cousin of that pattern: durable context, parallel workers, event-driven wakeups. Useful mental model even if you stay on AWS-native stacks — the product lesson is “promote work that outlives a chat into a supervised project with subscriptions,” not “buy this tool.”"
+          }
+        ],
+        "bullets": [
+          "Launched Sep 10, 2026 — Projects beta rolling out in Cursor",
+          "Coordinator directs agents; shared context grows across months",
+          "Cloud-by-default fleet; local agents when the laptop must run something",
+          "Subscriptions: Slack, schedules, PR open/merge/CI-style wakes",
+          "Cursor claim: ~30% more merges for new users; ~6× for heavy Projects users",
+          "Best fit: multi-PR features, long migrations, standing gardening jobs",
+          "Educational only — evaluate against your own security/review bar"
+        ],
+        "steps": [
+          "Open Cursor → left nav → start a Project and describe a body of work that will outlive one chat (e.g. a multi-PR feature or migration).",
+          "Seed shared context early: architecture notes, test recipes, review bar — so every subagent inherits them.",
+          "Add one subscription that matches how work arrives (PR stream, Slack triage channel, or a weekday schedule) instead of relying on manual re-prompts.",
+          "For the first week, review every PR closely; loosen only after the coordinator’s pattern holds."
+        ],
+        "actions": [
+          {
+            "label": "Cursor blog — Introducing Projects",
+            "url": "https://cursor.com/blog/projects"
+          },
+          {
+            "label": "Cursor product site",
+            "url": "https://cursor.com/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Cursor — Introducing Projects (Sep 10, 2026)",
+            "url": "https://cursor.com/blog/projects"
+          },
+          {
+            "label": "Cursor — product overview",
+            "url": "https://cursor.com/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tax-20260921-health-fsa-3400",
+      "category": "tax",
+      "title": "Health FSA: $3,400 pre-tax medical dollars for 2026 (not an HSA)",
+      "body": "Employer health Flexible Spending Arrangement lets you set aside up to $3,400 in 2026 via payroll (carryover up to $680 if the plan allows). Useful when you have predictable dental/vision/Rx costs and are NOT on an HSA-eligible HDHP. Educational only, not tax advice.",
+      "source": "IRS · IR-2025-103 · Rev. Proc. 2025-32 · Pub. 969",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "health-fsa",
+        "fsa",
+        "cafeteria-plan",
+        "pub-969",
+        "rev-proc-2025-32",
+        "open-enrollment"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-health-fsa-3400-20260921/800/520",
+      "link": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+      "detail": {
+        "summary": "A health Flexible Spending Arrangement (health FSA) under a §125 cafeteria plan lets eligible employees reduce salary on a pre-tax basis and use the money for qualified medical expenses. For plan years beginning in 2026, the IRS voluntary employee salary-reduction limit is $3,400 (up $100). If the plan permits carryover of unused amounts, the maximum carryover is $680. Unlike an HSA, a general-purpose health FSA is typically use-it-or-lose-it (subject to plan grace period or carryover rules) and is aimed at people with a traditional (non-HDHP) medical plan. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US employees and dual-income households on employer medical plans who can forecast recurring out-of-pocket costs (glasses, dental work, orthodontia, copays, OTC meds that qualify under plan rules). Especially helpful at open enrollment when comparing HSA+HDHP vs traditional plan + FSA."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Elect an amount at open enrollment (or hire/qualifying event). Contributions come out of paycheck before federal income tax (and usually FICA). You spend via debit card or claims for IRS-qualified medical expenses for yourself, spouse, and tax dependents. Year-end leftover balance is forfeited unless the plan offers a grace period (up to 2½ months) OR a carryover (max $680 for 2026) — plans generally offer one or the other, not both."
+          },
+          {
+            "heading": "HSA conflict (important)",
+            "body": "You generally cannot contribute to an HSA for any month you are covered by a general-purpose health FSA (or a general-purpose HRA). Limited-purpose (dental/vision only) or post-deductible FSAs are the usual exception. If you already use an HSA (see prior tip tax-20260912), do not elect a general-purpose FSA."
+          },
+          {
+            "heading": "India-angle note",
+            "body": "Cross-border families often underestimate US dental/vision costs relative to India pricing. An FSA turns those predictable US bills into pre-tax dollars — but only while you are on a US employer cafeteria plan."
+          }
+        ],
+        "bullets": [
+          "2026 employee salary-reduction limit: $3,400",
+          "Max carryover if plan allows: $680",
+          "Pre-tax payroll reduction under cafeteria plan (§125)",
+          "Use-it-or-lose-it unless grace period or carryover applies",
+          "General-purpose FSA usually blocks HSA eligibility that year",
+          "Educational only — not tax advice"
+        ],
+        "steps": [
+          "Open your employer benefits portal and confirm whether a health FSA is offered for the next plan year.",
+          "Estimate recurring 2026 dental/vision/Rx/copay spend; elect that amount (or less) — do not overshoot if there is no carryover.",
+          "If you contribute to an HSA, confirm you are electing only a limited-purpose FSA (or skipping FSA entirely)."
+        ],
+        "actions": [
+          {
+            "label": "IRS 2026 inflation adjustments (FSA $3,400 / carryover $680)",
+            "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill"
+          },
+          {
+            "label": "IRS Publication 969 (HSAs and other tax-favored health plans)",
+            "url": "https://www.irs.gov/publications/p969"
+          },
+          {
+            "label": "Rev. Proc. 2025-32 (PDF)",
+            "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS — IR-2025-103 tax year 2026 inflation adjustments (FSA $3,400 / carryover $680)",
+            "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill"
+          },
+          {
+            "label": "IRS Publication 969 — HSAs and other tax-favored health plans",
+            "url": "https://www.irs.gov/publications/p969"
+          },
+          {
+            "label": "Rev. Proc. 2025-32 (PDF)",
+            "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260921-habit-stacking",
       "category": "book",
       "title": "Habit stacking: piggyback the new on the old",
@@ -2727,98 +2884,6 @@
           "Upload 2-5 source files",
           "Ask for outline + open questions",
           "Verify two citations by hand"
-        ]
-      }
-    },
-    {
-      "id": "aws-bedrock-guardrails",
-      "category": "aws",
-      "title": "Bedrock Guardrails first",
-      "body": "Put content filters and topic blocks on the model path before you stack agents.",
-      "source": "AWS / Bedrock (sample)",
-      "tags": [
-        "bedrock",
-        "safety"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/feed-aws1/800/520",
-      "detail": {
-        "summary": "Guardrails are cheaper than incident review. Wire them early on shared accounts and demos.",
-        "sections": [
-          {
-            "heading": "Why first",
-            "body": "Prompt-only safety instructions drift. Guardrails apply consistently across models and apps in the account."
-          },
-          {
-            "heading": "What to configure",
-            "body": "Content filters for hate/insults/sexual/violence/misconduct, denied topics for your domain, and optional word/PII filters."
-          },
-          {
-            "heading": "Ops tip",
-            "body": "Log interventions. If guardrails fire constantly, your product prompt or retrieval is the bug, not the filter."
-          }
-        ],
-        "bullets": [
-          "Attach the same guardrail ARN in every env",
-          "Test with red-team prompts before launch",
-          "Prefer deny-by-default on sensitive topics"
-        ],
-        "actions": [
-          {
-            "label": "Bedrock Guardrails docs",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS docs: Guardrails",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html"
-          }
-        ]
-      }
-    },
-    {
-      "id": "deal-ssd-checklist",
-      "category": "deal",
-      "title": "SSD deal checklist",
-      "body": "Match capacity, warranty, and DRAM vs DRAMless. Cheap that dies mid-project is not a deal.",
-      "source": "Deals desk (sample)",
-      "tags": [
-        "hardware"
-      ],
-      "accent": "coral",
-      "image": "https://picsum.photos/seed/feed-deal1/800/520",
-      "detail": {
-        "summary": "Storage deals hide tradeoffs in firmware, DRAM, and endurance. Buy for the workload, not the splashy GB price.",
-        "sections": [
-          {
-            "heading": "Checklist",
-            "body": "Confirm interface (NVMe Gen3/Gen4), usable capacity after formatting, warranty years, and TBW endurance if you write heavily."
-          },
-          {
-            "heading": "DRAM vs DRAMless",
-            "body": "DRAM-less drives can be fine for light laptop use. Heavy compile/VM/database work usually prefers DRAM-backed models."
-          },
-          {
-            "heading": "Red flags",
-            "body": "No brand warranty page, recycled listing photos only, or prices far below street for the same SKU."
-          }
-        ],
-        "bullets": [
-          "Prefer sellers with clear return windows",
-          "Clone and verify before wiping the old drive",
-          "Leave 10-20% free space for SSD health"
-        ],
-        "sources": [
-          {
-            "label": "SSD endurance basics",
-            "url": "https://en.wikipedia.org/wiki/Solid-state_drive"
-          }
-        ],
-        "steps": [
-          "List your must-have capacity + interface",
-          "Compare TBW and warranty on two finalists",
-          "Buy only if return policy is clear"
         ]
       }
     }
