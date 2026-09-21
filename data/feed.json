@@ -4,6 +4,88 @@
   "updated": "2026-09-21",
   "cards": [
     {
+      "id": "tax-20260921-health-fsa-3400",
+      "category": "tax",
+      "title": "Health FSA: $3,400 pre-tax medical dollars for 2026 (not an HSA)",
+      "body": "Employer health Flexible Spending Arrangement lets you set aside up to $3,400 in 2026 via payroll (carryover up to $680 if the plan allows). Useful when you have predictable dental/vision/Rx costs and are NOT on an HSA-eligible HDHP. Educational only, not tax advice.",
+      "source": "IRS · IR-2025-103 · Rev. Proc. 2025-32 · Pub. 969",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "health-fsa",
+        "fsa",
+        "cafeteria-plan",
+        "pub-969",
+        "rev-proc-2025-32",
+        "open-enrollment"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-health-fsa-3400-20260921/800/520",
+      "link": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+      "detail": {
+        "summary": "A health Flexible Spending Arrangement (health FSA) under a §125 cafeteria plan lets eligible employees reduce salary on a pre-tax basis and use the money for qualified medical expenses. For plan years beginning in 2026, the IRS voluntary employee salary-reduction limit is $3,400 (up $100). If the plan permits carryover of unused amounts, the maximum carryover is $680. Unlike an HSA, a general-purpose health FSA is typically use-it-or-lose-it (subject to plan grace period or carryover rules) and is aimed at people with a traditional (non-HDHP) medical plan. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US employees and dual-income households on employer medical plans who can forecast recurring out-of-pocket costs (glasses, dental work, orthodontia, copays, OTC meds that qualify under plan rules). Especially helpful at open enrollment when comparing HSA+HDHP vs traditional plan + FSA."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Elect an amount at open enrollment (or hire/qualifying event). Contributions come out of paycheck before federal income tax (and usually FICA). You spend via debit card or claims for IRS-qualified medical expenses for yourself, spouse, and tax dependents. Year-end leftover balance is forfeited unless the plan offers a grace period (up to 2½ months) OR a carryover (max $680 for 2026) — plans generally offer one or the other, not both."
+          },
+          {
+            "heading": "HSA conflict (important)",
+            "body": "You generally cannot contribute to an HSA for any month you are covered by a general-purpose health FSA (or a general-purpose HRA). Limited-purpose (dental/vision only) or post-deductible FSAs are the usual exception. If you already use an HSA (see prior tip tax-20260912), do not elect a general-purpose FSA."
+          },
+          {
+            "heading": "India-angle note",
+            "body": "Cross-border families often underestimate US dental/vision costs relative to India pricing. An FSA turns those predictable US bills into pre-tax dollars — but only while you are on a US employer cafeteria plan."
+          }
+        ],
+        "bullets": [
+          "2026 employee salary-reduction limit: $3,400",
+          "Max carryover if plan allows: $680",
+          "Pre-tax payroll reduction under cafeteria plan (§125)",
+          "Use-it-or-lose-it unless grace period or carryover applies",
+          "General-purpose FSA usually blocks HSA eligibility that year",
+          "Educational only — not tax advice"
+        ],
+        "steps": [
+          "Open your employer benefits portal and confirm whether a health FSA is offered for the next plan year.",
+          "Estimate recurring 2026 dental/vision/Rx/copay spend; elect that amount (or less) — do not overshoot if there is no carryover.",
+          "If you contribute to an HSA, confirm you are electing only a limited-purpose FSA (or skipping FSA entirely)."
+        ],
+        "actions": [
+          {
+            "label": "IRS 2026 inflation adjustments (FSA $3,400 / carryover $680)",
+            "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill"
+          },
+          {
+            "label": "IRS Publication 969 (HSAs and other tax-favored health plans)",
+            "url": "https://www.irs.gov/publications/p969"
+          },
+          {
+            "label": "Rev. Proc. 2025-32 (PDF)",
+            "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS — IR-2025-103 tax year 2026 inflation adjustments (FSA $3,400 / carryover $680)",
+            "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill"
+          },
+          {
+            "label": "IRS Publication 969 — HSAs and other tax-favored health plans",
+            "url": "https://www.irs.gov/publications/p969"
+          },
+          {
+            "label": "Rev. Proc. 2025-32 (PDF)",
+            "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260921-habit-stacking",
       "category": "book",
       "title": "Habit stacking: piggyback the new on the old",
@@ -2774,51 +2856,6 @@
             "label": "AWS docs: Guardrails",
             "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html"
           }
-        ]
-      }
-    },
-    {
-      "id": "deal-ssd-checklist",
-      "category": "deal",
-      "title": "SSD deal checklist",
-      "body": "Match capacity, warranty, and DRAM vs DRAMless. Cheap that dies mid-project is not a deal.",
-      "source": "Deals desk (sample)",
-      "tags": [
-        "hardware"
-      ],
-      "accent": "coral",
-      "image": "https://picsum.photos/seed/feed-deal1/800/520",
-      "detail": {
-        "summary": "Storage deals hide tradeoffs in firmware, DRAM, and endurance. Buy for the workload, not the splashy GB price.",
-        "sections": [
-          {
-            "heading": "Checklist",
-            "body": "Confirm interface (NVMe Gen3/Gen4), usable capacity after formatting, warranty years, and TBW endurance if you write heavily."
-          },
-          {
-            "heading": "DRAM vs DRAMless",
-            "body": "DRAM-less drives can be fine for light laptop use. Heavy compile/VM/database work usually prefers DRAM-backed models."
-          },
-          {
-            "heading": "Red flags",
-            "body": "No brand warranty page, recycled listing photos only, or prices far below street for the same SKU."
-          }
-        ],
-        "bullets": [
-          "Prefer sellers with clear return windows",
-          "Clone and verify before wiping the old drive",
-          "Leave 10-20% free space for SSD health"
-        ],
-        "sources": [
-          {
-            "label": "SSD endurance basics",
-            "url": "https://en.wikipedia.org/wiki/Solid-state_drive"
-          }
-        ],
-        "steps": [
-          "List your must-have capacity + interface",
-          "Compare TBW and warranty on two finalists",
-          "Buy only if return policy is clear"
         ]
       }
     }
