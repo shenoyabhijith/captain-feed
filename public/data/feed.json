@@ -1,8 +1,79 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-20",
+  "updated": "2026-09-21",
   "cards": [
+    {
+      "id": "book-20260921-habit-stacking",
+      "category": "book",
+      "title": "Habit stacking: piggyback the new on the old",
+      "body": "James Clear’s formula locks a new habit to one you already do: After [current habit], I will [new habit]. Clarity beats waiting for motivation.",
+      "source": "James Clear · Atomic Habits (via lijubjohn notes)",
+      "tags": [
+        "habits",
+        "productivity",
+        "atomic-habits",
+        "systems",
+        "implementation"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/book-habit-stack-20260921/800/520",
+      "link": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md",
+      "detail": {
+        "summary": "Atomic Habits argues that many people don’t lack motivation — they lack a clear trigger. Habit stacking fixes that by attaching a new behavior to a routine you already run on autopilot. The template is simple: After [CURRENT HABIT], I will [NEW HABIT]. You’re borrowing an existing cue instead of inventing a brand-new time and place from scratch.",
+        "sections": [
+          {
+            "heading": "Why stacking beats vague intentions",
+            "body": "Saying “I’ll stretch more” fails because the cue is fuzzy. Clear’s notes emphasize implementation clarity: pair the new action with something already automatic (pouring coffee, closing the laptop, hanging up keys). The old habit becomes the alarm clock for the new one, so you don’t rely on remembering or feeling inspired."
+          },
+          {
+            "heading": "The formula (and a useful combo)",
+            "body": "Base form: After [CURRENT HABIT], I will [NEW HABIT]. Example: After I pour my morning coffee, I will write one sentence in my journal. You can extend it with temptation bundling: After [current], I will [habit I need]; After [habit I need], I will [habit I want]. That sequence makes the hard thing the gate to the enjoyable thing."
+          },
+          {
+            "heading": "Where it sits in the four laws",
+            "body": "Habit stacking is a Make It Obvious move — Law 1 of Clear’s habit loop (cue → craving → response → reward). It sits alongside implementation intentions (“I will [behavior] at [time] in [location]”) and environment design. Stacking is especially useful when your calendar is already packed but you have reliable daily anchors (meals, commute end, brushing teeth)."
+          },
+          {
+            "heading": "Keep the first stack tiny",
+            "body": "Public reading notes on the book also stress friction and short reps: don’t stack a 45-minute workout onto coffee day one. Start with a two-minute version so the stack always fires. Missing once is an accident; missing twice starts a new (bad) pattern — so design the stacked habit so it’s almost impossible to skip."
+          }
+        ],
+        "bullets": [
+          "Formula: After [CURRENT HABIT], I will [NEW HABIT]",
+          "Pick a rock-solid existing cue (daily, same context)",
+          "Keep the new habit tiny at first so the stack never fails",
+          "Optional: need → want sequence (temptation bundling on top of stacking)",
+          "Part of Make It Obvious — clarity of cue beats raw willpower"
+        ],
+        "steps": [
+          "List 3–5 habits you already do every day without thinking (coffee, commute end, lunch, shutdown laptop)",
+          "Pick one new habit you want and shrink it to ≤2 minutes",
+          "Write one stack sentence: After I [current], I will [tiny new habit]",
+          "Run it once today; if it slips, restart at the next occurrence — don’t wait for tomorrow’s “perfect” day"
+        ],
+        "actions": [
+          {
+            "label": "lijubjohn Atomic Habits notes",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          },
+          {
+            "label": "Chemaclass Atomic Habits takeaways",
+            "url": "https://github.com/Chemaclass/chemaclass.com/blob/main/content/readings/2019-11-12-atomic-habits.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "lijubjohn/book-notes — atomic-habits.md",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          },
+          {
+            "label": "Chemaclass reading notes — Atomic Habits",
+            "url": "https://github.com/Chemaclass/chemaclass.com/blob/main/content/readings/2019-11-12-atomic-habits.md"
+          }
+        ]
+      }
+    },
     {
       "id": "trend-20260920-etf-boom-active-fee-trap",
       "category": "trend",
@@ -2748,54 +2819,6 @@
           "List your must-have capacity + interface",
           "Compare TBW and warranty on two finalists",
           "Buy only if return policy is clear"
-        ]
-      }
-    },
-    {
-      "id": "gym-push-short",
-      "category": "gym",
-      "title": "Short push day",
-      "body": "Incline push-ups, dumbbell press, lateral raises, overhead extension. Three hard sets each.",
-      "source": "Optional gym card (sample)",
-      "tags": [
-        "hypertrophy"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/feed-gym1/800/520",
-      "link": "https://shenoyabhijith.github.io/pastel-workout-tracker/",
-      "detail": {
-        "summary": "A compact push session when time is short. Quality reps beat random burnout.",
-        "sections": [
-          {
-            "heading": "Session",
-            "body": "Incline push-up 3x8-12, dumbbell bench press 3x8-12, lateral raise 3x12, overhead triceps extension 3x10-12."
-          },
-          {
-            "heading": "Effort",
-            "body": "Stop with about one rep in reserve. Rest ~75-90s on compounds and ~60-75s on isolation."
-          }
-        ],
-        "bullets": [
-          "Warm up shoulders with arm circles and empty-hand presses",
-          "Keep ribs down on overhead work",
-          "Log the top set weight for next time"
-        ],
-        "actions": [
-          {
-            "label": "Open workout tracker",
-            "url": "https://shenoyabhijith.github.io/pastel-workout-tracker/"
-          }
-        ],
-        "sources": [
-          {
-            "label": "Pastel workout tracker",
-            "url": "https://shenoyabhijith.github.io/pastel-workout-tracker/"
-          }
-        ],
-        "steps": [
-          "Warm-up 3 minutes",
-          "Run the four lifts",
-          "Optional finisher: close-grip push-ups to near failure"
         ]
       }
     }
