@@ -1,10 +1,14 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   isStandaloneDisplayMode,
+  isInstallChromeSuppressed,
   shouldShowInstallButton,
   shouldShowInstallHint,
   readInstallDismissed,
   writeInstallDismissed,
+  markPwaInstalled,
+  syncStandaloneDomFlag,
+  subscribeDisplayMode,
 } from "../installGate.js";
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import { loadTheme, saveTheme } from "../storage";
@@ -21,9 +25,7 @@ export default function FeedApp() {
   const feed = useFeed();
   const [theme, setTheme] = useState(loadTheme);
   const [installEvt, setInstallEvt] = useState(null);
-  const [isInstalled, setIsInstalled] = useState(() => {
-    return isStandaloneDisplayMode() || readInstallDismissed();
-  });
+  const [isInstalled, setIsInstalled] = useState(() => isInstallChromeSuppressed());
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -31,35 +33,43 @@ export default function FeedApp() {
   }, [theme]);
 
   const refreshInstalled = useCallback(async () => {
-    let next = isStandaloneDisplayMode() || readInstallDismissed();
+    let next = isInstallChromeSuppressed();
     if (!next && typeof navigator !== "undefined" && navigator.getInstalledRelatedApps) {
       try {
         const apps = await navigator.getInstalledRelatedApps();
-        if (Array.isArray(apps) && apps.length > 0) next = true;
+        if (Array.isArray(apps) && apps.length > 0) {
+          next = true;
+          markPwaInstalled();
+        }
       } catch {
         /* API may reject; ignore */
       }
     }
+    // Re-check display-mode after paints — some Chrome builds settle late.
+    if (!next) {
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+      next = isInstallChromeSuppressed();
+    }
+    if (next && isStandaloneDisplayMode()) markPwaInstalled();
     setIsInstalled(next);
+    syncStandaloneDomFlag(document.documentElement, next);
     if (next) setInstallEvt(null);
   }, []);
 
   useEffect(() => {
     refreshInstalled();
-    const medias = ["standalone", "fullscreen", "minimal-ui"].map((mode) =>
-      window.matchMedia(`(display-mode: ${mode})`),
-    );
-    const onMode = () => {
+    const unsub = subscribeDisplayMode(() => {
       refreshInstalled();
-    };
-    medias.forEach((m) => m.addEventListener?.("change", onMode));
+    });
     const onInstalled = () => {
+      markPwaInstalled();
       setInstallEvt(null);
       setIsInstalled(true);
+      syncStandaloneDomFlag(document.documentElement, true);
     };
     window.addEventListener("appinstalled", onInstalled);
     return () => {
-      medias.forEach((m) => m.removeEventListener?.("change", onMode));
+      unsub();
       window.removeEventListener("appinstalled", onInstalled);
     };
   }, [refreshInstalled]);
@@ -67,7 +77,7 @@ export default function FeedApp() {
   useEffect(() => {
     const handler = (e) => {
       e.preventDefault();
-      if (isStandaloneDisplayMode() || readInstallDismissed()) return;
+      if (isInstallChromeSuppressed()) return;
       setInstallEvt(e);
     };
     window.addEventListener("beforeinstallprompt", handler);
@@ -192,6 +202,38 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // FEED-SCROLL-DOCK-1: remove stray fixed cues that sit in the dock band.
+  useEffect(() => {
+    const dock = document.querySelector("nav.dock");
+    if (!dock) return undefined;
+
+    const clearDockBand = () => {
+      const bandTop = dock.getBoundingClientRect().top - 12;
+      for (const el of document.body.querySelectorAll("*")) {
+        if (el === dock || dock.contains(el)) continue;
+        const st = window.getComputedStyle(el);
+        if (st.position !== "fixed") continue;
+        const r = el.getBoundingClientRect();
+        if (r.width === 0 || r.height === 0) continue;
+        const inBand = r.bottom > bandTop && r.top < window.innerHeight;
+        const looksLikeCue = r.width <= 72 && r.height <= 72;
+        if (inBand && looksLikeCue) {
+          el.style.setProperty("display", "none", "important");
+          el.setAttribute("data-dock-band-cleared", "1");
+        }
+      }
+    };
+
+    clearDockBand();
+    const onScroll = () => clearDockBand();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const id = window.setInterval(clearDockBand, 1500);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.clearInterval(id);
+    };
+  }, []);
+
   // Flow spacer only when chrome is the in-flow top bar (at top + revealed).
   // Mid-feed soft reveal overlays without reserving height.
   const spacerH = !chromeHidden && atTop ? headerH : 0;
@@ -204,13 +246,22 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
         className={`top ${chromeHidden ? "is-hidden" : ""} ${!atTop && !chromeHidden ? "is-peek" : ""}`}
       >
         <div className="brand-row">
-          <div>
-            <h1>{feed.meta.title}</h1>
-            <p className="sub">{feed.meta.subtitle}</p>
+          <div className="brand-lockup">
+            <img
+              className="brand-mark"
+              src={`${import.meta.env.BASE_URL}icons/mark-28.png`}
+              width={28}
+              height={28}
+              alt=""
+            />
+            <div className="brand-text">
+              <h1>{feed.meta.title}</h1>
+              <p className="sub">{feed.meta.subtitle}</p>
+            </div>
           </div>
           <div className="top-actions">
             {showInstallBtn ? (
-              <button type="button" className="icon-btn accent" onClick={onInstall}>
+              <button type="button" className="icon-btn accent install-btn" onClick={onInstall}>
                 Install
               </button>
             ) : null}

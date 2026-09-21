@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "icons/icon-192.png", "icons/icon-512.png", "data/feed.json"],
+      includeAssets: ["favicon.ico", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png", "icons/mark-28.png", "icons/mark-56.png", "data/feed.json"],
       manifest: {
         name: "Captain Feed",
         short_name: "Captain Feed",
