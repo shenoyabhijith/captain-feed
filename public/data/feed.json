@@ -1,8 +1,163 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-21",
+  "updated": "2026-09-24",
   "cards": [
+    {
+      "id": "tax-20260924-qcd-ira-111k",
+      "category": "tax",
+      "title": "QCD: give from your IRA tax-free up to $111k (2026)",
+      "body": "If you are 70½+, a Qualified Charitable Distribution lets your IRA trustee pay a US-eligible charity directly — up to $111,000 excluded from income in 2026, and it can cover your RMD. India NGOs usually do not qualify. Educational only, not tax advice.",
+      "source": "IRS · Notice 2025-67 · Pub. 590-B · IRA FAQs",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "qcd",
+        "ira",
+        "rmd",
+        "charitable",
+        "notice-2025-67",
+        "pub-590b"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-qcd-ira-111k-20260924/800/520",
+      "link": "https://www.irs.gov/retirement-plans/retirement-plans-faqs-regarding-iras",
+      "detail": {
+        "summary": "A Qualified Charitable Distribution (QCD) is a direct transfer from your traditional IRA (not an ongoing SEP/SIMPLE) to a US organization eligible to receive deductible charitable contributions. You must be at least age 70½ when the distribution is made. For tax year 2026, Notice 2025-67 raises the annual exclusion from $108,000 to $111,000 per IRA owner (spouse can use a separate $111,000 on a joint return). A proper QCD is excluded from gross income, can satisfy all or part of your required minimum distribution (RMD), and is not also claimed as a charitable deduction. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US residents (and US-person parents) age 70½+ with traditional IRA balances who already give to charity, who face RMDs, or who want to keep adjusted gross income lower for Medicare IRMAA, Social Security taxation, or credit phase-outs. Also useful for adult children helping parents coordinate custodian paperwork before year-end."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "The IRA trustee must pay the charity directly (a check you deposit yourself usually fails the QCD rules). Keep the same written acknowledgment you would need for a deductible gift (Pub. 526). On Form 1040, report the full IRA distribution, enter $0 (or the taxable remainder) as the taxable amount, and write QCD next to that line. If the IRA has basis (nondeductible contributions) or you have other IRA distributions the same year, Form 8606 may still be required — see the IRS IRA FAQs."
+          },
+          {
+            "heading": "India-angle trap",
+            "body": "QCDs must go to US-qualified charities (generally §501(c)(3) organizations that can receive deductible contributions). Temples, NGOs, or family trusts in India almost never qualify for a QCD, even if the cause is worthy. For India-side giving, other tools (after-tax gifts, US dual-qualified charities, or non-QCD strategies) apply — do not assume a remittance to India counts as a QCD."
+          },
+          {
+            "heading": "Limits and one-time SIE election",
+            "body": "Annual QCD exclusion for 2026: $111,000 under §408(d)(8)(A). Excess above that is taxable like a normal distribution. Separately, a one-time election can send up to $55,000 (2026; was $54,000) to certain split-interest entities (CRAT/CRUT/charitable gift annuity) funded only by QCDs — see Notice 2025-67 and Pub. 590-B. QCDs count toward RMDs but do not create a double charitable deduction."
+          }
+        ],
+        "bullets": [
+          "Age 70½+ required; trustee pays charity directly",
+          "2026 annual exclusion: $111,000 per IRA owner (Notice 2025-67)",
+          "Can satisfy all or part of your IRA RMD",
+          "Excluded from income — do not also deduct as a charitable contribution",
+          "India NGOs / temples usually do not qualify — need US-eligible charity",
+          "Report on Form 1040 with “QCD”; Form 8606 may still apply",
+          "Educational only — not tax advice"
+        ],
+        "steps": [
+          "Confirm you are at least 70½ and the charity is US-eligible to receive deductible contributions.",
+          "Ask your IRA custodian for their QCD / charitable distribution form and have them pay the charity directly before year-end.",
+          "Save the charity’s written acknowledgment and mark the Form 1040 IRA line with QCD (taxable amount $0 if fully qualified)."
+        ],
+        "actions": [
+          {
+            "label": "IRS — Retirement plans FAQs: Qualified charitable distributions",
+            "url": "https://www.irs.gov/retirement-plans/retirement-plans-faqs-regarding-iras"
+          },
+          {
+            "label": "IRS Publication 590-B (IRA distributions / QCDs)",
+            "url": "https://www.irs.gov/publications/p590b"
+          },
+          {
+            "label": "Notice 2025-67 (PDF) — 2026 QCD limit $111,000",
+            "url": "https://www.irs.gov/pub/irs-drop/n-25-67.pdf"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS — Retirement plans FAQs regarding IRAs (QCD section)",
+            "url": "https://www.irs.gov/retirement-plans/retirement-plans-faqs-regarding-iras"
+          },
+          {
+            "label": "IRS Publication 590-B — Distributions from IRAs (QCDs)",
+            "url": "https://www.irs.gov/publications/p590b"
+          },
+          {
+            "label": "Notice 2025-67 (PDF) — §408(d)(8) QCD limit $111,000 for 2026",
+            "url": "https://www.irs.gov/pub/irs-drop/n-25-67.pdf"
+          }
+        ]
+      }
+    },
+    {
+      "id": "book-20260924-environment-design",
+      "category": "book",
+      "title": "Design the room; stop waiting for motivation",
+      "body": "James Clear: environment is the invisible hand on habits. Make good cues obvious and bad ones hard to reach — self-control becomes less about grit.",
+      "source": "James Clear · Atomic Habits (via lijubjohn notes)",
+      "tags": [
+        "habits",
+        "productivity",
+        "atomic-habits",
+        "environment",
+        "systems"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/book-env-design-20260924/800/520",
+      "link": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md",
+      "detail": {
+        "summary": "Atomic Habits argues that motivation is overrated and environment is underrated. You are less a consumer of willpower than a designer of cues: put good-habit triggers in plain sight, remove bad-habit triggers, and reduce the steps between you and the behavior you want. When the room does the reminding, you need less heroics.",
+        "sections": [
+          {
+            "heading": "Environment beats pep talks",
+            "body": "Clear’s notes frame environment as the invisible hand that shapes behavior. Similar people act differently when the room changes — snacks on the counter vs. in a hard-to-reach cupboard, phone on the nightstand vs. charging outside the bedroom. Self-control is easier when the right action is the path of least resistance, not when you white-knuckle through a bad setup every day."
+          },
+          {
+            "heading": "Make good habits obvious (and easy)",
+            "body": "Law 1 (Make It Obvious) and Law 3 (Make It Easy) meet here: design cues you can see, then prime the space so the next step is short. Leave the book on the pillow, the running shoes by the door, the water bottle filled on the desk. Reduce friction — fewer steps between you and the habit — and prime tomorrow’s environment tonight so future-you does not negotiate."
+          },
+          {
+            "heading": "Make bad habits invisible (and hard)",
+            "body": "The inverse laws: hide or remove cues (Make It Invisible) and add steps (Make It Difficult). Logout of distracting apps, move junk food off the counter, put the TV remote in another room. Commitment devices — rules that constrain future choices — turn a one-time design decision into ongoing protection so you are not relying on 9 p.m. willpower."
+          },
+          {
+            "heading": "Architect, don’t just consume",
+            "body": "The punchline in the notes: be the designer of your world, not merely the consumer of it. A stable setup where everything has a place and a purpose makes habits easier to form. Pick one context you live in daily (desk, kitchen, phone home screen) and redesign it so the default action is the smart one."
+          }
+        ],
+        "bullets": [
+          "Motivation is overrated; environment design is the lever",
+          "Make good cues visible; remove or hide bad cues",
+          "Reduce friction for good habits; add friction for bad ones",
+          "Prime the environment ahead of time so future-you does not negotiate",
+          "Self-control is easier when the room already favors the right action"
+        ],
+        "steps": [
+          "Pick one habit you want more of and one you want less of",
+          "For the good habit: place one obvious cue in the room where it should happen (object in sight, app on home screen)",
+          "Cut one step of friction (prep gear tonight, open the doc already, fill the bottle)",
+          "For the bad habit: remove or relocate its main cue and add one extra step before you can do it",
+          "Live with that setup for seven days before adding another redesign"
+        ],
+        "actions": [
+          {
+            "label": "lijubjohn Atomic Habits notes",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          },
+          {
+            "label": "Chemaclass Atomic Habits takeaways",
+            "url": "https://github.com/Chemaclass/chemaclass.com/blob/main/content/readings/2019-11-12-atomic-habits.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "lijubjohn/book-notes — atomic-habits.md",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          },
+          {
+            "label": "Chemaclass reading notes — Atomic Habits",
+            "url": "https://github.com/Chemaclass/chemaclass.com/blob/main/content/readings/2019-11-12-atomic-habits.md"
+          }
+        ]
+      }
+    },
     {
       "id": "trend-20260921-cursor-projects-coordinator",
       "category": "trend",
@@ -2794,96 +2949,6 @@
           "Pick one habit under two minutes",
           "Write the cue + place",
           "Do it once today, then protect tomorrow's slot"
-        ]
-      }
-    },
-    {
-      "id": "tax-w2-basics",
-      "category": "tax",
-      "title": "W-2 vs 1099 in one line",
-      "body": "W-2 means tax is withheld for you. 1099 usually means you set aside estimated tax yourself.",
-      "source": "US tax tip (sample)",
-      "tags": [
-        "us-tax",
-        "basics"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/feed-tax1/800/520",
-      "detail": {
-        "summary": "Misclassifying how you get paid is one of the fastest ways to get an April surprise.",
-        "sections": [
-          {
-            "heading": "W-2",
-            "body": "Employer withholds federal (and usually state) income tax plus Social Security and Medicare. Your paycheck already moved money to the IRS."
-          },
-          {
-            "heading": "1099 / contractor",
-            "body": "Payer generally does not withhold income tax. You are responsible for quarterly estimated taxes and self-employment tax planning."
-          },
-          {
-            "heading": "Practical move",
-            "body": "If cash flow is mostly 1099, park ~25-30% of profit in a separate tax savings account until you refine the rate with a pro."
-          }
-        ],
-        "bullets": [
-          "Keep invoices and mileage logs as you go",
-          "Quarterly estimates reduce underpayment penalties",
-          "State rules can differ from federal"
-        ],
-        "actions": [
-          {
-            "label": "IRS estimated taxes",
-            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/estimated-taxes"
-          }
-        ],
-        "sources": [
-          {
-            "label": "IRS: Estimated taxes",
-            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/estimated-taxes"
-          }
-        ]
-      }
-    },
-    {
-      "id": "trend-notebooklm",
-      "category": "trend",
-      "title": "NotebookLM as a study desk",
-      "body": "Drop PDFs and get grounded answers with citations. Useful when you need a map before a long read.",
-      "source": "Trending finds (sample)",
-      "tags": [
-        "tools",
-        "ai"
-      ],
-      "accent": "ink",
-      "image": "https://picsum.photos/seed/feed-trend1/800/520",
-      "detail": {
-        "summary": "NotebookLM works best as a document desk, not a free-floating chatbot. Grounding cuts hallucinations when sources are attached.",
-        "sections": [
-          {
-            "heading": "Best use",
-            "body": "Upload a small set of related PDFs or notes, ask for an outline, contradictions, and glossary before you deep-read."
-          },
-          {
-            "heading": "Trust rule",
-            "body": "Treat answers as a map. Click citations and verify the paragraph before you act on money, legal, or medical claims."
-          }
-        ],
-        "bullets": [
-          "One notebook per project beats a junk drawer",
-          "Ask for bullet summaries with page pointers",
-          "Export notes you want to keep outside the chat"
-        ],
-        "sources": [
-          {
-            "label": "NotebookLM",
-            "url": "https://notebooklm.google/"
-          }
-        ],
-        "steps": [
-          "Create a notebook for one topic",
-          "Upload 2-5 source files",
-          "Ask for outline + open questions",
-          "Verify two citations by hand"
         ]
       }
     }
