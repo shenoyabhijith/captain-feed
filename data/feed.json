@@ -4,6 +4,91 @@
   "updated": "2026-09-24",
   "cards": [
     {
+      "id": "aws-20260924-multi-account-gateway-mcp",
+      "category": "aws",
+      "title": "Keep LOB data home; federate tools through one Gateway",
+      "body": "Platform account runs the agent + Bedrock inference; each LOB keeps data in its own account and exposes MCP tools. AgentCore Gateway is the single authenticated hub — Cedar Policy + Guardrails sit outside the agent code.",
+      "source": "AWS ML Blog · Sep 24, 2026",
+      "tags": [
+        "bedrock",
+        "agentcore",
+        "gateway",
+        "mcp",
+        "multi-account",
+        "cedar",
+        "aws-sa"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-multi-account-gateway-20260924/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/build-a-multi-account-ai-agent-with-agentcore-gateway-and-mcp/",
+      "detail": {
+        "summary": "Enterprises want agents that reason across many AWS accounts without copying datasets into a shared lake. The Sep 24, 2026 AWS ML Blog walks an Expert (400) pattern: a platform account owns AgentCore Runtime + Bedrock inference + AgentCore Gateway; each line-of-business (LOB) account packages its data as an MCP server on AgentCore Runtime. Only query-time tool results cross the boundary. For SA blogs: this is the hub-and-spoke story that pairs with your prior Gateway rate-limit, managed-KB, and Guardrails cards.",
+        "sections": [
+          {
+            "heading": "Why single-account agents stall in the enterprise",
+            "body": "Each LOB keeps data in its own account for ownership, blast-radius isolation, and independent deploys. An agent that only sees one account’s DynamoDB or Knowledge Base is weak; the usual fixes — replicate everything to a hub, or weave brittle cross-account IAM into the agent — fight that model. Goal: data stays where it lives; only the specific result a tool produces flows to the platform at query time."
+          },
+          {
+            "heading": "Three layers: platform, LOB spokes, Gateway hub",
+            "body": "Platform account: Strands (or any) agent on AgentCore Runtime, Bedrock FM access, one Guardrails config for PII/content, and AgentCore Gateway as the only MCP endpoint the agent talks to. LOB accounts: FastMCP servers on AgentCore Runtime wrapping DynamoDB lookups, Knowledge Base retrieve, or APIs — not raw S3/KB ARNs exposed to the agent. Gateway: registers each LOB MCP server as a target, does semantic tools/list across LOBs, AgentCore Identity OAuth M2M outbound, and Policy in AgentCore (Cedar) on the inbound user JWT before the call leaves the hub."
+          },
+          {
+            "heading": "Identity chain that actually authorizes people",
+            "body": "User JWT (Okta / Cognito / Entra) reaches the agent via Runtime request headers; the agent forwards Authorization to the Gateway. Cedar evaluates permit/forbid on tool actions (e.g. allow get_balance for all authenticated users, forbid delete_customer always) — default-deny. On permit, Gateway pulls M2M credentials from AgentCore Identity and calls the LOB Runtime. Harden LOB Runtime with customJWTAuthorizer plus allowedWorkloadConfiguration tied to the Gateway ARN so callers cannot bypass Cedar by hitting the LOB MCP URL directly. Prefer OBO token exchange when the LOB tool itself needs row-level user identity; the sample uses M2M when the IdP lacks OBO."
+          },
+          {
+            "heading": "Operate like a platform, not a one-off demo",
+            "body": "Onboard a new LOB by adding a Gateway target — agent rediscovers tools on the next tools/list. Use AgentCore Evaluations online (sample live traffic for Tool Selection Accuracy / Correctness / Goal Success Rate) and on-demand dataset eval in CI so what you gate matches what you monitor. Attribute platform Bedrock/Gateway spend back to LOBs with cost-allocation tags on the agent role plus tool-trace counts; LOB data-plane costs already land in each spoke account. For production networking, move off public Runtime mode to VPC ENIs + PrivateLink ingress to Gateway."
+          },
+          {
+            "heading": "Blog angle for Solutions Architects",
+            "body": "Lead with “data gravity, not agent gravity”: diagram platform vs LOB vs Gateway, then the JWT → Cedar → M2M → LOB path. Contrast wrapping a standalone Knowledge Base inside the LOB MCP server (fine control) vs attaching a Managed Knowledge Base as a native Gateway connector (less DIY). Tie to your earlier cards: Gateway rate limits / Dogwood for cost abuse, InvokeGuardrailChecks for per-step content scores, Gateway Cedar for tool authorization. Close with the decision table: centralize inference + policy; distribute data + tool implementation."
+          }
+        ],
+        "bullets": [
+          "Hub-and-spoke: one Gateway MCP endpoint; LOB data never leaves its account except as tool results",
+          "Cedar Policy + optional Guardrails-on-Gateway enforce outside agent code",
+          "M2M outbound from Identity; forward user JWT so Cedar sees the real principal",
+          "New LOB = new Gateway target; evaluations + cost tags keep the platform honest"
+        ],
+        "steps": [
+          "Stand up platform account: Bedrock model access, AgentCore Runtime agent, Gateway with Custom JWT authorizer + semantic MCP search",
+          "Per LOB: FastMCP tools on AgentCore Runtime, JWT authorizer, optional allowedWorkloadConfiguration = Gateway ARN",
+          "Register OAuth M2M credential provider in AgentCore Identity; create Gateway targets pointing at each LOB Runtime endpoint",
+          "Attach Policy in AgentCore (Cedar) in ENFORCE mode; forward user JWT from agent to Gateway on every tools call",
+          "Add online + on-demand AgentCore Evaluations and cost-allocation tags before you call it production"
+        ],
+        "actions": [
+          {
+            "label": "Read the multi-account AgentCore Gateway + MCP blog (Sep 24, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/build-a-multi-account-ai-agent-with-agentcore-gateway-and-mcp/"
+          },
+          {
+            "label": "Docs — AgentCore Gateway",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html"
+          },
+          {
+            "label": "Related — Govern tool access with AgentCore Gateway (Aug 21, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-tool-access-with-amazon-bedrock-agentcore-gateway/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — Build a multi-account AI agent with AgentCore Gateway and MCP (Sep 24, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/build-a-multi-account-ai-agent-with-agentcore-gateway-and-mcp/"
+          },
+          {
+            "label": "AWS ML Blog — Govern AI agent tool access with AgentCore Gateway (Aug 21, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-tool-access-with-amazon-bedrock-agentcore-gateway/"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Gateway",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html"
+          }
+        ]
+      }
+    },
+    {
       "id": "trend-20260924-muni-etf-record-inflows",
       "category": "trend",
       "title": "Muni ETFs just set record weekly inflows after the bond rout",
@@ -626,7 +711,13 @@
       "title": "Own the whole market, then stay put",
       "body": "Collins’ simple wealth engine: buy a low-cost total-market index (VTSAX/VTI), automate contributions, and let compounding do the heavy lifting — not stock picking.",
       "source": "JL Collins · The Simple Path to Wealth (via tiagom87 notes)",
-      "tags": ["money", "investing", "index-funds", "VTSAX", "compounding"],
+      "tags": [
+        "money",
+        "investing",
+        "index-funds",
+        "VTSAX",
+        "compounding"
+      ],
       "accent": "amber",
       "image": "https://picsum.photos/seed/book-vtsax-20260920/800/520",
       "link": "https://github.com/tiagom87/simple-path-to-wealth",
@@ -847,7 +938,12 @@
       "title": "Reasonable beats perfectly rational",
       "body": "Housel’s rule: a good-enough money plan you can stick with through a crash beats the optimal plan you abandon. Design for the human, not the spreadsheet.",
       "source": "Morgan Housel · The Psychology of Money (via felixgeelhaar notes)",
-      "tags": ["money", "psychology", "investing", "behavior"],
+      "tags": [
+        "money",
+        "psychology",
+        "investing",
+        "behavior"
+      ],
       "accent": "teal",
       "image": "https://picsum.photos/seed/book-reasonable-20260919/800/520",
       "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
@@ -1069,7 +1165,13 @@
       "title": "Fed hikes to 3.75%–4% (first since 2023)",
       "body": "On Sep 16, 2026 the FOMC unanimously raised the federal funds target range by 25 bp to 3.75%–4% — the first hike since July 2023 — and signaled another possible increase this year. Educational only — not a trade signal.",
       "source": "CNBC · Federal Reserve (Warsh press conf) · Reuters/MarketScreener",
-      "tags": ["investing", "fed", "rates", "macro", "fomc"],
+      "tags": [
+        "investing",
+        "fed",
+        "rates",
+        "macro",
+        "fomc"
+      ],
       "accent": "amber",
       "image": "https://picsum.photos/seed/trend-fed-hike-20260918/800/520",
       "link": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html",
@@ -1223,7 +1325,12 @@
       "title": "Change one habit that moves the rest",
       "body": "Duhigg’s keystone habits (exercise, family meals, making the bed) start chain reactions. Pick one lever habit; small wins cascade into other routines.",
       "source": "Charles Duhigg · The Power of Habit (via mgp notes)",
-      "tags": ["habits", "keystone", "productivity", "self-help"],
+      "tags": [
+        "habits",
+        "keystone",
+        "productivity",
+        "self-help"
+      ],
       "accent": "coral",
       "image": "https://picsum.photos/seed/book-keystone-20260918/800/520",
       "link": "https://github.com/mgp/book-notes/blob/master/the-power-of-habit.markdown",
@@ -1285,7 +1392,14 @@
       "title": "Hyper Thunderbolt 5 dock — $319.99 Amazon low",
       "body": "HyperDrive Next TB5 dock with built-in M.2 SSD slot is back at $319.99 ($80 off ~$400) on Hyper’s Amazon storefront — same low 9to5toys tracked for Prime Day. Triple-display capable (host-limited), 140W PD, 2.5GbE. Verify price before checkout; HyperShop still lists $399.99.",
       "source": "9to5toys · Sep 17, 2026 · Amazon (Hyper)",
-      "tags": ["hardware", "dock", "thunderbolt", "home-office", "ssd", "ops"],
+      "tags": [
+        "hardware",
+        "dock",
+        "thunderbolt",
+        "home-office",
+        "ssd",
+        "ops"
+      ],
       "accent": "coral",
       "image": "https://picsum.photos/seed/deal-hyper-tb5-dock-20260917/800/520",
       "link": "https://9to5toys.com/2026/09/17/hyper-thunderbolt-5-dock-best-price-mac/",
@@ -1599,7 +1713,12 @@
       "title": "Start so small you can’t skip",
       "body": "Clear’s Two-Minute Rule: scale any new habit down to ≤2 minutes. Master showing up first; intensity comes after the habit exists.",
       "source": "James Clear · Atomic Habits (via lijubjohn notes)",
-      "tags": ["habits", "two-minute-rule", "productivity", "friction"],
+      "tags": [
+        "habits",
+        "two-minute-rule",
+        "productivity",
+        "friction"
+      ],
       "accent": "coral",
       "image": "https://picsum.photos/seed/book-two-minute-20260917/800/520",
       "link": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md",
@@ -1739,7 +1858,13 @@
       "title": "Cursor Projects: one coordinator for multi-PR work",
       "body": "Cursor shipped Projects (Sep 10): a persistent coordinator that keeps shared context for months, fans out cloud/local subagents, and can subscribe to Slack, schedules, or PRs — built for features, migrations, and “gardening” that outlive a chat. Productivity ops, not a hype chase.",
       "source": "Cursor Blog · Sep 10, 2026",
-      "tags": ["productivity", "cursor", "agents", "ops", "devtools"],
+      "tags": [
+        "productivity",
+        "cursor",
+        "agents",
+        "ops",
+        "devtools"
+      ],
       "accent": "violet",
       "image": "https://picsum.photos/seed/trend-cursor-projects-20260916/800/520",
       "link": "https://cursor.com/blog/projects",
@@ -1801,7 +1926,13 @@
       "title": "Form 8938: India accounts under FATCA",
       "body": "US residents with India NRE/NRO, FCNR, brokerage, or MF holdings often trip Form 8938 once foreign assets top $50k/$75k (single) or $100k/$150k (joint) — separate from FBAR. Educational only, not tax advice.",
       "source": "IRS · Form 8938 · FATCA reporting",
-      "tags": ["us-tax", "india-us", "form-8938", "fatca", "foreign-assets"],
+      "tags": [
+        "us-tax",
+        "india-us",
+        "form-8938",
+        "fatca",
+        "foreign-assets"
+      ],
       "accent": "teal",
       "image": "https://picsum.photos/seed/tax-8938-fatca-20260916/800/520",
       "link": "https://www.irs.gov/businesses/corporations/do-i-need-to-file-form-8938-statement-of-specified-foreign-financial-assets",
@@ -1882,7 +2013,12 @@
       "title": "Identity first, outcomes follow",
       "body": "Clear’s deepest habit layer isn’t the goal — it’s who you become. Cast small daily votes for the identity you want; outcomes lag habits.",
       "source": "James Clear · Atomic Habits (via lijubjohn notes)",
-      "tags": ["habits", "identity", "productivity", "systems"],
+      "tags": [
+        "habits",
+        "identity",
+        "productivity",
+        "systems"
+      ],
       "accent": "coral",
       "image": "https://picsum.photos/seed/book-identity-20260916/800/520",
       "link": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md",
@@ -1943,7 +2079,13 @@
       "title": "Anker A210C Smart Display hub — $99.99 launch",
       "body": "New upright 10-in-1 desk hub with HDMI 2.1 + DP 1.4, GigE, SD, 80W pass-through, and a built-in status/focus screen. Intro price $99.99 at Anker (9to5toys also flags Amazon). Verify dual-monitor notes before you buy.",
       "source": "9to5toys · Sep 15, 2026 · Anker US",
-      "tags": ["hardware", "dock", "home-office", "anker", "usb-c"],
+      "tags": [
+        "hardware",
+        "dock",
+        "home-office",
+        "anker",
+        "usb-c"
+      ],
       "accent": "coral",
       "image": "https://picsum.photos/seed/deal-anker-a210c-20260915/800/520",
       "link": "https://www.anker.com/products/a210c-10-in-1-desktop-usb-c-hub-dual-4k-smart-display",
@@ -2012,7 +2154,14 @@
       "title": "Bound agent spend at the Gateway, not in prompts",
       "body": "AgentCore Gateway now rate-limits requests, tokens, and open connections per identity — and Dogwood temporal policies catch multi-step abuse that single-call Guardrails miss. Cost ceilings live in infra, not agent code.",
       "source": "AWS ML Blog · Aug 6, 2026",
-      "tags": ["bedrock", "agentcore", "gateway", "cost", "policy", "dogwood"],
+      "tags": [
+        "bedrock",
+        "agentcore",
+        "gateway",
+        "cost",
+        "policy",
+        "dogwood"
+      ],
       "accent": "amber",
       "image": "https://picsum.photos/seed/aws-agentcore-gateway-limits-20260915/800/520",
       "link": "https://aws.amazon.com/blogs/machine-learning/control-agent-behaviors-and-cost-beyond-a-single-action-new-capabilities-in-amazon-bedrock-agentcore/",
@@ -2084,7 +2233,13 @@
       "title": "10-year yield at ~5%: why it matters",
       "body": "The US 10-year Treasury yield hit ~5% — a level barely seen since 2023 and otherwise not common since 2007. It is the market’s long-rate benchmark for mortgages, loans, and discounting cash flows. Educational only — not a trade signal.",
       "source": "Reuters · CNN Business · Nikkei Asia (Sep 14–15, 2026)",
-      "tags": ["investing", "rates", "treasury", "fed", "macro"],
+      "tags": [
+        "investing",
+        "rates",
+        "treasury",
+        "fed",
+        "macro"
+      ],
       "accent": "amber",
       "image": "https://picsum.photos/seed/trend-10y-yield-20260915/800/520",
       "link": "https://www.reuters.com/world/africa/dollar-near-two-week-high-oil-surge-lifts-yields-fed-hike-bets-2026-09-15/",
@@ -2161,7 +2316,13 @@
       "title": "Form 3520: large gifts from India family",
       "body": "Wire from parents in India can be tax-free as a gift — but if related NRA gifts top $100k in a year, Form 3520 Part IV is usually required. Miss it and IRC 6039F penalties can hit 5%/month (cap 25%). Educational only, not tax advice.",
       "source": "IRS · Form 3520 · Gifts from foreign person",
-      "tags": ["us-tax", "india-us", "form-3520", "foreign-gifts", "nra"],
+      "tags": [
+        "us-tax",
+        "india-us",
+        "form-3520",
+        "foreign-gifts",
+        "nra"
+      ],
       "accent": "teal",
       "image": "https://picsum.photos/seed/tax-3520-india-gifts-20260915/800/520",
       "link": "https://www.irs.gov/businesses/gifts-from-foreign-person",
@@ -2235,7 +2396,12 @@
       "title": "Commit raises to savings first",
       "body": "Thaler’s Save More Tomorrow: pledge a slice of future raises into retirement before the money hits your lifestyle. Present-you stays comfortable; future-you compounds.",
       "source": "Richard Thaler · Nudge / Misbehaving (via felixgeelhaar notes)",
-      "tags": ["money", "behavior", "automation", "savings"],
+      "tags": [
+        "money",
+        "behavior",
+        "automation",
+        "savings"
+      ],
       "accent": "violet",
       "image": "https://picsum.photos/seed/book-smart-20260915/800/520",
       "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
@@ -2300,7 +2466,12 @@
       "title": "Anker Nano 13-in-1 dock ~$120",
       "body": "Desk dock + detachable travel hub: triple display (2×HDMI + DP), Ethernet, 100W PD — about $30 off list at Amazon. Solid ops upgrade; not the all-time low.",
       "source": "TechRadar · Sep 14, 2026",
-      "tags": ["hardware", "dock", "home-office", "amazon"],
+      "tags": [
+        "hardware",
+        "dock",
+        "home-office",
+        "amazon"
+      ],
       "accent": "coral",
       "image": "https://picsum.photos/seed/deal-anker-nano-dock-20260914/800/520",
       "link": "https://www.amazon.com/dp/B0FCLC1RMM",
@@ -2446,7 +2617,13 @@
       "title": "SAP-C03 adds Bedrock + AgentCore",
       "body": "Solutions Architect – Professional updates Nov 17, 2026 with 11 GenAI/agentic skills (Bedrock, AgentCore, RAG, Guardrails). Registration opens Oct 27; SAP-C02 ends Nov 16. Study-plan note for SAs — not a must-sit mandate.",
       "source": "AWS Training & Certification Blog · Sep 1, 2026",
-      "tags": ["aws-sa", "sap-c03", "bedrock", "agentcore", "certification"],
+      "tags": [
+        "aws-sa",
+        "sap-c03",
+        "bedrock",
+        "agentcore",
+        "certification"
+      ],
       "accent": "amber",
       "image": "https://picsum.photos/seed/trend-sap-c03-20260914/800/520",
       "link": "https://aws.amazon.com/blogs/training-and-certification/september-2026-new-offerings/",
@@ -2508,7 +2685,11 @@
       "title": "Budget with guilt-free buckets",
       "body": "Ramit’s Conscious Spending Plan: fix the big four buckets once, automate transfers, then spend freely inside the guilt-free slice. Restriction is optional; intention is the point.",
       "source": "I Will Teach You To Be Rich · Ramit Sethi",
-      "tags": ["money", "spending", "automation"],
+      "tags": [
+        "money",
+        "spending",
+        "automation"
+      ],
       "accent": "amber",
       "image": "https://picsum.photos/seed/book-csp-20260914/800/520",
       "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
@@ -2558,7 +2739,13 @@
       "title": "FEIE: exclude foreign wages (Form 2555)",
       "body": "Long stint working from India (or another foreign country)? Up to $132,900 of foreign earned income for 2026 may be excludable if you meet the tax-home + days/residence tests. Educational only, not tax advice.",
       "source": "IRS · Form 2555 · Pub 54",
-      "tags": ["us-tax", "india-us", "feie", "form-2555", "expat"],
+      "tags": [
+        "us-tax",
+        "india-us",
+        "feie",
+        "form-2555",
+        "expat"
+      ],
       "accent": "teal",
       "image": "https://picsum.photos/seed/tax-feie-2555-20260914/800/520",
       "link": "https://www.irs.gov/individuals/international-taxpayers/foreign-earned-income-exclusion",
@@ -2635,7 +2822,12 @@
       "title": "Bedrock KB: search video by meaning",
       "body": "Managed Knowledge Base can embed video/audio/images with TwelveLabs Marengo 3.0 — natural-language search that jumps to the right clip, not just a transcript hit. Educational SA note, not a build mandate.",
       "source": "AWS What's New · Sep 11, 2026",
-      "tags": ["bedrock", "knowledge-bases", "multimodal", "aws-sa"],
+      "tags": [
+        "bedrock",
+        "knowledge-bases",
+        "multimodal",
+        "aws-sa"
+      ],
       "accent": "amber",
       "image": "https://picsum.photos/seed/trend-marengo-kb-20260913/800/520",
       "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-multimodal-embeddings-twelvelabs-marengo/",
@@ -2716,7 +2908,12 @@
       "title": "Foreign Tax Credit (Form 1116)",
       "body": "India TDS or tax on India-source income can often cut your US bill as a credit — not just a Schedule A deduction. Educational only, not tax advice.",
       "source": "IRS Pub 514 · Form 1116",
-      "tags": ["us-tax", "india-us", "ftc", "form-1116"],
+      "tags": [
+        "us-tax",
+        "india-us",
+        "ftc",
+        "form-1116"
+      ],
       "accent": "teal",
       "image": "https://picsum.photos/seed/tax-ftc-1116-20260913/800/520",
       "link": "https://www.irs.gov/forms-pubs/about-publication-514",
@@ -2788,7 +2985,11 @@
       "title": "Build F-You Money first",
       "body": "Enough invested capital that a bad boss or a dumb deal cannot own your week. Freedom is the product; luxury is optional.",
       "source": "The Simple Path to Wealth · JL Collins",
-      "tags": ["money", "independence", "investing"],
+      "tags": [
+        "money",
+        "independence",
+        "investing"
+      ],
       "accent": "teal",
       "image": "https://picsum.photos/seed/book-fy-money-20260913/800/520",
       "link": "https://github.com/tiagom87/simple-path-to-wealth",
@@ -2828,47 +3029,6 @@
           {
             "label": "tiagom87 / simple-path-to-wealth (notes)",
             "url": "https://github.com/tiagom87/simple-path-to-wealth"
-          }
-        ]
-      }
-    },
-    {
-      "id": "ops-feed-live-2026-09-12",
-      "category": "trend",
-      "title": "Your feed is live",
-      "body": "Morning book, tax, and trend cards land here automatically. Weekdays also get a Bedrock tip at lunch and a deals card mid-afternoon.",
-      "source": "Ops",
-      "tags": ["ops", "feed"],
-      "accent": "ink",
-      "image": "https://picsum.photos/seed/captain-feed-live/800/520",
-      "link": "https://shenoyabhijith.github.io/captain-feed/",
-      "detail": {
-        "summary": "Captain Feed is the home for short, high-signal cards you can skim in a thumb scroll, then open for the full brief.",
-        "sections": [
-          {
-            "heading": "What lands here",
-            "body": "Morning slots cover book lessons, US tax tips, and trending finds. Weekdays add an AWS/Bedrock note and a deals card."
-          },
-          {
-            "heading": "How to use it",
-            "body": "Scroll the colorful list. Tap a card for sections, bullets, and links. Mark read or save keepers. Install the Android web app for a home-screen icon."
-          }
-        ],
-        "bullets": [
-          "Mark read when you are done",
-          "Save keepers for later",
-          "Filters and Unread/Saved views stay local to this device"
-        ],
-        "actions": [
-          {
-            "label": "Open feed",
-            "url": "https://shenoyabhijith.github.io/captain-feed/"
-          }
-        ],
-        "sources": [
-          {
-            "label": "Captain Feed",
-            "url": "https://shenoyabhijith.github.io/captain-feed/"
           }
         ]
       }
