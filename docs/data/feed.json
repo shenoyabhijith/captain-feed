@@ -1,8 +1,80 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-21",
+  "updated": "2026-09-24",
   "cards": [
+    {
+      "id": "book-20260924-environment-design",
+      "category": "book",
+      "title": "Design the room; stop waiting for motivation",
+      "body": "James Clear: environment is the invisible hand on habits. Make good cues obvious and bad ones hard to reach — self-control becomes less about grit.",
+      "source": "James Clear · Atomic Habits (via lijubjohn notes)",
+      "tags": [
+        "habits",
+        "productivity",
+        "atomic-habits",
+        "environment",
+        "systems"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/book-env-design-20260924/800/520",
+      "link": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md",
+      "detail": {
+        "summary": "Atomic Habits argues that motivation is overrated and environment is underrated. You are less a consumer of willpower than a designer of cues: put good-habit triggers in plain sight, remove bad-habit triggers, and reduce the steps between you and the behavior you want. When the room does the reminding, you need less heroics.",
+        "sections": [
+          {
+            "heading": "Environment beats pep talks",
+            "body": "Clear’s notes frame environment as the invisible hand that shapes behavior. Similar people act differently when the room changes — snacks on the counter vs. in a hard-to-reach cupboard, phone on the nightstand vs. charging outside the bedroom. Self-control is easier when the right action is the path of least resistance, not when you white-knuckle through a bad setup every day."
+          },
+          {
+            "heading": "Make good habits obvious (and easy)",
+            "body": "Law 1 (Make It Obvious) and Law 3 (Make It Easy) meet here: design cues you can see, then prime the space so the next step is short. Leave the book on the pillow, the running shoes by the door, the water bottle filled on the desk. Reduce friction — fewer steps between you and the habit — and prime tomorrow’s environment tonight so future-you does not negotiate."
+          },
+          {
+            "heading": "Make bad habits invisible (and hard)",
+            "body": "The inverse laws: hide or remove cues (Make It Invisible) and add steps (Make It Difficult). Logout of distracting apps, move junk food off the counter, put the TV remote in another room. Commitment devices — rules that constrain future choices — turn a one-time design decision into ongoing protection so you are not relying on 9 p.m. willpower."
+          },
+          {
+            "heading": "Architect, don’t just consume",
+            "body": "The punchline in the notes: be the designer of your world, not merely the consumer of it. A stable setup where everything has a place and a purpose makes habits easier to form. Pick one context you live in daily (desk, kitchen, phone home screen) and redesign it so the default action is the smart one."
+          }
+        ],
+        "bullets": [
+          "Motivation is overrated; environment design is the lever",
+          "Make good cues visible; remove or hide bad cues",
+          "Reduce friction for good habits; add friction for bad ones",
+          "Prime the environment ahead of time so future-you does not negotiate",
+          "Self-control is easier when the room already favors the right action"
+        ],
+        "steps": [
+          "Pick one habit you want more of and one you want less of",
+          "For the good habit: place one obvious cue in the room where it should happen (object in sight, app on home screen)",
+          "Cut one step of friction (prep gear tonight, open the doc already, fill the bottle)",
+          "For the bad habit: remove or relocate its main cue and add one extra step before you can do it",
+          "Live with that setup for seven days before adding another redesign"
+        ],
+        "actions": [
+          {
+            "label": "lijubjohn Atomic Habits notes",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          },
+          {
+            "label": "Chemaclass Atomic Habits takeaways",
+            "url": "https://github.com/Chemaclass/chemaclass.com/blob/main/content/readings/2019-11-12-atomic-habits.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "lijubjohn/book-notes — atomic-habits.md",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          },
+          {
+            "label": "Chemaclass reading notes — Atomic Habits",
+            "url": "https://github.com/Chemaclass/chemaclass.com/blob/main/content/readings/2019-11-12-atomic-habits.md"
+          }
+        ]
+      }
+    },
     {
       "id": "trend-20260921-cursor-projects-coordinator",
       "category": "trend",
@@ -2841,49 +2913,6 @@
             "label": "IRS: Estimated taxes",
             "url": "https://www.irs.gov/businesses/small-businesses-self-employed/estimated-taxes"
           }
-        ]
-      }
-    },
-    {
-      "id": "trend-notebooklm",
-      "category": "trend",
-      "title": "NotebookLM as a study desk",
-      "body": "Drop PDFs and get grounded answers with citations. Useful when you need a map before a long read.",
-      "source": "Trending finds (sample)",
-      "tags": [
-        "tools",
-        "ai"
-      ],
-      "accent": "ink",
-      "image": "https://picsum.photos/seed/feed-trend1/800/520",
-      "detail": {
-        "summary": "NotebookLM works best as a document desk, not a free-floating chatbot. Grounding cuts hallucinations when sources are attached.",
-        "sections": [
-          {
-            "heading": "Best use",
-            "body": "Upload a small set of related PDFs or notes, ask for an outline, contradictions, and glossary before you deep-read."
-          },
-          {
-            "heading": "Trust rule",
-            "body": "Treat answers as a map. Click citations and verify the paragraph before you act on money, legal, or medical claims."
-          }
-        ],
-        "bullets": [
-          "One notebook per project beats a junk drawer",
-          "Ask for bullet summaries with page pointers",
-          "Export notes you want to keep outside the chat"
-        ],
-        "sources": [
-          {
-            "label": "NotebookLM",
-            "url": "https://notebooklm.google/"
-          }
-        ],
-        "steps": [
-          "Create a notebook for one topic",
-          "Upload 2-5 source files",
-          "Ask for outline + open questions",
-          "Verify two citations by hand"
         ]
       }
     }
