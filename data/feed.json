@@ -4,6 +4,92 @@
   "updated": "2026-09-24",
   "cards": [
     {
+      "id": "deal-20260924-ring-battery-4k-pro",
+      "category": "deal",
+      "title": "Ring Battery Doorbell 4K Pro — $149.99 Amazon",
+      "body": "Early fall Prime Day all-time low: Battery Doorbell 4K Pro (Deep Silver) at $149.99 (list $249.99, ~40% off). Wireless install, Retinal 4K, Quick Release Ultra battery. 9to5Toys flagged it Sep 23; still in today’s early-Prime top-10. Verify live tag before checkout.",
+      "source": "9to5Toys · Sep 23–24, 2026 · Amazon ~$149.99",
+      "tags": [
+        "home-ops",
+        "security",
+        "ring",
+        "doorbell",
+        "smart-home",
+        "amazon",
+        "prime-day"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/deal-ring-battery-4k-pro-20260924/800/520",
+      "link": "https://www.amazon.com/Ring-Battery-Doorbell-Pro-Deep-Silver/dp/B0FPPWKMGK",
+      "detail": {
+        "summary": "Amazon’s early fall Prime event (ahead of Oct 6–7 Prime Big Deal Days) dropped the latest Ring Battery Doorbell 4K Pro to a new all-time low around $149.99 (list $249.99). 9to5Toys called the Battery and Wired 4K Pro models at $150 / $100 off on Sep 23, 2026, and still listed Ring 4K doorbells among today’s early-Prime highlights. For a Frisco front door: wireless battery model means no doorbell wiring, Quick Release Ultra pack for faster recharge swaps, Retinal 4K + up to 10× zoom + color night vision. Ring Protect subscription is separate if you want cloud history/AI alerts.",
+        "sections": [
+          {
+            "heading": "What you get",
+            "body": "Ring Battery Doorbell 4K Pro (Deep Silver, ASIN B0FPPWKMGK): Retinal 4K wide-angle video, up to 10× Enhanced Zoom, radar-powered 3D motion detection, Live View + two-way talk (Audio+), Night Vision (color longer, then B&W), and the Quick Release Ultra Battery Pack so you can swap/charge without unscrewing the whole unit. Alexa/Echo Show live-view compatible."
+          },
+          {
+            "heading": "Why it fits home/ops",
+            "body": "One of the clearer early-Prime home-security buys: 40% off the newest 4K battery doorbell vs. waiting for October Big Deal Days (prices often bounce). Battery/wireless is the easy path if your existing chime wiring is messy or you rent. Skip if you already run a solid doorbell cam or refuse Ring’s optional Protect subscription for recorded history."
+          },
+          {
+            "heading": "Price honesty",
+            "body": "Cited deal: ~$149.99 on Amazon ASIN B0FPPWKMGK as of Thu Sep 24, 2026 afternoon CT (list $249.99), matching 9to5Toys’ Sep 23 all-time-low call and still named in the Sep 24 early-Prime top-10. Some product-page fetches still show the $249.99 list without the limited-time deal badge — treat that as a stale/non-deal view and confirm the cart price before you pay. Wired 4K Pro was also cited at $150 if you prefer hardwired power."
+          },
+          {
+            "heading": "Skip if",
+            "body": "You already have a working 2K/4K doorbell, you won’t pay for Ring Protect and need local-only NVR, or the $40 Ring Battery Doorbell 2K (also on early Prime) is enough resolution for your porch."
+          }
+        ],
+        "bullets": [
+          "~$149.99 Amazon limited-time vs $249.99 list (~40% off) — ASIN B0FPPWKMGK / Battery 4K Pro Deep Silver",
+          "9to5Toys Sep 23: new Amazon all-time low; still in Sep 24 early-Prime top-10 roundup",
+          "Wireless + Quick Release Ultra battery — no doorbell wiring required",
+          "Retinal 4K, 10× zoom, 3D motion, color night vision; Alexa live view",
+          "Ring Protect cloud/AI history is optional/extra — factor that into total cost",
+          "Product page sometimes shows list $249.99 without deal badge — verify cart price"
+        ],
+        "steps": [
+          "Open the Amazon Battery Doorbell 4K Pro listing (B0FPPWKMGK) and confirm ~$149.99 with a deal badge, not plain $249.99",
+          "Decide battery vs wired ($150 also cited for Wired 4K Pro) based on whether you have working doorbell power",
+          "Budget for Ring Protect if you want cloud history / richer alerts (sold separately)",
+          "Optional: compare the $39.99 Battery Doorbell 2K if 4K is overkill for your porch"
+        ],
+        "actions": [
+          {
+            "label": "Buy on Amazon — Battery 4K Pro (~$149.99 cited)",
+            "url": "https://www.amazon.com/Ring-Battery-Doorbell-Pro-Deep-Silver/dp/B0FPPWKMGK"
+          },
+          {
+            "label": "9to5Toys Ring early-Prime roundup (Sep 23, 2026)",
+            "url": "https://9to5toys.com/2026/09/23/fall-prime-day-ring-deals-doorbell/"
+          },
+          {
+            "label": "9to5Toys early fall Prime top-10 (Sep 24, 2026)",
+            "url": "https://9to5toys.com/2026/09/24/best-early-fall-prime-day-deals-shop-now/"
+          },
+          {
+            "label": "Ring official — Battery Doorbell Pro",
+            "url": "https://ring.com/products/battery-doorbell-pro"
+          }
+        ],
+        "sources": [
+          {
+            "label": "9to5Toys — Early fall Prime Day Ring deals from $40 (Sep 23, 2026)",
+            "url": "https://9to5toys.com/2026/09/23/fall-prime-day-ring-deals-doorbell/"
+          },
+          {
+            "label": "9to5Toys — Top 10 early fall Prime Day deals (Sep 24, 2026)",
+            "url": "https://9to5toys.com/2026/09/24/best-early-fall-prime-day-deals-shop-now/"
+          },
+          {
+            "label": "Amazon — Ring Battery Doorbell Pro Deep Silver (B0FPPWKMGK)",
+            "url": "https://www.amazon.com/Ring-Battery-Doorbell-Pro-Deep-Silver/dp/B0FPPWKMGK"
+          }
+        ]
+      }
+    },
+    {
       "id": "aws-20260924-multi-account-gateway-mcp",
       "category": "aws",
       "title": "Keep LOB data home; federate tools through one Gateway",
@@ -2975,60 +3061,6 @@
           {
             "label": "Instructions for Form 1116 (2025)",
             "url": "https://www.irs.gov/instructions/i1116"
-          }
-        ]
-      }
-    },
-    {
-      "id": "book-20260913-f-you-money",
-      "category": "book",
-      "title": "Build F-You Money first",
-      "body": "Enough invested capital that a bad boss or a dumb deal cannot own your week. Freedom is the product; luxury is optional.",
-      "source": "The Simple Path to Wealth · JL Collins",
-      "tags": [
-        "money",
-        "independence",
-        "investing"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/book-fy-money-20260913/800/520",
-      "link": "https://github.com/tiagom87/simple-path-to-wealth",
-      "detail": {
-        "summary": "JL Collins's F-You Money is a runway of invested savings that lets you choose work and spending on your terms. It is not flashy wealth; it is optionality.",
-        "sections": [
-          {
-            "heading": "What it is",
-            "body": "F-You Money is cash and investments large enough that you can walk from a toxic job, wait out a bad market for a house, or say no to a deal that violates your values. Paycheck dependency shrinks when the portfolio can cover months or years of living costs."
-          },
-          {
-            "heading": "How Collins gets there",
-            "body": "Avoid high-interest consumer debt, raise the savings rate by living below your means, and put the surplus into low-cost broad index funds (he favors a simple total-stock approach like VTSAX). Stay invested through downturns; panic selling is how the path breaks."
-          },
-          {
-            "heading": "Today's move",
-            "body": "You do not need full FIRE tonight. Aim for a concrete runway: estimate monthly spend, then track how many months your liquid + invested buffer already covers. Automate the next contribution so the buffer grows without willpower."
-          }
-        ],
-        "bullets": [
-          "Freedom beats lifestyle inflation as the scoreboard",
-          "Savings rate is the throttle; index funds are the engine",
-          "Market noise is expected — the plan is to stay invested"
-        ],
-        "steps": [
-          "Write your real monthly burn (housing, food, transport, minimum debt)",
-          "Divide investable + emergency cash by that burn → months of runway",
-          "Automate one transfer this week into a low-cost total-market index fund or equivalent"
-        ],
-        "actions": [
-          {
-            "label": "Open GitHub notes",
-            "url": "https://github.com/tiagom87/simple-path-to-wealth"
-          }
-        ],
-        "sources": [
-          {
-            "label": "tiagom87 / simple-path-to-wealth (notes)",
-            "url": "https://github.com/tiagom87/simple-path-to-wealth"
           }
         ]
       }
