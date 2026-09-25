@@ -4,6 +4,90 @@
   "updated": "2026-09-25",
   "cards": [
     {
+      "id": "tax-20260925-aotc-form-8863",
+      "category": "tax",
+      "title": "AOTC: up to $2,500 per college student (Form 8863)",
+      "body": "American Opportunity Tax Credit: up to $2,500 per eligible undergrad (40% refundable). For 2026, you, a joint spouse, and the student generally need a work-authorized SSN — ITIN alone usually will not work. Educational only, not tax advice.",
+      "source": "IRS · Education credits (AOTC/LLC) · Form 8863 · Pub. 970",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "aotc",
+        "form-8863",
+        "education",
+        "college",
+        "ssn",
+        "pub-970"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-aotc-form-8863-20260925/800/520",
+      "link": "https://www.irs.gov/credits-deductions/individuals/education-credits-aotc-llc",
+      "detail": {
+        "summary": "The American Opportunity Tax Credit (AOTC) can cut your US tax by up to $2,500 per eligible student for the first four years of postsecondary education: 100% of the first $2,000 of qualified expenses plus 25% of the next $2,000. Up to 40% of the credit ($1,000) can be refundable. Claim it on Form 8863 with Form 1040. MAGI phases out between $80,000–$90,000 (single/HoH) or $160,000–$180,000 (MFJ); no credit above those ceilings. Beginning with tax year 2026, new Social Security number rules apply. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US residents (citizens, green-card holders, and other US tax residents) paying US or eligible foreign college tuition for themselves, a spouse (joint return), or a dependent claimed on the return — especially families with kids in the first four years of undergrad. Also relevant for recent immigrants who still hold only an ITIN: the 2026 SSN rules can block the credit until work-authorized SSNs are in place."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Student must be enrolled at least half-time for at least one academic period beginning in the tax year (or early next year if expenses were paid this year), pursuing a degree or recognized credential, and must not have completed four years of postsecondary education or already used AOTC for four tax years. Qualified expenses include tuition, required fees, and course materials needed for study (even if bought off-campus). Scholarships that reduce tuition reduce the base. You generally need Form 1098-T from the school (exceptions exist; keep enrollment and payment proof). Do not claim AOTC and the Lifetime Learning Credit for the same student in the same year."
+          },
+          {
+            "heading": "India-angle: 2026 SSN rule + NRA traps",
+            "body": "For 2026 returns, IRS guidance says you or your joint-filing spouse and the student (if a dependent) must have a Social Security number that is valid for work and issued before the return due date (including extensions). An ITIN alone generally will not satisfy the new rule — plan ahead if a spouse or college-age dependent is still on ITIN-only status. Separately, if you (or your spouse) were a nonresident alien for any part of the year and did not elect to be treated as a US resident for tax purposes, you cannot claim education credits (Pub. 519). Married filing separately is ineligible."
+          },
+          {
+            "heading": "Amounts and phaseouts",
+            "body": "Max credit $2,500 per eligible student. Phaseout: MAGI $80k–$90k (single/HoH/QSS) or $160k–$180k (MFJ); zero credit at or above the top of those ranges. Up to 40% of the allowed AOTC can refund even with little tax liability (subject to under-age-24 / support exceptions in the Form 8863 instructions)."
+          }
+        ],
+        "bullets": [
+          "Up to $2,500 per eligible student for first 4 years of postsecondary education",
+          "100% of first $2,000 + 25% of next $2,000 of qualified expenses",
+          "Up to 40% ($1,000) may be refundable",
+          "MAGI phaseout: $80k–$90k single / $160k–$180k MFJ",
+          "2026: work-authorized SSN generally required for filer/spouse and student",
+          "Claim on Form 8863; usually need Form 1098-T",
+          "NRA part-year without resident election — usually ineligible",
+          "Educational only — not tax advice"
+        ],
+        "steps": [
+          "Pull each student’s Form 1098-T (or enrollment + payment records) and list tuition, fees, and needed course materials after scholarships.",
+          "Confirm half-time enrollment, first-four-years status, and that you have not already used AOTC for four years for that student.",
+          "Check that you, a joint spouse, and the dependent student have work-authorized SSNs before the 2026 return due date; then complete Form 8863 with the school’s EIN."
+        ],
+        "actions": [
+          {
+            "label": "IRS — Education credits (AOTC and LLC)",
+            "url": "https://www.irs.gov/credits-deductions/individuals/education-credits-aotc-llc"
+          },
+          {
+            "label": "Form 8863 — Education Credits",
+            "url": "https://www.irs.gov/forms-pubs/about-form-8863"
+          },
+          {
+            "label": "Publication 970 — Tax Benefits for Education",
+            "url": "https://www.irs.gov/publications/p970"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS — Education credits: AOTC and LLC",
+            "url": "https://www.irs.gov/credits-deductions/individuals/education-credits-aotc-llc"
+          },
+          {
+            "label": "IRS — About Form 8863, Education Credits",
+            "url": "https://www.irs.gov/forms-pubs/about-form-8863"
+          },
+          {
+            "label": "IRS Publication 970 — Tax Benefits for Education",
+            "url": "https://www.irs.gov/publications/p970"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260925-wealth-unseen",
       "category": "book",
       "title": "Wealth is what you don't see",
@@ -2953,92 +3037,6 @@
           {
             "label": "About Publication 54",
             "url": "https://www.irs.gov/forms-pubs/about-publication-54"
-          }
-        ]
-      }
-    },
-    {
-      "id": "trend-20260913-bedrock-marengo-kb",
-      "category": "aws",
-      "title": "Bedrock KB: search video by meaning",
-      "body": "Managed Knowledge Base can embed video/audio/images with TwelveLabs Marengo 3.0 — natural-language search that jumps to the right clip, not just a transcript hit. Educational SA note, not a build mandate.",
-      "source": "AWS What's New · Sep 11, 2026",
-      "tags": [
-        "bedrock",
-        "knowledge-bases",
-        "multimodal",
-        "aws-sa"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/trend-marengo-kb-20260913/800/520",
-      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-multimodal-embeddings-twelvelabs-marengo/",
-      "detail": {
-        "summary": "As of Sep 11, 2026, Amazon Bedrock Managed Knowledge Base supports TwelveLabs Marengo 3.0 multimodal embeddings. Instead of only transcribing media to text, it can encode visual scenes, speech, and video cues so customers search S3 (and other) media with natural language and get segment start/end times. Useful talking point for media, training, security, and retail RAG demos.",
-        "sections": [
-          {
-            "heading": "What changed",
-            "body": "Managed KB already handled media via transcription + text embeddings. Marengo 3.0 adds true multimodal embeddings (compact 512-d vectors) so retrieval can match meaning that words alone miss — e.g. a specific play, UI state, or lecture beat. Results include segment timestamps so apps can seek to the moment."
-          },
-          {
-            "heading": "Why an SA cares",
-            "body": "Customers with large video/audio libraries often invent brittle custom pipelines. Point them at Managed KB + S3 sync first: no vector DB to babysit, configurable segmentation, and the same RAG path they already use for docs. Pair with auto sync scheduling (daily/weekly/monthly) so connectors stay fresh without Lambda timers."
-          },
-          {
-            "heading": "Migration gotcha",
-            "body": "Marengo Embed 2.7 embeddings are not compatible with 3.0 — you must regenerate the index if you upgrade. Confirm Region/model availability and pricing in Bedrock docs before you promise a PoC timeline."
-          },
-          {
-            "heading": "Check-this action",
-            "body": "Pick one customer media folder in S3. Sketch whether they need concept search (multimodal) vs keyword-on-transcript. If concept search wins, open the What's New + Marengo model docs and price a thin Managed KB spike before proposing OpenSearch DIY."
-          }
-        ],
-        "bullets": [
-          "Posted Sep 11, 2026 on AWS What's New",
-          "Upload/sync from S3 (and other Managed KB connectors); search in natural language",
-          "Segment timestamps enable jump-to-moment UX",
-          "2.7 → 3.0 requires full re-embed; plan cutover",
-          "Educational only — verify Regions, quotas, and pricing for the account"
-        ],
-        "steps": [
-          "Skim the What's New post and Managed Knowledge Base product page",
-          "Check Marengo Embed 3.0 model card / parameters for API shape (InvokeModel vs StartAsyncInvoke)",
-          "For a PoC: point Managed KB at a small S3 media prefix, sync, run 5 natural-language queries",
-          "If upgrading from Marengo 2.7, budget a full re-index — vectors are not compatible"
-        ],
-        "actions": [
-          {
-            "label": "AWS What's New (Marengo in Managed KB)",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-multimodal-embeddings-twelvelabs-marengo/"
-          },
-          {
-            "label": "Marengo Embed 3.0 parameters",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-marengo-3.html"
-          },
-          {
-            "label": "Bedrock Knowledge Bases overview",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html"
-          },
-          {
-            "label": "Auto sync scheduling (bonus)",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-automatic-sync-scheduling-data-source-connectors/"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS What's New: Multimodal embeddings with TwelveLabs Marengo 3.0",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-multimodal-embeddings-twelvelabs-marengo/"
-          },
-          {
-            "label": "Docs: TwelveLabs Marengo Embed 3.0 parameters",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-marengo-3.html"
-          },
-          {
-            "label": "Docs: Amazon Bedrock Knowledge Bases",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html"
-          },
-          {
-            "label": "AWS What's New: Automatic sync scheduling for Managed KB",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-automatic-sync-scheduling-data-source-connectors/"
           }
         ]
       }
