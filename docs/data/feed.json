@@ -4,6 +4,86 @@
   "updated": "2026-09-25",
   "cards": [
     {
+      "id": "trend-20260925-agentcore-runtime-v2",
+      "category": "aws",
+      "title": "AgentCore Runtime V2: ~2s cold starts, pay for used memory",
+      "body": "Next-gen Bedrock AgentCore Runtime (GA Sep 18): elastic memory reclaim + snapshot restores keep P75 cold starts ~1.9–2.0s from 200 MB–2 GB images (vs 5.4–30s on V1). Set platformVersion=V2. Strong SA cost/latency angle for production agents.",
+      "source": "AWS What's New · ML Blog · Sep 18, 2026",
+      "tags": [
+        "aws",
+        "bedrock",
+        "agentcore",
+        "runtime",
+        "cold-start",
+        "serverless",
+        "microvm",
+        "sa"
+      ],
+      "accent": "sky",
+      "image": "https://picsum.photos/seed/trend-agentcore-runtime-v2-20260925/800/520",
+      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/new-agentcore-runtime-generally-available/",
+      "detail": {
+        "summary": "On Sep 18, 2026 AWS made the next-generation AgentCore Runtime generally available inside Amazon Bedrock AgentCore — the serverless microVM compute layer for production agents. Two SA-relevant wins: (1) elastic memory that starts small, pages in on demand, and reclaims cold memory so you bill for actual usage instead of the session peak; (2) snapshot-based cold starts that stay consistently ~2 seconds across 200 MB–2 GB container images, versus 5.4–30 seconds on V1. Enable with platformVersion=V2 in us-east-1, us-east-2, us-west-2, eu-west-1, and ap-northeast-1. Educational architecture note — not a capacity plan.",
+        "sections": [
+          {
+            "heading": "Why this matters for an SA",
+            "body": "Production agents are no longer short chat turns: they run minutes to hours, spike memory, and get triggered in bursts. V1 held allocated memory until the session ended (you paid the high watermark) and cold-start latency grew with image size and concurrency. V2 closes both gaps without you building spare warm pools yourself — undifferentiated heavy lifting AWS is now absorbing in the platform."
+          },
+          {
+            "heading": "Elastic memory (bill the curve, not the peak)",
+            "body": "Each session starts with a small resident footprint. More memory is allocated as the workload touches it; when buffers are released or caches go cold, the runtime reclaims that memory instead of holding it until session end. AWS notes a higher per-GB rate but far fewer GB-hours for most agents, so the bill typically drops. Consumption pricing stays; a committed baseline option (reserve a memory floor, burst above it) is listed as coming soon for steady always-on sessions."
+          },
+          {
+            "heading": "Consistent ~2s cold starts via snapshots",
+            "body": "On create/update, AgentCore boots your container once, waits for healthy, and snapshots the running environment (one-time init like model artifacts and static config already done). New instances restore that snapshot instead of repeating boot+init. Snapshots are stripped of transient caches so size stays roughly flat as the image grows. AWS echo-agent tests (5,000 cold invocations, client in us-west-2 calling us-east-1, no VPC peering): P75 cold start ~1.9–2.0s from 200 MB to 2 GB images vs ~5.4s–~30s on V1. Tip for interactive agents: start the session when the user opens chat, not when they hit send, so warm-up overlaps typing."
+          },
+          {
+            "heading": "Regions, enablement, roadmap",
+            "body": "Available now in us-east-1, us-east-2, us-west-2, eu-west-1, ap-northeast-1. Set platformVersion to V2 when creating or updating a runtime. Coming soon called out in the ML blog: baseline pricing discounts, larger RAM/vCPU/storage, x86 microVMs, suspend/resume with memory snapshotting, and session-scoped identity for unattended agents."
+          }
+        ],
+        "bullets": [
+          "GA Sep 18, 2026 — next-gen AgentCore Runtime (serverless microVM)",
+          "Elastic memory: allocate on demand, reclaim cold pages (bill usage not peak)",
+          "P75 cold start ~1.9–2.0s for 200 MB–2 GB images (V1: ~5.4–30s)",
+          "Snapshot once on create/update; restore for every new instance",
+          "Enable: platformVersion=V2",
+          "Regions: us-east-1, us-east-2, us-west-2, eu-west-1, ap-northeast-1",
+          "Roadmap: baseline pricing, x86, suspend/resume, scoped identity",
+          "Educational only — verify quotas/pricing in your account"
+        ],
+        "steps": [
+          "Create or update an AgentCore runtime with platformVersion set to V2 in a supported region (start with us-east-1 or us-west-2).",
+          "Redeploy a representative agent container and compare cold-start P75 and session GB-hours against V1 under a load test (AWS sample load-test in AgentCore GitHub samples).",
+          "For chat UX, open the session on engage (chat open) so snapshot restore finishes before the first user message."
+        ],
+        "actions": [
+          {
+            "label": "AWS What's New — AgentCore Runtime GA",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/new-agentcore-runtime-generally-available/"
+          },
+          {
+            "label": "ML Blog — elastic runtime deep dive",
+            "url": "https://aws.amazon.com/blogs/machine-learning/the-new-agentcore-runtime-elastic-optimized-and-consistently-fast-starts/"
+          },
+          {
+            "label": "AgentCore Runtime documentation",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS What's New — The new AgentCore Runtime is now available (Sep 18, 2026)",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/new-agentcore-runtime-generally-available/"
+          },
+          {
+            "label": "AWS ML Blog — The new AgentCore runtime: elastic, optimized, and consistently fast starts",
+            "url": "https://aws.amazon.com/blogs/machine-learning/the-new-agentcore-runtime-elastic-optimized-and-consistently-fast-starts/"
+          }
+        ]
+      }
+    },
+    {
       "id": "tax-20260925-aotc-form-8863",
       "category": "tax",
       "title": "AOTC: up to $2,500 per college student (Form 8863)",
@@ -2954,89 +3034,6 @@
           {
             "label": "felixgeelhaar / personal-finance-expert (Ramit / CSP section)",
             "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
-          }
-        ]
-      }
-    },
-    {
-      "id": "tax-20260914-feie-form-2555",
-      "category": "tax",
-      "title": "FEIE: exclude foreign wages (Form 2555)",
-      "body": "Long stint working from India (or another foreign country)? Up to $132,900 of foreign earned income for 2026 may be excludable if you meet the tax-home + days/residence tests. Educational only, not tax advice.",
-      "source": "IRS · Form 2555 · Pub 54",
-      "tags": [
-        "us-tax",
-        "india-us",
-        "feie",
-        "form-2555",
-        "expat"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/tax-feie-2555-20260914/800/520",
-      "link": "https://www.irs.gov/individuals/international-taxpayers/foreign-earned-income-exclusion",
-      "detail": {
-        "summary": "The Foreign Earned Income Exclusion (FEIE) lets qualifying US citizens and resident aliens exclude foreign earned income from US taxable income — up to $132,900 per person for tax year 2026 — claimed on Form 2555. Useful for Indian-origin filers who relocate or work abroad for most of a year. Educational only; not tax advice.",
-        "sections": [
-          {
-            "heading": "Who this helps",
-            "body": "US citizens and green-card / resident-alien filers with a tax home in India (or another foreign country) who either spend 330 full days abroad in a 12-month period (physical presence) or are bona fide residents of a foreign country for a full tax year. India–US treaty nationals who are US resident aliens can use the bona fide residence path when it fits."
-          },
-          {
-            "heading": "Rough mechanics",
-            "body": "You need both a foreign tax home and either the physical presence test or the bona fide residence test. Foreign earned income means pay for personal services performed abroad (wages, salary, self-employment earnings) — not US government pay, most pensions, or passive India investment income. Claim on Form 2555 attached to Form 1040. FEIE cuts regular income tax on the excluded amount but does not reduce self-employment tax. Housing exclusion/deduction is a related add-on on the same form."
-          },
-          {
-            "heading": "India–US angle",
-            "body": "Common pattern: remote work or an India assignment while still filing a US return. Track calendar days carefully — partial US trip days often fail the physical presence count. Passive India bank/FD/MF income is not FEIE income (think Form 1116 / FTC instead). Choosing FEIE can interact with credits and brackets via the Foreign Earned Income Tax Worksheet — compare FTC vs FEIE with a cross-border pro when both apply."
-          },
-          {
-            "heading": "Check-this action",
-            "body": "If you expect 330+ full days outside the US in any 12-month window that overlaps 2026 (or bona fide residence in India for all of 2026), open Form 2555 instructions and sketch a day log now — don't wait until April."
-          }
-        ],
-        "bullets": [
-          "2026 max exclusion: $132,900 per qualifying person (inflation-adjusted)",
-          "Need foreign tax home + physical presence (330 days) or bona fide residence",
-          "File Form 2555 with Form 1040 — exclusion is not automatic",
-          "Does not reduce self-employment tax; passive India income is out of scope",
-          "Educational only — revocation, housing amounts, and credit stacking have traps"
-        ],
-        "steps": [
-          "Confirm tax home is in a foreign country (not just short travel from a US abode)",
-          "Pick physical presence vs bona fide residence; start a day/visa log",
-          "Separate foreign earned wages/SE income from investment/pension income",
-          "Read IRS FEIE page + Form 2555 instructions; attach Form 2555 if you qualify"
-        ],
-        "actions": [
-          {
-            "label": "IRS: Foreign earned income exclusion",
-            "url": "https://www.irs.gov/individuals/international-taxpayers/foreign-earned-income-exclusion"
-          },
-          {
-            "label": "About Form 2555",
-            "url": "https://www.irs.gov/forms-pubs/about-form-2555"
-          },
-          {
-            "label": "Pub 54 (Tax Guide for US Citizens/Residents Abroad)",
-            "url": "https://www.irs.gov/forms-pubs/about-publication-54"
-          }
-        ],
-        "sources": [
-          {
-            "label": "IRS: Foreign earned income exclusion",
-            "url": "https://www.irs.gov/individuals/international-taxpayers/foreign-earned-income-exclusion"
-          },
-          {
-            "label": "IRS: Figuring the foreign earned income exclusion",
-            "url": "https://www.irs.gov/individuals/international-taxpayers/figuring-the-foreign-earned-income-exclusion"
-          },
-          {
-            "label": "About Form 2555, Foreign Earned Income",
-            "url": "https://www.irs.gov/forms-pubs/about-form-2555"
-          },
-          {
-            "label": "About Publication 54",
-            "url": "https://www.irs.gov/forms-pubs/about-publication-54"
           }
         ]
       }
