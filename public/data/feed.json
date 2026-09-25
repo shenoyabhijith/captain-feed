@@ -1,8 +1,63 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-24",
+  "updated": "2026-09-25",
   "cards": [
+    {
+      "id": "book-20260925-wealth-unseen",
+      "category": "book",
+      "title": "Wealth is what you don't see",
+      "body": "Rich is the income people notice. Wealth is the cars not bought and upgrades declined — assets still compounding because you never turned them into stuff.",
+      "source": "Morgan Housel · The Psychology of Money (via felixgeelhaar notes)",
+      "tags": [
+        "psychology-of-money",
+        "wealth",
+        "spending",
+        "habits"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/book-wealth-unseen-20260925/800/520",
+      "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
+      "detail": {
+        "summary": "Spending to look rich is the fastest way to have less money. Rich is current income; wealth is financial assets not converted into lifestyle. Aim for wealth you could not photograph.",
+        "sections": [
+          {
+            "heading": "The distinction",
+            "body": "Rich is a high paycheck that shows up in clothes, cars, and restaurants. Wealth is the same dollars left invested — quiet and invisible. Only spending is public, so people confuse the two."
+          },
+          {
+            "heading": "Why it matters",
+            "body": "Every dollar spent to signal status cannot compound. The goal is optionality, not looking wealthy. Declining an upgrade is often the higher-return move."
+          },
+          {
+            "heading": "Try today",
+            "body": "Before one discretionary purchase this week, ask: usefulness or the look of success? If mostly the look, skip it and leave that money invested or saved."
+          }
+        ],
+        "bullets": [
+          "Rich = income people can see; wealth = assets they cannot",
+          "Spending to display money shrinks the compounding pile",
+          "Quiet declines (car, watch, upgrade) are often the real wealth moves"
+        ],
+        "steps": [
+          "Pick one upcoming lifestyle upgrade",
+          "Name whether it buys utility or status signaling",
+          "If status, defer 30 days and leave the money invested"
+        ],
+        "actions": [
+          {
+            "label": "felixgeelhaar personal-finance-expert SKILL.md notes",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "felixgeelhaar/skills — personal-finance-expert/SKILL.md",
+            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
+          }
+        ]
+      }
+    },
     {
       "id": "deal-20260924-ring-battery-4k-pro",
       "category": "deal",
@@ -2984,83 +3039,6 @@
           {
             "label": "AWS What's New: Automatic sync scheduling for Managed KB",
             "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-automatic-sync-scheduling-data-source-connectors/"
-          }
-        ]
-      }
-    },
-    {
-      "id": "tax-20260913-foreign-tax-credit-1116",
-      "category": "tax",
-      "title": "Foreign Tax Credit (Form 1116)",
-      "body": "India TDS or tax on India-source income can often cut your US bill as a credit — not just a Schedule A deduction. Educational only, not tax advice.",
-      "source": "IRS Pub 514 · Form 1116",
-      "tags": [
-        "us-tax",
-        "india-us",
-        "ftc",
-        "form-1116"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/tax-ftc-1116-20260913/800/520",
-      "link": "https://www.irs.gov/forms-pubs/about-publication-514",
-      "detail": {
-        "summary": "If you are a US person taxed on the same income in India and the US, the Foreign Tax Credit (FTC) can reduce US tax by the qualifying foreign income tax you paid or accrued — usually better than deducting it. Claim it on Form 1116 (unless a small passive-only election applies). Educational only; not tax advice.",
-        "sections": [
-          {
-            "heading": "Who this helps",
-            "body": "Indian-origin US citizens and residents with India ties: bank/FD interest, dividends, mutual-fund distributions, rental income, or capital gains where India withheld tax (TDS) or you filed an India return. Also useful for dual-filing households comparing credit vs deduction each year."
-          },
-          {
-            "heading": "Rough mechanics",
-            "body": "You generally choose credit or itemized deduction for qualified foreign income taxes. A credit reduces US tax liability dollar-for-dollar (subject to a limit); a deduction only reduces taxable income. The credit is limited to US tax on your foreign-source taxable income (figured on Form 1116). Unused credits can often carry back 1 year and forward 10. Small passive-only cases may elect to claim without Form 1116 if foreign tax ≤ $300 ($600 joint) and other IRS tests are met — that election kills carryovers for that year."
-          },
-          {
-            "heading": "India–US angle",
-            "body": "Keep Form 16A / TDS certificates, India ITRs, and broker statements that show tax paid on India-source income. Not every India levy qualifies (must be an income / war-profits / excess-profits tax or a tax in lieu). Treaty interaction and separate limitation categories (e.g. passive vs general) matter — Pub 514 and the India–US income tax convention are the starting maps, not blogs."
-          },
-          {
-            "heading": "Check-this action",
-            "body": "List 2025 India-source income lines and taxes paid/accrued. Open Form 1116 instructions and Pub 514; decide credit vs deduction before you file. If totals are tiny and only passive payee statements, check whether the no-Form-1116 election fits — otherwise plan Form 1116."
-          }
-        ],
-        "bullets": [
-          "Credit usually beats deduction when you have US tax liability on that foreign income",
-          "Limit = roughly US tax × (foreign-source taxable income ÷ worldwide taxable income)",
-          "Keep India TDS proofs with your US return workpapers",
-          "Educational only — edge cases (PF, NRI status flips, contested tax) need a cross-border pro"
-        ],
-        "steps": [
-          "Gather India TDS certificates / tax paid proofs for the tax year",
-          "Separate income into Form 1116 categories (often passive vs general)",
-          "Skim IRS Pub 514 + Form 1116 instructions for limit and election rules",
-          "Choose credit vs deduction; attach Form 1116 unless the small-tax election clearly applies"
-        ],
-        "actions": [
-          {
-            "label": "IRS Pub 514 (FTC)",
-            "url": "https://www.irs.gov/forms-pubs/about-publication-514"
-          },
-          {
-            "label": "How to figure the credit",
-            "url": "https://www.irs.gov/individuals/international-taxpayers/foreign-tax-credit-how-to-figure-the-credit"
-          },
-          {
-            "label": "Form 1116 instructions",
-            "url": "https://www.irs.gov/instructions/i1116"
-          }
-        ],
-        "sources": [
-          {
-            "label": "About Publication 514, Foreign Tax Credit for Individuals",
-            "url": "https://www.irs.gov/forms-pubs/about-publication-514"
-          },
-          {
-            "label": "IRS: Foreign Tax Credit – How to figure the credit",
-            "url": "https://www.irs.gov/individuals/international-taxpayers/foreign-tax-credit-how-to-figure-the-credit"
-          },
-          {
-            "label": "Instructions for Form 1116 (2025)",
-            "url": "https://www.irs.gov/instructions/i1116"
           }
         ]
       }
