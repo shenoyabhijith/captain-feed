@@ -4,6 +4,102 @@
   "updated": "2026-09-25",
   "cards": [
     {
+      "id": "aws-20260925-gateway-guardrails-tool-boundary",
+      "category": "aws",
+      "title": "Guardrails at every tool hop, not just the final reply",
+      "body": "Agentic chains call tools before the model ever answers. Put Bedrock Guardrails on AgentCore Gateway (via Policy) so every tools/call input and output is checked for prompt injection, PII, and harmful content — then keep model-layer Guardrails as a second line.",
+      "source": "AWS ML Blog · Jun 25, 2026 · Agentic AI Lens",
+      "tags": [
+        "bedrock",
+        "agentcore",
+        "gateway",
+        "guardrails",
+        "prompt-injection",
+        "mcp",
+        "data-mesh",
+        "aws-sa"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-gateway-guardrails-tool-20260925/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/building-agentic-ai-applications-with-a-modern-data-mesh-strategy-on-aws/",
+      "detail": {
+        "summary": "RAG could survive a single Guardrails checkpoint on the final model response. Agentic apps discover schemas, run SQL, retrieve KB chunks, and call other agents before any final answer — so a poisoned tool result can steer the next hop before the model ever speaks. The Jun 25, 2026 AWS ML Blog (data-mesh agent architecture) and Agentic AI Lens AGENTSEC08-BP01 push the same SA move: enforce Amazon Bedrock Guardrails through AgentCore Policy at the Gateway on every authorized tools/call, not only at Converse/inference. Pair that with JWT interceptors and Lake Formation for authz. Educational pattern brief — not a capacity claim.",
+        "sections": [
+          {
+            "heading": "Why model-only Guardrails leave a blind spot",
+            "body": "In a classic retrieve-then-generate flow, filtering the final model output catches most policy breaks. In an agent loop, the model may call get_schema, run_query, and kb_search several times. Indirect prompt injection living in a retrieved PDF, API payload, or tool response can influence the next tool choice before any assistant message is produced. A guardrail that only sees the final reply never sees those intermediate hops."
+          },
+          {
+            "heading": "Gateway as the unified enforcement point",
+            "body": "AgentCore Gateway already centralizes MCP tool discovery, OAuth, and Cedar/Policy checks. When Guardrails are attached through the AgentCore Policy Engine, they evaluate inputs and outputs of every gateway target (tools, agents, models) in real time. Prompt attacks, denied topics, and sensitive-information filters can block or redact at the tool boundary, outside agent code. Keep ApplyGuardrail / Converse Guardrails at the model boundary as defense in depth — complementary, not either/or."
+          },
+          {
+            "heading": "Fit with the governed data-mesh stack",
+            "body": "The blog’s reference customer-service agent sits on AgentCore Runtime, talks MCP through Gateway interceptors (JWT scope on request; tool-list filter + redaction on response), and reaches S3 Tables / Athena / Lake Formation plus a Bedrock Knowledge Base. Guardrails at Gateway closes the content-safety layer next to interceptor authz. For Managed Knowledge Bases you can drop a custom kb_search Lambda and use the native Gateway KB target — Policy and Guardrails still apply."
+          },
+          {
+            "heading": "AGENTSEC08: validate every input surface",
+            "body": "Well-Architected Agentic AI Lens AGENTSEC08-BP01 says map all surfaces (user messages, tool outputs, inter-agent messages, retrieved content, memory reads) and put validation on each. The commonly missed one is external retrieval: apply Guardrails with prompt-attack detection to RAG/web/API content before it enters context. Prefer block mode for prompt attacks; use detect mode + confidence scores for softer content filters when the app can decide. When calling ApplyGuardrail yourself, set outputScope=full and ship assessments to CloudWatch — they are not auto-published."
+          },
+          {
+            "heading": "Blog-ready angle for your Bedrock series",
+            "body": "Frame the piece as ‘Guardrails moved from the chat reply to the tool bus.’ Contrast single-checkpoint RAG with multi-hop agents, show a poisoned tool-output scenario, then diagram Gateway Policy + Guardrails beside Cedar and Lake Formation. End with a verify checklist: tools/list scope filter, blocked prompt-attack on a kb_search payload, and model-layer Guardrails still on for the final turn."
+          }
+        ],
+        "bullets": [
+          "Model-only Guardrails miss intermediate tool hops where indirect injection lands",
+          "Attach Bedrock Guardrails via AgentCore Policy on Gateway for every tools/call I/O",
+          "Keep Converse/ApplyGuardrail at inference as a second line, not the only line",
+          "AGENTSEC08: validate tool outputs and retrieved content, not just the user message",
+          "Pair with Gateway interceptors + Lake Formation for authz; Guardrails for content safety"
+        ],
+        "steps": [
+          "Map every agent input surface (user, tools, retrieval, memory, A2A) and mark which lack validation today",
+          "Create a Bedrock Guardrail with prompt-attack detection, denied topics, and sensitive-information filters; version it for Gateway vs model if thresholds differ",
+          "Attach Guardrails through AgentCore Policy on the Gateway so each MCP target is evaluated on request and response",
+          "Keep Gateway request/response interceptors for JWT scopes, tools/list filtering, and redaction — orthogonal to content filters",
+          "Retain model-layer Guardrails on Converse / agent inference; for direct ApplyGuardrail calls set outputScope=full and log assessments to CloudWatch",
+          "Verify: inject a prompt-attack string in a tool/KB payload and confirm Gateway blocks before the next hop; confirm scoped tools/list still works"
+        ],
+        "actions": [
+          {
+            "label": "Read — Agentic AI on a modern data mesh (Jun 25, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/building-agentic-ai-applications-with-a-modern-data-mesh-strategy-on-aws/"
+          },
+          {
+            "label": "AGENTSEC08-BP01 — Multi-layer input validation",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/agentsec08-bp01.html"
+          },
+          {
+            "label": "Docs — Amazon Bedrock AgentCore Gateway",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html"
+          },
+          {
+            "label": "Docs — ApplyGuardrail API",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ApplyGuardrail.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — Building agentic AI applications with a modern data mesh strategy on AWS (Jun 25, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/building-agentic-ai-applications-with-a-modern-data-mesh-strategy-on-aws/"
+          },
+          {
+            "label": "AWS Well-Architected Agentic AI Lens — AGENTSEC08-BP01 Multi-layer input validation and prompt injection defense",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/agentsec08-bp01.html"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Gateway",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html"
+          },
+          {
+            "label": "Amazon Bedrock API Reference — ApplyGuardrail",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ApplyGuardrail.html"
+          }
+        ]
+      }
+    },
+    {
       "id": "trend-20260925-agentcore-runtime-v2",
       "category": "aws",
       "title": "AgentCore Runtime V2: ~2s cold starts, pay for used memory",
@@ -2980,60 +3076,6 @@
           {
             "label": "AWS Well-Architected Agentic AI Lens",
             "url": "https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/agentic-ai-lens.html"
-          }
-        ]
-      }
-    },
-    {
-      "id": "book-20260914-conscious-spending",
-      "category": "book",
-      "title": "Budget with guilt-free buckets",
-      "body": "Ramit’s Conscious Spending Plan: fix the big four buckets once, automate transfers, then spend freely inside the guilt-free slice. Restriction is optional; intention is the point.",
-      "source": "I Will Teach You To Be Rich · Ramit Sethi",
-      "tags": [
-        "money",
-        "spending",
-        "automation"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/book-csp-20260914/800/520",
-      "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
-      "detail": {
-        "summary": "Ramit Sethi replaces deprivation budgets with a Conscious Spending Plan: assign take-home pay to fixed costs, savings, investments, and a large guilt-free bucket, then automate so willpower is not the system.",
-        "sections": [
-          {
-            "heading": "The four buckets",
-            "body": "Fixed costs (about 50–60% of take-home): rent, utilities, insurance, groceries, transport, minimum debt, subscriptions. Savings (5–10%): emergency fund and near-term goals. Investments (5–10%): 401(k), IRA, brokerage for long-term wealth. Guilt-free spending (20–35%): dining, hobbies, travel — spend here without tracking every latte."
-          },
-          {
-            "heading": "Big wins beat latte math",
-            "body": "Obsessing over small daily costs while ignoring housing, salary, and automation is the trap. Negotiate pay, cut what you do not care about, and spend extravagantly on your money dials. The $3 coffee is rarely the bottleneck; an unused raise or a bloated rent often is."
-          },
-          {
-            "heading": "Automation is the product",
-            "body": "On payday, automatic transfers should move money to savings, investments, and bills before you see it. Sethi’s bar is under an hour a month managing money once the pipes are set. An 85% plan running today beats a perfect plan you never start."
-          }
-        ],
-        "bullets": [
-          "Design spending around values, not shame",
-          "Automate savings and investing on payday",
-          "Cut ruthlessly on low-joy categories so high-joy ones can be lavish"
-        ],
-        "steps": [
-          "Write last month’s take-home pay and list every fixed monthly cost",
-          "Assign rough % to the four buckets; if fixed costs exceed ~60%, mark one Big Win to cut or renegotiate",
-          "Set one automated transfer this week from checking into savings or investments on payday"
-        ],
-        "actions": [
-          {
-            "label": "Open source notes",
-            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
-          }
-        ],
-        "sources": [
-          {
-            "label": "felixgeelhaar / personal-finance-expert (Ramit / CSP section)",
-            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
           }
         ]
       }
