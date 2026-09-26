@@ -1,0 +1,318 @@
+{
+  "meta": {
+    "title": "Captain Feed · Paper desk",
+    "paperOnly": true,
+    "asOf": "2026-09-26T16:00:00-05:00",
+    "priceSource": "yahoo",
+    "issuedBy": "firstmate",
+    "note": "Firstmate issued paper capital · real EOD marks. Fake capital; not a brokerage."
+  },
+  "marks": {
+    "VOO": 512.40,
+    "VTI": 285.10,
+    "VXUS": 62.80,
+    "BND": 73.20,
+    "QQQ": 478.50,
+    "VGT": 620.00,
+    "SMH": 248.30,
+    "SOXX": 245.10,
+    "XLK": 228.40,
+    "AAPL": 225.80,
+    "MSFT": 428.50,
+    "GOOGL": 165.20,
+    "AMZN": 188.40,
+    "META": 572.10,
+    "NVDA": 118.60,
+    "AVGO": 172.40,
+    "TSM": 168.90
+  },
+  "sleeves": [
+    {
+      "id": "value",
+      "name": "Value",
+      "persona": "Patient compounder · quality at a discount",
+      "startingCash": 100,
+      "cash": 22.80,
+      "positions": [
+        { "symbol": "VTI", "qty": 0.18, "avgPrice": 278.40 },
+        { "symbol": "VOO", "qty": 0.055, "avgPrice": 505.20 }
+      ],
+      "enabled": true,
+      "intelAsymmetric": false,
+      "promoteReady": false,
+      "lastAction": {
+        "side": "buy",
+        "symbol": "VTI",
+        "reason": "Book/NAV discount vs peers; refill core quality.",
+        "ts": "2026-09-26T15:18:00-05:00"
+      }
+    },
+    {
+      "id": "swing",
+      "name": "Swing",
+      "persona": "Catalyst hunter · 3–15 day holds",
+      "startingCash": 100,
+      "cash": 11.40,
+      "positions": [
+        { "symbol": "SMH", "qty": 0.22, "avgPrice": 241.00 },
+        { "symbol": "NVDA", "qty": 0.35, "avgPrice": 112.80 }
+      ],
+      "enabled": true,
+      "intelAsymmetric": true,
+      "promoteReady": false,
+      "lastAction": {
+        "side": "sell",
+        "symbol": "NVDA",
+        "reason": "Post-print fade; trim half into strength.",
+        "ts": "2026-09-26T15:42:00-05:00"
+      }
+    },
+    {
+      "id": "coresat",
+      "name": "CoreSat",
+      "persona": "Core + satellite · index tilt with ideas",
+      "startingCash": 100,
+      "cash": 8.20,
+      "positions": [
+        { "symbol": "VOO", "qty": 0.14, "avgPrice": 508.10 },
+        { "symbol": "QQQ", "qty": 0.045, "avgPrice": 470.20 }
+      ],
+      "enabled": true,
+      "intelAsymmetric": true,
+      "promoteReady": false,
+      "lastAction": {
+        "side": "buy",
+        "symbol": "VOO",
+        "reason": "Rebalance: satellite overweight; refill core.",
+        "ts": "2026-09-26T14:55:00-05:00"
+      }
+    },
+    {
+      "id": "mega",
+      "name": "Mega",
+      "persona": "Mega-cap momentum · crowded-trade aware",
+      "startingCash": 100,
+      "cash": 15.60,
+      "positions": [
+        { "symbol": "AAPL", "qty": 0.22, "avgPrice": 218.40 },
+        { "symbol": "MSFT", "qty": 0.09, "avgPrice": 420.00 }
+      ],
+      "enabled": true,
+      "intelAsymmetric": true,
+      "promoteReady": false,
+      "lastAction": {
+        "side": "skip",
+        "symbol": "META",
+        "reason": "No edge vs. last entry; wait for pullback.",
+        "ts": "2026-09-26T14:40:00-05:00"
+      }
+    },
+    {
+      "id": "riskoff",
+      "name": "RiskOff",
+      "persona": "Defensive ballast · cash & quality bonds",
+      "startingCash": 100,
+      "cash": 41.00,
+      "positions": [
+        { "symbol": "BND", "qty": 0.76, "avgPrice": 74.10 }
+      ],
+      "enabled": true,
+      "intelAsymmetric": false,
+      "promoteReady": false,
+      "lastAction": {
+        "side": "buy",
+        "symbol": "BND",
+        "reason": "Duration ballast as equity sleeves lean long.",
+        "ts": "2026-09-26T14:11:00-05:00"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d-20260926-001",
+      "ts": "2026-09-26T15:42:00-05:00",
+      "agentId": "swing",
+      "strategy": "Swing",
+      "side": "sell",
+      "symbol": "NVDA",
+      "qty": 0.35,
+      "price": 118.60,
+      "notional": 41.51,
+      "cashAfter": 11.40,
+      "reason": "Post-print fade; trim half into strength.",
+      "signals": [
+        { "source": "x", "org": "@semisdesk", "url": "https://x.com/", "asOf": "2026-09-26" },
+        { "source": "reddit", "org": "r/stocks", "url": "https://reddit.com/r/stocks", "asOf": "2026-09-26" },
+        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-26" }
+      ],
+      "runId": "run-20260926",
+      "authorizedBy": "firstmate"
+    },
+    {
+      "id": "d-20260926-002",
+      "ts": "2026-09-26T15:18:00-05:00",
+      "agentId": "value",
+      "strategy": "Value",
+      "side": "buy",
+      "symbol": "VTI",
+      "qty": 0.18,
+      "price": 285.10,
+      "notional": 51.32,
+      "cashAfter": 22.80,
+      "reason": "Book/NAV discount vs peers; refill core quality.",
+      "signals": [
+        { "source": "institute", "org": "Bogleheads wiki", "url": "https://www.bogleheads.org/", "asOf": "2026-09-25" },
+        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-26" }
+      ],
+      "runId": "run-20260926",
+      "authorizedBy": "firstmate"
+    },
+    {
+      "id": "d-20260926-003",
+      "ts": "2026-09-26T14:55:00-05:00",
+      "agentId": "coresat",
+      "strategy": "CoreSat",
+      "side": "buy",
+      "symbol": "VOO",
+      "qty": 0.14,
+      "price": 512.40,
+      "notional": 71.74,
+      "cashAfter": 8.20,
+      "reason": "Rebalance: satellite overweight; refill core.",
+      "signals": [
+        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-26" }
+      ],
+      "runId": "run-20260926",
+      "authorizedBy": "firstmate"
+    },
+    {
+      "id": "d-20260926-004",
+      "ts": "2026-09-26T14:40:00-05:00",
+      "agentId": "mega",
+      "strategy": "Mega",
+      "side": "skip",
+      "symbol": "META",
+      "qty": 0,
+      "price": 572.10,
+      "notional": 0,
+      "cashAfter": 15.60,
+      "reason": "No edge vs. last entry; wait for pullback.",
+      "signals": [
+        { "source": "x", "org": "@macrobrief", "url": "https://x.com/", "asOf": "2026-09-26" },
+        { "source": "institute", "org": "SEC EDGAR", "url": "https://www.sec.gov/", "asOf": "2026-09-25" }
+      ],
+      "runId": "run-20260926",
+      "authorizedBy": "firstmate"
+    },
+    {
+      "id": "d-20260926-005",
+      "ts": "2026-09-26T14:11:00-05:00",
+      "agentId": "riskoff",
+      "strategy": "RiskOff",
+      "side": "buy",
+      "symbol": "BND",
+      "qty": 0.76,
+      "price": 73.20,
+      "notional": 55.63,
+      "cashAfter": 41.00,
+      "reason": "Duration ballast as equity sleeves lean long.",
+      "signals": [
+        { "source": "reddit", "org": "r/Bogleheads", "url": "https://reddit.com/r/Bogleheads", "asOf": "2026-09-26" },
+        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-26" }
+      ],
+      "runId": "run-20260926",
+      "authorizedBy": "firstmate"
+    },
+    {
+      "id": "d-20260925-001",
+      "ts": "2026-09-25T15:05:00-05:00",
+      "agentId": "mega",
+      "strategy": "Mega",
+      "side": "buy",
+      "symbol": "MSFT",
+      "qty": 0.09,
+      "price": 420.00,
+      "notional": 37.80,
+      "cashAfter": 48.40,
+      "reason": "Momentum intact above 50-day; size under 25% NAV.",
+      "signals": [
+        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-25" }
+      ],
+      "runId": "run-20260925",
+      "authorizedBy": "firstmate"
+    },
+    {
+      "id": "d-20260925-002",
+      "ts": "2026-09-25T11:20:00-05:00",
+      "agentId": "swing",
+      "strategy": "Swing",
+      "side": "buy",
+      "symbol": "SMH",
+      "qty": 0.22,
+      "price": 241.00,
+      "notional": 53.02,
+      "cashAfter": 46.98,
+      "reason": "Semi basket bounce off support; 5–10 day hold.",
+      "signals": [
+        { "source": "x", "org": "@semisdesk", "url": "https://x.com/", "asOf": "2026-09-25" },
+        { "source": "web", "org": "Yahoo Finance", "url": "https://finance.yahoo.com/", "asOf": "2026-09-25" }
+      ],
+      "runId": "run-20260925",
+      "authorizedBy": "firstmate"
+    },
+    {
+      "id": "d-20260924-001",
+      "ts": "2026-09-24T16:00:00-05:00",
+      "agentId": "value",
+      "strategy": "Value",
+      "side": "hold",
+      "symbol": "VOO",
+      "qty": 0.055,
+      "price": 510.00,
+      "notional": 0,
+      "cashAfter": 74.12,
+      "reason": "Hold core; no new names without margin of safety.",
+      "signals": [
+        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-24" }
+      ],
+      "runId": "run-20260924",
+      "authorizedBy": "firstmate"
+    },
+    {
+      "id": "d-20260923-001",
+      "ts": "2026-09-23T15:30:00-05:00",
+      "agentId": "coresat",
+      "strategy": "CoreSat",
+      "side": "skip",
+      "symbol": "XLK",
+      "qty": 0,
+      "price": 226.00,
+      "notional": 0,
+      "cashAfter": 79.94,
+      "reason": "Skip satellite add — already heavy tech via QQQ.",
+      "signals": [
+        { "source": "institute", "org": "Vanguard research", "asOf": "2026-09-22" }
+      ],
+      "runId": "run-20260923",
+      "authorizedBy": "firstmate"
+    }
+  ],
+  "equity": [
+    { "date": "2026-09-12", "nav": 500.00 },
+    { "date": "2026-09-15", "nav": 501.20 },
+    { "date": "2026-09-16", "nav": 502.80 },
+    { "date": "2026-09-17", "nav": 501.40 },
+    { "date": "2026-09-18", "nav": 504.10 },
+    { "date": "2026-09-19", "nav": 505.60 },
+    { "date": "2026-09-22", "nav": 507.20 },
+    { "date": "2026-09-23", "nav": 506.80 },
+    { "date": "2026-09-24", "nav": 508.90 },
+    { "date": "2026-09-25", "nav": 510.40 },
+    { "date": "2026-09-26", "nav": 512.40 }
+  ],
+  "ops": {
+    "lastRunId": "run-20260926",
+    "rankOrder": ["swing", "mega", "value", "coresat", "riskoff"],
+    "notes": "Firstmate issued paper capital · real EOD marks. Promote-ready flags are ops-only; no live wire."
+  }
+}

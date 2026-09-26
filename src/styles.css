@@ -65,6 +65,10 @@
   --dock-pad: 6px;
   --dock-clearance: calc(72px + env(safe-area-inset-bottom, 0px));
   --header-blur: blur(16px);
+
+  /* Finances P&L */
+  --fin-up: #15803d;
+  --fin-down: #b91c1c;
 }
 
 [data-theme="dark"] {
@@ -87,6 +91,8 @@
   --bg-elev: var(--surface);
   --accent: var(--brand);
   --accent-soft: var(--brand-soft);
+  --fin-up: #4ade80;
+  --fin-down: #f87171;
 }
 
 * { box-sizing: border-box; }
@@ -622,6 +628,11 @@ h1 {
 .scroll-cue, .scroll-chevron, .fab-scroll,
 .scroll-hint, .scroll-down, .peek-arrow, [data-scroll-cue] {
   display: none !important;
+}
+/* FEED-FINANCES-1: 4-tab dock */
+.dock.dock--four {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2px;
 }
 .dock button {
   display: inline-flex;

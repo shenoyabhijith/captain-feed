@@ -9,6 +9,7 @@ import {
   List,
   CircleDot,
   Bookmark,
+  Wallet,
 } from "lucide-react";
 
 export const CATEGORY_ICONS = {
@@ -42,5 +43,7 @@ export const VIEW_LABELS = {
   unread: "Unread",
   saved: "Saved",
 };
+
+export const FINANCES_ICON = Wallet;
 
 export const ICON_STROKE = 1.75;

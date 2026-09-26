@@ -16,7 +16,9 @@ import { useFeed } from "../hooks/useFeed";
 import CategoryFilter from "./CategoryFilter.jsx";
 import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
-import { VIEW_ICONS, VIEW_LABELS, ICON_STROKE } from "./icons.js";
+import FinancesApp from "./finances/FinancesApp.jsx";
+import FinancesAdmin from "./finances/FinancesAdmin.jsx";
+import FeedDock from "./finances/FeedDock.jsx";
 
 /** Persist feed window scroll across Home ↔ Detail (HashRouter remounts Home). */
 let savedFeedScrollY = 0;
@@ -125,6 +127,8 @@ export default function FeedApp() {
           }
         />
         <Route path="/card/:id" element={<DetailRoute feed={feed} />} />
+        <Route path="/finances" element={<FinancesApp />} />
+        <Route path="/finances/admin" element={<FinancesAdmin />} />
       </Routes>
     </div>
   );
@@ -137,6 +141,20 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
   const [atTop, setAtTop] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerH, setHeaderH] = useState(0);
+
+  // Apply dock view requested from Finances navigation
+  useEffect(() => {
+    try {
+      const v = sessionStorage.getItem("captain-feed-dock-view");
+      if (v && ["all", "unread", "saved"].includes(v)) {
+        feed.setView(v);
+        sessionStorage.removeItem("captain-feed-dock-view");
+      }
+    } catch {
+      /* ignore */
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- apply once on Home mount
+  }, []);
   const lastY = useRef(0);
   const ticking = useRef(false);
   const hiddenRef = useRef(false);
@@ -334,26 +352,7 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
         <div className="empty">Loading…</div>
       )}
 
-      <nav className="dock" aria-label="Feed views">
-        {["all", "unread", "saved"].map((id) => {
-          const Icon = VIEW_ICONS[id];
-          const label = VIEW_LABELS[id];
-          return (
-            <button
-              key={id}
-              type="button"
-              data-view={id}
-              aria-label={label}
-              title={label}
-              aria-pressed={feed.view === id}
-              onClick={() => feed.setView(id)}
-            >
-              <Icon size={18} strokeWidth={ICON_STROKE} aria-hidden="true" />
-              <span>{label}</span>
-            </button>
-          );
-        })}
-      </nav>
+      <FeedDock feedView={feed.view} onFeedView={feed.setView} />
     </>
   );
 }

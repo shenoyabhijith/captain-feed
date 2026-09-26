@@ -20,7 +20,8 @@ export default defineConfig({
         "icons/mark-28-light.png",
         "icons/mark-28-dark.png",
         "icons/mark-56.png",
-        "data/feed.json"
+        "data/feed.json",
+        "data/finances-ledger.json"
       ],
       manifest: {
         name: "Captain Feed",
@@ -67,6 +68,15 @@ export default defineConfig({
             handler: "NetworkFirst",
             options: {
               cacheName: "feed-json",
+              networkTimeoutSeconds: 4,
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 7 }
+            }
+          },
+          {
+            urlPattern: /\/captain-feed\/data\/finances-ledger\.json.*/i,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "finances-ledger-json",
               networkTimeoutSeconds: 4,
               expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 7 }
             }
