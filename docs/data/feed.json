@@ -4,6 +4,89 @@
   "updated": "2026-09-26",
   "cards": [
     {
+      "id": "tax-20260926-no-india-totalization",
+      "category": "tax",
+      "title": "No US–India Social Security Totalization pact (yet)",
+      "body": "Unlike ~30 countries with SSA Totalization agreements, India is still not on SSA’s in-force list. Cross-border US↔India work can mean dual Social Security/EPF-style contributions with no certificate-of-coverage escape hatch, and you generally cannot combine India credits toward US quarters of coverage. Educational only, not tax advice.",
+      "source": "SSA · International Agreements overview · Status of Totalization Agreements",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "social-security",
+        "totalization",
+        "fica",
+        "epf",
+        "cross-border",
+        "ssa"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-no-india-totalization-20260926/800/520",
+      "link": "https://www.ssa.gov/international/agreements_overview.html",
+      "detail": {
+        "summary": "The United States has bilateral Social Security “Totalization” agreements with dozens of countries. Those pacts do two jobs: (1) stop dual Social Security taxation when the same earnings would otherwise be taxed by both countries, and (2) let workers combine (“totalize”) coverage credits so a split US/foreign career can still qualify for benefits. India is not on SSA’s official list of agreements in force (as of Sep 26, 2026 — Romania entered Sep 1, 2026; India is still absent). Negotiations have been discussed for years, but until an agreement enters into force there is no SSA Certificate of Coverage path to exempt one side, and India work credits generally do not count toward US insured status. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US residents and citizens who (a) work in the US while an India employer still remits EPF/social-security-style contributions, (b) are seconded US↔India on H-1B/L-1/intra-company moves, (c) are US tax residents self-employed or employed in India and still face US Social Security/self-employment tax rules, or (d) expect a career split between the two systems and assume credits will “add up” the way they do under Totalization countries. Also useful for HR/comp teams planning India assignments for US payroll employees."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Without a Totalization agreement, each country’s domestic coverage rules apply independently. US law generally covers employees for services performed in the United States regardless of citizenship or how short the stay, and it can also reach US citizens/residents working abroad for American employers (and self-employed US citizens/residents abroad). India-side EPF or other social-security contributions may still be due under Indian rules for the same period. Agreement countries use Certificates of Coverage so only one system taxes a temporary assignment; that tool does not exist for India↔US today. Separately, Totalization benefit rules that let SSA count foreign coverage toward the usual ~40 quarters for retirement insurance do not apply to India coverage."
+          },
+          {
+            "heading": "India-angle: dual cost + benefit gaps",
+            "body": "H-1B/L-1 and other temporary India→US workers often pay full US FICA while also (or previously) funding India EPF — and may leave the US before earning enough US quarters for a US retirement benefit, with no Totalization bridge. US citizens/green-card holders on India assignments can face the mirror problem: US coverage continuing while India contributions also apply. Do not assume an EPFO Certificate of Coverage helps with US SSA the way it does for India’s agreements with Germany, Japan, Canada, etc. Watch news on a future US–India pact, but plan benefits and dual-tax exposure under current law until SSA lists India as in force."
+          },
+          {
+            "heading": "What Totalization would change (if India joins)",
+            "body": "If a US–India agreement later enters into force, typical US Totalization features would likely include a territoriality rule, a temporary “detached worker” exemption (often up to five years) documented by Certificates of Coverage, and mutual credit totalization for benefit eligibility. Until then, none of those SSA tools apply to India. This card is educational only — employers and individuals should confirm payroll withholding and benefit projections with qualified advisors."
+          }
+        ],
+        "bullets": [
+          "US Totalization agreements eliminate dual Social Security tax and can totalize coverage credits",
+          "India is NOT on SSA’s in-force agreements list (checked Sep 26, 2026)",
+          "No Certificate of Coverage path to pick only US or only India coverage for the same work",
+          "India EPF / social-security credits generally do not count toward US quarters of coverage",
+          "US FICA usually applies to work performed in the US; special rules can reach US persons abroad",
+          "Romania entered force Sep 1, 2026 — India still pending years of talks",
+          "Educational only — not tax, payroll, or benefits advice"
+        ],
+        "steps": [
+          "Open SSA’s International Agreements overview and Status of Totalization Agreements pages and confirm India is still absent from the in-force list.",
+          "If you have a US↔India assignment or dual payroll, ask HR/payroll which side withholds US FICA (or SE tax) and which remits India EPF/other contributions for the same months.",
+          "Pull your Social Security Statement (ssa.gov) and count US quarters of coverage — do not assume India work years will fill gaps toward the usual 40-quarter retirement insured status."
+        ],
+        "actions": [
+          {
+            "label": "SSA — U.S. International Social Security Agreements",
+            "url": "https://www.ssa.gov/international/agreements_overview.html"
+          },
+          {
+            "label": "SSA — Status of Totalization Agreements",
+            "url": "https://www.ssa.gov/international/status.html"
+          },
+          {
+            "label": "IRS Publication 54 — Tax Guide for U.S. Citizens and Resident Aliens Abroad",
+            "url": "https://www.irs.gov/publications/p54"
+          }
+        ],
+        "sources": [
+          {
+            "label": "SSA — U.S. International Social Security Agreements (overview)",
+            "url": "https://www.ssa.gov/international/agreements_overview.html"
+          },
+          {
+            "label": "SSA — Status of Totalization Agreements (countries in force)",
+            "url": "https://www.ssa.gov/international/status.html"
+          },
+          {
+            "label": "IRS Publication 54 — Tax Guide for U.S. Citizens and Resident Aliens Abroad",
+            "url": "https://www.irs.gov/publications/p54"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260926-savings-rate",
       "category": "book",
       "title": "Your savings rate is the speed knob",
@@ -3000,83 +3083,6 @@
           {
             "label": "mgp/book-notes · Why Didn't They Teach Me This in School",
             "url": "https://github.com/mgp/book-notes/blob/master/why-dont-they-teach-me-this-in-school.markdown"
-          }
-        ]
-      }
-    },
-    {
-      "id": "deal-20260914-anker-nano-13in1-dock",
-      "category": "deal",
-      "title": "Anker Nano 13-in-1 dock ~$120",
-      "body": "Desk dock + detachable travel hub: triple display (2×HDMI + DP), Ethernet, 100W PD — about $30 off list at Amazon. Solid ops upgrade; not the all-time low.",
-      "source": "TechRadar · Sep 14, 2026",
-      "tags": [
-        "hardware",
-        "dock",
-        "home-office",
-        "amazon"
-      ],
-      "accent": "coral",
-      "image": "https://picsum.photos/seed/deal-anker-nano-dock-20260914/800/520",
-      "link": "https://www.amazon.com/dp/B0FCLC1RMM",
-      "detail": {
-        "summary": "TechRadar flagged the Anker Nano 13-in-1 USB-C dock at about $119.99 (was $149.99) on Amazon today — a desk dock with a detachable 6-in-1 hub for travel. Triple-display + 100W PD is a real home-office productivity unlock. Price check at checkout: trackers have seen it near $104–$112 earlier this month.",
-        "sections": [
-          {
-            "heading": "What you get",
-            "body": "13 ports including dual HDMI + DisplayPort (triple display on Windows), 10 Gbps USB-C, USB-A, Ethernet, audio, SD/TF, and up to 100W Power Delivery over one upstream cable. The clever bit: a detachable 6-in-1 hub so you leave the heavy dock on the desk and pocket the small hub for trips."
-          },
-          {
-            "heading": "Who it helps",
-            "body": "Remote workers and creators who want multi-monitor + wired Ethernet without a cable jungle, or anyone tired of buying a separate travel hub. One cable at the desk; detach and go."
-          },
-          {
-            "heading": "Catch before you buy",
-            "body": "macOS mirrors external displays on this single-cable MST setup (Windows gets extended desktops). Charging can slow when the dock is driving multiple displays + peripherals. If you only need one monitor and a couple of USB ports, a cheaper hub is enough."
-          },
-          {
-            "heading": "Price honesty",
-            "body": "TechRadar (Sep 14, 2026) cites ~$119.99 vs $149.99 list (~20% off). They note a prior tracker low around $104.49; Macworld/Android Authority covered ~$112 earlier in September. Confirm live Amazon price — deal pages go stale fast."
-          }
-        ],
-        "bullets": [
-          "~$30 off list per TechRadar today (~$119.99 / was $149.99)",
-          "Triple display on Windows; macOS mirrors",
-          "Detachable 6-in-1 hub = desk + travel without a second purchase",
-          "100W PD covers most mid-range laptops; verify wattage for yours",
-          "ASIN B0FCLC1RMM — recheck price before buy"
-        ],
-        "steps": [
-          "Confirm your laptop has a full-featured USB-C/Thunderbolt port and your OS needs (Windows extended vs Mac mirror)",
-          "Open the Amazon listing and verify current price vs ~$120 / list $150",
-          "If you need extended multi-monitor on Mac, skip this and look for a DisplayLink or native multi-stream dock instead"
-        ],
-        "actions": [
-          {
-            "label": "Buy on Amazon (ASIN B0FCLC1RMM)",
-            "url": "https://www.amazon.com/dp/B0FCLC1RMM"
-          },
-          {
-            "label": "TechRadar deal write-up",
-            "url": "https://www.techradar.com/pro/this-clever-anker-13-in-1-docking-station-deal-upgrades-your-laptop-into-a-serious-triple-monitor-workstation"
-          },
-          {
-            "label": "Compare: earlier Macworld coverage (~$112)",
-            "url": "https://www.macworld.com/article/3228628/this-13-in-1-anker-dock-solves-all-of-your-cable-problems-and-its-25-off.html"
-          }
-        ],
-        "sources": [
-          {
-            "label": "TechRadar · Anker Nano 13-in-1 dock deal (Sep 14, 2026)",
-            "url": "https://www.techradar.com/pro/this-clever-anker-13-in-1-docking-station-deal-upgrades-your-laptop-into-a-serious-triple-monitor-workstation"
-          },
-          {
-            "label": "Amazon product page · ASIN B0FCLC1RMM",
-            "url": "https://www.amazon.com/dp/B0FCLC1RMM"
-          },
-          {
-            "label": "Macworld · earlier Sep price note",
-            "url": "https://www.macworld.com/article/3228628/this-13-in-1-anker-dock-solves-all-of-your-cable-problems-and-its-25-off.html"
           }
         ]
       }
