@@ -1,8 +1,63 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-25",
+  "updated": "2026-09-26",
   "cards": [
+    {
+      "id": "book-20260926-savings-rate",
+      "category": "book",
+      "title": "Your savings rate is the speed knob",
+      "body": "Financial independence is less about market timing and more about how much of each paycheck you keep. Raise the savings rate and the years-to-freedom clock speeds up.",
+      "source": "JL Collins · The Simple Path to Wealth (via tiagom87 notes)",
+      "tags": [
+        "simple-path-to-wealth",
+        "savings-rate",
+        "fi",
+        "money"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/book-savings-rate-20260926/800/520",
+      "link": "https://github.com/tiagom87/simple-path-to-wealth/blob/main/README.md",
+      "detail": {
+        "summary": "JL Collins treats the savings rate as the main control for how fast you reach financial independence. Live below your means, automate what you keep, and avoid lifestyle inflation so invested dollars can compound.",
+        "sections": [
+          {
+            "heading": "The lever",
+            "body": "A higher savings rate shortens the path to freedom more reliably than chasing returns. Cut nonessential spend, keep happiness over possessions, and put the gap to work in low-cost index funds."
+          },
+          {
+            "heading": "Why it compounds",
+            "body": "Every dollar not spent can be invested. Over years, the combination of a strong savings habit and market compounding beats clever stock picks for most people."
+          },
+          {
+            "heading": "Try today",
+            "body": "Estimate this month's savings rate (saved ÷ take-home). Pick one recurring expense to trim or automate an extra transfer on payday so the rate rises without willpower each week."
+          }
+        ],
+        "bullets": [
+          "Savings rate ≈ how fast you buy freedom",
+          "Live simply enough that lifestyle inflation cannot erase raises",
+          "Automate savings so the market — not mood — gets the surplus"
+        ],
+        "steps": [
+          "Calculate last month's savings rate",
+          "Choose one expense to cut or pause for 30 days",
+          "Automate an increased transfer to investing on payday"
+        ],
+        "actions": [
+          {
+            "label": "tiagom87 Simple Path to Wealth notes",
+            "url": "https://github.com/tiagom87/simple-path-to-wealth/blob/main/README.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "tiagom87/simple-path-to-wealth README",
+            "url": "https://github.com/tiagom87/simple-path-to-wealth/blob/main/README.md"
+          }
+        ]
+      }
+    },
     {
       "id": "deal-20260925-anker-prime-14in1-dock",
       "category": "deal",
@@ -3022,80 +3077,6 @@
           {
             "label": "Macworld · earlier Sep price note",
             "url": "https://www.macworld.com/article/3228628/this-13-in-1-anker-dock-solves-all-of-your-cable-problems-and-its-25-off.html"
-          }
-        ]
-      }
-    },
-    {
-      "id": "aws-20260914-managed-kb-agentic-retrieve",
-      "category": "aws",
-      "title": "Managed KB: agentic retrieve, not one-shot RAG",
-      "body": "When answers span multiple corpora, put a reasoning agent in front of Managed Knowledge Bases: route across KBs, call AgenticRetrieveStream via AgentCore Gateway (MCP), and wire CloudWatch/eval from day one — no DIY vector DB.",
-      "source": "AWS ML Blog · Aug 31, 2026",
-      "tags": [
-        "bedrock",
-        "knowledge-bases",
-        "agentcore",
-        "rag",
-        "observability"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/aws-managed-kb-agentic-20260914/800/520",
-      "link": "https://aws.amazon.com/blogs/machine-learning/build-observable-enterprise-agentic-retrieval-using-managed-amazon-bedrock-knowledge-base-with-aws-cloudformation/",
-      "detail": {
-        "summary": "Classic RAG does one retrieve + one generate. Enterprise agentic retrieval lets an agent decide which Managed Knowledge Base to hit, run multi-step AgenticRetrieveStream inside that KB, then return a cited answer — while AgentCore Runtime auto-emits OpenTelemetry so you can actually operate it.",
-        "sections": [
-          {
-            "heading": "Why Managed (Type: MANAGED) matters",
-            "body": "AgenticRetrieveStream and the native AgentCore Gateway bedrock-knowledge-bases connector exist on Managed Knowledge Bases only. Bedrock owns ingestion, embeddings/reranking (managed models by default), and the datastore — so you skip provisioning and patching a vector DB. Customer-managed (DIY) KBs still work for classic Retrieve; they do not unlock this agentic path."
-          },
-          {
-            "heading": "Two-level routing pattern",
-            "body": "Cross-KB: give the agent one MCP tool per knowledge base (e.g. finance vs weather/docs) and prompt it to pick by topic. Within-KB: AgenticRetrieveStream plans sub-queries, retrieves iteratively, and synthesizes a grounded, citation-backed answer (set generateResponse false if you want chunks only). Separate KBs beat one KB with two data sources when you need a real routing decision and clean per-KB metrics."
-          },
-          {
-            "heading": "Ship observability with the agent",
-            "body": "The reference CloudFormation chain stands up KBs → Gateway → AgentCore Runtime → dashboards. Seven layers cover KB health, ingestion, retrieval quality, Gateway/MCP latency, full OTEL span trees, token usage, and evaluation scores (on-demand + online). Runtime auto-instruments the reason-and-act loop — do not bolt telemetry on after go-live."
-          },
-          {
-            "heading": "Cost control on eval",
-            "body": "Online evaluation samples live sessions with LLM-as-judge. The sample sets SamplingPercentage to 100 for the demo — not a production default. Tune OnlineEvaluationConfig sampling to budget; use on-demand eval while iterating, then modest continuous sampling in prod."
-          }
-        ],
-        "bullets": [
-          "Prefer Managed KB when you need AgenticRetrieveStream + Gateway MCP tools",
-          "One tool per KB so the agent can semantically route",
-          "Design CloudWatch/X-Ray/eval stacks in the same deploy as the agent",
-          "Cap online-eval sampling — 100% is a blog experiment, not an ops policy"
-        ],
-        "steps": [
-          "Sketch corpora that should stay isolated (access, cost, routing clarity) as separate Managed Knowledge Bases",
-          "Expose each KB’s AgenticRetrieveStream through AgentCore Gateway as its own MCP tool (no custom Lambda glue)",
-          "Host the router agent on AgentCore Runtime with OTEL on; confirm spans and Gateway metrics before polishing prompts",
-          "Enable continuous eval at a low sampling % only after on-demand scores look stable"
-        ],
-        "actions": [
-          {
-            "label": "Read the AWS how-to",
-            "url": "https://aws.amazon.com/blogs/machine-learning/build-observable-enterprise-agentic-retrieval-using-managed-amazon-bedrock-knowledge-base-with-aws-cloudformation/"
-          },
-          {
-            "label": "Managed KB Gateway connector docs",
-            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-managed-kb.html"
-          },
-          {
-            "label": "aws-samples path (deploy scripts)",
-            "url": "https://github.com/aws-samples/amazon-bedrock-samples"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS ML Blog — observable enterprise agentic retrieval (Aug 31, 2026)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/build-observable-enterprise-agentic-retrieval-using-managed-amazon-bedrock-knowledge-base-with-aws-cloudformation/"
-          },
-          {
-            "label": "AgentCore — Managed Knowledge Bases as Gateway target",
-            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-managed-kb.html"
           }
         ]
       }
