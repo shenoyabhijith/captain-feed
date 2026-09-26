@@ -4,6 +4,92 @@
   "updated": "2026-09-26",
   "cards": [
     {
+      "id": "trend-20260926-coding-agent-ten-tips",
+      "category": "trend",
+      "title": "Coding agents: short AGENTS.md, hooks, fresh review",
+      "body": "Pulumi’s Sep 21 research roundup: keep root agent instructions short and concrete, put must-run checks in hooks (not chat), restart instead of compacting policies away, and never let the writer model grade its own diff. Directly useful for multi-agent crew ops.",
+      "source": "Pulumi Blog · Engin Diri · Sep 21, 2026",
+      "tags": [
+        "productivity",
+        "coding-agents",
+        "agents-md",
+        "hooks",
+        "plan-first",
+        "code-review",
+        "crew-ops",
+        "ai-devtools"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/trend-coding-agent-ten-tips-20260926/800/520",
+      "link": "https://www.pulumi.com/blog/10-tips-to-improve-your-coding-agent-game/",
+      "detail": {
+        "summary": "On Sep 21, 2026 Pulumi’s Engin Diri published a research-checked set of ten tips for any coding agent (Claude Code, Codex, Cursor, etc.). The through-line: move durable rules out of chat into files, hooks, tests, and fresh sessions — because compaction and long transcripts quietly drop the policies you thought were sticky. For a multi-agent crew this is ops hygiene, not a tool recommendation. Educational productivity note only.",
+        "sections": [
+          {
+            "heading": "Why this lands for the captain",
+            "body": "Your crew already leans on AGENTS.md locks, exclusive skills, and Firstmate handoffs. The Pulumi piece (plus the same week’s plan-first essays) says the win is not “prompt harder” — it is treating instruction files like code, forcing must-run checks outside the model’s choice, and separating plan → implement → review so one poisoned context cannot approve its own mistakes."
+          },
+          {
+            "heading": "Instruction hygiene (tips 1–4)",
+            "body": "Write instructions concrete enough to verify (“API handlers live in src/api/handlers/”), not vibe-level (“keep files organized”). Treat AGENTS.md like code that rots: ~1 in 4 sampled repos had stale paths/functions in agent configs, and most AI config files are committed once then abandoned. Keep the root file short (Anthropic targets under ~200 lines); move occasional workflows into skills. Do not trust /compact to preserve safety or standing rules — research saw safety instructions collapse after repeated compaction; restart with a handoff note you wrote yourself."
+          },
+          {
+            "heading": "Determinism + cost (tips 5–8)",
+            "body": "Hooks beat polite requests for anything that must always happen (tests, secret scans, destructive-command blocks). Do not escalate to a bigger model mid-transcript — AWS SWE-bench runs recovered more by restarting the strong model on disk state than by handing over the full poisoned chat. Count subagent tokens (multi-agent can be ~7–15× a normal session). Skip the “coordinator agent that talks a lot” pattern; give each interface an owner in a file and collect results from self-contained tasks."
+          },
+          {
+            "heading": "Verify, then stop (tips 9–10 + plan-first)",
+            "body": "Decide the check command before the first line of code, and review in a fresh session so the writer is not grading itself. Commit on green — forced extra revisions after a passing patch often made small models worse. Same week (Sep 25–26), practitioners are converging on the same meta-move: iterate the plan until it is solid, then generate once. If you are on prompt #3 about the same block, write that block yourself."
+          }
+        ],
+        "bullets": [
+          "Root AGENTS.md: short, concrete, verified — prune or it burns context and adherence",
+          "Instruction files rot; drift-check paths/scripts like you would dead links in docs",
+          "/compact can drop policies; prefer /clear + a human handoff note",
+          "Must-run steps belong in hooks (tests, secret scan), not “please remember” chat",
+          "Mid-task model upgrades with full transcript underperform a clean restart",
+          "Subagents and agent teams multiply tokens — decide delegation before spawn",
+          "Writer ≠ reviewer: fresh-context review after real tests/build",
+          "Commit when green; stop revising once checks pass",
+          "Plan-first: lock the plan before code generation (same-week practitioner echo)",
+          "Educational only — not a vendor endorsement or capacity plan"
+        ],
+        "steps": [
+          "Open your crew/repo AGENTS.md files and cut anything that would not cause a real mistake if removed; move occasional workflows into skills.",
+          "Pick one must-run step (usually tests or a secret scan) and wire it as a hook or CI gate instead of a chat reminder.",
+          "On the next non-trivial task: write a one-page plan (outcome, invariants, out-of-scope, verify command), implement against it, then review the diff in a fresh session before merge."
+        ],
+        "actions": [
+          {
+            "label": "Pulumi — 10 tips to improve your coding agent game",
+            "url": "https://www.pulumi.com/blog/10-tips-to-improve-your-coding-agent-game/"
+          },
+          {
+            "label": "Steve Brownlee — Prompt-first to plan-first (Sep 26)",
+            "url": "https://www.stevebrownlee.com/llm-prompting-to-planning/"
+          },
+          {
+            "label": "Claude Code best practices (plan mode / verify)",
+            "url": "https://code.claude.com/docs/en/best-practices.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Pulumi Blog — 10 tips to improve your coding agent game (Sep 21, 2026)",
+            "url": "https://www.pulumi.com/blog/10-tips-to-improve-your-coding-agent-game/"
+          },
+          {
+            "label": "Steve Brownlee — Prompt-first Frustration to Plan-First Success (Sep 26, 2026)",
+            "url": "https://www.stevebrownlee.com/llm-prompting-to-planning/"
+          },
+          {
+            "label": "Anthropic — Best practices for Claude Code",
+            "url": "https://code.claude.com/docs/en/best-practices.md"
+          }
+        ]
+      }
+    },
+    {
       "id": "tax-20260926-no-india-totalization",
       "category": "tax",
       "title": "No US–India Social Security Totalization pact (yet)",
@@ -3013,76 +3099,6 @@
           {
             "label": "IRS · Instructions for Form 3520",
             "url": "https://www.irs.gov/instructions/i3520"
-          }
-        ]
-      }
-    },
-    {
-      "id": "book-20260915-save-more-tomorrow",
-      "category": "book",
-      "title": "Commit raises to savings first",
-      "body": "Thaler’s Save More Tomorrow: pledge a slice of future raises into retirement before the money hits your lifestyle. Present-you stays comfortable; future-you compounds.",
-      "source": "Richard Thaler · Nudge / Misbehaving (via felixgeelhaar notes)",
-      "tags": [
-        "money",
-        "behavior",
-        "automation",
-        "savings"
-      ],
-      "accent": "violet",
-      "image": "https://picsum.photos/seed/book-smart-20260915/800/520",
-      "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
-      "detail": {
-        "summary": "Present bias makes “save more starting today” feel painful. Thaler’s Save More Tomorrow (SMarT) flips that: you commit now to divert a portion of future salary increases into savings or investments, so today’s lifestyle barely changes while the savings rate ratchets up with each raise.",
-        "sections": [
-          {
-            "heading": "The behavioral bug",
-            "body": "People systematically overvalue money in hand and undervalue the future self. Asking someone to cut spending this paycheck fights present bias head-on. Asking them to earmark next year’s raise feels almost free — that is the nudge."
-          },
-          {
-            "heading": "How SMarT works",
-            "body": "On payday after a raise, automation moves a pre-agreed share of the increase into savings or retirement before the new “normal” spending level locks in. You still get a raise in take-home; the rest compounds. Classic companion rule from money notes: treat found money (bonuses, refunds) the same way — most of it should not feel spendable."
-          },
-          {
-            "heading": "Why it sticks",
-            "body": "Defaults and commitment devices beat willpower. Auto-enrollment and auto-escalation in workplace plans use the same idea at scale. Design the environment so the smart action is the path of least resistance."
-          },
-          {
-            "heading": "One action today",
-            "body": "Write a one-line rule: “Next raise, X% of the increase goes to [account] on payday.” If you already have a raise pending or a bonus calendar, set the transfer now while motivation is high."
-          }
-        ],
-        "bullets": [
-          "Present bias: future self feels like a stranger — automation bridges the gap",
-          "SMarT: commit a % of future raises before lifestyle expands",
-          "Pair with payday automation (savings + investments leave checking first)",
-          "Reasonable plan you keep beats perfect plan you abandon",
-          "Education only — not personalized financial advice"
-        ],
-        "steps": [
-          "Name the destination account (emergency fund, IRA/401k, taxable brokerage)",
-          "Pick a raise-split rule you can live with (e.g. 50% of the increase)",
-          "Schedule or note the auto-transfer for the next raise/bonus date",
-          "Optional: raise your recurring contribution by 1% this month as a dry run"
-        ],
-        "actions": [
-          {
-            "label": "Source notes (personal-finance-expert)",
-            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
-          },
-          {
-            "label": "Related: Siegel money principles notes",
-            "url": "https://github.com/mgp/book-notes/blob/master/why-dont-they-teach-me-this-in-school.markdown"
-          }
-        ],
-        "sources": [
-          {
-            "label": "felixgeelhaar/skills · personal-finance-expert (Thaler SMarT)",
-            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
-          },
-          {
-            "label": "mgp/book-notes · Why Didn't They Teach Me This in School",
-            "url": "https://github.com/mgp/book-notes/blob/master/why-dont-they-teach-me-this-in-school.markdown"
           }
         ]
       }

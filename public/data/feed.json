@@ -4,6 +4,175 @@
   "updated": "2026-09-26",
   "cards": [
     {
+      "id": "trend-20260926-coding-agent-ten-tips",
+      "category": "trend",
+      "title": "Coding agents: short AGENTS.md, hooks, fresh review",
+      "body": "Pulumi’s Sep 21 research roundup: keep root agent instructions short and concrete, put must-run checks in hooks (not chat), restart instead of compacting policies away, and never let the writer model grade its own diff. Directly useful for multi-agent crew ops.",
+      "source": "Pulumi Blog · Engin Diri · Sep 21, 2026",
+      "tags": [
+        "productivity",
+        "coding-agents",
+        "agents-md",
+        "hooks",
+        "plan-first",
+        "code-review",
+        "crew-ops",
+        "ai-devtools"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/trend-coding-agent-ten-tips-20260926/800/520",
+      "link": "https://www.pulumi.com/blog/10-tips-to-improve-your-coding-agent-game/",
+      "detail": {
+        "summary": "On Sep 21, 2026 Pulumi’s Engin Diri published a research-checked set of ten tips for any coding agent (Claude Code, Codex, Cursor, etc.). The through-line: move durable rules out of chat into files, hooks, tests, and fresh sessions — because compaction and long transcripts quietly drop the policies you thought were sticky. For a multi-agent crew this is ops hygiene, not a tool recommendation. Educational productivity note only.",
+        "sections": [
+          {
+            "heading": "Why this lands for the captain",
+            "body": "Your crew already leans on AGENTS.md locks, exclusive skills, and Firstmate handoffs. The Pulumi piece (plus the same week’s plan-first essays) says the win is not “prompt harder” — it is treating instruction files like code, forcing must-run checks outside the model’s choice, and separating plan → implement → review so one poisoned context cannot approve its own mistakes."
+          },
+          {
+            "heading": "Instruction hygiene (tips 1–4)",
+            "body": "Write instructions concrete enough to verify (“API handlers live in src/api/handlers/”), not vibe-level (“keep files organized”). Treat AGENTS.md like code that rots: ~1 in 4 sampled repos had stale paths/functions in agent configs, and most AI config files are committed once then abandoned. Keep the root file short (Anthropic targets under ~200 lines); move occasional workflows into skills. Do not trust /compact to preserve safety or standing rules — research saw safety instructions collapse after repeated compaction; restart with a handoff note you wrote yourself."
+          },
+          {
+            "heading": "Determinism + cost (tips 5–8)",
+            "body": "Hooks beat polite requests for anything that must always happen (tests, secret scans, destructive-command blocks). Do not escalate to a bigger model mid-transcript — AWS SWE-bench runs recovered more by restarting the strong model on disk state than by handing over the full poisoned chat. Count subagent tokens (multi-agent can be ~7–15× a normal session). Skip the “coordinator agent that talks a lot” pattern; give each interface an owner in a file and collect results from self-contained tasks."
+          },
+          {
+            "heading": "Verify, then stop (tips 9–10 + plan-first)",
+            "body": "Decide the check command before the first line of code, and review in a fresh session so the writer is not grading itself. Commit on green — forced extra revisions after a passing patch often made small models worse. Same week (Sep 25–26), practitioners are converging on the same meta-move: iterate the plan until it is solid, then generate once. If you are on prompt #3 about the same block, write that block yourself."
+          }
+        ],
+        "bullets": [
+          "Root AGENTS.md: short, concrete, verified — prune or it burns context and adherence",
+          "Instruction files rot; drift-check paths/scripts like you would dead links in docs",
+          "/compact can drop policies; prefer /clear + a human handoff note",
+          "Must-run steps belong in hooks (tests, secret scan), not “please remember” chat",
+          "Mid-task model upgrades with full transcript underperform a clean restart",
+          "Subagents and agent teams multiply tokens — decide delegation before spawn",
+          "Writer ≠ reviewer: fresh-context review after real tests/build",
+          "Commit when green; stop revising once checks pass",
+          "Plan-first: lock the plan before code generation (same-week practitioner echo)",
+          "Educational only — not a vendor endorsement or capacity plan"
+        ],
+        "steps": [
+          "Open your crew/repo AGENTS.md files and cut anything that would not cause a real mistake if removed; move occasional workflows into skills.",
+          "Pick one must-run step (usually tests or a secret scan) and wire it as a hook or CI gate instead of a chat reminder.",
+          "On the next non-trivial task: write a one-page plan (outcome, invariants, out-of-scope, verify command), implement against it, then review the diff in a fresh session before merge."
+        ],
+        "actions": [
+          {
+            "label": "Pulumi — 10 tips to improve your coding agent game",
+            "url": "https://www.pulumi.com/blog/10-tips-to-improve-your-coding-agent-game/"
+          },
+          {
+            "label": "Steve Brownlee — Prompt-first to plan-first (Sep 26)",
+            "url": "https://www.stevebrownlee.com/llm-prompting-to-planning/"
+          },
+          {
+            "label": "Claude Code best practices (plan mode / verify)",
+            "url": "https://code.claude.com/docs/en/best-practices.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Pulumi Blog — 10 tips to improve your coding agent game (Sep 21, 2026)",
+            "url": "https://www.pulumi.com/blog/10-tips-to-improve-your-coding-agent-game/"
+          },
+          {
+            "label": "Steve Brownlee — Prompt-first Frustration to Plan-First Success (Sep 26, 2026)",
+            "url": "https://www.stevebrownlee.com/llm-prompting-to-planning/"
+          },
+          {
+            "label": "Anthropic — Best practices for Claude Code",
+            "url": "https://code.claude.com/docs/en/best-practices.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tax-20260926-no-india-totalization",
+      "category": "tax",
+      "title": "No US–India Social Security Totalization pact (yet)",
+      "body": "Unlike ~30 countries with SSA Totalization agreements, India is still not on SSA’s in-force list. Cross-border US↔India work can mean dual Social Security/EPF-style contributions with no certificate-of-coverage escape hatch, and you generally cannot combine India credits toward US quarters of coverage. Educational only, not tax advice.",
+      "source": "SSA · International Agreements overview · Status of Totalization Agreements",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "social-security",
+        "totalization",
+        "fica",
+        "epf",
+        "cross-border",
+        "ssa"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-no-india-totalization-20260926/800/520",
+      "link": "https://www.ssa.gov/international/agreements_overview.html",
+      "detail": {
+        "summary": "The United States has bilateral Social Security “Totalization” agreements with dozens of countries. Those pacts do two jobs: (1) stop dual Social Security taxation when the same earnings would otherwise be taxed by both countries, and (2) let workers combine (“totalize”) coverage credits so a split US/foreign career can still qualify for benefits. India is not on SSA’s official list of agreements in force (as of Sep 26, 2026 — Romania entered Sep 1, 2026; India is still absent). Negotiations have been discussed for years, but until an agreement enters into force there is no SSA Certificate of Coverage path to exempt one side, and India work credits generally do not count toward US insured status. Educational only; not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin US residents and citizens who (a) work in the US while an India employer still remits EPF/social-security-style contributions, (b) are seconded US↔India on H-1B/L-1/intra-company moves, (c) are US tax residents self-employed or employed in India and still face US Social Security/self-employment tax rules, or (d) expect a career split between the two systems and assume credits will “add up” the way they do under Totalization countries. Also useful for HR/comp teams planning India assignments for US payroll employees."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Without a Totalization agreement, each country’s domestic coverage rules apply independently. US law generally covers employees for services performed in the United States regardless of citizenship or how short the stay, and it can also reach US citizens/residents working abroad for American employers (and self-employed US citizens/residents abroad). India-side EPF or other social-security contributions may still be due under Indian rules for the same period. Agreement countries use Certificates of Coverage so only one system taxes a temporary assignment; that tool does not exist for India↔US today. Separately, Totalization benefit rules that let SSA count foreign coverage toward the usual ~40 quarters for retirement insurance do not apply to India coverage."
+          },
+          {
+            "heading": "India-angle: dual cost + benefit gaps",
+            "body": "H-1B/L-1 and other temporary India→US workers often pay full US FICA while also (or previously) funding India EPF — and may leave the US before earning enough US quarters for a US retirement benefit, with no Totalization bridge. US citizens/green-card holders on India assignments can face the mirror problem: US coverage continuing while India contributions also apply. Do not assume an EPFO Certificate of Coverage helps with US SSA the way it does for India’s agreements with Germany, Japan, Canada, etc. Watch news on a future US–India pact, but plan benefits and dual-tax exposure under current law until SSA lists India as in force."
+          },
+          {
+            "heading": "What Totalization would change (if India joins)",
+            "body": "If a US–India agreement later enters into force, typical US Totalization features would likely include a territoriality rule, a temporary “detached worker” exemption (often up to five years) documented by Certificates of Coverage, and mutual credit totalization for benefit eligibility. Until then, none of those SSA tools apply to India. This card is educational only — employers and individuals should confirm payroll withholding and benefit projections with qualified advisors."
+          }
+        ],
+        "bullets": [
+          "US Totalization agreements eliminate dual Social Security tax and can totalize coverage credits",
+          "India is NOT on SSA’s in-force agreements list (checked Sep 26, 2026)",
+          "No Certificate of Coverage path to pick only US or only India coverage for the same work",
+          "India EPF / social-security credits generally do not count toward US quarters of coverage",
+          "US FICA usually applies to work performed in the US; special rules can reach US persons abroad",
+          "Romania entered force Sep 1, 2026 — India still pending years of talks",
+          "Educational only — not tax, payroll, or benefits advice"
+        ],
+        "steps": [
+          "Open SSA’s International Agreements overview and Status of Totalization Agreements pages and confirm India is still absent from the in-force list.",
+          "If you have a US↔India assignment or dual payroll, ask HR/payroll which side withholds US FICA (or SE tax) and which remits India EPF/other contributions for the same months.",
+          "Pull your Social Security Statement (ssa.gov) and count US quarters of coverage — do not assume India work years will fill gaps toward the usual 40-quarter retirement insured status."
+        ],
+        "actions": [
+          {
+            "label": "SSA — U.S. International Social Security Agreements",
+            "url": "https://www.ssa.gov/international/agreements_overview.html"
+          },
+          {
+            "label": "SSA — Status of Totalization Agreements",
+            "url": "https://www.ssa.gov/international/status.html"
+          },
+          {
+            "label": "IRS Publication 54 — Tax Guide for U.S. Citizens and Resident Aliens Abroad",
+            "url": "https://www.irs.gov/publications/p54"
+          }
+        ],
+        "sources": [
+          {
+            "label": "SSA — U.S. International Social Security Agreements (overview)",
+            "url": "https://www.ssa.gov/international/agreements_overview.html"
+          },
+          {
+            "label": "SSA — Status of Totalization Agreements (countries in force)",
+            "url": "https://www.ssa.gov/international/status.html"
+          },
+          {
+            "label": "IRS Publication 54 — Tax Guide for U.S. Citizens and Resident Aliens Abroad",
+            "url": "https://www.irs.gov/publications/p54"
+          }
+        ]
+      }
+    },
+    {
       "id": "book-20260926-savings-rate",
       "category": "book",
       "title": "Your savings rate is the speed knob",
@@ -2930,153 +3099,6 @@
           {
             "label": "IRS · Instructions for Form 3520",
             "url": "https://www.irs.gov/instructions/i3520"
-          }
-        ]
-      }
-    },
-    {
-      "id": "book-20260915-save-more-tomorrow",
-      "category": "book",
-      "title": "Commit raises to savings first",
-      "body": "Thaler’s Save More Tomorrow: pledge a slice of future raises into retirement before the money hits your lifestyle. Present-you stays comfortable; future-you compounds.",
-      "source": "Richard Thaler · Nudge / Misbehaving (via felixgeelhaar notes)",
-      "tags": [
-        "money",
-        "behavior",
-        "automation",
-        "savings"
-      ],
-      "accent": "violet",
-      "image": "https://picsum.photos/seed/book-smart-20260915/800/520",
-      "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
-      "detail": {
-        "summary": "Present bias makes “save more starting today” feel painful. Thaler’s Save More Tomorrow (SMarT) flips that: you commit now to divert a portion of future salary increases into savings or investments, so today’s lifestyle barely changes while the savings rate ratchets up with each raise.",
-        "sections": [
-          {
-            "heading": "The behavioral bug",
-            "body": "People systematically overvalue money in hand and undervalue the future self. Asking someone to cut spending this paycheck fights present bias head-on. Asking them to earmark next year’s raise feels almost free — that is the nudge."
-          },
-          {
-            "heading": "How SMarT works",
-            "body": "On payday after a raise, automation moves a pre-agreed share of the increase into savings or retirement before the new “normal” spending level locks in. You still get a raise in take-home; the rest compounds. Classic companion rule from money notes: treat found money (bonuses, refunds) the same way — most of it should not feel spendable."
-          },
-          {
-            "heading": "Why it sticks",
-            "body": "Defaults and commitment devices beat willpower. Auto-enrollment and auto-escalation in workplace plans use the same idea at scale. Design the environment so the smart action is the path of least resistance."
-          },
-          {
-            "heading": "One action today",
-            "body": "Write a one-line rule: “Next raise, X% of the increase goes to [account] on payday.” If you already have a raise pending or a bonus calendar, set the transfer now while motivation is high."
-          }
-        ],
-        "bullets": [
-          "Present bias: future self feels like a stranger — automation bridges the gap",
-          "SMarT: commit a % of future raises before lifestyle expands",
-          "Pair with payday automation (savings + investments leave checking first)",
-          "Reasonable plan you keep beats perfect plan you abandon",
-          "Education only — not personalized financial advice"
-        ],
-        "steps": [
-          "Name the destination account (emergency fund, IRA/401k, taxable brokerage)",
-          "Pick a raise-split rule you can live with (e.g. 50% of the increase)",
-          "Schedule or note the auto-transfer for the next raise/bonus date",
-          "Optional: raise your recurring contribution by 1% this month as a dry run"
-        ],
-        "actions": [
-          {
-            "label": "Source notes (personal-finance-expert)",
-            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
-          },
-          {
-            "label": "Related: Siegel money principles notes",
-            "url": "https://github.com/mgp/book-notes/blob/master/why-dont-they-teach-me-this-in-school.markdown"
-          }
-        ],
-        "sources": [
-          {
-            "label": "felixgeelhaar/skills · personal-finance-expert (Thaler SMarT)",
-            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
-          },
-          {
-            "label": "mgp/book-notes · Why Didn't They Teach Me This in School",
-            "url": "https://github.com/mgp/book-notes/blob/master/why-dont-they-teach-me-this-in-school.markdown"
-          }
-        ]
-      }
-    },
-    {
-      "id": "deal-20260914-anker-nano-13in1-dock",
-      "category": "deal",
-      "title": "Anker Nano 13-in-1 dock ~$120",
-      "body": "Desk dock + detachable travel hub: triple display (2×HDMI + DP), Ethernet, 100W PD — about $30 off list at Amazon. Solid ops upgrade; not the all-time low.",
-      "source": "TechRadar · Sep 14, 2026",
-      "tags": [
-        "hardware",
-        "dock",
-        "home-office",
-        "amazon"
-      ],
-      "accent": "coral",
-      "image": "https://picsum.photos/seed/deal-anker-nano-dock-20260914/800/520",
-      "link": "https://www.amazon.com/dp/B0FCLC1RMM",
-      "detail": {
-        "summary": "TechRadar flagged the Anker Nano 13-in-1 USB-C dock at about $119.99 (was $149.99) on Amazon today — a desk dock with a detachable 6-in-1 hub for travel. Triple-display + 100W PD is a real home-office productivity unlock. Price check at checkout: trackers have seen it near $104–$112 earlier this month.",
-        "sections": [
-          {
-            "heading": "What you get",
-            "body": "13 ports including dual HDMI + DisplayPort (triple display on Windows), 10 Gbps USB-C, USB-A, Ethernet, audio, SD/TF, and up to 100W Power Delivery over one upstream cable. The clever bit: a detachable 6-in-1 hub so you leave the heavy dock on the desk and pocket the small hub for trips."
-          },
-          {
-            "heading": "Who it helps",
-            "body": "Remote workers and creators who want multi-monitor + wired Ethernet without a cable jungle, or anyone tired of buying a separate travel hub. One cable at the desk; detach and go."
-          },
-          {
-            "heading": "Catch before you buy",
-            "body": "macOS mirrors external displays on this single-cable MST setup (Windows gets extended desktops). Charging can slow when the dock is driving multiple displays + peripherals. If you only need one monitor and a couple of USB ports, a cheaper hub is enough."
-          },
-          {
-            "heading": "Price honesty",
-            "body": "TechRadar (Sep 14, 2026) cites ~$119.99 vs $149.99 list (~20% off). They note a prior tracker low around $104.49; Macworld/Android Authority covered ~$112 earlier in September. Confirm live Amazon price — deal pages go stale fast."
-          }
-        ],
-        "bullets": [
-          "~$30 off list per TechRadar today (~$119.99 / was $149.99)",
-          "Triple display on Windows; macOS mirrors",
-          "Detachable 6-in-1 hub = desk + travel without a second purchase",
-          "100W PD covers most mid-range laptops; verify wattage for yours",
-          "ASIN B0FCLC1RMM — recheck price before buy"
-        ],
-        "steps": [
-          "Confirm your laptop has a full-featured USB-C/Thunderbolt port and your OS needs (Windows extended vs Mac mirror)",
-          "Open the Amazon listing and verify current price vs ~$120 / list $150",
-          "If you need extended multi-monitor on Mac, skip this and look for a DisplayLink or native multi-stream dock instead"
-        ],
-        "actions": [
-          {
-            "label": "Buy on Amazon (ASIN B0FCLC1RMM)",
-            "url": "https://www.amazon.com/dp/B0FCLC1RMM"
-          },
-          {
-            "label": "TechRadar deal write-up",
-            "url": "https://www.techradar.com/pro/this-clever-anker-13-in-1-docking-station-deal-upgrades-your-laptop-into-a-serious-triple-monitor-workstation"
-          },
-          {
-            "label": "Compare: earlier Macworld coverage (~$112)",
-            "url": "https://www.macworld.com/article/3228628/this-13-in-1-anker-dock-solves-all-of-your-cable-problems-and-its-25-off.html"
-          }
-        ],
-        "sources": [
-          {
-            "label": "TechRadar · Anker Nano 13-in-1 dock deal (Sep 14, 2026)",
-            "url": "https://www.techradar.com/pro/this-clever-anker-13-in-1-docking-station-deal-upgrades-your-laptop-into-a-serious-triple-monitor-workstation"
-          },
-          {
-            "label": "Amazon product page · ASIN B0FCLC1RMM",
-            "url": "https://www.amazon.com/dp/B0FCLC1RMM"
-          },
-          {
-            "label": "Macworld · earlier Sep price note",
-            "url": "https://www.macworld.com/article/3228628/this-13-in-1-anker-dock-solves-all-of-your-cable-problems-and-its-25-off.html"
           }
         ]
       }
