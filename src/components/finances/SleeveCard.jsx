@@ -23,13 +23,21 @@ import {
   sleeveHoldings,
 } from "./financesFormat.js";
 
-/** Collapsed sleeve glance (accordion trigger content). */
-export function SleeveSummary({
+/** Shared outline treatment so PAPER ONLY / Intel-asym read as badges, not plain text. */
+export const outlineBadgeClass =
+  "border border-primary text-primary uppercase tracking-wide text-[0.625rem] font-bold px-2 py-1 h-auto min-w-0 sm:h-auto sm:min-w-0 sm:text-[0.625rem]";
+
+/**
+ * Always-visible dense sleeve panel: summary + Meter + holdings Table +
+ * last action + optional filtered decisions (no accordion).
+ */
+export default function SleevePanel({
   sleeve,
   stats,
   marks = {},
   dayPnl = 0,
   dayPnlPct = 0,
+  decisions = [],
 }) {
   const la = sleeve.lastAction || {};
   const side = (la.side || "").toLowerCase();
@@ -40,7 +48,7 @@ export function SleeveSummary({
   const alloc = holdings.filter((h) => h.pct > 0);
 
   return (
-    <div className="flex w-full flex-col gap-2.5 text-foreground">
+    <div className="flex flex-col gap-3 text-foreground">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <h4 className="font-semibold text-base leading-tight">{sleeve.name}</h4>
@@ -49,7 +57,11 @@ export function SleeveSummary({
           </p>
         </div>
         {sleeve.intelAsymmetric ? (
-          <Badge variant="outline" title="Align Q2B — intel-asymmetric">
+          <Badge
+            variant="outline"
+            className={outlineBadgeClass}
+            title="Align Q2B — intel-asymmetric"
+          >
             Intel-asym
           </Badge>
         ) : null}
@@ -131,33 +143,6 @@ export function SleeveSummary({
         ))}
       </div>
 
-      <p className="text-muted-foreground text-xs font-normal">
-        <span
-          className={`font-semibold uppercase ${
-            side === "buy"
-              ? "text-success-foreground"
-              : side === "sell"
-                ? "text-destructive-foreground"
-                : ""
-          }`}
-        >
-          {String(side || "—")}
-        </span>
-        {la.symbol ? ` ${la.symbol}` : ""}
-        {la.reason ? ` · “${la.reason}”` : ""}
-      </p>
-    </div>
-  );
-}
-
-/** Expanded holdings + filtered decisions (accordion panel). */
-export function SleeveDetail({ sleeve, stats, marks = {}, decisions = [] }) {
-  const holdings = sleeveHoldings(sleeve, marks, stats);
-  const la = sleeve.lastAction || {};
-  const side = (la.side || "").toLowerCase();
-
-  return (
-    <div className="flex flex-col gap-3 text-foreground">
       <Table variant="card" aria-label={`${sleeve.name} holdings`}>
         <TableHeader>
           <TableRow>
@@ -219,25 +204,28 @@ export function SleeveDetail({ sleeve, stats, marks = {}, decisions = [] }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <p className="font-medium text-foreground text-xs">
-          Recent decisions · {sleeve.name}
-        </p>
-        <DecisionList
-          decisions={decisions}
-          dense
-          emptyLabel="No decisions for this sleeve."
-        />
-      </div>
+      {decisions.length > 0 ? (
+        <div className="flex flex-col gap-2">
+          <p className="font-medium text-foreground text-xs">
+            Recent decisions · {sleeve.name}
+          </p>
+          <DecisionList
+            decisions={decisions}
+            dense
+            emptyLabel="No decisions for this sleeve."
+          />
+        </div>
+      ) : null}
     </div>
   );
 }
 
-/** @deprecated Prefer SleeveSummary / SleeveDetail */
-export default function SleeveCard(props) {
-  return props.expanded ? (
-    <SleeveDetail {...props} />
-  ) : (
-    <SleeveSummary {...props} />
-  );
+/** @deprecated Prefer default SleevePanel */
+export function SleeveSummary(props) {
+  return <SleevePanel {...props} />;
+}
+
+/** @deprecated Prefer default SleevePanel */
+export function SleeveDetail(props) {
+  return <SleevePanel {...props} />;
 }

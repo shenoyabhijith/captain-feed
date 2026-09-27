@@ -14,15 +14,9 @@ import {
   FramePanel,
   FrameFooter,
 } from "@/components/ui/frame";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionPanel,
-} from "@/components/ui/accordion";
 import FeedDock from "./FeedDock.jsx";
 import EquityChart from "./EquityChart.jsx";
-import { SleeveSummary, SleeveDetail } from "./SleeveCard.jsx";
+import SleevePanel, { outlineBadgeClass } from "./SleeveCard.jsx";
 import DecisionList from "./DecisionList.jsx";
 import {
   dayPnlFromEquity,
@@ -72,7 +66,11 @@ export default function FinancesApp() {
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <Badge variant="outline" title="Simulated paper trading only">
+            <Badge
+              variant="outline"
+              className={outlineBadgeClass}
+              title="Simulated paper trading only"
+            >
               PAPER ONLY
             </Badge>
             <Button
@@ -178,10 +176,10 @@ export default function FinancesApp() {
               <FrameHeader>
                 <FrameTitle id="sec-sleeves">Sleeves</FrameTitle>
                 <FrameDescription>
-                  Accordion · Value open · Robinhood-class glance
+                  Dense panels · holdings + allocation always visible
                 </FrameDescription>
               </FrameHeader>
-              <Accordion defaultValue={["value"]} className="flex flex-col gap-1 px-1 pb-1">
+              <div className="flex flex-col gap-2 px-1 pb-1">
                 {sleeves.map((s) => {
                   const stats = fin.sleeveStats(s);
                   const weight =
@@ -196,30 +194,23 @@ export default function FinancesApp() {
                     .filter((d) => d.agentId === s.id)
                     .slice(0, 8);
                   return (
-                    <FramePanel key={s.id} className="p-0" data-sleeve={s.id}>
-                      <AccordionItem value={s.id} className="border-0">
-                        <AccordionTrigger className="min-h-12 items-start gap-3 px-4 py-3 hover:no-underline [&>svg]:mt-1.5">
-                          <SleeveSummary
-                            sleeve={s}
-                            stats={stats}
-                            marks={fin.marks}
-                            dayPnl={sDayPnl}
-                            dayPnlPct={sDayPct}
-                          />
-                        </AccordionTrigger>
-                        <AccordionPanel className="px-4 pb-4">
-                          <SleeveDetail
-                            sleeve={s}
-                            stats={stats}
-                            marks={fin.marks}
-                            decisions={sleeveDecisions}
-                          />
-                        </AccordionPanel>
-                      </AccordionItem>
+                    <FramePanel
+                      key={s.id}
+                      className="p-4"
+                      data-sleeve={s.id}
+                    >
+                      <SleevePanel
+                        sleeve={s}
+                        stats={stats}
+                        marks={fin.marks}
+                        dayPnl={sDayPnl}
+                        dayPnlPct={sDayPct}
+                        decisions={sleeveDecisions}
+                      />
                     </FramePanel>
                   );
                 })}
-              </Accordion>
+              </div>
             </Frame>
 
             <Frame aria-labelledby="sec-activity">

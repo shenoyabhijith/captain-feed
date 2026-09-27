@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/table";
 import FeedDock from "./FeedDock.jsx";
 import DecisionList from "./DecisionList.jsx";
+import { outlineBadgeClass } from "./SleeveCard.jsx";
 import { money } from "./financesFormat.js";
 
 export default function FinancesAdmin() {
@@ -79,7 +80,13 @@ export default function FinancesAdmin() {
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <Badge variant="outline">PAPER ONLY</Badge>
+            <Badge
+              variant="outline"
+              className={outlineBadgeClass}
+              title="Simulated paper trading only"
+            >
+              PAPER ONLY
+            </Badge>
             <Button
               variant="ghost"
               size="sm"
@@ -151,29 +158,36 @@ export default function FinancesAdmin() {
                 <FrameTitle id="admin-sleeves">Sleeves</FrameTitle>
                 <FrameDescription>Enable / disable for next Run</FrameDescription>
               </FrameHeader>
-              <FramePanel className="flex flex-col gap-3 p-4">
+              <FramePanel className="flex flex-col gap-1 p-2 sm:p-3">
                 {sleeves.map((s) => {
                   const on = s.enabled !== false;
                   return (
                     <div
                       key={s.id}
-                      className="flex min-h-12 items-center justify-between gap-3"
+                      className="flex min-h-12 items-center justify-between gap-3 rounded-lg px-2 py-1"
                     >
                       <div className="flex min-w-0 items-center gap-2">
                         <span className="font-medium text-sm">{s.name}</span>
                         {s.intelAsymmetric ? (
-                          <Badge variant="outline" size="sm">
-                            intel
+                          <Badge
+                            variant="outline"
+                            className={outlineBadgeClass}
+                            title="Align Q2B — intel-asymmetric"
+                          >
+                            Intel-asym
                           </Badge>
                         ) : null}
                       </div>
-                      <Switch
-                        checked={on}
-                        onCheckedChange={(next) =>
-                          fin.setSleeveEnabled(s.id, next)
-                        }
-                        aria-label={`${s.name} sleeve ${on ? "on" : "off"}`}
-                      />
+                      <span className="inline-flex min-h-12 min-w-12 shrink-0 items-center justify-center">
+                        <Switch
+                          checked={on}
+                          onCheckedChange={(next) =>
+                            fin.setSleeveEnabled(s.id, next)
+                          }
+                          aria-label={`${s.name} sleeve ${on ? "on" : "off"}`}
+                          className="min-h-12 min-w-[3.25rem] [--thumb-size:1.25rem] sm:[--thumb-size:1.25rem]"
+                        />
+                      </span>
                     </div>
                   );
                 })}
