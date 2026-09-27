@@ -14,6 +14,8 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: "autoUpdate",
+      // App registers via workbox-window with updateViaCache: "none"
+      injectRegister: false,
       includeAssets: [
         "favicon.ico",
         "favicon.png",
@@ -67,8 +69,33 @@ export default defineConfig({
         ]
       },
       workbox: {
-        navigateFallback: "/captain-feed/index.html",
+        // Explicit autoUpdate activation (also set by registerType, kept for clarity)
+        skipWaiting: true,
+        clientsClaim: true,
+        cleanupOutdatedCaches: true,
+        // Disable Cache-First NavigationRoute / createHandlerBoundToURL sticky shell
+        navigateFallback: null,
+        // Do not map "/captain-feed/" → precached index.html (would bypass NetworkFirst)
+        directoryIndex: null,
+        // Keep hashed JS/CSS/icons in precache; HTML shell uses NetworkFirst runtime cache
+        globIgnores: ["**/index.html"],
         runtimeCaching: [
+          {
+            // Navigations + index.html: prefer network so deploys activate without ?cb=
+            urlPattern: ({ request, url }) =>
+              request.mode === "navigate" ||
+              url.pathname === "/captain-feed/" ||
+              url.pathname === "/captain-feed/index.html",
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "html-shell",
+              networkTimeoutSeconds: 3,
+              expiration: {
+                maxEntries: 4,
+                maxAgeSeconds: 60 * 60 * 24 * 7
+              }
+            }
+          },
           {
             urlPattern: /\/captain-feed\/data\/feed\.json.*/i,
             handler: "NetworkFirst",

@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
-import { registerSW } from "virtual:pwa-register";
+import { Workbox } from "workbox-window";
 import "@fontsource/source-serif-4/400.css";
 import "@fontsource/source-serif-4/600.css";
 import "@fontsource/source-serif-4/700.css";
@@ -21,7 +21,39 @@ import App from "./App.jsx";
 import "./styles.css";
 import "./coss.css";
 
-registerSW({ immediate: true });
+const UPDATE_INTERVAL_MS = 5 * 60 * 1000;
+
+function registerPwa() {
+  if (!("serviceWorker" in navigator)) return;
+
+  const swUrl = `${import.meta.env.BASE_URL}sw.js`;
+  const wb = new Workbox(swUrl, {
+    scope: import.meta.env.BASE_URL,
+    // Bypass HTTP cache on sw.js (GH Pages max-age=600) so updates are discovered
+    updateViaCache: "none",
+  });
+
+  wb.addEventListener("activated", (event) => {
+    if (event.isUpdate || event.isExternal) {
+      window.location.reload();
+    }
+  });
+
+  wb.register({ immediate: true }).then((registration) => {
+    if (!registration) return;
+
+    const checkForUpdate = () => {
+      registration.update().catch(() => {});
+    };
+
+    setInterval(checkForUpdate, UPDATE_INTERVAL_MS);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") checkForUpdate();
+    });
+  });
+}
+
+registerPwa();
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
