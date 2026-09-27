@@ -1,20 +1,46 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { TriangleAlert } from "lucide-react";
 import { loadTheme } from "../../storage";
 import { useFinances } from "../../finances/useFinances.js";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Field, FieldLabel, FieldDescription } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import {
+  Frame,
+  FrameHeader,
+  FrameTitle,
+  FrameDescription,
+  FramePanel,
+} from "@/components/ui/frame";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 import FeedDock from "./FeedDock.jsx";
 import DecisionList from "./DecisionList.jsx";
+import { money } from "./financesFormat.js";
 
 export default function FinancesAdmin() {
   const fin = useFinances();
   const [theme] = useState(loadTheme);
+  const isDark = theme === "dark";
   const [resetText, setResetText] = useState("");
   const [runMsg, setRunMsg] = useState("");
 
   function handleRun() {
     const next = fin.run("admin");
     if (next) {
-      setRunMsg(`Run ${next.ops?.lastRunId || "ok"} — paper preview (not committed).`);
+      setRunMsg(
+        `Run ${next.ops?.lastRunId || "ok"} — paper preview (not committed).`
+      );
     }
   }
 
@@ -30,174 +56,269 @@ export default function FinancesAdmin() {
   const promoteAny = sleeves.some((s) => s.promoteReady);
 
   return (
-    <>
-      <header className="finances-header">
-        <div className="finances-brand">
-          <div className="brand-lockup">
+    <div
+      className={`finances-root min-h-dvh pb-[calc(72px+env(safe-area-inset-bottom,0px))] ${
+        isDark ? "dark" : ""
+      }`}
+    >
+      <header className="sticky top-0 z-40 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
+        <div className="mx-auto flex max-w-lg items-center justify-between gap-3">
+          <div className="flex min-w-0 items-center gap-2.5">
             <img
-              className="brand-mark"
-              src={`${import.meta.env.BASE_URL}icons/${theme === "dark" ? "mark-28-dark.png" : "mark-28-light.png"}`}
+              className="size-7 rounded-md"
+              src={`${import.meta.env.BASE_URL}icons/${isDark ? "mark-28-dark.png" : "mark-28-light.png"}`}
               width={28}
               height={28}
               alt=""
             />
-            <div className="brand-text">
-              <h1>Captain Feed</h1>
-              <p className="sub">Ops · Firstmate</p>
+            <div className="min-w-0">
+              <h1 className="font-heading font-semibold text-base leading-tight">
+                Admin
+              </h1>
+              <p className="text-muted-foreground text-xs">Ops · Firstmate</p>
             </div>
           </div>
-          <span className="finances-paper-badge">Paper only</span>
+          <div className="flex shrink-0 items-center gap-2">
+            <Badge variant="outline">PAPER ONLY</Badge>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="min-h-12 px-3"
+              render={<Link to="/finances" />}
+            >
+              Glance
+            </Button>
+          </div>
         </div>
       </header>
 
-      {fin.isPreview ? (
-        <div className="finances-preview-banner" role="status">
-          PAPER preview — not committed ledger. Use Download for Firstmate commit.
+      <main className="mx-auto flex max-w-lg flex-col gap-4 px-4 py-4">
+        {fin.isPreview ? (
+          <Alert variant="warning" role="status">
+            <TriangleAlert aria-hidden="true" />
+            <AlertTitle>PAPER preview</AlertTitle>
+            <AlertDescription>
+              Not committed ledger. Use Download for Firstmate commit.
+            </AlertDescription>
+          </Alert>
+        ) : null}
+
+        <Alert variant="warning">
+          <TriangleAlert aria-hidden="true" />
+          <AlertTitle>Firstmate issued paper capital · real EOD marks.</AlertTitle>
+          <AlertDescription>
+            Ledger: <code>docs/data/finances-ledger.json</code> on Pages
+            (file-backed). Traders cannot edit balances in UI.
+          </AlertDescription>
+        </Alert>
+
+        <div className="flex flex-wrap gap-2">
+          <Button
+            className="min-h-12"
+            onClick={handleRun}
+            disabled={fin.status !== "ready"}
+          >
+            Run today
+          </Button>
+          <Button
+            variant="outline"
+            className="min-h-12"
+            onClick={fin.downloadLedger}
+            disabled={!fin.ledger}
+          >
+            Download ledger
+          </Button>
         </div>
-      ) : null}
+        <p className="text-muted-foreground text-xs">
+          EOD · manual first · sim through engine only
+        </p>
+        {runMsg ? (
+          <p className="text-sm text-foreground" role="status">
+            {runMsg}
+          </p>
+        ) : null}
 
-      <div className="finances-ops-bar">
-        <button type="button" className="btn primary" onClick={handleRun} disabled={fin.status !== "ready"}>
-          Run today
-        </button>
-        <button type="button" className="btn" onClick={fin.downloadLedger} disabled={!fin.ledger}>
-          Download ledger
-        </button>
-        <Link className="btn" to="/finances">
-          Glance
-        </Link>
-      </div>
-      <p className="type-caption finances-ops-hint">EOD · manual first · sim through engine only</p>
-      {runMsg ? <p className="finances-run-msg" role="status">{runMsg}</p> : null}
+        {fin.status === "loading" ? (
+          <p className="text-muted-foreground text-sm">Loading…</p>
+        ) : fin.status === "error" ? (
+          <Alert variant="error" role="alert">
+            <AlertTitle>Could not load finances-ledger.json.</AlertTitle>
+          </Alert>
+        ) : (
+          <>
+            <Frame aria-labelledby="admin-sleeves">
+              <FrameHeader>
+                <FrameTitle id="admin-sleeves">Sleeves</FrameTitle>
+                <FrameDescription>Enable / disable for next Run</FrameDescription>
+              </FrameHeader>
+              <FramePanel className="flex flex-col gap-3 p-4">
+                {sleeves.map((s) => {
+                  const on = s.enabled !== false;
+                  return (
+                    <div
+                      key={s.id}
+                      className="flex min-h-12 items-center justify-between gap-3"
+                    >
+                      <div className="flex min-w-0 items-center gap-2">
+                        <span className="font-medium text-sm">{s.name}</span>
+                        {s.intelAsymmetric ? (
+                          <Badge variant="outline" size="sm">
+                            intel
+                          </Badge>
+                        ) : null}
+                      </div>
+                      <Switch
+                        checked={on}
+                        onCheckedChange={(next) =>
+                          fin.setSleeveEnabled(s.id, next)
+                        }
+                        aria-label={`${s.name} sleeve ${on ? "on" : "off"}`}
+                      />
+                    </div>
+                  );
+                })}
+              </FramePanel>
+            </Frame>
 
-      <p className="finances-ledger-note">
-        Ledger: <code>docs/data/finances-ledger.json</code> on Pages (file-backed). Traders cannot edit balances in UI.
-      </p>
-      <p className="finances-ledger-note">
-        Firstmate issued paper capital · real EOD marks.
-      </p>
-
-      {fin.status === "loading" ? (
-        <div className="empty">Loading…</div>
-      ) : fin.status === "error" ? (
-        <div className="empty" role="alert">
-          Could not load finances-ledger.json.
-        </div>
-      ) : (
-        <>
-          <h2 className="finances-section-h">Sleeves</h2>
-          <div className="finances-sleeve-toggles" role="group" aria-label="Sleeve toggles">
-            {sleeves.map((s) => {
-              const on = s.enabled !== false;
-              return (
-                <div key={s.id} className="finances-sleeve-row">
-                  <span>
-                    {s.name}
-                    {s.intelAsymmetric ? (
-                      <span className="finances-intel finances-intel--inline">intel</span>
-                    ) : null}
-                  </span>
-                  <button
-                    type="button"
-                    className={`finances-toggle${on ? " is-on" : ""}`}
-                    aria-pressed={on}
-                    aria-label={`${s.name} sleeve ${on ? "on" : "off"}`}
-                    onClick={() => fin.setSleeveEnabled(s.id, !on)}
+            <Frame aria-labelledby="admin-fm">
+              <FrameHeader>
+                <FrameTitle id="admin-fm">Firstmate · ops</FrameTitle>
+                <FrameDescription>
+                  Not a sixth P&amp;L sleeve — Run / rank / promote-ready
+                </FrameDescription>
+              </FrameHeader>
+              <FramePanel className="flex flex-col gap-3 p-4">
+                <div
+                  className="flex flex-wrap gap-2"
+                  aria-label="Firstmate flags"
+                >
+                  <Badge variant={ops.lastRunId ? "success" : "outline"}>
+                    run {ops.lastRunId ? "✓" : "—"}
+                  </Badge>
+                  <Badge
+                    variant={(ops.rankOrder || []).length ? "success" : "outline"}
                   >
-                    <i aria-hidden="true" />
-                  </button>
+                    rank {(ops.rankOrder || []).length ? "✓" : "—"}
+                  </Badge>
+                  <Badge variant={promoteAny ? "warning" : "outline"}>
+                    promote-ready{promoteAny ? "" : " off"}
+                  </Badge>
                 </div>
-              );
-            })}
-          </div>
+                {ops.lastRunId ? (
+                  <p className="font-mono text-xs text-muted-foreground">
+                    lastRunId · {ops.lastRunId}
+                  </p>
+                ) : null}
+                {ops.notes ? (
+                  <p className="text-muted-foreground text-xs">{ops.notes}</p>
+                ) : null}
+              </FramePanel>
+            </Frame>
 
-          <h2 className="finances-section-h">Firstmate · ops (not a P&amp;L sleeve)</h2>
-          <div className="finances-firstmate">
-            <h3 className="type-headline-s">Ops row</h3>
-            <div className="finances-fm-flags" aria-label="Firstmate flags">
-              <span className="finances-flag is-ready">
-                run {ops.lastRunId ? "✓" : "—"}
-              </span>
-              <span className="finances-flag is-ready">
-                rank {(ops.rankOrder || []).length ? "✓" : "—"}
-              </span>
-              <span className={`finances-flag${promoteAny ? " is-warn" : ""}`}>
-                promote-ready{promoteAny ? "" : " off"}
-              </span>
-            </div>
-            {ops.lastRunId ? (
-              <p className="type-caption">lastRunId · {ops.lastRunId}</p>
-            ) : null}
-            {ops.notes ? <p className="type-caption">{ops.notes}</p> : null}
-          </div>
+            <Frame aria-labelledby="admin-pos">
+              <FrameHeader>
+                <FrameTitle id="admin-pos">Positions</FrameTitle>
+                <FrameDescription>Open lots across sleeves</FrameDescription>
+              </FrameHeader>
+              <FramePanel className="p-4">
+                <Table variant="card" aria-label="Open positions">
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Symbol</TableHead>
+                      <TableHead className="text-right">Qty</TableHead>
+                      <TableHead>Sleeve</TableHead>
+                      <TableHead className="text-right">MTM</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {fin.allPositions.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={4}>No open positions</TableCell>
+                      </TableRow>
+                    ) : (
+                      fin.allPositions.map((r) => (
+                        <TableRow key={`${r.sleeveId}-${r.symbol}`}>
+                          <TableCell className="font-semibold tabular-nums">
+                            {r.symbol}
+                          </TableCell>
+                          <TableCell className="text-right tabular-nums">
+                            {Number(r.qty).toFixed(4)}
+                          </TableCell>
+                          <TableCell>{r.sleeveName}</TableCell>
+                          <TableCell className="text-right tabular-nums">
+                            {money(r.mtm)}
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    )}
+                  </TableBody>
+                </Table>
+              </FramePanel>
+            </Frame>
 
-          <h2 className="finances-section-h">Positions</h2>
-          <div className="finances-pos-wrap">
-            <table className="finances-pos-table" aria-label="Open positions">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>Qty</th>
-                  <th>Sleeve</th>
-                  <th>MTM</th>
-                </tr>
-              </thead>
-              <tbody>
-                {fin.allPositions.length === 0 ? (
-                  <tr>
-                    <td colSpan={4}>No open positions</td>
-                  </tr>
-                ) : (
-                  fin.allPositions.map((r) => (
-                    <tr key={`${r.sleeveId}-${r.symbol}`}>
-                      <td>{r.symbol}</td>
-                      <td>{Number(r.qty).toFixed(4)}</td>
-                      <td>{r.sleeveName}</td>
-                      <td>${r.mtm.toFixed(2)}</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+            <Frame aria-labelledby="admin-log">
+              <FrameHeader>
+                <FrameTitle id="admin-log">Decision log</FrameTitle>
+                <FrameDescription>Dense ops view</FrameDescription>
+              </FrameHeader>
+              <FramePanel className="p-4">
+                <DecisionList
+                  decisions={(fin.ledger?.decisions || []).slice(0, 24)}
+                  dense
+                />
+              </FramePanel>
+            </Frame>
 
-          <h2 className="finances-section-h">Decision log</h2>
-          <DecisionList
-            decisions={(fin.ledger?.decisions || []).slice(0, 24)}
-            dense
-          />
-
-          <div className="finances-reset" aria-label="Reset all with typed confirm">
-            <p>
-              <strong>Reset all</strong> — ops only. Clears session preview overlay and reloads the
-              checked-in ledger. Type <code>RESET</code> to enable.
-            </p>
-            <label className="visually-hidden" htmlFor="finances-reset-input">
-              Type RESET to confirm
-            </label>
-            <input
-              id="finances-reset-input"
-              type="text"
-              placeholder="Type RESET"
-              autoComplete="off"
-              spellCheck={false}
-              value={resetText}
-              onChange={(e) => setResetText(e.target.value)}
-            />
-            <button
-              type="button"
-              className="btn finances-btn-danger"
-              disabled={resetText !== "RESET"}
-              aria-disabled={resetText !== "RESET"}
-              onClick={handleReset}
-            >
-              Reset all sleeves
-            </button>
-          </div>
-        </>
-      )}
+            <Frame aria-labelledby="admin-reset">
+              <FrameHeader>
+                <FrameTitle id="admin-reset">Reset all</FrameTitle>
+                <FrameDescription>
+                  Ops only · typed confirm · clears session preview overlay
+                </FrameDescription>
+              </FrameHeader>
+              <FramePanel className="flex flex-col gap-3 p-4">
+                <Alert variant="warning">
+                  <TriangleAlert aria-hidden="true" />
+                  <AlertTitle>Destructive for session overlay</AlertTitle>
+                  <AlertDescription>
+                    Reloads the checked-in ledger. Type <code>RESET</code> to
+                    enable.
+                  </AlertDescription>
+                </Alert>
+                <Field>
+                  <FieldLabel htmlFor="finances-reset-input">
+                    Confirm reset
+                  </FieldLabel>
+                  <Input
+                    id="finances-reset-input"
+                    type="text"
+                    placeholder="Type RESET"
+                    autoComplete="off"
+                    spellCheck={false}
+                    value={resetText}
+                    onChange={(e) => setResetText(e.target.value)}
+                    className="min-h-12"
+                  />
+                  <FieldDescription>
+                    Exact match required · traders cannot edit balances
+                  </FieldDescription>
+                </Field>
+                <Button
+                  variant="destructive"
+                  className="min-h-12"
+                  disabled={resetText !== "RESET"}
+                  aria-disabled={resetText !== "RESET"}
+                  onClick={handleReset}
+                >
+                  Reset all sleeves
+                </Button>
+              </FramePanel>
+            </Frame>
+          </>
+        )}
+      </main>
 
       <FeedDock />
-    </>
+    </div>
   );
 }

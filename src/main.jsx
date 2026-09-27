@@ -19,6 +19,7 @@ syncStandaloneDomFlag(document.documentElement, isInstallChromeSuppressed());
 
 import App from "./App.jsx";
 import "./styles.css";
+import "./coss.css";
 
 registerSW({ immediate: true });
 
