@@ -1,8 +1,63 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-27T13:17:54Z",
+  "updated": "2026-09-27T13:20:00Z",
   "cards": [
+    {
+      "id": "book-20260927-never-miss-twice",
+      "category": "book",
+      "title": "Never miss twice",
+      "body": "Missing a habit once is an accident. Missing it twice is the start of a new (worse) habit. Get back on the chain tomorrow.",
+      "source": "James Clear · Atomic Habits (via lijubjohn notes)",
+      "tags": [
+        "atomic-habits",
+        "habit-tracking",
+        "consistency",
+        "productivity"
+      ],
+      "accent": "indigo",
+      "image": "https://picsum.photos/seed/book-never-miss-twice-20260927/800/520",
+      "link": "https://github.com/lijubjohn/book-notes/blob/main/atomic-habits.md",
+      "detail": {
+        "summary": "James Clear's recovery rule: one miss is noise; two misses in a row start rewriting your identity. Protect the streak by returning immediately, not by waiting for a perfect Monday.",
+        "sections": [
+          {
+            "heading": "The rule",
+            "body": "Missing once is an accident. Missing twice is the start of a new habit. The damage is rarely the single skipped day — it is the story that 'I already blew it' so you stop casting votes for the person you want to become."
+          },
+          {
+            "heading": "Why streaks matter",
+            "body": "Habit tracking makes progress visible, which is both a cue and a reward. Seeing the chain motivates you to keep it unbroken, and recording each win is an immediate, intrinsic payoff."
+          },
+          {
+            "heading": "Try today",
+            "body": "If you skipped yesterday's key habit, do the smallest version today (two minutes counts). If you are on streak, decide in advance what the 'bad day' version looks like so one rough morning cannot become two."
+          }
+        ],
+        "bullets": [
+          "One miss = accident; two misses = a new pattern",
+          "Track the habit so the chain is visible",
+          "Return immediately with a tiny version — don't wait for motivation"
+        ],
+        "steps": [
+          "Name one habit you care about keeping alive this week",
+          "Define the 2-minute 'bad day' version in advance",
+          "If you miss once, schedule the tiny version for the next available slot today or tomorrow morning"
+        ],
+        "actions": [
+          {
+            "label": "lijubjohn Atomic Habits notes",
+            "url": "https://github.com/lijubjohn/book-notes/blob/main/atomic-habits.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "lijubjohn/book-notes atomic-habits.md",
+            "url": "https://github.com/lijubjohn/book-notes/blob/main/atomic-habits.md"
+          }
+        ]
+      }
+    },
     {
       "id": "tax-20260927-nra-spouse-election-6013g",
       "category": "tax",
@@ -3022,89 +3077,6 @@
           {
             "label": "AgentCore — Temporal policies (Dogwood)",
             "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-temporal.html"
-          }
-        ]
-      }
-    },
-    {
-      "id": "trend-20260915-10y-yield-five-pct",
-      "category": "trend",
-      "title": "10-year yield at ~5%: why it matters",
-      "body": "The US 10-year Treasury yield hit ~5% — a level barely seen since 2023 and otherwise not common since 2007. It is the market’s long-rate benchmark for mortgages, loans, and discounting cash flows. Educational only — not a trade signal.",
-      "source": "Reuters · CNN Business · Nikkei Asia (Sep 14–15, 2026)",
-      "tags": [
-        "investing",
-        "rates",
-        "treasury",
-        "fed",
-        "macro"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/trend-10y-yield-20260915/800/520",
-      "link": "https://www.reuters.com/world/africa/dollar-near-two-week-high-oil-surge-lifts-yields-fed-hike-bets-2026-09-15/",
-      "detail": {
-        "summary": "On Sep 14–15, 2026 the US 10-year Treasury yield traded around and above 5% — briefly the highest print in years as oil-driven inflation fears and heavy debt supply collided with a Fed meeting priced for a hike. This card is macro literacy only: no buy/sell, no price targets.",
-        "sections": [
-          {
-            "heading": "What just happened",
-            "body": "Benchmark 10-year yields climbed to the ~5% psychological line (prints around 5.00–5.02% depending on the session), a zone last touched briefly in Oct 2023 and otherwise associated with the mid-2000s. Reuters reported the yield near 5.00% on Tuesday with oil still elevated and CME FedWatch pricing a Wednesday rate hike as a near certainty (~90%+)."
-          },
-          {
-            "heading": "Why the 10-year is the dial people watch",
-            "body": "The 10-year is not the Fed funds rate. It is the market’s long-term risk-free-ish benchmark that feeds into mortgage quotes, many corporate borrowing costs, and the discount rates used to value distant cash flows (including growth/tech multiples). When it jumps, financing gets pricier and long-duration assets often feel more pressure — even if overnight rates have not moved yet."
-          },
-          {
-            "heading": "What is driving the move (this week)",
-            "body": "Public reporting points to a stack: sticky inflation after hotter August CPI, energy prices near multi-month highs on Middle East supply risk, large government/corporate issuance absorbing demand, and a Fed decision this week that futures already treat as a hike. Separately, risk assets (including AI-linked names) were already soft into the meeting — correlation ≠ causation; treat headlines as context, not a signal list."
-          },
-          {
-            "heading": "Captain-useful framing (not advice)",
-            "body": "If you track money/ops: re-check any floating-rate or refinance assumptions, and remember portfolio math changes when the risk-free yardstick moves. If you track AWS/AI spend: higher long rates raise the bar on multi-year ROI stories — same product thesis, tougher discount rate. Educational only — not tax, investment, or trade advice."
-          }
-        ],
-        "bullets": [
-          "10-year ≈ long-rate benchmark for mortgages, loans, and discounting — distinct from Fed funds",
-          "~5% prints Sep 14–15, 2026: rare since 2023 / uncommon since 2007",
-          "Drivers cited publicly: inflation + oil + issuance + Fed hike odds ~90%+",
-          "Higher long yields → pricier financing and tougher math on long-duration cash flows",
-          "Educational only — not a buy/sell list or trade signal"
-        ],
-        "steps": [
-          "Skim one primary wire (Reuters/CNN) for the yield print and Fed calendar — ignore ticker FOMO lists",
-          "Note the Fed decision window this week; treat FedWatch probabilities as market pricing, not prophecy",
-          "If you have a mortgage/refi or floating credit line in play, re-check the quote assumptions against the 10-year context",
-          "For any long-horizon project ROI, ask: “Does this still clear if the discount rate is sticky near 5%?”"
-        ],
-        "actions": [
-          {
-            "label": "Reuters: dollar, yields, Fed hike odds",
-            "url": "https://www.reuters.com/world/africa/dollar-near-two-week-high-oil-surge-lifts-yields-fed-hike-bets-2026-09-15/"
-          },
-          {
-            "label": "CNN Business: why 5% matters",
-            "url": "https://www.cnn.com/2026/09/14/investing/bond-yields-market-turmoil"
-          },
-          {
-            "label": "Nikkei Asia: yield + Fed week",
-            "url": "https://asia.nikkei.com/business/markets/10-year-treasury-yield-touches-5-as-all-eyes-on-fed"
-          }
-        ],
-        "sources": [
-          {
-            "label": "Reuters · Dollar / 10-year / FedWatch (Sep 15, 2026)",
-            "url": "https://www.reuters.com/world/africa/dollar-near-two-week-high-oil-surge-lifts-yields-fed-hike-bets-2026-09-15/"
-          },
-          {
-            "label": "CNN Business · 10-year at 5% (Sep 14, 2026)",
-            "url": "https://www.cnn.com/2026/09/14/investing/bond-yields-market-turmoil"
-          },
-          {
-            "label": "Nikkei Asia · Yield touches 5% ahead of Fed (Sep 15, 2026)",
-            "url": "https://asia.nikkei.com/business/markets/10-year-treasury-yield-touches-5-as-all-eyes-on-fed"
-          },
-          {
-            "label": "UPI · 10-year briefly at 5% (Sep 14, 2026)",
-            "url": "https://www.upi.com/Top_News/US/2026/09/14/10-year-treasury-yields-5-percent-federal-reserve/4151789410074/"
           }
         ]
       }
