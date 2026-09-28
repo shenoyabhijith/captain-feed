@@ -1,8 +1,97 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-28T17:42:54Z",
+  "updated": "2026-09-28T21:15:54Z",
   "cards": [
+    {
+      "id": "deal-20260928-eero-pro-7",
+      "category": "deal",
+      "title": "eero Pro 7 mesh node — $224.99 Amazon",
+      "body": "Early-fall Prime all-time low: Amazon eero Pro 7 (Wi-Fi 7) 1-pack at $224.99 (list $299.99, ~$75 / 25% off). Live cart shows Limited time deal badge; ~2,000 sq ft, dual 5 GbE — home/ops mesh upgrade. Cite 9to5Toys Sep 28.",
+      "source": "Amazon live · $224.99 · Sep 28, 2026 · 9to5Toys",
+      "tags": [
+        "home-ops",
+        "wifi",
+        "mesh",
+        "eero",
+        "wifi-7",
+        "networking",
+        "amazon",
+        "prime-day",
+        "router"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/deal-eero-pro-7-20260928/800/520",
+      "link": "https://www.amazon.com/dp/B0C6RBS846",
+      "detail": {
+        "summary": "Amazon is showing a Limited time deal on the eero Pro 7 mesh Wi-Fi 7 router 1-pack (ASIN B0C6RBS846) at $224.99 as of Mon Sep 28, 2026 afternoon CT — matching the new all-time-low call from 9to5Toys earlier today ($75 off list $299.99 / ~25% off, ~$10 under the prior tracked low). Early fall Prime / Big Deal Days window (official sale Oct 6–7) is already discounting Amazon’s own mesh gear. Pro 7 is the step-up Wi-Fi 7 node for busy home or small-office networks: up to ~2,000 sq ft per unit, dual auto-sensing 5 GbE ports, support for internet plans up to ~5 Gbps, wireless up to ~3.9 Gbps class, and 200+ device capacity. Strong ops buy if you are killing dead zones or upgrading off aging Wi-Fi 5/6; skip if you already run Max 7 or a solid Pro 7 mesh.",
+        "sections": [
+          {
+            "heading": "What you get",
+            "body": "Amazon eero Pro 7 (1-pack, B0C6RBS846): tri-band Wi-Fi 7 mesh router/node with dual 5 GbE ports, TrueMesh-style eero app management, backward compatibility with prior eero generations and eero Built-in on select Echo devices. One node covers about 2,000 sq ft (roughly a 25 ft radius); add 2-/3-/4-packs if the house needs blanket coverage. Features called out by Amazon/eero: multi-link operation (MLO), high-bandwidth home/SMB networking, and easy expand-as-you-go."
+          },
+          {
+            "heading": "Why it fits home/ops",
+            "body": "Stable mesh beats another consumer ISP rental router when you need reliable video calls, large uploads, and many IoT/work devices without babysitting Wi-Fi. At an all-time low on the Pro 7 single node, this is a clearer early-Prime networking buy than another Echo speaker markdown. Pair with your existing modem; use multi-packs only if one node will not cover the floorplan."
+          },
+          {
+            "heading": "Price honesty",
+            "body": "Live Amazon product page (Mon Sep 28, 2026 ~4:15 PM CT) returned $224.99 with a Limited time deal badge and −25% vs list $299.99 (in stock; Prime Big Deal Days early-deals banner). 9to5Toys (Sep 28 ~3:57 am PT) listed the same $224.99 as a new all-time low. Multi-node Pro 7 / Max 7 / Outdoor 7 packs are also on sale in that roundup. Prices move — if the badge disappears or cart shows ~$300, walk away. Official Prime Big Deal Days are Oct 6–7; this early cut may bounce or deepen then."
+          },
+          {
+            "heading": "Skip if",
+            "body": "You already own eero Pro 7 / Max 7 coverage that is fine, you need wired-only enterprise gear, or a single cheap extender would fix one dead corner. Also skip if the cart shows full $300 with no early-Prime badge."
+          }
+        ],
+        "bullets": [
+          "$224.99 Amazon Limited time deal vs $299.99 list (~$75 / 25% off) — ASIN B0C6RBS846",
+          "Live page Sep 28 CT showed Limited time deal badge at $224.99 — re-check cart",
+          "Wi-Fi 7 Pro node: ~2,000 sq ft, dual 5 GbE, plans up to ~5 Gbps, 200+ devices",
+          "Best fit: home/small-office mesh upgrade; expand with 2-/3-/4-packs if needed",
+          "Also on sale same day: Max 7 / Outdoor 7 packs — compare coverage vs budget",
+          "Re-check cart price before checkout — early-Prime tags expire; Big Deal Days Oct 6–7"
+        ],
+        "steps": [
+          "Open https://www.amazon.com/dp/B0C6RBS846 and confirm ~$224.99 (not plain $300)",
+          "Confirm your modem has a free WAN/LAN port and note your ISP plan speed (Pro 7 shines on multi-gig plans)",
+          "Decide 1-pack vs multi-pack from floorplan (~2,000 sq ft per Pro 7 node)",
+          "Add to cart and re-read the final price before ordering — early-Prime badges move",
+          "Optional: compare Max 7 / Outdoor 7 packs in the same 9to5Toys roundup if you need more throughput or yard coverage"
+        ],
+        "actions": [
+          {
+            "label": "Buy — eero Pro 7 1-pack (Amazon B0C6RBS846)",
+            "url": "https://www.amazon.com/dp/B0C6RBS846"
+          },
+          {
+            "label": "Compare — eero Pro 7 multi-packs / Max 7",
+            "url": "https://www.amazon.com/s?k=eero+Pro+7"
+          },
+          {
+            "label": "Cite — 9to5Toys eero Wi-Fi 7 early Prime (Sep 28, 2026)",
+            "url": "https://9to5toys.com/2026/09/28/early-fall-prime-day-deals-now-live-on-amazon-eero-wi-fi-7-mesh-routers/"
+          },
+          {
+            "label": "Context — Amazon early fall Prime Echo/Ring update (Sep 28)",
+            "url": "https://9to5toys.com/2026/09/28/amazon-update-fall-prime-day-sale-echo/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "9to5Toys — Early fall Prime Day deals on eero Wi-Fi 7 mesh (Pro/Max/Outdoor from $225 all-time low), Sep 28, 2026",
+            "url": "https://9to5toys.com/2026/09/28/early-fall-prime-day-deals-now-live-on-amazon-eero-wi-fi-7-mesh-routers/"
+          },
+          {
+            "label": "Amazon product page — eero Pro 7 1-pack (ASIN B0C6RBS846), live $224.99 Limited time deal checked Sep 28, 2026 CT",
+            "url": "https://www.amazon.com/dp/B0C6RBS846"
+          },
+          {
+            "label": "9to5Toys — Amazon updates early fall Prime Day sale (Echo/Ring/eero context), Sep 28, 2026",
+            "url": "https://9to5toys.com/2026/09/28/amazon-update-fall-prime-day-sale-echo/"
+          }
+        ]
+      }
+    },
     {
       "id": "aws-20260928-prompt-caching-cachepoint",
       "category": "aws",
@@ -3036,85 +3125,6 @@
           {
             "label": "lijubjohn/book-notes · atomic-habits.md",
             "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
-          }
-        ]
-      }
-    },
-    {
-      "id": "aws-20260916-agentcore-ci-eval-gate",
-      "category": "aws",
-      "title": "Fail the PR when the agent regresses",
-      "body": "Wire AgentCore Evaluations into GitHub Actions: deploy to a ephemeral runtime, invoke with eval prompts, score GoalSuccessRate / Correctness / tool accuracy, and block merge under your threshold. CI quality for agents — not vibes.",
-      "source": "AWS ML Blog · Sep 8, 2026",
-      "tags": [
-        "bedrock",
-        "agentcore",
-        "evaluation",
-        "cicd",
-        "mcp",
-        "github-actions"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/aws-agentcore-ci-eval-gate-20260916/800/520",
-      "link": "https://aws.amazon.com/blogs/machine-learning/automated-agent-evaluation-with-amazon-bedrock-agentcore-and-github-actions/",
-      "detail": {
-        "summary": "Prompt edits and tool changes silently degrade agents. Put an on-demand AgentCore Evaluate quality gate in GitHub Actions: CDK-deploy a Strands agent + OAuth MCP stack, invoke with representative prompts, score OpenTelemetry traces, fail the PR if scores drop below your bar (example threshold 0.8).",
-        "sections": [
-          {
-            "heading": "Where Evaluations sit in AgentCore",
-            "body": "AgentCore Evaluations is the quality layer next to Runtime (host) and Observability (OTEL traces). Three modes: on-demand (CI — you pass sessionSpans), online (sampled live traffic), and batch (async aggregate over CloudWatch). For PR gates, use on-demand via the Evaluate API or the starter toolkit Evaluation helper that pulls CloudWatch traces for you."
-          },
-          {
-            "heading": "The OAuth / MCP problem in headless CI",
-            "body": "Production MCP tools often need user JWTs with role claims. CI has no interactive login. Three patterns: (A) evaluate stored staging traces (fastest, no live invoke); (B) service-account refresh token in Secrets Manager (tests roles); (C) dual-grant Cognito — M2M client_credentials for CI (scopes, no roles → full tool access) plus authorization_code for users. The blog’s reference stack uses Approach C with a three-layer auth: platform JWT validation, Authorization header passthrough, FastMCP middleware that enforces custom:roles only on user tokens."
-          },
-          {
-            "heading": "Minimum CI evaluators that catch real breaks",
-            "body": "Start with GoalSuccessRate, Correctness, ToolSelectionAccuracy, and ToolParameterAccuracy. Trajectory matchers need expectedTrajectory ground truth and are free of judge-model cost — good for deterministic tool-order checks. Code-based Lambda evaluators cover regex/schema without LLM spend. Expect judge variance: set the gate a bit under your target reliability. Cost reminder: N evaluators × M prompts = that many judge calls per PR."
-          },
-          {
-            "heading": "Blog angle for Solutions Architects",
-            "body": "Frame as ‘agent CI like any other service’: OIDC to assume IAM, CDK deploy/destroy every PR, HTTPS Bearer invoke (not boto3 invoke for JWT runtimes), wait for READY + 30–90s trace lag before score. Contrast manual prompt review with a failing gate when the system prompt becomes ‘I cannot help you.’ Pair with online eval for production drift and with Guardrails/Gateway limits for safety and cost — this card is the merge gate."
-          }
-        ],
-        "bullets": [
-          "On-demand Evaluate scores one session’s OTEL spans; mixing sessions → ValidationException",
-          "M2M tokens bypass role checks by design — use a service account if CI must prove RBAC",
-          "ARM64 AgentCore images: Buildx/QEMU on x86 GitHub runners",
-          "Starter toolkit Evaluation class: collect CloudWatch traces + score without hand-rolling sessionSpans"
-        ],
-        "steps": [
-          "Pick Approach A (stored traces) to stand up a gate in an afternoon, then graduate to live M2M invoke",
-          "Wire GitHub OIDC → IAM role; CDK-deploy agent + MCP + Cognito in a disposable stack",
-          "Gate on 4–5 evaluators with EVAL_THRESHOLD margin; destroy the stack with if: always()",
-          "Deliberately break the system prompt once so the captain/team sees a red PR — then restore and ship the SA blog demo"
-        ],
-        "actions": [
-          {
-            "label": "Read the AWS how-to (Sep 8, 2026)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/automated-agent-evaluation-with-amazon-bedrock-agentcore-and-github-actions/"
-          },
-          {
-            "label": "Create online evaluation (docs)",
-            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/create-online-evaluations.html"
-          },
-          {
-            "label": "Agent quality optimization (preview)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview/"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS ML Blog — Automated agent evaluation with AgentCore and GitHub Actions (Sep 8, 2026)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/automated-agent-evaluation-with-amazon-bedrock-agentcore-and-github-actions/"
-          },
-          {
-            "label": "AgentCore — Create online evaluation",
-            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/create-online-evaluations.html"
-          },
-          {
-            "label": "AWS ML Blog — Agent quality optimization in AgentCore (preview)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview/"
           }
         ]
       }
