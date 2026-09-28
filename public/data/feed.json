@@ -1,8 +1,98 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-28T13:35:00Z",
+  "updated": "2026-09-28T14:17:37Z",
   "cards": [
+    {
+      "id": "trend-20260928-bedrock-kb-sf-zendesk",
+      "category": "aws",
+      "title": "Bedrock KB: Salesforce + Zendesk native sync",
+      "body": "Managed Knowledge Bases can now crawl Salesforce knowledge articles and Zendesk help/community posts natively (What's New Sep 23)—no custom ingest pipeline. OAuth + Secrets Manager, incremental sync, filters. SA timing: new Confluence/SharePoint/Salesforce/Web Crawler connectors on customer-managed KBs stop Sep 30, 2026; prefer Managed KB for those sources.",
+      "source": "AWS What's New · Bedrock User Guide · Sep 23, 2026",
+      "tags": [
+        "aws",
+        "bedrock",
+        "knowledge-bases",
+        "rag",
+        "salesforce",
+        "zendesk",
+        "managed-kb",
+        "solutions-architect",
+        "connectors"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/trend-bedrock-kb-sf-zendesk-20260928/800/520",
+      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-salesforce-zendesk-native-data-source-connectors/",
+      "detail": {
+        "summary": "On Sep 23, 2026 AWS announced native Salesforce and Zendesk data source connectors for Amazon Bedrock Managed Knowledge Base. You hand over instance credentials (OAuth via Secrets Manager); the connector handles crawling, metadata extraction, and incremental sync so RAG apps stay current without a home-grown ingest pipeline. Use cases called out by AWS: customer support bots grounded in Zendesk help + community answers, and internal sales enablement assistants that retrieve Salesforce knowledge articles. Separately, docs warn that starting Sep 30, 2026, creating new Confluence, SharePoint, Salesforce, and Web Crawler connectors on customer-managed knowledge bases is no longer supported—existing ones keep working—so new work that needs those sources should target Managed Knowledge Base.",
+        "sections": [
+          {
+            "heading": "Why it matters for SA work",
+            "body": "RAG architecture questions often hinge on whether you build a custom crawler (Lambda + EventBridge + S3 + OpenSearch) or use a managed connector. Native Salesforce/Zendesk connectors shrink operational overhead and map cleanly to Well-Architected reliability and cost trade-offs—especially when the knowledge already lives in those systems of record. The Sep 30 customer-managed cutoff makes Managed KB the default path for new Salesforce (and related) connectors."
+          },
+          {
+            "heading": "What syncs",
+            "body": "Salesforce: knowledge articles and related CRM content types the connector can crawl (with inclusion/exclusion pattern filters). Zendesk: help center articles (optional attachments) and community posts, optionally scoped by category/section IDs, community topic IDs, and label names. Both support incremental syncs for added, updated, and deleted content after the first full crawl."
+          },
+          {
+            "heading": "Auth and IAM pattern",
+            "body": "Store OAuth client credentials in AWS Secrets Manager in the same Region as the knowledge base. Salesforce Connected App uses OAuth 2.0 client credentials (consumer key/secret; Run As user configured). Zendesk uses OAuth 2.0 with clientId, clientSecret, and instanceUrl in the secret. Grant the knowledge base IAM role Secrets Manager + connector permissions; prefer least privilege and rotate secrets regularly. Do not reuse one secret across unrelated data sources."
+          },
+          {
+            "heading": "Permissions and PII caveats",
+            "body": "Anything synced becomes retrievable by principals with bedrock:Retrieve on that knowledge base—including content that had tighter controls in the source system. Zendesk docs note no document-level access control on crawled content. Salesforce crawl can include Case/Contact/Lead fields with personal data—use exclusion filters. Salesforce connector (customer-managed path) notes: preview caveats may apply, no multimodal tables/charts, and historically OpenSearch Serverless as the vector store pairing—confirm current Managed KB store options in the console for your Region."
+          },
+          {
+            "heading": "Try this week",
+            "body": "In a non-prod account, create a Managed Knowledge Base, add a Zendesk or Salesforce data source with a Secrets Manager secret pointing at a low-sensitivity sandbox, run one sync, then Retrieve with a few real support/sales questions. Compare latency and answer grounding vs your current PDF/S3 corpus before planning a migration off a custom crawler."
+          }
+        ],
+        "bullets": [
+          "GA announce Sep 23, 2026: Salesforce + Zendesk native connectors for Bedrock Managed Knowledge Base",
+          "Replaces custom crawl → chunk → embed pipelines for CRM/help-center knowledge",
+          "OAuth 2.0 credentials in Secrets Manager; incremental sync after first crawl",
+          "Zendesk: articles (+ attachments) and community posts; filter by category/section/topic/label",
+          "Salesforce: pattern inclusion/exclusion on object types (e.g. Knowledge__kav, Case)",
+          "SA deadline: new Confluence/SharePoint/Salesforce/Web Crawler connectors on customer-managed KBs unsupported after Sep 30, 2026",
+          "Retrieve ACL is KB-wide—filter PII at crawl time; Zendesk has no per-doc ACL in the index",
+          "Educational SA brief — not a vendor endorsement or architecture mandate"
+        ],
+        "steps": [
+          "Create or open a Managed Knowledge Base in a non-prod Region where Bedrock KB is available.",
+          "Create a Salesforce Connected App or Zendesk OAuth app; store credentials in Secrets Manager (same Region).",
+          "Add the Salesforce or Zendesk data source, set inclusion filters to a narrow public/help scope, and run Sync.",
+          "Call Retrieve (and optionally RetrieveAndGenerate) with 5–10 real questions; note gaps, PII hits, and sync lag before expanding scope."
+        ],
+        "actions": [
+          {
+            "label": "What's New — Salesforce & Zendesk connectors",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-salesforce-zendesk-native-data-source-connectors/"
+          },
+          {
+            "label": "Docs — Connect Salesforce to a knowledge base",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/salesforce-data-source-connector.html"
+          },
+          {
+            "label": "Docs — Connect a Zendesk data source",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-managed-ds-zendesk-connect.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS What's New — Managed KB Salesforce & Zendesk connectors (Sep 23, 2026)",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-bedrock-managed-knowledge-base-salesforce-zendesk-native-data-source-connectors/"
+          },
+          {
+            "label": "Amazon Bedrock User Guide — Salesforce data source connector",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/salesforce-data-source-connector.html"
+          },
+          {
+            "label": "Amazon Bedrock User Guide — Connect a Zendesk data source",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-managed-ds-zendesk-connect.html"
+          }
+        ]
+      }
+    },
     {
       "id": "tax-20260928-india-treaty-art4-tiebreaker",
       "category": "tax",
@@ -2997,93 +3087,6 @@
           {
             "label": "Introducing Projects · Cursor Blog (Sep 10, 2026)",
             "url": "https://cursor.com/blog/projects"
-          }
-        ]
-      }
-    },
-    {
-      "id": "tax-20260916-form-8938-fatca",
-      "category": "tax",
-      "title": "Form 8938: India accounts under FATCA",
-      "body": "US residents with India NRE/NRO, FCNR, brokerage, or MF holdings often trip Form 8938 once foreign assets top $50k/$75k (single) or $100k/$150k (joint) — separate from FBAR. Educational only, not tax advice.",
-      "source": "IRS · Form 8938 · FATCA reporting",
-      "tags": [
-        "us-tax",
-        "india-us",
-        "form-8938",
-        "fatca",
-        "foreign-assets"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/tax-8938-fatca-20260916/800/520",
-      "link": "https://www.irs.gov/businesses/corporations/do-i-need-to-file-form-8938-statement-of-specified-foreign-financial-assets",
-      "detail": {
-        "summary": "Form 8938 (FATCA) is IRS information reporting for specified foreign financial assets — India bank accounts, foreign mutual funds, and many non-US brokerage holdings count. Living in the US, unmarried / MFS filers generally file when aggregate value exceeds $50,000 on the last day of the year or $75,000 at any time; joint filers use $100,000 / $150,000. It attaches to your Form 1040 and is separate from FinCEN FBAR. Educational only; not tax advice.",
-        "sections": [
-          {
-            "heading": "Who this helps",
-            "body": "Indian-origin US citizens and resident aliens who keep money in India (NRE, NRO, FCNR, savings), hold India mutual funds or direct stocks, own foreign brokerage accounts, or have interests in foreign entities. Especially useful if you assumed “FBAR covers it” or that only bank balances matter — Form 8938’s asset list is broader."
-          },
-          {
-            "heading": "Rough mechanics",
-            "body": "Specified foreign financial assets include financial accounts at foreign financial institutions plus certain other foreign investment assets (stock/securities issued by a non-US person, interests in foreign entities, and some contracts with foreign counterparties). Thresholds for US residents: unmarried or married filing separately — more than $50,000 on Dec 31 or more than $75,000 at any time during the year; married filing jointly — more than $100,000 / $150,000. Taxpayers living abroad use much higher thresholds ($200k/$300k or $400k/$600k joint). File Form 8938 with your income tax return; if you do not have to file a return, you generally do not file Form 8938. Accounts maintained by a US payer (or certain US/foreign branches of US/foreign institutions) may be carved out — check the Form 8938 instructions."
-          },
-          {
-            "heading": "India–US angle + FBAR trap",
-            "body": "Classic India stack: NRE + NRO + India MFs can clear the Form 8938 threshold even when no single account looks huge. Form 8938 ≠ FBAR (FinCEN Form 114): FBAR is a separate BSA filing that generally starts when the aggregate of foreign financial accounts exceeds $10,000 at any time — different agency, different form, different asset scope. You may need both. Assets already reported on Forms 3520, 5471, 8621, etc. may be identified in Part IV of Form 8938 instead of duplicated — but you still usually count their value toward the Form 8938 threshold if you are a specified individual."
-          },
-          {
-            "heading": "Check-this action",
-            "body": "List year-end and peak 2026 values for every India / other foreign account and MF/stock holding (convert INR at IRS year-end / high-value rates per Form 8938 instructions). Compare to your filing-status threshold; if you are close, open the IRS Form 8938 threshold page and the instructions before you assume you are under."
-          }
-        ],
-        "bullets": [
-          "Form 8938 = FATCA foreign-asset statement attached to Form 1040",
-          "US-resident single/MFS: >$50k year-end or >$75k anytime; joint: >$100k / >$150k",
-          "India NRE/NRO/FCNR, foreign MFs, and many foreign brokerage holdings often count",
-          "Separate from FBAR (FinCEN 114) — different $10k account test, different filing",
-          "Failure to file can trigger substantial penalties — educational only, not tax advice"
-        ],
-        "steps": [
-          "Inventory India and other foreign accounts + MFs/securities held outside US institutions",
-          "Note Dec 31 and highest-during-year aggregate USD values (per Form 8938 valuation rules)",
-          "Match your filing status + living-in-US vs living-abroad threshold on the IRS Form 8938 page",
-          "If over threshold, complete Form 8938 with your return; check whether FBAR is also due"
-        ],
-        "actions": [
-          {
-            "label": "IRS: Do I need Form 8938?",
-            "url": "https://www.irs.gov/businesses/corporations/do-i-need-to-file-form-8938-statement-of-specified-foreign-financial-assets"
-          },
-          {
-            "label": "About Form 8938",
-            "url": "https://www.irs.gov/forms-pubs/about-form-8938"
-          },
-          {
-            "label": "Instructions for Form 8938",
-            "url": "https://www.irs.gov/instructions/i8938"
-          },
-          {
-            "label": "IRS: Summary of FATCA reporting",
-            "url": "https://www.irs.gov/businesses/corporations/summary-of-fatca-reporting-for-us-taxpayers"
-          }
-        ],
-        "sources": [
-          {
-            "label": "IRS · Do I need to file Form 8938?",
-            "url": "https://www.irs.gov/businesses/corporations/do-i-need-to-file-form-8938-statement-of-specified-foreign-financial-assets"
-          },
-          {
-            "label": "IRS · About Form 8938",
-            "url": "https://www.irs.gov/forms-pubs/about-form-8938"
-          },
-          {
-            "label": "IRS · Instructions for Form 8938",
-            "url": "https://www.irs.gov/instructions/i8938"
-          },
-          {
-            "label": "IRS · Summary of FATCA reporting for U.S. taxpayers",
-            "url": "https://www.irs.gov/businesses/corporations/summary-of-fatca-reporting-for-us-taxpayers"
           }
         ]
       }
