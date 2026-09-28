@@ -1,8 +1,91 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-28T13:30:00Z",
+  "updated": "2026-09-28T13:35:00Z",
   "cards": [
+    {
+      "id": "tax-20260928-india-treaty-art4-tiebreaker",
+      "category": "tax",
+      "title": "India–US treaty Article 4: dual-resident tie-breaker",
+      "body": "Resident of both India and the US under domestic law (green card + India ROR, or substantial presence + Indian residential status)? Article 4 of the India–US income tax treaty cascades permanent home → centre of vital interests → habitual abode → nationality to assign one treaty residence. Claiming India under the treaty usually means Form 1040-NR + Form 8833 — and the saving clause still lets the US tax its citizens worldwide. Educational only, not tax advice.",
+      "source": "IRS · Tax treaties · Form 8833 · India–US treaty Art. 4",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "tax-treaty",
+        "article-4",
+        "dual-resident",
+        "tie-breaker",
+        "form-8833",
+        "1040-nr",
+        "saving-clause",
+        "cross-border"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-india-treaty-art4-20260928/800/520",
+      "link": "https://www.irs.gov/individuals/international-taxpayers/tax-treaties",
+      "detail": {
+        "summary": "If you are a resident of the United States under IRC §7701(b) (green card or substantial presence) and also a resident of India under the Income-tax Act, 1961, you are a dual-resident taxpayer. Article 4 of the Convention between the United States and India for the Avoidance of Double Taxation (signed 1989, in force 1990) supplies a tie-breaker so you are treated as a resident of only one country for treaty purposes. The cascade is: permanent home available → closer personal and economic relations (centre of vital interests) → habitual abode → nationality → mutual agreement of the competent authorities. Dual residents who claim treaty residence of India for US return purposes generally file Form 1040-NR and attach Form 8833 (treaty-based return position). Article 1(3) (the saving clause) still lets the United States tax its citizens — and, subject to narrow exceptions in Article 1(4), its residents — as if the Convention had not come into effect. Educational only — not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin green-card holders and long-stay workers who also meet India’s residential-status tests (for example ordinary resident / resident and ordinarily resident when days in India plus prior-year history stack up), dual homeowners with flats in India and the US, returning NRIs who keep a US green card while rebuilding an India life, and H-1B / L-1 workers who tip into substantial presence while still filing as Indian tax residents. US citizens who are dual residents should model this carefully: the saving clause usually preserves US worldwide taxation even if the tie-breaker points to India."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "First confirm dual residence under each country’s domestic law. Then apply Article 4(2) in order: (a) the Contracting State where you have a permanent home available; if both, the State with which your personal and economic relations are closer (centre of vital interests — family, social ties, occupation, political/cultural activities, place of business, property administration); (b) if that cannot be determined, or you have no permanent home in either State, habitual abode; (c) if habitual abode in both or neither, the State of which you are a national; (d) otherwise the competent authorities settle it by mutual agreement. If you claim to be a resident of India (not the United States) under the treaty for figuring US income tax, IRS guidance says file a timely Form 1040-NR and attach a fully completed Form 8833 disclosing the treaty-based return position under §6114 / Reg. §301.7701(b)-7. You are treated as a nonresident alien for figuring US tax, while other residency timing rules for alien status can still apply outside that computation."
+          },
+          {
+            "heading": "India-angle: saving clause + what still helps",
+            "body": "Article 1(3) is the saving clause: notwithstanding most of the Convention, the United States may tax its residents (as determined under Article 4) and, by reason of citizenship, its citizens as if the Convention had not come into effect. Article 1(4) carves back limited benefits (for example certain associated-enterprise adjustments, private pensions/annuities/alimony/child support paragraphs, relief from double taxation, non-discrimination, mutual agreement, plus student/teacher articles for people who are neither citizens nor immigrants of the taxing State). Practically: a US citizen dual resident rarely escapes worldwide US taxation via Article 4 alone; a green-card holder who is not a citizen and whose centre of vital interests clearly sits in India may have a stronger case to claim India treaty residence with Form 8833 — still a facts-and-circumstances call. Either way, keep Form 1116 foreign tax credit and India’s own residential-status rules in the model, and do not confuse treaty residence with immigration status."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "Before year-end planning, list where you have a permanent home available, where your family and main economic ties sit, and your nationality(ies). If you are dual resident and considering an India treaty-residence claim, sketch Form 1040-NR vs Form 1040 outcomes with Form 8833 disclosure, and confirm whether the saving clause blocks the position (especially if you are a US citizen). Bring that one-pager to a cross-border CPA — do not file Form 8833 casually."
+          }
+        ],
+        "bullets": [
+          "India–US treaty Article 4: dual-resident individuals use a fixed cascade (permanent home → centre of vital interests → habitual abode → nationality → MAP).",
+          "Dual resident + claim other country’s treaty residence for US tax → generally Form 1040-NR + Form 8833 (IRS Tax treaties page / About Form 8833).",
+          "Saving clause Art. 1(3): US may still tax citizens (and often residents) as if the Convention were not in effect; Art. 1(4) lists narrow surviving benefits.",
+          "Treaty residence ≠ immigration/visa status; green card and substantial presence are separate IRC §7701(b) tests.",
+          "Educational only — not tax advice; treaty positions are disclosure-sensitive and fact-specific."
+        ],
+        "steps": [
+          "Confirm you are a resident of both countries under domestic law (US §7701(b) and India’s Income-tax Act residential status).",
+          "Walk Article 4(2): permanent home → centre of vital interests → habitual abode → nationality; document facts for each step.",
+          "If claiming India treaty residence for US tax (and the saving clause does not block you), prepare Form 1040-NR + Form 8833 with a cross-border advisor; otherwise stay on Form 1040 and use Form 1116 / other relief."
+        ],
+        "actions": [
+          {
+            "label": "IRS — Tax treaties (dual residents / Form 8833)",
+            "url": "https://www.irs.gov/individuals/international-taxpayers/tax-treaties"
+          },
+          {
+            "label": "About Form 8833 — Treaty-based return position",
+            "url": "https://www.irs.gov/forms-pubs/about-form-8833"
+          },
+          {
+            "label": "India–US income tax treaty (PDF) — Article 4 Residence",
+            "url": "https://www.irs.gov/pub/irs-trty/india.pdf"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS — Tax treaties overview (dual resident filing)",
+            "url": "https://www.irs.gov/individuals/international-taxpayers/tax-treaties"
+          },
+          {
+            "label": "About Form 8833, Treaty-Based Return Position Disclosure",
+            "url": "https://www.irs.gov/forms-pubs/about-form-8833"
+          },
+          {
+            "label": "Convention US–India (IRS treaty PDF) — Arts. 1 & 4",
+            "url": "https://www.irs.gov/pub/irs-trty/india.pdf"
+          }
+        ]
+      }
+    },
     {
       "id": "book-20260928-get-vs-stay-wealthy",
       "category": "book",
@@ -3001,72 +3084,6 @@
           {
             "label": "IRS · Summary of FATCA reporting for U.S. taxpayers",
             "url": "https://www.irs.gov/businesses/corporations/summary-of-fatca-reporting-for-us-taxpayers"
-          }
-        ]
-      }
-    },
-    {
-      "id": "book-20260916-identity-habits",
-      "category": "book",
-      "title": "Identity first, outcomes follow",
-      "body": "Clear’s deepest habit layer isn’t the goal — it’s who you become. Cast small daily votes for the identity you want; outcomes lag habits.",
-      "source": "James Clear · Atomic Habits (via lijubjohn notes)",
-      "tags": [
-        "habits",
-        "identity",
-        "productivity",
-        "systems"
-      ],
-      "accent": "coral",
-      "image": "https://picsum.photos/seed/book-identity-20260916/800/520",
-      "link": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md",
-      "detail": {
-        "summary": "Most people try to change outcomes (lose weight, save money) without changing the self-image underneath. Atomic Habits frames three layers: outcomes, processes, then identity. Lasting change starts at identity — decide the type of person you want to be, then prove it with small wins that cast votes for that identity.",
-        "sections": [
-          {
-            "heading": "Three layers of change",
-            "body": "Outcomes are results (net worth, body weight, pages published). Processes are the systems and routines. Identity is the beliefs and self-image that drive both. Behavior that fights your identity rarely sticks; habits congruent with who you believe you are compound."
-          },
-          {
-            "heading": "Votes, not one heroic day",
-            "body": "Every action is a vote for the person you are becoming. You don’t need unanimous evidence overnight — you need a growing majority of small proofs. Asking “What would a healthy / builder / saver person do?” turns fuzzy goals into identity-aligned next moves."
-          },
-          {
-            "heading": "Why systems still matter",
-            "body": "You do not rise to the level of your goals; you fall to the level of your systems. Identity sets the direction; systems (implementation intentions, environment design, never miss twice) make the votes automatic. Goals point; identity + systems keep you in the game."
-          },
-          {
-            "heading": "One action today",
-            "body": "Write one identity sentence (“I am the type of person who…”), then one two-minute proof you’ll do today that casts a vote for it. Keep the vote tiny so you can’t skip it."
-          }
-        ],
-        "bullets": [
-          "Change identity (beliefs) before obsessing over outcomes",
-          "Each habit is a vote for who you become — accumulate small wins",
-          "Ask: does this action help me become the person I want to be?",
-          "Pair identity with systems: time, place, and environment cues",
-          "Never miss twice — missing once is noise; twice starts a new story"
-        ],
-        "steps": [
-          "Name the identity in one line (e.g. “I’m a consistent lifter / writer / saver”)",
-          "Pick one two-minute proof that matches that identity today",
-          "Schedule it: I will [behavior] at [time] in [place]",
-          "After you do it, mark the vote (tracker, note, or checkmark)"
-        ],
-        "actions": [
-          {
-            "label": "Source notes (Atomic Habits)",
-            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
-          },
-          {
-            "label": "lijubjohn/book-notes repo",
-            "url": "https://github.com/lijubjohn/book-notes"
-          }
-        ],
-        "sources": [
-          {
-            "label": "lijubjohn/book-notes · atomic-habits.md",
-            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
           }
         ]
       }
