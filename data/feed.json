@@ -1,8 +1,104 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-28T14:17:37Z",
+  "updated": "2026-09-28T17:42:54Z",
   "cards": [
+    {
+      "id": "aws-20260928-prompt-caching-cachepoint",
+      "category": "aws",
+      "title": "Bedrock prompt caching: put cachePoint where context repeats",
+      "body": "Same long system prompt, tool schemas, or document across many Converse turns? Drop a cachePoint after the static prefix so later calls read cacheWrite-priced tokens as cheap cache reads (up to ~90% off input on hits). Prefer Converse over InvokeModel for model-agnostic markers; watch TTL and CRIS write churn.",
+      "source": "AWS ML Blog · Sep 15, 2026 · Bedrock User Guide",
+      "tags": [
+        "aws",
+        "bedrock",
+        "prompt-caching",
+        "cachepoint",
+        "converse",
+        "cost-control",
+        "latency",
+        "agents",
+        "tools",
+        "solutions-architect"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-prompt-caching-cachepoint-20260928/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/optimizing-cost-and-latency-with-amazon-bedrock-prompt-caching/",
+      "detail": {
+        "summary": "Amazon Bedrock prompt caching lets you mark reusable prompt prefixes so subsequent Converse (or ConverseStream) requests skip reprocessing that prefix. The Sep 15, 2026 AWS ML Blog walks six Converse patterns: message/document caching, system-prompt caching, tool-definition caching, mixed TTL (1h then 5m), SHA-256 tenant isolation, and LangChain ChatBedrockConverse.create_cache_point(). Explicit caching uses a cachePoint block after static content; implicit caching (where supported) tries prefix reuse without markers. Cache scope is per AWS account and Region. Checkpoints must meet model minimums (for example Claude Sonnet 4.5/4.6 often need ≥1,024 tokens before a checkpoint). Default TTL is 5 minutes; many Claude models also support 1h. On hits, cacheReadInputTokens are billed far below standard input; first writes use cacheWriteInputTokens (higher than standard; 1h TTL writes cost more). Educational SA brief — confirm live pricing and model cards before you design for production.",
+        "sections": [
+          {
+            "heading": "Why SAs should care",
+            "body": "Agent and RAG apps repeatedly send the same system instructions, tool JSON schemas, and large reference blobs while only the user turn changes. Without caching you pay full input price every hop. Prompt caching is an infrastructure lever: keep prompt quality, cut TTFT on large prefixes, and shrink the input bill on cache hits — without shortening context into a thinner prompt. Pair it with Guardrails for safety; caching does not replace policy controls."
+          },
+          {
+            "heading": "Where to place cachePoint",
+            "body": "Converse accepts cachePoint in three places, processed tools → system → messages. (1) Messages: put the static document/image blocks, then {\"cachePoint\": {\"type\": \"default\"}}, then the changing question. (2) System: append cachePoint after a long persona/policy system array. (3) Tools: append cachePoint as the last entry in toolConfig.tools after all toolSpec entries. Claude on Bedrock also supports simplified management: one breakpoint after static content can look back across roughly ~20 prior content blocks for the longest matching prefix."
+          },
+          {
+            "heading": "TTL, CRIS, and metrics",
+            "body": "Default TTL is 5m; set \"ttl\": \"1h\" on supported models for longer sessions (longer TTL checkpoints must appear before shorter ones in the same request). Cross-Region inference profiles can increase cache-write frequency under load — plan for occasional re-writes. Response usage exposes cacheWriteInputTokens and cacheReadInputTokens; with caching enabled, inputTokens is only the non-cached slice. Total input ≈ inputTokens + cacheReadInputTokens + cacheWriteInputTokens. On ConverseStream, usage often arrives in the terminal metadata event. Log hit ratio; low hits usually mean the prefix mutates or TTL is too short."
+          },
+          {
+            "heading": "Multi-tenant and agent tips",
+            "body": "Cache entries are account/Region scoped, not tenant scoped. For multi-tenant apps in one account, prepend a SHA-256 of tenant_id to the cached instructions (~16 tokens) so each tenant gets a separate prefix. For agents, cache tool schemas and system instructions once per TTL window; leave real-time user/tool results outside the checkpoint. Prefer Converse cachePoint over InvokeModel’s model-specific cache_control when you want the same code across Claude and Nova. On-demand only — batch inference does not support prompt caching."
+          },
+          {
+            "heading": "Try this week",
+            "body": "In a non-prod Region, enable a caching-capable model (e.g. Claude Sonnet 4.5), run two Converse calls that share a ≥1,024-token document prefix with a cachePoint between document and question, and confirm request 1 shows cacheWriteInputTokens while request 2 shows cacheReadInputTokens. Then append cachePoint after a realistic toolConfig and measure agent-turn input cost before/after."
+          }
+        ],
+        "bullets": [
+          "Converse cachePoint after static document / system / tools; dynamic content stays after the marker",
+          "Cache hits bill cacheReadInputTokens (~90% lower than standard input per AWS pricing guidance); writes cost more than standard (higher still for 1h TTL)",
+          "Meet model minimum tokens per checkpoint (Sonnet 4.5/4.6 often 1,024; some Opus/Haiku tiers differ — check the model card)",
+          "TTL default 5m; optional 1h on supported Claude models; order longer TTL before shorter",
+          "Account + Region scope; use SHA-256 tenant prefix for isolation in shared accounts",
+          "CRIS can increase write churn; monitor cacheWrite vs cacheRead in CloudWatch/app logs",
+          "Educational SA pattern — not a cost guarantee; validate against current Bedrock pricing"
+        ],
+        "steps": [
+          "Pick a supported model and Region; confirm Explicit Prompt Caching and token minimums on the model card.",
+          "Identify static vs dynamic prompt parts (system, tools, reference docs vs user turns).",
+          "Add {\"cachePoint\": {\"type\": \"default\"}} (optionally with \"ttl\": \"1h\") immediately after the static prefix in Converse.",
+          "Send two requests that share the prefix; assert cacheWrite then cacheRead in usage (or stream metadata).",
+          "For agents, cache toolConfig once; keep mutable tool results and the latest user message after the checkpoint.",
+          "Wire dashboards on cacheReadInputTokens / cacheWriteInputTokens before promoting to prod traffic."
+        ],
+        "actions": [
+          {
+            "label": "ML Blog — Optimizing cost and latency with prompt caching",
+            "url": "https://aws.amazon.com/blogs/machine-learning/optimizing-cost-and-latency-with-amazon-bedrock-prompt-caching/"
+          },
+          {
+            "label": "User Guide — Prompt caching",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html"
+          },
+          {
+            "label": "amazon-bedrock-samples (blog notebooks)",
+            "url": "https://github.com/aws-samples/amazon-bedrock-samples"
+          },
+          {
+            "label": "Amazon Bedrock pricing",
+            "url": "https://aws.amazon.com/bedrock/pricing/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — Optimizing cost and latency with Amazon Bedrock prompt caching (Sep 15, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/optimizing-cost-and-latency-with-amazon-bedrock-prompt-caching/"
+          },
+          {
+            "label": "Amazon Bedrock User Guide — Prompt caching for faster model inference",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html"
+          },
+          {
+            "label": "Amazon Bedrock pricing",
+            "url": "https://aws.amazon.com/bedrock/pricing/"
+          }
+        ]
+      }
+    },
     {
       "id": "trend-20260928-bedrock-kb-sf-zendesk",
       "category": "aws",
@@ -3019,74 +3115,6 @@
           {
             "label": "AWS ML Blog — Agent quality optimization in AgentCore (preview)",
             "url": "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview/"
-          }
-        ]
-      }
-    },
-    {
-      "id": "trend-20260916-cursor-projects",
-      "category": "trend",
-      "title": "Cursor Projects: one coordinator for multi-PR work",
-      "body": "Cursor shipped Projects (Sep 10): a persistent coordinator that keeps shared context for months, fans out cloud/local subagents, and can subscribe to Slack, schedules, or PRs — built for features, migrations, and “gardening” that outlive a chat. Productivity ops, not a hype chase.",
-      "source": "Cursor Blog · Sep 10, 2026",
-      "tags": [
-        "productivity",
-        "cursor",
-        "agents",
-        "ops",
-        "devtools"
-      ],
-      "accent": "violet",
-      "image": "https://picsum.photos/seed/trend-cursor-projects-20260916/800/520",
-      "link": "https://cursor.com/blog/projects",
-      "detail": {
-        "summary": "On Sep 10, 2026 Cursor launched Projects in beta: a durable coordinator agent for bodies of work that span many PRs or weeks — features, migrations, and recurring maintenance (“gardening”). You chat with the coordinator; it delegates to cloud (default) and local agents, grows shared project context, and can act on Slack / schedule / PR signals without a fresh prompt each time. Educational product brief — not an endorsement or buy signal.",
-        "sections": [
-          {
-            "heading": "What changed vs a single chat",
-            "body": "A normal agent chat dies when the thread ends. A Project is meant to outlive that: months of context, parallel subagents, and recurring jobs. Cursor’s framing: you direct the work; the coordinator manages the fleet. Three building blocks: cloud-by-default compute (local when you need your machine), shared project files/context that sync across agents, and subscriptions (Slack channel, cron-like schedule, or follow PRs / CI)."
-          },
-          {
-            "heading": "Three patterns that map to real ops",
-            "body": "Feature work: research → plan → parallel implement/test, then optional local run before ship, then the same Project can watch logs/bugs. Migrations: lock a safe approach once, apply it across many PRs with tightening review as quality holds. Gardening: never-done work — design-system hygiene, regression watches — where the coordinator reacts to new PRs or Slack without you babysitting the queue."
-          },
-          {
-            "heading": "Read the claims with SA eyes",
-            "body": "Cursor cites internal use (hundreds of migration PRs, design-system consistency) and vendor productivity stats (new Projects users merge ~30% more PRs; heavy Projects users ~6×). Treat those as product cohort metrics without disclosed sample/baseline — useful as a hypothesis, not proof. The useful takeaway for you is the shape: persistent coordinator + shared context + event/schedule triggers for work that used to die between chats."
-          },
-          {
-            "heading": "Captain-useful next step",
-            "body": "If you already run multi-PR or recurring agent work (feed publish, site migrations, standing research desks), try one Project on a single bounded migration or gardening job first — not a vague “build everything.” Start from the left-hand nav per the blog, describe the outcome, and keep human review tight until the coordinator’s PR quality is boring."
-          }
-        ],
-        "bullets": [
-          "Projects beta rolling out Sep 10, 2026 — left-hand nav → describe the body of work",
-          "Coordinator delegates; cloud default + local when needed; shared context grows over time",
-          "Subscriptions: Slack, schedule, or PR/CI signals without re-prompting",
-          "Best fits: multi-PR features, long migrations, recurring “gardening”",
-          "Vendor merge-rate claims are unverified marketing — validate on your own repos"
-        ],
-        "steps": [
-          "Open Cursor and start a Project from the left-hand nav (beta rollout)",
-          "Pick one bounded body of work (e.g. a small migration or recurring lint/hygiene job)",
-          "Tell the coordinator the outcome, constraints, and where PRs should land",
-          "Review early PRs closely; loosen only after the approach holds twice",
-          "Optionally attach Slack/schedule/PR subscriptions once the pattern is stable"
-        ],
-        "actions": [
-          {
-            "label": "Cursor: Introducing Projects",
-            "url": "https://cursor.com/blog/projects"
-          },
-          {
-            "label": "Cursor product home",
-            "url": "https://cursor.com/"
-          }
-        ],
-        "sources": [
-          {
-            "label": "Introducing Projects · Cursor Blog (Sep 10, 2026)",
-            "url": "https://cursor.com/blog/projects"
           }
         ]
       }
