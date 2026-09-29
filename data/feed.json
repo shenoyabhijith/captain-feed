@@ -1,8 +1,98 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-29T13:39:03Z",
+  "updated": "2026-09-29T14:19:01Z",
   "cards": [
+    {
+      "id": "trend-20260929-strands-harness",
+      "category": "trend",
+      "title": "Strands harness: open agent stack, ~28% fewer tokens",
+      "body": "AWS Strands team shipped a fully assembled general-purpose agent harness (Apache 2.0, Sep 21): one line of Python/TypeScript, Bedrock default (also Anthropic/OpenAI/Google/Ollama). Prompt caching + context compaction baked in; team reports ~28% lower token cost vs Claude Code/Codex-class harnesses at similar accuracy. Deploy local or any Linux container (ECS, AgentCore, Cloud Run…).",
+      "source": "Strands Agents Blog · AWS Weekly Roundup · Sep 21–28, 2026",
+      "tags": [
+        "productivity",
+        "agents",
+        "strands",
+        "aws",
+        "bedrock",
+        "open-source",
+        "apache-2",
+        "prompt-caching",
+        "context-management",
+        "solutions-architect"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/trend-strands-harness-20260929/800/520",
+      "link": "https://strandsagents.com/blog/introducing-strands-harness/",
+      "detail": {
+        "summary": "On Sep 21, 2026 the Strands Agents team released Strands harness: a batteries-included, general-purpose agent harness (not a coding-only IDE agent) under Apache 2.0. One call to create_harness / createHarness wires a model across Amazon Bedrock (default), Anthropic, OpenAI, Google, Ollama, or LiteLLM. Defaults for prompt caching and context management drove the headline result: about 28% lower token cost than Claude Code, Codex, and similar harnesses on the same Claude/GPT models across six Harbor benchmarks, with equal or better accuracy. AWS Weekly Roundup (Sep 28) amplified it for builders evaluating agent runtimes.",
+        "sections": [
+          {
+            "heading": "Why it matters this week",
+            "body": "Recent Bedrock model drops (GPT-6 Sol/Luna, AgentCore Runtime V2) answer which model to call. Strands harness answers how you wrap tools, memory, and context so those models stay cheap and reliable in production. For SA and builder work, it is a concrete open baseline you can run locally, then ship in ECS or Bedrock AgentCore without rewriting the loop."
+          },
+          {
+            "heading": "What ships by default",
+            "body": "Shell, file read/write/edit, and web tools (primitives models already know). Context management: bulky tool results over ~1500 tokens get truncated/offloaded to files; compaction triggers above ~85% of the context window; recovery runs inside the loop on overflow. Long-term memory across runs via session ID. Built-in helper/subagent for open-ended subtasks plus a checklist/todos tracker. Loads skills when present. Tuned system prompt: explore before changing, confirm before irreversible actions, verify before done."
+          },
+          {
+            "heading": "Cost and accuracy claims",
+            "body": "On the same Claude or GPT models across six benchmarks (distributed Harbor runs on EC2), Strands harness showed better token efficiency and nearly equal scores vs Claude Code, Codex, and other popular harnesses — about 28% lower cost without trading away accuracy. With Fable 5 they report 77% lower cost than Claude Code and a higher Terminal Bench 2.1 score. Treat vendor benchmarks as directional; re-run on your own tasks before committing a platform."
+          },
+          {
+            "heading": "Where it runs",
+            "body": "Local laptop, or any Linux container host: Modal, Cloudflare Containers, Azure Container Apps, Google Cloud Run, Amazon ECS, and Amazon Bedrock AgentCore are called out. Install: pip install strands-harness or npm install @strands-agents/harness. Interactive path: npm install -g @strands-agents/cli, prototype in plain English, then /export to Python or TypeScript."
+          },
+          {
+            "heading": "Try this week",
+            "body": "Spin a non-prod Bedrock-backed harness on one research-and-write task you already do manually. Compare tokens and wall time against your current coding-agent loop. If the defaults hold, decide whether AgentCore or ECS is the deploy target — do not rewrite production prompts until you have that baseline."
+          }
+        ],
+        "bullets": [
+          "GA-style release Sep 21, 2026 · Apache 2.0 · general-purpose (not coding-only)",
+          "One-line create_harness / createHarness · Bedrock default; Anthropic/OpenAI/Google/Ollama/LiteLLM",
+          "~28% lower token cost vs Claude Code/Codex-class harnesses on same models (team Harbor benchmarks)",
+          "Defaults: prompt caching, tool-result truncation (~1500 tok), compaction >~85% context, session memory",
+          "Shell + file + web tools; helper subagent; todos checklist; optional skills",
+          "Deploy: local or Linux containers including ECS and Bedrock AgentCore",
+          "CLI: @strands-agents/cli with /export to Python or TypeScript",
+          "Educational productivity brief — not a vendor endorsement"
+        ],
+        "steps": [
+          "Install: pip install strands-harness (or npm install @strands-agents/harness).",
+          "Create a harness with a Bedrock (or other) model you already have access to; run one real research/write task.",
+          "Log tokens, latency, and whether context compaction fired; only then compare to your current agent loop or pick ECS/AgentCore for a deploy spike."
+        ],
+        "actions": [
+          {
+            "label": "Strands blog — Introducing Strands harness",
+            "url": "https://strandsagents.com/blog/introducing-strands-harness/"
+          },
+          {
+            "label": "Strands harness quickstart",
+            "url": "https://strandsagents.com/docs/user-guide/harness/quickstart/"
+          },
+          {
+            "label": "AWS Weekly Roundup (Sep 28, 2026)",
+            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-gpt-6-sol-and-luna-claude-opus-5-5-on-amazon-bedrock-strands-harness-and-more-september-28-2026/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Strands Agents Blog — Introducing Strands harness (Sep 21, 2026)",
+            "url": "https://strandsagents.com/blog/introducing-strands-harness/"
+          },
+          {
+            "label": "Strands Docs — Harness quickstart",
+            "url": "https://strandsagents.com/docs/user-guide/harness/quickstart/"
+          },
+          {
+            "label": "AWS News Blog — Weekly Roundup (Sep 28, 2026)",
+            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-gpt-6-sol-and-luna-claude-opus-5-5-on-amazon-bedrock-strands-harness-and-more-september-28-2026/"
+          }
+        ]
+      }
+    },
     {
       "id": "tax-20260929-form-5471-india-pvt-ltd",
       "category": "tax",
@@ -3041,83 +3131,6 @@
           {
             "label": "AWS Migration Blog — Mass-migrating AI agents to AgentCore",
             "url": "https://aws.amazon.com/blogs/migration-and-modernization/mass-migrating-ai-agents-to-amazon-bedrock-agentcore/"
-          }
-        ]
-      }
-    },
-    {
-      "id": "trend-20260917-gpt6-astra-bedrock",
-      "category": "aws",
-      "title": "GPT-6 Astra GA on Bedrock",
-      "body": "OpenAI’s GPT-6 Astra is generally available on Amazon Bedrock (Sep 8): up to 1M input tokens, deeper reasoning, and computer/browser use — call via Bedrock APIs or point ChatGPT Work / Codex at Bedrock. AWS controls + no training on your inference data.",
-      "source": "AWS What’s New · Sep 8, 2026",
-      "tags": [
-        "bedrock",
-        "openai",
-        "gpt-6-astra",
-        "agents",
-        "aws-sa",
-        "enterprise"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/trend-gpt6-astra-bedrock-20260917/800/520",
-      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/",
-      "detail": {
-        "summary": "On Sep 8, 2026 AWS announced general availability of OpenAI GPT-6 Astra on Amazon Bedrock. Astra is positioned as OpenAI’s latest frontier model for demanding business workflows: deeper reasoning and judgment, professional writing/design, and advanced computer and browser use, with a context window up to 1 million input tokens. You invoke it through supported Bedrock APIs, or configure ChatGPT Work and Codex to use the model on Bedrock. Educational product brief for AWS SA work — not a vendor pitch or buy signal.",
-        "sections": [
-          {
-            "heading": "What shipped",
-            "body": "GPT-6 Astra is callable on Amazon Bedrock’s inference engine for production scale, security, and audit. AWS emphasizes established account controls for access governance and model-invocation auditing, and that inference data isn’t used for model training. Alongside the Bedrock GA, OpenAI is introducing enterprise plugins for ChatGPT Work that extend Astra’s browser-use capabilities across common business apps — useful framing when a customer already lives in ChatGPT Work but wants Bedrock-backed inference."
-          },
-          {
-            "heading": "Why it matters for Solutions Architects",
-            "body": "Large-context + judgment across competing inputs is the pitch: long contracts, big codebases, multi-doc packs, agent loops that need tool/browser use. The Bedrock path keeps the usual SA conversation: IAM, VPC endpoints, CloudWatch logging, Guardrails, inference profiles, regional availability, and cost controls — without standing up a separate OpenAI-only stack if the customer’s bar is ‘stay in AWS.’ Pair with AgentCore (runtime, gateway spend limits, eval gates) when the use case is agents, not one-shot chat."
-          },
-          {
-            "heading": "How to try it without boiling the ocean",
-            "body": "Start in the Bedrock console or via supported Bedrock APIs. Confirm Regions, inference profiles, and pricing in the Bedrock docs before promising a customer demo. For ChatGPT Work / Codex customers, check whether configuring those products to use Astra on Bedrock is available in their account path. Smoke-test: one long-document reconciliation prompt and one agent-ish tool/browser task, then compare latency, quality, and $ vs your current Claude / prior GPT Bedrock models."
-          },
-          {
-            "heading": "Captain next step",
-            "body": "If you’re drafting an AI-on-AWS talk track this week, add Astra as the OpenAI frontier option on Bedrock next to Claude Fable 5.1. Lead with controls (IAM, audit, no training on inference) and the 1M-token window, then ask which workflow needs judgment across a big corpus vs cheap/fast models for simple classify/summarize. Read the What’s New post + Sep 14 Weekly Roundup for the surrounding launch cluster (Quick desktop, Lambda 90-min Managed Instances, etc.)."
-          }
-        ],
-        "bullets": [
-          "GA on Amazon Bedrock as of Sep 8, 2026 (OpenAI GPT-6 Astra)",
-          "Up to ~1M input tokens; reasoning, writing/design, computer + browser use",
-          "Invoke via Bedrock APIs; optional ChatGPT Work / Codex on Bedrock",
-          "AWS: secure, govern, audit invocations; inference not used for training",
-          "Educational only — check Regions, profiles, and pricing before customer demos"
-        ],
-        "steps": [
-          "Open Bedrock console → model catalog / inference profiles; confirm Astra availability in your demo Region",
-          "Read What’s New + Bedrock docs for APIs, endpoints, pricing",
-          "Run two smoke prompts: long multi-doc reconcile + one agent/browser-style task",
-          "Note Guardrails + logging path you’d recommend for a production account",
-          "Update your SA talk track: OpenAI frontier option sits on Bedrock alongside Claude"
-        ],
-        "actions": [
-          {
-            "label": "AWS What’s New: GPT-6 Astra on Bedrock",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/"
-          },
-          {
-            "label": "AWS Weekly Roundup (Sep 14, 2026)",
-            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-openai-gpt-6-astra-on-amazon-bedrock-amazon-quick-desktop-ga-kiro-for-students-and-more-september-14-2026/"
-          },
-          {
-            "label": "Amazon Bedrock (product)",
-            "url": "https://aws.amazon.com/bedrock/"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS · What’s New · GPT-6 Astra on Bedrock (Sep 8, 2026)",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/"
-          },
-          {
-            "label": "AWS News Blog · Weekly Roundup (Sep 14, 2026)",
-            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-openai-gpt-6-astra-on-amazon-bedrock-amazon-quick-desktop-ga-kiro-for-students-and-more-september-14-2026/"
           }
         ]
       }
