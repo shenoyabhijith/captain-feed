@@ -1,8 +1,281 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-29T13:37:10Z",
+  "updated": "2026-09-29T17:45:07Z",
   "cards": [
+    {
+      "id": "aws-20260929-agentcore-optimization-ab",
+      "category": "aws",
+      "title": "AgentCore Optimization: recommend from traces, A/B via Gateway",
+      "body": "Stop guessing prompt fixes. Point AgentCore Recommendations at production OTEL traces + an evaluator (helpfulness, tool selection, etc.), get a system-prompt or tool-description variant, package it as a config bundle, then split live traffic at AgentCore Gateway with p-values before you promote. Preview loop for SAs writing Bedrock agent blogs.",
+      "source": "AWS ML Blog · May 4, 2026 · AgentCore Optimization docs",
+      "tags": [
+        "aws",
+        "bedrock",
+        "agentcore",
+        "optimization",
+        "recommendations",
+        "ab-testing",
+        "gateway",
+        "evaluations",
+        "prompts",
+        "solutions-architect"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-agentcore-optimization-ab-20260929/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview/",
+      "detail": {
+        "summary": "Amazon Bedrock AgentCore Optimization (preview) closes the observe → evaluate → improve loop for production agents. Instead of reading traces by hand and shipping prompt edits blind, you generate Recommendations from AgentCore Observability traces against a chosen evaluator, package the change as an immutable configuration bundle (system prompt, model ID, tool descriptions), validate offline with batch evaluation (or simulated user datasets), then run A/B tests through AgentCore Gateway with online evaluation, confidence intervals, and p-values before promoting the winner. During preview it targets system prompts and tool descriptions for agents on AgentCore Runtime that already use Observability and Evaluations — educational SA pattern, not a production SLA.",
+        "sections": [
+          {
+            "heading": "Why SAs should care",
+            "body": "Agent quality drifts daily as models, tools, and user intents shift. The common fix cycle — complaint → skim traces → rewrite prompt → ship — introduces regressions on other sessions. AgentCore Optimization turns that into a data-backed loop SAs can cite in architecture blogs: traces feed recommendations, recommendations become versioned bundles, Gateway splits traffic, Evaluations score both arms with statistical rigor. Pair it with AgentOps pillars (governance, CI/CD, multi-level eval, observability) from the Jun 1, 2026 AgentOps ML Blog."
+          },
+          {
+            "heading": "Recommendations from real traces",
+            "body": "Call StartRecommendation (type SYSTEM_PROMPT_RECOMMENDATION or TOOL_DESCRIPTION_RECOMMENDATION). Point recommendationConfig at the CloudWatch log group / agent traces, the current system prompt (or tool descriptions), and an evaluationConfig with the reward signal you care about — built-in evaluators such as Builtin.Helpfulness or a custom LLM-as-judge. The service reflects on failure patterns for that evaluator and proposes an optimized variant. Tool-description recommendations sharpen how the model chooses tools without changing tool implementations. You decide what advances to validation."
+          },
+          {
+            "heading": "Configuration bundles vs code changes",
+            "body": "Bundles are immutable, versioned snapshots keyed by runtime ARN: model ID, system prompt, tool descriptions. Agents read the active bundle dynamically via the AgentCore SDK, so prompt/model swaps are configuration changes — not container redeploys. Use bundle variants on the same Runtime for config-only experiments. For code or framework changes, deploy a second Runtime endpoint and compare via Gateway target-based variants instead."
+          },
+          {
+            "heading": "Validate: batch first, then Gateway A/B",
+            "body": "Batch evaluation runs the candidate against a curated (or LLM-simulated) dataset and reports aggregate scores so known-good cases do not regress — wire this as a CI gate. Then configure AgentCore Gateway to split live traffic between control and treatment (percentage you set). Online evaluation scores every session; results include confidence intervals and p-values. Promote the winner as the default; pause the test to roll back to the prior configuration. Two variant modes: configuration-bundle variants (same target, W3C baggage injects bundle ref) or target-based variants (different Runtime endpoints)."
+          },
+          {
+            "heading": "Try this week",
+            "body": "In a non-prod account with AgentCore Runtime + Observability + Evaluations enabled, pick Builtin.Helpfulness (or a custom evaluator), run StartRecommendation on a week of failing sessions, create two config bundles (baseline vs recommendation), run batch eval on your gold prompts, then start a low-percentage Gateway A/B before touching production defaults. Document the loop for your next Bedrock agent blog."
+          }
+        ],
+        "bullets": [
+          "Preview: Recommendations + config bundles + Gateway A/B with statistical significance",
+          "Optimize SYSTEM_PROMPT or TOOL_DESCRIPTION from production OTEL traces + a target evaluator",
+          "Bundles decouple prompt/model/tool-description changes from code redeploys",
+          "Batch eval (CI gate) then live A/B via Gateway; promote or pause to roll back",
+          "Bundle variants (same Runtime) vs target-based variants (separate Runtime endpoints)",
+          "Requires AgentCore Runtime + Observability + Evaluations; Regions where Evaluations is available",
+          "Educational SA pattern — confirm preview limits and pricing before production designs"
+        ],
+        "steps": [
+          "Confirm AgentCore Runtime, Observability (OTEL → CloudWatch), and Evaluations are wired for your agent.",
+          "Choose an evaluator reward signal (built-in or custom) that matches the quality drop you care about.",
+          "StartRecommendation with SYSTEM_PROMPT_RECOMMENDATION or TOOL_DESCRIPTION_RECOMMENDATION against recent traces.",
+          "Create immutable config bundles for baseline and candidate; keep code identical for config-only tests.",
+          "Run batch evaluation on a curated or simulated dataset; fail the pipeline on regression.",
+          "Configure Gateway A/B (bundle or target-based), review p-values/CIs, promote the winner or pause to roll back."
+        ],
+        "actions": [
+          {
+            "label": "ML Blog — Agent quality optimization (preview)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview/"
+          },
+          {
+            "label": "Docs — AgentCore optimization",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/optimization.html"
+          },
+          {
+            "label": "Docs — A/B testing",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/ab-testing.html"
+          },
+          {
+            "label": "API — StartRecommendation",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/APIReference/API_StartRecommendation.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — Introducing agent quality optimization in AgentCore, now in preview (May 4, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview/"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Optimization",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/optimization.html"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — A/B testing",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/ab-testing.html"
+          },
+          {
+            "label": "AWS ML Blog — AgentOps: Operationalize agentic AI at scale with AgentCore (Jun 1, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/agentops-operationalize-agentic-ai-at-scale-with-amazon-bedrock-agentcore/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trend-20260929-strands-harness",
+      "category": "trend",
+      "title": "Strands harness: open agent stack, ~28% fewer tokens",
+      "body": "AWS Strands team shipped a fully assembled general-purpose agent harness (Apache 2.0, Sep 21): one line of Python/TypeScript, Bedrock default (also Anthropic/OpenAI/Google/Ollama). Prompt caching + context compaction baked in; team reports ~28% lower token cost vs Claude Code/Codex-class harnesses at similar accuracy. Deploy local or any Linux container (ECS, AgentCore, Cloud Run…).",
+      "source": "Strands Agents Blog · AWS Weekly Roundup · Sep 21–28, 2026",
+      "tags": [
+        "productivity",
+        "agents",
+        "strands",
+        "aws",
+        "bedrock",
+        "open-source",
+        "apache-2",
+        "prompt-caching",
+        "context-management",
+        "solutions-architect"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/trend-strands-harness-20260929/800/520",
+      "link": "https://strandsagents.com/blog/introducing-strands-harness/",
+      "detail": {
+        "summary": "On Sep 21, 2026 the Strands Agents team released Strands harness: a batteries-included, general-purpose agent harness (not a coding-only IDE agent) under Apache 2.0. One call to create_harness / createHarness wires a model across Amazon Bedrock (default), Anthropic, OpenAI, Google, Ollama, or LiteLLM. Defaults for prompt caching and context management drove the headline result: about 28% lower token cost than Claude Code, Codex, and similar harnesses on the same Claude/GPT models across six Harbor benchmarks, with equal or better accuracy. AWS Weekly Roundup (Sep 28) amplified it for builders evaluating agent runtimes.",
+        "sections": [
+          {
+            "heading": "Why it matters this week",
+            "body": "Recent Bedrock model drops (GPT-6 Sol/Luna, AgentCore Runtime V2) answer which model to call. Strands harness answers how you wrap tools, memory, and context so those models stay cheap and reliable in production. For SA and builder work, it is a concrete open baseline you can run locally, then ship in ECS or Bedrock AgentCore without rewriting the loop."
+          },
+          {
+            "heading": "What ships by default",
+            "body": "Shell, file read/write/edit, and web tools (primitives models already know). Context management: bulky tool results over ~1500 tokens get truncated/offloaded to files; compaction triggers above ~85% of the context window; recovery runs inside the loop on overflow. Long-term memory across runs via session ID. Built-in helper/subagent for open-ended subtasks plus a checklist/todos tracker. Loads skills when present. Tuned system prompt: explore before changing, confirm before irreversible actions, verify before done."
+          },
+          {
+            "heading": "Cost and accuracy claims",
+            "body": "On the same Claude or GPT models across six benchmarks (distributed Harbor runs on EC2), Strands harness showed better token efficiency and nearly equal scores vs Claude Code, Codex, and other popular harnesses — about 28% lower cost without trading away accuracy. With Fable 5 they report 77% lower cost than Claude Code and a higher Terminal Bench 2.1 score. Treat vendor benchmarks as directional; re-run on your own tasks before committing a platform."
+          },
+          {
+            "heading": "Where it runs",
+            "body": "Local laptop, or any Linux container host: Modal, Cloudflare Containers, Azure Container Apps, Google Cloud Run, Amazon ECS, and Amazon Bedrock AgentCore are called out. Install: pip install strands-harness or npm install @strands-agents/harness. Interactive path: npm install -g @strands-agents/cli, prototype in plain English, then /export to Python or TypeScript."
+          },
+          {
+            "heading": "Try this week",
+            "body": "Spin a non-prod Bedrock-backed harness on one research-and-write task you already do manually. Compare tokens and wall time against your current coding-agent loop. If the defaults hold, decide whether AgentCore or ECS is the deploy target — do not rewrite production prompts until you have that baseline."
+          }
+        ],
+        "bullets": [
+          "GA-style release Sep 21, 2026 · Apache 2.0 · general-purpose (not coding-only)",
+          "One-line create_harness / createHarness · Bedrock default; Anthropic/OpenAI/Google/Ollama/LiteLLM",
+          "~28% lower token cost vs Claude Code/Codex-class harnesses on same models (team Harbor benchmarks)",
+          "Defaults: prompt caching, tool-result truncation (~1500 tok), compaction >~85% context, session memory",
+          "Shell + file + web tools; helper subagent; todos checklist; optional skills",
+          "Deploy: local or Linux containers including ECS and Bedrock AgentCore",
+          "CLI: @strands-agents/cli with /export to Python or TypeScript",
+          "Educational productivity brief — not a vendor endorsement"
+        ],
+        "steps": [
+          "Install: pip install strands-harness (or npm install @strands-agents/harness).",
+          "Create a harness with a Bedrock (or other) model you already have access to; run one real research/write task.",
+          "Log tokens, latency, and whether context compaction fired; only then compare to your current agent loop or pick ECS/AgentCore for a deploy spike."
+        ],
+        "actions": [
+          {
+            "label": "Strands blog — Introducing Strands harness",
+            "url": "https://strandsagents.com/blog/introducing-strands-harness/"
+          },
+          {
+            "label": "Strands harness quickstart",
+            "url": "https://strandsagents.com/docs/user-guide/harness/quickstart/"
+          },
+          {
+            "label": "AWS Weekly Roundup (Sep 28, 2026)",
+            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-gpt-6-sol-and-luna-claude-opus-5-5-on-amazon-bedrock-strands-harness-and-more-september-28-2026/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Strands Agents Blog — Introducing Strands harness (Sep 21, 2026)",
+            "url": "https://strandsagents.com/blog/introducing-strands-harness/"
+          },
+          {
+            "label": "Strands Docs — Harness quickstart",
+            "url": "https://strandsagents.com/docs/user-guide/harness/quickstart/"
+          },
+          {
+            "label": "AWS News Blog — Weekly Roundup (Sep 28, 2026)",
+            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-gpt-6-sol-and-luna-claude-opus-5-5-on-amazon-bedrock-strands-harness-and-more-september-28-2026/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tax-20260929-form-5471-india-pvt-ltd",
+      "category": "tax",
+      "title": "Form 5471: India Pvt Ltd shares can trigger a $10k reporting trap",
+      "body": "Own (or control) stock in an India private limited company as a US citizen or resident? Form 5471 may be mandatory under IRC §§6038/6046 even when the company paid you nothing — Category 4 if you control >50%, Category 5 if you are a ≥10% US shareholder of a CFC. Miss the attach-to-return deadline and the baseline §6038 penalty is $10,000 per foreign corporation per year. Educational only, not tax advice.",
+      "source": "IRS · About Form 5471 · Instructions for Form 5471 (12/2025) · §§6038/6046",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "form-5471",
+        "cfc",
+        "india-pvt-ltd",
+        "section-6038",
+        "section-6046",
+        "gilti",
+        "subpart-f",
+        "cross-border"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-form-5471-india-pvt-20260929/800/520",
+      "link": "https://www.irs.gov/forms-pubs/about-form-5471",
+      "detail": {
+        "summary": "Form 5471 (Information Return of U.S. Persons With Respect To Certain Foreign Corporations) is how certain US citizens and residents who are officers, directors, or shareholders in foreign corporations satisfy the reporting requirements of Internal Revenue Code sections 6038 and 6046. For Indian-origin US residents who founded, inherited, or still hold shares in an India private limited company (or group of related companies), this form is one of the most commonly missed international information returns — and one of the most expensive to miss. The Instructions for Form 5471 (revised December 2025) confirm a $10,000 penalty for each annual accounting period of each foreign corporation for failure to furnish the information required by section 6038(a) within the time prescribed, with additional $10,000 increments after IRS notice (capped) and a separate FTC haircut. Educational only — not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "US citizens and green-card / substantial-presence residents who (1) founded or still own an India Pvt Ltd (startup, consulting firm, family holding company, or operating business), (2) are officers or directors of a foreign corporation when another US person crosses a 10% ownership threshold (Category 2), (3) acquired, disposed of, or became a US person while holding ≥10% (Category 3), (4) control the company — more than 50% of vote or value — as a Category 4 filer, or (5) are a ≥10% US shareholder of a controlled foreign corporation (CFC) as a Category 5 filer. A CFC generally means US shareholders own more than 50% of vote or value on any day of the foreign corporation’s tax year. Family attribution under section 958 can stack siblings/parents/spouse ownership into CFC status even when no single person owns a majority."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Attach a separate Form 5471 (and the schedules your category requires) to your US income tax return and file both by the due date including extensions. Category 4 (control >50% vote or value at any time during your tax year) and Category 5a (US shareholder of a CFC who owned the stock on the last day it was a CFC) are the heavy lifts: they typically pull in Schedules C/F/H/I/I-1/J/M/P/Q/R and can surface Subpart F and GILTI inclusions on your Form 1040 even if the India company never declared a dividend. Category 2/3 focus more on ownership-change reporting via Schedule O. Dormant companies may use the Rev. Proc. 92-70 summary procedure (page 1 only, labeled accordingly) — still a filing, not a free pass. Items reported on Form 5471 generally need not be duplicated on Form 8938 (FATCA), but FBAR (FinCEN 114) is a separate Bank Secrecy Act filing if foreign financial accounts exceed the threshold."
+          },
+          {
+            "heading": "India-angle: Pvt Ltd + family attribution",
+            "body": "An India private limited company is a foreign corporation for US tax purposes. Typical traps: (1) you left India on H-1B/L-1/green card but kept founder shares or a nominee stake in the old Pvt Ltd; (2) parents/siblings in India hold the rest of the stock and constructive ownership under section 958(b) / section 318 principles pushes you over Category 4 control or makes the company a CFC with you as a Category 5 US shareholder; (3) you are an unpaid director on paper for the family company and a US person acquires ≥10%, triggering Category 2; (4) the company looks dormant (no employees, one bank account) so you assume no US filing — Rev. Proc. 92-70 still wants a labeled summary Form 5471. Separately, if the company is a CFC, Schedule I / Form 8992 territory can produce Subpart F or GILTI income inclusions that are taxable on your US return even when India taxes the company differently and you took no cash. Pair this with last week’s treaty Article 4 and Form 1116 thinking only after the information return is scoped — Form 5471 is disclosure first."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "List every India (or other foreign) corporation where you are a shareholder, officer, or director. For each, jot direct + family-attributed vote and value percentages and whether US persons together own more than 50%. If any Category 2–5 box might apply, calendar Form 5471 with your 2026 return (or extension) and bring the cap table to a cross-border CPA before year-end — do not wait for a K-1-style slip from India, because none will arrive."
+          }
+        ],
+        "bullets": [
+          "Form 5471 satisfies IRC §§6038 and 6046 reporting for certain US officers, directors, and shareholders of foreign corporations (IRS About Form 5471 / Instructions 12/2025).",
+          "Category 4 = control (>50% vote or value); Category 5 = ≥10% US shareholder of a CFC (US shareholders own >50% on any day).",
+          "Baseline §6038(a) penalty: $10,000 per foreign corporation per annual accounting period; after IRS 90-day notice, +$10,000 per 30 days (additional capped at $50,000) plus foreign-tax-credit reduction under §6038(c).",
+          "India Pvt Ltd founder/family shares + section 958 attribution are a classic miss; dormant entities may still need Rev. Proc. 92-70 summary filing.",
+          "Educational only — not tax advice; category tests and CFC/GILTI math are fact-specific."
+        ],
+        "steps": [
+          "Inventory foreign corporations (especially India Pvt Ltds) where you are shareholder, officer, or director; note vote/value % including family attribution.",
+          "Map yourself to Form 5471 Categories 2–5 using the Instructions for Form 5471 chart; mark CFC status if US shareholders own >50%.",
+          "If any category applies, plan Form 5471 + required schedules with your return (or extension) and a cross-border advisor — treat the $10,000-per-entity penalty as the cost of ignoring it."
+        ],
+        "actions": [
+          {
+            "label": "IRS — About Form 5471",
+            "url": "https://www.irs.gov/forms-pubs/about-form-5471"
+          },
+          {
+            "label": "Instructions for Form 5471 (12/2025)",
+            "url": "https://www.irs.gov/instructions/i5471"
+          },
+          {
+            "label": "Form 5471 PDF",
+            "url": "https://www.irs.gov/pub/irs-pdf/f5471.pdf"
+          }
+        ],
+        "sources": [
+          {
+            "label": "About Form 5471, Information Return of U.S. Persons With Respect To Certain Foreign Corporations",
+            "url": "https://www.irs.gov/forms-pubs/about-form-5471"
+          },
+          {
+            "label": "Instructions for Form 5471 (Rev. December 2025) — Who Must File, Categories, Penalties §§6038/6046",
+            "url": "https://www.irs.gov/instructions/i5471"
+          },
+          {
+            "label": "IRC sections 6038 and 6046 (information returns / foreign corporations)",
+            "url": "https://www.irs.gov/forms-pubs/about-form-5471"
+          }
+        ]
+      }
+    },
     {
       "id": "book-20260929-deep-work",
       "category": "book",
@@ -2874,247 +3147,6 @@
           {
             "label": "9to5toys · prior same-price Amazon low (Aug 13, 2026)",
             "url": "https://9to5toys.com/2026/08/13/hyper-2026-thunderbolt-5-dock-deal-mac/"
-          }
-        ]
-      }
-    },
-    {
-      "id": "aws-20260917-agentcore-stage1-replatform",
-      "category": "aws",
-      "title": "Replatform the agent before you rewrite it",
-      "body": "LangGraph on your laptop isn’t production: you still own session isolation, tool auth, and durable state. Stage 1 of AgentCore moves Runtime + Gateway + Memory with the graph unchanged — stop there until ops burden drops, then choose Strands planning or the harness.",
-      "source": "AWS ML Blog · Sep 3, 2026",
-      "tags": [
-        "bedrock",
-        "agentcore",
-        "langgraph",
-        "migration",
-        "gateway",
-        "runtime",
-        "aws-sa"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/aws-agentcore-stage1-replatform-20260917/800/520",
-      "link": "https://aws.amazon.com/blogs/machine-learning/migrate-agentic-workloads-to-amazon-bedrock-agentcore/",
-      "detail": {
-        "summary": "An agent that works in a notebook still leaves you patching OS, isolating sessions, signing every tool call, and holding conversation state in-process. AWS’s Sep 3, 2026 how-to migrates a LangGraph support agent onto Amazon Bedrock AgentCore in stages: Stage 1 keeps the graph and sheds five ops burdens (Runtime microVM, Gateway MCP tools, Memory checkpoints); Stage 2 optionally swaps hand-written routing for Strands model-driven planning; Stage 3 hands the loop to an AgentCore harness. For SA blogs: teach staged migration, not a big-bang rewrite.",
-        "sections": [
-          {
-            "heading": "What Stage 1 actually moves",
-            "body": "Runtime wraps your existing loop in BedrockAgentCoreApp with an @app.entrypoint — one microVM per session, so OS patching and auto-scaling stop being yours (you still own VPC, WAF, IAM, secrets). Put shared tools (e.g. lookup_order, process_return) behind AgentCore Gateway as MCP Lambda targets with GATEWAY_IAM_ROLE; keep agent-local tools (search_faq) in-process. Swap MemorySaver for AgentCoreMemorySaver keyed on actor_id + session_id so state survives process death and multi-replica deploys. Inference already on Bedrock does not move."
-          },
-          {
-            "heading": "Deploy traps that burn a day",
-            "body": "CreateAgentRuntime accepts a code zip in S3 with dependencies vendored beside source — no ECR required. Two silent killers: (1) pip install -t on an x86 laptop installs the wrong wheels — vendor for manylinux2014_aarch64 and the Runtime Python version (blog uses 3.12); (2) a requirements.txt inside the zip is inert — missing modules show up as “Runtime initialization time exceeded … 30s,” not ModuleNotFoundError. Prove POST /invocations locally with app.run() before CreateAgentRuntime. Gateway tools arrive as supportTools___lookup_order — assert the prefixed name in tests, not the original."
-          },
-          {
-            "heading": "When to take Stage 2 and 3",
-            "body": "Stage 2 only when route_intent / conditional edges are the ceiling: Strands Agent replaces the branch with model-driven planning, reusing Stage 1’s gateway, target, and Memory. You lose a deterministic, auditable branch — put Cedar Policy on the Gateway so every tool call is default-deny in the data plane (Guardrails on model output are too late; the tool already ran). Stage 3 is harness-as-config (model, prompt, tools, memory, limits) — dependency updates move; graph-shaped agents must become a single loop first. Stop at Stage 1 if the graph is already trusted."
-          },
-          {
-            "heading": "Blog angle for Solutions Architects",
-            "body": "Frame as “retire ops that aren’t reasoning”: map ten burdens to Runtime / Gateway / Memory / Policy / Observability / Identity, then show a before/after of the same LangGraph answers with five burdens gone. Demo pitfalls: in-process state after idleRuntimeSessionTimeout (default 15m), outcome-based acceptance (not reply wording parity), and Guardrails at every stage for injection/grounding. Pair with yesterday’s CI eval gate and Gateway rate limits for the full production path — this card is the migration order."
-          }
-        ],
-        "bullets": [
-          "Stage 1: same graph, managed compute + MCP tools + durable Memory — valid stopping point",
-          "Vendor ARM64 Linux wheels for Runtime; don’t trust laptop pip into the zip",
-          "Cedar on Gateway is default-deny; Guardrails ≠ tool-call authorization",
-          "idleRuntimeSessionTimeout ends the execution environment — put next-turn facts in Memory"
-        ],
-        "steps": [
-          "Clone aws-samples/sample-migrate-agents-to-amazon-bedrock-agentcore; record Stage 0 baseline (tools called + final graph message)",
-          "Wrap BedrockAgentCoreApp; register shared tools on Gateway; wire AgentCoreMemorySaver; vendor aarch64 deps and deploy",
-          "Diff Stage 1 vs Stage 0 with an assertion on supportTools___… payloads — not eyeballing reply text",
-          "Only if routing is the bottleneck: Stage 2 Strands + Cedar Policy; consider harness last"
-        ],
-        "actions": [
-          {
-            "label": "Read the AWS migration how-to (Sep 3, 2026)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/migrate-agentic-workloads-to-amazon-bedrock-agentcore/"
-          },
-          {
-            "label": "Sample repo — migrate agents to AgentCore",
-            "url": "https://github.com/aws-samples/sample-migrate-agents-to-amazon-bedrock-agentcore"
-          },
-          {
-            "label": "Import existing Bedrock Agents (starter toolkit)",
-            "url": "https://aws.github.io/bedrock-agentcore-starter-toolkit/user-guide/import-agent/quickstart.html"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS ML Blog — Migrate agentic workloads to Amazon Bedrock AgentCore (Sep 3, 2026)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/migrate-agentic-workloads-to-amazon-bedrock-agentcore/"
-          },
-          {
-            "label": "aws-samples — sample-migrate-agents-to-amazon-bedrock-agentcore",
-            "url": "https://github.com/aws-samples/sample-migrate-agents-to-amazon-bedrock-agentcore"
-          },
-          {
-            "label": "AgentCore starter toolkit — Import Agent quickstart",
-            "url": "https://aws.github.io/bedrock-agentcore-starter-toolkit/user-guide/import-agent/quickstart.html"
-          },
-          {
-            "label": "AWS Migration Blog — Mass-migrating AI agents to AgentCore",
-            "url": "https://aws.amazon.com/blogs/migration-and-modernization/mass-migrating-ai-agents-to-amazon-bedrock-agentcore/"
-          }
-        ]
-      }
-    },
-    {
-      "id": "trend-20260917-gpt6-astra-bedrock",
-      "category": "aws",
-      "title": "GPT-6 Astra GA on Bedrock",
-      "body": "OpenAI’s GPT-6 Astra is generally available on Amazon Bedrock (Sep 8): up to 1M input tokens, deeper reasoning, and computer/browser use — call via Bedrock APIs or point ChatGPT Work / Codex at Bedrock. AWS controls + no training on your inference data.",
-      "source": "AWS What’s New · Sep 8, 2026",
-      "tags": [
-        "bedrock",
-        "openai",
-        "gpt-6-astra",
-        "agents",
-        "aws-sa",
-        "enterprise"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/trend-gpt6-astra-bedrock-20260917/800/520",
-      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/",
-      "detail": {
-        "summary": "On Sep 8, 2026 AWS announced general availability of OpenAI GPT-6 Astra on Amazon Bedrock. Astra is positioned as OpenAI’s latest frontier model for demanding business workflows: deeper reasoning and judgment, professional writing/design, and advanced computer and browser use, with a context window up to 1 million input tokens. You invoke it through supported Bedrock APIs, or configure ChatGPT Work and Codex to use the model on Bedrock. Educational product brief for AWS SA work — not a vendor pitch or buy signal.",
-        "sections": [
-          {
-            "heading": "What shipped",
-            "body": "GPT-6 Astra is callable on Amazon Bedrock’s inference engine for production scale, security, and audit. AWS emphasizes established account controls for access governance and model-invocation auditing, and that inference data isn’t used for model training. Alongside the Bedrock GA, OpenAI is introducing enterprise plugins for ChatGPT Work that extend Astra’s browser-use capabilities across common business apps — useful framing when a customer already lives in ChatGPT Work but wants Bedrock-backed inference."
-          },
-          {
-            "heading": "Why it matters for Solutions Architects",
-            "body": "Large-context + judgment across competing inputs is the pitch: long contracts, big codebases, multi-doc packs, agent loops that need tool/browser use. The Bedrock path keeps the usual SA conversation: IAM, VPC endpoints, CloudWatch logging, Guardrails, inference profiles, regional availability, and cost controls — without standing up a separate OpenAI-only stack if the customer’s bar is ‘stay in AWS.’ Pair with AgentCore (runtime, gateway spend limits, eval gates) when the use case is agents, not one-shot chat."
-          },
-          {
-            "heading": "How to try it without boiling the ocean",
-            "body": "Start in the Bedrock console or via supported Bedrock APIs. Confirm Regions, inference profiles, and pricing in the Bedrock docs before promising a customer demo. For ChatGPT Work / Codex customers, check whether configuring those products to use Astra on Bedrock is available in their account path. Smoke-test: one long-document reconciliation prompt and one agent-ish tool/browser task, then compare latency, quality, and $ vs your current Claude / prior GPT Bedrock models."
-          },
-          {
-            "heading": "Captain next step",
-            "body": "If you’re drafting an AI-on-AWS talk track this week, add Astra as the OpenAI frontier option on Bedrock next to Claude Fable 5.1. Lead with controls (IAM, audit, no training on inference) and the 1M-token window, then ask which workflow needs judgment across a big corpus vs cheap/fast models for simple classify/summarize. Read the What’s New post + Sep 14 Weekly Roundup for the surrounding launch cluster (Quick desktop, Lambda 90-min Managed Instances, etc.)."
-          }
-        ],
-        "bullets": [
-          "GA on Amazon Bedrock as of Sep 8, 2026 (OpenAI GPT-6 Astra)",
-          "Up to ~1M input tokens; reasoning, writing/design, computer + browser use",
-          "Invoke via Bedrock APIs; optional ChatGPT Work / Codex on Bedrock",
-          "AWS: secure, govern, audit invocations; inference not used for training",
-          "Educational only — check Regions, profiles, and pricing before customer demos"
-        ],
-        "steps": [
-          "Open Bedrock console → model catalog / inference profiles; confirm Astra availability in your demo Region",
-          "Read What’s New + Bedrock docs for APIs, endpoints, pricing",
-          "Run two smoke prompts: long multi-doc reconcile + one agent/browser-style task",
-          "Note Guardrails + logging path you’d recommend for a production account",
-          "Update your SA talk track: OpenAI frontier option sits on Bedrock alongside Claude"
-        ],
-        "actions": [
-          {
-            "label": "AWS What’s New: GPT-6 Astra on Bedrock",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/"
-          },
-          {
-            "label": "AWS Weekly Roundup (Sep 14, 2026)",
-            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-openai-gpt-6-astra-on-amazon-bedrock-amazon-quick-desktop-ga-kiro-for-students-and-more-september-14-2026/"
-          },
-          {
-            "label": "Amazon Bedrock (product)",
-            "url": "https://aws.amazon.com/bedrock/"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS · What’s New · GPT-6 Astra on Bedrock (Sep 8, 2026)",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/"
-          },
-          {
-            "label": "AWS News Blog · Weekly Roundup (Sep 14, 2026)",
-            "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-openai-gpt-6-astra-on-amazon-bedrock-amazon-quick-desktop-ga-kiro-for-students-and-more-september-14-2026/"
-          }
-        ]
-      }
-    },
-    {
-      "id": "tax-20260917-pfic-form-8621-india-mf",
-      "category": "tax",
-      "title": "PFIC trap: India mutual funds (Form 8621)",
-      "body": "India mutual funds and many foreign ETFs are often PFICs for US persons — Form 8621 per fund, and the default excess-distribution rules can be harsh. Inventory holdings before you buy or sell more. Educational only, not tax advice.",
-      "source": "IRS · Form 8621 · PFIC / QEF",
-      "tags": [
-        "us-tax",
-        "india-us",
-        "pfic",
-        "form-8621",
-        "mutual-funds",
-        "cross-border"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/tax-pfic-8621-india-mf-20260917/800/520",
-      "link": "https://www.irs.gov/forms-pubs/about-form-8621",
-      "detail": {
-        "summary": "A Passive Foreign Investment Company (PFIC) is generally a foreign corporation that meets an income test (≥75% passive income) or an asset test (≥50% assets that produce passive income). Many India mutual funds and foreign ETFs fit that profile for US citizens and resident aliens. When they do, Form 8621 is often in play — and the default IRC §1291 “excess distribution” regime can allocate gain across prior years with interest. Educational only; not tax advice.",
-        "sections": [
-          {
-            "heading": "Who this helps",
-            "body": "Indian-origin US citizens, green-card holders, and resident aliens who still hold India mutual funds (direct or via NRE/NRO brokerage), foreign ETFs that are non-US corporations, or older SIPs started before moving to the US. Especially useful if you treat India MFs like US Vanguard/Fidelity funds — the US tax treatment is usually not the same."
-          },
-          {
-            "heading": "Rough mechanics",
-            "body": "PFIC status is tested at the foreign corporation level (income or asset test). US persons who are shareholders generally file Form 8621 when they receive certain distributions, recognize gain on disposition, report/make a QEF or mark-to-market election, make another Part II election, or must file an annual report under §1298(f). A separate Form 8621 is generally required for each PFIC. Without a timely QEF or mark-to-market election (when available), the default §1291 regime can tax “excess distributions” and disposition gains in a punitive, look-back way. India AMC funds rarely hand US investors the annual PFIC statements needed for an easy QEF election — so many filers face default treatment or need specialist help."
-          },
-          {
-            "heading": "India–US angle",
-            "body": "Classic pattern: SIPs in India equity/debt MFs kept after becoming a US tax resident, or family gifting/transferring MF units. Those units can also count toward Form 8938 / FBAR thresholds (yesterday’s tip), but Form 8621 is a separate PFIC information return with its own tax consequences. US-domiciled funds that hold foreign stocks are generally not PFICs — the “foreign corporation” piece is the key. Do not assume “no distribution this year” means no Form 8621 obligation; annual reporting rules can still apply."
-          },
-          {
-            "heading": "Check-this action",
-            "body": "List every India mutual fund / foreign ETF ticker and approximate value you (or your spouse) still hold. Open the IRS About Form 8621 page and the Instructions for Form 8621, then book a cross-border CPA before you redeem, switch, or start a new SIP — selling without a plan can crystallize PFIC tax under §1291."
-          }
-        ],
-        "bullets": [
-          "India MFs and many foreign ETFs are often PFICs for US persons",
-          "Form 8621 is generally filed per PFIC when IRS triggers apply (distributions, dispositions, elections, §1298(f))",
-          "Default §1291 excess-distribution rules can be much harsher than US mutual-fund tax",
-          "QEF / mark-to-market elections need timing and (often) fund statements many India AMCs don’t provide",
-          "Separate from Form 8938 / FBAR — you may need all of them; educational only, not tax advice"
-        ],
-        "steps": [
-          "Inventory every India MF / foreign ETF still in your name (or spouse’s), including dormant SIPs",
-          "Note purchase dates, current value, and any 2025–2026 redemptions or switches",
-          "Read IRS About Form 8621 + Instructions (Rev. Dec 2025) for filing triggers and elections",
-          "Before buying or selling more India MFs, get a cross-border tax pro to map PFIC exposure"
-        ],
-        "actions": [
-          {
-            "label": "IRS: About Form 8621",
-            "url": "https://www.irs.gov/forms-pubs/about-form-8621"
-          },
-          {
-            "label": "Form 8621 (PDF)",
-            "url": "https://www.irs.gov/pub/irs-pdf/f8621.pdf"
-          },
-          {
-            "label": "Instructions for Form 8621 (PDF)",
-            "url": "https://www.irs.gov/pub/irs-pdf/i8621.pdf"
-          }
-        ],
-        "sources": [
-          {
-            "label": "IRS · About Form 8621",
-            "url": "https://www.irs.gov/forms-pubs/about-form-8621"
-          },
-          {
-            "label": "IRS · Form 8621 (Rev. December 2025)",
-            "url": "https://www.irs.gov/pub/irs-pdf/f8621.pdf"
-          },
-          {
-            "label": "IRS · Instructions for Form 8621 (Rev. December 2025)",
-            "url": "https://www.irs.gov/pub/irs-pdf/i8621.pdf"
           }
         ]
       }

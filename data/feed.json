@@ -1,8 +1,108 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-29T14:19:01Z",
+  "updated": "2026-09-29T17:45:07Z",
   "cards": [
+    {
+      "id": "aws-20260929-agentcore-optimization-ab",
+      "category": "aws",
+      "title": "AgentCore Optimization: recommend from traces, A/B via Gateway",
+      "body": "Stop guessing prompt fixes. Point AgentCore Recommendations at production OTEL traces + an evaluator (helpfulness, tool selection, etc.), get a system-prompt or tool-description variant, package it as a config bundle, then split live traffic at AgentCore Gateway with p-values before you promote. Preview loop for SAs writing Bedrock agent blogs.",
+      "source": "AWS ML Blog · May 4, 2026 · AgentCore Optimization docs",
+      "tags": [
+        "aws",
+        "bedrock",
+        "agentcore",
+        "optimization",
+        "recommendations",
+        "ab-testing",
+        "gateway",
+        "evaluations",
+        "prompts",
+        "solutions-architect"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-agentcore-optimization-ab-20260929/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview/",
+      "detail": {
+        "summary": "Amazon Bedrock AgentCore Optimization (preview) closes the observe → evaluate → improve loop for production agents. Instead of reading traces by hand and shipping prompt edits blind, you generate Recommendations from AgentCore Observability traces against a chosen evaluator, package the change as an immutable configuration bundle (system prompt, model ID, tool descriptions), validate offline with batch evaluation (or simulated user datasets), then run A/B tests through AgentCore Gateway with online evaluation, confidence intervals, and p-values before promoting the winner. During preview it targets system prompts and tool descriptions for agents on AgentCore Runtime that already use Observability and Evaluations — educational SA pattern, not a production SLA.",
+        "sections": [
+          {
+            "heading": "Why SAs should care",
+            "body": "Agent quality drifts daily as models, tools, and user intents shift. The common fix cycle — complaint → skim traces → rewrite prompt → ship — introduces regressions on other sessions. AgentCore Optimization turns that into a data-backed loop SAs can cite in architecture blogs: traces feed recommendations, recommendations become versioned bundles, Gateway splits traffic, Evaluations score both arms with statistical rigor. Pair it with AgentOps pillars (governance, CI/CD, multi-level eval, observability) from the Jun 1, 2026 AgentOps ML Blog."
+          },
+          {
+            "heading": "Recommendations from real traces",
+            "body": "Call StartRecommendation (type SYSTEM_PROMPT_RECOMMENDATION or TOOL_DESCRIPTION_RECOMMENDATION). Point recommendationConfig at the CloudWatch log group / agent traces, the current system prompt (or tool descriptions), and an evaluationConfig with the reward signal you care about — built-in evaluators such as Builtin.Helpfulness or a custom LLM-as-judge. The service reflects on failure patterns for that evaluator and proposes an optimized variant. Tool-description recommendations sharpen how the model chooses tools without changing tool implementations. You decide what advances to validation."
+          },
+          {
+            "heading": "Configuration bundles vs code changes",
+            "body": "Bundles are immutable, versioned snapshots keyed by runtime ARN: model ID, system prompt, tool descriptions. Agents read the active bundle dynamically via the AgentCore SDK, so prompt/model swaps are configuration changes — not container redeploys. Use bundle variants on the same Runtime for config-only experiments. For code or framework changes, deploy a second Runtime endpoint and compare via Gateway target-based variants instead."
+          },
+          {
+            "heading": "Validate: batch first, then Gateway A/B",
+            "body": "Batch evaluation runs the candidate against a curated (or LLM-simulated) dataset and reports aggregate scores so known-good cases do not regress — wire this as a CI gate. Then configure AgentCore Gateway to split live traffic between control and treatment (percentage you set). Online evaluation scores every session; results include confidence intervals and p-values. Promote the winner as the default; pause the test to roll back to the prior configuration. Two variant modes: configuration-bundle variants (same target, W3C baggage injects bundle ref) or target-based variants (different Runtime endpoints)."
+          },
+          {
+            "heading": "Try this week",
+            "body": "In a non-prod account with AgentCore Runtime + Observability + Evaluations enabled, pick Builtin.Helpfulness (or a custom evaluator), run StartRecommendation on a week of failing sessions, create two config bundles (baseline vs recommendation), run batch eval on your gold prompts, then start a low-percentage Gateway A/B before touching production defaults. Document the loop for your next Bedrock agent blog."
+          }
+        ],
+        "bullets": [
+          "Preview: Recommendations + config bundles + Gateway A/B with statistical significance",
+          "Optimize SYSTEM_PROMPT or TOOL_DESCRIPTION from production OTEL traces + a target evaluator",
+          "Bundles decouple prompt/model/tool-description changes from code redeploys",
+          "Batch eval (CI gate) then live A/B via Gateway; promote or pause to roll back",
+          "Bundle variants (same Runtime) vs target-based variants (separate Runtime endpoints)",
+          "Requires AgentCore Runtime + Observability + Evaluations; Regions where Evaluations is available",
+          "Educational SA pattern — confirm preview limits and pricing before production designs"
+        ],
+        "steps": [
+          "Confirm AgentCore Runtime, Observability (OTEL → CloudWatch), and Evaluations are wired for your agent.",
+          "Choose an evaluator reward signal (built-in or custom) that matches the quality drop you care about.",
+          "StartRecommendation with SYSTEM_PROMPT_RECOMMENDATION or TOOL_DESCRIPTION_RECOMMENDATION against recent traces.",
+          "Create immutable config bundles for baseline and candidate; keep code identical for config-only tests.",
+          "Run batch evaluation on a curated or simulated dataset; fail the pipeline on regression.",
+          "Configure Gateway A/B (bundle or target-based), review p-values/CIs, promote the winner or pause to roll back."
+        ],
+        "actions": [
+          {
+            "label": "ML Blog — Agent quality optimization (preview)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview/"
+          },
+          {
+            "label": "Docs — AgentCore optimization",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/optimization.html"
+          },
+          {
+            "label": "Docs — A/B testing",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/ab-testing.html"
+          },
+          {
+            "label": "API — StartRecommendation",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/APIReference/API_StartRecommendation.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — Introducing agent quality optimization in AgentCore, now in preview (May 4, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview/"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Optimization",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/optimization.html"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — A/B testing",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/ab-testing.html"
+          },
+          {
+            "label": "AWS ML Blog — AgentOps: Operationalize agentic AI at scale with AgentCore (Jun 1, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/agentops-operationalize-agentic-ai-at-scale-with-amazon-bedrock-agentcore/"
+          }
+        ]
+      }
+    },
     {
       "id": "trend-20260929-strands-harness",
       "category": "trend",
@@ -3047,90 +3147,6 @@
           {
             "label": "9to5toys · prior same-price Amazon low (Aug 13, 2026)",
             "url": "https://9to5toys.com/2026/08/13/hyper-2026-thunderbolt-5-dock-deal-mac/"
-          }
-        ]
-      }
-    },
-    {
-      "id": "aws-20260917-agentcore-stage1-replatform",
-      "category": "aws",
-      "title": "Replatform the agent before you rewrite it",
-      "body": "LangGraph on your laptop isn’t production: you still own session isolation, tool auth, and durable state. Stage 1 of AgentCore moves Runtime + Gateway + Memory with the graph unchanged — stop there until ops burden drops, then choose Strands planning or the harness.",
-      "source": "AWS ML Blog · Sep 3, 2026",
-      "tags": [
-        "bedrock",
-        "agentcore",
-        "langgraph",
-        "migration",
-        "gateway",
-        "runtime",
-        "aws-sa"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/aws-agentcore-stage1-replatform-20260917/800/520",
-      "link": "https://aws.amazon.com/blogs/machine-learning/migrate-agentic-workloads-to-amazon-bedrock-agentcore/",
-      "detail": {
-        "summary": "An agent that works in a notebook still leaves you patching OS, isolating sessions, signing every tool call, and holding conversation state in-process. AWS’s Sep 3, 2026 how-to migrates a LangGraph support agent onto Amazon Bedrock AgentCore in stages: Stage 1 keeps the graph and sheds five ops burdens (Runtime microVM, Gateway MCP tools, Memory checkpoints); Stage 2 optionally swaps hand-written routing for Strands model-driven planning; Stage 3 hands the loop to an AgentCore harness. For SA blogs: teach staged migration, not a big-bang rewrite.",
-        "sections": [
-          {
-            "heading": "What Stage 1 actually moves",
-            "body": "Runtime wraps your existing loop in BedrockAgentCoreApp with an @app.entrypoint — one microVM per session, so OS patching and auto-scaling stop being yours (you still own VPC, WAF, IAM, secrets). Put shared tools (e.g. lookup_order, process_return) behind AgentCore Gateway as MCP Lambda targets with GATEWAY_IAM_ROLE; keep agent-local tools (search_faq) in-process. Swap MemorySaver for AgentCoreMemorySaver keyed on actor_id + session_id so state survives process death and multi-replica deploys. Inference already on Bedrock does not move."
-          },
-          {
-            "heading": "Deploy traps that burn a day",
-            "body": "CreateAgentRuntime accepts a code zip in S3 with dependencies vendored beside source — no ECR required. Two silent killers: (1) pip install -t on an x86 laptop installs the wrong wheels — vendor for manylinux2014_aarch64 and the Runtime Python version (blog uses 3.12); (2) a requirements.txt inside the zip is inert — missing modules show up as “Runtime initialization time exceeded … 30s,” not ModuleNotFoundError. Prove POST /invocations locally with app.run() before CreateAgentRuntime. Gateway tools arrive as supportTools___lookup_order — assert the prefixed name in tests, not the original."
-          },
-          {
-            "heading": "When to take Stage 2 and 3",
-            "body": "Stage 2 only when route_intent / conditional edges are the ceiling: Strands Agent replaces the branch with model-driven planning, reusing Stage 1’s gateway, target, and Memory. You lose a deterministic, auditable branch — put Cedar Policy on the Gateway so every tool call is default-deny in the data plane (Guardrails on model output are too late; the tool already ran). Stage 3 is harness-as-config (model, prompt, tools, memory, limits) — dependency updates move; graph-shaped agents must become a single loop first. Stop at Stage 1 if the graph is already trusted."
-          },
-          {
-            "heading": "Blog angle for Solutions Architects",
-            "body": "Frame as “retire ops that aren’t reasoning”: map ten burdens to Runtime / Gateway / Memory / Policy / Observability / Identity, then show a before/after of the same LangGraph answers with five burdens gone. Demo pitfalls: in-process state after idleRuntimeSessionTimeout (default 15m), outcome-based acceptance (not reply wording parity), and Guardrails at every stage for injection/grounding. Pair with yesterday’s CI eval gate and Gateway rate limits for the full production path — this card is the migration order."
-          }
-        ],
-        "bullets": [
-          "Stage 1: same graph, managed compute + MCP tools + durable Memory — valid stopping point",
-          "Vendor ARM64 Linux wheels for Runtime; don’t trust laptop pip into the zip",
-          "Cedar on Gateway is default-deny; Guardrails ≠ tool-call authorization",
-          "idleRuntimeSessionTimeout ends the execution environment — put next-turn facts in Memory"
-        ],
-        "steps": [
-          "Clone aws-samples/sample-migrate-agents-to-amazon-bedrock-agentcore; record Stage 0 baseline (tools called + final graph message)",
-          "Wrap BedrockAgentCoreApp; register shared tools on Gateway; wire AgentCoreMemorySaver; vendor aarch64 deps and deploy",
-          "Diff Stage 1 vs Stage 0 with an assertion on supportTools___… payloads — not eyeballing reply text",
-          "Only if routing is the bottleneck: Stage 2 Strands + Cedar Policy; consider harness last"
-        ],
-        "actions": [
-          {
-            "label": "Read the AWS migration how-to (Sep 3, 2026)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/migrate-agentic-workloads-to-amazon-bedrock-agentcore/"
-          },
-          {
-            "label": "Sample repo — migrate agents to AgentCore",
-            "url": "https://github.com/aws-samples/sample-migrate-agents-to-amazon-bedrock-agentcore"
-          },
-          {
-            "label": "Import existing Bedrock Agents (starter toolkit)",
-            "url": "https://aws.github.io/bedrock-agentcore-starter-toolkit/user-guide/import-agent/quickstart.html"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS ML Blog — Migrate agentic workloads to Amazon Bedrock AgentCore (Sep 3, 2026)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/migrate-agentic-workloads-to-amazon-bedrock-agentcore/"
-          },
-          {
-            "label": "aws-samples — sample-migrate-agents-to-amazon-bedrock-agentcore",
-            "url": "https://github.com/aws-samples/sample-migrate-agents-to-amazon-bedrock-agentcore"
-          },
-          {
-            "label": "AgentCore starter toolkit — Import Agent quickstart",
-            "url": "https://aws.github.io/bedrock-agentcore-starter-toolkit/user-guide/import-agent/quickstart.html"
-          },
-          {
-            "label": "AWS Migration Blog — Mass-migrating AI agents to AgentCore",
-            "url": "https://aws.amazon.com/blogs/migration-and-modernization/mass-migrating-ai-agents-to-amazon-bedrock-agentcore/"
           }
         ]
       }
