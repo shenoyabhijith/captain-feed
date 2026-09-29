@@ -1,8 +1,98 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-29T17:45:07Z",
+  "updated": "2026-09-29T16:10:39-05:00",
   "cards": [
+    {
+      "id": "deal-20260929-baseus-12in1-dock",
+      "category": "deal",
+      "title": "Baseus 12-in-1 laptop dock — $41.99 Amazon",
+      "body": "New all-time-low call from 9to5Toys: Baseus 12-in-1 stand dock (ASIN B0D7GX6FMS) at $41.99 on Amazon Baseus Brand Store. Live cart shows Lowest price in 30 days / −19% vs Amazon typical $51.99 (9to5Toys tracks ~$100 list / ~58% off). Dual HDMI + DP, GbE, PD 100W, SD/TF — under-laptop ergonomic stand for a cheap desk ops upgrade.",
+      "source": "Amazon live · $41.99 · Sep 29, 2026 · 9to5Toys",
+      "tags": [
+        "home-ops",
+        "dock",
+        "usb-c",
+        "baseus",
+        "laptop",
+        "hdmi",
+        "ethernet",
+        "amazon",
+        "workstation",
+        "hub"
+      ],
+      "accent": "coral",
+      "image": "https://picsum.photos/seed/deal-baseus-12in1-20260929/800/520",
+      "link": "https://www.amazon.com/dp/B0D7GX6FMS",
+      "detail": {
+        "summary": "Amazon Baseus Brand Store is selling the Baseus 12-in-1 USB-C laptop docking station / stand (ASIN B0D7GX6FMS) at $41.99 as of Tue Sep 29, 2026 afternoon CT — matching today’s 9to5Toys post ($41.99 shipped, new best price they have tracked, ~$10 under their prior all-time low). Live product page showed In Stock, Ships from Amazon / Sold by Baseus Brand Store, with a Lowest price in 30 days badge and −19% vs Amazon’s displayed typical price of $51.99. 9to5Toys still frames the cut vs a ~$100 list (~58% off); trust the live cart over the aggregator list. This is the under-laptop angled stand dock: dual 4K HDMI + 4K DisplayPort, Gigabit Ethernet, 3× USB-A 3.0, 1× USB-C 3.0, TF/SD readers, 3.5 mm audio, and 100W PD input (up to ~85W to the laptop). Strong cheap desk-ops buy if you need multi-monitor + wired LAN without spending Anker/HyperDrive money; skip if you need Thunderbolt 5 / dual 8K / certified TB docking.",
+        "sections": [
+          {
+            "heading": "What you get",
+            "body": "Baseus 12-in-1 USB-C docking station with ergonomic laptop stand (B0D7GX6FMS): 2× 4K HDMI + 1× 4K DP, Gigabit RJ45, 3× USB-A 3.0 + 1× USB-C 3.0 data, SD/TF card readers, 3.5 mm audio, USB-C PD up to 100W in / ~85W out to the notebook. Angled under-laptop design lifts the keyboard edge and frees space underneath. Host laptop needs a full-function USB-C port (DP Alt Mode + PD). macOS typically mirrors extended displays through standard USB-C hubs (not three independent desktops); Windows with the right GPU/protocol can drive multiple extended screens — check your laptop before banking on triple independent 4K."
+          },
+          {
+            "heading": "Why it fits home/ops",
+            "body": "One cable desk: monitors, wired Ethernet for stable calls/uploads, USB peripherals, and PD charging without a pile of dongles. At ~$42 verified on the merchant page it is a clearer budget workstation buy than another mid-tier hub, and it is not a duplicate of the recent Anker Prime / HyperDrive / Anker A210C cards (different brand, stand form factor, much lower price). Keep a 65W+ USB-C charger handy — adapter is not included."
+          },
+          {
+            "heading": "Price honesty",
+            "body": "Live Amazon page (Tue Sep 29, 2026 ~4:15 PM CT) returned $41.99 with Lowest price in 30 days and −19% vs typical $51.99; in stock from Baseus Brand Store. 9to5Toys (Sep 29 ~10:21 am PT) listed the same ASIN at $41.99 as a new all-time low vs their ~$100 tracked list / 58% off narrative. Amazon’s own typical ($51.99) is softer than the aggregator list — cite both; re-check cart if you see ~$52+ with no deal badge. Early-fall Prime window is live; official Big Deal Days Oct 6–7 may bounce or deepen prices."
+          },
+          {
+            "heading": "Skip if",
+            "body": "You need Thunderbolt 5 / dual 8K / display-link certified docking (buy HyperDrive/CalDigit-class instead), your USB-C port is charge-only, or you already own a solid multi-monitor dock. Mixed reviews on long-term HDMI reliability — use Amazon’s 30-day return if screens flake."
+          }
+        ],
+        "bullets": [
+          "$41.99 Amazon live (B0D7GX6FMS) — Lowest price in 30 days; −19% vs Amazon typical $51.99",
+          "9to5Toys Sep 29: same $41.99 as new ATL vs ~$100 tracked list (~58% off) — list framing differs from Amazon typical",
+          "12-in-1 stand dock: 2×4K HDMI + 4K DP, GbE, USB-A/C, SD/TF, 3.5 mm, 100W PD in",
+          "Best fit: cheap laptop→desk ops upgrade; not a TB5 / premium dock substitute",
+          "Sold by Baseus Brand Store / ships Amazon — confirm In Stock + deal badge in cart",
+          "Re-check final cart price before checkout — early-Prime tags move; Big Deal Days Oct 6–7"
+        ],
+        "steps": [
+          "Open the Amazon ASIN B0D7GX6FMS link and confirm $41.99 (or better) with a deal / lowest-price badge still showing",
+          "Confirm Sold by Baseus Brand Store (or Amazon) and In Stock — avoid odd 3P listings at the same SKU",
+          "Verify your laptop USB-C supports DP Alt Mode + PD; plan a 65W+ USB-C wall charger (not included)",
+          "On macOS expect mirrored/limited multi-display behavior; on Windows check GPU/DP protocol for multi-extend",
+          "Checkout, then smoke-test HDMI/DP + Ethernet + PD within the return window"
+        ],
+        "actions": [
+          {
+            "label": "Buy — Baseus 12-in-1 dock (Amazon B0D7GX6FMS)",
+            "url": "https://www.amazon.com/dp/B0D7GX6FMS"
+          },
+          {
+            "label": "Compare — Baseus stand docks / USB-C hubs",
+            "url": "https://www.amazon.com/s?k=Baseus+12-in-1+docking+station"
+          },
+          {
+            "label": "Cite — 9to5Toys Baseus 12-in-1 $42 today (Sep 29, 2026)",
+            "url": "https://9to5toys.com/2026/09/29/this-12-in-1-baseus-dock-for-just-42-today/"
+          },
+          {
+            "label": "Context — Amazon early fall Prime update (Sep 29)",
+            "url": "https://9to5toys.com/2026/09/29/amazon-update-fall-prime-day-sale-echo/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "9to5Toys — Baseus 12-in-1 dock $41.99 new all-time low, Sep 29, 2026",
+            "url": "https://9to5toys.com/2026/09/29/this-12-in-1-baseus-dock-for-just-42-today/"
+          },
+          {
+            "label": "Amazon product page — Baseus 12-in-1 dock (ASIN B0D7GX6FMS), live $41.99 Lowest price in 30 days checked Sep 29, 2026 CT",
+            "url": "https://www.amazon.com/dp/B0D7GX6FMS"
+          },
+          {
+            "label": "9to5Toys — Amazon updates early fall Prime Day sale (Echo/Ring context), Sep 29, 2026",
+            "url": "https://9to5toys.com/2026/09/29/amazon-update-fall-prime-day-sale-echo/"
+          }
+        ]
+      }
+    },
     {
       "id": "aws-20260929-agentcore-optimization-ab",
       "category": "aws",
@@ -3067,86 +3157,6 @@
           {
             "label": "mgp/book-notes · the-power-of-habit.markdown",
             "url": "https://github.com/mgp/book-notes/blob/master/the-power-of-habit.markdown"
-          }
-        ]
-      }
-    },
-    {
-      "id": "deal-20260917-hyper-tb5-dock",
-      "category": "deal",
-      "title": "Hyper Thunderbolt 5 dock — $319.99 Amazon low",
-      "body": "HyperDrive Next TB5 dock with built-in M.2 SSD slot is back at $319.99 ($80 off ~$400) on Hyper’s Amazon storefront — same low 9to5toys tracked for Prime Day. Triple-display capable (host-limited), 140W PD, 2.5GbE. Verify price before checkout; HyperShop still lists $399.99.",
-      "source": "9to5toys · Sep 17, 2026 · Amazon (Hyper)",
-      "tags": [
-        "hardware",
-        "dock",
-        "thunderbolt",
-        "home-office",
-        "ssd",
-        "ops"
-      ],
-      "accent": "coral",
-      "image": "https://picsum.photos/seed/deal-hyper-tb5-dock-20260917/800/520",
-      "link": "https://9to5toys.com/2026/09/17/hyper-thunderbolt-5-dock-best-price-mac/",
-      "detail": {
-        "summary": "On Sep 17, 2026, 9to5toys flagged Hyper’s official Amazon listing for the 2026 HyperDrive Next Thunderbolt 5 Dock with SSD Enclosure at $319.99 shipped — $80 off the ~$400 list and matching the all-time Amazon low they tracked (including June Prime Day). Hyper’s own shop still shows $399.99, so the savings are on the Amazon channel. This is a heavy desk dock: TB5 bandwidth, built-in M.2 NVMe slot, up to 140W host charging, and multi-display support that depends on your laptop OS/chip.",
-        "sections": [
-          {
-            "heading": "What you get",
-            "body": "Metal TB5 dock with upstream TB5, multiple TB5 downstream ports, USB-A 10Gbps ports, built-in full-size M.2 PCIe Gen4/Gen3 NVMe slot (2230–2280, up to 16TB claimed), 2.5Gbps Ethernet, 3.5mm audio, security locks, and up to 140W USB-C PD (PD 3.1 EPR for the full 140W; PD 3.0 hosts max ~100W). Included: TB5 cable and 180W AC adapter per Hyper’s product page."
-          },
-          {
-            "heading": "Display reality check",
-            "body": "Marketing says up to three 4K@60Hz or one 8K@144Hz — but macOS/Chrome OS typically top out at two extended displays; Windows and MacBook Pro M5 Pro/Max (2026) are called out for triple. Your host chip and OS set the ceiling, not just the dock. Confirm before you buy if triple-monitor is the reason you’re spending."
-          },
-          {
-            "heading": "Who it’s for",
-            "body": "Home-office / workstation ops where one cable should carry power, Ethernet, storage, and monitors — especially if you want an internal M.2 instead of another dangling enclosure. Overkill if you only need a cheap USB-C hub (see prior Anker cards)."
-          },
-          {
-            "heading": "Price honesty",
-            "body": "Cited deal: $319.99 on Hyper’s Amazon storefront as of the Sep 17, 2026 9to5toys write-up (4:06 am PT). Same low has come and gone for months — recheck the live Amazon price at checkout; it can expire quietly. HyperShop.com product page fetched today still shows $399.99, so don’t assume manufacturer-direct is discounted. SSD not included — budget a separate M.2 if you want the enclosure filled."
-          }
-        ],
-        "bullets": [
-          "$319.99 Amazon (Hyper storefront) vs ~$400 list — $80 off; 9to5toys Sep 17, 2026",
-          "Built-in M.2 NVMe slot + 2.5GbE + up to 140W PD — one-cable desk ops",
-          "Triple display is host-limited (Mac often dual extended; check your chip)",
-          "HyperShop still $399.99 today — buy path is Amazon; verify price before pay",
-          "SSD sold separately; enclosure alone does not add capacity"
-        ],
-        "steps": [
-          "Confirm your laptop has Thunderbolt 3/4/5 or USB4 (USB 3.x alone is not enough)",
-          "Decide if you need triple displays — if yes, check OS/chip support first",
-          "Open Hyper’s Amazon listing via the 9to5toys article and confirm $319.99 still shows",
-          "Optional: price-compare HyperShop ($399.99) and add an M.2 NVMe only if you’ll use the slot"
-        ],
-        "actions": [
-          {
-            "label": "9to5toys deal write-up (Sep 17) — Amazon path",
-            "url": "https://9to5toys.com/2026/09/17/hyper-thunderbolt-5-dock-best-price-mac/"
-          },
-          {
-            "label": "Search Amazon: HyperDrive Next Thunderbolt 5 Dock",
-            "url": "https://www.amazon.com/s?k=HyperDrive+Next+Thunderbolt+5+Dock+SSD+Enclosure"
-          },
-          {
-            "label": "Compare: HyperShop official ($399.99 as of fetch)",
-            "url": "https://www.hypershop.com/products/hyperdrive-next-thunderbolt-5-dock"
-          }
-        ],
-        "sources": [
-          {
-            "label": "9to5toys · Hyper 2026 Thunderbolt 5 Dock Amazon low (Sep 17, 2026)",
-            "url": "https://9to5toys.com/2026/09/17/hyper-thunderbolt-5-dock-best-price-mac/"
-          },
-          {
-            "label": "HyperShop · HyperDrive Next Thunderbolt 5 Dock (HD2801GL)",
-            "url": "https://www.hypershop.com/products/hyperdrive-next-thunderbolt-5-dock"
-          },
-          {
-            "label": "9to5toys · prior same-price Amazon low (Aug 13, 2026)",
-            "url": "https://9to5toys.com/2026/08/13/hyper-2026-thunderbolt-5-dock-deal-mac/"
           }
         ]
       }
