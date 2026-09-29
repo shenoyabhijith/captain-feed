@@ -1,8 +1,91 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-29T13:37:10Z",
+  "updated": "2026-09-29T13:39:03Z",
   "cards": [
+    {
+      "id": "tax-20260929-form-5471-india-pvt-ltd",
+      "category": "tax",
+      "title": "Form 5471: India Pvt Ltd shares can trigger a $10k reporting trap",
+      "body": "Own (or control) stock in an India private limited company as a US citizen or resident? Form 5471 may be mandatory under IRC §§6038/6046 even when the company paid you nothing — Category 4 if you control >50%, Category 5 if you are a ≥10% US shareholder of a CFC. Miss the attach-to-return deadline and the baseline §6038 penalty is $10,000 per foreign corporation per year. Educational only, not tax advice.",
+      "source": "IRS · About Form 5471 · Instructions for Form 5471 (12/2025) · §§6038/6046",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "form-5471",
+        "cfc",
+        "india-pvt-ltd",
+        "section-6038",
+        "section-6046",
+        "gilti",
+        "subpart-f",
+        "cross-border"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-form-5471-india-pvt-20260929/800/520",
+      "link": "https://www.irs.gov/forms-pubs/about-form-5471",
+      "detail": {
+        "summary": "Form 5471 (Information Return of U.S. Persons With Respect To Certain Foreign Corporations) is how certain US citizens and residents who are officers, directors, or shareholders in foreign corporations satisfy the reporting requirements of Internal Revenue Code sections 6038 and 6046. For Indian-origin US residents who founded, inherited, or still hold shares in an India private limited company (or group of related companies), this form is one of the most commonly missed international information returns — and one of the most expensive to miss. The Instructions for Form 5471 (revised December 2025) confirm a $10,000 penalty for each annual accounting period of each foreign corporation for failure to furnish the information required by section 6038(a) within the time prescribed, with additional $10,000 increments after IRS notice (capped) and a separate FTC haircut. Educational only — not tax advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "US citizens and green-card / substantial-presence residents who (1) founded or still own an India Pvt Ltd (startup, consulting firm, family holding company, or operating business), (2) are officers or directors of a foreign corporation when another US person crosses a 10% ownership threshold (Category 2), (3) acquired, disposed of, or became a US person while holding ≥10% (Category 3), (4) control the company — more than 50% of vote or value — as a Category 4 filer, or (5) are a ≥10% US shareholder of a controlled foreign corporation (CFC) as a Category 5 filer. A CFC generally means US shareholders own more than 50% of vote or value on any day of the foreign corporation’s tax year. Family attribution under section 958 can stack siblings/parents/spouse ownership into CFC status even when no single person owns a majority."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Attach a separate Form 5471 (and the schedules your category requires) to your US income tax return and file both by the due date including extensions. Category 4 (control >50% vote or value at any time during your tax year) and Category 5a (US shareholder of a CFC who owned the stock on the last day it was a CFC) are the heavy lifts: they typically pull in Schedules C/F/H/I/I-1/J/M/P/Q/R and can surface Subpart F and GILTI inclusions on your Form 1040 even if the India company never declared a dividend. Category 2/3 focus more on ownership-change reporting via Schedule O. Dormant companies may use the Rev. Proc. 92-70 summary procedure (page 1 only, labeled accordingly) — still a filing, not a free pass. Items reported on Form 5471 generally need not be duplicated on Form 8938 (FATCA), but FBAR (FinCEN 114) is a separate Bank Secrecy Act filing if foreign financial accounts exceed the threshold."
+          },
+          {
+            "heading": "India-angle: Pvt Ltd + family attribution",
+            "body": "An India private limited company is a foreign corporation for US tax purposes. Typical traps: (1) you left India on H-1B/L-1/green card but kept founder shares or a nominee stake in the old Pvt Ltd; (2) parents/siblings in India hold the rest of the stock and constructive ownership under section 958(b) / section 318 principles pushes you over Category 4 control or makes the company a CFC with you as a Category 5 US shareholder; (3) you are an unpaid director on paper for the family company and a US person acquires ≥10%, triggering Category 2; (4) the company looks dormant (no employees, one bank account) so you assume no US filing — Rev. Proc. 92-70 still wants a labeled summary Form 5471. Separately, if the company is a CFC, Schedule I / Form 8992 territory can produce Subpart F or GILTI income inclusions that are taxable on your US return even when India taxes the company differently and you took no cash. Pair this with last week’s treaty Article 4 and Form 1116 thinking only after the information return is scoped — Form 5471 is disclosure first."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "List every India (or other foreign) corporation where you are a shareholder, officer, or director. For each, jot direct + family-attributed vote and value percentages and whether US persons together own more than 50%. If any Category 2–5 box might apply, calendar Form 5471 with your 2026 return (or extension) and bring the cap table to a cross-border CPA before year-end — do not wait for a K-1-style slip from India, because none will arrive."
+          }
+        ],
+        "bullets": [
+          "Form 5471 satisfies IRC §§6038 and 6046 reporting for certain US officers, directors, and shareholders of foreign corporations (IRS About Form 5471 / Instructions 12/2025).",
+          "Category 4 = control (>50% vote or value); Category 5 = ≥10% US shareholder of a CFC (US shareholders own >50% on any day).",
+          "Baseline §6038(a) penalty: $10,000 per foreign corporation per annual accounting period; after IRS 90-day notice, +$10,000 per 30 days (additional capped at $50,000) plus foreign-tax-credit reduction under §6038(c).",
+          "India Pvt Ltd founder/family shares + section 958 attribution are a classic miss; dormant entities may still need Rev. Proc. 92-70 summary filing.",
+          "Educational only — not tax advice; category tests and CFC/GILTI math are fact-specific."
+        ],
+        "steps": [
+          "Inventory foreign corporations (especially India Pvt Ltds) where you are shareholder, officer, or director; note vote/value % including family attribution.",
+          "Map yourself to Form 5471 Categories 2–5 using the Instructions for Form 5471 chart; mark CFC status if US shareholders own >50%.",
+          "If any category applies, plan Form 5471 + required schedules with your return (or extension) and a cross-border advisor — treat the $10,000-per-entity penalty as the cost of ignoring it."
+        ],
+        "actions": [
+          {
+            "label": "IRS — About Form 5471",
+            "url": "https://www.irs.gov/forms-pubs/about-form-5471"
+          },
+          {
+            "label": "Instructions for Form 5471 (12/2025)",
+            "url": "https://www.irs.gov/instructions/i5471"
+          },
+          {
+            "label": "Form 5471 PDF",
+            "url": "https://www.irs.gov/pub/irs-pdf/f5471.pdf"
+          }
+        ],
+        "sources": [
+          {
+            "label": "About Form 5471, Information Return of U.S. Persons With Respect To Certain Foreign Corporations",
+            "url": "https://www.irs.gov/forms-pubs/about-form-5471"
+          },
+          {
+            "label": "Instructions for Form 5471 (Rev. December 2025) — Who Must File, Categories, Penalties §§6038/6046",
+            "url": "https://www.irs.gov/instructions/i5471"
+          },
+          {
+            "label": "IRC sections 6038 and 6046 (information returns / foreign corporations)",
+            "url": "https://www.irs.gov/forms-pubs/about-form-5471"
+          }
+        ]
+      }
+    },
     {
       "id": "book-20260929-deep-work",
       "category": "book",
@@ -3035,86 +3118,6 @@
           {
             "label": "AWS News Blog · Weekly Roundup (Sep 14, 2026)",
             "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-openai-gpt-6-astra-on-amazon-bedrock-amazon-quick-desktop-ga-kiro-for-students-and-more-september-14-2026/"
-          }
-        ]
-      }
-    },
-    {
-      "id": "tax-20260917-pfic-form-8621-india-mf",
-      "category": "tax",
-      "title": "PFIC trap: India mutual funds (Form 8621)",
-      "body": "India mutual funds and many foreign ETFs are often PFICs for US persons — Form 8621 per fund, and the default excess-distribution rules can be harsh. Inventory holdings before you buy or sell more. Educational only, not tax advice.",
-      "source": "IRS · Form 8621 · PFIC / QEF",
-      "tags": [
-        "us-tax",
-        "india-us",
-        "pfic",
-        "form-8621",
-        "mutual-funds",
-        "cross-border"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/tax-pfic-8621-india-mf-20260917/800/520",
-      "link": "https://www.irs.gov/forms-pubs/about-form-8621",
-      "detail": {
-        "summary": "A Passive Foreign Investment Company (PFIC) is generally a foreign corporation that meets an income test (≥75% passive income) or an asset test (≥50% assets that produce passive income). Many India mutual funds and foreign ETFs fit that profile for US citizens and resident aliens. When they do, Form 8621 is often in play — and the default IRC §1291 “excess distribution” regime can allocate gain across prior years with interest. Educational only; not tax advice.",
-        "sections": [
-          {
-            "heading": "Who this helps",
-            "body": "Indian-origin US citizens, green-card holders, and resident aliens who still hold India mutual funds (direct or via NRE/NRO brokerage), foreign ETFs that are non-US corporations, or older SIPs started before moving to the US. Especially useful if you treat India MFs like US Vanguard/Fidelity funds — the US tax treatment is usually not the same."
-          },
-          {
-            "heading": "Rough mechanics",
-            "body": "PFIC status is tested at the foreign corporation level (income or asset test). US persons who are shareholders generally file Form 8621 when they receive certain distributions, recognize gain on disposition, report/make a QEF or mark-to-market election, make another Part II election, or must file an annual report under §1298(f). A separate Form 8621 is generally required for each PFIC. Without a timely QEF or mark-to-market election (when available), the default §1291 regime can tax “excess distributions” and disposition gains in a punitive, look-back way. India AMC funds rarely hand US investors the annual PFIC statements needed for an easy QEF election — so many filers face default treatment or need specialist help."
-          },
-          {
-            "heading": "India–US angle",
-            "body": "Classic pattern: SIPs in India equity/debt MFs kept after becoming a US tax resident, or family gifting/transferring MF units. Those units can also count toward Form 8938 / FBAR thresholds (yesterday’s tip), but Form 8621 is a separate PFIC information return with its own tax consequences. US-domiciled funds that hold foreign stocks are generally not PFICs — the “foreign corporation” piece is the key. Do not assume “no distribution this year” means no Form 8621 obligation; annual reporting rules can still apply."
-          },
-          {
-            "heading": "Check-this action",
-            "body": "List every India mutual fund / foreign ETF ticker and approximate value you (or your spouse) still hold. Open the IRS About Form 8621 page and the Instructions for Form 8621, then book a cross-border CPA before you redeem, switch, or start a new SIP — selling without a plan can crystallize PFIC tax under §1291."
-          }
-        ],
-        "bullets": [
-          "India MFs and many foreign ETFs are often PFICs for US persons",
-          "Form 8621 is generally filed per PFIC when IRS triggers apply (distributions, dispositions, elections, §1298(f))",
-          "Default §1291 excess-distribution rules can be much harsher than US mutual-fund tax",
-          "QEF / mark-to-market elections need timing and (often) fund statements many India AMCs don’t provide",
-          "Separate from Form 8938 / FBAR — you may need all of them; educational only, not tax advice"
-        ],
-        "steps": [
-          "Inventory every India MF / foreign ETF still in your name (or spouse’s), including dormant SIPs",
-          "Note purchase dates, current value, and any 2025–2026 redemptions or switches",
-          "Read IRS About Form 8621 + Instructions (Rev. Dec 2025) for filing triggers and elections",
-          "Before buying or selling more India MFs, get a cross-border tax pro to map PFIC exposure"
-        ],
-        "actions": [
-          {
-            "label": "IRS: About Form 8621",
-            "url": "https://www.irs.gov/forms-pubs/about-form-8621"
-          },
-          {
-            "label": "Form 8621 (PDF)",
-            "url": "https://www.irs.gov/pub/irs-pdf/f8621.pdf"
-          },
-          {
-            "label": "Instructions for Form 8621 (PDF)",
-            "url": "https://www.irs.gov/pub/irs-pdf/i8621.pdf"
-          }
-        ],
-        "sources": [
-          {
-            "label": "IRS · About Form 8621",
-            "url": "https://www.irs.gov/forms-pubs/about-form-8621"
-          },
-          {
-            "label": "IRS · Form 8621 (Rev. December 2025)",
-            "url": "https://www.irs.gov/pub/irs-pdf/f8621.pdf"
-          },
-          {
-            "label": "IRS · Instructions for Form 8621 (Rev. December 2025)",
-            "url": "https://www.irs.gov/pub/irs-pdf/i8621.pdf"
           }
         ]
       }
