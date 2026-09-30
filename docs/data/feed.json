@@ -1,8 +1,110 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-29T16:10:39-05:00",
+  "updated": "2026-09-30T08:19:00-05:00",
   "cards": [
+    {
+      "id": "tax-20260930-irc-1014-inherited-india-property",
+      "category": "tax",
+      "title": "Inherited India flat/shares: §1014 often steps basis up to FMV",
+      "body": "US citizens and residents who inherit an India flat, plot, or demat shares generally take a new US tax basis equal to fair market value on the date of death under IRC §1014 — so decades of pre-death appreciation often escape US capital gains when you later sell. Lifetime gifts are different (carryover basis). Separately, aggregate foreign bequests over $100k still need Form 3520 Part IV. Educational only, not tax advice.",
+      "source": "IRS · Pub. 551 (12/2025) · IRC §1014 · Gifts from foreign person / Form 3520",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "inheritance",
+        "section-1014",
+        "basis",
+        "step-up",
+        "india-real-estate",
+        "form-3520",
+        "cross-border",
+        "capital-gains"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-1014-inherited-india-20260930/800/520",
+      "link": "https://www.irs.gov/publications/p551",
+      "detail": {
+        "summary": "When a US citizen or resident inherits property from a decedent, Internal Revenue Code section 1014 generally sets the heir’s initial US tax basis at the property’s fair market value (FMV) on the date of death (or the alternate valuation date if the estate elects it). IRS Publication 551 (revised December 2025), Basis of Assets, restates that rule under “Inherited Property.” For Indian-origin families, that often means an India residential flat, ancestral land, or listed/demat shares that rose for decades while parents held them can reset to current FMV for US tax — shrinking (or wiping out) US capital gain on a later sale compared with using the decedent’s old cost. This tip is educational only and is not tax, legal, or investment advice; facts, India succession law, and India capital-gains/TDS rules can change the picture.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "US citizens and green-card / substantial-presence residents who inherit India real estate, demat equity, mutual-fund units, or other capital assets from parents or other nonresident-alien (or US) decedents. Especially useful when the asset appreciated for years in India and you may sell, gift, or convert currency later. Less relevant if you only received cash (basis issues differ) or if you already sold with well-documented basis."
+          },
+          {
+            "heading": "Rough mechanics (§1014 step-up)",
+            "body": "Per Pub. 551, your basis in inherited property is generally (1) FMV at the date of death, (2) FMV on the alternate valuation date if elected for estate tax, (3) special-use valuation in limited farm/business cases, or (4) other estate-tax consistent values when Schedule A (Form 8971) applies. FMV is the price willing buyer and seller would agree on with knowledge of the facts. Contrast: property received as a lifetime gift usually takes a carryover basis from the donor (with dual-basis rules when FMV is below donor basis) — so dying with appreciated India property often produces a cleaner US capital-gains result than gifting it during life. When you sell, report the disposition on Form 8949 / Schedule D using that stepped-up basis (converted to USD with a consistent FX method). Holding period for inherited property is generally treated as long-term."
+          },
+          {
+            "heading": "India-angle: flats, demat, and Form 3520",
+            "body": "India location does not by itself deny the §1014 FMV reset for a US person heir — foreign situs assets still need a US basis for US tax. Practical gap: India stamp duty / circle rates may understate true FMV; keep a contemporaneous appraisal, broker comps, or registered-valuer report dated near death for your US file. India may still tax the sale under domestic capital-gains rules and withhold TDS; US tax then interacts via the Foreign Tax Credit (Form 1116) — a separate analysis. Reporting is not the same as income tax: if aggregate gifts/bequests from a nonresident alien or foreign estate (plus related foreign persons) exceed $100,000 in the year, file Form 3520 Part IV (IRS “Gifts from foreign person”); purported gifts from foreign corporations/partnerships use the lower inflation-adjusted threshold ($20,573 for 2026). True bequests are generally not US income, but missing 3520 can still draw §6039F penalties."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "If you inherited India property in the last few years (or expect to), collect: death certificate / succession papers, a dated FMV snapshot as of the date of death (appraisal or documented comps), demat/broker statements, and any Form 3520 you filed or still need. Store that packet before you list or transfer the asset so your §1014 basis is evidence-backed."
+          },
+          {
+            "heading": "Educational label",
+            "body": "Educational only — not tax advice. Anti-abuse exceptions (for example, appreciated property you gifted to the decedent within one year of death), community-property / joint-tenancy basis splits, PFIC stock inside India mutual funds, and covered-expatriate §2801 rules can override the simple story. Confirm with a cross-border tax professional before filing or selling."
+          }
+        ],
+        "bullets": [
+          "IRC §1014 + IRS Pub. 551 (12/2025): inherited property basis is generally FMV at date of death (or alternate valuation if elected).",
+          "India flat / land / demat shares inherited by a US person commonly qualify for that FMV reset for US capital-gains basis — document FMV; don’t rely on old purchase cost alone.",
+          "Lifetime gifts usually carry over the donor’s basis (different, often worse for appreciated assets) — Pub. 551 “Property Received as a Gift.”",
+          "Aggregate foreign bequests/gifts from NRA / foreign estate over $100k → Form 3520 Part IV (IRS Gifts from foreign person); corp/partnership purported gifts $20,573 for 2026.",
+          "Sale still reported on Form 8949 / Schedule D; India tax/TDS may need Form 1116 FTC coordination.",
+          "Educational only — not tax advice."
+        ],
+        "steps": [
+          "List every India (or other foreign) asset you inherited and the date of death.",
+          "Assemble FMV evidence as of that date (appraisal, registered valuer, broker comps, demat closing prices) and keep FX notes for USD conversion.",
+          "Check whether aggregate foreign gifts/bequests that year exceeded $100k (NRA/estate) and whether Form 3520 Part IV was filed on time.",
+          "Before selling, compute tentative US gain using §1014 basis vs. expected sale proceeds; note India TDS / capital-gains and FTC (Form 1116).",
+          "If PFIC-prone India mutual funds or closely held Pvt Ltd shares are in the estate, flag Forms 8621 / 5471 separately with your preparer."
+        ],
+        "actions": [
+          {
+            "label": "IRS Pub. 551 — Basis of Assets (Inherited Property)",
+            "url": "https://www.irs.gov/publications/p551"
+          },
+          {
+            "label": "IRS — Gifts from foreign person (Form 3520 Part IV)",
+            "url": "https://www.irs.gov/businesses/gifts-from-foreign-person"
+          },
+          {
+            "label": "About Form 3520",
+            "url": "https://www.irs.gov/forms-pubs/about-form-3520"
+          },
+          {
+            "label": "IRS Pub. 559 — Survivors, Executors, and Administrators",
+            "url": "https://www.irs.gov/publications/p559"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS Publication 551 (12/2025), Basis of Assets — Inherited Property / FMV rules",
+            "url": "https://www.irs.gov/publications/p551"
+          },
+          {
+            "label": "IRC section 1014 — Basis of property acquired from a decedent",
+            "url": "https://www.law.cornell.edu/uscode/text/26/1014"
+          },
+          {
+            "label": "IRS — Gifts from foreign person (Form 3520 Part IV thresholds, incl. $20,573 for 2026 corp/partnership gifts)",
+            "url": "https://www.irs.gov/businesses/gifts-from-foreign-person"
+          },
+          {
+            "label": "IRS — About Form 3520",
+            "url": "https://www.irs.gov/forms-pubs/about-form-3520"
+          },
+          {
+            "label": "IRS Publication 559 — Survivors, Executors, and Administrators",
+            "url": "https://www.irs.gov/publications/p559"
+          }
+        ]
+      }
+    },
     {
       "id": "deal-20260929-baseus-12in1-dock",
       "category": "deal",
@@ -3090,73 +3192,6 @@
           {
             "label": "FinCEN — Report Foreign Bank and Financial Accounts",
             "url": "https://www.fincen.gov/report-foreign-bank-and-financial-accounts"
-          }
-        ]
-      }
-    },
-    {
-      "id": "book-20260918-keystone-habits",
-      "category": "book",
-      "title": "Change one habit that moves the rest",
-      "body": "Duhigg’s keystone habits (exercise, family meals, making the bed) start chain reactions. Pick one lever habit; small wins cascade into other routines.",
-      "source": "Charles Duhigg · The Power of Habit (via mgp notes)",
-      "tags": [
-        "habits",
-        "keystone",
-        "productivity",
-        "self-help"
-      ],
-      "accent": "coral",
-      "image": "https://picsum.photos/seed/book-keystone-20260918/800/520",
-      "link": "https://github.com/mgp/book-notes/blob/master/the-power-of-habit.markdown",
-      "detail": {
-        "summary": "You do not need to overhaul every behavior at once. In The Power of Habit, Charles Duhigg calls out keystone habits — a few routines that start a process that, over time, remakes other parts of life. Exercise, eating with family, and making the bed are classic examples: they create small wins, structures that help other habits stick, and a culture of values you remember under stress. Find one lever, not fifty tweaks.",
-        "sections": [
-          {
-            "heading": "What a keystone habit does",
-            "body": "Keystone habits matter more than other habits because they trigger chain reactions. Success rarely means getting every detail right; it means identifying a few priorities and turning them into levers. When the keystone is in place, related behaviors often improve without a separate willpower campaign for each one."
-          },
-          {
-            "heading": "Small wins that rewrite the story",
-            "body": "Keystones work partly through small wins — victories whose influence is outsized relative to their size. A made bed or a completed workout is not the whole goal; it is proof that change is possible, which makes the next hard choice easier. Those tiny advantages compound into patterns and, eventually, a new default identity."
-          },
-          {
-            "heading": "Structures and culture, not just motivation",
-            "body": "Keystones also create structures where other good habits can grow, and cultures that make values stick when you are tired or uncertain. That is why willpower treated as a muscle and trained in one domain often spills into others — the keystone is teaching a broader pattern of follow-through."
-          },
-          {
-            "heading": "One action today",
-            "body": "Name one keystone candidate tied to a goal you care about (training consistency, money automation, deep work). Make it so small you cannot skip it, schedule it for a fixed time and place, and protect it for seven days before adding anything else."
-          }
-        ],
-        "bullets": [
-          "Keystone habits start chain reactions that remake other routines",
-          "Focus on a few lever priorities instead of fixing everything at once",
-          "Small wins convince you bigger change is available",
-          "Keystones build structures and cultures that make hard choices easier",
-          "Train one domain of follow-through; strength often spills over"
-        ],
-        "steps": [
-          "Pick one life area that feels stuck (health, money, focus)",
-          "Choose one keystone habit that would pull other behaviors with it",
-          "Shrink it to a non-negotiable daily version (≤10 minutes if needed)",
-          "Schedule: I will [habit] at [time] in [place] for the next 7 days",
-          "Only after a week of showing up, stack a second related habit"
-        ],
-        "actions": [
-          {
-            "label": "Source notes (Power of Habit)",
-            "url": "https://github.com/mgp/book-notes/blob/master/the-power-of-habit.markdown"
-          },
-          {
-            "label": "mgp/book-notes repo",
-            "url": "https://github.com/mgp/book-notes"
-          }
-        ],
-        "sources": [
-          {
-            "label": "mgp/book-notes · the-power-of-habit.markdown",
-            "url": "https://github.com/mgp/book-notes/blob/master/the-power-of-habit.markdown"
           }
         ]
       }
