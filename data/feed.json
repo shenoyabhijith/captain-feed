@@ -1,8 +1,108 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-30T09:02:00-05:00",
+  "updated": "2026-09-30T12:34:00-05:00",
   "cards": [
+    {
+      "id": "aws-20260930-online-eval-sampling",
+      "category": "aws",
+      "title": "Online eval: dial SamplingPercentage, don’t ship at 100%",
+      "body": "AgentCore online evaluation scores live sessions with LLM-as-judge — cost scales with traffic × sampling rate. Blog demos often set SamplingPercentage: 100 so every session lights up; production should start modest (console default ~10%) and lean on on-demand eval while iterating. One property in OnlineEvaluationConfig.Rule.SamplingConfig.",
+      "source": "AWS ML Blog · Aug 31, 2026 · AgentCore online evaluation docs",
+      "tags": [
+        "aws",
+        "bedrock",
+        "agentcore",
+        "evaluations",
+        "online-evaluation",
+        "cost-control",
+        "knowledge-bases",
+        "observability",
+        "sampling",
+        "solutions-architect"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-online-eval-sampling-20260930/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/build-observable-enterprise-agentic-retrieval-using-managed-amazon-bedrock-knowledge-base-with-aws-cloudformation/",
+      "detail": {
+        "summary": "Continuous (online) evaluation on Amazon Bedrock AgentCore samples live agent sessions from CloudWatch logs and scores them with built-in or custom evaluators (Correctness, Faithfulness, Tool-Selection Accuracy, Response Relevance, and more). Because each sampled session invokes an LLM-as-judge, judge cost scales with session volume and SamplingPercentage. The Aug 31, 2026 AWS ML Blog on observable Managed Knowledge Base agentic retrieval explicitly warns that SamplingPercentage: 100 in the sample templates is for the blog experiment only — not a production recommendation. SAs writing Bedrock agent blogs should teach the on-demand → modest continuous pattern and name the single knob: OnlineEvaluationConfig.Rule.SamplingConfig.SamplingPercentage (0.01–100; console default 10%).",
+        "sections": [
+          {
+            "heading": "Why SAs should care",
+            "body": "Agentic retrieval (multi-KB routing + AgenticRetrieveStream + reason-and-act loops) makes quality harder to eyeball. Online evaluation closes that gap by scoring live traffic automatically — but copying a demo’s 100% sampling into a busy Runtime turns quality monitoring into a second inference bill. Architecture blogs and Well-Architected reviews need the cost-governance sentence up front: pick a sampling rate that fits budget and policy, then raise it only when you need denser regression signal."
+          },
+          {
+            "heading": "On-demand vs continuous",
+            "body": "On-demand evaluation is deliberate and finite: you run AgentCore Evaluate (LLM-as-judge) over chosen sessions (or a notebook/driver) and pay only when you kick it off — ideal for development, pre-release gates, and gold-set checks. Continuous (online) evaluation fits production monitoring: AWS::BedrockAgentCore::OnlineEvaluationConfig samples live sessions and scores them without a manual job. Common pattern from the blog: lean on on-demand while iterating, then enable continuous at a modest sampling percentage once real users are on the Runtime."
+          },
+          {
+            "heading": "The one property that sets the bill",
+            "body": "In CloudFormation / CreateOnlineEvaluationConfig, set rule.samplingConfig.samplingPercentage (number from 0.01 to 100). The AgentCore console Create online evaluation flow defaults Sampling to 10%. The Aug 31 sample sets 100% so every session is scored immediately for demos — tune templates/03-agent-runtime.yaml (or UpdateOnlineEvaluationConfig) before any production promote. Remember CLI/SDK units carefully: some helpers take a 0–100 percentage; confirm whether 1.0 means 1% or 100% for the API you call."
+          },
+          {
+            "heading": "Pair with observability, not instead of it",
+            "body": "The same Managed-KB + AgentCore Gateway pattern ships seven telemetry layers (KB metrics, ingestion, retrieval quality, Gateway/MCP, OTEL spans, tokens, evaluation scores). SamplingPercentage only gates Layer-7 continuous scoring cost; you still want L1–L6 for latency, tool health, and token spend. Filters on the evaluation rule can further narrow which sessions are judged (for example high-latency or specific tool paths) so you spend judge tokens where signal is highest."
+          },
+          {
+            "heading": "Try this week",
+            "body": "In a non-prod AgentCore Runtime with Observability wired, create an OnlineEvaluationConfig with Builtin.Helpfulness (or Correctness + Faithfulness), set SamplingPercentage to 5–10, drive a known prompt set, and compare CloudWatch GenAI Observability → Evaluations against an on-demand batch on the same sessions. Document the rate, evaluator list, and rollback (disable or lower sampling) for your next Bedrock agent cost/quality blog."
+          }
+        ],
+        "bullets": [
+          "Online eval = LLM-as-judge on sampled live sessions; cost ∝ traffic × SamplingPercentage",
+          "Blog demos at 100% are for visibility — not a production default",
+          "Console default Sampling is 10%; allowed range roughly 0.01–100",
+          "Pattern: on-demand while building → modest continuous once serving users",
+          "Knob: OnlineEvaluationConfig.Rule.SamplingConfig.SamplingPercentage",
+          "Pair with AgentCore Observability layers; don’t rely on eval scores alone",
+          "Educational SA pattern — confirm Region availability and pricing before designs"
+        ],
+        "steps": [
+          "Confirm AgentCore Runtime emits OTEL/CloudWatch traces and Transaction Search (or equivalent) is enabled for spans.",
+          "While iterating, run on-demand Evaluate over curated sessions; keep continuous eval off or at a very low rate.",
+          "CreateOnlineEvaluationConfig with evaluators you care about (built-in and/or custom) and SamplingPercentage around 5–10.",
+          "Verify scores under CloudWatch GenAI Observability → Bedrock AgentCore → Evaluations; watch judge token spend.",
+          "Add rule filters if you only want high-risk or high-latency sessions judged.",
+          "Before production traffic, document the rate in your runbook and how to UpdateOnlineEvaluationConfig to lower or disable it."
+        ],
+        "actions": [
+          {
+            "label": "ML Blog — Observable Managed KB agentic retrieval (CFN)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/build-observable-enterprise-agentic-retrieval-using-managed-amazon-bedrock-knowledge-base-with-aws-cloudformation/"
+          },
+          {
+            "label": "Docs — Create online evaluation",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/create-online-evaluations.html"
+          },
+          {
+            "label": "CFN — OnlineEvaluationConfig SamplingConfig",
+            "url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-bedrockagentcore-onlineevaluationconfig-samplingconfig.html"
+          },
+          {
+            "label": "API — CreateOnlineEvaluationConfig",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore-control/latest/APIReference/API_CreateOnlineEvaluationConfig.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS ML Blog — Build observable enterprise agentic retrieval using Managed Amazon Bedrock Knowledge Base with AWS CloudFormation (Aug 31, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/build-observable-enterprise-agentic-retrieval-using-managed-amazon-bedrock-knowledge-base-with-aws-cloudformation/"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Create online evaluation",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/create-online-evaluations.html"
+          },
+          {
+            "label": "AWS CloudFormation — AWS::BedrockAgentCore::OnlineEvaluationConfig SamplingConfig",
+            "url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-bedrockagentcore-onlineevaluationconfig-samplingconfig.html"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Control API — CreateOnlineEvaluationConfig",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore-control/latest/APIReference/API_CreateOnlineEvaluationConfig.html"
+          }
+        ]
+      }
+    },
     {
       "id": "trend-20260930-single-country-etf-inflows",
       "category": "trend",
@@ -3085,85 +3185,6 @@
           {
             "label": "DeWalt — Mechanics Tool Set (192-Piece) DWMT75049",
             "url": "https://www.dewalt.com/en-us/product/dwmt75049/mechanics-tool-set-192-piece"
-          }
-        ]
-      }
-    },
-    {
-      "id": "aws-20260918-invokeguardrailchecks",
-      "category": "aws",
-      "title": "Per-step Guardrails without a guardrail resource",
-      "body": "InvokeGuardrailChecks is detect-only, resourceless, and returns numeric scores so your agent loop decides block / escalate / log at each turn — no CreateGuardrail sprawl for every stage.",
-      "source": "AWS ML Blog · Jun 16, 2026",
-      "tags": [
-        "bedrock",
-        "guardrails",
-        "agents",
-        "invokeguardrailchecks",
-        "safety",
-        "aws-sa"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/aws-invokeguardrailchecks-20260918/800/520",
-      "link": "https://aws.amazon.com/blogs/machine-learning/safeguard-your-agentic-ai-applications-with-the-amazon-bedrock-guardrails-invokeguardrailchecks-api/",
-      "detail": {
-        "summary": "ApplyGuardrail is great when you want one versioned policy that blocks or masks for you. Agentic loops are different: each turn (user input, tool output, final reply) has a different risk profile, and spinning up CreateGuardrail resources per stage does not scale. AWS’s Jun 16, 2026 post introduces InvokeGuardrailChecks — a resourceless, detect-only API that returns severity/confidence scores so your app chooses block, escalate, retry, or log. For SA blogs: teach when to use scores-in-the-loop vs a managed ApplyGuardrail policy.",
-        "sections": [
-          {
-            "heading": "Why uniform Guardrails break on agents",
-            "body": "Classic chat: one prompt in, one response out, one guardrail on both. Agents plan, call tools, and iterate for many turns — often without a human in the loop. Prompt-injection risk peaks on user input; PII often shows up in follow-ups or tool payloads; harmful content can arrive from a web/search tool before the model ever speaks. One shared ApplyGuardrail resource forces the same thresholds everywhere, or you create/version/delete ephemeral guardrails per step — untenable when a single query fans into dozens of loop iterations."
-          },
-          {
-            "heading": "What InvokeGuardrailChecks actually gives you",
-            "body": "Resourceless: you name the checks inline (contentFilter, promptAttack, sensitiveInformation) — no guardrail ID or version to manage. Detect-only: it does not block, mask, or rewrite; it returns findings with discrete scores in {0, 0.2, 0.4, 0.6, 0.8, 1.0}. Content filters and prompt attack return severity scores; sensitive information returns confidence plus character offsets for client-side redaction. Prompt attack is a standalone check (jailbreak / prompt injection / prompt leakage), not buried inside content filters as on ApplyGuardrail. IAM action is bedrock:InvokeGuardrailChecks with Resource \"*\" (there is no guardrail ARN) — scope with conditions like aws:RequestedRegion or principal tags."
-          },
-          {
-            "heading": "Pattern: adaptive thresholds in the agent loop",
-            "body": "Wire hooks where risk changes: before model invoke (promptAttack on system+user), after tool call (contentFilter + PII on tool text), after final reply (full contentFilter). Example score policy from the blog: severity ≥ 0.8 block; ≥ 0.4 escalate to human review; else log. Financial apps may block earlier; creative tools may only block at the top band. Pair with Strands (or any framework) lifecycle hooks so safety lives next to the loop, not only on the last Converse call. Still use ApplyGuardrail when you want centralized, versioned, automatic enforce/mask for simple request-response gateways."
-          },
-          {
-            "heading": "Blog angle for Solutions Architects",
-            "body": "Frame as “safety is per-stage, not per-app”: contrast CreateGuardrail sprawl with inline checks + app-owned decisions. Diagram the three check families against agent stages, then show one adaptive evaluate_and_act helper. Call out complementarity with AgentCore Gateway Cedar (tool authorization) and Gateway rate limits (cost/abuse) — Guardrails scores catch content/injection/PII; they do not authorize tool calls. Close with the decision table: InvokeGuardrailChecks for agentic per-step control; ApplyGuardrail for uniform gateway enforcement."
-          }
-        ],
-        "bullets": [
-          "Resourceless + detect-only: scores in, your policy decides block/escalate/log",
-          "Prompt attack is a first-class check (jailbreak, injection, leakage) separate from content filters",
-          "PII findings include offsets — mask in the client before the next model turn",
-          "Use ApplyGuardrail when you want automatic block/mask from a versioned resource"
-        ],
-        "steps": [
-          "Grant bedrock:InvokeGuardrailChecks (Resource *) and constrain Region / principal tags",
-          "Add BeforeInvocation: promptAttack on system+user; AfterToolCall: contentFilter + sensitiveInformation; AfterInvocation: contentFilter on the final reply",
-          "Implement thresholds (e.g. ≥0.8 block, ≥0.4 escalate) and log scores with request IDs for audit",
-          "Keep ApplyGuardrail on any shared multi-provider gateway that needs uniform enforce/mask"
-        ],
-        "actions": [
-          {
-            "label": "Read the AWS InvokeGuardrailChecks blog (Jun 16, 2026)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/safeguard-your-agentic-ai-applications-with-the-amazon-bedrock-guardrails-invokeguardrailchecks-api/"
-          },
-          {
-            "label": "Docs — Use InvokeGuardrailChecks",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-invoke-guardrail-checks.html"
-          },
-          {
-            "label": "Docs — ApplyGuardrail (compare)",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-independent-api.html"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS ML Blog — Safeguard agentic AI with InvokeGuardrailChecks (Jun 16, 2026)",
-            "url": "https://aws.amazon.com/blogs/machine-learning/safeguard-your-agentic-ai-applications-with-the-amazon-bedrock-guardrails-invokeguardrailchecks-api/"
-          },
-          {
-            "label": "Amazon Bedrock User Guide — InvokeGuardrailChecks",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-invoke-guardrail-checks.html"
-          },
-          {
-            "label": "Amazon Bedrock User Guide — ApplyGuardrail API",
-            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-independent-api.html"
           }
         ]
       }
