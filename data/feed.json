@@ -1,8 +1,83 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-30T08:22:00-05:00",
+  "updated": "2026-09-30T09:02:00-05:00",
   "cards": [
+    {
+      "id": "trend-20260930-single-country-etf-inflows",
+      "category": "trend",
+      "title": "Single-country ETFs: $26B YTD — keep the core broad",
+      "body": "US-listed single-country ETFs pulled in over $26B year-to-date — more than 4× all of 2025 ($6.5B) — led by Korea/Japan/Taiwan AI and reform plays (EWY, EWJ, FLTW). For an ETF-first core, treat that as a flow headline, not a shopping list: keep international via broad VXUS/IXUS, not concentrated country bets. Educational only — not a trade signal.",
+      "source": "InvestmentNews · TD Securities U.S. ETF Weekly · Sep 29–30, 2026",
+      "tags": [
+        "investing",
+        "etf",
+        "international",
+        "single-country",
+        "bogleheads",
+        "vxus",
+        "diversification",
+        "flows",
+        "educational"
+      ],
+      "accent": "emerald",
+      "image": "https://picsum.photos/seed/trend-single-country-etf-20260930/800/520",
+      "link": "https://www.investmentnews.com/etfs/single-country-etfs-surge-as-investors-target-ai-reform-plays/268410",
+      "detail": {
+        "summary": "TD Securities’ U.S. ETF Weekly (reported Sep 30, 2026 via InvestmentNews) shows US-listed single-country ETFs gathering more than $26 billion year-to-date — over four times the category’s full-year 2025 haul of $6.5 billion — inside a record ETF year (~$1.5T YTD industry flows; ~$16.4T US ETF AUM as of Sep 25). Flows concentrated in a few narratives: Japan (~$9.5B country-level) on governance/earnings reform; South Korea (~$9B) and Taiwan (~$3.1B) on AI/semiconductor supply-chain exposure; Canada (~$3.6B) on financials/energy/resources. Fund-level leaders cited: EWY $7.7B, EWJ $4.3B, FLTW $2.9B, EWC $2.8B, BBJP $2.7B. Useful as a market map; not a cue to chase those tickers. Educational only — not investment advice or a trade signal.",
+        "sections": [
+          {
+            "heading": "What the flow numbers say",
+            "body": "Single-country products are a small slice of the industry but a loud story in 2026: >$26B YTD vs $6.5B in all of 2025, per TD Securities via InvestmentNews (Sep 30). Broader context: total US ETF AUM ~$16.4T (Sep 25) and ~$1.5T YTD industry flows already past full-year 2025. The week ended Sep 25 also saw strong global ex-US ETF demand (e.g. ACWX among large weekly international takers). Flows can reverse quickly — EWY alone has seen large weekly outflows in other weeks this year."
+          },
+          {
+            "heading": "Why advisors are reaching for countries",
+            "body": "TD Securities flagged four drivers: (1) targeted AI/semiconductor exposure via Korea and Taiwan, (2) Japan reform and earnings expectations, (3) diversification after years of US equity concentration, and (4) more precise construction than a single broad international sleeve. That last point is exactly where DIY portfolios overfit: country ETFs amplify one market’s politics, currency, and sector concentration."
+          },
+          {
+            "heading": "Captain filter: ETF-first core stays broad",
+            "body": "Your stated plan is an ETF-first core (professional-managed / index funds) plus an optional mega-cap growth sleeve — not personal country-picking. Broad international (VXUS, IXUS, or equivalent total international) already includes Japan, Korea, Taiwan, Canada, and hundreds of other markets at market weight. Chasing EWY/EWJ/FLTW after a $26B headline is classic FOMO concentration: you buy what already ran and add single-country risk the three-fund portfolio was designed to avoid. If you want more non-US equity, raise the international % of the core and rebalance — don’t stack thematic country overlays on top."
+          },
+          {
+            "heading": "Educational label",
+            "body": "Educational only — not investment, tax, or trade advice. Past flows do not predict returns. Single-country ETFs can be volatile and tax-inefficient in taxable accounts relative to a buy-and-hold total-market core. Confirm any allocation change against your own plan and, if needed, a fiduciary advisor."
+          }
+        ],
+        "bullets": [
+          "Single-country US ETFs: >$26B YTD inflows vs $6.5B in all of 2025 (TD Securities via InvestmentNews, Sep 30 2026)",
+          "Leaders by narrative: Japan ~$9.5B, Korea ~$9B, Canada ~$3.6B, Taiwan ~$3.1B; fund examples EWY / EWJ / FLTW / EWC / BBJP",
+          "Industry backdrop: ~$16.4T US ETF AUM (Sep 25); ~$1.5T YTD industry flows",
+          "For an ETF-first core: prefer VXUS/IXUS (or equivalent) over stacking single-country bets after a flow headline",
+          "Educational only — not a trade signal"
+        ],
+        "steps": [
+          "Skim the InvestmentNews / TD Securities flow summary for context only",
+          "Check your current international sleeve (VXUS/IXUS or similar) vs your written target %",
+          "If underweight international, plan a boring rebalance into the broad fund — not into EWY/EWJ/FLTW",
+          "Skip FOMO adds unless your IPS already allows a small satellite and you sized it before the headline"
+        ],
+        "actions": [
+          {
+            "label": "InvestmentNews: single-country ETF surge",
+            "url": "https://www.investmentnews.com/etfs/single-country-etfs-surge-as-investors-target-ai-reform-plays/268410"
+          },
+          {
+            "label": "Bogleheads three-fund overview (context)",
+            "url": "https://www.bogleheads.org/wiki/Three-fund_portfolio"
+          }
+        ],
+        "sources": [
+          {
+            "label": "InvestmentNews — Single-country ETFs surge (Sep 30, 2026)",
+            "url": "https://www.investmentnews.com/etfs/single-country-etfs-surge-as-investors-target-ai-reform-plays/268410"
+          },
+          {
+            "label": "Wealth Professional syndicated write-up (same TD Securities data)",
+            "url": "https://www.wealthprofessional.ca/investments/etfs/single-country-etfs-surge-as-investors-target-ai-reform-plays/393654"
+          }
+        ]
+      }
+    },
     {
       "id": "book-20260930-temptation-bundling",
       "category": "book",
@@ -3089,85 +3164,6 @@
           {
             "label": "Amazon Bedrock User Guide — ApplyGuardrail API",
             "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-independent-api.html"
-          }
-        ]
-      }
-    },
-    {
-      "id": "trend-20260918-fed-hike-375-4",
-      "category": "trend",
-      "title": "Fed hikes to 3.75%–4% (first since 2023)",
-      "body": "On Sep 16, 2026 the FOMC unanimously raised the federal funds target range by 25 bp to 3.75%–4% — the first hike since July 2023 — and signaled another possible increase this year. Educational only — not a trade signal.",
-      "source": "CNBC · Federal Reserve (Warsh press conf) · Reuters/MarketScreener",
-      "tags": [
-        "investing",
-        "fed",
-        "rates",
-        "macro",
-        "fomc"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/trend-fed-hike-20260918/800/520",
-      "link": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html",
-      "detail": {
-        "summary": "The Federal Open Market Committee voted 12–0 on Sep 16, 2026 to lift the federal funds target range by a quarter point to 3.75%–4%, citing elevated inflation and aiming for a timelier return to the 2% goal. Chair Kevin Warsh said inflation has been too high for too long and the confidence standard for holding was not met. Updated projections imply another hike is likely this year for most participants. This card is macro literacy only — not investment, tax, or trade advice.",
-        "sections": [
-          {
-            "heading": "What just happened",
-            "body": "First FOMC rate increase since July 2023. Unanimous 25 bp hike to 3.75%–4%. Statement: inflation remains elevated; the move supports a timelier return to 2%. Warsh press conference: economy and labor are strong, but underlying inflation is not clearly moving to target at sufficient speed; Middle East energy pressure was part of the context."
-          },
-          {
-            "heading": "What the dots say (context, not prophecy)",
-            "body": "SEP/dot plot: 16 of 18 participants (Warsh does not submit a dot) expect another increase this year; four of those see two more as possible. Median year-end funds rate around 4.1%. Officials nudged 2026 PCE inflation expectations up slightly (headline ~3.7%, core ~3.4%). Markets had priced the Sep hike as highly likely; CME FedWatch after the meeting still priced meaningful odds of another hike later in 2026."
-          },
-          {
-            "heading": "Market follow-through (Sep 17)",
-            "body": "After an initial post-decision wobble, major US indexes rebound the next session as oil eased and Treasury yields pulled back from highs (reports: S&P 500 ~+1.1%, Nasdaq ~+1.6%). Treat one-day moves as noise — the durable story is higher-for-longer overnight rates plus sticky long yields, not a ticker list."
-          },
-          {
-            "heading": "Captain-useful framing (not advice)",
-            "body": "Ops/money: re-check floating-rate debt, cash yields, and any near-term refinance assumptions against a funds rate now in the high-3s with hike risk still on the table. Investing literacy: Fed funds ≠ the 10-year; mortgages and long-duration project math still track the long end (already near ~5%). AWS/AI ROI stories: higher discount rates raise the bar on multi-year payback — same product thesis, tougher hurdle. Educational only."
-          }
-        ],
-        "bullets": [
-          "25 bp hike to 3.75%–4% on Sep 16, 2026 — first since July 2023",
-          "Unanimous FOMC vote; Warsh: inflation too high for too long",
-          "Most dots imply another hike possible before year-end",
-          "Sep 17: stocks rebound as oil/yields ease — one day ≠ a signal",
-          "Educational only — not a buy/sell list or trade advice"
-        ],
-        "steps": [
-          "Read the CNBC decision write-up or the Fed press-conference transcript for the primary facts",
-          "Separate Fed funds (overnight) from the 10-year (long benchmark) in your own notes",
-          "If you have floating credit or a refinance window, refresh the quote assumptions against post-hike pricing",
-          "For any multi-year project ROI, ask whether the story still clears if rates stay sticky"
-        ],
-        "actions": [
-          {
-            "label": "CNBC: Sep 16 Fed decision",
-            "href": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html"
-          },
-          {
-            "label": "Fed: Warsh press conference opening (PDF)",
-            "href": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf"
-          },
-          {
-            "label": "Market follow-through (Sep 17)",
-            "href": "https://www.marketscreener.com/news/wall-st-rebounds-after-fed-s-first-rate-hike-in-years-as-oil-treasury-yields-dip-ce785bd3de8df625"
-          }
-        ],
-        "sources": [
-          {
-            "label": "CNBC — Fed rate decision September 2026",
-            "href": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html"
-          },
-          {
-            "label": "Federal Reserve — Chairman Warsh press conference opening statement (Sep 16, 2026)",
-            "href": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf"
-          },
-          {
-            "label": "MarketScreener/Reuters — Wall St rebound Sep 17",
-            "href": "https://www.marketscreener.com/news/wall-st-rebounds-after-fed-s-first-rate-hike-in-years-as-oil-treasury-yields-dip-ce785bd3de8df625"
           }
         ]
       }
