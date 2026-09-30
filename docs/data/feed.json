@@ -1,8 +1,65 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-30T08:19:00-05:00",
+  "updated": "2026-09-30T08:22:00-05:00",
   "cards": [
+    {
+      "id": "book-20260930-temptation-bundling",
+      "category": "book",
+      "title": "Bundle a want with a need",
+      "body": "Temptation bundling pairs something you crave with something you should do — so the fun cue pulls the useful habit along. Make the need ride with the want.",
+      "source": "James Clear · Atomic Habits (via lijubjohn book-notes)",
+      "tags": [
+        "atomic-habits",
+        "temptation-bundling",
+        "habits",
+        "productivity",
+        "make-it-attractive"
+      ],
+      "accent": "violet",
+      "image": "https://picsum.photos/seed/book-temptation-bundling-20260930/800/520",
+      "link": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md",
+      "detail": {
+        "summary": "Clear's Make It Attractive lever includes temptation bundling: link an action you want to do with an action you need to do. The dopamine of the want makes the need easier to start — and habit stacking can wire them into a sequence.",
+        "sections": [
+          {
+            "heading": "The idea",
+            "body": "Willpower is unreliable; attractiveness is not. When you only schedule the hard habit alone, it competes with every more-fun option. Temptation bundling removes that fight by making the useful behavior the gateway to (or companion of) something you already enjoy."
+          },
+          {
+            "heading": "A simple formula",
+            "body": "After [CURRENT HABIT], I will [HABIT I NEED]. After [HABIT I NEED], I will [HABIT I WANT]. Example: after I pour coffee, I will review today's top money move for two minutes; after that review, I will open the podcast or show I like. The want is earned by the need — not the other way around."
+          },
+          {
+            "heading": "Try today",
+            "body": "Pick one sticky need (a 2-minute money check, a short workout opener, or inbox triage) and one guilt-free want (favorite playlist, coffee shop walk, comics). Write the two-line stack once, put it where you'll see it, and run it once today. Adjust the pair if either part feels forced."
+          }
+        ],
+        "bullets": [
+          "Pair a want (attractive) with a need (useful) so starting is easier",
+          "Stack: After current → do need → then get want",
+          "Works because the cue for fun also cues the productive action"
+        ],
+        "steps": [
+          "Name one habit you keep avoiding (the need)",
+          "Name one thing you already look forward to (the want)",
+          "Write: After X, I will [need]. After [need], I will [want]",
+          "Run the stack once today; keep the need tiny so the bundle sticks"
+        ],
+        "actions": [
+          {
+            "label": "Atomic Habits notes (lijubjohn)",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          }
+        ],
+        "sources": [
+          {
+            "label": "lijubjohn/book-notes atomic-habits.md",
+            "url": "https://github.com/lijubjohn/book-notes/blob/master/atomic-habits.md"
+          }
+        ]
+      }
+    },
     {
       "id": "tax-20260930-irc-1014-inherited-india-property",
       "category": "tax",
@@ -3111,87 +3168,6 @@
           {
             "label": "MarketScreener/Reuters — Wall St rebound Sep 17",
             "href": "https://www.marketscreener.com/news/wall-st-rebounds-after-fed-s-first-rate-hike-in-years-as-oil-treasury-yields-dip-ce785bd3de8df625"
-          }
-        ]
-      }
-    },
-    {
-      "id": "tax-20260918-fbar-fincen-114",
-      "category": "tax",
-      "title": "FBAR: India accounts over $10k (FinCEN 114)",
-      "body": "US persons with aggregate foreign accounts over $10,000 at any time in the year must e-file FinCEN Form 114 (FBAR) — separate from Form 8938 and your 1040. NRE/NRO/FCNR and India MFs often trip it. Educational only, not tax advice.",
-      "source": "IRS · FinCEN Form 114 · FBAR",
-      "tags": [
-        "us-tax",
-        "india-us",
-        "fbar",
-        "fincen-114",
-        "nre-nro",
-        "cross-border",
-        "reporting"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/tax-fbar-fincen-114-20260918/800/520",
-      "link": "https://www.irs.gov/businesses/small-businesses-self-employed/report-of-foreign-bank-and-financial-accounts-fbar",
-      "detail": {
-        "summary": "Under the Bank Secrecy Act, a US person who has a financial interest in — or signature or other authority over — foreign financial accounts must file an FBAR (FinCEN Form 114) when the aggregate value of those accounts exceeded $10,000 at any time during the calendar year. Filing is electronic through FinCEN’s BSA E-Filing System and is not part of your Form 1040. Form 8938 (FATCA) does not replace the FBAR. Educational only; not tax advice.",
-        "sections": [
-          {
-            "heading": "Who this helps",
-            "body": "Indian-origin US citizens, green-card holders, and resident aliens who keep NRE, NRO, or FCNR accounts, India brokerage/demat holdings, foreign mutual funds, or who have signature authority on a parent’s India bank account. The $10,000 bar is far lower than Form 8938’s US-resident thresholds, so many people who skip 8938 still owe an FBAR."
-          },
-          {
-            "heading": "Rough mechanics",
-            "body": "Add up the maximum value of all foreign financial accounts during the year (aggregate, not per account). If that peak exceeded $10,000 USD at any moment, e-file FinCEN Form 114. Convert each account’s peak in local currency using the year-end exchange rate per FBAR instructions. Due April 15 for the prior calendar year, with an automatic extension to October 15 — no separate extension request. You do not attach it to your tax return."
-          },
-          {
-            "heading": "India–US angle",
-            "body": "Classic traps: several small NRE/NRO balances that together cross $10k after a rupee salary credit or FD maturity; SIPs and India mutual funds held at a foreign financial institution; and signature authority on a parent’s account even when the money is not yours. Direct foreign real estate is generally not an FBAR account, but a foreign bank account used to hold sale proceeds is. Filing Form 8938 yesterday’s tip does not satisfy FBAR — many cross-border filers need both."
-          },
-          {
-            "heading": "Check-this action",
-            "body": "List every India (and other foreign) bank, brokerage, and mutual-fund account you own or can sign on. Note each account’s highest 2025 balance in INR, convert with the year-end rate, and sum them. If the aggregate exceeded $10,000, open FinCEN’s BSA E-Filing System and prepare FinCEN Form 114 — and keep records for five years."
-          }
-        ],
-        "bullets": [
-          "Threshold: aggregate foreign accounts > $10,000 at any time in the calendar year",
-          "Form: FinCEN Form 114 (FBAR), e-filed via BSA E-Filing — not with Form 1040",
-          "Deadline: April 15, automatic extension to October 15 (no request needed)",
-          "Signature authority on a parent’s India account can trigger filing even if you don’t own the funds",
-          "Form 8938 ≠ FBAR — check both; see IRS comparison chart"
-        ],
-        "steps": [
-          "Inventory NRE/NRO/FCNR, India brokerage, and any accounts with signature authority",
-          "Find each account’s maximum value during the calendar year; convert to USD at year-end rate",
-          "If aggregate > $10,000, file FinCEN Form 114 electronically at FinCEN BSA E-Filing",
-          "Keep account statements and the filing acknowledgment; amend later if you get better numbers"
-        ],
-        "actions": [
-          {
-            "label": "IRS FBAR overview",
-            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/report-of-foreign-bank-and-financial-accounts-fbar"
-          },
-          {
-            "label": "8938 vs FBAR comparison",
-            "url": "https://www.irs.gov/businesses/comparison-of-form-8938-and-fbar-requirements"
-          },
-          {
-            "label": "FinCEN FBAR page",
-            "url": "https://www.fincen.gov/report-foreign-bank-and-financial-accounts"
-          }
-        ],
-        "sources": [
-          {
-            "label": "IRS — Report of Foreign Bank and Financial Accounts (FBAR)",
-            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/report-of-foreign-bank-and-financial-accounts-fbar"
-          },
-          {
-            "label": "IRS — Comparison of Form 8938 and FBAR requirements",
-            "url": "https://www.irs.gov/businesses/comparison-of-form-8938-and-fbar-requirements"
-          },
-          {
-            "label": "FinCEN — Report Foreign Bank and Financial Accounts",
-            "url": "https://www.fincen.gov/report-foreign-bank-and-financial-accounts"
           }
         ]
       }
