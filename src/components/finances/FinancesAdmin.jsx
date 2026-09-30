@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/table";
 import FeedDock from "./FeedDock.jsx";
 import DecisionList from "./DecisionList.jsx";
+import AdminAnalytics from "./AdminAnalytics.jsx";
 import { outlineBadgeClass } from "./SleeveCard.jsx";
 import { money } from "./financesFormat.js";
 
@@ -76,7 +77,9 @@ export default function FinancesAdmin() {
               <h1 className="font-heading font-semibold text-base leading-tight">
                 Admin
               </h1>
-              <p className="text-muted-foreground text-xs">Ops · Firstmate</p>
+              <p className="text-muted-foreground text-xs">
+                Analytics · ops desk
+              </p>
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">
@@ -93,7 +96,15 @@ export default function FinancesAdmin() {
               className="min-h-12 px-3"
               render={<Link to="/finances" />}
             >
-              Glance
+              Finances
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="min-h-12 px-3 font-semibold"
+              aria-current="page"
+            >
+              Admin
             </Button>
           </div>
         </div>
@@ -110,41 +121,6 @@ export default function FinancesAdmin() {
           </Alert>
         ) : null}
 
-        <Alert variant="warning">
-          <TriangleAlert aria-hidden="true" />
-          <AlertTitle>Firstmate issued paper capital · real EOD marks.</AlertTitle>
-          <AlertDescription>
-            Ledger: <code>docs/data/finances-ledger.json</code> on Pages
-            (file-backed). Traders cannot edit balances in UI.
-          </AlertDescription>
-        </Alert>
-
-        <div className="flex flex-wrap gap-2">
-          <Button
-            className="min-h-12"
-            onClick={handleRun}
-            disabled={fin.status !== "ready"}
-          >
-            Run today
-          </Button>
-          <Button
-            variant="outline"
-            className="min-h-12"
-            onClick={fin.downloadLedger}
-            disabled={!fin.ledger}
-          >
-            Download ledger
-          </Button>
-        </div>
-        <p className="text-muted-foreground text-xs">
-          EOD · manual first · sim through engine only
-        </p>
-        {runMsg ? (
-          <p className="text-sm text-foreground" role="status">
-            {runMsg}
-          </p>
-        ) : null}
-
         {fin.status === "loading" ? (
           <p className="text-muted-foreground text-sm">Loading…</p>
         ) : fin.status === "error" ? (
@@ -153,10 +129,62 @@ export default function FinancesAdmin() {
           </Alert>
         ) : (
           <>
+            {/* Analytics FIRST — sticky kicker + full metrics pack */}
+            <AdminAnalytics fin={fin} />
+
+            <div
+              className="admin-ops-divider"
+              role="separator"
+              aria-label="Ops section"
+            >
+              <span>Ops</span>
+            </div>
+
+            <Alert variant="warning">
+              <TriangleAlert aria-hidden="true" />
+              <AlertTitle>
+                Firstmate issued paper capital · real EOD marks.
+              </AlertTitle>
+              <AlertDescription>
+                Manual Run first. Traders cannot edit balances in UI. Analytics
+                above · denser ops below. Ledger:{" "}
+                <code>docs/data/finances-ledger.json</code> on Pages
+                (file-backed).
+              </AlertDescription>
+            </Alert>
+
+            <div className="flex flex-wrap gap-2">
+              <Button
+                className="min-h-12"
+                onClick={handleRun}
+                disabled={fin.status !== "ready"}
+              >
+                Run today
+              </Button>
+              <Button
+                variant="outline"
+                className="min-h-12"
+                onClick={fin.downloadLedger}
+                disabled={!fin.ledger}
+              >
+                Download ledger
+              </Button>
+            </div>
+            <p className="text-muted-foreground text-xs">
+              EOD · manual first · sim through engine only
+            </p>
+            {runMsg ? (
+              <p className="text-sm text-foreground" role="status">
+                {runMsg}
+              </p>
+            ) : null}
+
             <Frame aria-labelledby="admin-sleeves">
               <FrameHeader>
                 <FrameTitle id="admin-sleeves">Sleeves</FrameTitle>
-                <FrameDescription>Enable / disable for next Run</FrameDescription>
+                <FrameDescription>
+                  Enable / disable for next Run
+                </FrameDescription>
               </FrameHeader>
               <FramePanel className="flex flex-col gap-1 p-2 sm:p-3">
                 {sleeves.map((s) => {
@@ -210,7 +238,9 @@ export default function FinancesAdmin() {
                     run {ops.lastRunId ? "✓" : "—"}
                   </Badge>
                   <Badge
-                    variant={(ops.rankOrder || []).length ? "success" : "outline"}
+                    variant={
+                      (ops.rankOrder || []).length ? "success" : "outline"
+                    }
                   >
                     rank {(ops.rankOrder || []).length ? "✓" : "—"}
                   </Badge>

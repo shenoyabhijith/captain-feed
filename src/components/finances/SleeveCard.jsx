@@ -27,32 +27,17 @@ import {
 export const outlineBadgeClass =
   "border border-primary text-primary uppercase tracking-wide text-[0.625rem] font-bold px-2 py-1 h-auto min-w-0 sm:h-auto sm:min-w-0 sm:text-[0.625rem]";
 
-/**
- * Always-visible dense sleeve panel: summary + Meter + holdings Table +
- * last action + optional filtered decisions (no accordion).
- */
-export default function SleevePanel({
-  sleeve,
-  stats,
-  marks = {},
-  dayPnl = 0,
-  dayPnlPct = 0,
-  decisions = [],
-}) {
-  const la = sleeve.lastAction || {};
-  const side = (la.side || "").toLowerCase();
+function SleeveHead({ sleeve, stats, dayPnl = 0, dayPnlPct = 0 }) {
   const up = (stats?.pnl || 0) >= 0;
   const dayUp = dayPnl >= 0;
-  const invested = investedPct(stats);
-  const holdings = sleeveHoldings(sleeve, marks, stats);
-  const alloc = holdings.filter((h) => h.pct > 0);
-
   return (
-    <div className="flex flex-col gap-3 text-foreground">
+    <div className="fin-bot-card-head">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <h4 className="font-semibold text-base leading-tight">{sleeve.name}</h4>
-          <p className="text-muted-foreground text-xs font-normal">
+          <h3 className="m-0 font-semibold text-[0.9375rem] leading-tight">
+            {sleeve.name}
+          </h3>
+          <p className="m-0 text-muted-foreground text-xs font-normal">
             {sleeve.persona}
           </p>
         </div>
@@ -66,23 +51,21 @@ export default function SleevePanel({
           </Badge>
         ) : null}
       </div>
-
-      <div className="flex items-end justify-between gap-3">
-        <p className="font-semibold text-2xl tabular-nums tracking-tight">
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="m-0 font-semibold text-[1.35rem] tabular-nums tracking-tight">
           {money(stats.nav)}
         </p>
         <div
-          className={`text-right text-sm tabular-nums font-medium ${
+          className={`text-right text-[0.8125rem] tabular-nums font-semibold ${
             dayUp ? "text-success-foreground" : "text-destructive-foreground"
           }`}
         >
           {signedMoney(dayPnl)}{" "}
-          <span className="text-xs font-medium opacity-80">
+          <span className="text-[0.7rem] font-medium opacity-85">
             {signedPct(dayPnlPct)} day
           </span>
         </div>
       </div>
-
       <div className="flex flex-wrap gap-x-3 gap-y-1 text-muted-foreground text-xs font-normal">
         <span>
           Cash <strong className="text-foreground">{money(sleeve.cash)}</strong>
@@ -99,7 +82,25 @@ export default function SleevePanel({
           </strong>
         </span>
       </div>
+    </div>
+  );
+}
 
+function SleeveBody({
+  sleeve,
+  stats,
+  marks = {},
+  showDecisions = false,
+  decisions = [],
+}) {
+  const la = sleeve.lastAction || {};
+  const side = (la.side || "").toLowerCase();
+  const invested = investedPct(stats);
+  const holdings = sleeveHoldings(sleeve, marks, stats);
+  const alloc = holdings.filter((h) => h.pct > 0);
+
+  return (
+    <div className="fin-bot-card-body">
       <Meter value={invested} max={100} className="gap-1">
         <div className="flex items-center justify-between gap-2">
           <MeterLabel className="text-muted-foreground text-xs font-normal">
@@ -198,13 +199,13 @@ export default function SleevePanel({
             {String(side || "—")}
           </span>
           {la.symbol ? <span>{la.symbol}</span> : null}
-          {la.reason ? (
-            <span className="text-muted-foreground">· {la.reason}</span>
-          ) : null}
         </div>
+        {la.reason ? (
+          <p className="mt-1 text-muted-foreground text-[0.6875rem]">{la.reason}</p>
+        ) : null}
       </div>
 
-      {decisions.length > 0 ? (
+      {showDecisions && decisions.length > 0 ? (
         <div className="flex flex-col gap-2">
           <p className="font-medium text-foreground text-xs">
             Recent decisions · {sleeve.name}
@@ -216,6 +217,57 @@ export default function SleevePanel({
           />
         </div>
       ) : null}
+    </div>
+  );
+}
+
+/**
+ * Dense sleeve panel. layout="carousel" → head + scrollable body for R4 cards.
+ * Default = stacked panel (legacy R3 density, still used if needed).
+ */
+export default function SleevePanel({
+  sleeve,
+  stats,
+  marks = {},
+  dayPnl = 0,
+  dayPnlPct = 0,
+  decisions = [],
+  layout = "stack",
+}) {
+  if (layout === "carousel") {
+    return (
+      <>
+        <SleeveHead
+          sleeve={sleeve}
+          stats={stats}
+          dayPnl={dayPnl}
+          dayPnlPct={dayPnlPct}
+        />
+        <SleeveBody
+          sleeve={sleeve}
+          stats={stats}
+          marks={marks}
+          showDecisions={false}
+        />
+      </>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-3 text-foreground">
+      <SleeveHead
+        sleeve={sleeve}
+        stats={stats}
+        dayPnl={dayPnl}
+        dayPnlPct={dayPnlPct}
+      />
+      <SleeveBody
+        sleeve={sleeve}
+        stats={stats}
+        marks={marks}
+        showDecisions
+        decisions={decisions}
+      />
     </div>
   );
 }

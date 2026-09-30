@@ -1,4 +1,4 @@
-/* FEED-MODERN-1 — design tokens + presentation */
+/* FEED-CHROME-1 — coss Inter whole-app chrome (behavior from MODERN-1 / DQA-1 / UX-1) */
 
 :root {
   /* Spacing scale 4–48 */
@@ -12,26 +12,26 @@
   --space-8: 40px;
   --space-9: 48px;
 
-  /* Radius roles */
-  --radius-card: 24px;
-  --radius-inner: 14px;
+  /* Radius roles — align with coss ~0.625rem */
+  --radius-card: 0.625rem;
+  --radius-inner: calc(0.625rem - 2px);
   --radius-chip: 999px;
-  --radius-nav: 26px;
-  --radius-mark: 8px;
+  --radius-nav: 0.625rem;
+  --radius-mark: 6px;
 
   /* Light theme — paper warmth, no muddy orange washes */
-  --bg: #f4f1ec;
-  --surface: #fffcf8;
-  --surface-2: #f0ebe4;
-  --ink: #1c1917;
-  --muted: #57534e;
-  --line: #e7e5e4;
-  --brand: #d4542a;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f5f5f5;
+  --ink: #262626;
+  --muted: #737373;
+  --line: color-mix(in srgb, #000 8%, transparent);
+  --brand: #ea580c;
   --brand-fg: #fff7f2;
   --brand-soft: color-mix(in srgb, var(--brand) 14%, transparent);
   --teal: #0f766e;
   --amber: #b45309;
-  --ink-chip: #292524;
+  --ink-chip: #262626;
   --status-ok: var(--teal);
   --shadow: 0 12px 32px rgba(28, 25, 23, 0.08);
   --shadow-soft: 0 4px 16px rgba(28, 25, 23, 0.06);
@@ -43,11 +43,13 @@
   --radius: var(--radius-card);
   --radius-sm: var(--radius-inner);
 
-  /* Typography families */
-  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Typography — Inter for sans AND heading (FEED-CHROME-1) */
+  --font-sans: "Inter Variable", Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-display: var(--font-heading);
+  --font-ui: var(--font-sans);
   --font: var(--font-ui);
-  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* Type roles */
   --type-display-size: 1.55rem;
@@ -72,19 +74,19 @@
 }
 
 [data-theme="dark"] {
-  /* Charcoal — NOT pure #000 */
-  --bg: #0d0d0c;
-  --surface: #171714;
-  --surface-2: #1e1e1a;
-  --ink: #f5f0e8;
-  --muted: #a8a29e;
-  --line: rgba(245, 240, 232, 0.12);
-  --brand: #f0784e;
+  /* Charcoal — NOT pure #000 (neutral-950 mix) */
+  --bg: color-mix(in srgb, #0a0a0a 95%, #ffffff);
+  --surface: color-mix(in srgb, var(--bg) 98%, #ffffff);
+  --surface-2: #171717;
+  --ink: #f5f5f5;
+  --muted: color-mix(in srgb, #737373 90%, #ffffff);
+  --line: color-mix(in srgb, #ffffff 6%, transparent);
+  --brand: #f97316;
   --brand-fg: #1c1917;
   --brand-soft: color-mix(in srgb, var(--brand) 18%, transparent);
   --teal: #5eead4;
   --amber: #fbbf24;
-  --ink-chip: #e7e5e4;
+  --ink-chip: #f5f5f5;
   --status-ok: var(--teal);
   --shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
   --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.28);
@@ -98,7 +100,7 @@
 * { box-sizing: border-box; }
 html, body, #root { margin: 0; min-height: 100dvh; }
 body {
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   color: var(--ink);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -245,9 +247,9 @@ h1 {
 .sub {
   margin: 2px 0 0;
   color: var(--muted);
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
   font-size: var(--type-caption);
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   line-height: 1.3;
 }
@@ -602,24 +604,24 @@ h1 {
   font-family: var(--font-ui);
 }
 
-/* Interim dock — shorter, icon+label, safe-area */
+/* Dock — DQA-1: theme surface + hairline top border; selected = color/weight only */
 .dock {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 10px;
-  width: min(452px, calc(100% - 28px));
+  bottom: 0;
+  width: min(480px, 100%);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 4px;
-  padding: var(--dock-pad);
-  padding-bottom: calc(var(--dock-pad) + env(safe-area-inset-bottom, 0px));
-  border-radius: var(--radius-nav);
-  background: color-mix(in srgb, var(--surface) 94%, transparent);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  gap: 0;
+  padding: 4px 4px calc(8px + env(safe-area-inset-bottom, 0px));
+  border-radius: 0;
+  background: var(--bg);
+  border: 0;
+  border-top: 1px solid var(--line);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   z-index: 100;
   pointer-events: auto;
   isolation: isolate;
@@ -632,7 +634,7 @@ h1 {
 /* FEED-FINANCES-1: 4-tab dock */
 .dock.dock--four {
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2px;
+  gap: 0;
 }
 .dock button {
   display: inline-flex;
@@ -640,19 +642,20 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 2px;
-  min-height: 48px;
+  min-height: 52px;
   border: 0;
-  border-radius: var(--radius-chip);
+  border-radius: calc(var(--radius-card) - 2px);
   background: transparent;
-  color: var(--ink);
+  color: var(--muted);
   font-family: var(--font-ui);
-  font-size: 0.65rem;
+  font-size: 0.625rem;
   letter-spacing: 0.02em;
-  font-weight: 650;
+  font-weight: 500;
   cursor: pointer;
   padding: 6px 4px;
 }
-.dock button[aria-pressed="true"] {
+.dock button[aria-pressed="true"],
+.dock button[aria-current="page"] {
   background: transparent;
   color: var(--brand);
   font-weight: 700;

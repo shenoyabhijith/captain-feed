@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { TriangleAlert } from "lucide-react";
 import { loadTheme } from "../../storage";
@@ -6,47 +6,114 @@ import { useFinances } from "../../finances/useFinances.js";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import {
-  Frame,
-  FrameHeader,
-  FrameTitle,
-  FrameDescription,
-  FramePanel,
-  FrameFooter,
-} from "@/components/ui/frame";
 import FeedDock from "./FeedDock.jsx";
-import EquityChart from "./EquityChart.jsx";
 import SleevePanel, { outlineBadgeClass } from "./SleeveCard.jsx";
 import DecisionList from "./DecisionList.jsx";
 import {
   dayPnlFromEquity,
-  formatAsOf,
   money,
   signedMoney,
   signedPct,
 } from "./financesFormat.js";
 
+const SLIDE_ORDER = ["value", "swing", "coresat", "mega", "riskoff"];
+
 export default function FinancesApp() {
   const fin = useFinances();
   const [theme] = useState(loadTheme);
   const isDark = theme === "dark";
+  const carouselRef = useRef(null);
+  const [slide, setSlide] = useState(0);
 
   const day = useMemo(
     () => dayPnlFromEquity(fin.ledger?.equity || [], fin.stats?.nav),
     [fin.ledger, fin.stats]
   );
 
-  const markSrc = fin.ledger?.meta?.priceSource || "yahoo";
-  const asOf = fin.ledger?.meta?.asOf;
-  const sleeves = fin.ledger?.sleeves || [];
+  const sleevesById = useMemo(() => {
+    const map = {};
+    for (const s of fin.ledger?.sleeves || []) map[s.id] = s;
+    return map;
+  }, [fin.ledger]);
+
+  const orderedSleeves = useMemo(
+    () =>
+      SLIDE_ORDER.map((id) => sleevesById[id]).filter(Boolean).concat(
+        (fin.ledger?.sleeves || []).filter((s) => !SLIDE_ORDER.includes(s.id))
+      ),
+    [sleevesById, fin.ledger]
+  );
+
+  const slideNames = useMemo(
+    () => [...orderedSleeves.map((s) => s.name), "Activity"],
+    [orderedSleeves]
+  );
+  const slideCount = slideNames.length;
+
+  const syncSlide = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el || !slideCount) return;
+    const cards = el.querySelectorAll("[data-slide]");
+    if (!cards.length) return;
+    const left = el.scrollLeft;
+    let best = 0;
+    let bestDist = Infinity;
+    cards.forEach((card, idx) => {
+      const dist = Math.abs(card.offsetLeft - left);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = idx;
+      }
+    });
+    setSlide(best);
+  }, [slideCount]);
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return undefined;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        syncSlide();
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    syncSlide();
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, [syncSlide, fin.status]);
+
+  function goSlide(i) {
+    const el = carouselRef.current;
+    if (!el) return;
+    const card = el.querySelector(`[data-slide="${i}"]`);
+    if (card) {
+      el.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+      setSlide(i);
+    }
+  }
+
+  function onCarouselKey(e) {
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      goSlide(Math.min(slide + 1, slideCount - 1));
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      goSlide(Math.max(slide - 1, 0));
+    }
+  }
 
   return (
     <div
-      className={`finances-root min-h-dvh pb-[calc(72px+env(safe-area-inset-bottom,0px))] ${
+      className={`finances-root fin-r4 flex h-dvh flex-col ${
         isDark ? "dark" : ""
       }`}
     >
-      <header className="sticky top-0 z-40 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
+      <header className="fin-r4-header shrink-0 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
         <div className="mx-auto flex max-w-lg items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-2.5">
             <img
@@ -66,13 +133,14 @@ export default function FinancesApp() {
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <Badge
-              variant="outline"
-              className={outlineBadgeClass}
-              title="Simulated paper trading only"
+            <Button
+              variant="ghost"
+              size="sm"
+              className="min-h-12 px-3 font-semibold"
+              aria-current="page"
             >
-              PAPER ONLY
-            </Badge>
+              Finances
+            </Button>
             <Button
               variant="ghost"
               size="sm"
@@ -85,8 +153,8 @@ export default function FinancesApp() {
         </div>
       </header>
 
-      <main className="mx-auto flex max-w-lg flex-col gap-4 px-4 py-4">
-        {fin.isPreview ? (
+      {fin.isPreview ? (
+        <div className="mx-auto w-full max-w-lg shrink-0 px-4 pt-2">
           <Alert variant="warning" role="status">
             <TriangleAlert aria-hidden="true" />
             <AlertTitle>PAPER preview</AlertTitle>
@@ -95,145 +163,158 @@ export default function FinancesApp() {
               reset overlay in Admin.
             </AlertDescription>
           </Alert>
-        ) : null}
+        </div>
+      ) : null}
 
-        {fin.status === "loading" ? (
-          <p className="text-muted-foreground text-sm">Loading ledger…</p>
-        ) : fin.status === "error" ? (
+      {fin.status === "loading" ? (
+        <p className="px-4 py-6 text-muted-foreground text-sm">Loading ledger…</p>
+      ) : fin.status === "error" ? (
+        <div className="px-4 py-4">
           <Alert variant="error" role="alert">
             <AlertTitle>Could not load finances-ledger.json</AlertTitle>
           </Alert>
-        ) : (
-          <>
-            <Alert variant="warning">
-              <TriangleAlert aria-hidden="true" />
-              <AlertTitle>Paper capital · real EOD marks</AlertTitle>
-              <AlertDescription>
-                Firstmate issued $100/sleeve. Marks from stamped EOD feed — not
-                live ACH.
-              </AlertDescription>
-            </Alert>
+        </div>
+      ) : (
+        <>
+          {/* Sticky Portfolio strip — short; stays while carousel swipes */}
+          <div
+            className="fin-portfolio-strip shrink-0"
+            role="region"
+            aria-label="Portfolio summary"
+          >
+            <div className="ps-left">
+              <p className="ps-label">
+                Total NAV · {fin.stats.enabledCount} sleeves
+              </p>
+              <p className="ps-nav tabular-nums">{money(fin.stats.nav)}</p>
+            </div>
+            <div className="ps-right">
+              <Badge
+                variant="outline"
+                className={outlineBadgeClass}
+                title="Simulated paper trading only"
+              >
+                PAPER ONLY
+              </Badge>
+              <p
+                className={`ps-day tabular-nums ${
+                  day.dayPnl >= 0
+                    ? "text-success-foreground"
+                    : "text-destructive-foreground"
+                }`}
+              >
+                {signedMoney(day.dayPnl)}{" "}
+                <span className="pct opacity-85">
+                  {signedPct(day.dayPnlPct)} day
+                </span>
+              </p>
+            </div>
+          </div>
 
-            <Frame aria-labelledby="sec-port">
-              <FrameHeader>
-                <FrameTitle id="sec-port">Portfolio</FrameTitle>
-                <FrameDescription>
-                  {fin.stats.enabledCount} sleeves · $100 start each · asOf EOD
-                </FrameDescription>
-              </FrameHeader>
-              <FramePanel className="flex flex-col gap-3 p-4 sm:p-5">
-                <p className="text-muted-foreground text-xs">Total NAV</p>
-                <p className="font-semibold text-4xl tabular-nums tracking-tight">
-                  {money(fin.stats.nav)}
-                </p>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="rounded-lg border border-border bg-muted/40 px-3 py-2">
-                    <p className="text-muted-foreground text-xs">Day P&amp;L</p>
-                    <p
-                      className={`font-semibold tabular-nums text-sm ${
-                        day.dayPnl >= 0
-                          ? "text-success-foreground"
-                          : "text-destructive-foreground"
-                      }`}
-                    >
-                      {signedMoney(day.dayPnl)}{" "}
-                      <span className="font-medium text-xs opacity-80">
-                        ({signedPct(day.dayPnlPct)})
-                      </span>
-                    </p>
-                  </div>
-                  <div className="rounded-lg border border-border bg-muted/40 px-3 py-2">
-                    <p className="text-muted-foreground text-xs">Total P&amp;L</p>
-                    <p
-                      className={`font-semibold tabular-nums text-sm ${
-                        fin.stats.pnl >= 0
-                          ? "text-success-foreground"
-                          : "text-destructive-foreground"
-                      }`}
-                    >
-                      {signedMoney(fin.stats.pnl)}{" "}
-                      <span className="font-medium text-xs opacity-80">
-                        ({signedPct(fin.stats.pnlPct)})
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground text-xs">
-                  Cash{" "}
-                  <strong className="text-foreground">
-                    {fin.stats.cashPct.toFixed(1)}%
-                  </strong>{" "}
-                  of portfolio
-                </p>
-                <EquityChart points={fin.ledger?.equity || []} />
-              </FramePanel>
-              <FrameFooter className="text-muted-foreground text-xs">
-                asOf · {formatAsOf(asOf)} · {markSrc} · paper
-              </FrameFooter>
-            </Frame>
-
-            <Frame aria-labelledby="sec-sleeves">
-              <FrameHeader>
-                <FrameTitle id="sec-sleeves">Sleeves</FrameTitle>
-                <FrameDescription>
-                  Dense panels · holdings + allocation always visible
-                </FrameDescription>
-              </FrameHeader>
-              <div className="flex flex-col gap-2 px-1 pb-1">
-                {sleeves.map((s) => {
-                  const stats = fin.sleeveStats(s);
-                  const weight =
-                    fin.stats.nav > 0 ? stats.nav / fin.stats.nav : 0;
-                  const sDayPnl =
-                    Math.round(day.dayPnl * weight * 100) / 100;
-                  const sDayPct =
-                    stats.nav > 0
-                      ? Math.round((sDayPnl / stats.nav) * 10000) / 100
-                      : 0;
-                  const sleeveDecisions = (fin.ledger?.decisions || [])
-                    .filter((d) => d.agentId === s.id)
-                    .slice(0, 8);
-                  return (
-                    <FramePanel
-                      key={s.id}
-                      className="p-4"
-                      data-sleeve={s.id}
-                    >
-                      <SleevePanel
-                        sleeve={s}
-                        stats={stats}
-                        marks={fin.marks}
-                        dayPnl={sDayPnl}
-                        dayPnlPct={sDayPct}
-                        decisions={sleeveDecisions}
-                      />
-                    </FramePanel>
-                  );
-                })}
-              </div>
-            </Frame>
-
-            <Frame aria-labelledby="sec-activity">
-              <FrameHeader>
-                <FrameTitle id="sec-activity">Activity</FrameTitle>
-                <FrameDescription>
-                  Decision log · expand for signalSource badges
-                </FrameDescription>
-              </FrameHeader>
-              <FramePanel className="p-4">
-                <DecisionList
-                  decisions={(fin.ledger?.decisions || []).slice(0, 12)}
-                />
-              </FramePanel>
-            </Frame>
-
-            <p className="pb-2 font-mono text-[0.6875rem] text-muted-foreground">
-              {fin.ledger?.meta?.note ||
-                "Firstmate issued paper capital · real EOD marks."}
+          <div className="fin-body mx-auto flex w-full max-w-lg min-h-0 flex-1 flex-col pb-[calc(72px+env(safe-area-inset-bottom,0px))]">
+            <p className="swipe-hint shrink-0 px-3 pt-2 text-muted-foreground text-[0.6875rem]">
+              Swipe cards · peek shows more bots
             </p>
-          </>
-        )}
-      </main>
+            <div
+              ref={carouselRef}
+              className="fin-carousel"
+              tabIndex={0}
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Trading bots and activity"
+              aria-describedby="fin-carousel-caption"
+              onKeyDown={onCarouselKey}
+            >
+              {orderedSleeves.map((s, idx) => {
+                const stats = fin.sleeveStats(s);
+                const weight =
+                  fin.stats.nav > 0 ? stats.nav / fin.stats.nav : 0;
+                const sDayPnl =
+                  Math.round(day.dayPnl * weight * 100) / 100;
+                const sDayPct =
+                  stats.nav > 0
+                    ? Math.round((sDayPnl / stats.nav) * 10000) / 100
+                    : 0;
+                return (
+                  <article
+                    key={s.id}
+                    className="fin-bot-card"
+                    data-slide={idx}
+                    data-name={s.name}
+                    aria-label={`${s.name} sleeve`}
+                  >
+                    <SleevePanel
+                      sleeve={s}
+                      stats={stats}
+                      marks={fin.marks}
+                      dayPnl={sDayPnl}
+                      dayPnlPct={sDayPct}
+                      layout="carousel"
+                    />
+                  </article>
+                );
+              })}
+
+              <article
+                className="fin-bot-card"
+                data-slide={orderedSleeves.length}
+                data-name="Activity"
+                aria-label="Activity decision log"
+              >
+                <div className="fin-bot-card-head">
+                  <h3 className="m-0 font-semibold text-[0.9375rem] leading-tight">
+                    Activity
+                  </h3>
+                  <p className="m-0 text-muted-foreground text-xs">
+                    Decision log · expand for signalSource chips
+                  </p>
+                </div>
+                <div className="fin-bot-card-body">
+                  <DecisionList
+                    decisions={(fin.ledger?.decisions || []).slice(0, 16)}
+                  />
+                  <p className="text-muted-foreground text-[0.6875rem]">
+                    {fin.ledger?.meta?.note ||
+                      "Firstmate issued paper capital · real EOD marks."}
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div className="fin-carousel-chrome shrink-0">
+              <div
+                className="fin-dots"
+                role="tablist"
+                aria-label="Bot cards"
+              >
+                {slideNames.map((name, i) => (
+                  <button
+                    key={name}
+                    type="button"
+                    role="tab"
+                    aria-label={name}
+                    aria-current={slide === i ? "true" : undefined}
+                    data-dot={i}
+                    onClick={() => goSlide(i)}
+                  >
+                    <i aria-hidden="true" />
+                  </button>
+                ))}
+              </div>
+              <p
+                className="fin-carousel-caption"
+                id="fin-carousel-caption"
+                aria-live="polite"
+              >
+                <strong>
+                  {slide + 1} / {slideCount}
+                </strong>{" "}
+                · {slideNames[slide] || ""}
+              </p>
+            </div>
+          </div>
+        </>
+      )}
 
       <FeedDock />
     </div>

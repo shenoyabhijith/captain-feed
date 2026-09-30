@@ -2,13 +2,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import { Workbox } from "workbox-window";
-import "@fontsource/source-serif-4/400.css";
-import "@fontsource/source-serif-4/600.css";
-import "@fontsource/source-serif-4/700.css";
-import "@fontsource/source-serif-4/400-italic.css";
-import "@fontsource/ibm-plex-sans/400.css";
-import "@fontsource/ibm-plex-sans/500.css";
-import "@fontsource/ibm-plex-sans/600.css";
 import {
   isInstallChromeSuppressed,
   syncStandaloneDomFlag,
@@ -18,8 +11,9 @@ import {
 syncStandaloneDomFlag(document.documentElement, isInstallChromeSuppressed());
 
 import App from "./App.jsx";
-import "./styles.css";
+/* coss.css loads Inter Variable + Geist Mono; styles.css maps feed chrome to Inter */
 import "./coss.css";
+import "./styles.css";
 
 const UPDATE_INTERVAL_MS = 5 * 60 * 1000;
 
