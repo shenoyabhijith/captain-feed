@@ -1,8 +1,110 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-01T08:19:00-05:00",
+  "updated": "2026-10-01T08:27:10-05:00",
   "cards": [
+    {
+      "id": "tax-20261001-nre-interest-still-us-taxable",
+      "category": "tax",
+      "title": "India NRE interest: India-free ≠ US-free",
+      "body": "US citizens and residents must report worldwide bank interest — including India NRE/NRO/FCNR interest — on Form 1040 even when India treats NRE interest as tax-free for NRIs. No Form 1099 from the Indian bank does not mean skip it; list payers on Schedule B and answer the foreign-account questions. Educational only, not tax advice.",
+      "source": "IRS · Pub. 550 · Pub. 17 · Schedule B (Form 1040)",
+      "tags": [
+        "us-tax",
+        "india-us",
+        "nre",
+        "nro",
+        "fcnr",
+        "interest",
+        "schedule-b",
+        "worldwide-income",
+        "cross-border",
+        "foreign-bank"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/tax-nre-interest-us-20261001/800/520",
+      "link": "https://www.irs.gov/publications/p550",
+      "detail": {
+        "summary": "Publication 550 (Investment Income and Expenses) and Publication 17 remind U.S. citizens that foreign-source investment income — including interest from banks outside the United States — must be reported on the U.S. return unless a specific U.S. law or treaty exemption applies. Indian NRE accounts are often marketed as tax-free interest under Indian rules for non-resident Indians; that India-side result does not create a U.S. exclusion. If you are a U.S. citizen or resident alien (green card or substantial presence), include the USD equivalent of NRE/NRO/FCNR interest on Form 1040 line 2b, usually via Schedule B. This tip is educational only and is not tax, legal, or investment advice.",
+        "sections": [
+          {
+            "heading": "Who this helps",
+            "body": "Indian-origin U.S. citizens, green-card holders, and substantial-presence residents who still hold India NRE, NRO, or FCNR deposits (or recently flipped from NRI status). Especially relevant if a bank or relative said NRE interest is tax-free without distinguishing India vs. U.S. rules, or if you never received a Form 1099-INT from the Indian bank and assumed nothing was reportable."
+          },
+          {
+            "heading": "Rough mechanics",
+            "body": "Pub. 550 foreign-source-income reminder: report foreign investment income whether you live in the U.S. or abroad and whether or not a Form 1099 arrives. Convert credited interest to USD with a consistent FX method, list each foreign payer and amount on Schedule B Part I (Interest), and carry the total to Form 1040 line 2b. Schedule B Part III asks whether you had a financial interest in or signature authority over a foreign account — answer Yes for India bank accounts and complete FinCEN Form 114 (FBAR) / Form 8938 when those separate thresholds apply (they do not replace reporting the interest as income). If India actually withheld tax on NRO interest, you may explore a Foreign Tax Credit on Form 1116; NRE interest that India did not tax usually produces no India credit to offset the U.S. tax."
+          },
+          {
+            "heading": "India angle: NRE myth vs. U.S. worldwide tax",
+            "body": "India domestic exemption for certain NRE interest for persons treated as non-residents under Indian law is an India statute result. The United States taxes citizens and residents on worldwide income. Becoming a U.S. tax resident (or already being a citizen) while an Indian bank still labels the account NRE is a classic mismatch: the product name does not rewrite IRC worldwide-inclusion rules. Keep passbook / statement interest totals for the calendar year even if the statement shows zero TDS."
+          },
+          {
+            "heading": "Check-this action",
+            "body": "Pull 2025 (and YTD 2026) interest credited on every India NRE/NRO/FCNR account, convert to USD, and draft Schedule B payer lines before you file. Separately confirm FBAR (aggregate foreign accounts over $10,000 anytime in the year) and Form 8938 thresholds — reporting the account is not the same as omitting the interest."
+          },
+          {
+            "heading": "Educational label",
+            "body": "Educational only — not tax advice. Treaty claims, dual-status years, bona fide residence / physical presence exclusions (earned income, not bank interest), PFIC issues inside India mutual funds, and state tax conformity can change the filing. Confirm with a cross-border tax professional before filing or amending."
+          }
+        ],
+        "bullets": [
+          "IRS Pub. 550 / Pub. 17: U.S. citizens report foreign-source investment income (including interest) unless exempt by U.S. law or treaty — Form 1099 not required for taxability.",
+          "India NRE tax-free interest is an India-side concept for qualifying NRIs; it does not by itself exclude the interest from Form 1040 for U.S. citizens/residents.",
+          "Report taxable interest on Schedule B Part I → Form 1040 line 2b; complete Schedule B Part III foreign-account questions when you hold India accounts.",
+          "FBAR (FinCEN 114) and Form 8938 are separate reporting regimes — they do not replace including the interest in income.",
+          "India TDS on NRO may support Form 1116 FTC; untaxed NRE interest usually means U.S. tax with little or no India credit.",
+          "Educational only — not tax advice."
+        ],
+        "steps": [
+          "List every India (and other foreign) deposit account and the interest credited in the tax year (passbook, e-statement, or bank certificate).",
+          "Convert each interest total to USD with a documented FX approach and draft Schedule B Part I payer lines.",
+          "Answer Schedule B Part III foreign-account questions; calendar FBAR / Form 8938 if thresholds are met.",
+          "If any India tax was withheld on the same interest, gather TDS certificates and review Form 1116 with your preparer.",
+          "Do not assume no 1099 or NRE tax-free in India means skip U.S. reporting — amend prior years if interest was omitted and you still can."
+        ],
+        "actions": [
+          {
+            "label": "IRS Pub. 550 — Investment Income and Expenses",
+            "url": "https://www.irs.gov/publications/p550"
+          },
+          {
+            "label": "Instructions for Schedule B (Form 1040)",
+            "url": "https://www.irs.gov/instructions/i1040sb"
+          },
+          {
+            "label": "IRS Pub. 17 — Your Federal Income Tax (foreign-source income reminder)",
+            "url": "https://www.irs.gov/publications/p17"
+          },
+          {
+            "label": "About Form 1116 — Foreign Tax Credit",
+            "url": "https://www.irs.gov/forms-pubs/about-form-1116"
+          }
+        ],
+        "sources": [
+          {
+            "label": "IRS Publication 550 (2025) — Investment Income and Expenses; foreign-source income reminder",
+            "url": "https://www.irs.gov/publications/p550"
+          },
+          {
+            "label": "IRS Publication 17 (2025) — Your Federal Income Tax; foreign-source income",
+            "url": "https://www.irs.gov/publications/p17"
+          },
+          {
+            "label": "Instructions for Schedule B (Form 1040) — Interest and foreign accounts",
+            "url": "https://www.irs.gov/instructions/i1040sb"
+          },
+          {
+            "label": "Schedule B (Form 1040) — Interest and Ordinary Dividends",
+            "url": "https://www.irs.gov/forms-pubs/about-schedule-b-form-1040"
+          },
+          {
+            "label": "IRS — About Form 1116, Foreign Tax Credit",
+            "url": "https://www.irs.gov/forms-pubs/about-form-1116"
+          }
+        ]
+      }
+    },
     {
       "id": "book-20261001-four-percent-rule",
       "category": "book",
@@ -3105,86 +3207,6 @@
           {
             "label": "AWS CLI — ingest-data",
             "url": "https://docs.aws.amazon.com/cli/latest/reference/bedrock-agentcore/ingest-data.html"
-          }
-        ]
-      }
-    },
-    {
-      "id": "tax-20260919-gift-annual-exclusion-india",
-      "category": "tax",
-      "title": "Gift $19k/person to India family tax-free (annual exclusion)",
-      "body": "US donors can give $19,000 per recipient in 2026 without using lifetime exemption — each India parent/sibling is a separate donee; married couples can gift-split to $38,000 each. Over that → Form 709. Educational only, not tax advice.",
-      "source": "IRS · Gift tax FAQs · Form 709 · annual exclusion 2026",
-      "tags": [
-        "us-tax",
-        "india-us",
-        "gift-tax",
-        "form-709",
-        "annual-exclusion",
-        "family",
-        "cross-border"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/tax-gift-annual-exclusion-india-20260919/800/520",
-      "link": "https://www.irs.gov/businesses/small-businesses-self-employed/frequently-asked-questions-on-gift-taxes",
-      "detail": {
-        "summary": "The federal gift-tax annual exclusion lets a US donor transfer up to $19,000 per donee in calendar year 2026 without eating into the lifetime gift/estate exemption and generally without gift tax. Each recipient counts separately, so gifts to both parents (and siblings) stack. Married couples who elect gift-splitting can give $38,000 per donee. Amounts above the exclusion usually require Form 709 even when no tax is due because of the lifetime exemption. Educational only; not tax advice.",
-        "sections": [
-          {
-            "heading": "Who this helps",
-            "body": "Indian-origin US citizens, green-card holders, and resident aliens who regularly remit or gift cash to parents, siblings, or other relatives in India. Complements yesterday’s inbound Form 3520 tip: this is about US → India transfers you make as the donor, not gifts you receive from India family."
-          },
-          {
-            "heading": "Rough mechanics",
-            "body": "For 2026 the annual exclusion is $19,000 per donee (same as 2025 per IRS gift-tax FAQs). Count present-interest gifts only. Each donee gets their own $19,000 bucket. Spouses who own or fund gifts together can elect gift-splitting on Form 709 so each spouse’s exclusion applies ($38,000 combined per donee). Gifts over the exclusion reduce the unified lifetime exclusion (basic exclusion amount $15,000,000 for 2026) and generally require filing Form 709 by the April due date of the following year. Direct payments of tuition or medical expenses to the provider can qualify for separate unlimited exclusions if rules are met."
-          },
-          {
-            "heading": "India–US angle",
-            "body": "Classic stack: father $19k + mother $19k = $38k from one donor; with gift-splitting a married couple can double that to $76k across two parents without touching lifetime exemption — the pattern many US→India parent-support plans use. Wire/remittance apps do not change US gift-tax rules: the donor still tracks calendar-year totals per person. India may treat the receipt differently for local tax/FEMA purposes; this tip is US gift tax only. True gifts are generally not deductible on Form 1040."
-          },
-          {
-            "heading": "Check-this action",
-            "body": "List every person in India you gifted or plan to gift in 2026 and sum calendar-year transfers per person (cash, Venmo/Wise/remit, property). If any one person will exceed $19,000 ($38,000 with gift-splitting), open IRS Form 709 / gift-tax FAQ pages and calendar a Form 709 filing — and keep wire confirmations."
-          }
-        ],
-        "bullets": [
-          "2026 annual exclusion: $19,000 per donee (IRS gift-tax FAQs)",
-          "Gift-splitting: married couple can reach $38,000 per donee",
-          "Each India parent/sibling is a separate donee — stacks add up",
-          "Over exclusion → usually Form 709 (even if lifetime exemption covers tax)",
-          "Separate unlimited exclusions may apply for tuition/medical paid to providers"
-        ],
-        "steps": [
-          "Tally 2026 gifts to each India relative by calendar year and recipient",
-          "Compare each total to $19,000 (or $38,000 if you will gift-split with a spouse)",
-          "If over the line, prepare Form 709 and keep remittance records; if under, still keep a simple per-donee log for next year"
-        ],
-        "actions": [
-          {
-            "label": "IRS gift tax FAQs (annual exclusion table)",
-            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/frequently-asked-questions-on-gift-taxes"
-          },
-          {
-            "label": "About Form 709",
-            "url": "https://www.irs.gov/forms-pubs/about-form-709"
-          },
-          {
-            "label": "Estate and gift tax — what's new",
-            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/whats-new-estate-and-gift-tax"
-          }
-        ],
-        "sources": [
-          {
-            "label": "IRS — Frequently asked questions on gift taxes (2026 annual exclusion $19,000)",
-            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/frequently-asked-questions-on-gift-taxes"
-          },
-          {
-            "label": "IRS — What's new — Estate and gift tax (basic exclusion $15M for 2026)",
-            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/whats-new-estate-and-gift-tax"
-          },
-          {
-            "label": "IRS — About Form 709",
-            "url": "https://www.irs.gov/forms-pubs/about-form-709"
           }
         ]
       }
