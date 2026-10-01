@@ -24,7 +24,10 @@ import {
   FrameTitle,
 } from "@/components/ui/frame";
 import FeedDock from "./FeedDock.jsx";
-import SleevePanel, { outlineBadgeClass } from "./SleeveCard.jsx";
+import SleevePanel, {
+  HoldingsTable,
+  outlineBadgeClass,
+} from "./SleeveCard.jsx";
 import DecisionList from "./DecisionList.jsx";
 import {
   dayPnlFromEquity,
@@ -34,14 +37,6 @@ import {
   signedPct,
   sleeveHoldings,
 } from "./financesFormat.js";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-} from "@/components/ui/table";
 import {
   Meter,
   MeterLabel,
@@ -486,55 +481,10 @@ export default function FinancesApp() {
                     <p className="mb-2 font-semibold text-muted-foreground text-xs">
                       Holdings
                     </p>
-                    <Table
-                      variant="card"
-                      aria-label={`${detailSleeve.name} holdings`}
-                    >
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead>Ticker</TableHead>
-                          <TableHead className="text-right">Qty</TableHead>
-                          <TableHead className="text-right">Mkt</TableHead>
-                          <TableHead className="text-right">%</TableHead>
-                          <TableHead className="text-right">uP&amp;L</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {detailHoldings.map((h) => (
-                          <TableRow key={h.key}>
-                            <TableCell>
-                              <span className="font-semibold tabular-nums">
-                                {h.symbol}
-                              </span>
-                            </TableCell>
-                            <TableCell className="text-right tabular-nums">
-                              {h.qty == null
-                                ? "—"
-                                : Number(h.qty).toFixed(3)}
-                            </TableCell>
-                            <TableCell className="text-right tabular-nums">
-                              {money(h.mkt)}
-                            </TableCell>
-                            <TableCell className="text-right tabular-nums">
-                              {h.pct.toFixed(1)}
-                            </TableCell>
-                            <TableCell
-                              className={`text-right tabular-nums ${
-                                h.uPnl == null
-                                  ? ""
-                                  : h.uPnl >= 0
-                                    ? "text-success-foreground"
-                                    : "text-destructive-foreground"
-                              }`}
-                            >
-                              {h.uPnl == null
-                                ? "—"
-                                : signedMoney(h.uPnl)}
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
+                    <HoldingsTable
+                      sleeve={detailSleeve}
+                      holdings={detailHoldings}
+                    />
                   </div>
 
                   <div>

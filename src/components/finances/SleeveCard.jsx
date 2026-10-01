@@ -122,35 +122,53 @@ function LastDecisionBlock({ lastAction }) {
   );
 }
 
-function HoldingsTable({ sleeve, holdings }) {
+/** Dense cell chrome — overrides shared table p-2.5 so 390px cards fit. */
+const htHead =
+  "h-auto px-1.5 py-1.5 text-[0.6875rem] leading-tight first:ps-1.5 last:pe-1.5";
+const htCell =
+  "px-1.5 py-1.5 text-[0.6875rem] leading-tight first:ps-1.5 last:pe-1.5";
+
+/**
+ * Holdings table for sleeve card + sheet. Dual-line ticker/qty keeps
+ * Mkt / % / uP&L fully readable at ~390px without nested h-scroll.
+ */
+export function HoldingsTable({ sleeve, holdings }) {
   return (
-    <Table variant="card" aria-label={`${sleeve.name} holdings`}>
+    <Table
+      variant="card"
+      className="text-[0.6875rem]"
+      aria-label={`${sleeve.name} holdings`}
+    >
       <TableHeader>
         <TableRow>
-          <TableHead>Ticker</TableHead>
-          <TableHead className="text-right">Qty</TableHead>
-          <TableHead className="text-right">Mkt</TableHead>
-          <TableHead className="text-right">%</TableHead>
-          <TableHead className="text-right">uP&amp;L</TableHead>
+          <TableHead className={htHead}>
+            Ticker
+            <span className="mt-0.5 block font-normal text-muted-foreground/80">
+              Qty
+            </span>
+          </TableHead>
+          <TableHead className={`${htHead} text-right`}>Mkt</TableHead>
+          <TableHead className={`${htHead} text-right`}>%</TableHead>
+          <TableHead className={`${htHead} text-right`}>uP&amp;L</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {holdings.map((h) => (
           <TableRow key={h.key}>
-            <TableCell>
+            <TableCell className={htCell}>
               <span className="font-semibold tabular-nums">{h.symbol}</span>
+              <span className="mt-0.5 block text-[0.625rem] text-muted-foreground tabular-nums">
+                {h.qty == null ? "—" : Number(h.qty).toFixed(3)}
+              </span>
             </TableCell>
-            <TableCell className="text-right tabular-nums">
-              {h.qty == null ? "—" : Number(h.qty).toFixed(3)}
-            </TableCell>
-            <TableCell className="text-right tabular-nums">
+            <TableCell className={`${htCell} text-right tabular-nums`}>
               {money(h.mkt)}
             </TableCell>
-            <TableCell className="text-right tabular-nums">
+            <TableCell className={`${htCell} text-right tabular-nums`}>
               {h.pct.toFixed(1)}
             </TableCell>
             <TableCell
-              className={`text-right tabular-nums ${
+              className={`${htCell} text-right tabular-nums ${
                 h.uPnl == null
                   ? ""
                   : h.uPnl >= 0

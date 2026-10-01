@@ -356,9 +356,10 @@
 .fin-bot-card-body {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
+  /* Both axes: table overflow-x-auto must not be clipped by y-only scroll */
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 0.7rem 0.85rem 0.9rem;
+  padding: 0.7rem 0.7rem 0.9rem;
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
