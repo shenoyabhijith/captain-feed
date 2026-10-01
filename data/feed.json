@@ -1,8 +1,108 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-01T08:27:10-05:00",
+  "updated": "2026-10-01T09:10:34-05:00",
   "cards": [
+    {
+      "id": "trend-20261001-bedrock-managed-agents",
+      "category": "aws",
+      "title": "Bedrock Managed Agents (OpenAI) now in preview",
+      "body": "AWS + OpenAI shipped Bedrock Managed Agents (BMA) in preview Sep 29: AWS-native agent sessions with IAM roles, durable state, skills, MCP tools, human-approval hooks, and CloudTrail — run on self-hosted exec or AgentCore Runtime. Preview: no extra BMA fee beyond underlying resources; us-east-1 / us-west-2 / us-east-2.",
+      "source": "AWS What's New · Sep 29, 2026 · Bedrock Managed Agents docs",
+      "tags": [
+        "aws",
+        "bedrock",
+        "managed-agents",
+        "openai",
+        "agentcore",
+        "mcp",
+        "iam",
+        "solutions-architect",
+        "preview",
+        "governance"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-bedrock-managed-agents-20261001/800/520",
+      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/bedrock-managed-agents-preview/",
+      "detail": {
+        "summary": "On Sep 29, 2026 AWS announced Amazon Bedrock Managed Agents (BMA), powered by OpenAI, in public preview. Built jointly with OpenAI on a customized Agents API that is AWS-native, BMA lets you run OpenAI-optimized agents entirely inside AWS with the identities, permissions, and governance you already use. The service manages state, tool selection, code execution, and multi-step coordination; you supply instructions, an IAM role, tools/skills/MCP servers, and an execution environment (self-hosted exec server or AgentCore Runtime). Preview pricing: no additional charge for BMA beyond the AWS resources agents consume (subject to change at GA). Regions at launch: US East (N. Virginia), US West (Oregon), US East (Ohio).",
+        "sections": [
+          {
+            "heading": "Why SAs should care",
+            "body": "Customers keep asking for OpenAI-class agent loops without leaving AWS identity and audit boundaries. BMA is the preview answer: each agent session gets its own IAM role, optional human approval before consequential actions, CloudTrail on supported API activity, and durable sessions that retain messages, tool calls, and intermediate results so work can pause and resume. Position it next to AgentCore Runtime/Gateway — not as a replacement for every agent framework, but as the managed OpenAI harness path when governance and AWS-native tooling matter more than DIY orchestration."
+          },
+          {
+            "heading": "What BMA owns vs what you own",
+            "body": "BMA runs the agent loop (model ↔ tools), preserves session state, and can compact context as conversations grow. You choose the execution environment where commands and local tools actually run: (1) self-hosted — your host/container with a running exec server; or (2) AgentCore Runtime — managed microVM sessions in your account, under an execution role you control, optionally VPC-connected. Model calls stay with Bedrock Managed Agents; the environment only runs the commands the agent sends. Skills are reusable procedure packs; MCP servers plug in extra tools."
+          },
+          {
+            "heading": "Security shape to teach",
+            "body": "Docs call out three identities: the caller, the session role BMA assumes (role_arn), and the execution-environment identity. Keep them separate and least-privilege. Callers need iam:PassRole on the session role; AgentCore paths also need bedrock-agentcore:InvokeAgentRuntime / StopRuntimeSession scoped to your Runtime ARNs. Commands and MCP tools inherit whatever the execution environment can reach — use a dedicated workspace and restricted OS identity. Preview signing service is bedrock-mantle on regional endpoints; session path is under /openai/v1/agents/sessions."
+          },
+          {
+            "heading": "Where it fits an SA narrative",
+            "body": "Good demo/story arcs: multi-step codebase investigation, document processing, or file generation where durable sessions + skills beat one-shot chat. Contrast with Strands/AgentCore harness (any model/framework) vs BMA (OpenAI-optimized, AWS-governed). Call out preview caveats: APIs may change before GA, pricing can change, and model availability differs by Region/account — always verify current Regional availability before customer designs."
+          },
+          {
+            "heading": "Try this week",
+            "body": "In a sandbox account with Bedrock model access, walk the AgentCore Runtime get-started for BMA (agentcore create → Bedrock Managed Agents framework), deploy a Runtime, start a short session, continue it once to prove durable state, then review IAM PassRole + Runtime permissions and CloudTrail events. Sketch a one-pager for customers: when to recommend BMA vs DIY Agents SDK vs AgentCore Gateway MCP tools."
+          }
+        ],
+        "bullets": [
+          "Preview since Sep 29, 2026 — AWS + OpenAI Agents API, AWS-native",
+          "Durable sessions: messages, tool calls, intermediate results resume later",
+          "Skills + MCP tools; per-agent IAM role; optional human approval; CloudTrail",
+          "Exec env: self-hosted exec server OR AgentCore Runtime microVMs",
+          "Preview: no extra BMA fee beyond underlying AWS resource use (GA TBD)",
+          "Launch Regions: us-east-1, us-west-2, us-east-2",
+          "Educational SA brief — confirm Region/model access and preview limits before designs"
+        ],
+        "steps": [
+          "Read the What's New note and Bedrock Managed Agents (OpenAI) user-guide overview.",
+          "In a non-prod account, enable needed Bedrock model access and note bedrock-mantle regional endpoints.",
+          "Follow AgentCore Runtime get-started for BMA: create project, deploy Runtime, run a first session.",
+          "Continue the same session to verify durable state; optionally add one skill.",
+          "Review security docs: separate caller / session role / exec identity; verify PassRole and Runtime IAM.",
+          "Capture CloudTrail (and AgentCore logs/traces) for a customer-facing governance talking point."
+        ],
+        "actions": [
+          {
+            "label": "What's New — Bedrock Managed Agents preview",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/bedrock-managed-agents-preview/"
+          },
+          {
+            "label": "Docs — Bedrock Managed Agents (OpenAI) overview",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-managed-agents-openai.html"
+          },
+          {
+            "label": "Docs — Get started on AgentCore Runtime",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started-bma.html"
+          },
+          {
+            "label": "Docs — Security and IAM roles",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-managed-agents-openai-security.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS What's New — Amazon Bedrock Managed Agents, powered by OpenAI, is now available in preview (Sep 29, 2026)",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/bedrock-managed-agents-preview/"
+          },
+          {
+            "label": "Amazon Bedrock User Guide — Amazon Bedrock Managed Agents, powered by OpenAI (preview)",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-managed-agents-openai.html"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Get started with Bedrock Managed Agents on AgentCore Runtime",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started-bma.html"
+          },
+          {
+            "label": "Amazon Bedrock User Guide — Security and IAM roles (Bedrock Managed Agents)",
+            "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-managed-agents-openai-security.html"
+          }
+        ]
+      }
+    },
     {
       "id": "tax-20261001-nre-interest-still-us-taxable",
       "category": "tax",
@@ -3127,86 +3227,6 @@
           {
             "label": "tiagom87/simple-path-to-wealth — JL Collins summary notes",
             "url": "https://github.com/tiagom87/simple-path-to-wealth"
-          }
-        ]
-      }
-    },
-    {
-      "id": "trend-20260919-agentcore-memory-ingestdata",
-      "category": "aws",
-      "title": "AgentCore Memory: LTM without short-term events",
-      "body": "IngestData (Sep 8) sends conversational or JSON payloads straight into long-term memory strategies — no CreateEvent, no STM tax. Adopt LTM alone when you already keep raw logs elsewhere.",
-      "source": "AWS What’s New · Sep 8, 2026 · AgentCore Memory",
-      "tags": [
-        "bedrock",
-        "agentcore",
-        "memory",
-        "ingestdata",
-        "long-term-memory",
-        "aws-sa"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/trend-agentcore-memory-ingestdata-20260919/800/520",
-      "link": "https://aws.amazon.com/about-aws/whats-new/2026/09/agentcore-memory-direct-ingest/",
-      "detail": {
-        "summary": "Until Sep 8, 2026, AgentCore Memory required every fact to land as a short-term event (CreateEvent) before long-term strategies could extract records. IngestData removes that coupling: you submit content, it fans out to the memory’s configured LTM strategies, and records show up via the same RetrieveMemoryRecords / ListMemoryRecords path — with no short-term event to store or retrieve. SA angle: teach when to adopt long-term memory independently of short-term session history.",
-        "sections": [
-          {
-            "heading": "What changed",
-            "body": "New data-plane API IngestData on bedrock-agentcore. Accepts conversational payloads (USER/ASSISTANT text) and JSON payloads (behavioral events, activity logs, system events up to the documented size limits). Optional metadata feeds the same extraction pipeline as CreateEvent. A successful call means accepted for async processing — not that records are instantly queryable."
-          },
-          {
-            "heading": "When IngestData is the right tool",
-            "body": "Use it when you need distilled LTM records but will never call GetEvent / ListEvents / ListSessions on that raw turn, or when your app already retains verbatim interactions elsewhere and only wants preference / semantic / episodic extracts in AgentCore. Keep CreateEvent when you need retrievable short-term events, branching, or session replay."
-          },
-          {
-            "heading": "Ops after ingest",
-            "body": "Verify with ListMemoryRecords or RetrieveMemoryRecords (seconds to minutes depending on size/strategies). Stream create/update/delete via Kinesis if you want push instead of poll. Failed extractions land in a per-memory queue — ListMemoryExtractionJobs + StartMemoryExtractionJob to redrive; watch FailedExtraction in CloudWatch. IAM action: bedrock-agentcore:IngestData."
-          },
-          {
-            "heading": "Blog angle for Solutions Architects",
-            "body": "Frame as “LTM is no longer hostage to STM”: diagram CreateEvent (STM→extract→LTM) vs IngestData (payload→extract→LTM only). Call out JSON ingest for CRM/loyalty/system events next to chat turns, namespace + actorId + sessionId scoping, and complementarity with Stage-1 AgentCore MemorySaver (durable checkpoints) — different problem than preference extraction. Pair with prior feed cards on AgentCore Stage-1 replatform and Gateway rate limits for a production Memory talk track."
-          }
-        ],
-        "bullets": [
-          "IngestData → LTM strategies without creating a short-term event",
-          "Payloads: conversational (role+text) and JSON (events/logs) in one request",
-          "Same retrieve APIs as any other LTM records after async extraction",
-          "Use CreateEvent when you still need GetEvent / session branching",
-          "Redrive failures via ListMemoryExtractionJobs; optional Kinesis record stream"
-        ],
-        "steps": [
-          "Confirm AgentCore Memory is enabled in your demo Region and note configured LTM strategies (skip self-managed)",
-          "Grant bedrock-agentcore:IngestData; call ingest_data with memoryId, actorId, contentTimestamp, and inline payload",
-          "Poll RetrieveMemoryRecords / ListMemoryRecords (or Kinesis) until expected records appear",
-          "For a SA demo: ingest one preference chat turn + one JSON loyalty event, then retrieve — contrast with a CreateEvent path that leaves an STM event behind"
-        ],
-        "actions": [
-          {
-            "label": "AWS What’s New — direct LTM ingest (Sep 8, 2026)",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/agentcore-memory-direct-ingest/"
-          },
-          {
-            "label": "Docs — Ingest content into long-term memory",
-            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/long-term-ingest-data.html"
-          },
-          {
-            "label": "CLI — bedrock-agentcore ingest-data",
-            "url": "https://docs.aws.amazon.com/cli/latest/reference/bedrock-agentcore/ingest-data.html"
-          }
-        ],
-        "sources": [
-          {
-            "label": "AWS What’s New — AgentCore Memory direct ingestion (Sep 8, 2026)",
-            "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/agentcore-memory-direct-ingest/"
-          },
-          {
-            "label": "Amazon Bedrock AgentCore Developer Guide — Ingest content into long-term memory",
-            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/long-term-ingest-data.html"
-          },
-          {
-            "label": "AWS CLI — ingest-data",
-            "url": "https://docs.aws.amazon.com/cli/latest/reference/bedrock-agentcore/ingest-data.html"
           }
         ]
       }
