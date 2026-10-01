@@ -13,6 +13,12 @@ import {
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import { loadTheme, saveTheme } from "../storage";
 import { useFeed } from "../hooks/useFeed";
+import {
+  checkAndApplyAppUpdate,
+  consumeUpdatedFlag,
+  hasServiceWorkerRegistration,
+  isUpdateInFlight,
+} from "../lib/updateApp.js";
 import CategoryFilter from "./CategoryFilter.jsx";
 import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
@@ -141,6 +147,9 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
   const [atTop, setAtTop] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerH, setHeaderH] = useState(0);
+  const [swAvailable, setSwAvailable] = useState(false);
+  const [updateStatus, setUpdateStatus] = useState("");
+  const [updateBusy, setUpdateBusy] = useState(false);
 
   // Apply dock view requested from Finances navigation
   useEffect(() => {
@@ -155,6 +164,32 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- apply once on Home mount
   }, []);
+
+  // FEED-PWA-UPDATE-1: detect SW + one-shot "Updated" after reload
+  useEffect(() => {
+    let cancelled = false;
+    hasServiceWorkerRegistration().then((ok) => {
+      if (!cancelled) setSwAvailable(ok);
+    });
+    if (consumeUpdatedFlag()) {
+      setUpdateStatus("Updated");
+      setMenuOpen(true);
+    }
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  async function onUpdateApp() {
+    if (updateBusy || isUpdateInFlight()) return;
+    setUpdateBusy(true);
+    try {
+      await checkAndApplyAppUpdate((msg) => setUpdateStatus(msg));
+    } finally {
+      setUpdateBusy(false);
+    }
+  }
+
   const lastY = useRef(0);
   const ticking = useRef(false);
   const hiddenRef = useRef(false);
@@ -324,6 +359,27 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
                   Hide install tip
                 </button>
               ) : null}
+              <div className="overflow-update" data-slot="field">
+                <p className="overflow-update__label">App updates</p>
+                <p className="overflow-update__hint" data-slot="field-description">
+                  {swAvailable
+                    ? "Check for a new version and reload this installed app."
+                    : "Updates apply when the app is installed"}
+                </p>
+                <button
+                  type="button"
+                  className="overflow-update__btn"
+                  data-slot="button"
+                  data-variant="outline"
+                  disabled={!swAvailable || updateBusy}
+                  onClick={onUpdateApp}
+                >
+                  Update app
+                </button>
+                <p className="overflow-update__status" role="status" aria-live="polite">
+                  {updateStatus}
+                </p>
+              </div>
             </div>
           </div>
         </div>

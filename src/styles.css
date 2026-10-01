@@ -67,6 +67,8 @@
   --dock-pad: 6px;
   --dock-clearance: calc(72px + env(safe-area-inset-bottom, 0px));
   --header-blur: blur(16px);
+  --ring: color-mix(in srgb, var(--brand) 70%, var(--ink));
+  --dock-idle: var(--muted);
 
   /* Finances P&L */
   --fin-up: #15803d;
@@ -79,7 +81,9 @@
   --surface: color-mix(in srgb, var(--bg) 98%, #ffffff);
   --surface-2: #171717;
   --ink: #f5f5f5;
-  --muted: color-mix(in srgb, #737373 90%, #ffffff);
+  /* FEED-DOCK-UPDATE-1 D-2: readable unselected dock on charcoal (neutral-400 mix) */
+  --muted: color-mix(in srgb, #a3a3a3 85%, #ffffff);
+  --dock-idle: var(--muted);
   --line: color-mix(in srgb, #ffffff 6%, transparent);
   --brand: #f97316;
   --brand-fg: #1c1917;
@@ -93,6 +97,7 @@
   --bg-elev: var(--surface);
   --accent: var(--brand);
   --accent-soft: var(--brand-soft);
+  --ring: color-mix(in srgb, var(--brand) 65%, #ffffff);
   --fin-up: #4ade80;
   --fin-down: #f87171;
 }
@@ -282,8 +287,63 @@ h1 {
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   z-index: 30;
+  min-width: 220px;
 }
 .overflow-actions.open { display: flex; }
+
+/* FEED-PWA-UPDATE-1: Update app block inside prefs overflow */
+.overflow-update {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 2px 2px;
+  border-top: 1px solid var(--line);
+  margin-top: 2px;
+  padding-top: var(--space-2);
+}
+.overflow-update__label {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--type-label-m);
+  font-weight: 600;
+  color: var(--ink);
+}
+.overflow-update__hint {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--type-caption);
+  color: var(--muted);
+  line-height: 1.35;
+}
+.overflow-update__btn {
+  min-height: 48px;
+  min-width: 48px;
+  border-radius: var(--radius-inner);
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--type-label-m);
+  cursor: pointer;
+  padding: 0 var(--space-3);
+}
+.overflow-update__btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.overflow-update__btn:active:not(:disabled) {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+.overflow-update__status {
+  margin: 0;
+  min-height: 1.2em;
+  font-family: var(--font-ui);
+  font-size: var(--type-caption);
+  color: var(--muted);
+  line-height: 1.35;
+}
 
 .icon-btn {
   border: 1px solid var(--line);
@@ -605,6 +665,7 @@ h1 {
 }
 
 /* Dock — DQA-1: theme surface + hairline top border; selected = color/weight only */
+/* FEED-DOCK-UPDATE-1: icon-only; idle via --dock-idle (readable muted on charcoal) */
 .dock {
   position: fixed;
   left: 50%;
@@ -638,21 +699,20 @@ h1 {
 }
 .dock button {
   display: inline-flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 0;
   min-height: 52px;
+  min-width: 48px;
   border: 0;
   border-radius: calc(var(--radius-card) - 2px);
   background: transparent;
-  color: var(--muted);
+  color: var(--dock-idle);
   font-family: var(--font-ui);
-  font-size: 0.625rem;
-  letter-spacing: 0.02em;
   font-weight: 500;
   cursor: pointer;
-  padding: 6px 4px;
+  padding: 8px 4px;
 }
 .dock button[aria-pressed="true"],
 .dock button[aria-current="page"] {
@@ -663,6 +723,10 @@ h1 {
 .dock button:active {
   transform: scale(0.97);
   opacity: 0.78;
+}
+.dock button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
 }
 
 /* Detail — same tokens/surfaces */

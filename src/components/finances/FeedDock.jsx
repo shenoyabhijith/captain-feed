@@ -3,6 +3,7 @@ import { VIEW_ICONS, VIEW_LABELS, FINANCES_ICON, ICON_STROKE } from "../icons.js
 
 /**
  * Shared 4-tab dock: All / Unread / Saved / Finances.
+ * FEED-DOCK-UPDATE-1: icon-only (aria-label + title); aria-current on active.
  * On Finances routes, Finances is selected; feed tabs navigate home with that view.
  */
 export default function FeedDock({
@@ -48,10 +49,14 @@ export default function FeedDock({
             aria-label={label}
             title={label}
             aria-pressed={pressed}
+            aria-current={pressed ? "page" : undefined}
             onClick={() => goFeed(id)}
           >
-            <Icon size={18} strokeWidth={ICON_STROKE} aria-hidden="true" />
-            <span>{label}</span>
+            <Icon
+              size={20}
+              strokeWidth={pressed ? ICON_STROKE + 0.4 : ICON_STROKE}
+              aria-hidden="true"
+            />
           </button>
         );
       })}
@@ -64,8 +69,11 @@ export default function FeedDock({
         aria-current={onFinances ? "page" : undefined}
         onClick={goFinances}
       >
-        <FINANCES_ICON size={18} strokeWidth={ICON_STROKE} aria-hidden="true" />
-        <span>Finances</span>
+        <FINANCES_ICON
+          size={20}
+          strokeWidth={onFinances ? ICON_STROKE + 0.4 : ICON_STROKE}
+          aria-hidden="true"
+        />
       </button>
     </nav>
   );

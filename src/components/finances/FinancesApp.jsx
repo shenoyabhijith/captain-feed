@@ -114,6 +114,7 @@ export default function FinancesApp() {
       }`}
     >
       <header className="fin-r4-header shrink-0 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
+        {/* FEED-DOCK-UPDATE-1 H-1/H-2: mark + PAPER ONLY + segmented; no duplicate H1 */}
         <div className="mx-auto flex max-w-lg items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-2.5">
             <img
@@ -123,16 +124,15 @@ export default function FinancesApp() {
               height={28}
               alt=""
             />
-            <div className="min-w-0">
-              <h1 className="font-heading font-semibold text-base leading-tight">
-                Finances
-              </h1>
-              <p className="text-muted-foreground text-xs">
-                Captain Feed · paper desk
-              </p>
-            </div>
+            <Badge
+              variant="outline"
+              className={outlineBadgeClass}
+              title="Simulated paper trading only"
+            >
+              PAPER ONLY
+            </Badge>
           </div>
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2" role="group" aria-label="Finances or Admin">
             <Button
               variant="ghost"
               size="sm"

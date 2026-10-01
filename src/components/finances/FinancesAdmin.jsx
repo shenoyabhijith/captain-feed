@@ -64,6 +64,7 @@ export default function FinancesAdmin() {
       }`}
     >
       <header className="sticky top-0 z-40 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
+        {/* FEED-DOCK-UPDATE-1 H-1/H-2: mark + PAPER ONLY + segmented; demote Admin H1 chrome */}
         <div className="mx-auto flex max-w-lg items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-2.5">
             <img
@@ -73,16 +74,6 @@ export default function FinancesAdmin() {
               height={28}
               alt=""
             />
-            <div className="min-w-0">
-              <h1 className="font-heading font-semibold text-base leading-tight">
-                Admin
-              </h1>
-              <p className="text-muted-foreground text-xs">
-                Analytics · ops desk
-              </p>
-            </div>
-          </div>
-          <div className="flex shrink-0 items-center gap-2">
             <Badge
               variant="outline"
               className={outlineBadgeClass}
@@ -90,6 +81,8 @@ export default function FinancesAdmin() {
             >
               PAPER ONLY
             </Badge>
+          </div>
+          <div className="flex shrink-0 items-center gap-2" role="group" aria-label="Finances or Admin">
             <Button
               variant="ghost"
               size="sm"
