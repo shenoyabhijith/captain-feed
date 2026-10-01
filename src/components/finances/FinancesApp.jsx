@@ -6,15 +6,49 @@ import { useFinances } from "../../finances/useFinances.js";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import {
+  Sheet,
+  SheetClose,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetPanel,
+  SheetPopup,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import {
+  Frame,
+  FrameDescription,
+  FrameHeader,
+  FramePanel,
+  FrameTitle,
+} from "@/components/ui/frame";
 import FeedDock from "./FeedDock.jsx";
 import SleevePanel, { outlineBadgeClass } from "./SleeveCard.jsx";
 import DecisionList from "./DecisionList.jsx";
 import {
   dayPnlFromEquity,
+  investedPct,
   money,
   signedMoney,
   signedPct,
+  sleeveHoldings,
 } from "./financesFormat.js";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
+import {
+  Meter,
+  MeterLabel,
+  MeterTrack,
+  MeterIndicator,
+  MeterValue,
+} from "@/components/ui/meter";
 
 const SLIDE_ORDER = ["value", "swing", "coresat", "mega", "riskoff"];
 
@@ -22,8 +56,10 @@ export default function FinancesApp() {
   const fin = useFinances();
   const [theme] = useState(loadTheme);
   const isDark = theme === "dark";
+  const rootRef = useRef(null);
   const carouselRef = useRef(null);
   const [slide, setSlide] = useState(0);
+  const [detailSleeveId, setDetailSleeveId] = useState(null);
 
   const day = useMemo(
     () => dayPnlFromEquity(fin.ledger?.equity || [], fin.stats?.nav),
@@ -49,6 +85,28 @@ export default function FinancesApp() {
     [orderedSleeves]
   );
   const slideCount = slideNames.length;
+
+  const detailSleeve = detailSleeveId ? sleevesById[detailSleeveId] : null;
+  const detailStats = detailSleeve ? fin.sleeveStats(detailSleeve) : null;
+  const detailWeight =
+    detailStats && fin.stats.nav > 0 ? detailStats.nav / fin.stats.nav : 0;
+  const detailDayPnl = detailStats
+    ? Math.round(day.dayPnl * detailWeight * 100) / 100
+    : 0;
+  const detailDayPct =
+    detailStats && detailStats.nav > 0
+      ? Math.round((detailDayPnl / detailStats.nav) * 10000) / 100
+      : 0;
+  const detailDecisions = useMemo(() => {
+    if (!detailSleeveId) return [];
+    return (fin.ledger?.decisions || []).filter(
+      (d) => d.agentId === detailSleeveId
+    );
+  }, [fin.ledger, detailSleeveId]);
+  const detailHoldings = useMemo(() => {
+    if (!detailSleeve || !detailStats) return [];
+    return sleeveHoldings(detailSleeve, fin.marks, detailStats);
+  }, [detailSleeve, detailStats, fin.marks]);
 
   const syncSlide = useCallback(() => {
     const el = carouselRef.current;
@@ -107,8 +165,13 @@ export default function FinancesApp() {
     }
   }
 
+  function openSleeveDetail(id) {
+    setDetailSleeveId(id);
+  }
+
   return (
     <div
+      ref={rootRef}
       className={`finances-root fin-r4 flex h-dvh flex-col ${
         isDark ? "dark" : ""
       }`}
@@ -250,6 +313,7 @@ export default function FinancesApp() {
                       dayPnl={sDayPnl}
                       dayPnlPct={sDayPct}
                       layout="carousel"
+                      onViewSleeve={() => openSleeveDetail(s.id)}
                     />
                   </article>
                 );
@@ -313,6 +377,188 @@ export default function FinancesApp() {
               </p>
             </div>
           </div>
+
+          {/* Sleeve detail Sheet — portal; carousel stays mounted (same index) */}
+          <Sheet
+            open={!!detailSleeveId}
+            onOpenChange={(open) => {
+              if (!open) setDetailSleeveId(null);
+            }}
+          >
+            {detailSleeve && detailStats ? (
+              <SheetPopup
+                side="bottom"
+                className="min-h-[calc(100dvh-3rem)]"
+                showCloseButton
+                portalProps={
+                  rootRef.current ? { container: rootRef.current } : undefined
+                }
+              >
+                <SheetHeader>
+                  <SheetTitle>{detailSleeve.name}</SheetTitle>
+                  <SheetDescription>
+                    Sleeve detail · holdings + decision log
+                  </SheetDescription>
+                </SheetHeader>
+                <SheetPanel className="flex flex-col gap-4">
+                  <Frame>
+                    <FrameHeader>
+                      <FrameTitle>Summary</FrameTitle>
+                      <FrameDescription>
+                        Start {money(detailStats.starting)} · paper marks
+                        {detailSleeve.intelAsymmetric
+                          ? " · intel-asymmetric"
+                          : ""}
+                      </FrameDescription>
+                    </FrameHeader>
+                    <FramePanel className="flex flex-col gap-3 p-4">
+                      <div className="flex items-baseline justify-between gap-3">
+                        <p className="m-0 font-semibold text-[1.35rem] tabular-nums tracking-tight">
+                          {money(detailStats.nav)}
+                        </p>
+                        <div
+                          className={`text-right text-[0.8125rem] tabular-nums font-semibold ${
+                            detailDayPnl >= 0
+                              ? "text-success-foreground"
+                              : "text-destructive-foreground"
+                          }`}
+                        >
+                          {signedMoney(detailDayPnl)}{" "}
+                          <span className="text-[0.7rem] font-medium opacity-85">
+                            {signedPct(detailDayPct)} day
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground text-xs">
+                        <span>
+                          Cash{" "}
+                          <strong className="text-foreground">
+                            {money(detailSleeve.cash)}
+                          </strong>
+                        </span>
+                        <span>
+                          Invested{" "}
+                          <strong className="text-foreground">
+                            {investedPct(detailStats).toFixed(1)}%
+                          </strong>
+                        </span>
+                        <span>
+                          Total{" "}
+                          <strong
+                            className={
+                              detailStats.pnl >= 0
+                                ? "text-success-foreground"
+                                : "text-destructive-foreground"
+                            }
+                          >
+                            {signedMoney(detailStats.pnl)}
+                          </strong>
+                        </span>
+                        {detailSleeve.intelAsymmetric ? (
+                          <Badge
+                            variant="outline"
+                            className={outlineBadgeClass}
+                            title="Align Q2B — intel-asymmetric"
+                          >
+                            Intel-asym
+                          </Badge>
+                        ) : null}
+                      </div>
+                      <Meter
+                        value={investedPct(detailStats)}
+                        max={100}
+                        className="gap-1"
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <MeterLabel className="text-muted-foreground text-xs font-normal">
+                            Allocation
+                          </MeterLabel>
+                          <MeterValue className="text-xs" />
+                        </div>
+                        <MeterTrack className="h-2 rounded-full bg-muted">
+                          <MeterIndicator className="rounded-full bg-[var(--chart-2)]" />
+                        </MeterTrack>
+                      </Meter>
+                    </FramePanel>
+                  </Frame>
+
+                  <div>
+                    <p className="mb-2 font-semibold text-muted-foreground text-xs">
+                      Holdings
+                    </p>
+                    <Table
+                      variant="card"
+                      aria-label={`${detailSleeve.name} holdings`}
+                    >
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Ticker</TableHead>
+                          <TableHead className="text-right">Qty</TableHead>
+                          <TableHead className="text-right">Mkt</TableHead>
+                          <TableHead className="text-right">%</TableHead>
+                          <TableHead className="text-right">uP&amp;L</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {detailHoldings.map((h) => (
+                          <TableRow key={h.key}>
+                            <TableCell>
+                              <span className="font-semibold tabular-nums">
+                                {h.symbol}
+                              </span>
+                            </TableCell>
+                            <TableCell className="text-right tabular-nums">
+                              {h.qty == null
+                                ? "—"
+                                : Number(h.qty).toFixed(3)}
+                            </TableCell>
+                            <TableCell className="text-right tabular-nums">
+                              {money(h.mkt)}
+                            </TableCell>
+                            <TableCell className="text-right tabular-nums">
+                              {h.pct.toFixed(1)}
+                            </TableCell>
+                            <TableCell
+                              className={`text-right tabular-nums ${
+                                h.uPnl == null
+                                  ? ""
+                                  : h.uPnl >= 0
+                                    ? "text-success-foreground"
+                                    : "text-destructive-foreground"
+                              }`}
+                            >
+                              {h.uPnl == null
+                                ? "—"
+                                : signedMoney(h.uPnl)}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+
+                  <div>
+                    <p className="mb-2 font-semibold text-muted-foreground text-xs">
+                      Decision log · {detailSleeve.name}
+                    </p>
+                    <DecisionList
+                      decisions={detailDecisions}
+                      emptyLabel={`No decisions for ${detailSleeve.name}.`}
+                    />
+                  </div>
+                </SheetPanel>
+                <SheetFooter>
+                  <SheetClose
+                    render={
+                      <Button className="min-h-12 w-full" variant="default" />
+                    }
+                  >
+                    Close
+                  </SheetClose>
+                </SheetFooter>
+              </SheetPopup>
+            ) : null}
+          </Sheet>
         </>
       )}
 

@@ -362,6 +362,17 @@
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
+  position: relative; /* stacking context only; children stay in flow */
+}
+
+/* Last decision BELOW holdings — document flow, never absolute overlay */
+.fin-last-dec {
+  position: static;
+  flex-shrink: 0;
+}
+
+.fin-view-sleeve {
+  flex-shrink: 0;
 }
 
 .fin-carousel-chrome {
@@ -485,5 +496,13 @@
 @media (prefers-reduced-motion: reduce) {
   .fin-dots button i {
     transition: none;
+  }
+
+  /* Sheet portals outside .finances-root — instant open/close */
+  [data-slot="sheet-backdrop"],
+  [data-slot="sheet-popup"],
+  [data-slot="sheet-viewport"] {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
