@@ -1,8 +1,66 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-09-30T16:15:00-05:00",
+  "updated": "2026-10-01T08:19:00-05:00",
   "cards": [
+    {
+      "id": "book-20261001-four-percent-rule",
+      "category": "book",
+      "title": "The 4% rule: spend without running dry",
+      "body": "Once you have an invested nest egg, a rough sustainable withdrawal is about 4% a year — so $1M funds ~$40k. Treat it as a planning guardrail, not a guarantee.",
+      "source": "JL Collins · The Simple Path to Wealth (via tiagom87 notes)",
+      "tags": [
+        "simple-path-to-wealth",
+        "jl-collins",
+        "four-percent-rule",
+        "fire",
+        "personal-finance",
+        "withdrawal"
+      ],
+      "accent": "emerald",
+      "image": "https://picsum.photos/seed/book-four-percent-rule-20261001/800/520",
+      "link": "https://github.com/tiagom87/simple-path-to-wealth",
+      "detail": {
+        "summary": "Collins (and the broader FIRE literature) uses the 4% rule as a simple starting point for sustainable withdrawals from a diversified portfolio: withdraw roughly 4% of the starting balance in year one, then adjust for inflation. It is a planning tool with room for error — not a promise that markets will cooperate.",
+        "sections": [
+          {
+            "heading": "The idea",
+            "body": "Financial independence is not only about accumulating; it is about knowing how much you can safely spend without depleting the pile. The 4% heuristic says: take about four percent of your invested nest egg in the first year of withdrawals. On $1 million that is about $40,000. Lower rates (around 3–3.5%) buy more safety; slightly higher rates need flexibility if markets are rough."
+          },
+          {
+            "heading": "Why it exists",
+            "body": "Historically, broad stock indexes have delivered roughly ~7% real returns over long stretches (about ~10% nominal minus inflation). A 4% withdrawal leaves a cushion for volatility, fees, and bad sequence-of-returns luck — while still letting compounding work on what stays invested. Collins pairs this with a simple index-fund path so the math stays boring on purpose."
+          },
+          {
+            "heading": "Try today",
+            "body": "Write your current annual spending (or a lean target). Multiply by 25 — that is the rough nest-egg size if you plan on ~4% withdrawals ($40k spend → ~$1M). Then decide whether you want more buffer (multiply by ~30 for ~3.3%). One number on paper beats vague “someday rich.”"
+          }
+        ],
+        "bullets": [
+          "4% of nest egg ≈ first-year sustainable withdrawal (rough guide)",
+          "$1M invested → ~$40k/year at 4%; adjust down for more safety",
+          "Pair with a simple index portfolio and stay the course — the rule assumes you stay invested"
+        ],
+        "steps": [
+          "Estimate annual spending you could live on comfortably",
+          "Multiply by 25 for a 4% FI number (or by 30 for a thicker cushion)",
+          "Compare to current invested assets — the gap is your savings/investing target",
+          "If already withdrawing (or stress-testing), note whether 3.5–4% fits your flexibility"
+        ],
+        "actions": [
+          {
+            "label": "Simple Path to Wealth notes (tiagom87)",
+            "url": "https://github.com/tiagom87/simple-path-to-wealth"
+          }
+        ],
+        "sources": [
+          {
+            "label": "tiagom87/simple-path-to-wealth",
+            "url": "https://github.com/tiagom87/simple-path-to-wealth"
+          }
+        ]
+      }
+    },
     {
       "id": "deal-20260930-dewalt-dcw210b-sander",
       "category": "deal",
@@ -3127,74 +3185,6 @@
           {
             "label": "IRS — About Form 709",
             "url": "https://www.irs.gov/forms-pubs/about-form-709"
-          }
-        ]
-      }
-    },
-    {
-      "id": "book-20260919-reasonable-over-rational",
-      "category": "book",
-      "title": "Reasonable beats perfectly rational",
-      "body": "Housel’s rule: a good-enough money plan you can stick with through a crash beats the optimal plan you abandon. Design for the human, not the spreadsheet.",
-      "source": "Morgan Housel · The Psychology of Money (via felixgeelhaar notes)",
-      "tags": [
-        "money",
-        "psychology",
-        "investing",
-        "behavior"
-      ],
-      "accent": "teal",
-      "image": "https://picsum.photos/seed/book-reasonable-20260919/800/520",
-      "link": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md",
-      "detail": {
-        "summary": "In The Psychology of Money, Morgan Housel argues that the mathematically optimal strategy you cannot stick with is worse than a good-enough strategy you can. You are not a spreadsheet. A slightly suboptimal portfolio you hold through a crash beats the perfect portfolio you panic-sell. Aim for reasonable, not rational.",
-        "sections": [
-          {
-            "heading": "Why perfect plans fail",
-            "body": "Money decisions happen at dinner tables and in meetings, not on clean models. Ego, history, fear, and incentives scramble the math. A plan that looks best on paper but breaks your sleep or forces a sale in a downturn is not actually best. Survival of the plan is part of the return."
-          },
-          {
-            "heading": "Reasonable in practice",
-            "body": "Reasonable often means a savings rate and asset mix you will keep when markets fall 30–40%, cash buffers that let you avoid forced sales, and fewer clever bets. Volatility is the fee for long-term equity returns — Housel and related notes treat it as a price you prepay by staying invested, not a fine you try to dodge by timing."
-          },
-          {
-            "heading": "Getting vs staying wealthy",
-            "body": "Getting money can reward optimism and risk-taking. Keeping it rewards humility and avoiding ruin. Good investing is often less about brilliant calls and more about consistently not screwing up — which is exactly what a stickable, reasonable plan protects."
-          },
-          {
-            "heading": "One action today",
-            "body": "Write one sentence: the money rule you will still follow after a bad month (for example, keep auto-investing, or never sell long-term holdings for lifestyle upgrades). If your current plan would fail that test, simplify until it passes."
-          }
-        ],
-        "bullets": [
-          "Optimal-but-abandoned < good-enough-and-held",
-          "Design for behavior under stress, not peak calm",
-          "Cash margin and boring allocation are features, not laziness",
-          "Volatility is a fee for compounding — stay solvent enough to pay it"
-        ],
-        "steps": [
-          "Name the financial rule you would break first in a crash or tight month",
-          "Replace it with a simpler default you can automate (auto-invest, fixed savings %, no-touch long-term account)",
-          "Add one margin of safety (emergency cash, lower withdrawal assumption, or less leverage) so the plan survives surprise"
-        ],
-        "actions": [
-          {
-            "label": "Open source notes (felixgeelhaar)",
-            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
-          },
-          {
-            "label": "Chemaclass reading notes",
-            "url": "https://github.com/Chemaclass/chemaclass.es/blob/master/content/readings/2022-02-27-the-psychology-of-money.md"
-          }
-        ],
-        "sources": [
-          {
-            "label": "felixgeelhaar / personal-finance-expert (Psychology of Money section)",
-            "url": "https://github.com/felixgeelhaar/skills/blob/main/personal-finance-expert/SKILL.md"
-          },
-          {
-            "label": "Chemaclass — The Psychology of Money notes",
-            "url": "https://github.com/Chemaclass/chemaclass.es/blob/master/content/readings/2022-02-27-the-psychology-of-money.md"
           }
         ]
       }
