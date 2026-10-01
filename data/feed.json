@@ -1,8 +1,121 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-01T09:10:34-05:00",
+  "updated": "2026-10-01T12:39:22-05:00",
   "cards": [
+    {
+      "id": "aws-20261001-dogwood-temporal-policies",
+      "category": "aws",
+      "title": "Dogwood temporal policies: govern the sequence, not one call",
+      "body": "AgentCore Policy now evaluates session history with Dogwood (Cedar-compatible): require prior approval, cap cumulative spend, enforce step order — at the Gateway, outside agent code. Pass x-amzn-bedrock-agentcore-policy-session-id; start LOG_ONLY then ENFORCE.",
+      "source": "AWS ML Blog · Aug 6, 2026 · AgentCore Policy temporal docs",
+      "tags": [
+        "aws",
+        "bedrock",
+        "agentcore",
+        "dogwood",
+        "temporal-policies",
+        "gateway",
+        "cedar",
+        "governance",
+        "cost-control",
+        "solutions-architect"
+      ],
+      "accent": "amber",
+      "image": "https://picsum.photos/seed/aws-dogwood-temporal-20261001/800/520",
+      "link": "https://aws.amazon.com/blogs/machine-learning/control-agent-behaviors-and-cost-beyond-a-single-action-new-capabilities-in-amazon-bedrock-agentcore/",
+      "detail": {
+        "summary": "Most agent guardrails judge each tool call alone. That misses the failure modes SAs actually hear about: a transfer after looking up a different account, many small purchases under a per-call limit, or a retry loop that burns tokens overnight. Amazon Bedrock AgentCore adds temporal policies — session-aware rules written in Dogwood (open source, Cedar-compatible) and enforced on the Gateway — so the policy engine looks at what the agent already did in that session before allowing the next hop. Pair with Gateway rate limits (RPS/RPM/TPM/connections) for cost ceilings that do not live in prompts.",
+        "sections": [
+          {
+            "heading": "Why this is an SA narrative",
+            "body": "Stateless Cedar/Gateway policies answer “can this principal call this tool with these inputs?” Temporal policies answer “given what already happened in this session, should this next action be allowed?” That is the difference between trusting the agent and knowing the boundary holds across a multi-step trajectory. Enforcement sits in infrastructure: the agent never sees the Dogwood logic and cannot prompt its way around it. Decisions stay deny-by-default, deterministic, and logged with full context."
+          },
+          {
+            "heading": "Dogwood operators you will teach",
+            "body": "Dogwood embeds Cedar, so existing point-in-time policies keep working. Add a temporal { } block only where history matters. Core operators: formerly within (a matching prior event in a window), since within (a condition has held since an anchor), plus count and sum aggregations. Example pattern from docs: permit SellShares only when a matching ApproveSale response occurred within 1h with the same stock/shares and output.approved == true. Quotas to remember: 20 temporal policies per engine, 3 temporal operators per policy, max 24h window per condition."
+          },
+          {
+            "heading": "Session ID is your design knob",
+            "body": "You generate the session ID (recommend UUIDv4) and send it on every Gateway request as x-amzn-bedrock-agentcore-policy-session-id. The Gateway does not mint one for you. Omit it while any temporal policy is attached and requests fail validation. Idle timeout is 24h from last activity. Prefer per-conversation sessions; use per-user only when you need cross-conversation budgets; never use per-request (that disables history). Authenticated gateways (CUSTOM_JWT / AWS_IAM) bind session to caller identity so two callers cannot share a stream by copying an ID."
+          },
+          {
+            "heading": "Multi-hop + IAM gotchas",
+            "body": "On Gateway → Runtime → Gateway chains in the same account and Region, AgentCore propagates identity via a Workload Access Token (WAT) on an internal header — your agent code must not set or strip it. Temporal sessions do not cross accounts or Regions; keep Gateway and targets co-located. Gateway role needs bedrock-agentcore:GetWorkloadAccessToken even when outbound auth is IAM. Changing temporal policies on an engine invalidates open sessions (next reuse → HTTP 409); start a fresh session ID after policy edits."
+          },
+          {
+            "heading": "Ship safely this week",
+            "body": "Author one temporal rule that matches a customer story (approval-before-transfer, max N transfers/session, or block external notify after PHI read). Attach it in LOG_ONLY, exercise happy/unhappy paths with a fixed session ID, then promote to ENFORCE. Layer Gateway rate limits (per-caller RPM + per-target TPM + connection caps) as the cost backstop — remember rate limits fail-open if the limiter is down, so they are not your sole security boundary. Document Region availability (e.g. us-east-1 / us-west-2 yes; us-west-1 no) before customer designs."
+          }
+        ],
+        "bullets": [
+          "Temporal = session history; wall-clock time conditions (context.system.now) are a different feature",
+          "Dogwood = Cedar + temporal operators; Apache 2.0 open-source language/spec",
+          "Enforce at Gateway — outside agent prompts and tool code",
+          "Header: x-amzn-bedrock-agentcore-policy-session-id (you supply; UUIDv4 recommended)",
+          "Start LOG_ONLY → observe → ENFORCE; policy edits invalidate open sessions (409)",
+          "Companion: Gateway rate limits for RPS/RPM/TPM/connections (fail-open by default)",
+          "Educational SA brief — verify Region support and IAM before production designs"
+        ],
+        "steps": [
+          "Read the Aug 6, 2026 ML Blog post on AgentCore temporal policies + Gateway rate limiting.",
+          "Skim AgentCore docs: Temporal policies, Policy sessions, and Authoring temporal policies.",
+          "In a sandbox Region that supports temporal policies, attach a policy engine with one Dogwood temporal rule in LOG_ONLY.",
+          "Call the Gateway MCP endpoint twice with the same x-amzn-bedrock-agentcore-policy-session-id; confirm history evaluation in logs/spans.",
+          "Promote to ENFORCE; verify deny paths (missing prior approval, count exceeded).",
+          "Add a complementary Gateway rate limit (per-caller RPM + TPM); note fail-open behavior in your runbook.",
+          "Draft a one-pager for customers: when to use temporal vs stateless Cedar vs Guardrails at the tool boundary."
+        ],
+        "actions": [
+          {
+            "label": "ML Blog — control agent behaviors and cost (Aug 6, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/control-agent-behaviors-and-cost-beyond-a-single-action-new-capabilities-in-amazon-bedrock-agentcore/"
+          },
+          {
+            "label": "Docs — Temporal policies",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-temporal.html"
+          },
+          {
+            "label": "Docs — Policy sessions and identity propagation",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-session-based-temporal.html"
+          },
+          {
+            "label": "Docs — Authoring temporal policies",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-temporal-authoring.html"
+          },
+          {
+            "label": "Docs — Gateway rate limits",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-rate-limits.html"
+          }
+        ],
+        "sources": [
+          {
+            "label": "AWS Machine Learning Blog — Control agent behaviors and cost beyond a single action: new capabilities in Amazon Bedrock AgentCore (Aug 6, 2026)",
+            "url": "https://aws.amazon.com/blogs/machine-learning/control-agent-behaviors-and-cost-beyond-a-single-action-new-capabilities-in-amazon-bedrock-agentcore/"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Temporal policies",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-temporal.html"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Policy sessions and identity propagation",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-session-based-temporal.html"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Authoring temporal policies",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-temporal-authoring.html"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Add rate limits to a gateway",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-rate-limits.html"
+          },
+          {
+            "label": "Amazon Bedrock AgentCore Developer Guide — Policy core concepts (Dogwood)",
+            "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-core-concepts.html"
+          }
+        ]
+      }
+    },
     {
       "id": "trend-20261001-bedrock-managed-agents",
       "category": "aws",
@@ -3160,73 +3273,6 @@
           {
             "label": "IRS newsroom — 2026 401(k)/IRA limits and Saver’s Credit AGI",
             "url": "https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500"
-          }
-        ]
-      }
-    },
-    {
-      "id": "book-20260920-vtsax-wealth-tool",
-      "category": "book",
-      "title": "Own the whole market, then stay put",
-      "body": "Collins’ simple wealth engine: buy a low-cost total-market index (VTSAX/VTI), automate contributions, and let compounding do the heavy lifting — not stock picking.",
-      "source": "JL Collins · The Simple Path to Wealth (via tiagom87 notes)",
-      "tags": [
-        "money",
-        "investing",
-        "index-funds",
-        "VTSAX",
-        "compounding"
-      ],
-      "accent": "amber",
-      "image": "https://picsum.photos/seed/book-vtsax-20260920/800/520",
-      "link": "https://github.com/tiagom87/simple-path-to-wealth",
-      "detail": {
-        "summary": "In The Simple Path to Wealth, JL Collins treats the stock market as a long-term wealth-building tool, not a casino. His core move during accumulation: put surplus cash into a single low-cost total U.S. stock market index fund (he prefers Vanguard’s VTSAX; the ETF twin VTI is fine) and keep buying through ups and downs. Complexity is the enemy; matching the market at tiny fees usually beats trying to outsmart it.",
-        "sections": [
-          {
-            "heading": "Why a total-market index",
-            "body": "A fund like VTSAX owns essentially the entire publicly traded U.S. market in one ticker. You get broad diversification and rock-bottom expense ratios without researching individual companies. Notes summarizing Collins stress that low-cost passive funds track overall market performance and sidestep the stress and underperformance risk of stock picking."
-          },
-          {
-            "heading": "The market as the engine",
-            "body": "Historically, broad U.S. equity benchmarks have delivered roughly ~10% nominal (~7% real) average annual returns over long stretches — with painful short-term crashes along the way. At ~7% real, money roughly doubles about every decade if you stay invested. Collins’ point: volatility is the fee you pay for ownership; panic selling turns a temporary dip into a permanent loss."
-          },
-          {
-            "heading": "Index vs. stock picking (odds, not heroics)",
-            "body": "Public notes on the book highlight a brutal probability gap: only a small minority of individual stock pickers beat the S&P 500 over a decade, while an index fund gives you a high chance of at least matching market returns with far less time and drama. Same expected math if you somehow pick well — worse odds if you don’t. Simplicity wins on process reliability."
-          },
-          {
-            "heading": "How to run it day to day",
-            "body": "Spend less than you earn, avoid high-interest debt, automate investments into VTSAX/VTI (or a comparable total-market / S&P 500 fund at any low-cost broker), and ignore noise. Rebalance only as needed for your stock/bond mix as you age; during pure accumulation Collins keeps the portfolio stock-heavy. The strategy is boring on purpose."
-          }
-        ],
-        "bullets": [
-          "Core holding in accumulation: low-cost total stock market index (VTSAX) or ETF equivalent (VTI)",
-          "S&P 500 index (e.g. VFIAX/VOO) is an acceptable cousin — still broad, still cheap",
-          "Fees matter: tiny expense ratios compound in your favor vs. active funds",
-          "Automate contributions so consistency beats timing",
-          "Stay invested through crashes; history favors owners who don’t sell the dip"
-        ],
-        "steps": [
-          "If you don’t already have one, open a tax-advantaged account (401k/IRA/brokerage) that offers a total-market or S&P 500 index",
-          "Pick one low-cost fund/ETF (VTSAX, VTI, or equivalent) as the default destination for surplus cash",
-          "Set an automatic monthly buy sized to your savings rate — no waiting for a ‘good’ entry",
-          "Write a one-line rule: no selling equity index shares because of headlines; review allocation only on a calendar schedule"
-        ],
-        "actions": [
-          {
-            "label": "Source notes (Simple Path to Wealth)",
-            "url": "https://github.com/tiagom87/simple-path-to-wealth"
-          },
-          {
-            "label": "tiagom87 README summary (raw)",
-            "url": "https://raw.githubusercontent.com/tiagom87/simple-path-to-wealth/main/README.md"
-          }
-        ],
-        "sources": [
-          {
-            "label": "tiagom87/simple-path-to-wealth — JL Collins summary notes",
-            "url": "https://github.com/tiagom87/simple-path-to-wealth"
           }
         ]
       }
