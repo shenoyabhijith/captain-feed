@@ -25,19 +25,33 @@ function metaLine(card) {
   return parts.join(" · ");
 }
 
-export default function FeedCard({ card, index, read, saved, onSeen }) {
+export default function FeedCard({
+  card,
+  index,
+  read,
+  saved,
+  onSeen,
+  onToggleSave,
+  stagger = false,
+}) {
   const variant = resolveVariant(card, index);
   const showImage = variant !== "text-only";
   const meta = metaLine(card);
   const eager = index < 2;
 
   return (
-    <Link
-      to={`/card/${encodeURIComponent(card.id)}`}
-      className={`card-link ${read ? "is-read" : "is-unread"} ${saved ? "is-saved" : ""}`}
-      onClick={() => onSeen(card.id)}
+    <article
+      className={`card card--${variant === "text-only" ? "text" : variant}${
+        read ? "" : " unread"
+      }${stagger ? " stagger" : ""}`}
     >
-      <article className={`card card--${variant === "text-only" ? "text" : variant}`}>
+      <Link
+        to={`/card/${encodeURIComponent(card.id)}`}
+        className={`card-link ${read ? "is-read" : "is-unread"}${
+          saved ? " is-saved" : ""
+        }`}
+        onClick={() => onSeen(card.id)}
+      >
         {showImage ? (
           <CardImage
             src={card.image}
@@ -52,13 +66,35 @@ export default function FeedCard({ card, index, read, saved, onSeen }) {
           </div>
           <h2 className="card-title">{card.title}</h2>
           {variant !== "compact" ? (
-            <>
-              <p className="card-summary">{card.body}</p>
-              <div className="tap-hint">Tap for full brief</div>
-            </>
+            <p className="card-summary">{card.body}</p>
           ) : null}
+          <div className="card-actions">
+            {variant !== "compact" ? (
+              <span className="tap-hint">Tap for full brief</span>
+            ) : (
+              <span className="tap-hint" />
+            )}
+            <button
+              type="button"
+              className="bookmark"
+              aria-label={saved ? "Unsave" : "Save"}
+              aria-pressed={saved}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onToggleSave?.(card.id);
+              }}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path
+                  className="bm-fill"
+                  d="M7 4h10a1 1 0 011 1v15l-6-3.5L6 20V5a1 1 0 011-1z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-      </article>
-    </Link>
+      </Link>
+    </article>
   );
 }

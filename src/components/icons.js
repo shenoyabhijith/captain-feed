@@ -10,6 +10,7 @@ import {
   CircleDot,
   Bookmark,
   Wallet,
+  BarChart3,
 } from "lucide-react";
 
 export const CATEGORY_ICONS = {
@@ -45,5 +46,6 @@ export const VIEW_LABELS = {
 };
 
 export const FINANCES_ICON = Wallet;
+export const METRICS_ICON = BarChart3;
 
 export const ICON_STROKE = 1.75;

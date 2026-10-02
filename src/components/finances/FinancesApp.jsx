@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TriangleAlert } from "lucide-react";
 import { loadTheme } from "../../storage";
 import { useFinances } from "../../finances/useFinances.js";
@@ -23,11 +23,21 @@ import {
   FramePanel,
   FrameTitle,
 } from "@/components/ui/frame";
+import {
+  Menu,
+  MenuTrigger,
+  MenuPopup,
+  MenuItem,
+} from "@/components/ui/menu";
+import {
+  Meter,
+  MeterLabel,
+  MeterTrack,
+  MeterIndicator,
+  MeterValue,
+} from "@/components/ui/meter";
 import FeedDock from "./FeedDock.jsx";
-import SleevePanel, {
-  HoldingsTable,
-  outlineBadgeClass,
-} from "./SleeveCard.jsx";
+import { HoldingsTable, outlineBadgeClass } from "./SleeveCard.jsx";
 import DecisionList from "./DecisionList.jsx";
 import {
   dayPnlFromEquity,
@@ -37,23 +47,15 @@ import {
   signedPct,
   sleeveHoldings,
 } from "./financesFormat.js";
-import {
-  Meter,
-  MeterLabel,
-  MeterTrack,
-  MeterIndicator,
-  MeterValue,
-} from "@/components/ui/meter";
 
-const SLIDE_ORDER = ["value", "swing", "coresat", "mega", "riskoff"];
+const SLEEVE_ORDER = ["value", "swing", "coresat", "mega", "riskoff"];
 
 export default function FinancesApp() {
   const fin = useFinances();
+  const navigate = useNavigate();
   const [theme] = useState(loadTheme);
   const isDark = theme === "dark";
   const rootRef = useRef(null);
-  const carouselRef = useRef(null);
-  const [slide, setSlide] = useState(0);
   const [detailSleeveId, setDetailSleeveId] = useState(null);
 
   const day = useMemo(
@@ -69,17 +71,13 @@ export default function FinancesApp() {
 
   const orderedSleeves = useMemo(
     () =>
-      SLIDE_ORDER.map((id) => sleevesById[id]).filter(Boolean).concat(
-        (fin.ledger?.sleeves || []).filter((s) => !SLIDE_ORDER.includes(s.id))
-      ),
+      SLEEVE_ORDER.map((id) => sleevesById[id])
+        .filter(Boolean)
+        .concat(
+          (fin.ledger?.sleeves || []).filter((s) => !SLEEVE_ORDER.includes(s.id))
+        ),
     [sleevesById, fin.ledger]
   );
-
-  const slideNames = useMemo(
-    () => [...orderedSleeves.map((s) => s.name), "Activity"],
-    [orderedSleeves]
-  );
-  const slideCount = slideNames.length;
 
   const detailSleeve = detailSleeveId ? sleevesById[detailSleeveId] : null;
   const detailStats = detailSleeve ? fin.sleeveStats(detailSleeve) : null;
@@ -103,111 +101,49 @@ export default function FinancesApp() {
     return sleeveHoldings(detailSleeve, fin.marks, detailStats);
   }, [detailSleeve, detailStats, fin.marks]);
 
-  const syncSlide = useCallback(() => {
-    const el = carouselRef.current;
-    if (!el || !slideCount) return;
-    const cards = el.querySelectorAll("[data-slide]");
-    if (!cards.length) return;
-    const left = el.scrollLeft;
-    let best = 0;
-    let bestDist = Infinity;
-    cards.forEach((card, idx) => {
-      const dist = Math.abs(card.offsetLeft - left);
-      if (dist < bestDist) {
-        bestDist = dist;
-        best = idx;
-      }
-    });
-    setSlide(best);
-  }, [slideCount]);
-
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return undefined;
-    let raf = 0;
-    const onScroll = () => {
-      if (raf) return;
-      raf = window.requestAnimationFrame(() => {
-        raf = 0;
-        syncSlide();
-      });
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    syncSlide();
-    return () => {
-      el.removeEventListener("scroll", onScroll);
-      if (raf) window.cancelAnimationFrame(raf);
-    };
-  }, [syncSlide, fin.status]);
-
-  function goSlide(i) {
-    const el = carouselRef.current;
-    if (!el) return;
-    const card = el.querySelector(`[data-slide="${i}"]`);
-    if (card) {
-      el.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
-      setSlide(i);
-    }
-  }
-
-  function onCarouselKey(e) {
-    if (e.key === "ArrowRight") {
-      e.preventDefault();
-      goSlide(Math.min(slide + 1, slideCount - 1));
-    } else if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      goSlide(Math.max(slide - 1, 0));
-    }
-  }
-
-  function openSleeveDetail(id) {
-    setDetailSleeveId(id);
-  }
-
   return (
     <div
       ref={rootRef}
-      className={`finances-root fin-r4 flex h-dvh flex-col ${
-        isDark ? "dark" : ""
-      }`}
+      className={`finances-root flex h-dvh flex-col ${isDark ? "dark" : ""}`}
     >
-      <header className="fin-r4-header shrink-0 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
-        {/* FEED-DOCK-UPDATE-1 H-1/H-2: mark + PAPER ONLY + segmented; no duplicate H1 */}
-        <div className="mx-auto flex max-w-lg items-center justify-between gap-3">
-          <div className="flex min-w-0 items-center gap-2.5">
-            <img
-              className="size-7 rounded-md"
-              src={`${import.meta.env.BASE_URL}icons/${isDark ? "mark-28-dark.png" : "mark-28-light.png"}`}
-              width={28}
-              height={28}
-              alt=""
-            />
-            <Badge
-              variant="outline"
-              className={outlineBadgeClass}
-              title="Simulated paper trading only"
-            >
-              PAPER ONLY
-            </Badge>
-          </div>
-          <div className="flex shrink-0 items-center gap-2" role="group" aria-label="Finances or Admin">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="min-h-12 px-3 font-semibold"
-              aria-current="page"
-            >
+      <header className="app-header shrink-0 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
+        <div className="brand-row mx-auto flex max-w-lg items-center gap-2.5">
+          <img
+            className="size-7 shrink-0 rounded-md"
+            src={`${import.meta.env.BASE_URL}icons/${isDark ? "mark-28-dark.png" : "mark-28-light.png"}`}
+            width={28}
+            height={28}
+            alt=""
+          />
+          <div className="brand-text min-w-0 flex-1">
+            <div className="brand-title font-semibold text-[1.05rem] tracking-tight leading-tight">
               Finances
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="min-h-12 px-3"
-              render={<Link to="/finances/admin" />}
-            >
-              Admin
-            </Button>
+            </div>
+            <div className="brand-sub text-muted-foreground text-[0.68rem]">
+              Sleeves · tap for holdings
+            </div>
           </div>
+          <Badge
+            variant="outline"
+            className={`paper-badge ${outlineBadgeClass}`}
+            title="Simulated paper trading only"
+          >
+            Paper only
+          </Badge>
+          <Menu>
+            <MenuTrigger
+              className="more-btn inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-transparent text-muted-foreground text-base font-semibold"
+              aria-label="More"
+            >
+              ···
+            </MenuTrigger>
+            <MenuPopup align="end" sideOffset={6}>
+              <MenuItem onClick={() => fin.reload()}>Refresh</MenuItem>
+              <MenuItem onClick={() => navigate("/finances/admin")}>
+                Admin
+              </MenuItem>
+            </MenuPopup>
+          </Menu>
         </div>
       </header>
 
@@ -225,7 +161,9 @@ export default function FinancesApp() {
       ) : null}
 
       {fin.status === "loading" ? (
-        <p className="px-4 py-6 text-muted-foreground text-sm">Loading ledger…</p>
+        <p className="px-4 py-6 text-muted-foreground text-sm">
+          Loading ledger…
+        </p>
       ) : fin.status === "error" ? (
         <div className="px-4 py-4">
           <Alert variant="error" role="alert">
@@ -233,284 +171,219 @@ export default function FinancesApp() {
           </Alert>
         </div>
       ) : (
-        <>
-          {/* Sticky Portfolio strip — short; stays while carousel swipes */}
+        <div className="fin-body mx-auto flex w-full max-w-lg min-h-0 flex-1 flex-col overflow-y-auto pb-[calc(72px+env(safe-area-inset-bottom,0px))]">
           <div
-            className="fin-portfolio-strip shrink-0"
+            className="nav-strip mx-3 mt-3"
             role="region"
             aria-label="Portfolio summary"
           >
-            <div className="ps-left">
-              <p className="ps-label">
-                Total NAV · {fin.stats.enabledCount} sleeves
-              </p>
-              <p className="ps-nav tabular-nums">{money(fin.stats.nav)}</p>
+            <div className="nav-label">
+              Total NAV · {fin.stats.enabledCount} sleeves
             </div>
-            <div className="ps-right">
-              <Badge
-                variant="outline"
-                className={outlineBadgeClass}
-                title="Simulated paper trading only"
-              >
-                PAPER ONLY
-              </Badge>
-              <p
-                className={`ps-day tabular-nums ${
-                  day.dayPnl >= 0
-                    ? "text-success-foreground"
-                    : "text-destructive-foreground"
+            <div className="nav-row">
+              <div className="nav-value tabular-nums">{money(fin.stats.nav)}</div>
+              <div
+                className={`nav-day tabular-nums ${
+                  day.dayPnl >= 0 ? "up" : "down"
                 }`}
               >
-                {signedMoney(day.dayPnl)}{" "}
-                <span className="pct opacity-85">
-                  {signedPct(day.dayPnlPct)} day
-                </span>
-              </p>
-            </div>
-          </div>
-
-          <div className="fin-body mx-auto flex w-full max-w-lg min-h-0 flex-1 flex-col pb-[calc(72px+env(safe-area-inset-bottom,0px))]">
-            <p className="swipe-hint shrink-0 px-3 pt-2 text-muted-foreground text-[0.6875rem]">
-              Swipe cards · peek shows more bots
-            </p>
-            <div
-              ref={carouselRef}
-              className="fin-carousel"
-              tabIndex={0}
-              role="region"
-              aria-roledescription="carousel"
-              aria-label="Trading bots and activity"
-              aria-describedby="fin-carousel-caption"
-              onKeyDown={onCarouselKey}
-            >
-              {orderedSleeves.map((s, idx) => {
-                const stats = fin.sleeveStats(s);
-                const weight =
-                  fin.stats.nav > 0 ? stats.nav / fin.stats.nav : 0;
-                const sDayPnl =
-                  Math.round(day.dayPnl * weight * 100) / 100;
-                const sDayPct =
-                  stats.nav > 0
-                    ? Math.round((sDayPnl / stats.nav) * 10000) / 100
-                    : 0;
-                return (
-                  <article
-                    key={s.id}
-                    className="fin-bot-card"
-                    data-slide={idx}
-                    data-name={s.name}
-                    aria-label={`${s.name} sleeve`}
-                  >
-                    <SleevePanel
-                      sleeve={s}
-                      stats={stats}
-                      marks={fin.marks}
-                      dayPnl={sDayPnl}
-                      dayPnlPct={sDayPct}
-                      layout="carousel"
-                      onViewSleeve={() => openSleeveDetail(s.id)}
-                    />
-                  </article>
-                );
-              })}
-
-              <article
-                className="fin-bot-card"
-                data-slide={orderedSleeves.length}
-                data-name="Activity"
-                aria-label="Activity decision log"
-              >
-                <div className="fin-bot-card-head">
-                  <h3 className="m-0 font-semibold text-[0.9375rem] leading-tight">
-                    Activity
-                  </h3>
-                  <p className="m-0 text-muted-foreground text-xs">
-                    Decision log · expand for signalSource chips
-                  </p>
-                </div>
-                <div className="fin-bot-card-body">
-                  <DecisionList
-                    decisions={(fin.ledger?.decisions || []).slice(0, 16)}
-                  />
-                  <p className="text-muted-foreground text-[0.6875rem]">
-                    {fin.ledger?.meta?.note ||
-                      "Firstmate issued paper capital · real EOD marks."}
-                  </p>
-                </div>
-              </article>
-            </div>
-
-            <div className="fin-carousel-chrome shrink-0">
-              <div
-                className="fin-dots"
-                role="tablist"
-                aria-label="Bot cards"
-              >
-                {slideNames.map((name, i) => (
-                  <button
-                    key={name}
-                    type="button"
-                    role="tab"
-                    aria-label={name}
-                    aria-current={slide === i ? "true" : undefined}
-                    data-dot={i}
-                    onClick={() => goSlide(i)}
-                  >
-                    <i aria-hidden="true" />
-                  </button>
-                ))}
+                {signedMoney(day.dayPnl)} · {signedPct(day.dayPnlPct)}
               </div>
-              <p
-                className="fin-carousel-caption"
-                id="fin-carousel-caption"
-                aria-live="polite"
-              >
-                <strong>
-                  {slide + 1} / {slideCount}
-                </strong>{" "}
-                · {slideNames[slide] || ""}
-              </p>
             </div>
+            <div className="nav-sub">Paper trading · sleeve stack</div>
           </div>
 
-          {/* Sleeve detail Sheet — portal; carousel stays mounted (same index) */}
-          <Sheet
-            open={!!detailSleeveId}
-            onOpenChange={(open) => {
-              if (!open) setDetailSleeveId(null);
-            }}
+          <div className="sleeve-stack">
+            {orderedSleeves.map((s) => {
+              const stats = fin.sleeveStats(s);
+              const weight =
+                fin.stats.nav > 0 ? stats.nav / fin.stats.nav : 0;
+              const sDayPnl = Math.round(day.dayPnl * weight * 100) / 100;
+              const sDayPct =
+                stats.nav > 0
+                  ? Math.round((sDayPnl / stats.nav) * 10000) / 100
+                  : 0;
+              const holdings = sleeveHoldings(s, fin.marks, stats).filter(
+                (h) => !h.isCash || h.pct > 0
+              );
+              const dots = holdings.filter((h) => h.pct >= 4).slice(0, 4);
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  className="sleeve"
+                  aria-label={`${s.name} sleeve, open detail`}
+                  onClick={() => setDetailSleeveId(s.id)}
+                >
+                  <div className="sleeve-top">
+                    <div>
+                      <div className="sleeve-name">{s.name}</div>
+                      <div className="sleeve-vibe">{s.persona}</div>
+                    </div>
+                    <span className="sleeve-chev" aria-hidden="true">
+                      ›
+                    </span>
+                  </div>
+                  <div className="sleeve-metrics">
+                    <div className="sleeve-nav tabular-nums">
+                      {money(stats.nav)}
+                    </div>
+                    <div
+                      className={`sleeve-pnl tabular-nums ${
+                        sDayPnl >= 0 ? "up" : "down"
+                      }`}
+                    >
+                      {signedMoney(sDayPnl)} · {signedPct(sDayPct)}
+                    </div>
+                  </div>
+                  <div className="alloc-dots">
+                    {dots.map((h) => (
+                      <span key={h.key} className="alloc-dot">
+                        <i style={{ background: h.color }} aria-hidden="true" />
+                        {h.symbol} {h.pct.toFixed(h.pct >= 10 ? 0 : 1)}%
+                      </span>
+                    ))}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <Sheet
+        open={!!detailSleeveId}
+        onOpenChange={(open) => {
+          if (!open) setDetailSleeveId(null);
+        }}
+      >
+        {detailSleeve && detailStats ? (
+          <SheetPopup
+            side="bottom"
+            className="min-h-[calc(100dvh-3rem)]"
+            showCloseButton
+            portalProps={
+              rootRef.current ? { container: rootRef.current } : undefined
+            }
           >
-            {detailSleeve && detailStats ? (
-              <SheetPopup
-                side="bottom"
-                className="min-h-[calc(100dvh-3rem)]"
-                showCloseButton
-                portalProps={
-                  rootRef.current ? { container: rootRef.current } : undefined
+            <SheetHeader>
+              <SheetTitle>{detailSleeve.name}</SheetTitle>
+              <SheetDescription>
+                Sleeve detail · holdings + decision log
+              </SheetDescription>
+            </SheetHeader>
+            <SheetPanel className="flex flex-col gap-4">
+              <Frame>
+                <FrameHeader>
+                  <FrameTitle>Summary</FrameTitle>
+                  <FrameDescription>
+                    Start {money(detailStats.starting)} · paper marks
+                    {detailSleeve.intelAsymmetric ? " · intel-asymmetric" : ""}
+                  </FrameDescription>
+                </FrameHeader>
+                <FramePanel className="flex flex-col gap-3 p-4">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <p className="m-0 font-semibold text-[1.35rem] tabular-nums tracking-tight">
+                      {money(detailStats.nav)}
+                    </p>
+                    <div
+                      className={`text-right text-[0.8125rem] tabular-nums font-semibold ${
+                        detailDayPnl >= 0
+                          ? "text-success-foreground"
+                          : "text-destructive-foreground"
+                      }`}
+                    >
+                      {signedMoney(detailDayPnl)}{" "}
+                      <span className="text-[0.7rem] font-medium opacity-85">
+                        {signedPct(detailDayPct)} day
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground text-xs">
+                    <span>
+                      Cash{" "}
+                      <strong className="text-foreground">
+                        {money(detailSleeve.cash)}
+                      </strong>
+                    </span>
+                    <span>
+                      Invested{" "}
+                      <strong className="text-foreground">
+                        {investedPct(detailStats).toFixed(1)}%
+                      </strong>
+                    </span>
+                    <span>
+                      Total{" "}
+                      <strong
+                        className={
+                          detailStats.pnl >= 0
+                            ? "text-success-foreground"
+                            : "text-destructive-foreground"
+                        }
+                      >
+                        {signedMoney(detailStats.pnl)}
+                      </strong>
+                    </span>
+                    {detailSleeve.intelAsymmetric ? (
+                      <Badge
+                        variant="outline"
+                        className={outlineBadgeClass}
+                        title="Align Q2B — intel-asymmetric"
+                      >
+                        Intel-asym
+                      </Badge>
+                    ) : null}
+                  </div>
+                  <Meter
+                    value={investedPct(detailStats)}
+                    max={100}
+                    className="gap-1"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <MeterLabel className="text-muted-foreground text-xs font-normal">
+                        Allocation
+                      </MeterLabel>
+                      <MeterValue className="text-xs" />
+                    </div>
+                    <MeterTrack className="h-2 rounded-full bg-muted">
+                      <MeterIndicator className="rounded-full bg-[var(--chart-2)]" />
+                    </MeterTrack>
+                  </Meter>
+                </FramePanel>
+              </Frame>
+
+              <div>
+                <p className="mb-2 font-semibold text-muted-foreground text-xs">
+                  Holdings
+                </p>
+                <HoldingsTable
+                  sleeve={detailSleeve}
+                  holdings={detailHoldings}
+                />
+              </div>
+
+              <div>
+                <p className="mb-2 font-semibold text-muted-foreground text-xs">
+                  Decision log · {detailSleeve.name}
+                </p>
+                <DecisionList
+                  decisions={detailDecisions}
+                  emptyLabel={`No decisions for ${detailSleeve.name}.`}
+                />
+              </div>
+            </SheetPanel>
+            <SheetFooter>
+              <SheetClose
+                render={
+                  <Button className="min-h-12 w-full" variant="default" />
                 }
               >
-                <SheetHeader>
-                  <SheetTitle>{detailSleeve.name}</SheetTitle>
-                  <SheetDescription>
-                    Sleeve detail · holdings + decision log
-                  </SheetDescription>
-                </SheetHeader>
-                <SheetPanel className="flex flex-col gap-4">
-                  <Frame>
-                    <FrameHeader>
-                      <FrameTitle>Summary</FrameTitle>
-                      <FrameDescription>
-                        Start {money(detailStats.starting)} · paper marks
-                        {detailSleeve.intelAsymmetric
-                          ? " · intel-asymmetric"
-                          : ""}
-                      </FrameDescription>
-                    </FrameHeader>
-                    <FramePanel className="flex flex-col gap-3 p-4">
-                      <div className="flex items-baseline justify-between gap-3">
-                        <p className="m-0 font-semibold text-[1.35rem] tabular-nums tracking-tight">
-                          {money(detailStats.nav)}
-                        </p>
-                        <div
-                          className={`text-right text-[0.8125rem] tabular-nums font-semibold ${
-                            detailDayPnl >= 0
-                              ? "text-success-foreground"
-                              : "text-destructive-foreground"
-                          }`}
-                        >
-                          {signedMoney(detailDayPnl)}{" "}
-                          <span className="text-[0.7rem] font-medium opacity-85">
-                            {signedPct(detailDayPct)} day
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground text-xs">
-                        <span>
-                          Cash{" "}
-                          <strong className="text-foreground">
-                            {money(detailSleeve.cash)}
-                          </strong>
-                        </span>
-                        <span>
-                          Invested{" "}
-                          <strong className="text-foreground">
-                            {investedPct(detailStats).toFixed(1)}%
-                          </strong>
-                        </span>
-                        <span>
-                          Total{" "}
-                          <strong
-                            className={
-                              detailStats.pnl >= 0
-                                ? "text-success-foreground"
-                                : "text-destructive-foreground"
-                            }
-                          >
-                            {signedMoney(detailStats.pnl)}
-                          </strong>
-                        </span>
-                        {detailSleeve.intelAsymmetric ? (
-                          <Badge
-                            variant="outline"
-                            className={outlineBadgeClass}
-                            title="Align Q2B — intel-asymmetric"
-                          >
-                            Intel-asym
-                          </Badge>
-                        ) : null}
-                      </div>
-                      <Meter
-                        value={investedPct(detailStats)}
-                        max={100}
-                        className="gap-1"
-                      >
-                        <div className="flex items-center justify-between gap-2">
-                          <MeterLabel className="text-muted-foreground text-xs font-normal">
-                            Allocation
-                          </MeterLabel>
-                          <MeterValue className="text-xs" />
-                        </div>
-                        <MeterTrack className="h-2 rounded-full bg-muted">
-                          <MeterIndicator className="rounded-full bg-[var(--chart-2)]" />
-                        </MeterTrack>
-                      </Meter>
-                    </FramePanel>
-                  </Frame>
-
-                  <div>
-                    <p className="mb-2 font-semibold text-muted-foreground text-xs">
-                      Holdings
-                    </p>
-                    <HoldingsTable
-                      sleeve={detailSleeve}
-                      holdings={detailHoldings}
-                    />
-                  </div>
-
-                  <div>
-                    <p className="mb-2 font-semibold text-muted-foreground text-xs">
-                      Decision log · {detailSleeve.name}
-                    </p>
-                    <DecisionList
-                      decisions={detailDecisions}
-                      emptyLabel={`No decisions for ${detailSleeve.name}.`}
-                    />
-                  </div>
-                </SheetPanel>
-                <SheetFooter>
-                  <SheetClose
-                    render={
-                      <Button className="min-h-12 w-full" variant="default" />
-                    }
-                  >
-                    Close
-                  </SheetClose>
-                </SheetFooter>
-              </SheetPopup>
-            ) : null}
-          </Sheet>
-        </>
-      )}
+                Close
+              </SheetClose>
+            </SheetFooter>
+          </SheetPopup>
+        ) : null}
+      </Sheet>
 
       <FeedDock />
     </div>

@@ -35,7 +35,10 @@ export function useFeed() {
   const [cards, setCards] = useState([]);
   const [status, setStatus] = useState("loading");
   const [prefs, setPrefs] = useState(loadPrefs);
+  /** @deprecated single-category; prefer `topics` multi-select */
   const [filter, setFilter] = useState("all");
+  /** Multi-select category topics (empty = all). */
+  const [topics, setTopics] = useState([]);
   const [view, setView] = useState("all");
   const [query, setQuery] = useState("");
 
@@ -85,14 +88,19 @@ export function useFeed() {
   }, [loadFeed]);
 
   const visible = useMemo(() => {
+    const topicSet = new Set(topics);
     return cards.filter((c) => {
-      if (filter !== "all" && c.category !== filter) return false;
-      if (view === "unread" && prefs.read[c.id]) return false;
+      if (topicSet.size > 0 && !topicSet.has(c.category)) return false;
+      else if (topicSet.size === 0 && filter !== "all" && c.category !== filter) {
+        return false;
+      }
+      // "foryou" is the chrome label for unread
+      if ((view === "unread" || view === "foryou") && prefs.read[c.id]) return false;
       if (view === "saved" && !prefs.saved[c.id]) return false;
       if (!cardMatchesQuery(c, query)) return false;
       return true;
     });
-  }, [cards, filter, view, prefs, query]);
+  }, [cards, filter, topics, view, prefs, query]);
 
   function markSeen(id) {
     setPrefs((p) =>
@@ -129,6 +137,8 @@ export function useFeed() {
     prefs,
     filter,
     setFilter,
+    topics,
+    setTopics,
     view,
     setView,
     query,

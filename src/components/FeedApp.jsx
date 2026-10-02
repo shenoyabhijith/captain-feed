@@ -17,11 +17,13 @@ import {
   hasServiceWorkerRegistration,
   isUpdateInFlight,
 } from "../lib/updateApp.js";
-import CategoryFilter from "./CategoryFilter.jsx";
 import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
+import WelcomeHero from "./WelcomeHero.jsx";
+import TopicsSheet from "./TopicsSheet.jsx";
 import FinancesApp from "./finances/FinancesApp.jsx";
 import FinancesAdmin from "./finances/FinancesAdmin.jsx";
+import MetricsApp from "./finances/MetricsApp.jsx";
 import FeedDock from "./finances/FeedDock.jsx";
 
 /** Persist feed window scroll across Home ↔ Detail (HashRouter remounts Home). */
@@ -115,11 +117,11 @@ export default function FeedApp() {
   });
 
   return (
-    <div className="shell">
-      <Routes>
-        <Route
-          path="/"
-          element={
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <div className="shell">
             <Home
               feed={feed}
               theme={theme}
@@ -130,13 +132,21 @@ export default function FeedApp() {
               onInstall={install}
               onDismissInstall={dismissInstall}
             />
-          }
-        />
-        <Route path="/card/:id" element={<DetailRoute feed={feed} />} />
-        <Route path="/finances" element={<FinancesApp />} />
-        <Route path="/finances/admin" element={<FinancesAdmin />} />
-      </Routes>
-    </div>
+          </div>
+        }
+      />
+      <Route
+        path="/card/:id"
+        element={
+          <div className="shell">
+            <DetailRoute feed={feed} />
+          </div>
+        }
+      />
+      <Route path="/finances" element={<FinancesApp />} />
+      <Route path="/finances/admin" element={<FinancesAdmin />} />
+      <Route path="/metrics" element={<MetricsApp />} />
+    </Routes>
   );
 }
 
@@ -152,15 +162,30 @@ function Home({
 }) {
   const readCount = feed.cards.filter((c) => feed.prefs.read[c.id]).length;
   const savedCount = feed.cards.filter((c) => feed.prefs.saved[c.id]).length;
+  const unreadCount = feed.cards.filter((c) => !feed.prefs.read[c.id]).length;
   const [chromeHidden, setChromeHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [topicsOpen, setTopicsOpen] = useState(false);
+  const [staggerOn, setStaggerOn] = useState(true);
   const [headerH, setHeaderH] = useState(0);
   const [swAvailable, setSwAvailable] = useState(false);
   const [updateStatus, setUpdateStatus] = useState("");
   const [updateBusy, setUpdateBusy] = useState(false);
   const [toast, setToast] = useState("");
   const toastTimer = useRef(null);
+
+  const segmentView =
+    feed.view === "unread" || feed.view === "foryou"
+      ? "foryou"
+      : feed.view === "saved"
+        ? "saved"
+        : "all";
+
+  function setSegmentView(id) {
+    // For you ≡ unread in live prefs
+    feed.setView(id === "foryou" ? "unread" : id);
+  }
 
   function showToast(msg) {
     setToast(msg);
@@ -233,10 +258,27 @@ function Home({
   function onResetPrefs() {
     if (confirm("Clear read, saved, and seen marks on this device?")) {
       feed.resetPrefs();
+      feed.setTopics([]);
+      feed.setView("all");
+      feed.setQuery("");
+      setStaggerOn(true);
       showToast("Cleared read and saved marks.");
     }
     setMenuOpen(false);
   }
+
+  function onApplyTopics(next) {
+    feed.setTopics(next);
+    feed.setFilter("all");
+    setTopicsOpen(false);
+    showToast(next.length ? "Topics applied" : "Showing all topics");
+  }
+
+  useEffect(() => {
+    if (!staggerOn) return undefined;
+    const t = window.setTimeout(() => setStaggerOn(false), 1200);
+    return () => window.clearTimeout(t);
+  }, [staggerOn]);
 
   const lastY = useRef(0);
   const ticking = useRef(false);
@@ -436,33 +478,63 @@ function Home({
             </div>
           </div>
         </div>
-        <CategoryFilter value={feed.filter} onChange={feed.setFilter} />
-        <div className="search-row">
-          <label className="sr-only" htmlFor="feed-search">
-            Search briefs
-          </label>
-          <input
-            id="feed-search"
-            className="search-input"
-            type="search"
-            placeholder="Search titles, tags, sources…"
-            value={feed.query}
-            onChange={(e) => feed.setQuery(e.target.value)}
-            autoComplete="off"
-            enterKeyHint="search"
-          />
-          {feed.query ? (
+        <div className="segment" role="tablist" aria-label="Feed view">
+          {[
+            { id: "all", label: "All" },
+            { id: "foryou", label: "For you" },
+            { id: "saved", label: "Saved" },
+          ].map((tab) => (
             <button
+              key={tab.id}
               type="button"
-              className="search-clear"
-              aria-label="Clear search"
-              onClick={() => feed.setQuery("")}
+              role="tab"
+              aria-pressed={segmentView === tab.id}
+              onClick={() => setSegmentView(tab.id)}
             >
-              Clear
+              {tab.label}
             </button>
-          ) : null}
+          ))}
         </div>
-        <div className="stats">
+        <div className="chrome-row">
+          <div className="search">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5" />
+            </svg>
+            <label className="sr-only" htmlFor="feed-search">
+              Search briefs
+            </label>
+            <input
+              id="feed-search"
+              type="search"
+              placeholder="Search feed"
+              value={feed.query}
+              onChange={(e) => feed.setQuery(e.target.value)}
+              autoComplete="off"
+              enterKeyHint="search"
+            />
+          </div>
+          <button
+            type="button"
+            className="topics-btn"
+            data-active={feed.topics.length > 0 ? "true" : "false"}
+            aria-haspopup="dialog"
+            aria-expanded={topicsOpen}
+            onClick={() => setTopicsOpen(true)}
+          >
+            Topics
+            {feed.topics.length > 0 ? (
+              <span className="topics-count">{feed.topics.length}</span>
+            ) : null}
+          </button>
+        </div>
+        <div className="stats feed-meta">
           {feed.status === "loading"
             ? "Loading feed…"
             : feed.status === "error"
@@ -477,14 +549,20 @@ function Home({
       </header>
 
       {feed.status === "ready" ? (
-        <CardList
-          cards={feed.visible}
-          prefs={feed.prefs}
-          onSeen={feed.markSeen}
-          view={feed.view}
-          filter={feed.filter}
-          query={feed.query}
-        />
+        <>
+          <WelcomeHero unreadCount={unreadCount} />
+          <CardList
+            cards={feed.visible}
+            prefs={feed.prefs}
+            onSeen={feed.markSeen}
+            onToggleSave={feed.toggleSave}
+            view={feed.view}
+            filter={feed.filter}
+            topics={feed.topics}
+            query={feed.query}
+            stagger={staggerOn}
+          />
+        </>
       ) : feed.status === "error" ? (
         <div className="empty" role="alert">
           Feed failed to load. Check data/feed.json.
@@ -492,6 +570,13 @@ function Home({
       ) : (
         <div className="empty">Loading…</div>
       )}
+
+      <TopicsSheet
+        open={topicsOpen}
+        selected={feed.topics}
+        onClose={() => setTopicsOpen(false)}
+        onApply={onApplyTopics}
+      />
 
       {toast ? (
         <div className="app-toast" role="status" aria-live="polite">
