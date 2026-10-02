@@ -5,6 +5,7 @@ export default function TrendCardDetail({ card }) {
   const sections = d.sections || [];
   return (
     <DetailShell
+      sections={sections}
       eyebrow="Trend brief"
       title={card.title}
       summary={d.summary || card.body}

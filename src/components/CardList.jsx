@@ -1,10 +1,39 @@
 import FeedCard from "./FeedCard.jsx";
+import { CATEGORY_LABELS } from "./icons.js";
 
-export default function CardList({ cards, prefs, onSeen }) {
+/**
+ * Context-aware empty copy for list filters / dock views.
+ */
+export function emptyMessage({ view = "all", filter = "all", query = "" } = {}) {
+  const q = String(query || "").trim();
+  if (q) {
+    return `No cards match “${q}”.`;
+  }
+  if (view === "saved") {
+    return "Nothing saved. Bookmark a brief to see it here.";
+  }
+  if (view === "unread") {
+    return "You’re caught up.";
+  }
+  if (filter && filter !== "all") {
+    const label = CATEGORY_LABELS[filter] || filter;
+    return `No ${label} cards yet.`;
+  }
+  return "Nothing here yet. Try another filter.";
+}
+
+export default function CardList({
+  cards,
+  prefs,
+  onSeen,
+  view = "all",
+  filter = "all",
+  query = "",
+}) {
   if (!cards.length) {
     return (
       <div className="empty" role="status">
-        Nothing here yet. Try another filter or clear read marks.
+        {emptyMessage({ view, filter, query })}
       </div>
     );
   }

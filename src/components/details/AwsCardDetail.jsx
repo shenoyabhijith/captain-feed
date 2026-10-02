@@ -5,6 +5,7 @@ export default function AwsCardDetail({ card }) {
   const sections = d.sections || [];
   return (
     <DetailShell
+      sections={sections}
       eyebrow="AWS brief"
       title={card.title}
       summary={d.summary || card.body}

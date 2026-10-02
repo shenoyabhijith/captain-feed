@@ -17,8 +17,14 @@ function isWeakImage(src) {
 /**
  * Aspect-locked media with skeleton, fade-in, and branded fallback.
  * Parent sets aspect-ratio via .card--* variant classes.
+ * Pass eager for above-the-fold cards (first ~1–2).
  */
-export default function CardImage({ src, alt = "", className = "" }) {
+export default function CardImage({
+  src,
+  alt = "",
+  className = "",
+  eager = false,
+}) {
   const weak = isWeakImage(src);
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(weak);
@@ -35,35 +41,43 @@ export default function CardImage({ src, alt = "", className = "" }) {
     return () => obs.disconnect();
   }, []);
 
+  // Reset load state when src changes
+  useEffect(() => {
+    setLoaded(false);
+    setFailed(isWeakImage(src));
+  }, [src]);
+
   const showFallback = failed || weak;
   const ready = showFallback || loaded;
+  const imgAlt = alt?.trim() ? alt : "Card image";
 
   return (
     <div
       className={[
         "card-media",
         className,
-        ready ? "is-ready" : "",
+        ready ? "is-ready" : "is-loading",
         showFallback ? "is-fallback" : "",
       ]
         .filter(Boolean)
         .join(" ")}
-      aria-hidden={alt ? undefined : true}
     >
-      {!showFallback ? <div className="card-media__skeleton" /> : null}
+      {/* Skeleton stays until image ready or fallback — never a blank void */}
+      {!ready ? <div className="card-media__skeleton" aria-hidden="true" /> : null}
       {!weak ? (
         <img
           className={`card-media__img ${loaded && !failed ? "is-loaded" : ""}`}
           src={src}
-          alt={alt}
-          loading="lazy"
+          alt={imgAlt}
+          loading={eager ? "eager" : "lazy"}
           decoding="async"
+          fetchPriority={eager ? "high" : "auto"}
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
         />
       ) : null}
       {showFallback ? (
-        <div className="card-media__fallback">
+        <div className="card-media__fallback" aria-hidden="true">
           <img
             className="card-media__fallback-mark"
             src={fallbackMark}

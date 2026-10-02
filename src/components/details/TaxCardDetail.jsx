@@ -5,6 +5,7 @@ export default function TaxCardDetail({ card }) {
   const sections = d.sections || [];
   return (
     <DetailShell
+      sections={sections}
       eyebrow="Tax brief"
       title={card.title}
       summary={d.summary || card.body}

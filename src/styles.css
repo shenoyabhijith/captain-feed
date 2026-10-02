@@ -65,7 +65,7 @@
 
   /* Chrome / dock */
   --dock-pad: 6px;
-  --dock-clearance: calc(72px + env(safe-area-inset-bottom, 0px));
+  --dock-clearance: calc(84px + env(safe-area-inset-bottom, 0px));
   --header-blur: blur(16px);
   --ring: color-mix(in srgb, var(--brand) 70%, var(--ink));
   --dock-idle: var(--muted);
@@ -195,7 +195,7 @@ body {
   width: min(480px, 100%);
   z-index: 40;
   box-sizing: border-box;
-  padding: var(--space-3);
+  padding: var(--space-2) var(--space-3) var(--space-2);
   margin: 0;
   backdrop-filter: var(--header-blur);
   -webkit-backdrop-filter: var(--header-blur);
@@ -217,7 +217,8 @@ body {
 .top.is-peek .sub,
 .top.is-peek .stats,
 .top.is-peek .install-hint,
-.top.is-peek .filters {
+.top.is-peek .filters,
+.top.is-peek .search-row {
   display: none;
 }
 
@@ -250,13 +251,23 @@ h1 {
   line-height: 1.15;
 }
 .sub {
-  margin: 2px 0 0;
+  margin: 1px 0 0;
   color: var(--muted);
   font-family: var(--font-ui);
   font-size: var(--type-caption);
   font-style: normal;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+/* FEED-FIX-14: collapse long subtitle on narrow screens for shorter header */
+@media (max-width: 420px) {
+  .sub {
+    display: none;
+  }
 }
 .top-actions {
   position: relative;
@@ -372,7 +383,7 @@ h1 {
   gap: var(--space-2);
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  margin-top: var(--space-3);
+  margin-top: var(--space-2);
   margin-inline: calc(var(--space-3) * -1);
   padding-bottom: 2px;
   padding-inline: var(--space-3) var(--space-5);
@@ -388,9 +399,9 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  min-height: 48px;
-  height: 48px;
-  min-width: 48px;
+  min-height: 40px;
+  height: 40px;
+  min-width: 40px;
   padding: 0 var(--space-3);
   border-radius: var(--radius-chip);
   border: 1px solid var(--line);
@@ -475,16 +486,76 @@ h1 {
 }
 
 .stats {
-  margin-top: var(--space-2);
+  margin-top: var(--space-1);
   font-family: var(--font-ui);
   font-size: var(--type-caption);
   color: var(--muted);
   line-height: 1.3;
 }
 .install-hint {
-  margin: var(--space-2) 0 0;
+  margin: var(--space-1) 0 0;
   font-size: var(--type-caption);
   color: var(--muted);
+}
+
+/* FEED-FIX-14: search under chips */
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+.search-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-chip);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--type-label-m);
+  padding: 0 var(--space-3);
+}
+.search-input::placeholder {
+  color: var(--muted);
+}
+.search-input:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+.search-clear {
+  flex: 0 0 auto;
+  min-height: 40px;
+  min-width: 44px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-chip);
+  background: var(--surface-2);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--type-caption);
+  cursor: pointer;
+  padding: 0 var(--space-3);
+}
+
+.app-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 120;
+  max-width: min(420px, calc(100% - 24px));
+  padding: 10px 14px;
+  border-radius: var(--radius-inner);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-ui);
+  font-size: var(--type-label-m);
+  font-weight: 600;
+  line-height: 1.35;
+  box-shadow: var(--shadow);
+  text-align: center;
 }
 
 .sr-only {
@@ -509,7 +580,22 @@ h1 {
   text-decoration: none;
   display: block;
 }
-.card-link.is-read { opacity: 0.72; }
+/* FEED-FIX-14: unread left accent; read slightly muted */
+.card-link.is-read {
+  opacity: 0.78;
+}
+.card-link.is-read .card-title {
+  font-weight: 600;
+  color: color-mix(in srgb, var(--ink) 72%, var(--muted));
+}
+.card-link.is-unread .card {
+  box-shadow:
+    inset 3px 0 0 var(--brand),
+    var(--shadow-soft);
+}
+.card-link.is-unread .card-title {
+  font-weight: 700;
+}
 .card-link.is-saved .card {
   outline: 2px solid color-mix(in srgb, var(--brand) 55%, transparent);
   outline-offset: 2px;
@@ -601,13 +687,17 @@ h1 {
   padding-top: var(--space-5);
 }
 
-/* CardImage */
+/* CardImage — fixed aspect + shimmer until load (never blank void) */
 .card-media {
   position: relative;
   width: 100%;
   overflow: hidden;
   background: var(--surface-2);
   isolation: isolate;
+  min-height: 96px;
+}
+.card-media.is-loading {
+  background: var(--surface-2);
 }
 .card-media__img {
   position: absolute;
@@ -623,10 +713,11 @@ h1 {
 .card-media__skeleton {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(
     110deg,
     var(--surface-2) 25%,
-    color-mix(in srgb, var(--ink) 6%, var(--surface-2)) 40%,
+    color-mix(in srgb, var(--ink) 8%, var(--surface-2)) 40%,
     var(--surface-2) 55%
   );
   background-size: 200% 100%;
@@ -635,6 +726,7 @@ h1 {
 .card-media__fallback {
   position: absolute;
   inset: 0;
+  z-index: 2;
   display: grid;
   place-items: center;
   background:
@@ -664,8 +756,7 @@ h1 {
   font-family: var(--font-ui);
 }
 
-/* Dock — DQA-1: theme surface + hairline top border; selected = color/weight only */
-/* FEED-DOCK-UPDATE-1: icon-only; idle via --dock-idle (readable muted on charcoal) */
+/* Dock — icons + short labels; ≥44px tap targets */
 .dock {
   position: fixed;
   left: 50%;
@@ -699,11 +790,11 @@ h1 {
 }
 .dock button {
   display: inline-flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  min-height: 52px;
+  gap: 2px;
+  min-height: 56px;
   min-width: 48px;
   border: 0;
   border-radius: calc(var(--radius-card) - 2px);
@@ -712,12 +803,23 @@ h1 {
   font-family: var(--font-ui);
   font-weight: 500;
   cursor: pointer;
-  padding: 8px 4px;
+  padding: 6px 4px;
+  touch-action: manipulation;
+}
+.dock-label {
+  font-size: 0.65rem;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 .dock button[aria-pressed="true"],
 .dock button[aria-current="page"] {
   background: transparent;
   color: var(--brand);
+  font-weight: 700;
+}
+.dock button[aria-pressed="true"] .dock-label,
+.dock button[aria-current="page"] .dock-label {
   font-weight: 700;
 }
 .dock button:active {
@@ -816,7 +918,52 @@ h1 {
   color: var(--muted);
   font-family: var(--font-ui);
   font-size: var(--type-body-l);
-  line-height: 1.5;
+  line-height: 1.55;
+  display: grid;
+  gap: 0.75em;
+}
+.detail-summary p {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+}
+.detail-jump {
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-inner);
+  background: var(--surface-2);
+}
+.detail-jump__label {
+  margin: 0 0 6px;
+  font-family: var(--font-ui);
+  font-size: var(--type-caption);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.detail-jump__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+.detail-jump__list a {
+  color: var(--brand);
+  font-family: var(--font-ui);
+  font-size: var(--type-label-m);
+  font-weight: 600;
+  text-decoration: none;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+.detail-jump__list a:hover {
+  text-decoration: underline;
 }
 .tag-row {
   display: flex;
@@ -841,7 +988,10 @@ h1 {
   display: block;
   background: var(--surface-2);
 }
-.detail-section { margin-top: var(--space-5); }
+.detail-section {
+  margin-top: var(--space-5);
+  scroll-margin-top: 72px;
+}
 .detail-section h2 {
   font-family: var(--font-display);
   font-size: 1rem;

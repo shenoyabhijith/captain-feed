@@ -29,15 +29,22 @@ export default function FeedCard({ card, index, read, saved, onSeen }) {
   const variant = resolveVariant(card, index);
   const showImage = variant !== "text-only";
   const meta = metaLine(card);
+  const eager = index < 2;
 
   return (
     <Link
       to={`/card/${encodeURIComponent(card.id)}`}
-      className={`card-link ${read ? "is-read" : ""} ${saved ? "is-saved" : ""}`}
+      className={`card-link ${read ? "is-read" : "is-unread"} ${saved ? "is-saved" : ""}`}
       onClick={() => onSeen(card.id)}
     >
       <article className={`card card--${variant === "text-only" ? "text" : variant}`}>
-        {showImage ? <CardImage src={card.image} /> : null}
+        {showImage ? (
+          <CardImage
+            src={card.image}
+            alt={card.title || "Feed card"}
+            eager={eager}
+          />
+        ) : null}
         <div className="card-body">
           <div className="meta-row">
             <CardChip category={card.category} accent={card.accent} />

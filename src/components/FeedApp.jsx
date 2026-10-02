@@ -2,9 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import {
   isStandaloneDisplayMode,
   isInstallChromeSuppressed,
-  shouldShowInstallButton,
   shouldShowInstallHint,
-  readInstallDismissed,
   writeInstallDismissed,
   markPwaInstalled,
   syncStandaloneDomFlag,
@@ -28,6 +26,9 @@ import FeedDock from "./finances/FeedDock.jsx";
 
 /** Persist feed window scroll across Home ↔ Detail (HashRouter remounts Home). */
 let savedFeedScrollY = 0;
+
+const MANUAL_INSTALL_HINT =
+  "Chrome menu → Install app / Add to Home screen";
 
 export default function FeedApp() {
   const feed = useFeed();
@@ -53,7 +54,6 @@ export default function FeedApp() {
         /* API may reject; ignore */
       }
     }
-    // Re-check display-mode after paints — some Chrome builds settle late.
     if (!next) {
       await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
       next = isInstallChromeSuppressed();
@@ -93,11 +93,12 @@ export default function FeedApp() {
   }, []);
 
   async function install() {
-    if (!installEvt) return;
+    if (!installEvt) return false;
     installEvt.prompt();
     await installEvt.userChoice;
     setInstallEvt(null);
     refreshInstalled();
+    return true;
   }
 
   function dismissInstall() {
@@ -106,10 +107,8 @@ export default function FeedApp() {
     setIsInstalled(true);
   }
 
-  const showInstallBtn = shouldShowInstallButton({
-    bipAvailable: Boolean(installEvt),
-    isInstalled,
-  });
+  // Soft hint when BIP missing; Install chrome only in overflow (never primary row)
+  const showInstallChrome = !isInstalled;
   const showInstallHint = shouldShowInstallHint({
     bipAvailable: Boolean(installEvt),
     isInstalled,
@@ -125,8 +124,9 @@ export default function FeedApp() {
               feed={feed}
               theme={theme}
               setTheme={setTheme}
-              showInstallBtn={showInstallBtn}
+              showInstallChrome={showInstallChrome}
               showInstallHint={showInstallHint}
+              hasBip={Boolean(installEvt)}
               onInstall={install}
               onDismissInstall={dismissInstall}
             />
@@ -140,7 +140,16 @@ export default function FeedApp() {
   );
 }
 
-function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstall, onDismissInstall }) {
+function Home({
+  feed,
+  theme,
+  setTheme,
+  showInstallChrome,
+  showInstallHint,
+  hasBip,
+  onInstall,
+  onDismissInstall,
+}) {
   const readCount = feed.cards.filter((c) => feed.prefs.read[c.id]).length;
   const savedCount = feed.cards.filter((c) => feed.prefs.saved[c.id]).length;
   const [chromeHidden, setChromeHidden] = useState(false);
@@ -150,6 +159,20 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
   const [swAvailable, setSwAvailable] = useState(false);
   const [updateStatus, setUpdateStatus] = useState("");
   const [updateBusy, setUpdateBusy] = useState(false);
+  const [toast, setToast] = useState("");
+  const toastTimer = useRef(null);
+
+  function showToast(msg) {
+    setToast(msg);
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(""), 2800);
+  }
+
+  useEffect(() => {
+    return () => {
+      if (toastTimer.current) clearTimeout(toastTimer.current);
+    };
+  }, []);
 
   // Apply dock view requested from Finances navigation
   useEffect(() => {
@@ -165,7 +188,6 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
     // eslint-disable-next-line react-hooks/exhaustive-deps -- apply once on Home mount
   }, []);
 
-  // FEED-PWA-UPDATE-1: detect SW + one-shot "Updated" after reload
   useEffect(() => {
     let cancelled = false;
     hasServiceWorkerRegistration().then((ok) => {
@@ -190,6 +212,32 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
     }
   }
 
+  async function onOverflowInstall() {
+    if (hasBip) {
+      const ok = await onInstall();
+      if (ok) showToast("Install prompted");
+      setMenuOpen(false);
+      return;
+    }
+    showToast(MANUAL_INSTALL_HINT);
+    setMenuOpen(false);
+  }
+
+  async function onRefreshFeed() {
+    setMenuOpen(false);
+    const result = await feed.refreshFeed();
+    if (result.ok) showToast("Feed refreshed.");
+    else showToast("Could not refresh feed.");
+  }
+
+  function onResetPrefs() {
+    if (confirm("Clear read, saved, and seen marks on this device?")) {
+      feed.resetPrefs();
+      showToast("Cleared read and saved marks.");
+    }
+    setMenuOpen(false);
+  }
+
   const lastY = useRef(0);
   const ticking = useRef(false);
   const hiddenRef = useRef(false);
@@ -198,12 +246,18 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
   useLayoutEffect(() => {
     const el = headerRef.current;
     if (!el) return;
-    // Measure while visible (not translated away)
     const h = Math.ceil(el.offsetHeight);
     if (h > 0) setHeaderH((prev) => (prev === h ? prev : h));
-  }, [feed.status, feed.meta.subtitle, feed.meta.title, showInstallBtn, showInstallHint, theme]);
+  }, [
+    feed.status,
+    feed.meta.subtitle,
+    feed.meta.title,
+    showInstallChrome,
+    showInstallHint,
+    theme,
+    feed.query,
+  ]);
 
-  // Restore feed scroll on Back; save in layout cleanup before Detail scrolls to 0.
   useLayoutEffect(() => {
     const y = savedFeedScrollY || 0;
     window.scrollTo(0, y);
@@ -237,7 +291,6 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
         } else if (!hiddenRef.current && delta > DEAD && y >= HIDE_Y) {
           nextHidden = true;
         } else if (hiddenRef.current && delta < -DEAD) {
-          // soft reveal on scroll-up
           nextHidden = false;
         }
 
@@ -255,7 +308,6 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // FEED-SCROLL-DOCK-1: remove stray fixed cues that sit in the dock band.
   useEffect(() => {
     const dock = document.querySelector("nav.dock");
     if (!dock) return undefined;
@@ -287,9 +339,11 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
     };
   }, []);
 
-  // Flow spacer only when chrome is the in-flow top bar (at top + revealed).
-  // Mid-feed soft reveal overlays without reserving height.
   const spacerH = !chromeHidden && atTop ? headerH : 0;
+  const shortSub =
+    feed.meta.subtitle && String(feed.meta.subtitle).length > 48
+      ? `${String(feed.meta.subtitle).slice(0, 45).trim()}…`
+      : feed.meta.subtitle;
 
   return (
     <>
@@ -309,15 +363,10 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
             />
             <div className="brand-text">
               <h1>{feed.meta.title}</h1>
-              <p className="sub">{feed.meta.subtitle}</p>
+              {shortSub ? <p className="sub">{shortSub}</p> : null}
             </div>
           </div>
           <div className="top-actions">
-            {showInstallBtn ? (
-              <button type="button" className="icon-btn accent install-btn" onClick={onInstall}>
-                Install
-              </button>
-            ) : null}
             <button
               type="button"
               className="icon-btn more"
@@ -335,25 +384,29 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
               >
                 {theme === "dark" ? "Light" : "Dark"}
               </button>
-              <button
-                type="button"
-                className="icon-btn"
-                onClick={() => {
-                  if (confirm("Clear read, saved, and seen marks on this device?")) {
-                    feed.resetPrefs();
-                  }
-                  setMenuOpen(false);
-                }}
-              >
+              <button type="button" className="icon-btn" onClick={onRefreshFeed}>
+                Refresh
+              </button>
+              <button type="button" className="icon-btn" onClick={onResetPrefs}>
                 Reset
               </button>
-              {showInstallBtn || showInstallHint ? (
+              {showInstallChrome ? (
+                <button
+                  type="button"
+                  className="icon-btn install-btn"
+                  onClick={onOverflowInstall}
+                >
+                  Install
+                </button>
+              ) : null}
+              {showInstallChrome ? (
                 <button
                   type="button"
                   className="icon-btn"
                   onClick={() => {
                     onDismissInstall();
                     setMenuOpen(false);
+                    showToast("Install tip hidden.");
                   }}
                 >
                   Hide install tip
@@ -384,6 +437,31 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
           </div>
         </div>
         <CategoryFilter value={feed.filter} onChange={feed.setFilter} />
+        <div className="search-row">
+          <label className="sr-only" htmlFor="feed-search">
+            Search briefs
+          </label>
+          <input
+            id="feed-search"
+            className="search-input"
+            type="search"
+            placeholder="Search titles, tags, sources…"
+            value={feed.query}
+            onChange={(e) => feed.setQuery(e.target.value)}
+            autoComplete="off"
+            enterKeyHint="search"
+          />
+          {feed.query ? (
+            <button
+              type="button"
+              className="search-clear"
+              aria-label="Clear search"
+              onClick={() => feed.setQuery("")}
+            >
+              Clear
+            </button>
+          ) : null}
+        </div>
         <div className="stats">
           {feed.status === "loading"
             ? "Loading feed…"
@@ -399,7 +477,14 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
       </header>
 
       {feed.status === "ready" ? (
-        <CardList cards={feed.visible} prefs={feed.prefs} onSeen={feed.markSeen} />
+        <CardList
+          cards={feed.visible}
+          prefs={feed.prefs}
+          onSeen={feed.markSeen}
+          view={feed.view}
+          filter={feed.filter}
+          query={feed.query}
+        />
       ) : feed.status === "error" ? (
         <div className="empty" role="alert">
           Feed failed to load. Check data/feed.json.
@@ -407,6 +492,12 @@ function Home({ feed, theme, setTheme, showInstallBtn, showInstallHint, onInstal
       ) : (
         <div className="empty">Loading…</div>
       )}
+
+      {toast ? (
+        <div className="app-toast" role="status" aria-live="polite">
+          {toast}
+        </div>
+      ) : null}
 
       <FeedDock feedView={feed.view} onFeedView={feed.setView} />
     </>

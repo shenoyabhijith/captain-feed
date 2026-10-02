@@ -5,6 +5,7 @@ export default function DealCardDetail({ card }) {
   const sections = d.sections || [];
   return (
     <DetailShell
+      sections={sections}
       eyebrow="Deal brief"
       title={card.title}
       summary={d.summary || card.body}

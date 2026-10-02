@@ -3,7 +3,7 @@ import { VIEW_ICONS, VIEW_LABELS, FINANCES_ICON, ICON_STROKE } from "../icons.js
 
 /**
  * Shared 4-tab dock: All / Unread / Saved / Finances.
- * FEED-DOCK-UPDATE-1: icon-only (aria-label + title); aria-current on active.
+ * Short text labels under icons; ≥44px tap targets.
  * On Finances routes, Finances is selected; feed tabs navigate home with that view.
  */
 export default function FeedDock({
@@ -19,7 +19,6 @@ export default function FeedDock({
   function goFeed(id) {
     if (onFinances) {
       navigate("/");
-      // Defer view set so Home mounts with preference via session hint
       try {
         sessionStorage.setItem("captain-feed-dock-view", id);
       } catch {
@@ -57,6 +56,7 @@ export default function FeedDock({
               strokeWidth={pressed ? ICON_STROKE + 0.4 : ICON_STROKE}
               aria-hidden="true"
             />
+            <span className="dock-label">{label}</span>
           </button>
         );
       })}
@@ -74,6 +74,7 @@ export default function FeedDock({
           strokeWidth={onFinances ? ICON_STROKE + 0.4 : ICON_STROKE}
           aria-hidden="true"
         />
+        <span className="dock-label">Finances</span>
       </button>
     </nav>
   );

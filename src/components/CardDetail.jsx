@@ -45,10 +45,18 @@ export default function CardDetail({
           Back
         </Link>
         <div className="detail-actions">
-          <button type="button" className={`btn ${read ? "on" : "primary"}`} onClick={() => onToggleRead(card.id)}>
-            {read ? "Read" : "Mark read"}
+          <button
+            type="button"
+            className={`btn ${read ? "on" : "primary"}`}
+            onClick={() => onToggleRead(card.id)}
+          >
+            {read ? "Mark unread" : "Mark read"}
           </button>
-          <button type="button" className={`btn ${saved ? "on" : ""}`} onClick={() => onToggleSave(card.id)}>
+          <button
+            type="button"
+            className={`btn ${saved ? "on" : ""}`}
+            onClick={() => onToggleSave(card.id)}
+          >
             {saved ? "Saved" : "Save"}
           </button>
         </div>
