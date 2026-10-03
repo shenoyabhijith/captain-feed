@@ -26,6 +26,7 @@ import FinancesApp from "./finances/FinancesApp.jsx";
 import FinancesAdmin from "./finances/FinancesAdmin.jsx";
 import MetricsApp from "./finances/MetricsApp.jsx";
 import FeedDock from "./finances/FeedDock.jsx";
+import { useDallasWeather } from "../hooks/useDallasWeather";
 
 /** Persist feed window scroll across Home ↔ Detail (HashRouter remounts Home). */
 let savedFeedScrollY = 0;
@@ -35,6 +36,7 @@ const MANUAL_INSTALL_HINT =
 
 export default function FeedApp() {
   const feed = useFeed();
+  const dallasWeather = useDallasWeather();
   const [theme, setTheme] = useState(loadTheme);
   const [installEvt, setInstallEvt] = useState(null);
   const [isInstalled, setIsInstalled] = useState(() => isInstallChromeSuppressed());
@@ -132,6 +134,7 @@ export default function FeedApp() {
               hasBip={Boolean(installEvt)}
               onInstall={install}
               onDismissInstall={dismissInstall}
+              dallasWeather={dallasWeather}
             />
           </div>
         }
@@ -160,6 +163,7 @@ function Home({
   hasBip,
   onInstall,
   onDismissInstall,
+  dallasWeather,
 }) {
   const readCount = feed.cards.filter((c) => feed.prefs.read[c.id]).length;
   const savedCount = feed.cards.filter((c) => feed.prefs.saved[c.id]).length;
@@ -551,8 +555,8 @@ function Home({
 
       {feed.status === "ready" ? (
         <>
-          <WelcomeHero unreadCount={unreadCount} />
-          <DallasWeather />
+          <WelcomeHero unreadCount={unreadCount} weather={dallasWeather} />
+          <DallasWeather forecast={dallasWeather} />
           <CardList
             cards={feed.visible}
             prefs={feed.prefs}

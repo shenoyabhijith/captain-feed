@@ -1,44 +1,6 @@
-import { useEffect, useState } from "react";
+import { formatTemp, wmoCondition } from "../lib/dallasWeather";
 
-const CACHE_KEY = "captain-feed-dallas-weather";
-const CACHE_TTL_MS = 3 * 60 * 60 * 1000;
-const FORECAST_URL =
-  "https://api.open-meteo.com/v1/forecast?latitude=32.7767&longitude=-96.797&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=America%2FChicago&forecast_days=7";
-
-/** Map WMO weather codes to short ink/slate labels. */
-export function wmoCondition(code) {
-  const c = Number(code);
-  if (!Number.isFinite(c)) return "Cloudy";
-  if (c === 0 || c === 1) return "Clear";
-  if (c === 2 || c === 3) return "Cloudy";
-  if (c === 45 || c === 48) return "Fog";
-  if (c >= 71 && c <= 77) return "Snow";
-  if (c === 85 || c === 86) return "Snow";
-  if (c >= 95 && c <= 99) return "Storms";
-  if (
-    (c >= 51 && c <= 67) ||
-    (c >= 80 && c <= 82)
-  ) {
-    return "Rain";
-  }
-  return "Cloudy";
-}
-
-function weekdayLabel(isoDate, index) {
-  if (index === 0) return "Today";
-  const d = new Date(`${isoDate}T12:00:00`);
-  if (Number.isNaN(d.getTime())) return "—";
-  return d.toLocaleDateString("en-US", {
-    weekday: "short",
-    timeZone: "America/Chicago",
-  });
-}
-
-function roundTemp(n) {
-  const v = Number(n);
-  if (!Number.isFinite(v)) return "—";
-  return `${Math.round(v)}°`;
-}
+export { wmoCondition };
 
 function ConditionIcon({ condition, className = "" }) {
   const stroke = "currentColor";
@@ -141,92 +103,11 @@ function ConditionIcon({ condition, className = "" }) {
   );
 }
 
-function readCache() {
-  try {
-    const raw = sessionStorage.getItem(CACHE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (!parsed?.fetchedAt || !parsed?.data) return null;
-    if (Date.now() - parsed.fetchedAt > CACHE_TTL_MS) return null;
-    return parsed.data;
-  } catch {
-    return null;
-  }
-}
-
-function writeCache(data) {
-  try {
-    sessionStorage.setItem(
-      CACHE_KEY,
-      JSON.stringify({ fetchedAt: Date.now(), data })
-    );
-  } catch {
-    /* ignore quota / private mode */
-  }
-}
-
-function normalizeForecast(json) {
-  const current = json?.current;
-  const daily = json?.daily;
-  if (
-    current?.temperature_2m == null ||
-    current?.weather_code == null ||
-    !daily?.time?.length ||
-    !daily?.weather_code?.length ||
-    !daily?.temperature_2m_max?.length ||
-    !daily?.temperature_2m_min?.length
-  ) {
-    return null;
-  }
-  const days = daily.time.slice(0, 7).map((date, i) => ({
-    date,
-    label: weekdayLabel(date, i),
-    condition: wmoCondition(daily.weather_code[i]),
-    high: daily.temperature_2m_max[i],
-    low: daily.temperature_2m_min[i],
-  }));
-  if (days.length < 1) return null;
-  return {
-    temp: current.temperature_2m,
-    condition: wmoCondition(current.weather_code),
-    days,
-  };
-}
-
 /**
  * Quiet Dallas current + 7-day block for the feed home.
- * Hides entirely when fetch/parse fails. Caches ~3h in sessionStorage.
+ * Forecast comes from useDallasWeather (shared with WelcomeHero).
  */
-export default function DallasWeather() {
-  const [forecast, setForecast] = useState(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    const cached = readCache();
-    if (cached) {
-      setForecast(cached);
-      return undefined;
-    }
-
-    (async () => {
-      try {
-        const res = await fetch(FORECAST_URL);
-        if (!res.ok) return;
-        const json = await res.json();
-        const next = normalizeForecast(json);
-        if (!next || cancelled) return;
-        writeCache(next);
-        setForecast(next);
-      } catch {
-        /* hide on failure */
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
+export default function DallasWeather({ forecast }) {
   if (!forecast) return null;
 
   return (
@@ -234,7 +115,7 @@ export default function DallasWeather() {
       <div className="dallas-weather-now">
         <div className="dallas-weather-label">Dallas</div>
         <div className="dallas-weather-temp tabular-nums">
-          {roundTemp(forecast.temp)}
+          {formatTemp(forecast.temp)}
         </div>
         <div className="dallas-weather-cond">{forecast.condition}</div>
       </div>
@@ -250,8 +131,8 @@ export default function DallasWeather() {
               {d.condition}
             </span>
             <span className="dallas-weather-hi-lo tabular-nums">
-              <strong>{roundTemp(d.high)}</strong>
-              <span>{roundTemp(d.low)}</span>
+              <strong>{formatTemp(d.high)}</strong>
+              <span>{formatTemp(d.low)}</span>
             </span>
           </li>
         ))}
