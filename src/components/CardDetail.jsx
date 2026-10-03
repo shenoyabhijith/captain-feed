@@ -73,6 +73,7 @@ function FallbackDetail({ card }) {
       title={card.title}
       summary={card.body}
       tags={card.tags}
+      category={card.category}
       eyebrow={card.category}
       index={blocks}
     >

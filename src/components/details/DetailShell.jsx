@@ -125,26 +125,102 @@ function BodyBlocks({ text }) {
   );
 }
 
+/** Nearest ancestor that actually scrolls, else the document scroller. */
+function getScrollParent(el) {
+  let node = el?.parentElement;
+  while (node && node !== document.body && node !== document.documentElement) {
+    const style = getComputedStyle(node);
+    const oy = style.overflowY;
+    const canScroll =
+      (oy === "auto" || oy === "scroll" || oy === "overlay") &&
+      node.scrollHeight > node.clientHeight + 1;
+    if (canScroll) return node;
+    node = node.parentElement;
+  }
+  return document.scrollingElement || document.documentElement;
+}
+
+let jumpHighlightTimer = 0;
+
+/** HashRouter-safe jump: no location.hash, scroll the real scroller. */
+function scrollToBriefId(id) {
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const reduce =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const behavior = reduce ? "auto" : "smooth";
+  const scroller = getScrollParent(el);
+  const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+  const isDoc =
+    scroller === document.scrollingElement ||
+    scroller === document.documentElement ||
+    scroller === document.body;
+
+  // Explicit math — scrollIntoView is unreliable when a route motion.div
+  // keeps a transform (containing block / fragment scroll breaks).
+  if (isDoc) {
+    const doc = document.scrollingElement || document.documentElement;
+    const top = el.getBoundingClientRect().top + window.scrollY - margin;
+    doc.scrollTo({ top: Math.max(0, top), behavior });
+  } else {
+    const top =
+      el.getBoundingClientRect().top -
+      scroller.getBoundingClientRect().top +
+      scroller.scrollTop -
+      margin;
+    scroller.scrollTo({ top: Math.max(0, top), behavior });
+  }
+
+  document
+    .querySelectorAll(".detail-section.is-jump-target")
+    .forEach((n) => n.classList.remove("is-jump-target"));
+  el.classList.add("is-jump-target");
+  window.clearTimeout(jumpHighlightTimer);
+  jumpHighlightTimer = window.setTimeout(() => {
+    el.classList.remove("is-jump-target");
+  }, 1000);
+}
+
+function onJumpClick(event, id) {
+  event.preventDefault();
+  scrollToBriefId(id);
+}
+
 export default function DetailShell({
   eyebrow,
+  category,
   title,
   summary,
   children,
   tags,
   index,
 }) {
+  const catKey =
+    category && CATEGORY_LABELS[category]
+      ? category
+      : eyebrow && CATEGORY_LABELS[eyebrow]
+        ? eyebrow
+        : null;
   const label =
     eyebrow && CATEGORY_LABELS[eyebrow]
       ? CATEGORY_LABELS[eyebrow]
       : eyebrow
         ? String(eyebrow).replace(/^./, (c) => c.toUpperCase())
-        : null;
+        : catKey
+          ? CATEGORY_LABELS[catKey]
+          : null;
 
   const paras = splitSummary(summary);
   const jumpItems = (index || []).filter((s) => s?.heading && s?.id);
 
   return (
-    <div className="detail-shell">
+    <div
+      className="detail-shell"
+      data-category={catKey || undefined}
+    >
       {label ? <p className="detail-eyebrow">{label}</p> : null}
       <h1>{title}</h1>
       {paras.length ? (
@@ -169,7 +245,10 @@ export default function DetailShell({
           <ol className="detail-jump__list">
             {jumpItems.map((s, i) => (
               <li key={s.id}>
-                <a href={`#${s.id}`}>
+                <a
+                  href={`#${s.id}`}
+                  onClick={(e) => onJumpClick(e, s.id)}
+                >
                   <span className="detail-jump__num">{i + 1}</span>
                   <span className="detail-jump__text">{s.heading}</span>
                 </a>

@@ -7,6 +7,7 @@ export default function BriefCardDetail({ card, eyebrow }) {
   return (
     <DetailShell
       index={blocks}
+      category={card.category}
       eyebrow={eyebrow}
       title={card.title}
       summary={d.summary || card.body}
