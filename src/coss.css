@@ -509,6 +509,14 @@
 }
 
 /* Sleeve stack (replaces carousel) */
+/* Full-bleed sleeve detail — no floating sheet rim */
+.finances-root .sleeve-detail-screen {
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  background: var(--background);
+}
+
 .finances-root .nav-strip {
   background: var(--card);
   border: 1px solid var(--border);

@@ -1,28 +1,10 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TriangleAlert } from "lucide-react";
+import { TriangleAlert, X } from "lucide-react";
 import { loadTheme } from "../../storage";
 import { useFinances } from "../../finances/useFinances.js";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import {
-  Sheet,
-  SheetClose,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetPanel,
-  SheetPopup,
-  SheetTitle,
-} from "@/components/ui/sheet";
-import {
-  Frame,
-  FrameDescription,
-  FrameHeader,
-  FramePanel,
-  FrameTitle,
-} from "@/components/ui/frame";
 import {
   Menu,
   MenuTrigger,
@@ -55,7 +37,6 @@ export default function FinancesApp() {
   const navigate = useNavigate();
   const [theme] = useState(loadTheme);
   const isDark = theme === "dark";
-  const rootRef = useRef(null);
   const [detailSleeveId, setDetailSleeveId] = useState(null);
 
   const day = useMemo(
@@ -101,9 +82,22 @@ export default function FinancesApp() {
     return sleeveHoldings(detailSleeve, fin.marks, detailStats);
   }, [detailSleeve, detailStats, fin.marks]);
 
+  useEffect(() => {
+    if (!detailSleeveId) return undefined;
+    function onKey(e) {
+      if (e.key === "Escape") setDetailSleeveId(null);
+    }
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [detailSleeveId]);
+
   return (
     <div
-      ref={rootRef}
       className={`finances-root flex h-dvh flex-col ${isDark ? "dark" : ""}`}
     >
       <header className="app-header shrink-0 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
@@ -251,139 +245,142 @@ export default function FinancesApp() {
         </div>
       )}
 
-      <Sheet
-        open={!!detailSleeveId}
-        onOpenChange={(open) => {
-          if (!open) setDetailSleeveId(null);
-        }}
-      >
-        {detailSleeve && detailStats ? (
-          <SheetPopup
-            side="bottom"
-            className="min-h-[calc(100dvh-3rem)]"
-            showCloseButton
-            portalProps={
-              rootRef.current ? { container: rootRef.current } : undefined
-            }
+      {detailSleeve && detailStats ? (
+        <div
+          className="sleeve-detail-screen fixed inset-0 z-[110] flex flex-col bg-background text-foreground"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="sleeve-detail-title"
+        >
+          <header
+            className="shrink-0 flex items-start gap-3 px-4 pb-3"
+            style={{
+              paddingTop: "max(0.75rem, env(safe-area-inset-top, 0px))",
+            }}
           >
-            <SheetHeader>
-              <SheetTitle>{detailSleeve.name}</SheetTitle>
-              <SheetDescription>
-                Sleeve detail · holdings + decision log
-              </SheetDescription>
-            </SheetHeader>
-            <SheetPanel className="flex flex-col gap-4">
-              <Frame>
-                <FrameHeader>
-                  <FrameTitle>Summary</FrameTitle>
-                  <FrameDescription>
-                    Start {money(detailStats.starting)} · paper marks
-                    {detailSleeve.intelAsymmetric ? " · intel-asymmetric" : ""}
-                  </FrameDescription>
-                </FrameHeader>
-                <FramePanel className="flex flex-col gap-3 p-4">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <p className="m-0 font-semibold text-[1.35rem] tabular-nums tracking-tight">
-                      {money(detailStats.nav)}
-                    </p>
-                    <div
-                      className={`text-right text-[0.8125rem] tabular-nums font-semibold ${
-                        detailDayPnl >= 0
-                          ? "text-success-foreground"
-                          : "text-destructive-foreground"
-                      }`}
-                    >
-                      {signedMoney(detailDayPnl)}{" "}
-                      <span className="text-[0.7rem] font-medium opacity-85">
-                        {signedPct(detailDayPct)} day
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground text-xs">
-                    <span>
-                      Cash{" "}
-                      <strong className="text-foreground">
-                        {money(detailSleeve.cash)}
-                      </strong>
-                    </span>
-                    <span>
-                      Invested{" "}
-                      <strong className="text-foreground">
-                        {investedPct(detailStats).toFixed(1)}%
-                      </strong>
-                    </span>
-                    <span>
-                      Total{" "}
-                      <strong
-                        className={
-                          detailStats.pnl >= 0
-                            ? "text-success-foreground"
-                            : "text-destructive-foreground"
-                        }
-                      >
-                        {signedMoney(detailStats.pnl)}
-                      </strong>
-                    </span>
-                    {detailSleeve.intelAsymmetric ? (
-                      <Badge
-                        variant="outline"
-                        className={outlineBadgeClass}
-                        title="Align Q2B — intel-asymmetric"
-                      >
-                        Intel-asym
-                      </Badge>
-                    ) : null}
-                  </div>
-                  <Meter
-                    value={investedPct(detailStats)}
-                    max={100}
-                    className="gap-1"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <MeterLabel className="text-muted-foreground text-xs font-normal">
-                        Allocation
-                      </MeterLabel>
-                      <MeterValue className="text-xs" />
-                    </div>
-                    <MeterTrack className="h-2 rounded-full bg-muted">
-                      <MeterIndicator className="rounded-full bg-[var(--chart-2)]" />
-                    </MeterTrack>
-                  </Meter>
-                </FramePanel>
-              </Frame>
-
-              <div>
-                <p className="mb-2 font-semibold text-muted-foreground text-xs">
-                  Holdings
-                </p>
-                <HoldingsTable
-                  sleeve={detailSleeve}
-                  holdings={detailHoldings}
-                />
-              </div>
-
-              <div>
-                <p className="mb-2 font-semibold text-muted-foreground text-xs">
-                  Decision log · {detailSleeve.name}
-                </p>
-                <DecisionList
-                  decisions={detailDecisions}
-                  emptyLabel={`No decisions for ${detailSleeve.name}.`}
-                />
-              </div>
-            </SheetPanel>
-            <SheetFooter>
-              <SheetClose
-                render={
-                  <Button className="min-h-12 w-full" variant="default" />
-                }
+            <div className="min-w-0 flex-1 pt-1">
+              <h1
+                id="sleeve-detail-title"
+                className="m-0 font-semibold text-[1.15rem] tracking-tight leading-tight"
               >
-                Close
-              </SheetClose>
-            </SheetFooter>
-          </SheetPopup>
-        ) : null}
-      </Sheet>
+                {detailSleeve.name}
+              </h1>
+              <p className="m-0 mt-0.5 text-muted-foreground text-[0.75rem] leading-snug">
+                {detailSleeve.persona}
+              </p>
+            </div>
+            <button
+              type="button"
+              className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
+              aria-label="Close sleeve detail"
+              onClick={() => setDetailSleeveId(null)}
+            >
+              <X size={20} strokeWidth={1.75} aria-hidden="true" />
+            </button>
+          </header>
+
+          <div
+            className="mx-auto flex w-full max-w-lg min-h-0 flex-1 flex-col gap-5 overflow-y-auto px-4"
+            style={{
+              paddingBottom: "max(1.25rem, env(safe-area-inset-bottom, 0px))",
+            }}
+          >
+            <section aria-label="Summary" className="flex flex-col gap-3">
+              <p className="m-0 text-muted-foreground text-[0.6875rem]">
+                Start {money(detailStats.starting)} · paper marks
+                {detailSleeve.intelAsymmetric ? " · intel-asymmetric" : ""}
+              </p>
+              <div className="flex items-baseline justify-between gap-3">
+                <p className="m-0 font-semibold text-[1.35rem] tabular-nums tracking-tight">
+                  {money(detailStats.nav)}
+                </p>
+                <div
+                  className={`text-right text-[0.8125rem] tabular-nums font-semibold ${
+                    detailDayPnl >= 0
+                      ? "text-success-foreground"
+                      : "text-destructive-foreground"
+                  }`}
+                >
+                  {signedMoney(detailDayPnl)}{" "}
+                  <span className="text-[0.7rem] font-medium opacity-85">
+                    {signedPct(detailDayPct)} day
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground text-xs">
+                <span>
+                  Cash{" "}
+                  <strong className="text-foreground">
+                    {money(detailSleeve.cash)}
+                  </strong>
+                </span>
+                <span>
+                  Invested{" "}
+                  <strong className="text-foreground">
+                    {investedPct(detailStats).toFixed(1)}%
+                  </strong>
+                </span>
+                <span>
+                  Total{" "}
+                  <strong
+                    className={
+                      detailStats.pnl >= 0
+                        ? "text-success-foreground"
+                        : "text-destructive-foreground"
+                    }
+                  >
+                    {signedMoney(detailStats.pnl)}
+                  </strong>
+                </span>
+                {detailSleeve.intelAsymmetric ? (
+                  <Badge
+                    variant="outline"
+                    className={outlineBadgeClass}
+                    title="Align Q2B — intel-asymmetric"
+                  >
+                    Intel-asym
+                  </Badge>
+                ) : null}
+              </div>
+              <Meter
+                value={investedPct(detailStats)}
+                max={100}
+                className="gap-1"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <MeterLabel className="text-muted-foreground text-xs font-normal">
+                    Allocation
+                  </MeterLabel>
+                  <MeterValue className="text-xs" />
+                </div>
+                <MeterTrack className="h-2 rounded-full bg-muted">
+                  <MeterIndicator className="rounded-full bg-[var(--chart-2)]" />
+                </MeterTrack>
+              </Meter>
+            </section>
+
+            <section aria-label="Holdings">
+              <p className="mb-2 font-semibold text-muted-foreground text-xs">
+                Holdings
+              </p>
+              <HoldingsTable
+                sleeve={detailSleeve}
+                holdings={detailHoldings}
+              />
+            </section>
+
+            <section aria-label="Decision log">
+              <p className="mb-2 font-semibold text-muted-foreground text-xs">
+                Decision log · {detailSleeve.name}
+              </p>
+              <DecisionList
+                decisions={detailDecisions}
+                emptyLabel={`No decisions for ${detailSleeve.name}.`}
+              />
+            </section>
+          </div>
+        </div>
+      ) : null}
 
       <FeedDock />
     </div>

@@ -20,6 +20,7 @@ import {
 import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
 import WelcomeHero from "./WelcomeHero.jsx";
+import DallasWeather from "./DallasWeather.jsx";
 import TopicsSheet from "./TopicsSheet.jsx";
 import FinancesApp from "./finances/FinancesApp.jsx";
 import FinancesAdmin from "./finances/FinancesAdmin.jsx";
@@ -551,6 +552,7 @@ function Home({
       {feed.status === "ready" ? (
         <>
           <WelcomeHero unreadCount={unreadCount} />
+          <DallasWeather />
           <CardList
             cards={feed.visible}
             prefs={feed.prefs}

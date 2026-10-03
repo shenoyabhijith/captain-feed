@@ -727,6 +727,96 @@ h1 {
   line-height: 1.35;
 }
 
+/* Dallas weather — quiet block under welcome hero */
+.dallas-weather {
+  margin: 0 0 14px;
+  padding: 12px 14px 10px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 88%, var(--bg));
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: welcome-in calc(0.65s * var(--motion)) var(--ease-out) 0.08s forwards;
+}
+[data-theme="dark"] .dallas-weather {
+  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
+  box-shadow: none;
+}
+.dallas-weather-now {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.dallas-weather-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.dallas-weather-temp {
+  font-size: 1.05rem;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1;
+}
+.dallas-weather-cond {
+  font-size: 0.74rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.dallas-weather-week {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.dallas-weather-week::-webkit-scrollbar {
+  display: none;
+}
+.dallas-weather-day {
+  flex: 1 1 0;
+  min-width: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 2px;
+  color: var(--muted);
+}
+.dallas-weather-dow {
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+.dallas-weather-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--ink-faint);
+}
+.dallas-weather-hi-lo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  font-size: 0.68rem;
+  line-height: 1.15;
+  color: var(--muted);
+}
+.dallas-weather-hi-lo strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
 .app-toast {
   position: fixed;
   left: 50%;
@@ -1543,6 +1633,7 @@ h1 {
   }
   .welcome,
   .welcome-art svg,
+  .dallas-weather,
   .card.stagger,
   .empty-art,
   .empty-check,
