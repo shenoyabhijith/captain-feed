@@ -9,6 +9,7 @@ import {
   subscribeDisplayMode,
 } from "../installGate.js";
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "motion/react";
 import { loadTheme, saveTheme } from "../storage";
 import { useFeed } from "../hooks/useFeed";
 import {
@@ -17,6 +18,13 @@ import {
   hasServiceWorkerRegistration,
   isUpdateInFlight,
 } from "../lib/updateApp.js";
+import {
+  DOCK_FADE,
+  motionTransition,
+  routePresence,
+  routePresenceKey,
+  useMotionOn,
+} from "../lib/motion.js";
 import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
 import WelcomeHero from "./WelcomeHero.jsx";
@@ -119,38 +127,54 @@ export default function FeedApp() {
     isInstalled,
   });
 
+  const location = useLocation();
+  const motionOn = useMotionOn();
+  const presenceKey = routePresenceKey(location.pathname);
+  const presence = routePresence(location.pathname, motionOn);
+
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div className="shell">
-            <Home
-              feed={feed}
-              theme={theme}
-              setTheme={setTheme}
-              showInstallChrome={showInstallChrome}
-              showInstallHint={showInstallHint}
-              hasBip={Boolean(installEvt)}
-              onInstall={install}
-              onDismissInstall={dismissInstall}
-              dallasWeather={dallasWeather}
-            />
-          </div>
-        }
-      />
-      <Route
-        path="/card/:id"
-        element={
-          <div className="shell">
-            <DetailRoute feed={feed} />
-          </div>
-        }
-      />
-      <Route path="/finances" element={<FinancesApp />} />
-      <Route path="/finances/admin" element={<FinancesAdmin />} />
-      <Route path="/metrics" element={<MetricsApp />} />
-    </Routes>
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={presenceKey}
+        className="route-motion"
+        initial={presence.initial}
+        animate={presence.animate}
+        exit={presence.exit}
+        transition={presence.transition}
+      >
+        <Routes location={location}>
+          <Route
+            path="/"
+            element={
+              <div className="shell">
+                <Home
+                  feed={feed}
+                  theme={theme}
+                  setTheme={setTheme}
+                  showInstallChrome={showInstallChrome}
+                  showInstallHint={showInstallHint}
+                  hasBip={Boolean(installEvt)}
+                  onInstall={install}
+                  onDismissInstall={dismissInstall}
+                  dallasWeather={dallasWeather}
+                />
+              </div>
+            }
+          />
+          <Route
+            path="/card/:id"
+            element={
+              <div className="shell">
+                <DetailRoute feed={feed} />
+              </div>
+            }
+          />
+          <Route path="/finances" element={<FinancesApp />} />
+          <Route path="/finances/admin" element={<FinancesAdmin />} />
+          <Route path="/metrics" element={<MetricsApp />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
@@ -179,6 +203,7 @@ function Home({
   const [updateBusy, setUpdateBusy] = useState(false);
   const [toast, setToast] = useState("");
   const toastTimer = useRef(null);
+  const motionOn = useMotionOn();
 
   const segmentView =
     feed.view === "unread" || feed.view === "foryou"
@@ -188,8 +213,14 @@ function Home({
         : "all";
 
   function setSegmentView(id) {
-    // For you ≡ unread in live prefs
+    // For you ≡ unread in live prefs — no list restagger on tab change
+    setStaggerOn(false);
     feed.setView(id === "foryou" ? "unread" : id);
+  }
+
+  function onDockFeedView(id) {
+    setStaggerOn(false);
+    feed.setView(id);
   }
 
   function showToast(msg) {
@@ -273,6 +304,7 @@ function Home({
   }
 
   function onApplyTopics(next) {
+    setStaggerOn(false);
     feed.setTopics(next);
     feed.setFilter("all");
     setTopicsOpen(false);
@@ -557,17 +589,28 @@ function Home({
         <>
           <WelcomeHero unreadCount={unreadCount} weather={dallasWeather} />
           <DallasWeather forecast={dallasWeather} />
-          <CardList
-            cards={feed.visible}
-            prefs={feed.prefs}
-            onSeen={feed.markSeen}
-            onToggleSave={feed.toggleSave}
-            view={feed.view}
-            filter={feed.filter}
-            topics={feed.topics}
-            query={feed.query}
-            stagger={staggerOn}
-          />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={segmentView}
+              className="feed-panel-motion"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={motionTransition(motionOn, DOCK_FADE)}
+            >
+              <CardList
+                cards={feed.visible}
+                prefs={feed.prefs}
+                onSeen={feed.markSeen}
+                onToggleSave={feed.toggleSave}
+                view={feed.view}
+                filter={feed.filter}
+                topics={feed.topics}
+                query={feed.query}
+                stagger={staggerOn}
+              />
+            </motion.div>
+          </AnimatePresence>
         </>
       ) : feed.status === "error" ? (
         <div className="empty" role="alert">
@@ -590,7 +633,7 @@ function Home({
         </div>
       ) : null}
 
-      <FeedDock feedView={feed.view} onFeedView={feed.setView} />
+      <FeedDock feedView={feed.view} onFeedView={onDockFeedView} />
     </>
   );
 }

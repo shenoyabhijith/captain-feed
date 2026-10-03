@@ -84,6 +84,12 @@
   --fin-down: #b91c1c;
 }
 
+/* Route / panel motion wrappers — no layout jump */
+.route-motion,
+.feed-panel-motion {
+  width: 100%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root { --motion: 0; }
 }
@@ -979,10 +985,6 @@ h1 {
     transform calc(0.2s * var(--motion)) var(--ease-spring),
     box-shadow 0.2s,
     opacity calc(0.45s * var(--motion)) var(--ease-out);
-}
-.card:active,
-.card-link:active .card {
-  transform: scale(0.985);
 }
 .card.stagger {
   opacity: 0;

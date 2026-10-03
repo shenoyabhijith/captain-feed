@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 import CardChip from "./CardChip.jsx";
 import CardImage, { isWeakImage } from "./CardImage.jsx";
+import { PRESS_SPRING, motionTransition, useMotionOn } from "../lib/motion.js";
 
 /**
  * Deterministic variant mapping (Align Q3):
@@ -38,12 +40,15 @@ export default function FeedCard({
   const showImage = variant !== "text-only";
   const meta = metaLine(card);
   const eager = index < 2;
+  const motionOn = useMotionOn();
 
   return (
-    <article
+    <motion.article
       className={`card card--${variant === "text-only" ? "text" : variant}${
         read ? "" : " unread"
       }${stagger ? " stagger" : ""}`}
+      whileTap={motionOn ? { scale: 0.985 } : undefined}
+      transition={motionTransition(motionOn, PRESS_SPRING)}
     >
       <Link
         to={`/card/${encodeURIComponent(card.id)}`}
@@ -95,6 +100,6 @@ export default function FeedCard({
           </div>
         </div>
       </Link>
-    </article>
+    </motion.article>
   );
 }
