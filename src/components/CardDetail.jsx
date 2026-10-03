@@ -5,7 +5,7 @@ import TrendCardDetail from "./details/TrendCardDetail.jsx";
 import AwsCardDetail from "./details/AwsCardDetail.jsx";
 import DealCardDetail from "./details/DealCardDetail.jsx";
 import GymCardDetail from "./details/GymCardDetail.jsx";
-import DetailShell, { Section } from "./details/DetailShell.jsx";
+import DetailShell, { Section, collectBriefBlocks } from "./details/DetailShell.jsx";
 
 const RENDERERS = {
   book: BookCardDetail,
@@ -67,9 +67,18 @@ export default function CardDetail({
 }
 
 function FallbackDetail({ card }) {
+  const blocks = collectBriefBlocks({}, card);
   return (
-    <DetailShell title={card.title} summary={card.body} tags={card.tags} eyebrow={card.category}>
-      <Section heading="Notes" body={card.body} />
+    <DetailShell
+      title={card.title}
+      summary={card.body}
+      tags={card.tags}
+      eyebrow={card.category}
+      index={blocks}
+    >
+      {blocks.map((b) => (
+        <Section key={b.id} id={b.id} heading={b.heading} body={b.body} />
+      ))}
     </DetailShell>
   );
 }

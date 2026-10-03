@@ -30,7 +30,7 @@
     {
       "id": "value",
       "name": "Value",
-      "persona": "Patient compounder · quality at a discount",
+      "persona": "Patient compounder · VTI / VOO / VXUS only",
       "startingCash": 100,
       "cash": 22.80,
       "positions": [
@@ -50,7 +50,7 @@
     {
       "id": "swing",
       "name": "Swing",
-      "persona": "Catalyst hunter · 3–15 day holds",
+      "persona": "3–15 day swing · high bar; skip is fine",
       "startingCash": 100,
       "cash": 11.40,
       "positions": [
@@ -70,7 +70,7 @@
     {
       "id": "coresat",
       "name": "CoreSat",
-      "persona": "Core + satellite · index tilt with ideas",
+      "persona": "Core ~75% VOO + ~15% QQQ/SMH satellite",
       "startingCash": 100,
       "cash": 8.20,
       "positions": [
@@ -90,7 +90,7 @@
     {
       "id": "mega",
       "name": "Mega",
-      "persona": "Mega-cap momentum · crowded-trade aware",
+      "persona": "Equal-weight mega-cap · AAPL MSFT GOOGL AMZN META NVDA",
       "startingCash": 100,
       "cash": 15.60,
       "positions": [
@@ -110,7 +110,7 @@
     {
       "id": "riskoff",
       "name": "RiskOff",
-      "persona": "Defensive ballast · cash & quality bonds",
+      "persona": "Defensive ballast · cash & BND only",
       "startingCash": 100,
       "cash": 41.00,
       "positions": [
