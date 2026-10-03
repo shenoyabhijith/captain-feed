@@ -107,7 +107,7 @@ export default function FinancesApp() {
     <div
       className={`finances-root flex h-dvh flex-col ${isDark ? "dark" : ""}`}
     >
-      <header className="app-header shrink-0 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
+      <header className="app-header shrink-0 bg-background/90 px-4 py-3 backdrop-blur-md">
         <div className="brand-row mx-auto flex max-w-lg items-center gap-2.5">
           <img
             className="size-7 shrink-0 rounded-md"
@@ -116,21 +116,17 @@ export default function FinancesApp() {
             height={28}
             alt=""
           />
-          <div className="brand-text min-w-0 flex-1">
+          <div className="brand-text min-w-0 flex-1 flex items-baseline gap-2">
             <div className="brand-title font-semibold text-[1.05rem] tracking-tight leading-tight">
               Finances
             </div>
-            <div className="brand-sub text-muted-foreground text-[0.68rem]">
-              Sleeves · tap for holdings
-            </div>
+            <span
+              className="text-muted-foreground text-[0.72rem] font-medium"
+              title="Simulated paper trading only"
+            >
+              Paper
+            </span>
           </div>
-          <Badge
-            variant="outline"
-            className={`paper-badge ${outlineBadgeClass}`}
-            title="Simulated paper trading only"
-          >
-            Paper only
-          </Badge>
           <Menu>
             <MenuTrigger
               className="more-btn inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-transparent text-muted-foreground text-base font-semibold"

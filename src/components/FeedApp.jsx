@@ -52,6 +52,13 @@ export default function FeedApp() {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     saveTheme(theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        theme === "dark" ? "#0f172a" : "#f7f6f3"
+      );
+    }
   }, [theme]);
 
   const refreshInstalled = useCallback(async () => {

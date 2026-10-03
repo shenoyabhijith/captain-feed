@@ -210,7 +210,7 @@ export default function MetricsApp() {
 
   return (
     <div className={`finances-root metrics-root flex h-dvh flex-col ${isDark ? "dark" : ""}`}>
-      <header className="app-header shrink-0 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-md">
+      <header className="app-header shrink-0 bg-background/90 px-4 py-3 backdrop-blur-md">
         <div className="brand-row mx-auto flex max-w-lg items-center gap-2.5">
           <img
             className="size-7 shrink-0 rounded-md"
@@ -219,15 +219,17 @@ export default function MetricsApp() {
             height={28}
             alt=""
           />
-          <div className="brand-text min-w-0 flex-1">
+          <div className="brand-text min-w-0 flex-1 flex items-baseline gap-2">
             <div className="brand-title font-semibold text-[1.05rem] tracking-tight leading-tight">
               Metrics
             </div>
-            <div className="brand-sub text-muted-foreground text-[0.68rem]">
-              Paper scoreboard
-            </div>
+            <span
+              className="text-muted-foreground text-[0.72rem] font-medium"
+              title="Simulated paper trading only"
+            >
+              Paper
+            </span>
           </div>
-          <span className="paper-badge">Paper only</span>
           <Menu>
             <MenuTrigger
               className="more-btn inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-transparent text-muted-foreground text-base font-semibold"
@@ -252,13 +254,12 @@ export default function MetricsApp() {
         </div>
       ) : (
         <div className="fin-body mx-auto flex w-full max-w-lg min-h-0 flex-1 flex-col overflow-y-auto px-3 pb-[calc(88px+env(safe-area-inset-bottom,0px))]">
-          <div className="metrics-note">
-            <strong>Proposals show net edge after costs.</strong> Fake capital ·
-            paper trading only — not live money.
-          </div>
-
           <section className="m-card" aria-label="Total NAV">
             <h3>Total NAV</h3>
+            <p className="metrics-note">
+              Proposals show net edge after costs. Fake capital · paper trading
+              only — not live money.
+            </p>
             <div className="m-nav-big tabular-nums">{money(fin.stats.nav)}</div>
             <div className="m-period-row">
               {[
