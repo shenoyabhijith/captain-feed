@@ -67,7 +67,7 @@ export default function TopicsSheet({
             <div className="sheet-title" id="topics-title">
               Topics
             </div>
-            <div className="sheet-sub">Optional filters · overflow, not a pill row</div>
+            <div className="sheet-sub">Optional filters · pick a tighter lane</div>
           </div>
           <button
             type="button"
