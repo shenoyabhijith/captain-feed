@@ -71,6 +71,7 @@ function FallbackDetail({ card }) {
   return (
     <DetailShell
       title={card.title}
+      tldr={card.detail?.tldr}
       summary={card.body}
       tags={card.tags}
       category={card.category}

@@ -10,6 +10,7 @@ export default function BriefCardDetail({ card, eyebrow }) {
       category={card.category}
       eyebrow={eyebrow}
       title={card.title}
+      tldr={d.tldr}
       summary={d.summary || card.body}
       tags={card.tags}
     >

@@ -17,14 +17,27 @@ export function splitSummary(text) {
   if (byBreak.length > 1) return byBreak;
   // Single block: split on sentence boundaries into ~2–3 short paras when long
   if (raw.length < 220) return [raw];
-  const sentences = raw.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [raw];
+  // Mask decimals ($39.99, 2.4) and dotted tokens (Amazon.com) so "." is not a split.
+  const kept = [];
+  const masked = raw.replace(
+    /\d+\.\d+|\b[\w-]+\.[A-Za-z]{2,}\b/g,
+    (m) => {
+      kept.push(m);
+      return `\u0000${kept.length - 1}\u0000`;
+    }
+  );
+  const restore = (s) =>
+    s.replace(/\u0000(\d+)\u0000/g, (_, i) => kept[Number(i)]);
+  const sentences =
+    masked.match(/[^.!?]+[.!?]+(?:["')\]]+)?(?=\s|$)|[^.!?]+$/g) || [masked];
   const paras = [];
   let buf = "";
   for (const s of sentences) {
-    const next = (buf + " " + s.trim()).trim();
+    const piece = restore(s.trim());
+    const next = (buf + " " + piece).trim();
     if (buf && next.length > 180) {
       paras.push(buf);
-      buf = s.trim();
+      buf = piece;
     } else {
       buf = next;
     }
@@ -194,6 +207,7 @@ export default function DetailShell({
   category,
   title,
   summary,
+  tldr,
   children,
   tags,
   index,
@@ -213,6 +227,7 @@ export default function DetailShell({
           ? CATEGORY_LABELS[catKey]
           : null;
 
+  const tldrParas = splitSummary(tldr);
   const paras = splitSummary(summary);
   const jumpItems = (index || []).filter((s) => s?.heading && s?.id);
 
@@ -223,6 +238,16 @@ export default function DetailShell({
     >
       {label ? <p className="detail-eyebrow">{label}</p> : null}
       <h1>{title}</h1>
+      {tldrParas.length ? (
+        <aside className="detail-tldr" aria-label="TLDR">
+          <p className="detail-tldr__label">TLDR</p>
+          <div className="detail-tldr__body">
+            {tldrParas.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        </aside>
+      ) : null}
       {paras.length ? (
         <div className="detail-summary">
           {paras.map((p, i) => (
