@@ -5,16 +5,14 @@ import CardImage, { isWeakImage } from "./CardImage.jsx";
 import { PRESS_SPRING, motionTransition, useMotionOn } from "../lib/motion.js";
 
 /**
- * Deterministic variant mapping (Align Q3):
+ * Deterministic variant mapping:
  * - hero = newest in active filter (index 0) with usable image
- * - compact = index >= 3 with usable image
  * - text-only = no/weak image
- * - else standard
+ * - else standard (full-width image + two-line gist)
  */
 export function resolveVariant(card, index) {
   if (isWeakImage(card?.image)) return "text-only";
   if (index === 0) return "hero";
-  if (index >= 3) return "compact";
   return "standard";
 }
 
@@ -70,17 +68,11 @@ export default function FeedCard({
             {meta ? <span className="meta-text">{meta}</span> : null}
           </div>
           <h2 className="card-title">{card.title}</h2>
-          {variant !== "compact" ? (
-            <p className="card-summary card-summary--tldr">
-              {card.detail?.tldr || card.body}
-            </p>
-          ) : null}
+          <p className="card-summary card-summary--tldr">
+            {card.detail?.tldr || card.body}
+          </p>
           <div className="card-actions">
-            {variant !== "compact" ? (
-              <span className="tap-hint">Tap for full brief</span>
-            ) : (
-              <span className="tap-hint" />
-            )}
+            <span className="tap-hint">Tap for full brief</span>
             <button
               type="button"
               className="bookmark"
