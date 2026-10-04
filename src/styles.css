@@ -1454,25 +1454,35 @@ h1 {
   margin: 0;
   color: inherit;
   font: inherit;
-  line-height: inherit;
+  line-height: 1.45;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 .detail-tldr__bullets {
   margin: 0;
-  padding: 0 0 0 1.15em;
-  list-style: disc;
+  padding: 0;
+  list-style: none;
   display: grid;
-  gap: 0.4em;
+  gap: 0.55em;
   color: inherit;
   font: inherit;
   line-height: 1.45;
+  text-wrap: pretty;
 }
 .detail-tldr__bullets li {
+  position: relative;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 1.15em;
   color: inherit;
   font: inherit;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
-.detail-tldr__bullets li::marker {
+.detail-tldr__bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
   color: var(--topic);
 }
 .detail-summary {
@@ -1491,16 +1501,6 @@ h1 {
   color: inherit;
   font: inherit;
   line-height: inherit;
-}
-/* Two-line drop cap on the opening summary paragraph */
-.detail-summary > p:first-child::first-letter {
-  float: left;
-  font-family: var(--font-serif);
-  font-weight: 650;
-  font-size: 3.15em;
-  line-height: 0.88;
-  padding: 0.06em 0.1em 0 0;
-  color: var(--ink);
 }
 .detail-jump {
   margin-top: var(--space-5);

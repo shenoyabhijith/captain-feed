@@ -101,11 +101,12 @@
         ],
         "tldr": "Ring Battery Doorbell 2K (2nd Gen, ASIN B0FHJ7TKZM) is $39.99 on Amazon — 60% off $99.99 and matching the recent all-time low.",
         "tldrBullets": [
-          "Retinal 2K, 140°×140° head-to-toe FOV, up to 6× zoom, Live View, Two-Way Talk, built-in USB-C battery",
-          "In Stock · Ships from / Sold by Amazon · Amazon's Choice as of Oct 1, 2026 CT",
-          "Ring Protect sold separately for video history/AI; live view works without it",
-          "Skip if you already bought the 4K Pro, need detachable-battery Plus, refuse cloud recording, or have weak 2.4 GHz Wi-Fi",
-          "Confirm ~$39.99 on Doorbell only config; smoke-test Live View before Big Deal Days Oct 6–7"
+          "Retinal 2K with 140°×140° FOV, up to 6× zoom, Live View, and Two-Way Talk",
+          "Built-in USB-C battery",
+          "In Stock from Amazon with Amazon's Choice as of Oct 1, 2026 CT",
+          "Ring Protect is sold separately for video history and AI",
+          "Live View works without a Protect plan",
+          "Skip if you need the 4K Pro, detachable-battery Plus, or stronger 2.4 GHz Wi-Fi"
         ]
       }
     },
@@ -223,10 +224,11 @@
         "tldr": "AgentCore temporal policies check session history before the next tool hop — not just one call in isolation.",
         "tldrBullets": [
           "Dogwood (Cedar-compatible, Apache 2.0) enforces session-aware rules on the Gateway",
-          "Send x-amzn-bedrock-agentcore-policy-session-id every request (UUIDv4); omit it and validation fails",
-          "Quotas: 20 temporal policies/engine, 3 operators/policy, max 24h window",
-          "Start LOG_ONLY → ENFORCE; policy edits invalidate open sessions (HTTP 409)",
-          "Layer Gateway rate limits for cost — they fail-open, so not your only security boundary"
+          "Send x-amzn-bedrock-agentcore-policy-session-id (UUIDv4) on every request",
+          "Omit the session id and validation fails",
+          "Quotas: 20 temporal policies per engine, 3 operators per policy, max 24h window",
+          "Start LOG_ONLY then ENFORCE; policy edits invalidate open sessions (HTTP 409)",
+          "Layer Gateway rate limits for cost — they fail-open, so not your only boundary"
         ]
       }
     },
@@ -331,10 +333,11 @@
         "tldr": "Bedrock Managed Agents powered by OpenAI entered public preview Sep 29, 2026 — durable OpenAI agents inside AWS governance.",
         "tldrBullets": [
           "Service manages state, tool selection, code execution, and multi-step coordination",
-          "You supply instructions, IAM role, tools/skills/MCP, and exec env (self-hosted or AgentCore Runtime)",
-          "Durable sessions retain messages, tool calls, and intermediate results; optional human approval + CloudTrail",
-          "Preview: no extra BMA fee beyond AWS resources used; Regions us-east-1, us-west-2, us-east-2",
-          "Keep caller, session role, and exec identities separate and least-privilege"
+          "You supply instructions, IAM role, tools/skills/MCP, and the exec environment",
+          "Exec env can be self-hosted or AgentCore Runtime",
+          "Durable sessions keep messages, tool calls, and intermediate results",
+          "Optional human approval plus CloudTrail; no extra BMA fee beyond AWS usage",
+          "Preview Regions: us-east-1, us-west-2, and us-east-2"
         ]
       }
     },
@@ -440,10 +443,11 @@
         ],
         "tldr": "India NRE interest can be tax-free in India and still taxable in the US for citizens and resident aliens.",
         "tldrBullets": [
-          "Report foreign interest on Schedule B → Form 1040 line 2b; convert to USD with a consistent FX method",
+          "Report foreign interest on Schedule B, then Form 1040 line 2b",
+          "Convert to USD with a consistent FX method",
           "Pub. 550: foreign investment income is reportable even without a Form 1099",
-          "FBAR and Form 8938 are separate — they do not replace including the interest in income",
-          "India TDS on NRO may support Form 1116 FTC; untaxed NRE usually means US tax with little India credit",
+          "FBAR and Form 8938 do not replace including the interest in income",
+          "India TDS on NRO may support Form 1116 FTC; untaxed NRE rarely credits much",
           "Educational only — not tax advice"
         ]
       }
@@ -508,8 +512,9 @@
         "tldrBullets": [
           "$1M invested → roughly $40k first-year spend at 4%",
           "3–3.5% buys more safety; slightly higher needs flexibility in rough markets",
-          "Assumes you stay invested in a simple index path with room for fees and bad sequence luck",
-          "Multiply annual spend by 25 (or ~30 for cushion) and compare to current invested assets"
+          "Assumes you stay invested in a simple index path",
+          "Leave room for fees and bad sequence-of-returns luck",
+          "Multiply annual spend by 25 (or ~30 for cushion) vs invested assets"
         ]
       }
     },
@@ -603,11 +608,12 @@
         ],
         "tldr": "DeWalt 20V XR 5\" brushless orbital sander tool-only (DCW210B) is about $96.75 on Amazon — ~46% under $179 list.",
         "tldrBullets": [
-          "Variable speed 8,000–12,000 OPM with dust bag; battery, charger, and discs not included",
+          "Variable speed 8,000–12,000 OPM with a dust bag",
+          "Battery, charger, and discs are not included",
           "Best fit if you already own DeWalt 20V MAX packs",
-          "Prefer Ships from Amazon and a trustworthy Sold by; Bob Vila cited ~$97.99 the same day",
-          "Skip if you have no 20V batteries yet — kit or corded may be cheaper total",
-          "Re-check cart before Big Deal Days Oct 6–7; smoke-test within the return window"
+          "Prefer Ships from Amazon and a trustworthy Sold by",
+          "Bob Vila cited ~$97.99 the same day",
+          "Skip if you have no 20V batteries yet — kit or corded may cost less overall"
         ]
       }
     },
@@ -711,11 +717,12 @@
         ],
         "tldr": "AgentCore online eval scores sampled live sessions — dial SamplingPercentage down; 100% is for demos, not prod.",
         "tldrBullets": [
-          "Judge cost scales with traffic × SamplingPercentage (LLM-as-judge on CloudWatch sessions)",
+          "Judge cost scales with traffic × SamplingPercentage",
+          "LLM-as-judge runs on CloudWatch sessions",
           "Console default Sampling is 10%; allowed range roughly 0.01–100",
-          "Pattern: on-demand while iterating → continuous at ~5–10% once users are live",
+          "Pattern: on-demand while iterating, then ~5–10% once users are live",
           "Knob: OnlineEvaluationConfig.Rule.SamplingConfig.SamplingPercentage",
-          "Pair with Observability layers; document how to lower or disable before production"
+          "Document how to lower or disable Sampling before production"
         ]
       }
     },
@@ -794,7 +801,8 @@
         ],
         "tldr": "US-listed single-country ETFs took in >$26B YTD — over 4× all of 2025 — keep the international core broad.",
         "tldrBullets": [
-          "Leaders: Japan ~$9.5B, Korea ~$9B, Canada ~$3.6B, Taiwan ~$3.1B (EWY/EWJ/FLTW/EWC/BBJP)",
+          "Leaders: Japan ~$9.5B, Korea ~$9B, Canada ~$3.6B, Taiwan ~$3.1B",
+          "Tickers in the mix include EWY, EWJ, FLTW, EWC, and BBJP",
           "Industry backdrop: ~$1.5T YTD ETF flows; ~$16.4T US ETF AUM as of Sep 25",
           "VXUS/IXUS already hold those markets at market weight",
           "Flows reverse fast; past flows ≠ future returns",
@@ -968,11 +976,12 @@
         ],
         "tldr": "Inherited India property often gets a §1014 FMV basis step-up for US tax — gifts usually do not.",
         "tldrBullets": [
-          "IRC §1014 / Pub. 551: heir basis generally FMV at date of death (or alternate valuation)",
-          "Lifetime gifts usually carry over the donor's basis — often worse for appreciated assets",
-          "Document contemporaneous FMV; stamp duty/circle rates may understate true value",
+          "IRC §1014 / Pub. 551: heir basis is generally FMV at date of death",
+          "Alternate valuation date may apply when elected",
+          "Lifetime gifts usually carry over the donor's basis",
+          "Document contemporaneous FMV; stamp duty may understate true value",
           "Foreign bequests/gifts from NRA/estate over $100k → Form 3520 Part IV",
-          "Sale still on Form 8949/Sch D; India TDS may need Form 1116 — educational only"
+          "Sale still on Form 8949/Sch D; India TDS may need Form 1116"
         ]
       }
     },
@@ -1066,11 +1075,12 @@
         ],
         "tldr": "Baseus 12-in-1 USB-C dock/stand (B0D7GX6FMS) is $41.99 on Amazon — new ATL per 9to5Toys vs ~$52 typical.",
         "tldrBullets": [
-          "2×4K HDMI + 4K DP, GbE, USB-A/C, SD/TF, 3.5 mm, 100W PD in (~85W to laptop)",
-          "Host needs full-function USB-C with DP Alt Mode + PD; macOS often mirrors multi-display",
-          "65W+ USB-C charger not included",
-          "Skip if you need Thunderbolt 5, dual 8K, or a charge-only port",
-          "Confirm Baseus Brand Store + $41.99; smoke-test within the return window"
+          "2×4K HDMI + 4K DP, GbE, USB-A/C, SD/TF, 3.5 mm, 100W PD in",
+          "About 85W can pass through to the laptop",
+          "Host needs full-function USB-C with DP Alt Mode and PD",
+          "macOS often mirrors multi-display rather than extending",
+          "65W+ USB-C charger is not included",
+          "Skip if you need Thunderbolt 5, dual 8K, or a charge-only port"
         ]
       }
     },
@@ -1174,11 +1184,12 @@
         ],
         "tldr": "AgentCore Optimization (preview) turns traces into prompt/tool recommendations, then Gateway A/B before you promote.",
         "tldrBullets": [
-          "Targets SYSTEM_PROMPT or TOOL_DESCRIPTION from Observability traces + an evaluator",
+          "Targets SYSTEM_PROMPT or TOOL_DESCRIPTION from Observability traces",
+          "An evaluator drives the prompt/tool recommendations",
           "Immutable config bundles version model ID, system prompt, and tool descriptions",
-          "Batch eval as CI gate, then live A/B with confidence intervals and p-values",
-          "Bundle variants share one Runtime; target-based variants compare separate endpoints",
-          "Needs Runtime + Observability + Evaluations; confirm preview limits before prod"
+          "Batch eval as a CI gate, then live A/B with confidence intervals",
+          "Bundle variants share one Runtime; target-based variants use separate endpoints",
+          "Needs Runtime, Observability, and Evaluations — confirm preview limits first"
         ]
       }
     },
@@ -1270,13 +1281,14 @@
             "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-gpt-6-sol-and-luna-claude-opus-5-5-on-amazon-bedrock-strands-harness-and-more-september-28-2026/"
           }
         ],
-        "tldr": "Strands harness (Sep 21, 2026, Apache 2.0) is a batteries-included general-purpose agent stack — ~28% fewer tokens on team Harbor benches.",
+        "tldr": "Strands harness (Sep 21, 2026, Apache 2.0) is a general-purpose agent stack with batteries included, and team Harbor benches saw about 28% fewer tokens.",
         "tldrBullets": [
-          "One create_harness call; Bedrock default, also Anthropic/OpenAI/Google/Ollama/LiteLLM",
-          "Defaults: prompt caching, tool-result truncation (~1500 tok), compaction >~85% context",
-          "Shell, file, and web tools; session memory via session ID",
-          "Deploy local or Linux containers including ECS and Bedrock AgentCore",
-          "Treat vendor benches as directional — re-run on your own tasks"
+          "One create_harness call starts the stack with Bedrock as the default",
+          "Also works with Anthropic, OpenAI, Google, Ollama, and LiteLLM",
+          "Prompt caching and ~1500-token tool-result truncation ship by default",
+          "Compaction triggers above ~85% of the context window",
+          "Shell, file, and web tools with session memory via session ID",
+          "Deploy locally or in Linux containers including ECS and Bedrock AgentCore"
         ]
       }
     },
@@ -1523,8 +1535,9 @@
         ],
         "tldr": "eero Pro 7 mesh node 1-pack (B0C6RBS846) is $224.99 on Amazon — $75 off $299.99 and matching 9to5Toys' ATL.",
         "tldrBullets": [
-          "~2,000 sq ft coverage, dual auto-sensing 5 GbE, plans up to ~5 Gbps, 200+ devices",
-          "Strong ops buy for dead zones or aging Wi-Fi 5/6; expand with multi-packs",
+          "~2,000 sq ft coverage, dual auto-sensing 5 GbE, plans up to ~5 Gbps",
+          "Rated for 200+ devices on a Pro 7 mesh node",
+          "Strong ops buy for dead zones or aging Wi-Fi 5/6",
           "Skip if you already run Max 7 / solid Pro 7, or cart shows full $300",
           "Confirm modem has a free port and note ISP plan speed",
           "Re-check final cart — early-Prime tags move before Big Deal Days Oct 6–7"
@@ -1627,7 +1640,8 @@
         ],
         "tldr": "Bedrock prompt caching: put cachePoint after static context so later Converse calls skip reprocessing the prefix.",
         "tldrBullets": [
-          "Keep dynamic user content after the marker; scope is per account + Region",
+          "Keep dynamic user content after the cachePoint marker",
+          "Cache scope is per account and Region",
           "Meet model minimums (e.g. Sonnet 4.5/4.6 often ≥1,024 tokens per checkpoint)",
           "Default TTL 5 min; optional 1h on many Claude models",
           "Hits bill cacheReadInputTokens far below standard input; writes cost more",
@@ -1725,11 +1739,12 @@
         ],
         "tldr": "Bedrock Managed Knowledge Base now has native Salesforce and Zendesk sync — OAuth in Secrets Manager, incremental crawl.",
         "tldrBullets": [
-          "Announced Sep 23, 2026; replaces custom crawl → chunk → embed for CRM/help content",
-          "After Sep 30, 2026 new Confluence/SharePoint/Salesforce/Web Crawler connectors on customer-managed KBs unsupported",
-          "Zendesk has no per-doc ACL in the index; Salesforce can crawl PII unless filtered",
-          "Retrieve ACL is KB-wide — filter at crawl time; least-privilege IAM on the secret",
-          "Sync a low-sensitivity sandbox first; check gaps, PII, and lag before expanding"
+          "Announced Sep 23, 2026 for native Salesforce and Zendesk sync",
+          "Replaces custom crawl → chunk → embed for CRM/help content",
+          "After Sep 30, 2026 these new customer-managed KB connectors are unsupported",
+          "Unsupported connectors: Confluence, SharePoint, Salesforce, and Web Crawler",
+          "Zendesk has no per-doc ACL; Salesforce can crawl PII unless filtered",
+          "Retrieve ACL is KB-wide — filter at crawl time with least-privilege IAM"
         ]
       }
     },
@@ -1818,8 +1833,9 @@
         "tldrBullets": [
           "Cascade: permanent home → centre of vital interests → habitual abode → nationality → MAP",
           "Claiming India treaty residence for US tax usually means Form 1040-NR + Form 8833",
-          "Saving clause Art. 1(3): US still taxes citizens (and often residents) as if the treaty weren't in effect",
-          "Treaty residence ≠ visa/immigration status",
+          "Saving clause Art. 1(3): US still taxes citizens as if the treaty were not in effect",
+          "Residents are often taxed the same way under the saving clause",
+          "Treaty residence ≠ visa or immigration status",
           "Document facts before year-end — educational only, not tax advice"
         ]
       }
@@ -1880,7 +1896,8 @@
         "tldr": "Getting wealthy rewards optimism; staying wealthy rewards paranoia that what you have could vanish.",
         "tldrBullets": [
           "Getting money and keeping money are different skills",
-          "Staying wealthy: humility, spend less than ego wants, margins so one bad year cannot erase a decade",
+          "Staying wealthy needs humility and spending less than ego wants",
+          "Keep margins so one bad year cannot erase a decade",
           "Most long-term wealth is time in market plus avoiding catastrophic mistakes",
           "Name one offense move and one defense rule you will not break this month"
         ]
@@ -1975,11 +1992,12 @@
         ],
         "tldr": "GPT-6 Sol and Luna went GA on Bedrock Sep 22, 2026 — route by stage instead of one frontier model for everything.",
         "tldrBullets": [
-          "Sol: complex/coding/multistep tools; Luna: high-volume extract/summarize/classify/route",
-          "Both: up to 1M context and explicit prompt caching on Bedrock",
-          "Significantly lower API pricing than prior GPT-5-generation peers (confirm live rates)",
-          "IAM + CloudTrail + PrivateLink; no training on your prompts; no OpenAI share opt-in",
-          "Enable in non-prod; compare Luna vs Sol latency/tokens/quality before promoting"
+          "Sol: complex, coding, and multistep tool work",
+          "Luna: high-volume extract, summarize, classify, and route",
+          "Both offer up to 1M context and explicit prompt caching on Bedrock",
+          "API pricing is significantly lower than prior GPT-5-generation peers",
+          "IAM, CloudTrail, and PrivateLink; no training on your prompts",
+          "Enable in non-prod; compare Luna vs Sol before promoting"
         ]
       }
     },
@@ -2131,11 +2149,12 @@
         ],
         "tldr": "§6013(g) lets you treat an NRA spouse as a US resident and file jointly — both then report worldwide income.",
         "tldrBullets": [
-          "Election year requires joint Form 1040 + Filing Status checkbox + signed statement",
+          "Election year requires joint Form 1040, Filing Status checkbox, and signed statement",
           "Later years can be joint or separate while the choice stays in effect",
           "Form 1116 FTC is often the main relief for Indian tax paid",
-          "Ending the choice is generally once-in-a-lifetime; India treaty benefits usually unavailable while it runs",
-          "NRA spouse needs SSN or ITIN — model outcomes before electing; educational only"
+          "Ending the choice is generally once-in-a-lifetime",
+          "India treaty benefits are usually unavailable while the election runs",
+          "NRA spouse needs SSN or ITIN — model outcomes before electing"
         ]
       }
     },
@@ -2225,7 +2244,7 @@
         ],
         "tldr": "Coding-agent tip set (Sep 21): keep AGENTS.md short, put must-runs in hooks, and review diffs in a fresh session.",
         "tldrBullets": [
-          "Durable rules belong in files/hooks/tests — compaction quietly drops chat policies",
+          "Durable rules belong in files, hooks, and tests — compaction drops chat policies",
           "Treat instruction files like code that rots; prune or they burn context",
           "Don't escalate mid-transcript; never let the writer grade its own diff",
           "Plan first until solid, implement once, commit when green",
@@ -2316,11 +2335,12 @@
         ],
         "tldr": "There is still no US–India Social Security Totalization agreement — dual FICA/EPF risk is real.",
         "tldrBullets": [
-          "India not on SSA's in-force list as of Sep 26, 2026",
+          "India is not on SSA's in-force list as of Sep 26, 2026",
           "No Certificate of Coverage path to pick only one system for the same work",
           "India EPF credits generally do not count toward US quarters of coverage",
-          "US FICA usually applies to US-performed work; special rules can reach US persons abroad",
-          "Ask payroll which side withholds; count US quarters without assuming India years fill gaps"
+          "US FICA usually applies to US-performed work",
+          "Special rules can still reach US persons abroad",
+          "Ask payroll which side withholds; do not assume India years fill US gaps"
         ]
       }
     },
@@ -2475,8 +2495,9 @@
         "tldr": "Anker Prime 14-in-1 dock (B0CW9249DK) is $169.99 on Amazon — about $100 / 37% off the $269.99 list.",
         "tldrBullets": [
           "Dual 4K HDMI, up to 160W max-output class charging, 10Gbps data, Ethernet, audio",
-          "Strong for Windows USB-C/USB4/Thunderbolt; Mac may mirror dual externals",
-          "Skip if you already own Hyper TB5 or Anker Nano 13-in-1, or only need a travel hub",
+          "Strong for Windows USB-C, USB4, and Thunderbolt hosts",
+          "Mac may mirror dual externals",
+          "Skip if you already own Hyper TB5 or Anker Nano 13-in-1",
           "Confirm Limited time deal badge near $170 in cart before checkout",
           "Early-Prime tags expire — re-read the final price"
         ]
@@ -2579,10 +2600,11 @@
         "tldr": "Guardrails only on the final reply miss poisoned tool hops — attach them on every Gateway tools/call.",
         "tldrBullets": [
           "Agentic apps run schemas, queries, retrieval, and A2A before any final answer",
-          "Bedrock Guardrails via AgentCore Policy on Gateway check tools/call I/O for injection, PII, harm",
+          "Bedrock Guardrails via AgentCore Policy check tools/call I/O on the Gateway",
+          "Checks cover injection, PII, and harm on tool hops",
           "Keep Converse/ApplyGuardrail at inference as a second line",
           "AGENTSEC08: validate tool outputs and retrieved content, not just the user message",
-          "Pair with JWT interceptors + Lake Formation for authz; verify with a prompt-attack payload"
+          "Pair with JWT interceptors and Lake Formation; verify with a prompt-attack payload"
         ]
       }
     },
@@ -2761,8 +2783,9 @@
           "100% of first $2,000 + 25% of next $2,000; up to $1,000 may be refundable",
           "MAGI phaseout: $80k–$90k single / $160k–$180k MFJ",
           "2026: work-authorized SSN generally required for filer, spouse, and student",
-          "Usually need Form 1098-T; half-time enrollment and first-four-years status",
-          "Part-year NRA without resident election and MFS typically ineligible — educational only"
+          "Usually need Form 1098-T plus half-time enrollment in the first four years",
+          "Part-year NRA without resident election and MFS typically ineligible",
+          "Educational only — not tax advice"
         ]
       }
     },
@@ -2914,8 +2937,9 @@
         ],
         "tldr": "Ring Battery Doorbell 4K Pro (B0FPPWKMGK) is about $149.99 on Amazon — ~40% off $249.99 and a recent ATL.",
         "tldrBullets": [
-          "Wireless install, Retinal 4K, up to 10× zoom, color night vision, Quick Release Ultra battery",
-          "Ring Protect cloud history optional and sold separately",
+          "Wireless install with Retinal 4K, up to 10× zoom, and color night vision",
+          "Quick Release Ultra battery",
+          "Ring Protect cloud history is optional and sold separately",
           "Skip if you already have a solid doorbell cam or the $39.99 2K is enough",
           "Confirm ~$149.99 with a deal badge — page can show full list without one",
           "Decide battery vs wired 4K Pro also cited near $150 / $100 off"
@@ -3007,11 +3031,12 @@
         ],
         "tldr": "Hub-and-spoke AgentCore: one Gateway federates LOB MCP tools while data stays in each account.",
         "tldrBullets": [
-          "Platform owns Runtime, Bedrock, and Gateway; each LOB packages data as an MCP server",
+          "Platform owns Runtime, Bedrock, and Gateway",
+          "Each LOB packages data as an MCP server in its own account",
           "Only query-time tool results cross the boundary — no shared data lake copy",
-          "Cedar on inbound JWT authorizes tools; M2M from AgentCore Identity for outbound LOB calls",
-          "Harden LOB runtimes so callers cannot bypass Cedar via the LOB MCP URL",
-          "Add evaluations + cost-allocation tags before calling it production"
+          "Cedar on inbound JWT authorizes tools",
+          "M2M from AgentCore Identity covers outbound LOB calls",
+          "Harden LOB runtimes so callers cannot bypass Cedar via the LOB MCP URL"
         ]
       }
     },
@@ -3098,9 +3123,10 @@
         "tldr": "MUB (~$1.2B) and VTEB (~$1.7B) just posted record weekly inflows after the bond rout — flows ≠ forecast.",
         "tldrBullets": [
           "Higher muni yields made tax-equivalent yields look better vs taxable bonds",
-          "Qualifying muni income is generally federal-tax-exempt — compare tax-equivalent yield",
+          "Qualifying muni income is generally federal-tax-exempt",
+          "Compare tax-equivalent yield before sizing the sleeve",
           "Longer-duration munis still move more if yields rise further",
-          "Check duration and credit mix on the fact sheets before sizing a sleeve",
+          "Check duration and credit mix on the fact sheets",
           "Educational only — not a buy/sell signal or tax advice"
         ]
       }
@@ -3191,8 +3217,9 @@
           "Excluded from gross income; can satisfy all or part of your RMD",
           "Do not also claim the same gift as a charitable deduction",
           "Trustee must pay the US-eligible charity directly",
-          "India temples/NGOs/family trusts almost never qualify",
-          "Save the acknowledgment; mark Form 1040 IRA line with QCD — educational only"
+          "India temples, NGOs, and family trusts almost never qualify",
+          "Save the acknowledgment; mark Form 1040 IRA line with QCD",
+          "Educational only — not tax advice"
         ]
       }
     },
@@ -3351,9 +3378,9 @@
         ],
         "tldr": "Cursor Projects (beta, Sep 10): one coordinator agent owns long-lived work and durable shared context.",
         "tldrBullets": [
-          "Coordinator directs cloud (and local) agents; it does not write code itself",
-          "Shared files grow over months — research, test recipes, review bars reuse across machines",
-          "Subscriptions: Slack, schedules, PR open/merge/CI-style wakes",
+          "Coordinator directs cloud and local agents; it does not write code itself",
+          "Shared files grow over months — research, test recipes, and review bars reuse",
+          "Subscriptions: Slack, schedules, and PR open/merge/CI-style wakes",
           "Cursor claims ~30% more merges for new users; ~6× for heavy Projects users",
           "Seed context early; review every PR closely the first week"
         ]
@@ -3445,7 +3472,8 @@
           "Salary reduction under a §125 cafeteria plan for qualified medical expenses",
           "Grace period or carryover may soften year-end forfeiture",
           "General-purpose FSA usually blocks HSA for any covered month",
-          "Elect from forecast dental/vision/Rx/copay spend — educational only"
+          "Elect from forecast dental, vision, Rx, and copay spend",
+          "Educational only — not tax advice"
         ]
       }
     },
@@ -3595,11 +3623,12 @@
         ],
         "tldr": "ETF inflows are record-hot, but ~80% of new launches are active with higher fees — wrapper ≠ cheap.",
         "tldrBullets": [
-          "July ~$193B inflows; ~$1.23T YTD through July; 1,023 new US ETFs Jan–Aug 2026 (+52% YoY)",
+          "July ~$193B inflows; ~$1.23T YTD through July",
+          "1,023 new US ETFs launched Jan–Aug 2026 (+52% YoY)",
           "Mid-2026: more active ETFs than passive (Morningstar)",
           "High ER, short track records, concentrated themes, and daily leverage can tax returns",
           "Keep the core in broad low-cost index ETFs",
-          "Read prospectus for active vs index, leverage, concentration, and fee before adding launches"
+          "Read prospectus for active vs index, leverage, concentration, and fee first"
         ]
       }
     }
