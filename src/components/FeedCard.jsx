@@ -71,7 +71,7 @@ export default function FeedCard({
           </div>
           <h2 className="card-title">{card.title}</h2>
           {variant !== "compact" ? (
-            <p className="card-summary">
+            <p className="card-summary card-summary--tldr">
               {card.detail?.tldr || card.body}
             </p>
           ) : null}

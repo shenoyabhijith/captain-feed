@@ -208,6 +208,7 @@ export default function DetailShell({
   title,
   summary,
   tldr,
+  tldrBullets,
   children,
   tags,
   index,
@@ -227,7 +228,8 @@ export default function DetailShell({
           ? CATEGORY_LABELS[catKey]
           : null;
 
-  const tldrParas = splitSummary(tldr);
+  const tldrSnippet = String(tldr || "").trim();
+  const bullets = (tldrBullets || []).map((b) => String(b || "").trim()).filter(Boolean);
   const paras = splitSummary(summary);
   const jumpItems = (index || []).filter((s) => s?.heading && s?.id);
 
@@ -238,13 +240,18 @@ export default function DetailShell({
     >
       {label ? <p className="detail-eyebrow">{label}</p> : null}
       <h1>{title}</h1>
-      {tldrParas.length ? (
+      {tldrSnippet ? (
         <aside className="detail-tldr" aria-label="TLDR">
           <p className="detail-tldr__label">TLDR</p>
           <div className="detail-tldr__body">
-            {tldrParas.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+            <p className="detail-tldr__snippet">{tldrSnippet}</p>
+            {bullets.length ? (
+              <ul className="detail-tldr__bullets">
+                {bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </aside>
       ) : null}

@@ -1097,6 +1097,9 @@ h1 {
   -webkit-line-clamp: 6;
   overflow: hidden;
 }
+.card-summary--tldr {
+  -webkit-line-clamp: 2;
+}
 .tap-hint {
   margin-top: 0;
   font-family: var(--font-ui);
@@ -1446,6 +1449,8 @@ h1 {
   border-radius: var(--radius-inner);
   background: color-mix(in srgb, #e8dcc8 28%, var(--surface));
   box-shadow: none;
+  border: 0;
+  border-left: 0;
   max-width: 38em;
 }
 [data-theme="dark"] .detail-tldr {
@@ -1470,11 +1475,30 @@ h1 {
   display: grid;
   gap: 0.85em;
 }
-.detail-tldr__body p {
+.detail-tldr__snippet {
   margin: 0;
   color: inherit;
   font: inherit;
   line-height: inherit;
+}
+.detail-tldr__bullets {
+  margin: 0;
+  padding: 0 0 0 1.15em;
+  list-style: disc;
+  display: grid;
+  gap: 0.4em;
+  color: inherit;
+  font: inherit;
+  line-height: 1.45;
+}
+.detail-tldr__bullets li {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+}
+.detail-tldr__bullets li::marker {
+  color: var(--topic);
 }
 .detail-summary {
   margin: 0;

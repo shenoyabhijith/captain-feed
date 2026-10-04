@@ -72,6 +72,7 @@ function FallbackDetail({ card }) {
     <DetailShell
       title={card.title}
       tldr={card.detail?.tldr}
+      tldrBullets={card.detail?.tldrBullets}
       summary={card.body}
       tags={card.tags}
       category={card.category}

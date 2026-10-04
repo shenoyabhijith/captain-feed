@@ -11,6 +11,7 @@ export default function BriefCardDetail({ card, eyebrow }) {
       eyebrow={eyebrow}
       title={card.title}
       tldr={d.tldr}
+      tldrBullets={d.tldrBullets}
       summary={d.summary || card.body}
       tags={card.tags}
     >
