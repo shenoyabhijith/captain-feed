@@ -6,6 +6,8 @@ import {
   Cloud,
   Tag,
   Dumbbell,
+  Rocket,
+  Newspaper,
   List,
   CircleDot,
   Bookmark,
@@ -21,6 +23,8 @@ export const CATEGORY_ICONS = {
   aws: Cloud,
   deal: Tag,
   gym: Dumbbell,
+  space: Rocket,
+  tech: Newspaper,
 };
 
 export const CATEGORY_LABELS = {
@@ -31,6 +35,8 @@ export const CATEGORY_LABELS = {
   aws: "AWS",
   deal: "Deal",
   gym: "Gym",
+  space: "Space",
+  tech: "Tech",
 };
 
 export const VIEW_ICONS = {

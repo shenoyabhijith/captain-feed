@@ -1,6 +1,6 @@
 import { CATEGORY_ICONS, CATEGORY_LABELS, ICON_STROKE } from "./icons.js";
 
-const ORDER = ["all", "book", "tax", "trend", "aws", "deal", "gym"];
+const ORDER = ["all", "book", "tax", "trend", "aws", "deal", "gym", "space", "tech"];
 
 export default function CategoryFilter({ value, onChange }) {
   return (

@@ -5,6 +5,8 @@ import TrendCardDetail from "./details/TrendCardDetail.jsx";
 import AwsCardDetail from "./details/AwsCardDetail.jsx";
 import DealCardDetail from "./details/DealCardDetail.jsx";
 import GymCardDetail from "./details/GymCardDetail.jsx";
+import SpaceCardDetail from "./details/SpaceCardDetail.jsx";
+import TechCardDetail from "./details/TechCardDetail.jsx";
 import DetailShell, { Section, collectBriefBlocks } from "./details/DetailShell.jsx";
 
 const RENDERERS = {
@@ -14,6 +16,8 @@ const RENDERERS = {
   aws: AwsCardDetail,
   deal: DealCardDetail,
   gym: GymCardDetail,
+  space: SpaceCardDetail,
+  tech: TechCardDetail,
 };
 
 export default function CardDetail({
