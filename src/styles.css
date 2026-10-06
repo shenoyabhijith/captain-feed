@@ -1908,3 +1908,133 @@ html[data-standalone="1"] .install-hint,
 html[data-standalone="1"] .install-btn {
   display: none !important;
 }
+
+/* FEED-DESKTOP — reading column at ≥900px; mobile chrome unchanged below */
+@media (min-width: 900px) {
+  :root {
+    --app-column: 760px;
+    --dock-clearance: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+
+  html,
+  body,
+  #root {
+    background: color-mix(in srgb, var(--muted) 10%, var(--bg));
+  }
+
+  html[data-theme="dark"],
+  html[data-theme="dark"] body,
+  html[data-theme="dark"] #root {
+    background: color-mix(in srgb, #020617 35%, var(--bg));
+  }
+
+  body::after {
+    background: color-mix(in srgb, var(--muted) 10%, var(--bg));
+  }
+
+  html[data-theme="dark"] body::after {
+    background: color-mix(in srgb, #020617 35%, var(--bg));
+  }
+
+  .shell {
+    max-width: var(--app-column);
+    padding: var(--space-4) var(--space-5) var(--dock-clearance);
+  }
+
+  /* Quieter top bar — same search/refresh chrome, less phone-frame weight */
+  .top {
+    width: min(var(--app-column), 100%);
+    padding: var(--space-2) var(--space-4);
+    border-radius: 0 0 var(--radius-inner) var(--radius-inner);
+    border-color: color-mix(in srgb, var(--line) 70%, transparent);
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 4%, transparent);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+  }
+
+  .top.is-peek {
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  }
+
+  /* Slim bottom bar aligned to the column */
+  .dock {
+    width: min(var(--app-column), calc(100% - 24px));
+    bottom: 0;
+    padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px));
+    border-radius: var(--radius-inner) var(--radius-inner) 0 0;
+    border-bottom: 0;
+    box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.06);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+  }
+
+  [data-theme="dark"] .dock {
+    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.28);
+  }
+
+  .dock button {
+    min-height: 44px;
+    padding: 4px 2px 3px;
+    border-radius: 10px;
+  }
+
+  .app-toast {
+    max-width: min(var(--app-column), calc(100% - 32px));
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sheet {
+    width: min(var(--app-column), 100%);
+  }
+
+  /* Comfortable reading measure inside the column */
+  .detail-page {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detail-shell {
+    max-width: 42rem;
+    width: 100%;
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) var(--space-7);
+  }
+
+  .detail-shell h1 {
+    font-size: clamp(1.65rem, 2.2vw, 2rem);
+    max-width: 20em;
+  }
+
+  .detail-tldr,
+  .detail-summary,
+  .detail-body {
+    max-width: 40rem;
+  }
+
+  .detail-tldr__body {
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+
+  .detail-section p,
+  .detail-section li,
+  .detail-body p,
+  .detail-body li {
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  .feed {
+    gap: 14px;
+  }
+
+  .card--hero .card-title {
+    font-size: var(--type-headline-l);
+  }
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: reduce) {
+  .top,
+  .dock {
+    transition: none !important;
+  }
+}
