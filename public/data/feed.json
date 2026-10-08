@@ -1,8 +1,123 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-01T16:00:52-05:00",
+  "updated": "2026-10-08T09:48:33-05:00",
   "cards": [
+    {
+      "id": "ai-20261008-builders-today",
+      "category": "ai",
+      "title": "Builders today — Oct 8, 2026",
+      "body": "Agent-written tests took a hit on DeepSWE, skills got a defense as models improve at using them, and the tooling talk was tunnels, durable sessions, and closed feedback loops. Full brief groups the day by theme with links to the original posts.",
+      "source": "X builders watch · Oct 8, 2026 CT · Kun Chen · Matt Pocock · Dax · Lauren Tan · Geoffrey Huntley · Mario Zechner · swyx",
+      "tags": [
+        "ai",
+        "builders",
+        "agents",
+        "skills",
+        "testing",
+        "evals",
+        "opentunnel",
+        "pi-durable",
+        "grok-bot",
+        "workflows"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/builders-today-20261008/800/520",
+      "link": "https://x.com/kunchenguid/status/2108030810691629403",
+      "detail": {
+        "tldr": "Kun Chen’s DeepSWE eval says banning agent-written unit/integration tests didn’t hurt success and cut tokens; Geoffrey Huntley pushes back with mutation and property tests.\nMatt Pocock argues models are getting better at using skills, not past them — and ships /wait-what to surface scattered questions after long autonomous runs.",
+        "tldrBullets": [
+          "Kunchen: on DeepSWE, blocking Sonnet 5.5 high from writing tests slightly raised success (non-sig) and saved time/tokens (sig); spot-checks looked like tests repeating the implementation",
+          "Matt: good skills name what you care about, then stay out of the way; /to-spec and /to-tickets feel stronger as models follow instructions better",
+          "Dax: opentunnel — e2e-encrypted public URLs for local processes, SDK-embeddable, headed into OpenCode",
+          "Lauren: point a Grok Bot at X product feedback → issue tracker / cloud agent triage — closed loop",
+          "Mario: pi durable called out for Swift via JavaScriptCore and for durable codemode experiments"
+        ],
+        "summary": "Today’s builder timeline was less product launch and more process argument: when should agents write tests, what skills are for as models improve, and which harnesses (tunnels, durable sessions, Slack/X monitors) are worth wiring into a crew.",
+        "sections": [
+          {
+            "heading": "Tests as source of truth",
+            "body": "Kun Chen ([@kunchenguid](https://x.com/kunchenguid/status/2108030810691629403)) published a DeepSWE eval takeaway: telling Sonnet 5.5 high not to write unit/integration tests produced a slightly higher success rate (not statistically significant) with statistically significant less time and tokens. Across the “tests allowed” arm, ~65% unit / ~35% integration, neither bucket beat writing no tests. Disabling execution of existing tests on a 44-task sample also didn’t move success. His read: agent-written tests often restate the same interpretation of intent as the implementation, so they aren’t an independent oracle. He caveated e2e — almost none were written in that eval — and said he’ll run a dedicated e2e study. In follow-ups he stressed human steering and that useful tests need absolute authority assigned by humans ([thread reply](https://x.com/kunchenguid/status/2108069278914392460)). Geoffrey Huntley ([@GeoffreyHuntley](https://x.com/GeoffreyHuntley/status/2108054698213396821)) strongly disagreed, arguing agent-authored mutation and property-based tests make a real regression harness. Matt Pocock, in replies, cooled on enforcing strict TDD while still valuing tests."
+          },
+          {
+            "heading": "Skills that stay out of the way",
+            "body": "Matt Pocock ([@mattpocockuk](https://x.com/mattpocockuk/status/2108186533303898293)) pushed back on “models are better, drop skills”: models are also getting better at using skills. Good skills tell the model what you care about, then get out of its way. In the same thread he said his /to-spec and /to-tickets loop has never felt better ([follow-up](https://x.com/mattpocockuk/status/2108187099849793759)) and pointed at /codebase-design. Separately he posted prompt-of-the-day: `/wait-what questions did you have for me` — useful after an agent has wandered for hours with questions scattered through context ([post](https://x.com/mattpocockuk/status/2108175792945676313))."
+          },
+          {
+            "heading": "Tunnels, durable agents, closed loops",
+            "body": "Dax ([@thdxr](https://x.com/thdxr/status/2107956848318177622)) shipped opentunnel: public URLs for anything on your machine, end-to-end encrypted so the relay can’t read traffic, plus an SDK to embed tunnels in apps, with OpenCode integration next. He also argued vibecoding skill has a huge range — day-1 to day-10,000 ([post](https://x.com/thdxr/status/2107993286996594889)). Lauren Tan ([@poteto](https://x.com/poteto/status/2107963437154435182)) showed the Grok Bot product loop: monitor X for feedback, route feature requests to an issue tracker and bugs to a Cursor cloud agent or triage project. Mario Zechner ([@badlogicgames](https://x.com/badlogicgames/status/2108193659023950005)) celebrated pi durable reachable from Swift via JavaScriptCore and teed up durable codemode ([note](https://x.com/badlogicgames/status/2108192220385820698)). swyx ([@swyx](https://x.com/swyx/status/2108180514121142677)) flagged Claude “mods” for malleable domain harnesses and called out Claude Tags passive ingestion at roughly $3k/mo minimum for their small company."
+          }
+        ],
+        "bullets": [
+          "Kun Chen: ban autonomous agent unit/integration tests on DeepSWE → no success drop, less spend; humans must own test authority",
+          "Geoffrey Huntley: counterpoint — agent-written mutation + property tests as verification harness",
+          "Matt Pocock: skills scale with models; /wait-what to harvest open questions after long runs",
+          "Dax: opentunnel (e2e-encrypted local public URLs) → OpenCode",
+          "Lauren Tan: X feedback → tracker / cloud agent closed loop via Grok Bot",
+          "Mario Zechner: pi durable in Swift (JSCore) + durable codemode experiments"
+        ],
+        "actions": [
+          {
+            "label": "Kun Chen — DeepSWE tests eval",
+            "url": "https://x.com/kunchenguid/status/2108030810691629403"
+          },
+          {
+            "label": "Matt Pocock — skills still matter",
+            "url": "https://x.com/mattpocockuk/status/2108186533303898293"
+          },
+          {
+            "label": "Matt Pocock — /wait-what prompt",
+            "url": "https://x.com/mattpocockuk/status/2108175792945676313"
+          },
+          {
+            "label": "Dax — opentunnel",
+            "url": "https://x.com/thdxr/status/2107956848318177622"
+          },
+          {
+            "label": "Lauren Tan — Grok Bot X feedback loop",
+            "url": "https://x.com/poteto/status/2107963437154435182"
+          },
+          {
+            "label": "Geoffrey Huntley — mutation/property tests",
+            "url": "https://x.com/GeoffreyHuntley/status/2108054698213396821"
+          },
+          {
+            "label": "Mario Zechner — pi durable in Swift",
+            "url": "https://x.com/badlogicgames/status/2108193659023950005"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2108030810691629403"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2108186533303898293"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2107956848318177622"
+          },
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2107963437154435182"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2108054698213396821"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames/status/2108193659023950005"
+          },
+          {
+            "label": "swyx @swyx",
+            "url": "https://x.com/swyx/status/2108180514121142677"
+          }
+        ]
+      }
+    },
     {
       "id": "deal-20261001-ring-battery-doorbell-2k",
       "category": "deal",

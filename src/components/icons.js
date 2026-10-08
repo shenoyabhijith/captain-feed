@@ -11,6 +11,7 @@ import {
   Bookmark,
   Wallet,
   BarChart3,
+  Sparkles,
 } from "lucide-react";
 
 export const CATEGORY_ICONS = {
@@ -21,6 +22,7 @@ export const CATEGORY_ICONS = {
   aws: Cloud,
   deal: Tag,
   gym: Dumbbell,
+  ai: Sparkles,
 };
 
 export const CATEGORY_LABELS = {
@@ -31,6 +33,7 @@ export const CATEGORY_LABELS = {
   aws: "AWS",
   deal: "Deal",
   gym: "Gym",
+  ai: "AI",
 };
 
 export const VIEW_ICONS = {

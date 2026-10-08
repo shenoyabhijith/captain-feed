@@ -3,6 +3,7 @@ import { CATEGORY_LABELS } from "./icons.js";
 
 /** Topic chips shown in the overflow sheet (not a top pill parade). */
 export const TOPIC_OPTIONS = [
+  { id: "ai", name: "AI", hint: "Builders & agents" },
   { id: "trend", name: "Markets", hint: "ETFs, oil, flows" },
   { id: "tax", name: "Macros", hint: "Tax, rates, policy" },
   { id: "deal", name: "Deals", hint: "Gear & value picks" },
