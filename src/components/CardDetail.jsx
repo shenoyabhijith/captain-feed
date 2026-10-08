@@ -6,7 +6,8 @@ import AwsCardDetail from "./details/AwsCardDetail.jsx";
 import DealCardDetail from "./details/DealCardDetail.jsx";
 import GymCardDetail from "./details/GymCardDetail.jsx";
 import BriefCardDetail from "./details/BriefCardDetail.jsx";
-import DetailShell, { Section, collectBriefBlocks } from "./details/DetailShell.jsx";
+import DetailShell, { BriefBlocks, collectBriefBlocks } from "./details/DetailShell.jsx";
+import { estimateReadMinutes } from "./details/readTime.js";
 
 const RENDERERS = {
   book: BookCardDetail,
@@ -24,6 +25,7 @@ export default function CardDetail({
   onToggleRead,
   onToggleSave,
   onSeen,
+  nextCard,
 }) {
   if (!card) {
     return (
@@ -63,12 +65,19 @@ export default function CardDetail({
           </button>
         </div>
       </div>
-      <Renderer card={card} />
+      <Renderer
+        card={card}
+        nextCard={nextCard}
+        isRead={read}
+        onMarkRead={() => {
+          if (!read) onToggleRead(card.id);
+        }}
+      />
     </div>
   );
 }
 
-function FallbackDetail({ card }) {
+function FallbackDetail({ card, nextCard, isRead, onMarkRead }) {
   const blocks = collectBriefBlocks({}, card);
   return (
     <DetailShell
@@ -80,10 +89,13 @@ function FallbackDetail({ card }) {
       category={card.category}
       eyebrow={card.category}
       index={blocks}
+      readMinutes={estimateReadMinutes(card)}
+      sectionCount={blocks.length}
+      nextCard={nextCard}
+      isRead={isRead}
+      onMarkRead={onMarkRead}
     >
-      {blocks.map((b) => (
-        <Section key={b.id} id={b.id} heading={b.heading} body={b.body} />
-      ))}
+      <BriefBlocks blocks={blocks} />
     </DetailShell>
   );
 }

@@ -648,7 +648,16 @@ function Home({
 function DetailRoute({ feed }) {
   const { id } = useParams();
   const location = useLocation();
-  const card = feed.cards.find((c) => c.id === decodeURIComponent(id || ""));
+  const cardId = decodeURIComponent(id || "");
+  const at = feed.cards.findIndex((c) => c.id === cardId);
+  const card = at >= 0 ? feed.cards[at] : undefined;
+  let nextCard = null;
+  if (at >= 0) {
+    const rest = feed.cards.slice(at + 1).concat(feed.cards.slice(0, at));
+    const next =
+      rest.find((c) => !feed.prefs.read[c.id]) || feed.cards[at + 1] || null;
+    if (next) nextCard = { id: next.id, title: next.title, category: next.category };
+  }
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -661,6 +670,7 @@ function DetailRoute({ feed }) {
       onToggleRead={feed.toggleRead}
       onToggleSave={feed.toggleSave}
       onSeen={feed.markSeen}
+      nextCard={nextCard}
     />
   );
 }

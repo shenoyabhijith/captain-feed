@@ -1,5 +1,5 @@
 import BriefCardDetail from "./BriefCardDetail.jsx";
 
-export default function AwsCardDetail({ card }) {
-  return <BriefCardDetail card={card} eyebrow="AWS brief" />;
+export default function AwsCardDetail({ card, ...rest }) {
+  return <BriefCardDetail card={card} {...rest} eyebrow="AWS brief" />;
 }

@@ -3,6 +3,9 @@ import { motion } from "motion/react";
 import CardChip from "./CardChip.jsx";
 import CardImage, { isWeakImage } from "./CardImage.jsx";
 import { PRESS_SPRING, motionTransition, useMotionOn } from "../lib/motion.js";
+import { renderInline } from "./details/inline.jsx";
+import { estimateReadMinutes } from "./details/readTime.js";
+import { categoryHue } from "./details/DetailShell.jsx";
 
 /**
  * Deterministic variant mapping:
@@ -39,9 +42,12 @@ export default function FeedCard({
   const meta = metaLine(card);
   const eager = index < 2;
   const motionOn = useMotionOn();
+  const gist = String(card.detail?.tldr || card.body || "").split(/\n+/)[0];
+  const minutes = card.detail ? estimateReadMinutes(card) : null;
 
   return (
     <motion.article
+      data-hue={categoryHue(card.category)}
       className={`card card--${variant === "text-only" ? "text" : variant}${
         read ? "" : " unread"
       }${stagger ? " stagger" : ""}`}
@@ -69,10 +75,12 @@ export default function FeedCard({
           </div>
           <h2 className="card-title">{card.title}</h2>
           <p className="card-summary card-summary--tldr">
-            {card.detail?.tldr || card.body}
+            {renderInline(gist, { noLinks: true })}
           </p>
           <div className="card-actions">
-            <span className="tap-hint">Tap for full brief</span>
+            <span className="read-pill">
+              {minutes ? `${minutes} min read` : "Open brief"}
+            </span>
             <button
               type="button"
               className="bookmark"
