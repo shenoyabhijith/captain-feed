@@ -2,15 +2,28 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import {
   isStandaloneDisplayMode,
   isInstallChromeSuppressed,
-  shouldShowInstallHint,
-  writeInstallDismissed,
   markPwaInstalled,
   syncStandaloneDomFlag,
   subscribeDisplayMode,
 } from "../installGate.js";
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
-import { loadTheme, saveTheme } from "../storage";
+import { loadTheme, saveTheme, loadFeedLayout, saveFeedLayout } from "../storage";
+import {
+  CloudDownload,
+  Download,
+  Eraser,
+  Layers,
+  List as ListIcon,
+  Moon,
+  RefreshCw,
+  Sun,
+  Tags,
+} from "lucide-react";
+import TopBar from "./chrome/TopBar.jsx";
+import { MenuItem, MenuSeparator } from "./ui/menu";
+import { ICON_STROKE } from "./icons.js";
+import SwipeDeck from "./deck/SwipeDeck.jsx";
 import { useFeed } from "../hooks/useFeed";
 import {
   checkAndApplyAppUpdate,
@@ -121,18 +134,8 @@ export default function FeedApp() {
     return true;
   }
 
-  function dismissInstall() {
-    writeInstallDismissed();
-    setInstallEvt(null);
-    setIsInstalled(true);
-  }
-
   // Soft hint when BIP missing; Install chrome only in overflow (never primary row)
   const showInstallChrome = !isInstalled;
-  const showInstallHint = shouldShowInstallHint({
-    bipAvailable: Boolean(installEvt),
-    isInstalled,
-  });
 
   const location = useLocation();
   const motionOn = useMotionOn();
@@ -159,10 +162,8 @@ export default function FeedApp() {
                   theme={theme}
                   setTheme={setTheme}
                   showInstallChrome={showInstallChrome}
-                  showInstallHint={showInstallHint}
                   hasBip={Boolean(installEvt)}
                   onInstall={install}
-                  onDismissInstall={dismissInstall}
                   dallasWeather={dallasWeather}
                 />
               </div>
@@ -192,22 +193,19 @@ function Home({
   theme,
   setTheme,
   showInstallChrome,
-  showInstallHint,
   hasBip,
   onInstall,
-  onDismissInstall,
   dallasWeather,
 }) {
   const savedCount = feed.cards.filter((c) => feed.prefs.saved[c.id]).length;
   const unreadCount = feed.cards.filter((c) => !feed.prefs.read[c.id]).length;
   const [chromeHidden, setChromeHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(() => Boolean(feed.query));
   const [topicsOpen, setTopicsOpen] = useState(false);
   const [staggerOn, setStaggerOn] = useState(true);
   const [headerH, setHeaderH] = useState(0);
   const [swAvailable, setSwAvailable] = useState(false);
-  const [updateStatus, setUpdateStatus] = useState("");
   const [updateBusy, setUpdateBusy] = useState(false);
   const [toast, setToast] = useState("");
   const toastTimer = useRef(null);
@@ -219,6 +217,41 @@ function Home({
       : feed.view === "saved"
         ? "saved"
         : "all";
+
+  // SWIPE-DECK: All / For you default to the swipe stack; Saved stays a list.
+  const [layout, setLayout] = useState(loadFeedLayout);
+  const deckOn = layout === "deck" && segmentView !== "saved";
+  // Deck = unread cards (read or saved cards have left the stack).
+  const deckCards = feed.visible.filter((c) => !feed.prefs.read[c.id] && !feed.prefs.saved[c.id]);
+  function toggleLayout(next) {
+    const v = next || (layout === "deck" ? "list" : "deck");
+    setStaggerOn(false);
+    setLayout(v);
+    saveFeedLayout(v);
+  }
+  const onDeckRead = useCallback((id) => feed.setRead(id, true), [feed]);
+  // Swipe up = save AND read, so Unread / Saved counts match the deck.
+  const onDeckSave = useCallback(
+    (id) => {
+      feed.setSaved(id, true);
+      feed.setRead(id, true);
+    },
+    [feed]
+  );
+  const onDeckUndo = useCallback(
+    (h) => {
+      if (h.kind === "save") feed.setSaved(h.id, false);
+      feed.setRead(h.id, false);
+    },
+    [feed]
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("deck-mode", deckOn && feed.status === "ready");
+    if (deckOn) window.scrollTo(0, 0);
+    return () => root.classList.remove("deck-mode");
+  }, [deckOn, feed.status]);
 
   function setSegmentView(id) {
     // For you ≡ unread in live prefs — no list restagger on tab change
@@ -263,8 +296,7 @@ function Home({
       if (!cancelled) setSwAvailable(ok);
     });
     if (consumeUpdatedFlag()) {
-      setUpdateStatus("Updated");
-      setMenuOpen(true);
+      showToast("App updated");
     }
     return () => {
       cancelled = true;
@@ -275,7 +307,7 @@ function Home({
     if (updateBusy || isUpdateInFlight()) return;
     setUpdateBusy(true);
     try {
-      await checkAndApplyAppUpdate((msg) => setUpdateStatus(msg));
+      await checkAndApplyAppUpdate((msg) => msg && showToast(msg));
     } finally {
       setUpdateBusy(false);
     }
@@ -285,15 +317,12 @@ function Home({
     if (hasBip) {
       const ok = await onInstall();
       if (ok) showToast("Install prompted");
-      setMenuOpen(false);
       return;
     }
     showToast(MANUAL_INSTALL_HINT);
-    setMenuOpen(false);
   }
 
   async function onRefreshFeed() {
-    setMenuOpen(false);
     const result = await feed.refreshFeed();
     if (result.ok) showToast("Feed refreshed.");
     else showToast("Could not refresh feed.");
@@ -308,7 +337,6 @@ function Home({
       setStaggerOn(true);
       showToast("Cleared read and saved marks.");
     }
-    setMenuOpen(false);
   }
 
   function onApplyTopics(next) {
@@ -340,7 +368,7 @@ function Home({
     feed.meta.subtitle,
     feed.meta.title,
     showInstallChrome,
-    showInstallHint,
+    searchOpen,
     theme,
     feed.query,
   ]);
@@ -384,7 +412,6 @@ function Home({
         if (nextHidden !== hiddenRef.current) {
           hiddenRef.current = nextHidden;
           setChromeHidden(nextHidden);
-          if (nextHidden) setMenuOpen(false);
         }
         setAtTop((prev) => (prev === nextAtTop ? prev : nextAtTop));
         lastY.current = y;
@@ -427,187 +454,116 @@ function Home({
   }, []);
 
   const spacerH = !chromeHidden && atTop ? headerH : 0;
-  const shortSub =
-    feed.meta.subtitle && String(feed.meta.subtitle).length > 48
-      ? `${String(feed.meta.subtitle).slice(0, 45).trim()}…`
-      : feed.meta.subtitle;
+  const searchCfg = {
+    open: searchOpen,
+    value: feed.query,
+    placeholder: "Search feed",
+    onOpen: () => setSearchOpen(true),
+    onClose: () => {
+      feed.setQuery("");
+      setSearchOpen(false);
+    },
+    onChange: (v) => {
+      setStaggerOn(false);
+      feed.setQuery(v);
+    },
+  };
 
   return (
     <>
       <div className="top-spacer" style={{ height: spacerH }} aria-hidden="true" />
-      <header
+      <TopBar
         ref={headerRef}
         className={`top ${chromeHidden ? "is-hidden" : ""} ${!atTop && !chromeHidden ? "is-peek" : ""}`}
-      >
-        <div className="brand-row">
-          <div className="brand-lockup">
-            <img
-              className="brand-mark"
-              src={`${import.meta.env.BASE_URL}icons/${theme === "dark" ? "mark-28-dark.png" : "mark-28-light.png"}`}
-              width={28}
-              height={28}
-              alt=""
-            />
-            <div className="brand-text">
-              <h1>{feed.meta.title}</h1>
-              {shortSub ? <p className="sub">{shortSub}</p> : null}
-            </div>
-          </div>
-          <div className="top-actions">
-            <button
-              type="button"
-              className="icon-btn more"
-              aria-expanded={menuOpen}
-              aria-label="More actions"
-              onClick={() => setMenuOpen((v) => !v)}
-            >
-              ···
-            </button>
-            <div className={`overflow-actions ${menuOpen ? "open" : ""}`}>
-              <button
-                type="button"
-                className="icon-btn"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              >
-                {theme === "dark" ? "Light" : "Dark"}
-              </button>
-              <button type="button" className="icon-btn" onClick={onRefreshFeed}>
-                Refresh
-              </button>
-              <button type="button" className="icon-btn" onClick={onResetPrefs}>
-                Reset
-              </button>
-              {showInstallChrome ? (
-                <button
-                  type="button"
-                  className="icon-btn install-btn"
-                  onClick={onOverflowInstall}
-                >
-                  Install
-                </button>
+        title={feed.meta.title}
+        theme={theme}
+        search={searchCfg}
+        menuDot={feed.topics.length > 0}
+        menuLabel="More actions"
+        menu={
+          <>
+            <MenuItem onClick={() => setTopicsOpen(true)}>
+              <Tags strokeWidth={ICON_STROKE} aria-hidden="true" />
+              Topics
+              {feed.topics.length > 0 ? (
+                <span className="topbar-menu__count tabular-nums">{feed.topics.length}</span>
               ) : null}
-              {showInstallChrome ? (
-                <button
-                  type="button"
-                  className="icon-btn"
-                  onClick={() => {
-                    onDismissInstall();
-                    setMenuOpen(false);
-                    showToast("Install tip hidden.");
-                  }}
-                >
-                  Hide install tip
-                </button>
-              ) : null}
-              <div className="overflow-update" data-slot="field">
-                <p className="overflow-update__label">App updates</p>
-                <p className="overflow-update__hint" data-slot="field-description">
-                  {swAvailable
-                    ? "Check for a new version and reload this installed app."
-                    : "Updates apply when the app is installed"}
-                </p>
-                <button
-                  type="button"
-                  className="overflow-update__btn"
-                  data-slot="button"
-                  data-variant="outline"
-                  disabled={!swAvailable || updateBusy}
-                  onClick={onUpdateApp}
-                >
-                  Update app
-                </button>
-                <p className="overflow-update__status" role="status" aria-live="polite">
-                  {updateStatus}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="segment" role="tablist" aria-label="Feed view">
-          {[
-            { id: "all", label: "All" },
-            { id: "foryou", label: "For you" },
-            { id: "saved", label: "Saved" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              aria-pressed={segmentView === tab.id}
-              onClick={() => setSegmentView(tab.id)}
-            >
-              {tab.label}
-              {tab.id === "foryou" && unreadCount > 0 ? (
-                <span className="tab-badge tabular-nums" aria-label={`${unreadCount} unread`}>{unreadCount}</span>
-              ) : tab.id === "saved" && savedCount > 0 ? (
-                <span className="tab-badge tabular-nums" aria-label={`${savedCount} saved`}>{savedCount}</span>
-              ) : null}
-            </button>
-          ))}
-        </div>
-        <div className="chrome-row">
-          <div className="search">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              aria-hidden="true"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="M20 20l-3.5-3.5" />
-            </svg>
-            <label className="sr-only" htmlFor="feed-search">
-              Search briefs
-            </label>
-            <input
-              id="feed-search"
-              type="search"
-              placeholder="Search feed"
-              value={feed.query}
-              onChange={(e) => feed.setQuery(e.target.value)}
-              autoComplete="off"
-              enterKeyHint="search"
-            />
-          </div>
-          <button
-            type="button"
-            className="topics-btn"
-            data-active={feed.topics.length > 0 ? "true" : "false"}
-            aria-haspopup="dialog"
-            aria-expanded={topicsOpen}
-            onClick={() => setTopicsOpen(true)}
-          >
-            Topics
-            {feed.topics.length > 0 ? (
-              <span className="topics-count">{feed.topics.length}</span>
+            </MenuItem>
+            {segmentView !== "saved" ? (
+              <MenuItem onClick={() => toggleLayout()}>
+                {layout === "deck" ? (
+                  <ListIcon strokeWidth={ICON_STROKE} aria-hidden="true" />
+                ) : (
+                  <Layers strokeWidth={ICON_STROKE} aria-hidden="true" />
+                )}
+                {layout === "deck" ? "Switch to list view" : "Switch to swipe deck"}
+              </MenuItem>
             ) : null}
-          </button>
+            <MenuItem onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+              {theme === "dark" ? (
+                <Sun strokeWidth={ICON_STROKE} aria-hidden="true" />
+              ) : (
+                <Moon strokeWidth={ICON_STROKE} aria-hidden="true" />
+              )}
+              {theme === "dark" ? "Light theme" : "Dark theme"}
+            </MenuItem>
+            <MenuSeparator />
+            <MenuItem onClick={onRefreshFeed}>
+              <RefreshCw strokeWidth={ICON_STROKE} aria-hidden="true" />
+              Refresh feed
+            </MenuItem>
+            {showInstallChrome ? (
+              <MenuItem onClick={onOverflowInstall}>
+                <Download strokeWidth={ICON_STROKE} aria-hidden="true" />
+                Install app
+              </MenuItem>
+            ) : null}
+            {swAvailable ? (
+              <MenuItem disabled={updateBusy} onClick={onUpdateApp}>
+                <CloudDownload strokeWidth={ICON_STROKE} aria-hidden="true" />
+                {updateBusy ? "Updating…" : "Update app"}
+              </MenuItem>
+            ) : null}
+            <MenuItem onClick={onResetPrefs}>
+              <Eraser strokeWidth={ICON_STROKE} aria-hidden="true" />
+              Reset read &amp; saved
+            </MenuItem>
+          </>
+        }
+      />
+      {feed.status === "loading" || feed.status === "error" ? (
+        <div className="sr-only" role="status">
+          {feed.status === "loading" ? "Loading feed…" : "Could not load feed.json"}
         </div>
-        {feed.status === "loading" || feed.status === "error" ? (
-          <div className="stats feed-meta" role="status">
-            {feed.status === "loading" ? "Loading feed…" : "Could not load feed.json"}
-          </div>
-        ) : null}
-        {showInstallHint ? (
-          <p className="install-hint">
-            Android Chrome: menu → Install app or Add to Home screen
-          </p>
-        ) : null}
-      </header>
+      ) : null}
 
       {feed.status === "ready" ? (
         <>
-          <DallasWeather forecast={dallasWeather} unreadCount={unreadCount} />
+          {deckOn ? null : <DallasWeather forecast={dallasWeather} unreadCount={unreadCount} />}
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
-              key={segmentView}
+              key={`${segmentView}-${deckOn ? "deck" : "list"}`}
               className="feed-panel-motion"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={motionTransition(motionOn, DOCK_FADE)}
             >
+              {deckOn ? (
+                <div className="deck-frame" style={{ "--deck-top": `${headerH}px` }}>
+                  <SwipeDeck
+                    cards={deckCards}
+                    totalSaved={savedCount}
+                    filtered={Boolean(feed.query.trim()) || feed.topics.length > 0}
+                    onRead={onDeckRead}
+                    onSave={onDeckSave}
+                    onUndo={onDeckUndo}
+                    onSeen={feed.markSeen}
+                    onShowSaved={() => setSegmentView("saved")}
+                    onShowList={() => toggleLayout("list")}
+                  />
+                </div>
+              ) : (
               <CardList
                 cards={feed.visible}
                 prefs={feed.prefs}
@@ -619,6 +575,7 @@ function Home({
                 query={feed.query}
                 stagger={staggerOn}
               />
+              )}
             </motion.div>
           </AnimatePresence>
         </>

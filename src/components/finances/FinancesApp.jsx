@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import TopBar from "../chrome/TopBar.jsx";
+import { BookOpen, RefreshCw, Settings2 } from "lucide-react";
 import { TRADER_HUE } from "../research/useResearch.js";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
@@ -7,12 +9,8 @@ import { loadTheme } from "../../storage";
 import { useFinances } from "../../finances/useFinances.js";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import {
-  Menu,
-  MenuTrigger,
-  MenuPopup,
-  MenuItem,
-} from "@/components/ui/menu";
+import { MenuItem } from "@/components/ui/menu";
+import { ICON_STROKE } from "../icons.js";
 import {
   Meter,
   MeterLabel,
@@ -108,45 +106,28 @@ export default function FinancesApp() {
     <div
       className={`finances-root flex h-dvh flex-col ${isDark ? "dark" : ""}`}
     >
-      <header className="app-header shrink-0 bg-background/90 px-4 py-3 backdrop-blur-md">
-        <div className="brand-row mx-auto flex max-w-lg items-center gap-2.5">
-          <img
-            className="size-7 shrink-0 rounded-md"
-            src={`${import.meta.env.BASE_URL}icons/${isDark ? "mark-28-dark.png" : "mark-28-light.png"}`}
-            width={28}
-            height={28}
-            alt=""
-          />
-          <div className="brand-text min-w-0 flex-1 flex items-baseline gap-2">
-            <div className="brand-title font-semibold text-[1.05rem] tracking-tight leading-tight">
-              Finances
-            </div>
-            <span
-              className="text-muted-foreground text-[0.72rem] font-medium"
-              title="Simulated paper trading only"
-            >
-              Paper
-            </span>
-          </div>
-          <Menu>
-            <MenuTrigger
-              className="more-btn inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-transparent text-muted-foreground text-base font-semibold"
-              aria-label="More"
-            >
-              ···
-            </MenuTrigger>
-            <MenuPopup align="end" sideOffset={6}>
+      <TopBar
+        className="app-header"
+        title="Finances"
+        badge="Paper"
+        theme={isDark ? "dark" : "light"}
+        menu={
+          <>
               <MenuItem onClick={() => navigate("/finances/research")}>
+                <BookOpen strokeWidth={ICON_STROKE} aria-hidden="true" />
                 Research
               </MenuItem>
-              <MenuItem onClick={() => fin.reload()}>Refresh</MenuItem>
+              <MenuItem onClick={() => fin.reload()}>
+                <RefreshCw strokeWidth={ICON_STROKE} aria-hidden="true" />
+                Refresh
+              </MenuItem>
               <MenuItem onClick={() => navigate("/finances/admin")}>
+                <Settings2 strokeWidth={ICON_STROKE} aria-hidden="true" />
                 Admin
               </MenuItem>
-            </MenuPopup>
-          </Menu>
-        </div>
-      </header>
+          </>
+        }
+      />
 
       {fin.isPreview ? (
         <div className="mx-auto w-full max-w-lg shrink-0 px-4 pt-2">

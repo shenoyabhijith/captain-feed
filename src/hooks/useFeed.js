@@ -39,7 +39,8 @@ export function useFeed() {
   const [filter, setFilter] = useState("all");
   /** Multi-select category topics (empty = all). */
   const [topics, setTopics] = useState([]);
-  const [view, setView] = useState("all");
+  // SLIM-HEADER: default to Unread (dock), which is what the swipe deck shows.
+  const [view, setView] = useState("unread");
   const [query, setQuery] = useState("");
 
   const loadFeed = useCallback(async () => {
@@ -123,6 +124,25 @@ export function useFeed() {
       return { ...p, saved, seen: { ...p.seen, [id]: p.seen[id] || Date.now() } };
     });
   }
+  /** Explicit setters (swipe deck + undo need set, not toggle). */
+  function setRead(id, on) {
+    setPrefs((p) => {
+      if (Boolean(p.read[id]) === Boolean(on)) return p;
+      const read = { ...p.read };
+      if (on) read[id] = Date.now();
+      else delete read[id];
+      return { ...p, read, seen: { ...p.seen, [id]: p.seen[id] || Date.now() } };
+    });
+  }
+  function setSaved(id, on) {
+    setPrefs((p) => {
+      if (Boolean(p.saved[id]) === Boolean(on)) return p;
+      const saved = { ...p.saved };
+      if (on) saved[id] = Date.now();
+      else delete saved[id];
+      return { ...p, saved, seen: { ...p.seen, [id]: p.seen[id] || Date.now() } };
+    });
+  }
   function resetPrefs() {
     const cleared = { seen: {}, saved: {}, read: {} };
     setPrefs(cleared);
@@ -146,6 +166,8 @@ export function useFeed() {
     markSeen,
     toggleRead,
     toggleSave,
+    setRead,
+    setSaved,
     resetPrefs,
     refreshFeed,
   };

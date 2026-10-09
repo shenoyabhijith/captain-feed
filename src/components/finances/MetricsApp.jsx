@@ -1,13 +1,11 @@
 import { useMemo, useState } from "react";
+import TopBar from "../chrome/TopBar.jsx";
+import { RefreshCw } from "lucide-react";
 import { loadTheme } from "../../storage";
 import { useFinances } from "../../finances/useFinances.js";
 import { Alert, AlertTitle } from "@/components/ui/alert";
-import {
-  Menu,
-  MenuTrigger,
-  MenuPopup,
-  MenuItem,
-} from "@/components/ui/menu";
+import { MenuItem } from "@/components/ui/menu";
+import { ICON_STROKE } from "../icons.js";
 import FeedDock from "./FeedDock.jsx";
 import {
   dayPnlFromEquity,
@@ -210,39 +208,20 @@ export default function MetricsApp() {
 
   return (
     <div className={`finances-root metrics-root flex h-dvh flex-col ${isDark ? "dark" : ""}`}>
-      <header className="app-header shrink-0 bg-background/90 px-4 py-3 backdrop-blur-md">
-        <div className="brand-row mx-auto flex max-w-lg items-center gap-2.5">
-          <img
-            className="size-7 shrink-0 rounded-md"
-            src={`${import.meta.env.BASE_URL}icons/${isDark ? "mark-28-dark.png" : "mark-28-light.png"}`}
-            width={28}
-            height={28}
-            alt=""
-          />
-          <div className="brand-text min-w-0 flex-1 flex items-baseline gap-2">
-            <div className="brand-title font-semibold text-[1.05rem] tracking-tight leading-tight">
-              Metrics
-            </div>
-            <span
-              className="text-muted-foreground text-[0.72rem] font-medium"
-              title="Simulated paper trading only"
-            >
-              Paper
-            </span>
-          </div>
-          <Menu>
-            <MenuTrigger
-              className="more-btn inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-transparent text-muted-foreground text-base font-semibold"
-              aria-label="More"
-            >
-              ···
-            </MenuTrigger>
-            <MenuPopup align="end" sideOffset={6}>
-              <MenuItem onClick={() => fin.reload()}>Refresh</MenuItem>
-            </MenuPopup>
-          </Menu>
-        </div>
-      </header>
+      <TopBar
+        className="app-header"
+        title="Metrics"
+        badge="Paper"
+        theme={isDark ? "dark" : "light"}
+        menu={
+          <>
+              <MenuItem onClick={() => fin.reload()}>
+                <RefreshCw strokeWidth={ICON_STROKE} aria-hidden="true" />
+                Refresh
+              </MenuItem>
+          </>
+        }
+      />
 
       {fin.status === "loading" ? (
         <p className="px-4 py-6 text-muted-foreground text-sm">Loading ledger…</p>

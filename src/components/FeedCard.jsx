@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Clock, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import CardChip from "./CardChip.jsx";
 import CardImage, { isWeakImage } from "./CardImage.jsx";
+import CardArt, { isStockPlaceholder } from "./CardArt.jsx";
 import { PRESS_SPRING, motionTransition, useMotionOn } from "../lib/motion.js";
 import { renderInline } from "./details/inline.jsx";
 import { estimateReadMinutes } from "./details/readTime.js";
@@ -45,7 +47,7 @@ function isXCard(card) {
  * X:     "X · 8 builders · Oct 9"
  * Other: "<outlet> · <price if any> · <date>"
  */
-function metaLine(card) {
+export function metaLine(card) {
   const segs = String(card.source || "").split(/\s+·\s+/).map((x) => x.trim()).filter(Boolean);
   const dateIdx = segs.findIndex((x) => DATE_RE.test(x));
   const date = shortDate(segs[dateIdx]) || shortDate(card.date);
@@ -92,7 +94,7 @@ export function cardCover(card) {
   return { kind: "image", src };
 }
 
-function AvatarTile({ authors, posts }) {
+export function AvatarTile({ authors, posts }) {
   const shown = authors.slice(0, 5);
   const extra = authors.length - shown.length;
   return (
@@ -137,6 +139,9 @@ export default function FeedCard({
   const motionOn = useMotionOn();
   const gist = String(card.detail?.tldr || card.body || "").split(/\n+/)[0];
   const minutes = card.detail ? estimateReadMinutes(card) : null;
+  // Same rule as the deck: stock placeholders (picsum etc.) or a failed image -> pastel art band.
+  const [imgFailed, setImgFailed] = useState(false);
+  const art = cover.kind === "image" && (isStockPlaceholder(cover.src) || imgFailed);
 
   return (
     <motion.article
@@ -156,11 +161,16 @@ export default function FeedCard({
       >
         {showImage && cover.kind === "avatars" ? (
           <AvatarTile authors={cover.authors} posts={cover.posts} />
+        ) : showImage && art ? (
+          <div className="card-media card-media--art is-ready">
+            <CardArt card={card} />
+          </div>
         ) : showImage ? (
           <CardImage
             src={cover.src}
             alt={card.title || "Feed card"}
             eager={eager}
+            onFail={() => setImgFailed(true)}
           />
         ) : null}
         <div className="card-body">

@@ -182,6 +182,7 @@ body::after { background: var(--safe-paint); }
 .btn:not(.primary):not(.on),
 .icon-btn:not(.accent),
 .topics-btn,
+.layout-btn,
 .search,
 .segment,
 .bookmark,

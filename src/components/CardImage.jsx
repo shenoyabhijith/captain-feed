@@ -24,6 +24,7 @@ export default function CardImage({
   alt = "",
   className = "",
   eager = false,
+  onFail,
 }) {
   const weak = isWeakImage(src);
   const [loaded, setLoaded] = useState(false);
@@ -73,7 +74,10 @@ export default function CardImage({
           decoding="async"
           fetchPriority={eager ? "high" : "auto"}
           onLoad={() => setLoaded(true)}
-          onError={() => setFailed(true)}
+          onError={() => {
+            setFailed(true);
+            onFail?.();
+          }}
         />
       ) : null}
       {showFallback ? (
