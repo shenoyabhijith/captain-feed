@@ -1,0 +1,370 @@
+{
+  "schema": 1,
+  "id": "2026-10-09-coresat-open",
+  "date": "2026-10-09",
+  "session": "open",
+  "trader": "coresat",
+  "traderName": "CoreSat",
+  "agentId": "338c1b0c-651e-4410-85af-3de19edb43be",
+  "createdAt": "2026-10-09T14:32:55.763Z",
+  "updatedAt": "2026-10-09T14:34:09.400Z",
+  "strategy": {
+    "id": "coresat-core-confirm",
+    "version": 1,
+    "name": "Core-satellite with confirmation-gated semis"
+  },
+  "regime": {
+    "asOf": "2026-10-09",
+    "label": "uptrend · normal vol",
+    "riskOn": true,
+    "spy": {
+      "symbol": "SPY",
+      "asOf": "2026-10-09",
+      "last": 776.33,
+      "chg1dPct": 0.31,
+      "chg5dPct": 0.87,
+      "chg20dPct": 1.58,
+      "sma50": 767.53,
+      "sma200": 722.92,
+      "vsSma50Pct": 1.15,
+      "vsSma200Pct": 7.39,
+      "rsi14": 53.27,
+      "offHigh52wPct": -0.35
+    },
+    "qqq": {
+      "symbol": "QQQ",
+      "asOf": "2026-10-09",
+      "last": 749.98,
+      "chg1dPct": 0.32,
+      "chg5dPct": 0.05,
+      "chg20dPct": 4.91,
+      "sma50": 724.5,
+      "sma200": 672.17,
+      "vsSma50Pct": 3.52,
+      "vsSma200Pct": 11.58,
+      "rsi14": 56.94,
+      "offHigh52wPct": -1.27
+    },
+    "vix": {
+      "last": 15.05,
+      "chg1dPct": -2.34,
+      "chg5dPct": -1.7,
+      "sma50": 15.49
+    },
+    "rates": {
+      "us10y": 5.27,
+      "us10yChg5dPct": -0.19,
+      "us13w": 4.06
+    },
+    "sectors": [
+      {
+        "symbol": "XLE",
+        "name": "Energy",
+        "chg1dPct": 0.55,
+        "chg5dPct": 4.43,
+        "chg20dPct": 0.71,
+        "vsSma50Pct": 4.66
+      },
+      {
+        "symbol": "XLP",
+        "name": "Cons. Staples",
+        "chg1dPct": -0.34,
+        "chg5dPct": 3.24,
+        "chg20dPct": -0.29,
+        "vsSma50Pct": -1.05
+      },
+      {
+        "symbol": "XLU",
+        "name": "Utilities",
+        "chg1dPct": 0.1,
+        "chg5dPct": 3.21,
+        "chg20dPct": -3.02,
+        "vsSma50Pct": -2.65
+      },
+      {
+        "symbol": "XLV",
+        "name": "Health Care",
+        "chg1dPct": 1.16,
+        "chg5dPct": 2.36,
+        "chg20dPct": 2.87,
+        "vsSma50Pct": 0.71
+      },
+      {
+        "symbol": "XLY",
+        "name": "Cons. Discretionary",
+        "chg1dPct": 0.64,
+        "chg5dPct": 2.16,
+        "chg20dPct": -0.48,
+        "vsSma50Pct": -1.73
+      },
+      {
+        "symbol": "XLF",
+        "name": "Financials",
+        "chg1dPct": 0.33,
+        "chg5dPct": 1.72,
+        "chg20dPct": -4.96,
+        "vsSma50Pct": -3.75
+      },
+      {
+        "symbol": "XLB",
+        "name": "Materials",
+        "chg1dPct": 0.26,
+        "chg5dPct": 1.11,
+        "chg20dPct": -3.04,
+        "vsSma50Pct": -3.75
+      },
+      {
+        "symbol": "XLRE",
+        "name": "Real Estate",
+        "chg1dPct": 0.88,
+        "chg5dPct": 0.98,
+        "chg20dPct": -5.09,
+        "vsSma50Pct": -5.1
+      },
+      {
+        "symbol": "XLC",
+        "name": "Communication",
+        "chg1dPct": -0.63,
+        "chg5dPct": 0.94,
+        "chg20dPct": -1.1,
+        "vsSma50Pct": -0.44
+      },
+      {
+        "symbol": "XLI",
+        "name": "Industrials",
+        "chg1dPct": 0.15,
+        "chg5dPct": -0.76,
+        "chg20dPct": -2.15,
+        "vsSma50Pct": -4.01
+      },
+      {
+        "symbol": "XLK",
+        "name": "Technology",
+        "chg1dPct": 0.24,
+        "chg5dPct": -0.78,
+        "chg20dPct": 5.64,
+        "vsSma50Pct": 4.88
+      }
+    ],
+    "leaders": [
+      "XLE",
+      "XLP",
+      "XLU"
+    ],
+    "laggards": [
+      "XLC",
+      "XLI",
+      "XLK"
+    ],
+    "summary": "SPY 776.33 (+1.15% vs 50d, +7.39% vs 200d), QQQ +11.58% vs 200d, VIX 15.05, 10y 5.27%. 5-day leaders XLE/XLP/XLU, laggards XLC/XLI/XLK.",
+    "sourceUrls": {
+      "yahooChart": "https://query1.finance.yahoo.com/v8/finance/chart/SPY"
+    }
+  },
+  "universe": [
+    {
+      "symbol": "VOO",
+      "asOf": "2026-10-09",
+      "last": 713.62,
+      "chg1dPct": 0.33,
+      "chg5dPct": 0.86,
+      "chg20dPct": 1.57,
+      "sma50": 705.73,
+      "sma200": 664.77,
+      "vsSma50Pct": 1.12,
+      "vsSma200Pct": 7.35,
+      "rsi14": 51,
+      "offHigh52wPct": -0.36
+    },
+    {
+      "symbol": "VTI",
+      "asOf": "2026-10-09",
+      "last": 380.9,
+      "chg1dPct": 0.35,
+      "chg5dPct": 0.77,
+      "chg20dPct": 1.22,
+      "sma50": 378.2,
+      "sma200": 356.55,
+      "vsSma50Pct": 0.72,
+      "vsSma200Pct": 6.83,
+      "rsi14": 49.57,
+      "offHigh52wPct": -0.88
+    },
+    {
+      "symbol": "QQQ",
+      "asOf": "2026-10-09",
+      "last": 749.98,
+      "chg1dPct": 0.32,
+      "chg5dPct": 0.05,
+      "chg20dPct": 4.91,
+      "sma50": 724.5,
+      "sma200": 672.17,
+      "vsSma50Pct": 3.52,
+      "vsSma200Pct": 11.58,
+      "rsi14": 56.94,
+      "offHigh52wPct": -1.27
+    },
+    {
+      "symbol": "SMH",
+      "asOf": "2026-10-09",
+      "last": 605.5,
+      "chg1dPct": -0.29,
+      "chg5dPct": -3.98,
+      "chg20dPct": 6.5,
+      "sma50": 578.28,
+      "sma200": 506.25,
+      "vsSma50Pct": 4.71,
+      "vsSma200Pct": 19.61,
+      "rsi14": 55.08,
+      "offHigh52wPct": -9.48
+    },
+    {
+      "symbol": "SOXX",
+      "asOf": "2026-10-09",
+      "last": 561.78,
+      "chg1dPct": -0.27,
+      "chg5dPct": -4.61,
+      "chg20dPct": 6.59,
+      "sma50": 537.41,
+      "sma200": 462.2,
+      "vsSma50Pct": 4.53,
+      "vsSma200Pct": 21.54,
+      "rsi14": 51.27,
+      "offHigh52wPct": -14.23
+    },
+    {
+      "symbol": "VGT",
+      "asOf": "2026-10-09",
+      "last": 127.51,
+      "chg1dPct": 0.2,
+      "chg5dPct": -0.63,
+      "chg20dPct": 5.32,
+      "sma50": 121.91,
+      "sma200": 107.4,
+      "vsSma50Pct": 4.59,
+      "vsSma200Pct": 18.72,
+      "rsi14": 58.04,
+      "offHigh52wPct": -1.76
+    },
+    {
+      "symbol": "XLK",
+      "asOf": "2026-10-09",
+      "last": 198.25,
+      "chg1dPct": 0.24,
+      "chg5dPct": -0.78,
+      "chg20dPct": 5.64,
+      "sma50": 189.04,
+      "sma200": 166.38,
+      "vsSma50Pct": 4.87,
+      "vsSma200Pct": 19.16,
+      "rsi14": 59.19,
+      "offHigh52wPct": -1.86
+    }
+  ],
+  "secScan": [],
+  "sources": [
+    {
+      "id": "m1",
+      "type": "market",
+      "title": "Yahoo Finance daily history: SPY, QQQ, ^VIX, ^TNX, sector ETFs, VOO, VTI, QQQ, SMH, SOXX, VGT, XLK",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "retrievedAt": "2026-10-09T14:32:55.763Z",
+      "takeaway": "SPY 776.33 (+1.15% vs 50d, +7.39% vs 200d), QQQ +11.58% vs 200d, VIX 15.05, 10y 5.27%. 5-day leaders XLE/XLP/XLU, laggards XLC/XLI/XLK."
+    },
+    {
+      "id": "x1",
+      "type": "x",
+      "title": "Liz Ann Sonders: Oct UMich sentiment 46.3 vs 47.6 est; current conditions 44.7",
+      "url": "https://x.com/LizAnnSonders/status/2108560037492707376",
+      "retrievedAt": "2026-10-09T14:33:38.252Z",
+      "takeaway": "Consumer sentiment missed; current conditions fell sharply; expectations ticked up",
+      "author": "@LizAnnSonders",
+      "publishedAt": "2026-10-09T14:07:42Z"
+    },
+    {
+      "id": "x2",
+      "type": "x",
+      "title": "Liz Ann Sonders: UMich 1y inflation expectations 4.7% vs 4.8% est",
+      "url": "https://x.com/LizAnnSonders/status/2108563278196830240",
+      "retrievedAt": "2026-10-09T14:33:38.385Z",
+      "takeaway": "Inflation expectations slightly below consensus; 5-10y 3.5% in line",
+      "author": "@LizAnnSonders",
+      "publishedAt": "2026-10-09T14:20:35Z"
+    },
+    {
+      "id": "x3",
+      "type": "x",
+      "title": "zerohedge: premarket Mag 7 mostly higher, AAPL -2% on component-order cut report",
+      "url": "https://x.com/zerohedge/status/2108531204806824065",
+      "retrievedAt": "2026-10-09T14:33:39.032Z",
+      "takeaway": "NVDA +1.6%, MSFT +1%, AMZN/GOOGL +0.6%, AAPL -2% premarket",
+      "author": "@zerohedge",
+      "publishedAt": "2026-10-09T12:13:08Z"
+    },
+    {
+      "id": "x4",
+      "type": "x",
+      "title": "Bespoke: UMich sentiment miss, 1y inflation expectations 4.7%",
+      "url": "https://x.com/bespokeinvest/status/2108562186868236350",
+      "retrievedAt": "2026-10-09T14:33:39.890Z",
+      "takeaway": "Sentiment 46.3 vs 47.6; 1y inflation expectations slightly below consensus",
+      "author": "@bespokeinvest",
+      "publishedAt": "2026-10-09T14:16:15Z"
+    },
+    {
+      "id": "web1",
+      "type": "web",
+      "title": "Finviz: Apple shares fall 1.9% following reported cuts to iPhone 18 Pro component orders",
+      "url": "https://finviz.com/news/400759/apple-shares-fall-19-following-reported-cuts-to-iphone-18-pro-component-orders",
+      "retrievedAt": "2026-10-09T14:33:40.006Z",
+      "takeaway": "Single-name demand news; broad tape otherwise firm premarket",
+      "author": "Fiona Craig",
+      "publishedAt": "2026-10-09T11:50:00Z"
+    }
+  ],
+  "ideas": [
+    {
+      "symbol": "VOO",
+      "side": "buy",
+      "status": "selected",
+      "size": "~$8",
+      "thesis": "Core sits at ~70%, bottom of its 70-80% band. SPY is +0.3% at the open, not the >1.5% gap-down that would defer, so top up as planned.",
+      "sourceIds": [
+        "m1",
+        "x3"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "status": "watch",
+      "thesis": "Wait for Oct 14 CPI and a hold above the 50-day before a satellite add.",
+      "sourceIds": [
+        "m1"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "side": "sell",
+      "status": "rejected",
+      "whyRejected": "Satellite is within band; no trim trigger.",
+      "sourceIds": [
+        "m1"
+      ]
+    }
+  ],
+  "decision": {
+    "action": "trade",
+    "summary": "Buy ~$8 of VOO to lift the core off the bottom of its band.",
+    "reasoning": "Structural rebalance, not a market call. The open is calm (SPY +0.3%, VIX ~15) and the Apple news is single-name. Consumer sentiment missed but inflation expectations eased slightly, so no reason to defer.",
+    "confidence": 0.62
+  },
+  "risks": [
+    "Sentiment weakness spills into a broader pullback",
+    "CPI on Oct 14 surprises hot"
+  ],
+  "orders": [
+    "o-20261009-coresat-open-buy-VOO-1"
+  ],
+  "paperOnly": true
+}

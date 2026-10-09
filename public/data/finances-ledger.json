@@ -2,7 +2,7 @@
   "meta": {
     "title": "Captain Feed · Paper desk",
     "paperOnly": true,
-    "asOf": "2026-10-08T16:00:00-04:00",
+    "asOf": "2026-10-09T14:34:09.400Z",
     "priceSource": "yahoo",
     "issuedBy": "firstmate",
     "note": "Firstmate issued paper capital · real EOD marks. Fake capital; not a brokerage.",
@@ -89,12 +89,12 @@
       "name": "CoreSat",
       "persona": "Core ~75% VOO + ~15% QQQ/SMH satellite",
       "startingCash": 100,
-      "cash": 16.65,
+      "cash": 8.65,
       "positions": [
         {
           "symbol": "VOO",
-          "qty": 0.14,
-          "avgPrice": 508.1
+          "qty": 0.1512,
+          "avgPrice": 523.35
         },
         {
           "symbol": "QQQ",
@@ -106,10 +106,10 @@
       "intelAsymmetric": true,
       "promoteReady": false,
       "lastAction": {
-        "side": "sell",
-        "symbol": "QQQ",
-        "reason": "Trim satellite QQQ: 24% of NAV (soft cap ~22%). Core VOO 70%.",
-        "ts": "2026-10-09T06:07:03.876Z"
+        "side": "buy",
+        "symbol": "VOO",
+        "reason": "Top up VOO core from ~70% toward the middle of its band; see research ideas[VOO]",
+        "ts": "2026-10-09T14:34:09.400Z"
       }
     },
     {
@@ -117,7 +117,7 @@
       "name": "Mega",
       "persona": "Equal-weight mega-cap · AAPL MSFT GOOGL AMZN META NVDA",
       "startingCash": 100,
-      "cash": 34.32,
+      "cash": 47.32,
       "positions": [
         {
           "symbol": "AAPL",
@@ -126,7 +126,7 @@
         },
         {
           "symbol": "MSFT",
-          "qty": 0.09,
+          "qty": 0.0655,
           "avgPrice": 420
         }
       ],
@@ -135,9 +135,9 @@
       "promoteReady": false,
       "lastAction": {
         "side": "sell",
-        "symbol": "AAPL",
-        "reason": "AAPL at 54% of NAV (above ~22% equal-weight soft cap); trim slightly.",
-        "ts": "2026-10-09T06:07:03.876Z"
+        "symbol": "MSFT",
+        "reason": "Trim MSFT to the 25% cap into a +1.7% open; see research ideas[MSFT]",
+        "ts": "2026-10-09T14:34:08.816Z"
       }
     },
     {
@@ -165,6 +165,132 @@
     }
   ],
   "decisions": [
+    {
+      "id": "o-20261009-coresat-open-buy-VOO-1",
+      "ts": "2026-10-09T14:34:09.400Z",
+      "agentId": "coresat",
+      "strategy": "CoreSat",
+      "side": "buy",
+      "symbol": "VOO",
+      "qty": 0.0112,
+      "price": 713.9268,
+      "notional": 8,
+      "cashAfter": 8.65,
+      "reason": "Top up VOO core from ~70% toward the middle of its band; see research ideas[VOO]",
+      "signals": [
+        {
+          "source": "market",
+          "org": "research 2026-10-09-coresat-open"
+        },
+        {
+          "source": "x",
+          "org": "research 2026-10-09-coresat-open"
+        },
+        {
+          "source": "web",
+          "org": "research 2026-10-09-coresat-open"
+        }
+      ],
+      "runId": "session-2026-10-09-open",
+      "authorizedBy": "firstmate",
+      "paper": true,
+      "trader": "coresat",
+      "tradeDate": "2026-10-09",
+      "session": "open",
+      "strategyId": "coresat-core-confirm",
+      "strategyVersion": 1,
+      "researchId": "2026-10-09-coresat-open",
+      "rationale": "Top up VOO core from ~70% toward the middle of its band; see research ideas[VOO]",
+      "confidence": 0.62,
+      "quote": {
+        "price": 713.57,
+        "time": "2026-10-09T14:34:07.000Z",
+        "ageSec": 2,
+        "source": "yahoo-chart",
+        "note": "Yahoo public chart feed; intraday quotes can lag up to ~15 min."
+      },
+      "slippage": {
+        "bps": 5,
+        "cost": 0.004
+      },
+      "fees": {
+        "commission": 0,
+        "secFee": 0,
+        "finraTaf": 0,
+        "total": 0,
+        "rates": {
+          "secPerMillion": 20.6,
+          "secSource": "https://www.sec.gov/rules-regulations/fee-rate-advisories/2026-2",
+          "tafPerShare": 0,
+          "tafMaxPerTrade": 0,
+          "tafSource": "https://www.finra.org/rules-guidance/rule-filings/sr-finra-2026-021"
+        }
+      },
+      "broker": "schwab"
+    },
+    {
+      "id": "o-20261009-mega-open-sell-MSFT-1",
+      "ts": "2026-10-09T14:34:08.816Z",
+      "agentId": "mega",
+      "strategy": "Mega",
+      "side": "sell",
+      "symbol": "MSFT",
+      "qty": 0.0245,
+      "price": 531.1493,
+      "notional": 13.01,
+      "cashAfter": 47.32,
+      "reason": "Trim MSFT to the 25% cap into a +1.7% open; see research ideas[MSFT]",
+      "signals": [
+        {
+          "source": "market",
+          "org": "research 2026-10-09-mega-open"
+        },
+        {
+          "source": "x",
+          "org": "research 2026-10-09-mega-open"
+        },
+        {
+          "source": "web",
+          "org": "research 2026-10-09-mega-open"
+        }
+      ],
+      "runId": "session-2026-10-09-open",
+      "authorizedBy": "firstmate",
+      "paper": true,
+      "trader": "mega",
+      "tradeDate": "2026-10-09",
+      "session": "open",
+      "strategyId": "mega-ew-phased",
+      "strategyVersion": 1,
+      "researchId": "2026-10-09-mega-open",
+      "rationale": "Trim MSFT to the 25% cap into a +1.7% open; see research ideas[MSFT]",
+      "confidence": 0.64,
+      "quote": {
+        "price": 531.415,
+        "time": "2026-10-09T14:34:07.000Z",
+        "ageSec": 1,
+        "source": "yahoo-chart",
+        "note": "Yahoo public chart feed; intraday quotes can lag up to ~15 min."
+      },
+      "slippage": {
+        "bps": 5,
+        "cost": 0.0065
+      },
+      "fees": {
+        "commission": 0,
+        "secFee": 0.01,
+        "finraTaf": 0,
+        "total": 0.01,
+        "rates": {
+          "secPerMillion": 20.6,
+          "secSource": "https://www.sec.gov/rules-regulations/fee-rate-advisories/2026-2",
+          "tafPerShare": 0,
+          "tafMaxPerTrade": 0,
+          "tafSource": "https://www.finra.org/rules-guidance/rule-filings/sr-finra-2026-021"
+        }
+      },
+      "broker": "schwab"
+    },
     {
       "id": "d-run-20261008-value-hold-VTI",
       "ts": "2026-10-09T06:07:03.875Z",
