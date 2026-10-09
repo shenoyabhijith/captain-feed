@@ -613,11 +613,20 @@ function DetailRoute({ feed }) {
   const card = at >= 0 ? feed.cards[at] : undefined;
   let nextCard = null;
   if (at >= 0) {
+    // Up next = the next card still in the deck (not read, not saved). Never fall back
+    // to a read card: once everything is dismissed there is simply no "Up next".
     const rest = feed.cards.slice(at + 1).concat(feed.cards.slice(0, at));
-    const next =
-      rest.find((c) => !feed.prefs.read[c.id]) || feed.cards[at + 1] || null;
+    const next = rest.find((c) => !feed.prefs.read[c.id] && !feed.prefs.saved[c.id]) || null;
     if (next) nextCard = { id: next.id, title: next.title, category: next.category };
   }
+
+  // Opening a card dismisses it from the deck (read it once, it never comes back).
+  const { setRead } = feed;
+  const cardFound = Boolean(card);
+  useEffect(() => {
+    if (cardFound) setRead(cardId, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once per opened card
+  }, [cardId, cardFound]);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);

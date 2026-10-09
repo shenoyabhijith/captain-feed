@@ -3,3 +3,5 @@ dist
 .DS_Store
 *.log
 data/trading/research/*/_scan-latest.json
+test-results
+playwright-report

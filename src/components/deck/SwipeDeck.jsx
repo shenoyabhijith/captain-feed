@@ -4,6 +4,7 @@ import {
   AnimatePresence,
   animate,
   motion,
+  useIsPresent,
   useMotionValue,
   useTransform,
 } from "motion/react";
@@ -58,8 +59,13 @@ const FLY = {
 const SPRING = { type: "spring", stiffness: 420, damping: 34 };
 const FLY_T = { duration: 0.32, ease: [0.32, 0.72, 0, 1] };
 
-/** Survives Home remounts (detail round-trip) so undo + caught-up counts persist. */
+/**
+ * Undo buffer: the LAST action only, in memory for this session (survives the
+ * Home remount on a detail round-trip, gone on reload). Dismissals themselves are
+ * persisted in feed.prefs (localStorage, keyed by stable card id).
+ */
 let deckHistory = [];
+let deckCounts = { read: 0, save: 0 };
 
 const outerVariants = {
   exit: ({ dir, motionOn }) =>
@@ -101,8 +107,16 @@ export default function SwipeDeck({
 
   const top = cards[0] || null;
   const stack = cards.slice(0, DEPTH);
-  const readCount = history.filter((h) => h.kind === "read").length;
-  const savedCount = history.filter((h) => h.kind === "save").length;
+  const [counts, setCounts] = useState(() => deckCounts);
+  const bump = useCallback((kind, delta) => {
+    setCounts((c) => {
+      const v = { ...c, [kind]: Math.max(0, c[kind] + delta) };
+      deckCounts = v;
+      return v;
+    });
+  }, []);
+  const readCount = counts.read;
+  const savedCount = counts.save;
 
   const commit = useCallback(
     (dir) => {
@@ -110,28 +124,35 @@ export default function SwipeDeck({
       const kind = dir === "up" ? "save" : "read";
       setExitDir(dir);
       setReturning(null);
-      setHistory((h) => [...h, { id: top.id, kind, dir }]);
+      setHistory([{ id: top.id, kind, dir }]);
+      bump(kind, 1);
       if (kind === "save") onSave(top.id);
       else onRead(top.id);
       setAnnounce(kind === "save" ? `Saved: ${top.title}` : `Marked read: ${top.title}`);
     },
-    [top, onRead, onSave, setHistory]
+    [top, onRead, onSave, setHistory, bump]
   );
 
   const undo = useCallback(() => {
     if (!history.length) return;
     const last = history[history.length - 1];
-    setHistory(history.slice(0, -1));
+    setHistory([]);
     setReturning({ id: last.id, dir: last.dir });
+    if (last.kind === "read" || last.kind === "save") bump(last.kind, -1);
     onUndo(last);
     setAnnounce("Undid last swipe");
-  }, [history, onUndo, setHistory]);
+  }, [history, onUndo, setHistory, bump]);
 
   const open = useCallback(() => {
     if (!top) return;
     onSeen?.(top.id);
+    // Opening dismisses the card from the deck (undo can bring it back).
+    setExitDir("up");
+    setReturning(null);
+    setHistory([{ id: top.id, kind: "open", dir: "up" }]);
+    onRead(top.id);
     navigate(`/card/${encodeURIComponent(top.id)}`);
-  }, [top, onSeen, navigate]);
+  }, [top, onSeen, onRead, navigate, setHistory]);
 
   // Desktop: arrows swipe, Enter opens, Backspace / Cmd-Z undoes.
   useEffect(() => {
@@ -254,7 +275,9 @@ export default function SwipeDeck({
 /** Outer layer: stack position + exit fling. Inner layer: drag. */
 function DeckSlot({ card, depth, motionOn, returningDir, onCommit, onOpen }) {
   const fan = FAN[depth] || FAN[FAN.length - 1];
-  const isTop = depth === 0;
+  // A card flying out is no longer the top card (no taps/drags, not counted).
+  const isPresent = useIsPresent();
+  const isTop = depth === 0 && isPresent;
   const initial =
     returningDir && FLY[returningDir] && motionOn
       ? { ...FLY[returningDir], opacity: 0, scale: 1 }
@@ -263,13 +286,14 @@ function DeckSlot({ card, depth, motionOn, returningDir, onCommit, onOpen }) {
   return (
     <motion.div
       className={`deck-slot${isTop ? " is-top" : ""}`}
-      style={{ zIndex: DEPTH - depth }}
       variants={outerVariants}
       initial={motionOn ? initial : false}
       animate={{ ...fan, opacity: 1 }}
       exit="exit"
       transition={motionOn ? SPRING : { duration: 0 }}
       aria-hidden={isTop ? undefined : true}
+      data-exiting={isPresent ? undefined : ""}
+      style={{ zIndex: DEPTH - depth, pointerEvents: isPresent ? undefined : "none" }}
     >
       <DragCard card={card} isTop={isTop} motionOn={motionOn} onCommit={onCommit} onOpen={onOpen} />
     </motion.div>
@@ -291,6 +315,14 @@ function DragCard({ card, isTop, motionOn, onCommit, onOpen }) {
   const saveOp = useTransform([x, y], ([vx, vy]) =>
     vy < 0 && -vy > Math.abs(vx) ? Math.min(1, -vy / SWIPE_Y) : 0
   );
+  // An undo can revive a card that is still flying out (AnimatePresence keeps the same
+  // element), with its drag offset frozen off-screen. Re-centre whenever it is top again.
+  useEffect(() => {
+    if (!isTop) return;
+    const back = motionOn ? { type: "spring", stiffness: 500, damping: 34 } : { duration: 0 };
+    if (x.get() !== 0) animate(x, 0, back);
+    if (y.get() !== 0) animate(y, 0, back);
+  }, [isTop, motionOn, x, y]);
   const readScale = useTransform(readRight, [0, 1], [0.8, 1]);
   const readLScale = useTransform(readLeft, [0, 1], [0.8, 1]);
   const saveScale = useTransform(saveOp, [0, 1], [0.8, 1]);

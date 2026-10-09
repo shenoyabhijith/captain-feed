@@ -1,4 +1,6 @@
-const KEY = "captain-feed-v2";
+/** Read / saved / seen marks, keyed by the stable card id from feed.json. */
+export const PREFS_KEY = "captain-feed-v2";
+const KEY = PREFS_KEY;
 const THEME_KEY = "captain-feed-theme";
 
 export function loadPrefs() {
@@ -15,7 +17,11 @@ export function loadPrefs() {
 }
 
 export function savePrefs(prefs) {
-  localStorage.setItem(KEY, JSON.stringify(prefs));
+  try {
+    localStorage.setItem(KEY, JSON.stringify(prefs));
+  } catch {
+    /* storage full / private mode: keep in-memory state */
+  }
 }
 
 export function loadTheme() {

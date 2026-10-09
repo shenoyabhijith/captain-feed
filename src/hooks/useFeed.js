@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { loadPrefs, savePrefs } from "../storage";
+import { PREFS_KEY, loadPrefs, savePrefs } from "../storage";
 
 function normalizeCards(list) {
   return (Array.isArray(list) ? list : []).map((c) => ({
@@ -76,6 +76,30 @@ export function useFeed() {
   useEffect(() => {
     savePrefs(prefs);
   }, [prefs]);
+
+  // Dismissals live in localStorage. Re-read them when another tab/window writes, or
+  // when a backgrounded PWA instance comes back, so a stale in-memory copy can never
+  // overwrite (and resurrect) cards dismissed elsewhere.
+  useEffect(() => {
+    const sync = () => {
+      const disk = loadPrefs();
+      setPrefs((p) => (JSON.stringify(p) === JSON.stringify(disk) ? p : disk));
+    };
+    const onStorage = (e) => {
+      if (e.key === null || e.key === PREFS_KEY) sync();
+    };
+    const onVisible = () => {
+      if (document.visibilityState === "visible") sync();
+    };
+    window.addEventListener("storage", onStorage);
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("pageshow", sync);
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("pageshow", sync);
+    };
+  }, []);
 
   const refreshFeed = useCallback(async () => {
     try {
