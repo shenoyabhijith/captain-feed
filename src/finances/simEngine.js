@@ -693,13 +693,15 @@ export function applyProposal(sleeve, proposal, marks, runId, authorizedBy) {
  * Run today: one batch across enabled sleeves. Mutates a deep copy of ledger.
  * Appends { date, marks } to ledger.markHistory (last 12, dedupe same date).
  * @param {object} ledger
- * @param {{ authorizedBy?: 'firstmate'|'admin', enabledOverride?: Record<string,boolean> }} opts
+ * @param {{ authorizedBy?: 'firstmate'|'admin', enabledOverride?: Record<string,boolean>, date?: string, runId?: string, asOf?: string }} opts
  */
 export function runToday(ledger, opts = {}) {
   const authorizedBy = opts.authorizedBy || "admin";
   const marks = { ...(ledger.marks || {}) };
-  const runId = `run-${todayStamp()}-${Date.now().toString(36)}`;
-  const date = new Date().toISOString().slice(0, 10);
+  // Optional overrides let a scripted Firstmate Run stamp the EOD session date.
+  const date = opts.date || new Date().toISOString().slice(0, 10);
+  const runId =
+    opts.runId || `run-${todayStamp()}-${Date.now().toString(36)}`;
 
   // Plugins read existing history; today's snapshot is appended after the run.
   const historyForPlugins = Array.isArray(ledger.markHistory)
@@ -768,7 +770,7 @@ export function runToday(ledger, opts = {}) {
     ...ledger,
     meta: {
       ...ledger.meta,
-      asOf: isoNow(),
+      asOf: opts.asOf || isoNow(),
       paperOnly: true,
     },
     sleeves,

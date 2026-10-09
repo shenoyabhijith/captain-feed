@@ -2,29 +2,30 @@
   "meta": {
     "title": "Captain Feed · Paper desk",
     "paperOnly": true,
-    "asOf": "2026-09-26T16:00:00-05:00",
+    "asOf": "2026-10-08T16:00:00-04:00",
     "priceSource": "yahoo",
     "issuedBy": "firstmate",
-    "note": "Firstmate issued paper capital · real EOD marks. Fake capital; not a brokerage."
+    "note": "Firstmate issued paper capital · real EOD marks. Fake capital; not a brokerage.",
+    "marksAsOf": "2026-10-08T16:00:00-04:00"
   },
   "marks": {
-    "VOO": 512.40,
-    "VTI": 285.10,
-    "VXUS": 62.80,
-    "BND": 73.20,
-    "QQQ": 478.50,
-    "VGT": 620.00,
-    "SMH": 248.30,
-    "SOXX": 245.10,
-    "XLK": 228.40,
-    "AAPL": 225.80,
-    "MSFT": 428.50,
-    "GOOGL": 165.20,
-    "AMZN": 188.40,
-    "META": 572.10,
-    "NVDA": 118.60,
-    "AVGO": 172.40,
-    "TSM": 168.90
+    "VOO": 711.28,
+    "VTI": 379.56,
+    "VXUS": 84.1,
+    "BND": 70.22,
+    "QQQ": 747.58,
+    "VGT": 127.25,
+    "SMH": 607.27,
+    "SOXX": 563.28,
+    "XLK": 197.78,
+    "AAPL": 340.42,
+    "MSFT": 522.61,
+    "GOOGL": 348.29,
+    "AMZN": 254.06,
+    "META": 720.89,
+    "NVDA": 230.48,
+    "AVGO": 360.14,
+    "TSM": 457.99
   },
   "sleeves": [
     {
@@ -32,19 +33,27 @@
       "name": "Value",
       "persona": "Patient compounder · VTI / VOO / VXUS only",
       "startingCash": 100,
-      "cash": 22.80,
+      "cash": 22.8,
       "positions": [
-        { "symbol": "VTI", "qty": 0.18, "avgPrice": 278.40 },
-        { "symbol": "VOO", "qty": 0.055, "avgPrice": 505.20 }
+        {
+          "symbol": "VTI",
+          "qty": 0.18,
+          "avgPrice": 278.4
+        },
+        {
+          "symbol": "VOO",
+          "qty": 0.055,
+          "avgPrice": 505.2
+        }
       ],
       "enabled": true,
       "intelAsymmetric": false,
       "promoteReady": false,
       "lastAction": {
-        "side": "buy",
+        "side": "hold",
         "symbol": "VTI",
-        "reason": "Book/NAV discount vs peers; refill core quality.",
-        "ts": "2026-09-26T15:18:00-05:00"
+        "reason": "Hold VTI (52% of NAV); cash 18% already deployed.",
+        "ts": "2026-10-09T06:07:03.875Z"
       }
     },
     {
@@ -52,19 +61,27 @@
       "name": "Swing",
       "persona": "3–15 day swing · high bar; skip is fine",
       "startingCash": 100,
-      "cash": 11.40,
+      "cash": 78.2,
       "positions": [
-        { "symbol": "SMH", "qty": 0.22, "avgPrice": 241.00 },
-        { "symbol": "NVDA", "qty": 0.35, "avgPrice": 112.80 }
+        {
+          "symbol": "SMH",
+          "qty": 0.11,
+          "avgPrice": 241
+        },
+        {
+          "symbol": "NVDA",
+          "qty": 0.35,
+          "avgPrice": 112.8
+        }
       ],
       "enabled": true,
       "intelAsymmetric": true,
       "promoteReady": false,
       "lastAction": {
         "side": "sell",
-        "symbol": "NVDA",
-        "reason": "Post-print fade; trim half into strength.",
-        "ts": "2026-09-26T15:42:00-05:00"
+        "symbol": "SMH",
+        "reason": "SMH extended (152.0% above avg $241.00); trim half.",
+        "ts": "2026-10-09T06:07:03.876Z"
       }
     },
     {
@@ -72,19 +89,27 @@
       "name": "CoreSat",
       "persona": "Core ~75% VOO + ~15% QQQ/SMH satellite",
       "startingCash": 100,
-      "cash": 8.20,
+      "cash": 16.65,
       "positions": [
-        { "symbol": "VOO", "qty": 0.14, "avgPrice": 508.10 },
-        { "symbol": "QQQ", "qty": 0.045, "avgPrice": 470.20 }
+        {
+          "symbol": "VOO",
+          "qty": 0.14,
+          "avgPrice": 508.1
+        },
+        {
+          "symbol": "QQQ",
+          "qty": 0.0337,
+          "avgPrice": 470.2
+        }
       ],
       "enabled": true,
       "intelAsymmetric": true,
       "promoteReady": false,
       "lastAction": {
-        "side": "buy",
-        "symbol": "VOO",
-        "reason": "Rebalance: satellite overweight; refill core.",
-        "ts": "2026-09-26T14:55:00-05:00"
+        "side": "sell",
+        "symbol": "QQQ",
+        "reason": "Trim satellite QQQ: 24% of NAV (soft cap ~22%). Core VOO 70%.",
+        "ts": "2026-10-09T06:07:03.876Z"
       }
     },
     {
@@ -92,19 +117,27 @@
       "name": "Mega",
       "persona": "Equal-weight mega-cap · AAPL MSFT GOOGL AMZN META NVDA",
       "startingCash": 100,
-      "cash": 15.60,
+      "cash": 34.32,
       "positions": [
-        { "symbol": "AAPL", "qty": 0.22, "avgPrice": 218.40 },
-        { "symbol": "MSFT", "qty": 0.09, "avgPrice": 420.00 }
+        {
+          "symbol": "AAPL",
+          "qty": 0.165,
+          "avgPrice": 218.4
+        },
+        {
+          "symbol": "MSFT",
+          "qty": 0.09,
+          "avgPrice": 420
+        }
       ],
       "enabled": true,
       "intelAsymmetric": true,
       "promoteReady": false,
       "lastAction": {
-        "side": "skip",
-        "symbol": "META",
-        "reason": "No edge vs. last entry; wait for pullback.",
-        "ts": "2026-09-26T14:40:00-05:00"
+        "side": "sell",
+        "symbol": "AAPL",
+        "reason": "AAPL at 54% of NAV (above ~22% equal-weight soft cap); trim slightly.",
+        "ts": "2026-10-09T06:07:03.876Z"
       }
     },
     {
@@ -112,22 +145,143 @@
       "name": "RiskOff",
       "persona": "Defensive ballast · cash & BND only",
       "startingCash": 100,
-      "cash": 41.00,
+      "cash": 41,
       "positions": [
-        { "symbol": "BND", "qty": 0.76, "avgPrice": 74.10 }
+        {
+          "symbol": "BND",
+          "qty": 0.76,
+          "avgPrice": 74.1
+        }
       ],
       "enabled": true,
       "intelAsymmetric": false,
       "promoteReady": false,
       "lastAction": {
-        "side": "buy",
+        "side": "hold",
         "symbol": "BND",
-        "reason": "Duration ballast as equity sleeves lean long.",
-        "ts": "2026-09-26T14:11:00-05:00"
+        "reason": "Hold BND; cash 43% of NAV already the ballast (≤45% deploy threshold).",
+        "ts": "2026-10-09T06:07:03.876Z"
       }
     }
   ],
   "decisions": [
+    {
+      "id": "d-run-20261008-value-hold-VTI",
+      "ts": "2026-10-09T06:07:03.875Z",
+      "agentId": "value",
+      "strategy": "Value",
+      "side": "hold",
+      "symbol": "VTI",
+      "reason": "Hold VTI (52% of NAV); cash 18% already deployed.",
+      "signals": [
+        {
+          "source": "feed",
+          "org": "Captain Feed"
+        }
+      ],
+      "runId": "run-20261008",
+      "authorizedBy": "firstmate",
+      "qty": 0,
+      "price": 379.56,
+      "notional": 0,
+      "cashAfter": 22.8
+    },
+    {
+      "id": "d-run-20261008-swing-sell-SMH",
+      "ts": "2026-10-09T06:07:03.876Z",
+      "agentId": "swing",
+      "strategy": "Swing",
+      "side": "sell",
+      "symbol": "SMH",
+      "reason": "SMH extended (152.0% above avg $241.00); trim half.",
+      "signals": [
+        {
+          "source": "feed",
+          "org": "Captain Feed"
+        },
+        {
+          "source": "web",
+          "org": "Yahoo Finance"
+        }
+      ],
+      "runId": "run-20261008",
+      "authorizedBy": "firstmate",
+      "qty": 0.11,
+      "price": 607.27,
+      "notional": 66.8,
+      "cashAfter": 78.2
+    },
+    {
+      "id": "d-run-20261008-coresat-sell-QQQ",
+      "ts": "2026-10-09T06:07:03.876Z",
+      "agentId": "coresat",
+      "strategy": "CoreSat",
+      "side": "sell",
+      "symbol": "QQQ",
+      "reason": "Trim satellite QQQ: 24% of NAV (soft cap ~22%). Core VOO 70%.",
+      "signals": [
+        {
+          "source": "feed",
+          "org": "Captain Feed"
+        },
+        {
+          "source": "web",
+          "org": "Yahoo Finance"
+        }
+      ],
+      "runId": "run-20261008",
+      "authorizedBy": "firstmate",
+      "qty": 0.0113,
+      "price": 747.58,
+      "notional": 8.45,
+      "cashAfter": 16.65
+    },
+    {
+      "id": "d-run-20261008-mega-sell-AAPL",
+      "ts": "2026-10-09T06:07:03.876Z",
+      "agentId": "mega",
+      "strategy": "Mega",
+      "side": "sell",
+      "symbol": "AAPL",
+      "reason": "AAPL at 54% of NAV (above ~22% equal-weight soft cap); trim slightly.",
+      "signals": [
+        {
+          "source": "feed",
+          "org": "Captain Feed"
+        },
+        {
+          "source": "web",
+          "org": "Yahoo Finance"
+        }
+      ],
+      "runId": "run-20261008",
+      "authorizedBy": "firstmate",
+      "qty": 0.055,
+      "price": 340.42,
+      "notional": 18.72,
+      "cashAfter": 34.32
+    },
+    {
+      "id": "d-run-20261008-riskoff-hold-BND",
+      "ts": "2026-10-09T06:07:03.876Z",
+      "agentId": "riskoff",
+      "strategy": "RiskOff",
+      "side": "hold",
+      "symbol": "BND",
+      "reason": "Hold BND; cash 43% of NAV already the ballast (≤45% deploy threshold).",
+      "signals": [
+        {
+          "source": "feed",
+          "org": "Captain Feed"
+        }
+      ],
+      "runId": "run-20261008",
+      "authorizedBy": "firstmate",
+      "qty": 0,
+      "price": 70.22,
+      "notional": 0,
+      "cashAfter": 41
+    },
     {
       "id": "d-20260926-001",
       "ts": "2026-09-26T15:42:00-05:00",
@@ -136,14 +290,28 @@
       "side": "sell",
       "symbol": "NVDA",
       "qty": 0.35,
-      "price": 118.60,
+      "price": 118.6,
       "notional": 41.51,
-      "cashAfter": 11.40,
+      "cashAfter": 11.4,
       "reason": "Post-print fade; trim half into strength.",
       "signals": [
-        { "source": "x", "org": "@semisdesk", "url": "https://x.com/", "asOf": "2026-09-26" },
-        { "source": "reddit", "org": "r/stocks", "url": "https://reddit.com/r/stocks", "asOf": "2026-09-26" },
-        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-26" }
+        {
+          "source": "x",
+          "org": "@semisdesk",
+          "url": "https://x.com/",
+          "asOf": "2026-09-26"
+        },
+        {
+          "source": "reddit",
+          "org": "r/stocks",
+          "url": "https://reddit.com/r/stocks",
+          "asOf": "2026-09-26"
+        },
+        {
+          "source": "feed",
+          "org": "Captain Feed",
+          "asOf": "2026-09-26"
+        }
       ],
       "runId": "run-20260926",
       "authorizedBy": "firstmate"
@@ -156,13 +324,22 @@
       "side": "buy",
       "symbol": "VTI",
       "qty": 0.18,
-      "price": 285.10,
+      "price": 285.1,
       "notional": 51.32,
-      "cashAfter": 22.80,
+      "cashAfter": 22.8,
       "reason": "Book/NAV discount vs peers; refill core quality.",
       "signals": [
-        { "source": "institute", "org": "Bogleheads wiki", "url": "https://www.bogleheads.org/", "asOf": "2026-09-25" },
-        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-26" }
+        {
+          "source": "institute",
+          "org": "Bogleheads wiki",
+          "url": "https://www.bogleheads.org/",
+          "asOf": "2026-09-25"
+        },
+        {
+          "source": "feed",
+          "org": "Captain Feed",
+          "asOf": "2026-09-26"
+        }
       ],
       "runId": "run-20260926",
       "authorizedBy": "firstmate"
@@ -175,12 +352,16 @@
       "side": "buy",
       "symbol": "VOO",
       "qty": 0.14,
-      "price": 512.40,
+      "price": 512.4,
       "notional": 71.74,
-      "cashAfter": 8.20,
+      "cashAfter": 8.2,
       "reason": "Rebalance: satellite overweight; refill core.",
       "signals": [
-        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-26" }
+        {
+          "source": "feed",
+          "org": "Captain Feed",
+          "asOf": "2026-09-26"
+        }
       ],
       "runId": "run-20260926",
       "authorizedBy": "firstmate"
@@ -193,13 +374,23 @@
       "side": "skip",
       "symbol": "META",
       "qty": 0,
-      "price": 572.10,
+      "price": 572.1,
       "notional": 0,
-      "cashAfter": 15.60,
+      "cashAfter": 15.6,
       "reason": "No edge vs. last entry; wait for pullback.",
       "signals": [
-        { "source": "x", "org": "@macrobrief", "url": "https://x.com/", "asOf": "2026-09-26" },
-        { "source": "institute", "org": "SEC EDGAR", "url": "https://www.sec.gov/", "asOf": "2026-09-25" }
+        {
+          "source": "x",
+          "org": "@macrobrief",
+          "url": "https://x.com/",
+          "asOf": "2026-09-26"
+        },
+        {
+          "source": "institute",
+          "org": "SEC EDGAR",
+          "url": "https://www.sec.gov/",
+          "asOf": "2026-09-25"
+        }
       ],
       "runId": "run-20260926",
       "authorizedBy": "firstmate"
@@ -212,13 +403,22 @@
       "side": "buy",
       "symbol": "BND",
       "qty": 0.76,
-      "price": 73.20,
+      "price": 73.2,
       "notional": 55.63,
-      "cashAfter": 41.00,
+      "cashAfter": 41,
       "reason": "Duration ballast as equity sleeves lean long.",
       "signals": [
-        { "source": "reddit", "org": "r/Bogleheads", "url": "https://reddit.com/r/Bogleheads", "asOf": "2026-09-26" },
-        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-26" }
+        {
+          "source": "reddit",
+          "org": "r/Bogleheads",
+          "url": "https://reddit.com/r/Bogleheads",
+          "asOf": "2026-09-26"
+        },
+        {
+          "source": "feed",
+          "org": "Captain Feed",
+          "asOf": "2026-09-26"
+        }
       ],
       "runId": "run-20260926",
       "authorizedBy": "firstmate"
@@ -231,12 +431,16 @@
       "side": "buy",
       "symbol": "MSFT",
       "qty": 0.09,
-      "price": 420.00,
-      "notional": 37.80,
-      "cashAfter": 48.40,
+      "price": 420,
+      "notional": 37.8,
+      "cashAfter": 48.4,
       "reason": "Momentum intact above 50-day; size under 25% NAV.",
       "signals": [
-        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-25" }
+        {
+          "source": "feed",
+          "org": "Captain Feed",
+          "asOf": "2026-09-25"
+        }
       ],
       "runId": "run-20260925",
       "authorizedBy": "firstmate"
@@ -249,13 +453,23 @@
       "side": "buy",
       "symbol": "SMH",
       "qty": 0.22,
-      "price": 241.00,
+      "price": 241,
       "notional": 53.02,
       "cashAfter": 46.98,
       "reason": "Semi basket bounce off support; 5–10 day hold.",
       "signals": [
-        { "source": "x", "org": "@semisdesk", "url": "https://x.com/", "asOf": "2026-09-25" },
-        { "source": "web", "org": "Yahoo Finance", "url": "https://finance.yahoo.com/", "asOf": "2026-09-25" }
+        {
+          "source": "x",
+          "org": "@semisdesk",
+          "url": "https://x.com/",
+          "asOf": "2026-09-25"
+        },
+        {
+          "source": "web",
+          "org": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/",
+          "asOf": "2026-09-25"
+        }
       ],
       "runId": "run-20260925",
       "authorizedBy": "firstmate"
@@ -268,12 +482,16 @@
       "side": "hold",
       "symbol": "VOO",
       "qty": 0.055,
-      "price": 510.00,
+      "price": 510,
       "notional": 0,
       "cashAfter": 74.12,
       "reason": "Hold core; no new names without margin of safety.",
       "signals": [
-        { "source": "feed", "org": "Captain Feed", "asOf": "2026-09-24" }
+        {
+          "source": "feed",
+          "org": "Captain Feed",
+          "asOf": "2026-09-24"
+        }
       ],
       "runId": "run-20260924",
       "authorizedBy": "firstmate"
@@ -286,33 +504,104 @@
       "side": "skip",
       "symbol": "XLK",
       "qty": 0,
-      "price": 226.00,
+      "price": 226,
       "notional": 0,
       "cashAfter": 79.94,
       "reason": "Skip satellite add — already heavy tech via QQQ.",
       "signals": [
-        { "source": "institute", "org": "Vanguard research", "asOf": "2026-09-22" }
+        {
+          "source": "institute",
+          "org": "Vanguard research",
+          "asOf": "2026-09-22"
+        }
       ],
       "runId": "run-20260923",
       "authorizedBy": "firstmate"
     }
   ],
   "equity": [
-    { "date": "2026-09-12", "nav": 500.00 },
-    { "date": "2026-09-15", "nav": 501.20 },
-    { "date": "2026-09-16", "nav": 502.80 },
-    { "date": "2026-09-17", "nav": 501.40 },
-    { "date": "2026-09-18", "nav": 504.10 },
-    { "date": "2026-09-19", "nav": 505.60 },
-    { "date": "2026-09-22", "nav": 507.20 },
-    { "date": "2026-09-23", "nav": 506.80 },
-    { "date": "2026-09-24", "nav": 508.90 },
-    { "date": "2026-09-25", "nav": 510.40 },
-    { "date": "2026-09-26", "nav": 512.40 }
+    {
+      "date": "2026-09-12",
+      "nav": 500
+    },
+    {
+      "date": "2026-09-15",
+      "nav": 501.2
+    },
+    {
+      "date": "2026-09-16",
+      "nav": 502.8
+    },
+    {
+      "date": "2026-09-17",
+      "nav": 501.4
+    },
+    {
+      "date": "2026-09-18",
+      "nav": 504.1
+    },
+    {
+      "date": "2026-09-19",
+      "nav": 505.6
+    },
+    {
+      "date": "2026-09-22",
+      "nav": 507.2
+    },
+    {
+      "date": "2026-09-23",
+      "nav": 506.8
+    },
+    {
+      "date": "2026-09-24",
+      "nav": 508.9
+    },
+    {
+      "date": "2026-09-25",
+      "nav": 510.4
+    },
+    {
+      "date": "2026-09-26",
+      "nav": 512.4
+    },
+    {
+      "date": "2026-10-08",
+      "nav": 729.22
+    }
   ],
   "ops": {
-    "lastRunId": "run-20260926",
-    "rankOrder": ["swing", "mega", "value", "coresat", "riskoff"],
+    "lastRunId": "run-20261008",
+    "rankOrder": [
+      "swing",
+      "mega",
+      "value",
+      "coresat",
+      "riskoff"
+    ],
     "notes": "Firstmate issued paper capital · real EOD marks. Promote-ready flags are ops-only; no live wire."
-  }
+  },
+  "markHistory": [
+    {
+      "date": "2026-10-08",
+      "marks": {
+        "VOO": 711.28,
+        "VTI": 379.56,
+        "VXUS": 84.1,
+        "BND": 70.22,
+        "QQQ": 747.58,
+        "VGT": 127.25,
+        "SMH": 607.27,
+        "SOXX": 563.28,
+        "XLK": 197.78,
+        "AAPL": 340.42,
+        "MSFT": 522.61,
+        "GOOGL": 348.29,
+        "AMZN": 254.06,
+        "META": 720.89,
+        "NVDA": 230.48,
+        "AVGO": 360.14,
+        "TSM": 457.99
+      }
+    }
+  ]
 }
