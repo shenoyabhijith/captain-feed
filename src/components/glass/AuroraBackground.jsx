@@ -3,15 +3,20 @@ import { MeshGradient } from "@paper-design/shaders-react";
 
 /*
  * LIQUID-GLASS: app-wide aurora behind every screen, so the glass chrome has
- * vivid color to refract. Rendering is @paper-design/shaders-react's
- * MeshGradient (WebGL); a static CSS mesh (.aurora) paints underneath as the
- * fallback when WebGL is unavailable or before the first frame.
- * Palette = the section hues (blue, violet, emerald, pink, cyan, gold). No orange.
+ * color to refract. Rendering is @paper-design/shaders-react's MeshGradient
+ * (WebGL); a static CSS mesh (.aurora) paints underneath as the fallback.
+ * Colors are read live from the Radix tokens in palette.css (muted steps of
+ * jade, cyan, plum, gold, sand), so the shader always matches the theme.
  */
-const PALETTE = {
-  light: ["#7aa2ff", "#b69cff", "#5fe0c0", "#ff9fd0", "#7fd8f2", "#ffe08a"],
-  dark: ["#1d3a9e", "#4c1d95", "#065f46", "#831843", "#0e5f78", "#3b2a7a"],
+const STOPS = {
+  light: ["--jade-5", "--cyan-4", "--sand-4", "--plum-4", "--gold-5", "--jade-3"],
+  dark: ["--jade-4", "--cyan-3", "--sand-3", "--plum-3", "--gold-3", "--jade-2"],
 };
+
+function readPalette(theme) {
+  const cs = getComputedStyle(document.documentElement);
+  return STOPS[theme].map((v) => cs.getPropertyValue(v).trim() || "#cccccc");
+}
 
 function readTheme() {
   return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
@@ -53,12 +58,14 @@ export default function AuroraBackground() {
   const theme = useTheme();
   const reduce = useReducedMotion();
   const [gl] = useState(hasWebGL);
+  const [colors, setColors] = useState(() => readPalette(theme));
+  useEffect(() => { setColors(readPalette(theme)); }, [theme]);
   return (
     <div className="aurora" data-tone={theme} aria-hidden="true">
       {gl ? (
         <MeshGradient
           className="aurora__shader"
-          colors={PALETTE[theme]}
+          colors={colors}
           distortion={0.85}
           swirl={0.35}
           grainMixer={0}

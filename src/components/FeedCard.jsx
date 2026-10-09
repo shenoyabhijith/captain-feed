@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Clock, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import CardChip from "./CardChip.jsx";
 import CardImage, { isWeakImage } from "./CardImage.jsx";
@@ -79,7 +80,16 @@ export default function FeedCard({
           </p>
           <div className="card-actions">
             <span className="read-pill">
-              {minutes ? `${minutes} min read` : "Open brief"}
+              {minutes ? (
+                <>
+                  <Clock size={13} strokeWidth={2.2} aria-hidden="true" />
+                  {minutes} min
+                </>
+              ) : (
+                <>
+                  Open <ArrowRight size={13} strokeWidth={2.4} aria-hidden="true" />
+                </>
+              )}
             </span>
             <button
               type="button"

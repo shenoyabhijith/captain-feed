@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ArrowLeft, Check, CircleCheck, Bookmark, BookmarkCheck } from "lucide-react";
 import BookCardDetail from "./details/BookCardDetail.jsx";
 import TaxCardDetail from "./details/TaxCardDetail.jsx";
 import TrendCardDetail from "./details/TrendCardDetail.jsx";
@@ -46,21 +47,25 @@ export default function CardDetail({
     <div className="detail-page">
       <div className="detail-top">
         <Link className="back" to="/">
-          Back
+          <ArrowLeft size={16} strokeWidth={2.2} aria-hidden="true" /> Back
         </Link>
         <div className="detail-actions">
           <button
             type="button"
             className={`btn ${read ? "on" : "primary"}`}
+            aria-label={read ? "Mark unread" : "Mark read"}
+            title={read ? "Mark unread" : "Mark read"}
             onClick={() => onToggleRead(card.id)}
           >
-            {read ? "Mark unread" : "Mark read"}
+            {read ? <CircleCheck size={16} strokeWidth={2.2} aria-hidden="true" /> : <Check size={16} strokeWidth={2.4} aria-hidden="true" />}
+            {read ? "Read" : "Mark read"}
           </button>
           <button
             type="button"
             className={`btn ${saved ? "on" : ""}`}
             onClick={() => onToggleSave(card.id)}
           >
+            {saved ? <BookmarkCheck size={16} strokeWidth={2.2} aria-hidden="true" /> : <Bookmark size={16} strokeWidth={2.2} aria-hidden="true" />}
             {saved ? "Saved" : "Save"}
           </button>
         </div>
