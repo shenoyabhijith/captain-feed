@@ -21,8 +21,7 @@ import {
 import { ICON_STROKE } from "../icons.js";
 import CardChip from "../CardChip.jsx";
 import CardImage, { isWeakImage } from "../CardImage.jsx";
-import { Favicon, domainOf } from "../details/SourceShot.jsx";
-import { CATEGORY_ICONS, CATEGORY_LABELS } from "../icons.js";
+import CardArt, { isStockPlaceholder } from "../CardArt.jsx";
 import { AvatarTile, cardCover, metaLine } from "../FeedCard.jsx";
 import { renderInline } from "../details/inline.jsx";
 import { estimateReadMinutes } from "../details/readTime.js";
@@ -354,31 +353,6 @@ function DragCard({ card, isTop, motionOn, onCommit, onOpen }) {
   );
 }
 
-/** Seeded stock placeholders (picsum etc.) say nothing about the post; treat as no image. */
-const STOCK_RE = /(^|\/\/)(picsum\.photos|source\.unsplash\.com|loremflickr\.com|placehold\.co|via\.placeholder\.com)\b/i;
-export function isStockPlaceholder(src) {
-  return STOCK_RE.test(String(src || ""));
-}
-
-/** No real image: pastel art with the category icon + source favicon, in a shorter band. */
-function DeckArt({ card }) {
-  const Icon = CATEGORY_ICONS[card.category] || Sparkles;
-  const domain = domainOf(card.link);
-  const source = String(card.source || "").split(/\s+·\s+/)[0] || domain;
-  return (
-    <div className="deck-art" aria-hidden="true">
-      <Icon className="deck-art__ghost" size={168} strokeWidth={1.1} />
-      <span className="deck-art__tile">
-        <Icon size={34} strokeWidth={1.9} />
-      </span>
-      <span className="deck-art__src">
-        {domain ? <Favicon domain={domain} size={14} className="deck-art__fav" /> : null}
-        <span>{source || CATEGORY_LABELS[card.category] || "Captain Feed"}</span>
-      </span>
-    </div>
-  );
-}
-
 function CardFace({ card }) {
   const cover = cardCover(card);
   const meta = metaLine(card);
@@ -394,7 +368,7 @@ function CardFace({ card }) {
         {cover.kind === "avatars" ? (
           <AvatarTile authors={cover.authors} posts={cover.posts} />
         ) : art ? (
-          <DeckArt card={card} />
+          <CardArt card={card} />
         ) : (
           <CardImage
             src={cover.src}

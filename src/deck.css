@@ -356,3 +356,10 @@ html.deck-mode body {
 
 /* Art band is shorter, so the gist gets the extra lines */
 .deck-card__media.is-art + .deck-card__body .deck-card__gist { -webkit-line-clamp: 9; }
+
+/* List view: same pastel art band as the deck when there's no real image (stock/picsum/failed) */
+.card .card-media.card-media--art {
+  aspect-ratio: auto;
+  height: 128px;
+  background: var(--sec-grad, var(--sand-4));
+}
