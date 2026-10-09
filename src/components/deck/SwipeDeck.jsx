@@ -15,15 +15,18 @@ import {
   Clock,
   List,
   RotateCcw,
+  Sparkles,
   SquareArrowOutUpRight,
 } from "lucide-react";
+import { ICON_STROKE } from "../icons.js";
 import CardChip from "../CardChip.jsx";
-import CardImage from "../CardImage.jsx";
+import CardImage, { isWeakImage } from "../CardImage.jsx";
+import { Favicon, domainOf } from "../details/SourceShot.jsx";
+import { CATEGORY_ICONS, CATEGORY_LABELS } from "../icons.js";
 import { AvatarTile, cardCover, metaLine } from "../FeedCard.jsx";
 import { renderInline } from "../details/inline.jsx";
 import { estimateReadMinutes } from "../details/readTime.js";
 import { categoryHue } from "../details/DetailShell.jsx";
-import { ICON_STROKE } from "../icons.js";
 import { useMotionOn } from "../../lib/motion.js";
 
 /**
@@ -206,7 +209,7 @@ export default function SwipeDeck({
           aria-label="Undo last swipe"
           title="Undo (Backspace)"
         >
-          <RotateCcw size={18} strokeWidth={ICON_STROKE} aria-hidden="true" />
+          <RotateCcw size={16} strokeWidth={ICON_STROKE} aria-hidden="true" />
         </button>
         <button
           type="button"
@@ -216,7 +219,7 @@ export default function SwipeDeck({
           aria-label="Mark read, next card"
           title="Mark read (← / →)"
         >
-          <Check size={22} strokeWidth={2.4} aria-hidden="true" />
+          <Check size={20} strokeWidth={2.4} aria-hidden="true" />
         </button>
         <button
           type="button"
@@ -226,7 +229,7 @@ export default function SwipeDeck({
           aria-label="Save card"
           title="Save (↑)"
         >
-          <Bookmark size={21} strokeWidth={2.2} aria-hidden="true" />
+          <Bookmark size={19} strokeWidth={2.2} aria-hidden="true" />
         </button>
         <button
           type="button"
@@ -236,7 +239,7 @@ export default function SwipeDeck({
           aria-label="Open full post"
           title="Open (Enter)"
         >
-          <SquareArrowOutUpRight size={19} strokeWidth={ICON_STROKE} aria-hidden="true" />
+          <SquareArrowOutUpRight size={16} strokeWidth={ICON_STROKE} aria-hidden="true" />
         </button>
         <span className="deck-left tabular-nums" aria-label={`${cards.length} cards left`}>
           {cards.length}
@@ -351,18 +354,54 @@ function DragCard({ card, isTop, motionOn, onCommit, onOpen }) {
   );
 }
 
+/** Seeded stock placeholders (picsum etc.) say nothing about the post; treat as no image. */
+const STOCK_RE = /(^|\/\/)(picsum\.photos|source\.unsplash\.com|loremflickr\.com|placehold\.co|via\.placeholder\.com)\b/i;
+export function isStockPlaceholder(src) {
+  return STOCK_RE.test(String(src || ""));
+}
+
+/** No real image: pastel art with the category icon + source favicon, in a shorter band. */
+function DeckArt({ card }) {
+  const Icon = CATEGORY_ICONS[card.category] || Sparkles;
+  const domain = domainOf(card.link);
+  const source = String(card.source || "").split(/\s+·\s+/)[0] || domain;
+  return (
+    <div className="deck-art" aria-hidden="true">
+      <Icon className="deck-art__ghost" size={168} strokeWidth={1.1} />
+      <span className="deck-art__tile">
+        <Icon size={34} strokeWidth={1.9} />
+      </span>
+      <span className="deck-art__src">
+        {domain ? <Favicon domain={domain} size={14} className="deck-art__fav" /> : null}
+        <span>{source || CATEGORY_LABELS[card.category] || "Captain Feed"}</span>
+      </span>
+    </div>
+  );
+}
+
 function CardFace({ card }) {
   const cover = cardCover(card);
   const meta = metaLine(card);
   const gist = String(card.detail?.tldr || card.body || "").split(/\n+/)[0];
   const minutes = card.detail ? estimateReadMinutes(card) : null;
+  const noRealImage =
+    cover.kind === "image" && (isWeakImage(cover.src) || isStockPlaceholder(cover.src));
+  const [imgFailed, setImgFailed] = useState(false);
+  const art = noRealImage || imgFailed;
   return (
     <>
-      <div className="deck-card__media">
+      <div className={`deck-card__media${art ? " is-art" : ""}`}>
         {cover.kind === "avatars" ? (
           <AvatarTile authors={cover.authors} posts={cover.posts} />
+        ) : art ? (
+          <DeckArt card={card} />
         ) : (
-          <CardImage src={cover.src} alt={card.title || "Feed card"} eager />
+          <CardImage
+            src={cover.src}
+            alt={card.title || "Feed card"}
+            eager
+            onFail={() => setImgFailed(true)}
+          />
         )}
       </div>
       <div className="deck-card__body">

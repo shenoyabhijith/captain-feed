@@ -1,0 +1,171 @@
+/* =====================================================================
+   SLIM-HEADER — one quiet 44px glass row (Home / Finances / Metrics).
+   Small mark + wordmark left; search + "…" icon buttons right.
+   Radix jade on sand, Lucide icons, no orange.
+   ===================================================================== */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 44px;
+  box-sizing: border-box;
+  padding: 0 6px 0 10px;
+  border-radius: 999px;
+  background: var(--glass-sheen), var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-stroke);
+  box-shadow: inset 0 1px 0 var(--glass-hi), 0 6px 18px -12px var(--sand-a8);
+  color: var(--ink);
+}
+
+/* Home: floating capsule (keeps hide-on-scroll from .top) */
+.topbar.top {
+  top: max(6px, env(safe-area-inset-top, 0px));
+  width: min(452px, calc(100% - 24px));
+  padding: 0 6px 0 10px;
+  border-radius: 999px;
+  border-top: 1px solid var(--glass-stroke);
+}
+.topbar.top.is-peek { box-shadow: inset 0 1px 0 var(--glass-hi), 0 8px 22px -12px var(--sand-a9); }
+
+/* Finances / Metrics: same capsule in the flex column */
+.finances-root .topbar.app-header {
+  flex-shrink: 0;
+  width: min(452px, calc(100% - 24px));
+  margin: max(6px, env(safe-area-inset-top, 0px)) auto 4px;
+  border-radius: 999px;
+  border-top: 1px solid var(--glass-stroke);
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+.topbar__mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  flex: 0 0 auto;
+}
+.topbar__title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--ink);
+}
+.topbar__badge {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: var(--grad-brand);
+  color: var(--on-brand);
+  border: 1px solid var(--line-brand);
+}
+
+.topbar__actions { display: flex; align-items: center; gap: 2px; }
+.topbar__btn {
+  appearance: none;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.15s, transform calc(0.15s * var(--motion, 1));
+}
+.topbar__btn:hover { background: var(--sand-a3); }
+.topbar__btn:active { transform: scale(0.92); background: var(--sand-a4); }
+.topbar__btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.topbar__btn[data-popup-open] { background: var(--grad-brand); color: var(--solid-brand); }
+/* Active search / topics: tiny jade dot instead of extra chrome */
+.topbar__btn[data-dot="true"]::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--jade-9);
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+/* Search: the bar itself turns into the field */
+.topbar__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  color: var(--muted);
+  animation: topbar-in calc(0.2s * var(--motion, 1)) ease-out;
+}
+.topbar__search input {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.topbar__search input::placeholder { color: var(--muted); opacity: 0.8; }
+.topbar__search input::-webkit-search-cancel-button { display: none; }
+.topbar.is-searching { box-shadow: inset 0 1px 0 var(--glass-hi), 0 0 0 3px color-mix(in srgb, var(--jade-8) 35%, transparent), 0 8px 22px -12px var(--sand-a9); }
+@keyframes topbar-in { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
+
+/* "…" menu: frosted pastel popover (coss/base-ui Menu) */
+.topbar-menu {
+  min-width: 212px;
+  border-radius: 18px !important;
+  background: var(--glass-sheen), var(--glass-fill-strong) !important;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-stroke) !important;
+  box-shadow: inset 0 1px 0 var(--glass-hi), 0 18px 40px -16px var(--sand-a9) !important;
+  color: var(--ink);
+}
+.topbar-menu::before { display: none; }
+.topbar-menu [data-slot="menu-item"] {
+  min-height: 38px;
+  gap: 10px;
+  padding: 0 10px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.topbar-menu [data-slot="menu-item"] > svg { width: 17px; height: 17px; color: var(--solid-brand); opacity: 1 !important; }
+.topbar-menu [data-slot="menu-item"][data-highlighted] { background: var(--grad-brand); color: var(--on-brand); }
+.topbar-menu [data-slot="menu-separator"] { margin: 4px 8px; background: var(--sand-a4); }
+.topbar-menu__count {
+  margin-left: auto;
+  min-width: 20px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-align: center;
+  background: var(--grad-brand);
+  color: var(--on-brand);
+}

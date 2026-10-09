@@ -13,19 +13,19 @@ function resolveImage(src) {
   return `${import.meta.env.BASE_URL}${s.replace(/^\//, "")}`;
 }
 
-function domainOf(url) {
+export function domainOf(url) {
   try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return ""; }
 }
 
-function Favicon({ domain }) {
+export function Favicon({ domain, size = 16, className = "srcshot__favicon" }) {
   const [failed, setFailed] = useState(!domain);
-  if (failed) return <Globe size={14} strokeWidth={2.2} aria-hidden="true" />;
+  if (failed) return <Globe size={Math.round(size * 0.875)} strokeWidth={2.2} aria-hidden="true" />;
   return (
     <img
-      className="srcshot__favicon"
+      className={className}
       src={`https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`}
-      width={16}
-      height={16}
+      width={size}
+      height={size}
       alt=""
       loading="lazy"
       onError={() => setFailed(true)}

@@ -39,7 +39,8 @@ export function useFeed() {
   const [filter, setFilter] = useState("all");
   /** Multi-select category topics (empty = all). */
   const [topics, setTopics] = useState([]);
-  const [view, setView] = useState("all");
+  // SLIM-HEADER: default to Unread (dock), which is what the swipe deck shows.
+  const [view, setView] = useState("unread");
   const [query, setQuery] = useState("");
 
   const loadFeed = useCallback(async () => {

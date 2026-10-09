@@ -22,7 +22,7 @@ html.deck-mode body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
   width: 100%;
   max-width: 440px;
   margin: 0 auto;
@@ -34,7 +34,7 @@ html.deck-mode body {
   flex: 1;
   min-height: 0;
   /* room for the fanned cards to peek below + left/right */
-  margin: 2px 8px 22px;
+  margin: 0 8px 20px;
 }
 
 .deck-slot {
@@ -82,7 +82,7 @@ html.deck-mode body {
 
 .deck-card__media {
   position: relative;
-  flex: 0 1 48%;
+  flex: 0 1 50%;
   min-height: 120px;
   overflow: hidden;
   background: var(--sec-soft, var(--sand-3));
@@ -95,6 +95,61 @@ html.deck-mode body {
   border-radius: 0;
 }
 .deck-card__media .card-media__img { width: 100%; height: 100%; object-fit: cover; }
+/* No real image: shorter pastel band with the category icon, never a blank block */
+.deck-card__media.is-art { flex-basis: 30%; min-height: 128px; background: var(--sec-grad, var(--sand-4)); }
+
+.deck-art {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 85% 0%, color-mix(in srgb, var(--sec-strong, var(--sand-5)) 70%, transparent), transparent 60%),
+    radial-gradient(90% 80% at 0% 100%, var(--sec-soft, var(--sand-3)), transparent 70%),
+    var(--sec-grad, var(--sand-4));
+  color: var(--sec-icon, var(--sand-11));
+}
+.deck-art__ghost {
+  position: absolute;
+  right: -28px;
+  bottom: -40px;
+  rotate: -12deg;
+  opacity: 0.13;
+  color: var(--sec-icon, var(--sand-11));
+}
+.deck-art__tile {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--chip-inset);
+  border: 1px solid var(--sec-line, var(--sand-6));
+  box-shadow: inset 0 1px 0 var(--glass-hi), 0 8px 20px -12px var(--sand-a9);
+}
+.deck-art__src {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 80%;
+  padding: 4px 10px 4px 7px;
+  border-radius: 999px;
+  background: var(--chip-inset);
+  color: var(--sec-on, var(--ink));
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.deck-art__src > span { overflow: hidden; text-overflow: ellipsis; }
+.deck-art__fav { width: 14px; height: 14px; border-radius: 4px; flex: 0 0 auto; }
 
 .deck-card__body {
   flex: 1 1 auto;
@@ -181,16 +236,16 @@ html.deck-mode body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  min-height: 56px;
+  gap: 12px;
+  min-height: 46px;
   flex-shrink: 0;
 }
 .deck-btn {
   appearance: none;
   display: grid;
   place-items: center;
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   border-radius: 999px;
   border: 1px solid var(--glass-stroke);
   background: var(--glass-sheen), var(--glass-fill-strong);
@@ -204,10 +259,10 @@ html.deck-mode body {
 .deck-btn:active:not(:disabled) { transform: scale(0.92); }
 .deck-btn:disabled { opacity: 0.4; cursor: default; }
 .deck-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
-.deck-btn--quiet { width: 42px; height: 42px; color: var(--muted); }
-.deck-btn--open { width: 42px; height: 42px; }
-.deck-btn--read { width: 58px; height: 58px; background: var(--jade-4); border-color: var(--jade-6); color: var(--jade-11); }
-.deck-btn--save { width: 58px; height: 58px; background: var(--blue-4); border-color: var(--blue-6); color: var(--blue-11); }
+.deck-btn--quiet { width: 36px; height: 36px; color: var(--muted); }
+.deck-btn--open { width: 36px; height: 36px; }
+.deck-btn--read { width: 46px; height: 46px; background: var(--jade-4); border-color: var(--jade-6); color: var(--jade-11); }
+.deck-btn--save { width: 46px; height: 46px; background: var(--blue-4); border-color: var(--blue-6); color: var(--blue-11); }
 .deck-left {
   position: absolute;
   right: 10px;
@@ -288,22 +343,6 @@ html.deck-mode body {
 }
 .deck-pill--brand { background: var(--grad-brand); color: var(--on-brand); border-color: var(--line-brand); }
 
-/* Layout toggle next to Topics */
-.layout-btn {
-  appearance: none;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  width: 40px;
-  min-height: 40px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--ink);
-  cursor: pointer;
-}
-.layout-btn:active { transform: scale(0.94); }
-
 @media (prefers-reduced-motion: reduce) {
   .deck-done { animation: none; }
   .deck-slot { will-change: auto; }
@@ -314,3 +353,6 @@ html.deck-mode body {
   .deck-frame { max-height: 760px; }
   .deck { max-width: 420px; }
 }
+
+/* Art band is shorter, so the gist gets the extra lines */
+.deck-card__media.is-art + .deck-card__body .deck-card__gist { -webkit-line-clamp: 9; }
