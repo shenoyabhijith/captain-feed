@@ -168,7 +168,15 @@
             "callout": {
               "kind": "why",
               "text": "If an agent can learn a tool from its own `--help`, you skip skill packs and server setup. **Tool calls to success** is the number to tune."
-            }
+            },
+            "screenshots": [
+              {
+                "url": "https://ghuntley.com/tier/",
+                "image": "media/sources/a73f5d871d81ec59.webp",
+                "title": "--help on your CLI is all you need for LLM context until you don't.",
+                "capturedAt": "2026-10-09T18:34:34.761Z"
+              }
+            ]
           },
           {
             "heading": "Personal AI that runs itself",
@@ -262,6 +270,20 @@
                   "like_count": 891,
                   "impression_count": 55998
                 }
+              }
+            ],
+            "screenshots": [
+              {
+                "url": "https://github.com/ThariqS/ai-newtab",
+                "image": "media/sources/b9f18ec0857a9acc.webp",
+                "title": "ThariqS/ai-newtab: Claude generates a daily new tab page based on your browser history.",
+                "capturedAt": "2026-10-09T18:34:59.065Z"
+              },
+              {
+                "url": "https://simonwillison.net/2026/Oct/9/built-using-my-voice/",
+                "image": "media/sources/95fd0fb1a7d9fd74.webp",
+                "title": "A new feature for my blog, built using my voice",
+                "capturedAt": "2026-10-09T18:34:43.603Z"
               }
             ]
           }
