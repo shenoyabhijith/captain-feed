@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { ArrowLeft, RefreshCw, BookOpen } from "lucide-react";
 import FeedDock from "../finances/FeedDock.jsx";
 import { useResearch, TRADER_HUE, fmtDate } from "./useResearch.js";
-import { RegimeCard, DecisionCard } from "./ResearchParts.jsx";
+import { RegimeCard, DecisionCard, ActivityCard } from "./ResearchParts.jsx";
 import { SLEEVE_SPRING, motionTransition, useMotionOn } from "../../lib/motion.js";
 
 function Header({ title, sub, onBack, onReload }) {
@@ -57,8 +57,9 @@ export default function ResearchApp() {
         <div className="rs-layout">
           <aside className="rs-side rs-side--dash">
             <div className="rs-desktop-only"><RegimeCard regime={latestRegime} /></div>
+            <ActivityCard traders={traders} activity={data.activity} frugality={data.frugality} />
             <div className="rs-totals" aria-label="Research totals">
-              <div><b className="tabular-nums">{totals.sessions}</b><span>sessions</span></div>
+              <div><b className="tabular-nums">{totals.sessions}</b><span>decisions</span></div>
               <div><b className="tabular-nums">{totals.sources}</b><span>sources read</span></div>
               <div><b className="tabular-nums">{totals.orders}</b><span>orders</span></div>
               <div><b className="tabular-nums">${totals.fees.toFixed(2)}</b><span>fees</span></div>
@@ -78,7 +79,7 @@ export default function ResearchApp() {
             </nav>
           </aside>
           <main className="rs-main">
-            <div className="rs-mobile-only"><RegimeCard regime={latestRegime} compact /></div>
+            <div className="rs-mobile-only"><RegimeCard regime={latestRegime} compact /><ActivityCard traders={traders} activity={data.activity} frugality={data.frugality} /></div>
             <div className="rs-rail" role="tablist" aria-label="Filter by trader">
               {[{ id: "all", name: "All traders" }, ...traders].map((t) => (
                 <button key={t.id} type="button" role="tab" aria-selected={who === t.id} className="rs-railchip" data-hue={TRADER_HUE[t.id] || "slate"} onClick={() => setWho(t.id)}>
@@ -98,7 +99,7 @@ export default function ResearchApp() {
             ))}
             {!days.length ? <p className="rs-empty">No research records yet.</p> : null}
             <motion.p className="rs-caught" initial={motionOn ? { opacity: 0, scale: 0.96 } : false} animate={{ opacity: 1, scale: 1 }} transition={motionTransition(motionOn, SLEEVE_SPRING)}>
-              You're caught up. Sessions run at 9:05, 12:35 and 2:35 CT on market days.
+              You're caught up. Traders watch the market about every 20 minutes on market days and trade only when the edge beats costs 3×.
             </motion.p>
           </main>
         </div>
@@ -136,8 +137,9 @@ export function StrategyPage() {
               <h2 className="rs-hero__title">{s.name}</h2>
               <p className="rs-hero__thesis">{s.thesis}</p>
               <div className="rs-chiprow">
-                {(t?.allowlist || []).map((sym) => <span key={sym} className="rs-mini" data-hue={hue}>{sym}</span>)}
+                {(t?.watchlist || t?.allowlist || []).map((sym) => <span key={sym} className="rs-mini" data-hue={hue}>{sym}</span>)}
               </div>
+              {t?.fit ? <p className="rs-meta">Watchlist, not a limit. Fits: {t.fit}</p> : null}
             </section>
             <section className="rs-block" data-hue="cyan">
               <h4 className="rs-block__title">Regime fit</h4>

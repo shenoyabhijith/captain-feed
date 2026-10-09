@@ -2,10 +2,10 @@
   "schema": 1,
   "trader": "coresat",
   "strategyId": "coresat-core-confirm",
-  "version": 1,
+  "version": 2,
   "name": "Core-satellite with confirmation-gated semis",
   "status": "active",
-  "updatedAt": "2026-10-09T07:00:00Z",
+  "updatedAt": "2026-10-09T16:15:04Z",
   "thesis": "Keep 70-80% in a broad US core (VOO/VTI) and use a 15-25% satellite (QQQ, SMH, SOXX, VGT, XLK) for tech/semis upside. The core is sized by structure; the satellite only grows after price confirmation, not on the first dip.",
   "regimeFit": "Risk-on: core 75-80%, satellite up to 25%. Elevated vol (VIX > 22) or SPY < 200d: core 80%, satellite \u2264 15%, no satellite adds.",
   "entryRules": [
@@ -19,7 +19,7 @@
   ],
   "sizingRules": [
     "Core 70-80%; satellite total cap 30% (hard), target 15-20%.",
-    "Max 2 orders per day; minimum ticket $5; cash buffer \u2265 $5."
+    "No fixed order cap; be frugal (typically 0\u20131 orders a day). Each order must clear the 3\u00d7 round-trip edge rule; minimum ticket $5; cash buffer \u2265 $5."
   ],
   "riskRules": [
     "Satellite and core overlap (both cap-weighted tech-heavy), so count AI exposure across both.",
@@ -27,9 +27,12 @@
   ],
   "personaConstraints": [
     "PAPER ONLY: no brokerage connection, no real orders.",
-    "Every order needs a same-day research record with X, web and market sources, a selected idea, a rationale and a confidence score (enforced by scripts/paper-order.mjs).",
-    "Fills: latest Yahoo quote (may lag ~15 min) \u00b1 5 bps slippage; Schwab $0 commission; SEC Section 31 + FINRA TAF on sells.",
-    "Minimum ticket $5. Regular market hours only."
+    "Timing freedom: trade at any time during regular US market hours, chosen by the trader at a market-watch check (~every 20 min); no fixed sessions.",
+    "Universe: any US-listed stock or ETF that fits this persona's thesis; the watchlist is only the default scan. Off-watchlist or off-style buys need a written --persona-fit.",
+    "Hard guardrails: long-only cash (no margin, shorting, options, leveraged/inverse ETFs), cash never negative, concentration caps below, any single stock \u2264 25% NAV.",
+    "Every order needs same-day research (X, web, market sources) with a selected idea + thesis for the symbol, a rationale and confidence (enforced by scripts/paper-order.mjs).",
+    "Frugality: every order records target or expected move, stop or invalidation, horizon and estimated round-trip cost (slippage both ways + fees); rejected unless expected edge \u2265 3\u00d7 round-trip cost. Above 3 trades/day or 10/week a --frequency-reason is required.",
+    "Holding is the default. Fills: latest Yahoo quote (may lag ~15 min) \u00b1 5 bps slippage; Schwab $0 commission; SEC Section 31 + FINRA TAF on sells. Minimum ticket $5."
   ],
   "history": [
     {
@@ -38,6 +41,13 @@
       "change": "Initial research-driven strategy (replaces the deterministic rule plugin in simEngine.js).",
       "reason": "The user asked traders to research daily (X, web, SEC, market data) and choose strategies that fit conditions instead of following fixed rules blindly. Rules come from the persona profile plus the Oct 9 pre-market research.",
       "researchId": "2026-10-09-coresat-premarket"
+    },
+    {
+      "version": 2,
+      "date": "2026-10-09",
+      "change": "Timing freedom + frugality: no fixed sessions or symbol allowlist; trade any time in regular hours at a market-watch check; any US-listed stock/ETF that fits the thesis; every order needs target/stop/horizon and expected edge \u2265 3\u00d7 round-trip cost; soft limit 3 trades/day, 10/week. Updated sizingRules[1] and guardrails.",
+      "reason": "user granted timing freedom; frugal, fee-aware trading",
+      "researchId": null
     }
   ]
 }

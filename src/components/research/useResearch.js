@@ -27,7 +27,14 @@ export const SOURCE_META = {
   sec: { label: "SEC", hue: "emerald", long: "SEC filings" },
   market: { label: "Market", hue: "violet", long: "Market data" },
 };
-export const SESSION_LABEL = { premarket: "Pre-market", open: "Open · 9:05 CT", midday: "Midday · 12:35 CT", preclose: "Pre-close · 2:35 CT" };
+/** Legacy fixed-session labels (records before Oct 9 midday). New records are timestamped checks. */
+export const SESSION_LABEL = { premarket: "Pre-market", open: "Open · 9:05 CT", midday: "Midday · 12:35 CT", preclose: "Pre-close · 2:35 CT", check: "Market check" };
+/** "Check · 11:15 AM CT" for new records, legacy session label otherwise. */
+export function whenLabel(rec) {
+  if (rec?.session === "check" && rec.checkAt) return `Check · ${fmtTime(rec.checkAt)}`;
+  return SESSION_LABEL[rec?.session] || rec?.session || "";
+}
+export const fmtX = (n) => (n == null ? "—" : `${Number(n) >= 100 ? Math.round(n) : Number(n).toFixed(1)}×`);
 export const ACTION_LABEL = { plan: "Plan", trade: "Trade", hold: "Hold" };
 
 export const fmtPct = (n) => (n == null ? "—" : `${n > 0 ? "+" : ""}${Number(n).toFixed(2)}%`);

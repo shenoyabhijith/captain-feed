@@ -115,3 +115,18 @@ export function simulateFill({ side, qty, quote, date, slippageBps = BROKER.defa
   const cashDelta = side === "buy" ? -r2(notional + fees.total) : r2(notional - fees.total);
   return { side, qty, quote, price, notional, slippageBps, slippageCost, fees, cashDelta, broker: BROKER.id };
 }
+
+/**
+ * Estimated round-trip cost for a position of `notional` at `price`: slippage on
+ * entry and exit, plus fees on both legs (buy leg $0; sell leg SEC + TAF, rounded
+ * up to the cent). Used by the frugality / edge rule in paper-order.mjs.
+ * For a sell, the round trip is "sell now, buy back later" — same cost shape.
+ */
+export function estimateRoundTrip({ notional, price, date, slippageBps = BROKER.defaultSlippageBps }) {
+  const qty = price > 0 ? notional / price : 0;
+  const slip = 2 * notional * (slippageBps / 1e4);
+  const buyFees = computeFees({ side: "buy", qty, price, date }).total;
+  const sellFees = computeFees({ side: "sell", qty, price, date }).total;
+  const total = r4(slip + buyFees + sellFees);
+  return { slippage: r4(slip), buyFees, sellFees, total, pctOfNotional: notional > 0 ? r4((total / notional) * 100) : null };
+}

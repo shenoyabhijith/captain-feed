@@ -36,6 +36,13 @@ export async function latestQuote(symbol) {
     previousClose: m.chartPreviousClose ?? m.previousClose ?? null,
     marketOpenNow: reg ? nowSec >= reg.start && nowSec < reg.end : false,
     session: reg ? { start: new Date(reg.start * 1000).toISOString(), end: new Date(reg.end * 1000).toISOString() } : null,
+    instrumentType: m.instrumentType || null,
+    exchange: m.exchangeName || null,
+    exchangeName: m.fullExchangeName || null,
+    name: m.longName || m.shortName || null,
+    currency: m.currency || null,
+    dayHigh: m.regularMarketDayHigh ?? null,
+    dayLow: m.regularMarketDayLow ?? null,
     source: "yahoo-chart",
     delayNote: "Yahoo public chart feed; intraday quotes can lag up to ~15 min.",
     url: r.url,
@@ -93,3 +100,32 @@ export const SECTOR_ETFS = Object.freeze({
   XLY: "Cons. Discretionary", XLP: "Cons. Staples", XLI: "Industrials",
   XLU: "Utilities", XLB: "Materials", XLRE: "Real Estate", XLC: "Communication",
 });
+
+// US listing check for the paper executor. Yahoo exchange codes for US national
+// exchanges (Nasdaq GS/GM/CM, NYSE, NYSE American, NYSE Arca, Cboe BZX). OTC/pink
+// sheets and foreign listings are not "US-listed" for our purposes.
+export const US_EXCHANGES = Object.freeze(["NMS", "NGM", "NCM", "NYQ", "ASE", "PCX", "BTS", "NAS", "NYS", "CXI"]);
+const LEVERAGED_RE = /\b(ultra|ultrapro|2x|3x|-1x|-2x|-3x|leveraged|inverse|short|bear|daily .*(bull|bear))\b/i;
+// Duration/maturity phrases are not shorting ("Ultra-Short Income", "Short-Term Bond").
+const BENIGN_SHORT_RE = /\b(ultra[- ]short|short[- ](term|duration|maturity))\b/gi;
+
+/** Classifies a quote for guardrails: {ok, kind: "stock"|"etf", reason?}. */
+export function classifyInstrument(q) {
+  const t = (q.instrumentType || "").toUpperCase();
+  if (q.currency && q.currency !== "USD") return { ok: false, reason: `${q.symbol} trades in ${q.currency}, not USD` };
+  if (!US_EXCHANGES.includes(q.exchange)) return { ok: false, reason: `${q.symbol} is listed on ${q.exchangeName || q.exchange || "an unknown venue"}, not a US national exchange` };
+  if (t === "EQUITY") return { ok: true, kind: "stock" };
+  if (t === "ETF") {
+    if (LEVERAGED_RE.test((q.name || "").replace(BENIGN_SHORT_RE, ""))) return { ok: false, reason: `${q.symbol} (${q.name}) looks like a leveraged or inverse ETF; no leverage or shorting` };
+    return { ok: true, kind: "etf" };
+  }
+  return { ok: false, reason: `${q.symbol} is a ${t || "unknown"} instrument; only US-listed stocks and ETFs are allowed` };
+}
+
+const BOND_RE = /\b(bond|treasury|treasuries|t-bill|aggregate|fixed income|municipal|tips|money market)\b/i;
+/** True for bond / T-bill style ETFs (RiskOff's defensive bucket). */
+export function isDefensive(q) {
+  const n = q.name || "";
+  if ((q.instrumentType || "").toUpperCase() !== "ETF") return false;
+  return BOND_RE.test(n) || (/\bincome\b/i.test(n) && !/\b(equity|dividend|stock|covered call|premium)\b/i.test(n));
+}

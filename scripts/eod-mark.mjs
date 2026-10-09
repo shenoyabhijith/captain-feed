@@ -2,7 +2,7 @@
 // EOD mark-to-market (PAPER ONLY). Runs after the close (4:34 PM CT schedule).
 // Stamps real Yahoo closes, appends equity + markHistory, and records daily P&L
 // per trader. It makes NO trades: all trading now happens in research-driven
-// market-hours sessions via scripts/paper-order.mjs.
+// market-watch checks via scripts/paper-order.mjs.
 // Usage: node scripts/eod-mark.mjs [--date YYYY-MM-DD] [--dry]
 import fs from "node:fs";
 import path from "node:path";
@@ -62,7 +62,7 @@ const next = {
   equity,
   daily: daily.slice(-400),
   meta: { ...ledger.meta, asOf, marksAsOf: asOf, priceSource: "yahoo", paperOnly: true },
-  ops: { ...ledger.ops, lastEodId: runId, lastRunId: runId, notes: "EOD mark-to-market only; trades happen in research-driven market-hours sessions." },
+  ops: { ...ledger.ops, lastEodId: runId, lastRunId: runId, notes: "EOD mark-to-market only; trades happen in research-driven market-watch checks." },
 };
 console.log(`${runId}: total NAV $${totalNav}`);
 for (const [id, x] of Object.entries(perTrader)) console.log(`  ${id.padEnd(8)} nav $${x.nav}  day ${x.pnl >= 0 ? "+" : ""}${x.pnl} (${x.pnlPct}%)  fills ${x.fills}  fees $${x.fees}`);

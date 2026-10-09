@@ -2,11 +2,11 @@
   "schema": 1,
   "trader": "swing",
   "strategyId": "swing-trend-pullback",
-  "version": 1,
+  "version": 2,
   "name": "High-bar trend pullback + concentration discipline",
   "status": "active",
-  "updatedAt": "2026-10-09T07:00:00Z",
-  "thesis": "Take 3-15 day swings only in liquid tech names/ETFs that are in an uptrend (above 50d and 200d) and pulling back on no thesis damage. Act once per day at the pre-close batch. Cutting concentration and cap breaches takes priority over new entries.",
+  "updatedAt": "2026-10-09T16:15:04Z",
+  "thesis": "Take 3-15 day swings only in liquid tech names/ETFs that are in an uptrend (above 50d and 200d) and pulling back on no thesis damage. Watch the market through the day and act only when the setup and timing are right (regular hours; rare, high-bar). Cutting concentration and cap breaches takes priority over new entries.",
   "regimeFit": "Risk-on, VIX < 20: entries allowed. Narrative shock in the target group (e.g., AI hardware Oct 8): no entries for \u2265 3 sessions; trims allowed. VIX > 25 or SPY < 200d: exits only.",
   "entryRules": [
     "Uptrend: price > 50d and > 200d SMA.",
@@ -14,12 +14,12 @@
     "No entry within 1 session of CPI/FOMC or the name's earnings; confidence \u2265 0.65."
   ],
   "exitRules": [
-    "Trim any position above the 25% NAV cap at the next pre-close batch.",
+    "Trim any position above the 25% NAV cap the same day at a check of Swing's choosing (cap trims are exempt from the edge rule).",
     "Exit on a close below the 50d SMA, or after 15 sessions, or at +10% from entry (half) with a trailing 50d for the rest."
   ],
   "sizingRules": [
     "New entries \u2264 15% NAV; hard cap 25% NAV per name.",
-    "Max 1 order per day (pre-close only); minimum ticket $5."
+    "No fixed order cap or pre-close-only rule; Swing chooses its own intraday timing (regular hours only) and stays rare: usually \u2264 1 new entry a day. Each order must clear the 3\u00d7 edge rule; minimum ticket $5."
   ],
   "riskRules": [
     "No bottom-fishing below the 200d (e.g., AVGO after Oct 8).",
@@ -27,9 +27,12 @@
   ],
   "personaConstraints": [
     "PAPER ONLY: no brokerage connection, no real orders.",
-    "Every order needs a same-day research record with X, web and market sources, a selected idea, a rationale and a confidence score (enforced by scripts/paper-order.mjs).",
-    "Fills: latest Yahoo quote (may lag ~15 min) \u00b1 5 bps slippage; Schwab $0 commission; SEC Section 31 + FINRA TAF on sells.",
-    "Minimum ticket $5. Regular market hours only."
+    "Timing freedom: trade at any time during regular US market hours, chosen by the trader at a market-watch check (~every 20 min); no fixed sessions.",
+    "Universe: any US-listed stock or ETF that fits this persona's thesis; the watchlist is only the default scan. Off-watchlist or off-style buys need a written --persona-fit.",
+    "Hard guardrails: long-only cash (no margin, shorting, options, leveraged/inverse ETFs), cash never negative, concentration caps below, any single stock \u2264 25% NAV.",
+    "Every order needs same-day research (X, web, market sources) with a selected idea + thesis for the symbol, a rationale and confidence (enforced by scripts/paper-order.mjs).",
+    "Frugality: every order records target or expected move, stop or invalidation, horizon and estimated round-trip cost (slippage both ways + fees); rejected unless expected edge \u2265 3\u00d7 round-trip cost. Above 3 trades/day or 10/week a --frequency-reason is required.",
+    "Holding is the default. Fills: latest Yahoo quote (may lag ~15 min) \u00b1 5 bps slippage; Schwab $0 commission; SEC Section 31 + FINRA TAF on sells. Minimum ticket $5."
   ],
   "history": [
     {
@@ -38,6 +41,13 @@
       "change": "Initial research-driven strategy (replaces the deterministic rule plugin in simEngine.js).",
       "reason": "The user asked traders to research daily (X, web, SEC, market data) and choose strategies that fit conditions instead of following fixed rules blindly. Rules come from the persona profile plus the Oct 9 pre-market research.",
       "researchId": "2026-10-09-swing-premarket"
+    },
+    {
+      "version": 2,
+      "date": "2026-10-09",
+      "change": "Timing freedom + frugality: no fixed sessions or symbol allowlist; trade any time in regular hours at a market-watch check; any US-listed stock/ETF that fits the thesis; every order needs target/stop/horizon and expected edge \u2265 3\u00d7 round-trip cost; soft limit 3 trades/day, 10/week. Updated thesis, exitRules[0], sizingRules[1] and guardrails.",
+      "reason": "user granted timing freedom; frugal, fee-aware trading",
+      "researchId": null
     }
   ]
 }

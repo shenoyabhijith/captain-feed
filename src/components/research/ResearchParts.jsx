@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ExternalLink, ChevronDown, Check, X as XIcon, Eye, ShieldAlert, Receipt, Target } from "lucide-react";
-import { SOURCE_META, SESSION_LABEL, ACTION_LABEL, TRADER_HUE, fmtPct, fmtMoney, fmtTime, hostOf, pnlSince } from "./useResearch.js";
+import { ExternalLink, ChevronDown, Check, X as XIcon, Eye, ShieldAlert, Receipt, Target, Gauge, Zap } from "lucide-react";
+import { SOURCE_META, SESSION_LABEL, ACTION_LABEL, TRADER_HUE, fmtPct, fmtMoney, fmtTime, fmtX, hostOf, pnlSince, whenLabel } from "./useResearch.js";
 import { SLEEVE_SPRING, motionTransition, useMotionOn } from "../../lib/motion.js";
 
 export function RegimeCard({ regime, compact = false }) {
@@ -115,7 +115,7 @@ export function Ideas({ ideas }) {
 }
 
 export function Orders({ orders, marks }) {
-  if (!orders?.length) return <p className="rs-empty">No orders. This session ended as a {""}plan or hold, so no fills and no fees.</p>;
+  if (!orders?.length) return <p className="rs-empty">No orders. This call ended as a plan or hold, so no fills and no fees.</p>;
   return (
     <div className="rs-orders">
       {orders.map((o) => {
@@ -134,11 +134,66 @@ export function Orders({ orders, marks }) {
               <span>SEC fee {fmtMoney(o.fees?.secFee)} · TAF {fmtMoney(o.fees?.finraTaf)}</span>
               <span>Fees total {fmtMoney(o.fees?.total)} · {o.broker}</span>
               {pnl != null ? <span className={pnl >= 0 ? "up" : "down"}>P&amp;L since {fmtMoney(pnl)}</span> : null}
+              {o.check?.at ? <span>Placed {fmtTime(o.check.at)}</span> : o.session ? <span>{SESSION_LABEL[o.session] || o.session}</span> : null}
             </div>
+            {o.edge ? <EdgeBox edge={o.edge} activity={o.activity} /> : null}
           </div>
         );
       })}
     </div>
+  );
+}
+
+/** Edge vs cost for one order: the frugality rule made visible. */
+export function EdgeBox({ edge, activity }) {
+  const ok = edge.passed;
+  const hue = ok ? "emerald" : edge.exempt ? "cyan" : "pink";
+  return (
+    <div className="rs-edge" data-hue={hue}>
+      <div className="rs-edge__top">
+        <span className="rs-edge__icon"><Gauge size={13} strokeWidth={2.5} aria-hidden="true" /></span>
+        <b>Edge {fmtMoney(edge.expectedEdge)}</b>
+        <span className="rs-edge__vs">vs round trip {fmtMoney(edge.roundTrip?.total)}</span>
+        <span className="rs-pill" data-hue={hue}>{ok ? fmtX(edge.ratio) : edge.exempt ? "Cap trim" : fmtX(edge.ratio)}</span>
+      </div>
+      <div className="rs-order__grid tabular-nums">
+        <span>Expected {edge.expectedMovePct != null ? fmtPct(edge.expectedMovePct) : "—"}{edge.target ? ` → ${fmtMoney(edge.target)}` : ""}</span>
+        <span>Horizon {edge.horizon || "—"}</span>
+        <span>{edge.stop ? `Stop ${fmtMoney(edge.stop)}` : "Invalidation"}{edge.invalidation ? ` · ${edge.invalidation}` : ""}</span>
+        <span>Cost {edge.roundTrip?.pctOfNotional != null ? `${edge.roundTrip.pctOfNotional.toFixed(2)}%` : "—"} (slip {fmtMoney(edge.roundTrip?.slippage)} + fees {fmtMoney((edge.roundTrip?.buyFees || 0) + (edge.roundTrip?.sellFees || 0))})</span>
+        {activity ? <span>Trade #{activity.tradesToday} today · #{activity.tradesWeek} this week</span> : null}
+        {activity?.softWarning ? <span className="down">Over soft limit: {activity.frequencyReason}</span> : null}
+      </div>
+    </div>
+  );
+}
+
+/** Per-trader trade count, turnover and costs, today and this week. */
+export function ActivityCard({ traders, activity, frugality }) {
+  if (!activity) return null;
+  const soft = frugality || { softTradesPerDay: 3, softTradesPerWeek: 10, edgeMultiple: 3 };
+  return (
+    <section className="rs-activity" aria-label="Trading activity">
+      <div className="rs-activity__head">
+        <span className="rs-kicker"><Zap size={12} aria-hidden="true" /> Activity · frugal by design</span>
+        <span className="rs-meta">soft limit {soft.softTradesPerDay}/day · {soft.softTradesPerWeek}/wk · edge ≥ {soft.edgeMultiple}× cost</span>
+      </div>
+      <div className="rs-activity__rows">
+        {traders.map((t) => {
+          const a = activity[t.id];
+          if (!a) return null;
+          const hot = a.tradesToday > soft.softTradesPerDay || a.tradesWeek > soft.softTradesPerWeek;
+          return (
+            <div key={t.id} className="rs-act" data-hue={TRADER_HUE[t.id]}>
+              <span className="rs-avatar rs-avatar--sm" aria-hidden="true">{t.name[0]}</span>
+              <span className="rs-act__name">{t.name}</span>
+              <span className={`rs-act__n tabular-nums ${hot ? "down" : ""}`} title="Trades today / this week"><b>{a.tradesToday}</b> today · <b>{a.tradesWeek}</b> wk</span>
+              <span className="rs-act__t tabular-nums" title="Turnover today / this week (share of NAV)">{fmtMoney(a.turnoverToday)}{a.turnoverTodayPct != null ? ` (${a.turnoverTodayPct}%)` : ""} · {fmtMoney(a.turnoverWeek)} wk</span>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
@@ -173,7 +228,7 @@ export function DecisionCard({ rec, marks, trader, defaultOpen = false, onStrate
         <span className="rs-avatar" aria-hidden="true">{rec.traderName?.[0]}</span>
         <span className="rs-card__who">
           <span className="rs-card__name">{rec.traderName}</span>
-          <span className="rs-card__sub">{SESSION_LABEL[rec.session] || rec.session} · {rec.strategy?.name || "—"}{rec.strategy ? ` v${rec.strategy.version}` : ""}</span>
+          <span className="rs-card__sub">{whenLabel(rec)} · {rec.strategy?.name || "—"}{rec.strategy ? ` v${rec.strategy.version}` : ""}</span>
         </span>
         <span className="rs-action" data-action={d.action}>{ACTION_LABEL[d.action] || "—"}</span>
       </button>
@@ -208,16 +263,21 @@ export function DecisionCard({ rec, marks, trader, defaultOpen = false, onStrate
               <figcaption>{rec.traderName} · decision: {ACTION_LABEL[d.action]}</figcaption>
             </figure>
             {d.plan?.length ? (
-              <Block hue="blue" icon={Target} title="Session plan">
+              <Block hue="blue" icon={Target} title="Plan">
                 <ol className="rs-plan">
                   {d.plan.map((p, i) => (
                     <li key={i}>
-                      <span className="rs-plan__sess">{SESSION_LABEL[p.session] || p.session}</span>
+                      <span className="rs-plan__sess">{p.session ? SESSION_LABEL[p.session] || p.session : "When timing is right"}</span>
                       <b>{p.side === "sell" ? "Sell" : "Buy"} {p.symbol}</b> <span className="rs-plan__size">{p.size}</span>
                       <span className="rs-plan__trig">{p.trigger}</span>
                     </li>
                   ))}
                 </ol>
+              </Block>
+            ) : null}
+            {rec.trigger ? (
+              <Block hue="blue" icon={Zap} title="Why this check escalated">
+                <p className="rs-text">{rec.trigger}</p>
               </Block>
             ) : null}
             <Block hue="violet" title="Regime at decision">

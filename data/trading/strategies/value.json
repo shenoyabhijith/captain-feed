@@ -2,14 +2,14 @@
   "schema": 1,
   "trader": "value",
   "strategyId": "value-bogle-dca",
-  "version": 1,
+  "version": 2,
   "name": "Global-cap Bogle DCA",
   "status": "active",
-  "updatedAt": "2026-10-09T07:00:00Z",
+  "updatedAt": "2026-10-09T16:15:04Z",
   "thesis": "Buy and hold low-cost total-market index funds, adding on a schedule and never selling to time the market. Use each scheduled buy to steer toward a global market-cap mix (US ~60-65%, ex-US ~35-40%), because US cap-weighted indexes are now unusually concentrated in a few AI megacaps.",
   "regimeFit": "Same behavior in every regime: scheduled DCA. High rates or volatility only change where the next dollar goes (the most underweight fund), never whether to sell.",
   "entryRules": [
-    "One DCA ticket per trading day at the midday session, into the most underweight fund vs target (VTI 45%, VOO 15%, VXUS 35%, cash 5%).",
+    "Usually one DCA ticket per trading day, timed by Value during market hours (avoid the first 15 minutes and buying into an intraday spike), into the most underweight fund vs target (VTI 45%, VOO 15%, VXUS 35%, cash 5%).",
     "Skip the ticket only if it would push cash below $10."
   ],
   "exitRules": [
@@ -17,7 +17,7 @@
   ],
   "sizingRules": [
     "Ticket \u2248 $10 (or 50% of excess cash above $10, whichever is smaller).",
-    "Max 1 order per day; minimum ticket $5."
+    "No fixed order cap; one DCA ticket a day is the norm. Long horizon (12+ months) with modest expected return easily clears the 3\u00d7 edge rule on $10 tickets; minimum ticket $5."
   ],
   "riskRules": [
     "Behavioral rule: news, rates and AI headlines are logged as context but cannot trigger sells.",
@@ -25,9 +25,12 @@
   ],
   "personaConstraints": [
     "PAPER ONLY: no brokerage connection, no real orders.",
-    "Every order needs a same-day research record with X, web and market sources, a selected idea, a rationale and a confidence score (enforced by scripts/paper-order.mjs).",
-    "Fills: latest Yahoo quote (may lag ~15 min) \u00b1 5 bps slippage; Schwab $0 commission; SEC Section 31 + FINRA TAF on sells.",
-    "Minimum ticket $5. Regular market hours only."
+    "Timing freedom: trade at any time during regular US market hours, chosen by the trader at a market-watch check (~every 20 min); no fixed sessions.",
+    "Universe: any US-listed stock or ETF that fits this persona's thesis; the watchlist is only the default scan. Off-watchlist or off-style buys need a written --persona-fit.",
+    "Hard guardrails: long-only cash (no margin, shorting, options, leveraged/inverse ETFs), cash never negative, concentration caps below, any single stock \u2264 25% NAV.",
+    "Every order needs same-day research (X, web, market sources) with a selected idea + thesis for the symbol, a rationale and confidence (enforced by scripts/paper-order.mjs).",
+    "Frugality: every order records target or expected move, stop or invalidation, horizon and estimated round-trip cost (slippage both ways + fees); rejected unless expected edge \u2265 3\u00d7 round-trip cost. Above 3 trades/day or 10/week a --frequency-reason is required.",
+    "Holding is the default. Fills: latest Yahoo quote (may lag ~15 min) \u00b1 5 bps slippage; Schwab $0 commission; SEC Section 31 + FINRA TAF on sells. Minimum ticket $5."
   ],
   "history": [
     {
@@ -36,6 +39,13 @@
       "change": "Initial research-driven strategy (replaces the deterministic rule plugin in simEngine.js).",
       "reason": "The user asked traders to research daily (X, web, SEC, market data) and choose strategies that fit conditions instead of following fixed rules blindly. Rules come from the persona profile plus the Oct 9 pre-market research.",
       "researchId": "2026-10-09-value-premarket"
+    },
+    {
+      "version": 2,
+      "date": "2026-10-09",
+      "change": "Timing freedom + frugality: no fixed sessions or symbol allowlist; trade any time in regular hours at a market-watch check; any US-listed stock/ETF that fits the thesis; every order needs target/stop/horizon and expected edge \u2265 3\u00d7 round-trip cost; soft limit 3 trades/day, 10/week. Updated entryRules[0], sizingRules[1] and guardrails.",
+      "reason": "user granted timing freedom; frugal, fee-aware trading",
+      "researchId": null
     }
   ]
 }
