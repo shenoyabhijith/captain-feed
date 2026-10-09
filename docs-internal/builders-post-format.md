@@ -14,7 +14,7 @@ NOT published (`docs/` is the GitHub Pages output; this lives in `docs-internal/
   "source": "X builders watch · Oct 8, 2026 CT · Name · Name …",
   "tags": ["ai", "builders", "…"],
   "accent": "teal",
-  "image": "https://…",                    // optional hero
+  "image": "https://…",                    // ignored for X/Builders cards: the feed uses the first tweet image, else an avatar tile
   "link": "https://x.com/<lead post>",
   "detail": {
     "tldr": "1–2 lines, one per \\n. Inline markdown.",
@@ -35,12 +35,13 @@ NOT published (`docs/` is the GitHub Pages output; this lives in `docs-internal/
   "heading": "Tests as source of truth",   // short; gets the section's color
   "body": "Paragraphs split by blank lines (\\n\\n). Inline markdown.",
   "tweets":  [ /* 1–3 Tweet objects, see below; optional */ ],
+  "screenshots": [ /* 0–3 Source screenshots (non-X links), see below; optional */ ],
   "quote":   { "text": "Best line, verbatim", "by": "Matt Pocock" },   // optional
   "callout": { "kind": "why" | "try", "text": "One or two sentences." } // optional
 }
 ```
 
-Render order inside a section: colored heading → body → **tweet cards** → pull quote → callout.
+Render order inside a section: colored heading → **tweet cards** → **source screenshot cards** → callout → body → pull quote.
 Section colors rotate automatically (blue, violet, emerald, pink, cyan, gold). Never add orange or left bars.
 
 ### Inline markdown (body, tldr, bullets, callout, quote)
@@ -82,6 +83,37 @@ Section colors rotate automatically (blue, violet, emerald, pink, cyan, gold). N
 - Repost count shown = `repost_count + quote_count`, like X.
 - Fallback: a tweet with only `{ "url": … }` (optionally `author.username`) renders a simple "View post on X" link card. Use this when a fetch fails. Never invent text or metrics.
 
+## Source screenshot (non-X links)
+
+For links that are not X posts (news articles, blog posts, GitHub repos, SEC filings, charts),
+attach a real screenshot of the page instead of describing it. X posts stay tweet cards; the
+script refuses x.com / twitter.com.
+
+```jsonc
+{
+  "url": "https://ghuntley.com/tier/",              // opened on tap
+  "image": "media/sources/a73f5d871d81ec59.webp",  // relative to app base (public/media/sources/)
+  "title": "--help on your CLI is all you need…",  // page <title>, cleaned, ≤140 chars
+  "capturedAt": "2026-10-09T18:34:34.761Z"         // ISO UTC
+}
+```
+
+Renders as a tappable pastel-framed card: screenshot (3:2, top-aligned), then favicon + domain + title row; opens the URL in a new tab.
+
+Capture with `scripts/capture-source.mjs` (wraps the maintained `capture-website` lib on the system Chrome:
+1200×800 viewport at 1x, ad blocking, common cookie/consent/newsletter overlays hidden, WebP q72, re-encoded
+lower if > 150 KB; file name = first 16 hex of sha1(url), so re-capturing overwrites):
+
+```bash
+# print [{url,image,title,capturedAt}] only
+node scripts/capture-source.mjs https://example.com/article
+# capture and attach to section 1 (index or exact heading) of a card in data/feed.json (dedupes by url)
+node scripts/capture-source.mjs https://ghuntley.com/tier/ --card ai-YYYYMMDD-builders-today --section 1
+```
+
+Install note: `capture-website` pulls Puppeteer; install with `PUPPETEER_SKIP_DOWNLOAD=1` and it uses
+`CHROME_PATH` (default `/usr/bin/google-chrome`). Commit the `public/media/sources/*.webp` files with the post.
+
 ## Daily job steps
 
 1. Write the section prose as usual. For each section pick the 1–3 most relevant posts and put placeholders: `"tweets": [{ "url": "https://x.com/<user>/status/<id>" }]`.
@@ -95,4 +127,5 @@ Section colors rotate automatically (blue, violet, emerald, pink, cyan, gold). N
 3. Save the raw JSON response to a file, then hydrate:
    `node scripts/hydrate-tweets.mjs --raw /tmp/posts.json --card ai-YYYYMMDD-builders-today`
    (any id the API didn't return becomes a link fallback card; the script prints counts).
-4. `npm run build` (copies `data/feed.json` into `public/` + `docs/`), check the card at 390px in light and dark, commit.
+4. For the 1–3 best non-X links (repo, blog post, article, filing) run `scripts/capture-source.mjs … --card … --section …`.
+5. `npm run build` (copies `data/feed.json` into `public/` + `docs/`), check the card at 390px in light and dark, commit.

@@ -16,10 +16,11 @@ import {
   Target,
   Zap,
 } from "lucide-react";
-import { topicIcon } from "../topicIcons.js";
+import { topicIcon, bulletFallbackIcon } from "../topicIcons.js";
 import { CATEGORY_ICONS, CATEGORY_LABELS, ICON_STROKE } from "../icons.js";
 import { renderInline } from "./inline.jsx";
 import { TweetStack } from "./TweetCard.jsx";
+import { SourceShotStack } from "./SourceShot.jsx";
 
 /** Section color rotation (vivid, never orange). */
 export const HUES = ["blue", "violet", "emerald", "pink", "cyan", "gold"];
@@ -114,6 +115,7 @@ export function collectBriefBlocks(detail, card) {
       callout: s.callout || null,
       quote: s.quote || null,
       tweets: Array.isArray(s.tweets) ? s.tweets : null,
+      screenshots: Array.isArray(s.screenshots) ? s.screenshots : null,
     });
   }
   if (d.bullets?.length) {
@@ -511,14 +513,12 @@ export default function DetailShell({
             {bullets.length ? (
               <ul className="detail-tldr__bullets">
                 {bullets.map((b, i) => {
-                  const BIcon = topicIcon(b);
+                  const BIcon = topicIcon(b) || bulletFallbackIcon(b);
                   return (
-                    <li key={i} data-hue={HUES[i % HUES.length]} className={BIcon ? "has-icon" : undefined}>
-                      {BIcon ? (
-                        <span className="tldr-ico" aria-hidden="true">
-                          <BIcon size={14} strokeWidth={2.2} />
-                        </span>
-                      ) : null}
+                    <li key={i} data-hue={HUES[i % HUES.length]} className="has-icon">
+                      <span className="tldr-ico" aria-hidden="true">
+                        <BIcon size={14} strokeWidth={2.2} />
+                      </span>
                       <span className="tldr-txt"><LeadText text={b} /></span>
                     </li>
                   );
@@ -539,7 +539,7 @@ export default function DetailShell({
         <nav className="detail-jump" aria-label="Jump to a section">
           <p className="detail-jump__label" title="Jump to a section">
             <ListOrdered size={14} strokeWidth={2.2} aria-hidden="true" />
-            <span className="sr-only">Jump to</span>
+            <span>Jump to</span>
           </p>
           <ol className="detail-jump__list">
             {jumpItems.map((s, i) => (
@@ -609,15 +609,16 @@ function SectionHead({ heading, hue, index, total, iconKey }) {
   );
 }
 
-export function Section({ heading, body, id: idProp, hue = "blue", index, total, callout, quote, tweets }) {
+export function Section({ heading, body, id: idProp, hue = "blue", index, total, callout, quote, tweets, screenshots }) {
   const id = idProp || (heading ? `section-${slugify(heading)}` : undefined);
   return (
     <section className="detail-section" id={id} data-hue={hue}>
       <SectionHead heading={heading} hue={hue} index={index} total={total} />
       {/* Visual first: the posts lead, the prose follows lighter */}
       <TweetStack tweets={tweets} />
+      <SourceShotStack shots={screenshots} />
       {callout?.text ? <Callout kind={callout.kind} text={callout.text} /> : null}
-      <div className={tweets?.length ? "sec-prose sec-prose--after-media" : "sec-prose"}>
+      <div className={tweets?.length || screenshots?.length ? "sec-prose sec-prose--after-media" : "sec-prose"}>
         <BodyBlocks text={body} />
       </div>
       {quote?.text ? <PullQuote text={quote.text} by={quote.by} /> : null}
@@ -725,6 +726,7 @@ export function BriefBlocks({ blocks }) {
             callout={b.callout}
             quote={b.quote}
             tweets={b.tweets}
+            screenshots={b.screenshots}
           />
         );
       })}

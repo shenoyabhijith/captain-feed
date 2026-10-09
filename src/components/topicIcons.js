@@ -2,7 +2,7 @@ import {
   Bot, FlaskConical, SquareTerminal, Cpu, Code2, Wrench, Flag, Target, ShieldCheck,
   DollarSign, TrendingUp, TrendingDown, Newspaper, Users, MessageSquare, Brain, Gauge,
   Layers, Search, Rocket, Eye, BookOpen, Calendar, Scale, Sparkles, Zap, Workflow,
-  GitPullRequest, Image, Clock, Lock, Lightbulb,
+  GitPullRequest, Image, Clock, Lock, Lightbulb, UserRound,
 } from "lucide-react";
 
 /**
@@ -48,4 +48,14 @@ export function topicIcon(text) {
   const s = String(text || "").replace(/\*\*|`|\[|\]\([^)]*\)/g, "");
   for (const [re, Icon] of RULES) if (re.test(s)) return Icon;
   return null;
+}
+
+/**
+ * Default when topicIcon() finds nothing, so no bullet falls back to a bare dot:
+ * a person glyph when the line opens with a name ("Dax: …", "Simon Willison: …"),
+ * else a sparkle.
+ */
+export function bulletFallbackIcon(text) {
+  const s = String(text || "").replace(/\*\*|`/g, "").trim();
+  return /^@?[A-Z][\w.'-]*(\s+[A-Z][\w.'-]*){0,3}\s*:/.test(s) ? UserRound : Sparkles;
 }

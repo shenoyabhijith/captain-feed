@@ -17,28 +17,39 @@ function ConditionIcon({ condition, className = "", size = 18 }) {
   return <Icon className={className} size={size} strokeWidth={1.75} aria-hidden="true" />;
 }
 
-/**
- * Quiet Dallas current + 7-day block for the feed home.
- * Forecast comes from useDallasWeather (shared with WelcomeHero).
- */
-export default function DallasWeather({ forecast }) {
-  if (!forecast) return null;
+/** "Good morning" / "Good afternoon" / "Good evening" in Chicago time. */
+function greeting(now = new Date()) {
+  const h = Number(now.toLocaleString("en-US", { hour: "numeric", hourCycle: "h23", timeZone: "America/Chicago" }));
+  return h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening";
+}
 
+/**
+ * Home "Today" card: greeting + Dallas now + 7-day strip in one compact block
+ * (replaces the separate welcome hero and weather card).
+ * Forecast comes from useDallasWeather.
+ */
+export default function DallasWeather({ forecast, unreadCount = 0 }) {
+  const sub = unreadCount > 0 ? `${unreadCount} new` : "All caught up";
   return (
-    <section className="dallas-weather" aria-label="Dallas weather">
-      <div className="dallas-weather-now">
-        <div className="dallas-weather-label">
-          <MapPin size={12} strokeWidth={2.2} aria-hidden="true" /> Dallas
+    <section className="dallas-weather today-card" aria-label="Today in Dallas">
+      <div className="today-card__head">
+        <div className="today-card__hello">
+          <div className="today-card__greet">{greeting()}</div>
+          <div className="today-card__sub">
+            <MapPin size={12} strokeWidth={2.2} aria-hidden="true" /> Dallas · {sub}
+          </div>
         </div>
-        <div className="dallas-weather-temp tabular-nums">
-          {formatTemp(forecast.temp)}
-        </div>
-        <div className="dallas-weather-cond">
-          <ConditionIcon condition={forecast.condition} className="dallas-weather-now-icon" size={16} />
-          {forecast.condition}
-        </div>
+        {forecast ? (
+          <div className="today-card__now">
+            <ConditionIcon condition={forecast.condition} className="dallas-weather-now-icon" size={26} />
+            <div>
+              <div className="dallas-weather-temp tabular-nums">{formatTemp(forecast.temp)}</div>
+              <div className="dallas-weather-cond">{forecast.condition}</div>
+            </div>
+          </div>
+        ) : null}
       </div>
-      <ul className="dallas-weather-week">
+      {forecast ? <ul className="dallas-weather-week">
         {forecast.days.map((d) => (
           <li key={d.date} className="dallas-weather-day">
             <span className="dallas-weather-dow">{d.label}</span>
@@ -55,7 +66,7 @@ export default function DallasWeather({ forecast }) {
             </span>
           </li>
         ))}
-      </ul>
+      </ul> : null}
     </section>
   );
 }
