@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T16:15:41.464Z",
+  "generatedAt": "2026-10-09T16:34:00.069Z",
   "paperOnly": true,
   "marks": {
     "VOO": 711.28,
@@ -37,7 +37,8 @@
       ],
       "holdings": [
         "AAPL",
-        "MSFT"
+        "MSFT",
+        "GOOGL"
       ]
     },
     {
@@ -52,7 +53,8 @@
       ],
       "holdings": [
         "VTI",
-        "VOO"
+        "VOO",
+        "VXUS"
       ]
     },
     {
@@ -117,14 +119,14 @@
     "mega": {
       "date": "2026-10-09",
       "weekStart": "2026-10-05",
-      "tradesToday": 1,
-      "tradesWeek": 1,
-      "turnoverToday": 13.01,
-      "turnoverWeek": 13.01,
-      "turnoverTodayPct": 9.45,
-      "turnoverWeekPct": 9.45,
-      "costsToday": 0.02,
-      "costsWeek": 0.02,
+      "tradesToday": 3,
+      "tradesWeek": 3,
+      "turnoverToday": 54.01,
+      "turnoverWeek": 54.01,
+      "turnoverTodayPct": 39.43,
+      "turnoverWeekPct": 39.43,
+      "costsToday": 0.05,
+      "costsWeek": 0.05,
       "soft": {
         "edgeMultiple": 3,
         "softTradesPerDay": 3,
@@ -134,14 +136,14 @@
     "value": {
       "date": "2026-10-09",
       "weekStart": "2026-10-05",
-      "tradesToday": 0,
-      "tradesWeek": 0,
-      "turnoverToday": 0,
-      "turnoverWeek": 0,
-      "turnoverTodayPct": 0,
-      "turnoverWeekPct": 0,
-      "costsToday": 0,
-      "costsWeek": 0,
+      "tradesToday": 1,
+      "tradesWeek": 1,
+      "turnoverToday": 10,
+      "turnoverWeek": 10,
+      "turnoverTodayPct": 7.68,
+      "turnoverWeekPct": 7.68,
+      "costsToday": 0.01,
+      "costsWeek": 0.01,
       "soft": {
         "edgeMultiple": 3,
         "softTradesPerDay": 3,
@@ -185,14 +187,14 @@
     "swing": {
       "date": "2026-10-09",
       "weekStart": "2026-10-05",
-      "tradesToday": 0,
-      "tradesWeek": 0,
-      "turnoverToday": 0,
-      "turnoverWeek": 0,
-      "turnoverTodayPct": 0,
-      "turnoverWeekPct": 0,
-      "costsToday": 0,
-      "costsWeek": 0,
+      "tradesToday": 1,
+      "tradesWeek": 1,
+      "turnoverToday": 24.11,
+      "turnoverWeek": 24.11,
+      "turnoverTodayPct": 10.69,
+      "turnoverWeekPct": 10.69,
+      "costsToday": 0.02,
+      "costsWeek": 0.02,
       "soft": {
         "edgeMultiple": 3,
         "softTradesPerDay": 3,
@@ -1722,7 +1724,7 @@
       "traderName": "Swing",
       "agentId": "dd396072-87cc-4f88-900a-de8d8eb81dc7",
       "createdAt": "2026-10-09T06:39:23.716Z",
-      "updatedAt": "2026-10-09T06:55:00Z",
+      "updatedAt": "2026-10-09T16:33:59.276Z",
       "strategy": {
         "id": "swing-trend-pullback",
         "version": 1,
@@ -2107,9 +2109,126 @@
         "Swing allows one order per day, so the SMH conditional competes with NVDA; NVDA has priority.",
         "Pre-close quotes can lag ~15 min on the free feed; slippage is 5 bps plus the SEC fee on sells."
       ],
-      "orders": [],
+      "orders": [
+        "o-20261009-swing-1133-sell-NVDA-1"
+      ],
       "paperOnly": true,
-      "orderDetails": [],
+      "orderDetails": [
+        {
+          "id": "o-20261009-swing-1133-sell-NVDA-1",
+          "ts": "2026-10-09T16:33:59.276Z",
+          "agentId": "swing",
+          "strategy": "Swing",
+          "side": "sell",
+          "symbol": "NVDA",
+          "qty": 0.105,
+          "price": 229.6251,
+          "notional": 24.11,
+          "cashAfter": 102.3,
+          "reason": "Trim NVDA back to 25% cap (risk control); see premarket ideas[NVDA]",
+          "signals": [
+            {
+              "source": "market",
+              "org": "research 2026-10-09-swing-premarket"
+            },
+            {
+              "source": "web",
+              "org": "research 2026-10-09-swing-premarket"
+            },
+            {
+              "source": "x",
+              "org": "research 2026-10-09-swing-premarket"
+            },
+            {
+              "source": "sec",
+              "org": "research 2026-10-09-swing-premarket"
+            }
+          ],
+          "runId": "check-2026-10-09-1133",
+          "authorizedBy": "firstmate",
+          "paper": true,
+          "trader": "swing",
+          "tradeDate": "2026-10-09",
+          "session": "check",
+          "check": {
+            "at": "2026-10-09T16:33:59.038Z",
+            "label": "check-1133"
+          },
+          "strategyId": "swing-trend-pullback",
+          "strategyVersion": 2,
+          "researchId": "2026-10-09-swing-premarket",
+          "rationale": "Trim NVDA back to 25% cap (risk control); see premarket ideas[NVDA]",
+          "confidence": 0.7,
+          "instrument": {
+            "kind": "stock",
+            "name": "NVIDIA Corporation",
+            "exchange": "NasdaqGS"
+          },
+          "quote": {
+            "price": 229.74,
+            "time": "2026-10-09T16:33:57.000Z",
+            "ageSec": 2,
+            "source": "yahoo-chart",
+            "note": "Yahoo public chart feed; intraday quotes can lag up to ~15 min."
+          },
+          "slippage": {
+            "bps": 5,
+            "cost": 0.0121
+          },
+          "fees": {
+            "commission": 0,
+            "secFee": 0.01,
+            "finraTaf": 0,
+            "total": 0.01,
+            "rates": {
+              "secPerMillion": 20.6,
+              "secSource": "https://www.sec.gov/rules-regulations/fee-rate-advisories/2026-2",
+              "tafPerShare": 0,
+              "tafMaxPerTrade": 0,
+              "tafSource": "https://www.finra.org/rules-guidance/rule-filings/sr-finra-2026-021"
+            }
+          },
+          "edge": {
+            "rule": "expected edge ≥ 3× round-trip cost",
+            "target": 215,
+            "expectedMovePct": 6.42,
+            "stop": 245,
+            "invalidation": null,
+            "horizon": "3-10 days",
+            "expectedEdge": 1.5469,
+            "roundTrip": {
+              "slippage": 0.0241,
+              "buyFees": 0,
+              "sellFees": 0.01,
+              "total": 0.0341,
+              "pctOfNotional": 0.1414
+            },
+            "ratio": 45.36,
+            "passed": true,
+            "exempt": null
+          },
+          "activity": {
+            "date": "2026-10-09",
+            "weekStart": "2026-10-05",
+            "tradesToday": 1,
+            "tradesWeek": 1,
+            "turnoverToday": 24.11,
+            "turnoverWeek": 24.11,
+            "turnoverTodayPct": 10.7,
+            "turnoverWeekPct": 10.7,
+            "costsToday": 0,
+            "costsWeek": 0,
+            "soft": {
+              "edgeMultiple": 3,
+              "softTradesPerDay": 3,
+              "softTradesPerWeek": 10
+            },
+            "softWarning": false
+          },
+          "weightAfter": 0.2497,
+          "broker": "schwab"
+        }
+      ],
       "path": "data/trading/research/2026-10-09/swing-premarket.json"
     },
     {
@@ -2745,7 +2864,7 @@
       "traderName": "Value",
       "agentId": "1aa5cd22-a8ad-487a-9a73-e159126ef93d",
       "createdAt": "2026-10-09T06:39:17.921Z",
-      "updatedAt": "2026-10-09T06:55:00Z",
+      "updatedAt": "2026-10-09T16:33:57.833Z",
       "strategy": {
         "id": "value-bogle-dca",
         "version": 1,
@@ -3030,9 +3149,122 @@
         "Small tickets: fractional ETF fills are modeled; real brokers may not allow fractional ETF shares (Schwab Stock Slices covers S&P 500 stocks only).",
         "CPI on Oct 14 could move everything; DCA accepts that."
       ],
-      "orders": [],
+      "orders": [
+        "o-20261009-value-1133-buy-VXUS-1"
+      ],
       "paperOnly": true,
-      "orderDetails": [],
+      "orderDetails": [
+        {
+          "id": "o-20261009-value-1133-buy-VXUS-1",
+          "ts": "2026-10-09T16:33:57.833Z",
+          "agentId": "value",
+          "strategy": "Value",
+          "side": "buy",
+          "symbol": "VXUS",
+          "qty": 0.1181,
+          "price": 84.6573,
+          "notional": 10,
+          "cashAfter": 12.8,
+          "reason": "Scheduled VXUS DCA for global diversification; see premarket ideas[VXUS]",
+          "signals": [
+            {
+              "source": "market",
+              "org": "research 2026-10-09-value-premarket"
+            },
+            {
+              "source": "web",
+              "org": "research 2026-10-09-value-premarket"
+            },
+            {
+              "source": "x",
+              "org": "research 2026-10-09-value-premarket"
+            }
+          ],
+          "runId": "check-2026-10-09-1133",
+          "authorizedBy": "firstmate",
+          "paper": true,
+          "trader": "value",
+          "tradeDate": "2026-10-09",
+          "session": "check",
+          "check": {
+            "at": "2026-10-09T16:33:57.572Z",
+            "label": "check-1133"
+          },
+          "strategyId": "value-bogle-dca",
+          "strategyVersion": 2,
+          "researchId": "2026-10-09-value-premarket",
+          "rationale": "Scheduled VXUS DCA for global diversification; see premarket ideas[VXUS]",
+          "confidence": 0.7,
+          "instrument": {
+            "kind": "etf",
+            "name": "Vanguard Total International Stock Index Fund ETF Shares",
+            "exchange": "NasdaqGM"
+          },
+          "quote": {
+            "price": 84.615,
+            "time": "2026-10-09T16:33:54.000Z",
+            "ageSec": 3,
+            "source": "yahoo-chart",
+            "note": "Yahoo public chart feed; intraday quotes can lag up to ~15 min."
+          },
+          "slippage": {
+            "bps": 5,
+            "cost": 0.005
+          },
+          "fees": {
+            "commission": 0,
+            "secFee": 0,
+            "finraTaf": 0,
+            "total": 0,
+            "rates": {
+              "secPerMillion": 20.6,
+              "secSource": "https://www.sec.gov/rules-regulations/fee-rate-advisories/2026-2",
+              "tafPerShare": 0,
+              "tafMaxPerTrade": 0,
+              "tafSource": "https://www.finra.org/rules-guidance/rule-filings/sr-finra-2026-021"
+            }
+          },
+          "edge": {
+            "rule": "expected edge ≥ 3× round-trip cost",
+            "target": null,
+            "expectedMovePct": 8,
+            "stop": null,
+            "invalidation": "International thesis only revisited at quarterly review",
+            "horizon": "years",
+            "expectedEdge": 0.8,
+            "roundTrip": {
+              "slippage": 0.01,
+              "buyFees": 0,
+              "sellFees": 0.01,
+              "total": 0.02,
+              "pctOfNotional": 0.2
+            },
+            "ratio": 40,
+            "passed": true,
+            "exempt": null
+          },
+          "activity": {
+            "date": "2026-10-09",
+            "weekStart": "2026-10-05",
+            "tradesToday": 1,
+            "tradesWeek": 1,
+            "turnoverToday": 10,
+            "turnoverWeek": 10,
+            "turnoverTodayPct": 7.68,
+            "turnoverWeekPct": 7.68,
+            "costsToday": 0,
+            "costsWeek": 0,
+            "soft": {
+              "edgeMultiple": 3,
+              "softTradesPerDay": 3,
+              "softTradesPerWeek": 10
+            },
+            "softWarning": false
+          },
+          "weightAfter": 0.0767,
+          "broker": "schwab"
+        }
+      ],
       "path": "data/trading/research/2026-10-09/value-premarket.json"
     },
     {
@@ -3044,7 +3276,7 @@
       "traderName": "Mega",
       "agentId": "13448089-ec47-4cb6-a320-137295c59509",
       "createdAt": "2026-10-09T06:39:17.297Z",
-      "updatedAt": "2026-10-09T06:55:00Z",
+      "updatedAt": "2026-10-09T16:33:58.816Z",
       "strategy": {
         "id": "mega-ew-phased",
         "version": 1,
@@ -3437,9 +3669,241 @@
         "Q3 earnings start Oct 13 with JPM, and megacaps report late Oct; avoid oversizing into prints.",
         "Yahoo intraday quotes may lag ~15 min, and fills include 5 bps slippage plus the SEC fee on sells."
       ],
-      "orders": [],
+      "orders": [
+        "o-20261009-mega-1133-sell-AAPL-2",
+        "o-20261009-mega-1133-buy-GOOGL-3"
+      ],
       "paperOnly": true,
-      "orderDetails": [],
+      "orderDetails": [
+        {
+          "id": "o-20261009-mega-1133-sell-AAPL-2",
+          "ts": "2026-10-09T16:33:58.382Z",
+          "agentId": "mega",
+          "strategy": "Mega",
+          "side": "sell",
+          "symbol": "AAPL",
+          "qty": 0.0628,
+          "price": 334.2428,
+          "notional": 20.99,
+          "cashAfter": 68.3,
+          "reason": "Trim AAPL toward 25% cap at midday after open gap; see premarket ideas[AAPL]",
+          "signals": [
+            {
+              "source": "market",
+              "org": "research 2026-10-09-mega-premarket"
+            },
+            {
+              "source": "web",
+              "org": "research 2026-10-09-mega-premarket"
+            },
+            {
+              "source": "x",
+              "org": "research 2026-10-09-mega-premarket"
+            },
+            {
+              "source": "sec",
+              "org": "research 2026-10-09-mega-premarket"
+            }
+          ],
+          "runId": "check-2026-10-09-1133",
+          "authorizedBy": "firstmate",
+          "paper": true,
+          "trader": "mega",
+          "tradeDate": "2026-10-09",
+          "session": "check",
+          "check": {
+            "at": "2026-10-09T16:33:58.121Z",
+            "label": "check-1133"
+          },
+          "strategyId": "mega-ew-phased",
+          "strategyVersion": 2,
+          "researchId": "2026-10-09-mega-premarket",
+          "rationale": "Trim AAPL toward 25% cap at midday after open gap; see premarket ideas[AAPL]",
+          "confidence": 0.66,
+          "instrument": {
+            "kind": "stock",
+            "name": "Apple Inc.",
+            "exchange": "NasdaqGS"
+          },
+          "quote": {
+            "price": 334.41,
+            "time": "2026-10-09T16:33:57.000Z",
+            "ageSec": 1,
+            "source": "yahoo-chart",
+            "note": "Yahoo public chart feed; intraday quotes can lag up to ~15 min."
+          },
+          "slippage": {
+            "bps": 5,
+            "cost": 0.0105
+          },
+          "fees": {
+            "commission": 0,
+            "secFee": 0.01,
+            "finraTaf": 0,
+            "total": 0.01,
+            "rates": {
+              "secPerMillion": 20.6,
+              "secSource": "https://www.sec.gov/rules-regulations/fee-rate-advisories/2026-2",
+              "tafPerShare": 0,
+              "tafMaxPerTrade": 0,
+              "tafSource": "https://www.finra.org/rules-guidance/rule-filings/sr-finra-2026-021"
+            }
+          },
+          "edge": {
+            "rule": "expected edge ≥ 3× round-trip cost",
+            "target": 320,
+            "expectedMovePct": 4.31,
+            "stop": 352,
+            "invalidation": null,
+            "horizon": "1-2 weeks",
+            "expectedEdge": 0.9045,
+            "roundTrip": {
+              "slippage": 0.021,
+              "buyFees": 0,
+              "sellFees": 0.01,
+              "total": 0.031,
+              "pctOfNotional": 0.1477
+            },
+            "ratio": 29.18,
+            "passed": true,
+            "exempt": null
+          },
+          "activity": {
+            "date": "2026-10-09",
+            "weekStart": "2026-10-05",
+            "tradesToday": 2,
+            "tradesWeek": 2,
+            "turnoverToday": 34,
+            "turnoverWeek": 34,
+            "turnoverTodayPct": 24.87,
+            "turnoverWeekPct": 24.87,
+            "costsToday": 0.02,
+            "costsWeek": 0.02,
+            "soft": {
+              "edgeMultiple": 3,
+              "softTradesPerDay": 3,
+              "softTradesPerWeek": 10
+            },
+            "softWarning": false
+          },
+          "weightAfter": 0.25,
+          "broker": "schwab"
+        },
+        {
+          "id": "o-20261009-mega-1133-buy-GOOGL-3",
+          "ts": "2026-10-09T16:33:58.816Z",
+          "agentId": "mega",
+          "strategy": "Mega",
+          "side": "buy",
+          "symbol": "GOOGL",
+          "qty": 0.0565,
+          "price": 354.167,
+          "notional": 20.01,
+          "cashAfter": 48.29,
+          "reason": "Add GOOGL toward equal weight; least-extended mega-cap; see premarket ideas[GOOGL]",
+          "signals": [
+            {
+              "source": "market",
+              "org": "research 2026-10-09-mega-premarket"
+            },
+            {
+              "source": "web",
+              "org": "research 2026-10-09-mega-premarket"
+            },
+            {
+              "source": "x",
+              "org": "research 2026-10-09-mega-premarket"
+            },
+            {
+              "source": "sec",
+              "org": "research 2026-10-09-mega-premarket"
+            }
+          ],
+          "runId": "check-2026-10-09-1133",
+          "authorizedBy": "firstmate",
+          "paper": true,
+          "trader": "mega",
+          "tradeDate": "2026-10-09",
+          "session": "check",
+          "check": {
+            "at": "2026-10-09T16:33:58.628Z",
+            "label": "check-1133"
+          },
+          "strategyId": "mega-ew-phased",
+          "strategyVersion": 2,
+          "researchId": "2026-10-09-mega-premarket",
+          "rationale": "Add GOOGL toward equal weight; least-extended mega-cap; see premarket ideas[GOOGL]",
+          "confidence": 0.62,
+          "instrument": {
+            "kind": "stock",
+            "name": "Alphabet Inc.",
+            "exchange": "NasdaqGS"
+          },
+          "quote": {
+            "price": 353.99,
+            "time": "2026-10-09T16:33:47.000Z",
+            "ageSec": 11,
+            "source": "yahoo-chart",
+            "note": "Yahoo public chart feed; intraday quotes can lag up to ~15 min."
+          },
+          "slippage": {
+            "bps": 5,
+            "cost": 0.01
+          },
+          "fees": {
+            "commission": 0,
+            "secFee": 0,
+            "finraTaf": 0,
+            "total": 0,
+            "rates": {
+              "secPerMillion": 20.6,
+              "secSource": "https://www.sec.gov/rules-regulations/fee-rate-advisories/2026-2",
+              "tafPerShare": 0,
+              "tafMaxPerTrade": 0,
+              "tafSource": "https://www.finra.org/rules-guidance/rule-filings/sr-finra-2026-021"
+            }
+          },
+          "edge": {
+            "rule": "expected edge ≥ 3× round-trip cost",
+            "target": null,
+            "expectedMovePct": 6,
+            "stop": 330,
+            "invalidation": null,
+            "horizon": "1-3 months",
+            "expectedEdge": 1.2006,
+            "roundTrip": {
+              "slippage": 0.02,
+              "buyFees": 0,
+              "sellFees": 0.01,
+              "total": 0.03,
+              "pctOfNotional": 0.1499
+            },
+            "ratio": 40.02,
+            "passed": true,
+            "exempt": null
+          },
+          "activity": {
+            "date": "2026-10-09",
+            "weekStart": "2026-10-05",
+            "tradesToday": 3,
+            "tradesWeek": 3,
+            "turnoverToday": 54.01,
+            "turnoverWeek": 54.01,
+            "turnoverTodayPct": 39.33,
+            "turnoverWeekPct": 39.33,
+            "costsToday": 0.04,
+            "costsWeek": 0.04,
+            "soft": {
+              "edgeMultiple": 3,
+              "softTradesPerDay": 3,
+              "softTradesPerWeek": 10
+            },
+            "softWarning": false
+          },
+          "weightAfter": 0.1457,
+          "broker": "schwab"
+        }
+      ],
       "path": "data/trading/research/2026-10-09/mega-premarket.json"
     }
   ]

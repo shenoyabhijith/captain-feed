@@ -7,7 +7,7 @@
   "traderName": "Value",
   "agentId": "1aa5cd22-a8ad-487a-9a73-e159126ef93d",
   "createdAt": "2026-10-09T06:39:17.921Z",
-  "updatedAt": "2026-10-09T06:55:00Z",
+  "updatedAt": "2026-10-09T16:33:57.833Z",
   "strategy": {
     "id": "value-bogle-dca",
     "version": 1,
@@ -15,7 +15,7 @@
   },
   "regime": {
     "asOf": "2026-10-08",
-    "label": "uptrend \u00b7 normal vol",
+    "label": "uptrend · normal vol",
     "riskOn": true,
     "spy": {
       "symbol": "SPY",
@@ -336,6 +336,8 @@
     "Small tickets: fractional ETF fills are modeled; real brokers may not allow fractional ETF shares (Schwab Stock Slices covers S&P 500 stocks only).",
     "CPI on Oct 14 could move everything; DCA accepts that."
   ],
-  "orders": [],
+  "orders": [
+    "o-20261009-value-1133-buy-VXUS-1"
+  ],
   "paperOnly": true
 }

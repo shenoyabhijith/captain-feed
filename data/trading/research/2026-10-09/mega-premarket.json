@@ -7,7 +7,7 @@
   "traderName": "Mega",
   "agentId": "13448089-ec47-4cb6-a320-137295c59509",
   "createdAt": "2026-10-09T06:39:17.297Z",
-  "updatedAt": "2026-10-09T06:55:00Z",
+  "updatedAt": "2026-10-09T16:33:58.816Z",
   "strategy": {
     "id": "mega-ew-phased",
     "version": 1,
@@ -15,7 +15,7 @@
   },
   "regime": {
     "asOf": "2026-10-08",
-    "label": "uptrend \u00b7 normal vol",
+    "label": "uptrend · normal vol",
     "riskOn": true,
     "spy": {
       "symbol": "SPY",
@@ -879,7 +879,7 @@
       "id": "x3",
       "type": "x",
       "author": "@bespokeinvest",
-      "title": "Bespoke: Rotation \u2014 QQQ -1.4%, RSP +0.4% after the OpenAI revenue news",
+      "title": "Bespoke: Rotation — QQQ -1.4%, RSP +0.4% after the OpenAI revenue news",
       "url": "https://x.com/bespokeinvest/status/2108251946733703205",
       "retrievedAt": "2026-10-09T06:37:00Z",
       "publishedAt": "2026-10-08T17:43:28Z",
@@ -1020,6 +1020,9 @@
     "Q3 earnings start Oct 13 with JPM, and megacaps report late Oct; avoid oversizing into prints.",
     "Yahoo intraday quotes may lag ~15 min, and fills include 5 bps slippage plus the SEC fee on sells."
   ],
-  "orders": [],
+  "orders": [
+    "o-20261009-mega-1133-sell-AAPL-2",
+    "o-20261009-mega-1133-buy-GOOGL-3"
+  ],
   "paperOnly": true
 }

@@ -7,7 +7,7 @@
   "traderName": "Swing",
   "agentId": "dd396072-87cc-4f88-900a-de8d8eb81dc7",
   "createdAt": "2026-10-09T06:39:23.716Z",
-  "updatedAt": "2026-10-09T06:55:00Z",
+  "updatedAt": "2026-10-09T16:33:59.276Z",
   "strategy": {
     "id": "swing-trend-pullback",
     "version": 1,
@@ -15,7 +15,7 @@
   },
   "regime": {
     "asOf": "2026-10-08",
-    "label": "uptrend \u00b7 normal vol",
+    "label": "uptrend · normal vol",
     "riskOn": true,
     "spy": {
       "symbol": "SPY",
@@ -1137,7 +1137,7 @@
       "id": "x3",
       "type": "x",
       "author": "@bespokeinvest",
-      "title": "Bespoke: Rotation \u2014 QQQ -1.4%, RSP +0.4% after the OpenAI revenue news",
+      "title": "Bespoke: Rotation — QQQ -1.4%, RSP +0.4% after the OpenAI revenue news",
       "url": "https://x.com/bespokeinvest/status/2108251946733703205",
       "retrievedAt": "2026-10-09T06:37:00Z",
       "publishedAt": "2026-10-08T17:43:28Z",
@@ -1181,7 +1181,7 @@
       "symbol": "NVDA",
       "side": "sell",
       "status": "selected",
-      "size": "trim ~30% (to \u226425% NAV)",
+      "size": "trim ~30% (to ≤25% NAV)",
       "thesis": "NVDA is 35.7% of NAV, over Swing's 25% cap after a large gain vs cost. Oct 8 broke the AI-hardware tape (-2.94%, SOX -3.4%) on a demand-narrative reset plus vendor-financing worries. Trimming to cap at the pre-close batch is risk discipline.",
       "sourceIds": [
         "m1",
@@ -1241,7 +1241,7 @@
         "session": "preclose",
         "symbol": "NVDA",
         "side": "sell",
-        "size": "~30% of position (to \u226425% NAV)",
+        "size": "~30% of position (to ≤25% NAV)",
         "trigger": "Always today (cap breach), unless NVDA is up >3% on the day (then reassess)"
       },
       {
@@ -1258,6 +1258,8 @@
     "Swing allows one order per day, so the SMH conditional competes with NVDA; NVDA has priority.",
     "Pre-close quotes can lag ~15 min on the free feed; slippage is 5 bps plus the SEC fee on sells."
   ],
-  "orders": [],
+  "orders": [
+    "o-20261009-swing-1133-sell-NVDA-1"
+  ],
   "paperOnly": true
 }
