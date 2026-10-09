@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "trader": "mega",
+  "strategyId": "mega-ew-phased",
+  "version": 1,
+  "name": "Equal-weight mega-cap, phased rebalance",
+  "status": "active",
+  "updatedAt": "2026-10-09T07:00:00Z",
+  "thesis": "Own the six mega-cap platforms (AAPL, MSFT, GOOGL, AMZN, META, NVDA) at roughly equal weight so no single AI or consumer story dominates. Rebalance mechanically but phase the adds, so that a single-day narrative shock (like Oct 8) is not bought all at once.",
+  "regimeFit": "Risk-on (SPY > 200d, VIX < 20): fully invested, cash \u2264 10%. Risk-on with an AI-capex shock: phase adds over ~1 week, least-extended first. SPY < 200d: no new adds; trims only.",
+  "entryRules": [
+    "Buy the most underweight name whose RSI14 < 65 and that is not > 8% above its 50d SMA.",
+    "When several names are underweight, add the least-extended first; stage the rest across sessions/days.",
+    "Avoid buying a name on the day it is the epicenter of negative news; re-check next session."
+  ],
+  "exitRules": [
+    "Trim any name above the 25% hard cap back to ~25% at the next open session.",
+    "Soft-trim a name above 22% when RSI14 > 70.",
+    "No stop-losses on individual names (diversified long-only sleeve); risk is controlled by caps."
+  ],
+  "sizingRules": [
+    "Target 1/6 \u2248 16.7% per name; hard cap 25% NAV per name.",
+    "Max 3 orders per day; minimum ticket $5.",
+    "Keep cash between 2% and 10% once fully phased in."
+  ],
+  "riskRules": [
+    "Rates: if the 10y closes > 5.40%, pause adds for 2 sessions (stocks/yields correlation strongly negative).",
+    "Earnings: no adds to a name within 2 sessions before its earnings date."
+  ],
+  "personaConstraints": [
+    "PAPER ONLY: no brokerage connection, no real orders.",
+    "Every order needs a same-day research record with X, web and market sources, a selected idea, a rationale and a confidence score (enforced by scripts/paper-order.mjs).",
+    "Fills: latest Yahoo quote (may lag ~15 min) \u00b1 5 bps slippage; Schwab $0 commission; SEC Section 31 + FINRA TAF on sells.",
+    "Minimum ticket $5. Regular market hours only."
+  ],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-10-09",
+      "change": "Initial research-driven strategy (replaces the deterministic rule plugin in simEngine.js).",
+      "reason": "The user asked traders to research daily (X, web, SEC, market data) and choose strategies that fit conditions instead of following fixed rules blindly. Rules come from the persona profile plus the Oct 9 pre-market research.",
+      "researchId": "2026-10-09-mega-premarket"
+    }
+  ]
+}

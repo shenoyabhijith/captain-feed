@@ -33,6 +33,7 @@ import TopicsSheet from "./TopicsSheet.jsx";
 import FinancesApp from "./finances/FinancesApp.jsx";
 import FinancesAdmin from "./finances/FinancesAdmin.jsx";
 import MetricsApp from "./finances/MetricsApp.jsx";
+import ResearchApp, { StrategyPage } from "./research/ResearchApp.jsx";
 import FeedDock from "./finances/FeedDock.jsx";
 import { useDallasWeather } from "../hooks/useDallasWeather";
 
@@ -178,6 +179,8 @@ export default function FeedApp() {
           />
           <Route path="/finances" element={<FinancesApp />} />
           <Route path="/finances/admin" element={<FinancesAdmin />} />
+          <Route path="/finances/research" element={<ResearchApp />} />
+          <Route path="/finances/research/:trader" element={<StrategyPage />} />
           <Route path="/metrics" element={<MetricsApp />} />
         </Routes>
       </motion.div>

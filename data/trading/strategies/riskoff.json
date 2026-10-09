@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "trader": "riskoff",
+  "strategyId": "riskoff-200d-guardian",
+  "version": 1,
+  "name": "200-day guardian with CPI-gated duration",
+  "status": "active",
+  "updatedAt": "2026-10-09T07:00:00Z",
+  "thesis": "Protect capital first. SPY vs its 200-day SMA is the master switch: below it, hold only BND and cash; above it, equity (VOO) is allowed up to 40% but only on pullback entries. Duration (BND) is added in steps when yields are high and the next inflation print has cleared.",
+  "regimeFit": "SPY < 200d: 0% equity, BND \u2264 70%, rest cash. SPY > 200d: optional VOO \u2264 40% on pullbacks (VOO \u2265 3% below its 20-day high), BND 40-60%, cash \u2265 25%.",
+  "entryRules": [
+    "BND add (~$10) only when its RSI14 < 40 AND the most recent CPI/FOMC event has passed without the 10y closing above 5.35%.",
+    "VOO only when SPY > 200d AND VOO is \u2265 3% below its 20-day high."
+  ],
+  "exitRules": [
+    "Flip: if SPY closes below its 200d SMA, sell all VOO at the next open session (and keep BND).",
+    "Never sell BND to chase equities."
+  ],
+  "sizingRules": [
+    "Max 1 order per day; minimum ticket $5.",
+    "Cash \u2265 25% of NAV at all times."
+  ],
+  "riskRules": [
+    "Stocks and yields are strongly negatively correlated right now, so BND is not a reliable equity hedge. Size duration modestly.",
+    "High skip rate is expected; \"hold\" is the default output."
+  ],
+  "personaConstraints": [
+    "PAPER ONLY: no brokerage connection, no real orders.",
+    "Every order needs a same-day research record with X, web and market sources, a selected idea, a rationale and a confidence score (enforced by scripts/paper-order.mjs).",
+    "Fills: latest Yahoo quote (may lag ~15 min) \u00b1 5 bps slippage; Schwab $0 commission; SEC Section 31 + FINRA TAF on sells.",
+    "Minimum ticket $5. Regular market hours only."
+  ],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-10-09",
+      "change": "Initial research-driven strategy (replaces the deterministic rule plugin in simEngine.js).",
+      "reason": "The user asked traders to research daily (X, web, SEC, market data) and choose strategies that fit conditions instead of following fixed rules blindly. Rules come from the persona profile plus the Oct 9 pre-market research.",
+      "researchId": "2026-10-09-riskoff-premarket"
+    }
+  ]
+}

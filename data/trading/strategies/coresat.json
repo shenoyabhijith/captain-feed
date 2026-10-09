@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "trader": "coresat",
+  "strategyId": "coresat-core-confirm",
+  "version": 1,
+  "name": "Core-satellite with confirmation-gated semis",
+  "status": "active",
+  "updatedAt": "2026-10-09T07:00:00Z",
+  "thesis": "Keep 70-80% in a broad US core (VOO/VTI) and use a 15-25% satellite (QQQ, SMH, SOXX, VGT, XLK) for tech/semis upside. The core is sized by structure; the satellite only grows after price confirmation, not on the first dip.",
+  "regimeFit": "Risk-on: core 75-80%, satellite up to 25%. Elevated vol (VIX > 22) or SPY < 200d: core 80%, satellite \u2264 15%, no satellite adds.",
+  "entryRules": [
+    "Top up the core when it is below 72% of NAV and cash > $10.",
+    "Add to a satellite ETF only if it closes above its 50d SMA for 2+ sessions after a \u2265 3% drawdown day, and not within 1 session of CPI/FOMC.",
+    "Satellite adds are \u2264 5% of NAV per ticket."
+  ],
+  "exitRules": [
+    "Trim any satellite holding above 22% NAV back to 18%.",
+    "Trim the whole satellite to \u2264 15% if SPY closes below its 200d SMA."
+  ],
+  "sizingRules": [
+    "Core 70-80%; satellite total cap 30% (hard), target 15-20%.",
+    "Max 2 orders per day; minimum ticket $5; cash buffer \u2265 $5."
+  ],
+  "riskRules": [
+    "Satellite and core overlap (both cap-weighted tech-heavy), so count AI exposure across both.",
+    "Avoid adding duration-sensitive tech right before CPI when the 10y > 5.3%."
+  ],
+  "personaConstraints": [
+    "PAPER ONLY: no brokerage connection, no real orders.",
+    "Every order needs a same-day research record with X, web and market sources, a selected idea, a rationale and a confidence score (enforced by scripts/paper-order.mjs).",
+    "Fills: latest Yahoo quote (may lag ~15 min) \u00b1 5 bps slippage; Schwab $0 commission; SEC Section 31 + FINRA TAF on sells.",
+    "Minimum ticket $5. Regular market hours only."
+  ],
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-10-09",
+      "change": "Initial research-driven strategy (replaces the deterministic rule plugin in simEngine.js).",
+      "reason": "The user asked traders to research daily (X, web, SEC, market data) and choose strategies that fit conditions instead of following fixed rules blindly. Rules come from the persona profile plus the Oct 9 pre-market research.",
+      "researchId": "2026-10-09-coresat-premarket"
+    }
+  ]
+}

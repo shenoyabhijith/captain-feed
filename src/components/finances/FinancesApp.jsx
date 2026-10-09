@@ -135,6 +135,9 @@ export default function FinancesApp() {
               ···
             </MenuTrigger>
             <MenuPopup align="end" sideOffset={6}>
+              <MenuItem onClick={() => navigate("/finances/research")}>
+                Research
+              </MenuItem>
               <MenuItem onClick={() => fin.reload()}>Refresh</MenuItem>
               <MenuItem onClick={() => navigate("/finances/admin")}>
                 Admin
@@ -189,6 +192,19 @@ export default function FinancesApp() {
             </div>
             <div className="nav-sub">Paper trading · sleeve stack</div>
           </div>
+
+          <button
+            type="button"
+            className="rs-entry mx-3 mt-3"
+            onClick={() => navigate("/finances/research")}
+          >
+            <span className="rs-entry__icon" aria-hidden="true">R</span>
+            <span className="rs-entry__text">
+              <b>Research desk</b>
+              <span>What each trader read today and why they made each call</span>
+            </span>
+            <span className="rs-entry__chev" aria-hidden="true">›</span>
+          </button>
 
           <div className="sleeve-stack">
             {orderedSleeves.map((s) => {

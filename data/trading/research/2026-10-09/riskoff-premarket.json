@@ -1,0 +1,336 @@
+{
+  "schema": 1,
+  "id": "2026-10-09-riskoff-premarket",
+  "date": "2026-10-09",
+  "session": "premarket",
+  "trader": "riskoff",
+  "traderName": "RiskOff",
+  "agentId": "c5141b27-0d45-4443-8c0f-63005f605e84",
+  "createdAt": "2026-10-09T06:39:19.680Z",
+  "updatedAt": "2026-10-09T06:55:00Z",
+  "strategy": {
+    "id": "riskoff-200d-guardian",
+    "version": 1,
+    "name": "200-day guardian with CPI-gated duration"
+  },
+  "regime": {
+    "asOf": "2026-10-08",
+    "label": "uptrend \u00b7 normal vol",
+    "riskOn": true,
+    "spy": {
+      "symbol": "SPY",
+      "asOf": "2026-10-08",
+      "last": 773.93,
+      "chg1dPct": -0.42,
+      "chg5dPct": 1.3,
+      "chg20dPct": 2.12,
+      "sma50": 766.84,
+      "sma200": 722.46,
+      "vsSma50Pct": 0.92,
+      "vsSma200Pct": 7.12,
+      "rsi14": 61.63,
+      "offHigh52wPct": -0.66
+    },
+    "qqq": {
+      "symbol": "QQQ",
+      "asOf": "2026-10-08",
+      "last": 747.58,
+      "chg1dPct": -1.34,
+      "chg5dPct": 0.75,
+      "chg20dPct": 5.49,
+      "sma50": 723.17,
+      "sma200": 671.52,
+      "vsSma50Pct": 3.38,
+      "vsSma200Pct": 11.33,
+      "rsi14": 66.55,
+      "offHigh52wPct": -1.59
+    },
+    "vix": {
+      "last": 15.41,
+      "chg1dPct": 2.19,
+      "chg5dPct": -5.98,
+      "sma50": 15.51
+    },
+    "rates": {
+      "us10y": 5.23,
+      "us10yChg5dPct": -0.19,
+      "us13w": 4.04
+    },
+    "sectors": [
+      {
+        "symbol": "XLE",
+        "name": "Energy",
+        "chg1dPct": 2.97,
+        "chg5dPct": 4.05,
+        "chg20dPct": 0.48,
+        "vsSma50Pct": 4.31
+      },
+      {
+        "symbol": "XLP",
+        "name": "Cons. Staples",
+        "chg1dPct": 2.11,
+        "chg5dPct": 3.85,
+        "chg20dPct": 0.4,
+        "vsSma50Pct": -0.77
+      },
+      {
+        "symbol": "XLU",
+        "name": "Utilities",
+        "chg1dPct": -0.19,
+        "chg5dPct": 3.5,
+        "chg20dPct": -3.41,
+        "vsSma50Pct": -2.91
+      },
+      {
+        "symbol": "XLY",
+        "name": "Cons. Discretionary",
+        "chg1dPct": 0.31,
+        "chg5dPct": 2.67,
+        "chg20dPct": -0.22,
+        "vsSma50Pct": -2.35
+      },
+      {
+        "symbol": "XLC",
+        "name": "Communication",
+        "chg1dPct": 0.73,
+        "chg5dPct": 1.94,
+        "chg20dPct": 0.51,
+        "vsSma50Pct": 0.28
+      },
+      {
+        "symbol": "XLB",
+        "name": "Materials",
+        "chg1dPct": 0.59,
+        "chg5dPct": 1.5,
+        "chg20dPct": -2.94,
+        "vsSma50Pct": -4.09
+      },
+      {
+        "symbol": "XLF",
+        "name": "Financials",
+        "chg1dPct": 0.89,
+        "chg5dPct": 1.44,
+        "chg20dPct": -4.64,
+        "vsSma50Pct": -4.15
+      },
+      {
+        "symbol": "XLV",
+        "name": "Health Care",
+        "chg1dPct": -0.39,
+        "chg5dPct": 1.18,
+        "chg20dPct": 1.51,
+        "vsSma50Pct": -0.36
+      },
+      {
+        "symbol": "XLRE",
+        "name": "Real Estate",
+        "chg1dPct": 0.69,
+        "chg5dPct": 0.42,
+        "chg20dPct": -5.11,
+        "vsSma50Pct": -6.11
+      },
+      {
+        "symbol": "XLK",
+        "name": "Technology",
+        "chg1dPct": -1.79,
+        "chg5dPct": -0.02,
+        "chg20dPct": 6.78,
+        "vsSma50Pct": 4.87
+      },
+      {
+        "symbol": "XLI",
+        "name": "Industrials",
+        "chg1dPct": 0.33,
+        "chg5dPct": -0.14,
+        "chg20dPct": -1.26,
+        "vsSma50Pct": -4.26
+      }
+    ],
+    "leaders": [
+      "XLE",
+      "XLP",
+      "XLU"
+    ],
+    "laggards": [
+      "XLRE",
+      "XLK",
+      "XLI"
+    ],
+    "summary": "SPY 773.93 (+0.92% vs 50d, +7.12% vs 200d), QQQ +11.33% vs 200d, VIX 15.41, 10y 5.23%. 5-day leaders XLE/XLP/XLU, laggards XLRE/XLK/XLI.",
+    "sourceUrls": {
+      "yahooChart": "https://query1.finance.yahoo.com/v8/finance/chart/SPY"
+    }
+  },
+  "universe": [
+    {
+      "symbol": "BND",
+      "asOf": "2026-10-08",
+      "last": 70.22,
+      "chg1dPct": 0.31,
+      "chg5dPct": 0.19,
+      "chg20dPct": -1.47,
+      "sma50": 71.58,
+      "sma200": 73.14,
+      "vsSma50Pct": -1.91,
+      "vsSma200Pct": -3.99,
+      "rsi14": 30.24,
+      "offHigh52wPct": -6.59
+    },
+    {
+      "symbol": "VOO",
+      "asOf": "2026-10-08",
+      "last": 711.28,
+      "chg1dPct": -0.43,
+      "chg5dPct": 1.27,
+      "chg20dPct": 2.1,
+      "sma50": 705.09,
+      "sma200": 664.35,
+      "vsSma50Pct": 0.88,
+      "vsSma200Pct": 7.06,
+      "rsi14": 59.35,
+      "offHigh52wPct": -0.69
+    }
+  ],
+  "secScan": [],
+  "sources": [
+    {
+      "id": "m1",
+      "type": "market",
+      "title": "Yahoo Finance daily history: SPY, QQQ, ^VIX, ^TNX, sector ETFs, BND, VOO",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "retrievedAt": "2026-10-09T06:39:19.680Z",
+      "takeaway": "SPY 773.93 (+0.92% vs 50d, +7.12% vs 200d), QQQ +11.33% vs 200d, VIX 15.41, 10y 5.23%. 5-day leaders XLE/XLP/XLU, laggards XLRE/XLK/XLI."
+    },
+    {
+      "id": "web1",
+      "type": "web",
+      "title": "Trading Economics: US 10-Year Yield Holds Retreat (Oct 9) / Nearly Flat (Oct 8)",
+      "url": "https://tradingeconomics.com/united-states/government-bond-yield/news/549302",
+      "retrievedAt": "2026-10-09T06:40:00Z",
+      "publishedAt": "2026-10-09",
+      "takeaway": "10y ~5.23% Friday, off the 5.35% 24-year high after a well-received 30y auction; oil eased after Trump said \"productive discussions\" with Iran. ~82% odds of no move in October, ~81% odds of a December hike. Waller: more hikes likely, timing \"flexible\"."
+    },
+    {
+      "id": "web2",
+      "type": "web",
+      "title": "Reuters via GV Wire: Wall Street turns lower as crude spikes, chip stocks weigh (Oct 8 close)",
+      "url": "https://gvwire.com/2026/10/08/wall-street-turns-lower-as-crude-spikes-chip-stocks-weigh/",
+      "retrievedAt": "2026-10-09T06:31:00Z",
+      "publishedAt": "2026-10-08",
+      "takeaway": "S&P 500 -0.61% to 7,753.82, Nasdaq -1.37%. Chips -3.0%; energy led on Hormuz shipping attacks + hurricane output cut (US crude +60% YTD). CME FedWatch ~68% odds of a December hike. NYSE 83 new highs vs 392 new lows."
+    },
+    {
+      "id": "x1",
+      "type": "x",
+      "author": "@KobeissiLetter",
+      "title": "Kobeissi Letter: US 10Y above 5.35% for the first time in 24 years",
+      "url": "https://x.com/KobeissiLetter/status/2107822936728219682",
+      "retrievedAt": "2026-10-09T06:37:00Z",
+      "publishedAt": "2026-10-07T13:18:44Z",
+      "takeaway": "10y >5.35%, +143 bp since the pre-Iran-war low; mortgage rates at 3-year highs. Long duration is under sustained pressure."
+    },
+    {
+      "id": "x2",
+      "type": "x",
+      "author": "@DeItaone",
+      "title": "Walter Bloomberg: 10-year auction draws strong demand (5.300%, indirects 80.34%)",
+      "url": "https://x.com/DeItaone/status/2107879580857999442",
+      "retrievedAt": "2026-10-09T06:37:00Z",
+      "publishedAt": "2026-10-07T17:03:49Z",
+      "takeaway": "$39B 10y cleared at 5.300% with a 2.77 bid-to-cover; dealers left with a record-low 2.54%. Real buyers show up above 5%."
+    },
+    {
+      "id": "x3",
+      "type": "x",
+      "author": "@DeItaone",
+      "title": "Walter Bloomberg: Fed minutes \u2014 most officials see another hike by year-end",
+      "url": "https://x.com/DeItaone/status/2107893827260285265",
+      "retrievedAt": "2026-10-09T06:37:00Z",
+      "publishedAt": "2026-10-07T18:00:25Z",
+      "takeaway": "All 19 backed the September 25 bp hike; most see another increase by year-end; almost all see inflation risks tilted up."
+    },
+    {
+      "id": "x4",
+      "type": "x",
+      "author": "@GlobalMktObserv",
+      "title": "Global Markets Investor: record 14.9M TLT call contracts in a month",
+      "url": "https://x.com/GlobalMktObserv/status/2108155326688059787",
+      "retrievedAt": "2026-10-09T06:37:00Z",
+      "publishedAt": "2026-10-08T11:19:32Z",
+      "takeaway": "Traders are positioning for a turn in long bonds, but positioning is not price confirmation. Treat it as sentiment, not a signal."
+    },
+    {
+      "id": "x5",
+      "type": "x",
+      "author": "@LizAnnSonders",
+      "title": "Liz Ann Sonders: 10y yield vs S&P 500 correlation deeply negative",
+      "url": "https://x.com/LizAnnSonders/status/2108137646551916593",
+      "retrievedAt": "2026-10-09T06:37:00Z",
+      "publishedAt": "2026-10-08T10:09:16Z",
+      "takeaway": "Stocks and yields are moving inversely (more so on days yields rise), so stocks and bonds are not diversifying each other right now; rates are the key equity driver."
+    }
+  ],
+  "ideas": [
+    {
+      "symbol": "BND",
+      "side": "buy",
+      "status": "watch",
+      "size": "~$10",
+      "thesis": "BND is oversold (RSI 30, -4% vs 200d) with the 10y at ~5.23%. Strong 10y and 30y auction demand (indirects 80%) shows real buyers above 5%. Adding duration at 24-year-high yields is attractive for a guardian sleeve, but only after CPI clears.",
+      "sourceIds": [
+        "m1",
+        "web1",
+        "x2",
+        "x1"
+      ]
+    },
+    {
+      "symbol": "VOO",
+      "side": "buy",
+      "status": "rejected",
+      "whyRejected": "Regime allows it (SPY +7.1% vs 200d), but SPY is 0.7% under its 52w high, so this would not be a pullback entry. Fed minutes lean hawkish and a guardian sleeve does not chase highs.",
+      "sourceIds": [
+        "m1",
+        "x3"
+      ]
+    },
+    {
+      "symbol": "BND",
+      "side": "sell",
+      "status": "rejected",
+      "whyRejected": "SPY is above its 200d, so there is no flip signal. Selling BND at 24-year-high yields would lock in the drawdown.",
+      "sourceIds": [
+        "m1"
+      ]
+    }
+  ],
+  "decision": {
+    "action": "plan",
+    "confidence": 0.7,
+    "summary": "Hold: 43% cash, 57% BND, no equity. Stage a ~$10 BND add after the Oct 14 CPI if the 10y holds at or below ~5.35%.",
+    "reasoning": "RiskOff's switch is SPY vs its 200-day. SPY is +7.1% above it, so there is no flip, and the equity allowance is optional, not required. The research points to two-sided rate risk: yields at 24-year highs with a December hike ~81% priced, but auction demand is strong, oil eased on Iran talk, and TLT call positioning is at records. The guardian move is to keep the cash ballast and wait for CPI to decide whether to extend duration. Skipping is the expected outcome for this persona.",
+    "plan": [
+      {
+        "session": "midday",
+        "symbol": "BND",
+        "side": "buy",
+        "size": "~$10",
+        "trigger": "Not before Oct 14 CPI; only if 10y \u2264 5.35% after CPI"
+      },
+      {
+        "session": "open",
+        "symbol": "BND",
+        "side": "sell",
+        "size": "all",
+        "trigger": "Only if SPY closes below its 200d SMA (~$722) \u2014 flip rule"
+      }
+    ]
+  },
+  "risks": [
+    "If inflation re-accelerates (oil), yields could break above 5.36% and BND falls further.",
+    "Stocks and yields are inversely correlated, so bonds are not a reliable equity hedge in this regime.",
+    "Bond market closed Oct 12 (Columbus Day) while stocks trade; BND pricing that day will be thin."
+  ],
+  "orders": [],
+  "paperOnly": true
+}
