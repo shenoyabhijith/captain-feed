@@ -45,7 +45,7 @@ function isXCard(card) {
  * X:     "X · 8 builders · Oct 9"
  * Other: "<outlet> · <price if any> · <date>"
  */
-function metaLine(card) {
+export function metaLine(card) {
   const segs = String(card.source || "").split(/\s+·\s+/).map((x) => x.trim()).filter(Boolean);
   const dateIdx = segs.findIndex((x) => DATE_RE.test(x));
   const date = shortDate(segs[dateIdx]) || shortDate(card.date);
@@ -92,7 +92,7 @@ export function cardCover(card) {
   return { kind: "image", src };
 }
 
-function AvatarTile({ authors, posts }) {
+export function AvatarTile({ authors, posts }) {
   const shown = authors.slice(0, 5);
   const extra = authors.length - shown.length;
   return (

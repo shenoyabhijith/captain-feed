@@ -29,3 +29,22 @@ export function loadTheme() {
 export function saveTheme(theme) {
   localStorage.setItem(THEME_KEY, theme);
 }
+
+const DECK_KEY = "captain-feed-deck-mode";
+
+/** Feed layout for All / For you: "deck" (swipe stack, default) or "list". */
+export function loadFeedLayout() {
+  try {
+    return localStorage.getItem(DECK_KEY) === "list" ? "list" : "deck";
+  } catch {
+    return "deck";
+  }
+}
+
+export function saveFeedLayout(layout) {
+  try {
+    localStorage.setItem(DECK_KEY, layout === "list" ? "list" : "deck");
+  } catch {
+    /* ignore */
+  }
+}

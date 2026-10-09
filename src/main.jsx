@@ -16,6 +16,7 @@ import "./coss.css";
 import "./palette.css";
 import "./styles.css";
 import "./liquid-glass.css";
+import "./deck.css";
 
 const UPDATE_INTERVAL_MS = 5 * 60 * 1000;
 

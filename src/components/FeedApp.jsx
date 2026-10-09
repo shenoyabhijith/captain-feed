@@ -10,7 +10,9 @@ import {
 } from "../installGate.js";
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
-import { loadTheme, saveTheme } from "../storage";
+import { loadTheme, saveTheme, loadFeedLayout, saveFeedLayout } from "../storage";
+import { Layers, List as ListIcon } from "lucide-react";
+import SwipeDeck from "./deck/SwipeDeck.jsx";
 import { useFeed } from "../hooks/useFeed";
 import {
   checkAndApplyAppUpdate,
@@ -219,6 +221,30 @@ function Home({
       : feed.view === "saved"
         ? "saved"
         : "all";
+
+  // SWIPE-DECK: All / For you default to the swipe stack; Saved stays a list.
+  const [layout, setLayout] = useState(loadFeedLayout);
+  const deckOn = layout === "deck" && segmentView !== "saved";
+  const deckCards = feed.visible.filter((c) => !feed.prefs.read[c.id] && !feed.prefs.saved[c.id]);
+  function toggleLayout(next) {
+    const v = next || (layout === "deck" ? "list" : "deck");
+    setStaggerOn(false);
+    setLayout(v);
+    saveFeedLayout(v);
+  }
+  const onDeckRead = useCallback((id) => feed.setRead(id, true), [feed]);
+  const onDeckSave = useCallback((id) => feed.setSaved(id, true), [feed]);
+  const onDeckUndo = useCallback(
+    (h) => (h.kind === "save" ? feed.setSaved(h.id, false) : feed.setRead(h.id, false)),
+    [feed]
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("deck-mode", deckOn && feed.status === "ready");
+    if (deckOn) window.scrollTo(0, 0);
+    return () => root.classList.remove("deck-mode");
+  }, [deckOn, feed.status]);
 
   function setSegmentView(id) {
     // For you ≡ unread in live prefs — no list restagger on tab change
@@ -583,6 +609,22 @@ function Home({
               <span className="topics-count">{feed.topics.length}</span>
             ) : null}
           </button>
+          {segmentView !== "saved" ? (
+            <button
+              type="button"
+              className="layout-btn"
+              data-layout={layout}
+              aria-label={layout === "deck" ? "Switch to list view" : "Switch to swipe deck"}
+              title={layout === "deck" ? "List view" : "Swipe deck"}
+              onClick={() => toggleLayout()}
+            >
+              {layout === "deck" ? (
+                <ListIcon size={18} strokeWidth={1.9} aria-hidden="true" />
+              ) : (
+                <Layers size={18} strokeWidth={1.9} aria-hidden="true" />
+              )}
+            </button>
+          ) : null}
         </div>
         {feed.status === "loading" || feed.status === "error" ? (
           <div className="stats feed-meta" role="status">
@@ -598,16 +640,31 @@ function Home({
 
       {feed.status === "ready" ? (
         <>
-          <DallasWeather forecast={dallasWeather} unreadCount={unreadCount} />
+          {deckOn ? null : <DallasWeather forecast={dallasWeather} unreadCount={unreadCount} />}
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
-              key={segmentView}
+              key={`${segmentView}-${deckOn ? "deck" : "list"}`}
               className="feed-panel-motion"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={motionTransition(motionOn, DOCK_FADE)}
             >
+              {deckOn ? (
+                <div className="deck-frame" style={{ "--deck-top": `${headerH}px` }}>
+                  <SwipeDeck
+                    cards={deckCards}
+                    totalSaved={savedCount}
+                    filtered={Boolean(feed.query.trim()) || feed.topics.length > 0}
+                    onRead={onDeckRead}
+                    onSave={onDeckSave}
+                    onUndo={onDeckUndo}
+                    onSeen={feed.markSeen}
+                    onShowSaved={() => setSegmentView("saved")}
+                    onShowList={() => toggleLayout("list")}
+                  />
+                </div>
+              ) : (
               <CardList
                 cards={feed.visible}
                 prefs={feed.prefs}
@@ -619,6 +676,7 @@ function Home({
                 query={feed.query}
                 stagger={staggerOn}
               />
+              )}
             </motion.div>
           </AnimatePresence>
         </>
