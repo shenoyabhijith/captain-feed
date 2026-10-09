@@ -2,30 +2,30 @@
   "meta": {
     "title": "Captain Feed · Paper desk",
     "paperOnly": true,
-    "asOf": "2026-10-09T16:33:59.276Z",
+    "asOf": "2026-10-09T16:00:00-04:00",
     "priceSource": "yahoo",
     "issuedBy": "firstmate",
     "note": "Firstmate issued paper capital · real EOD marks. Fake capital; not a brokerage.",
-    "marksAsOf": "2026-10-08T16:00:00-04:00"
+    "marksAsOf": "2026-10-09T16:00:00-04:00"
   },
   "marks": {
-    "VOO": 711.28,
-    "VTI": 379.56,
-    "VXUS": 84.1,
+    "VOO": 715.59,
+    "VTI": 381.94,
+    "VXUS": 84.82,
     "BND": 70.22,
-    "QQQ": 747.58,
-    "VGT": 127.25,
-    "SMH": 607.27,
-    "SOXX": 563.28,
-    "XLK": 197.78,
-    "AAPL": 340.42,
-    "MSFT": 522.61,
-    "GOOGL": 348.29,
-    "AMZN": 254.06,
-    "META": 720.89,
-    "NVDA": 230.48,
-    "AVGO": 360.14,
-    "TSM": 457.99
+    "QQQ": 751.27,
+    "VGT": 127.98,
+    "SMH": 603.33,
+    "SOXX": 559.4,
+    "XLK": 198.78,
+    "AAPL": 336.64,
+    "MSFT": 535.07,
+    "GOOGL": 351.66,
+    "AMZN": 262.43,
+    "META": 718.67,
+    "NVDA": 229.28,
+    "AVGO": 361.54,
+    "TSM": 453.31
   },
   "sleeves": [
     {
@@ -1155,10 +1155,14 @@
     {
       "date": "2026-10-08",
       "nav": 729.22
+    },
+    {
+      "date": "2026-10-09",
+      "nav": 729.91
     }
   ],
   "ops": {
-    "lastRunId": "run-20261008",
+    "lastRunId": "eod-20261009",
     "rankOrder": [
       "swing",
       "mega",
@@ -1166,7 +1170,8 @@
       "coresat",
       "riskoff"
     ],
-    "notes": "Firstmate issued paper capital · real EOD marks. Promote-ready flags are ops-only; no live wire."
+    "notes": "EOD mark-to-market only; trades happen in research-driven market-watch checks.",
+    "lastEodId": "eod-20261009"
   },
   "markHistory": [
     {
@@ -1190,6 +1195,73 @@
         "AVGO": 360.14,
         "TSM": 457.99
       }
+    },
+    {
+      "date": "2026-10-09",
+      "marks": {
+        "VOO": 715.59,
+        "VTI": 381.94,
+        "VXUS": 84.82,
+        "BND": 70.22,
+        "QQQ": 751.27,
+        "VGT": 127.98,
+        "SMH": 603.33,
+        "SOXX": 559.4,
+        "XLK": 198.78,
+        "AAPL": 336.64,
+        "MSFT": 535.07,
+        "GOOGL": 351.66,
+        "AMZN": 262.43,
+        "META": 718.67,
+        "NVDA": 229.28,
+        "AVGO": 361.54,
+        "TSM": 453.31
+      }
+    }
+  ],
+  "daily": [
+    {
+      "date": "2026-10-09",
+      "nav": 729.91,
+      "pnl": 1.42,
+      "perTrader": {
+        "value": {
+          "nav": 130.92,
+          "pnl": 0.75,
+          "pnlPct": 0.58,
+          "fills": 1,
+          "fees": 0
+        },
+        "swing": {
+          "nav": 224.84,
+          "pnl": -0.73,
+          "pnlPct": -0.32,
+          "fills": 1,
+          "fees": 0.01
+        },
+        "coresat": {
+          "nav": 142.17,
+          "pnl": 0.78,
+          "pnlPct": 0.55,
+          "fills": 1,
+          "fees": 0
+        },
+        "mega": {
+          "nav": 137.61,
+          "pnl": 0.62,
+          "pnlPct": 0.45,
+          "fills": 3,
+          "fees": 0.02
+        },
+        "riskoff": {
+          "nav": 94.37,
+          "pnl": 0,
+          "pnlPct": 0,
+          "fills": 0,
+          "fees": 0
+        }
+      },
+      "runId": "eod-20261009"
     }
   ]
 }
