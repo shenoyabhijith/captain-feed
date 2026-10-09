@@ -2586,3 +2586,220 @@ html[data-standalone="1"] .install-btn {
     transition: none !important;
   }
 }
+
+/* ── X-app-style post cards (Builders briefs) ───────────────────────────
+   Native, data-rendered. Light/dark mirror X's palettes. No orange, no
+   left bars. Whole card opens the post; inner links sit above the hit area. */
+.xcard-stack {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 4px;
+  max-width: 36rem;
+}
+.xcard {
+  --x-bg: #ffffff;
+  --x-ink: #0f1419;
+  --x-muted: #536471;
+  --x-line: #eff3f4;
+  --x-blue: #1d9bf0;
+  --x-hover: #f7f9f9;
+  position: relative;
+  padding: 12px 16px 10px;
+  border-radius: 16px;
+  background: var(--x-bg);
+  color: var(--x-ink);
+  border: 1px solid var(--x-line);
+  box-shadow: 0 1px 2px rgba(15, 20, 25, 0.06), 0 6px 18px rgba(15, 20, 25, 0.07);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter Variable", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: left;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+[data-theme="dark"] .xcard {
+  --x-bg: #000000;
+  --x-ink: #e7e9ea;
+  --x-muted: #71767b;
+  --x-line: #2f3336;
+  --x-blue: #1d9bf0;
+  --x-hover: #080808;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.xcard:hover {
+  background: var(--x-hover);
+  box-shadow: 0 2px 4px rgba(15, 20, 25, 0.08), 0 10px 28px rgba(15, 20, 25, 0.1);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .xcard:active { transform: scale(0.995); }
+}
+.xcard__hit {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+}
+.xcard__hit:focus-visible {
+  outline: 2px solid var(--x-blue);
+  outline-offset: 2px;
+}
+.xcard a:not(.xcard__hit) {
+  position: relative;
+  z-index: 1;
+}
+.xcard__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.xcard__avatar-link { flex: none; display: block; line-height: 0; }
+.xcard__avatar {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  object-fit: cover;
+  background: var(--x-line);
+}
+.xcard__avatar--initial {
+  display: inline-grid;
+  place-items: center;
+  background: var(--sec);
+  color: var(--on-hue);
+  font-weight: 800;
+  font-size: 17px;
+}
+.xcard__who {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+.xcard__name-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+.xcard .xcard__name {
+  font-weight: 700;
+  color: var(--x-ink);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.xcard .xcard__name:hover { text-decoration: underline; }
+.xcard__verified {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: #1d9bf0;
+}
+.xcard__verified[data-kind="gold"] { fill: #e2b719; }
+.xcard__verified[data-kind="gray"] { fill: #829aab; }
+.xcard__sub {
+  color: var(--x-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.xcard__logo {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  fill: var(--x-ink);
+}
+.detail-shell .xcard__text,
+.xcard__text {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--x-ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+}
+.xcard .xcard-link {
+  color: var(--x-blue);
+  text-decoration: none;
+  font-weight: inherit;
+  background: none;
+}
+.xcard .xcard-link:hover { text-decoration: underline; }
+.xcard__media {
+  display: grid;
+  gap: 2px;
+  margin-top: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--x-line);
+  grid-template-columns: 1fr 1fr;
+  aspect-ratio: 16 / 9;
+}
+.xcard__media[data-count="1"] {
+  grid-template-columns: 1fr;
+  aspect-ratio: auto;
+}
+.xcard__media[data-count="3"] > :first-child { grid-row: span 2; }
+.xcard__media-cell {
+  position: relative;
+  display: block;
+  min-height: 0;
+  background: var(--x-line);
+}
+.xcard__media-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.xcard__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #1d9bf0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  border: 4px solid #fff;
+}
+.xcard__metrics {
+  display: flex;
+  justify-content: space-between;
+  max-width: 425px;
+  margin-top: 10px;
+  color: var(--x-muted);
+  font-size: 13px;
+  line-height: 16px;
+}
+.xcard__metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 40px;
+  font-variant-numeric: tabular-nums;
+}
+.xcard__metric svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+.xcard--link { padding: 12px 16px; }
+.xcard--link .xcard__sub { color: var(--x-blue); }
+.xcard__reply {
+  margin: 4px 0 0;
+  color: var(--x-muted);
+  font-size: 15px;
+  line-height: 20px;
+}
+.xcard .xcard__more {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 15px;
+}

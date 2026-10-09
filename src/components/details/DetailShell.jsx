@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { CATEGORY_ICONS, CATEGORY_LABELS, ICON_STROKE } from "../icons.js";
 import { renderInline } from "./inline.jsx";
+import { TweetStack } from "./TweetCard.jsx";
 
 /** Section color rotation (vivid, never orange). */
 export const HUES = ["blue", "violet", "emerald", "pink", "cyan", "gold"];
@@ -108,6 +109,7 @@ export function collectBriefBlocks(detail, card) {
       body: s.body,
       callout: s.callout || null,
       quote: s.quote || null,
+      tweets: Array.isArray(s.tweets) ? s.tweets : null,
     });
   }
   if (d.bullets?.length) {
@@ -574,12 +576,13 @@ function SectionHead({ heading, hue, index, total, iconKey }) {
   );
 }
 
-export function Section({ heading, body, id: idProp, hue = "blue", index, total, callout, quote }) {
+export function Section({ heading, body, id: idProp, hue = "blue", index, total, callout, quote, tweets }) {
   const id = idProp || (heading ? `section-${slugify(heading)}` : undefined);
   return (
     <section className="detail-section" id={id} data-hue={hue}>
       <SectionHead heading={heading} hue={hue} index={index} total={total} />
       <BodyBlocks text={body} />
+      <TweetStack tweets={tweets} />
       {quote?.text ? <PullQuote text={quote.text} by={quote.by} /> : null}
       {callout?.text ? <Callout kind={callout.kind} text={callout.text} /> : null}
     </section>
@@ -685,6 +688,7 @@ export function BriefBlocks({ blocks }) {
             body={b.body}
             callout={b.callout}
             quote={b.quote}
+            tweets={b.tweets}
           />
         );
       })}

@@ -41,7 +41,61 @@
             "callout": {
               "kind": "why",
               "text": "Agent-written tests tend to repeat the implementation’s own reading of intent, so they **aren’t an independent check**. Kun’s take: humans decide which tests carry authority."
-            }
+            },
+            "tweets": [
+              {
+                "id": "2108030810691629403",
+                "url": "https://x.com/kunchenguid/status/2108030810691629403",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-08T03:04:45.000Z",
+                "text": "ok it's official... AI-written unit tests and integration tests are empirically proven to be unhelpful. you should tell your agents to stop writing tests by themselves\n\non the deepswe eval set, banning sonnet 5.5 high from writing any tests actually resulted in slightly higher success rate (non stat-sig), with less time and token spent (stat-sig). this is pretty hard empirical evidence\n\nacross the tests that were written by the \"tests allowed\" baseline arm, 65% of them were unit tests, 35% were integration tests, neither bucket resulted in any improvement compared to not writing any tests at all\n\ni also picked a random sample of 44 tasks subset where i completely disabled executing even existing tests - it also did not affect success rate at all\n\ni spot checked many tests written in the baseline arm, and my intuition is that most tests are simply a repetition of the implementation\n\nagent-written tests do not add any value because both the implementation and the tests were simply the agent's interpretation of our intent. the tests aren't any more accurate than the implementation itself\n\ni suspect we can still extract some value from unit tests and integration tests if we describe them ourselves when we believe we can articulate our intent better through test cases than through requirements. but i have not proven this yet\n\nalso worth noting, during deepswe eval the agent wrote almost no e2e tests (only 17, compared to 3000+ unit/integration tests written). so this analysis does not prove nor disprove the value of e2e tests - i will do another eval specifically for that",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUE2QnpakAAmtGc.jpg",
+                    "width": 2160,
+                    "height": 2160
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 418,
+                  "repost_count": 171,
+                  "quote_count": 146,
+                  "like_count": 2521,
+                  "impression_count": 321974
+                }
+              },
+              {
+                "id": "2108054698213396821",
+                "url": "https://x.com/GeoffreyHuntley/status/2108054698213396821",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-08T04:39:40.000Z",
+                "text": "STRONG strong disagree. mutation testing, property based testing authored by agents create a really really good safety harness that helps with verification, correctness and ensuring future increments do not cause regressions.",
+                "reply_to": [
+                  "kunchenguid"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 4,
+                  "repost_count": 2,
+                  "quote_count": 0,
+                  "like_count": 165,
+                  "impression_count": 7206
+                }
+              }
+            ]
           },
           {
             "heading": "Skills that stay out of the way",
@@ -53,7 +107,51 @@
             "callout": {
               "kind": "try",
               "text": "After a long autonomous run, send that prompt to pull the agent’s **scattered questions into one list**."
-            }
+            },
+            "tweets": [
+              {
+                "id": "2108186533303898293",
+                "url": "https://x.com/mattpocockuk/status/2108186533303898293",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-08T13:23:32.000Z",
+                "text": "\"Models are getting better, we don't need skills!\"\n\nWhat if I told you that models are also getting better at using skills?\n\nGood skills tell the model what you care about, then stay out of its way.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 109,
+                  "repost_count": 28,
+                  "quote_count": 19,
+                  "like_count": 1226,
+                  "impression_count": 55312
+                }
+              },
+              {
+                "id": "2108175792945676313",
+                "url": "https://x.com/mattpocockuk/status/2108175792945676313",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-08T12:40:51.000Z",
+                "text": "Prompt of the day:\n\n/wait-what questions did you have for me\n\nGreat for when the agent has gone off on its own for hours and has random questions scattered through its context window.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 51,
+                  "repost_count": 18,
+                  "quote_count": 3,
+                  "like_count": 493,
+                  "impression_count": 30366
+                }
+              }
+            ]
           },
           {
             "heading": "Tunnels, durable agents, closed loops",
@@ -61,7 +159,93 @@
             "callout": {
               "kind": "try",
               "text": "**Lauren Tan’s** loop is a pattern to borrow: watch X for product feedback, send feature requests to an issue tracker and bugs to a cloud agent."
-            }
+            },
+            "tweets": [
+              {
+                "id": "2107956848318177622",
+                "url": "https://x.com/thdxr/status/2107956848318177622",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-07T22:10:51.000Z",
+                "text": "opentunnel - public urls for anything running on your machine\n\ntunnel services exist but this one is different\n- e2e encrypted, relay can't see shit\n- sdk to embed this functionality in your apps\n\nwill be integrated into opencode tomorrow",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUD3bTwW0AAiBh7.jpg",
+                    "width": 1200,
+                    "height": 630
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 113,
+                  "repost_count": 132,
+                  "quote_count": 19,
+                  "like_count": 2966,
+                  "impression_count": 109027
+                }
+              },
+              {
+                "id": "2107963437154435182",
+                "url": "https://x.com/poteto/status/2107963437154435182",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-07T22:37:02.000Z",
+                "text": "ask your Grok @Bot to monitor X for user feedback on your products! send feature requests to your issue tracker, bug reports to a cursor cloud agent or project to triage and fix\n\nthe loop is complete https://t.co/Xk4Xq4Ul2s",
+                "urls": [
+                  {
+                    "url": "https://t.co/Xk4Xq4Ul2s",
+                    "expanded_url": "https://twitter.com/bot/status/2107949161878606089",
+                    "display_url": "x.com/bot/status/210…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 162,
+                  "repost_count": 57,
+                  "quote_count": 23,
+                  "like_count": 1642,
+                  "impression_count": 90866
+                }
+              },
+              {
+                "id": "2108193659023950005",
+                "url": "https://x.com/badlogicgames/status/2108193659023950005",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-08T13:51:51.000Z",
+                "text": "super cool, pi durable accessible in Swift. creative use of JavaScriptCore :D https://t.co/XdiiZ7W0ZJ",
+                "urls": [
+                  {
+                    "url": "https://t.co/XdiiZ7W0ZJ",
+                    "expanded_url": "https://twitter.com/finnvoorhees/status/2108192018824339709",
+                    "display_url": "x.com/finnvoorhees/s…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 4,
+                  "repost_count": 3,
+                  "quote_count": 1,
+                  "like_count": 107,
+                  "impression_count": 8490
+                }
+              }
+            ]
           }
         ],
         "bullets": [
