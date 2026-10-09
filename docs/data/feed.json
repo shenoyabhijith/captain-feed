@@ -4,6 +4,332 @@
   "updated": "2026-10-08T09:48:33-05:00",
   "cards": [
     {
+      "id": "ai-20261009-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 9, 2026",
+      "body": "Builders argued about **eval driven development** and Goodhart's law, made the case that a good `--help` beats an MCP server, and showed **personal AI tools** built by voice or on a schedule.",
+      "source": "X builders watch · Oct 9, 2026 CT · Harrison Chase · Geoffrey Huntley · Dax · Thariq · Simon Willison · DHH · Kun Chen · Addy Osmani",
+      "tags": [
+        "ai",
+        "builders",
+        "evals",
+        "cli",
+        "mcp",
+        "personal-ai",
+        "codex",
+        "workflows"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/builders-today-20261009/800/520",
+      "link": "https://x.com/hwchase17/status/2108474622966444102",
+      "detail": {
+        "tldr": "**Harrison Chase** says eval driven development works for **narrow tasks but not autonomous agents**, and labels trajectories on several questions, not one pass/fail.\n**Geoffrey Huntley** argues an agent-tuned CLI `--help` does what an MCP server does, while **Thariq** and **Simon Willison** show small personal AI builds.",
+        "tldrBullets": [
+          "Harrison Chase: evals hit **Goodhart's law** for autonomous agents; grade difficulty and correctness as **separate typed answers** per trace",
+          "Geoffrey Huntley: optimize your CLI `--help` until a model reaches outcomes in the **fewest tool calls**, then work on agent search",
+          "Dax: MCP servers that need a **custom OAuth app** (Slack) make setup painful",
+          "Thariq: open-sourced **ai-newtab**, a Chrome new tab page Claude generates daily from your browsing",
+          "Simon Willison: built a blog feature **entirely by voice** with Codex Desktop while cooking"
+        ],
+        "summary": "A quieter day for launches and a louder one for method: **how to measure agents** without gaming the metric, **what interface agents should use** to reach your tool, and small personal builds that run on their own.",
+        "sections": [
+          {
+            "heading": "Evals versus Goodhart",
+            "body": "**Harrison Chase** [@hwchase17](https://x.com/hwchase17/status/2108465208297476157) boosted Jerry Liu's claim that most tasks can now be solved by **defining an eval and hill climbing over it** instead of hand-writing the workflow.\n\nHours later he tempered it ([post](https://x.com/hwchase17/status/2108474622966444102)): when a measure becomes a target it stops being a good measure, so his initial take is that eval driven development **works for narrowly scoped things but not for more autonomous agents**, and he asked how you hill climb those.\n\nHe also liked a framing that **trajectory labeling is several questions, not one pass/fail** ([post](https://x.com/hwchase17/status/2108453917277254058)): task difficulty and correctness each get their own typed answer, in one pass, on every trace.",
+            "tweets": [
+              {
+                "id": "2108474622966444102",
+                "url": "https://x.com/hwchase17/status/2108474622966444102",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-09T08:28:18.000Z",
+                "text": "This is great point\n\nGoodharts law: when a measure becomes a target, it ceases to be a good measure\n\nInitial take: eval driven development works for narrowly scoped things, but for more autonomous agents it doesn’t\n\nSo then - how do you hill climb those? https://t.co/p3F59oinmi",
+                "urls": [
+                  {
+                    "url": "https://t.co/p3F59oinmi",
+                    "expanded_url": "https://twitter.com/huntergerlach/status/2108472779364282861",
+                    "display_url": "x.com/huntergerlach/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 45,
+                  "repost_count": 6,
+                  "quote_count": 0,
+                  "like_count": 71,
+                  "impression_count": 5186
+                }
+              },
+              {
+                "id": "2108453917277254058",
+                "url": "https://x.com/hwchase17/status/2108453917277254058",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-09T07:06:01.000Z",
+                "text": "trajectory labeling is really several questions, not one pass/fail - nice framing here\n\nthat's how Jev as a judge works in LangSmith evals: difficulty and correctness each get their own typed answer, in one pass, on every trace\n\nhttps://t.co/jlD2ywtlOT\n\nhttps://t.co/QgQpQFpZ26",
+                "urls": [
+                  {
+                    "url": "https://t.co/jlD2ywtlOT",
+                    "expanded_url": "https://www.langchain.com/blog/jev-is-now-available-in-langsmith-evals",
+                    "display_url": "langchain.com/blog/jev-is-no…"
+                  },
+                  {
+                    "url": "https://t.co/QgQpQFpZ26",
+                    "expanded_url": "https://x.com/xennygrimmato_/status/2108303751136297226",
+                    "display_url": "x.com/xennygrimmato_…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 26,
+                  "repost_count": 4,
+                  "quote_count": 2,
+                  "like_count": 61,
+                  "impression_count": 6465
+                }
+              }
+            ],
+            "callout": {
+              "kind": "try",
+              "text": "Grade an agent run on **separate questions** (how hard was it, was it right, did it weigh options) instead of one pass/fail score."
+            }
+          },
+          {
+            "heading": "CLI help as the agent interface",
+            "body": "**Geoffrey Huntley** [@GeoffreyHuntley](https://x.com/GeoffreyHuntley/status/2108454712035209559) wrote [--help on your CLI is all you need](https://ghuntley.com/tier/): tools already in model weights (like `gh`) need no skill or MCP. Everyone else should build a good CLI, then **measure whether a model can reach outcomes by walking `--help`** and rewrite the text until it takes the **fewest tool calls**, ideally in an automated loop.\n\n**Dax** [@thdxr](https://x.com/thdxr/status/2108356041092337883) complained that some MCP servers, Slack among them, make you **register a custom OAuth app**, which makes the whole flow painful.",
+            "tweets": [
+              {
+                "id": "2108454712035209559",
+                "url": "https://x.com/GeoffreyHuntley/status/2108454712035209559",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-09T07:09:11.000Z",
+                "text": "🗞️ --help on your CLI is all you need for LLM context until you don't.\n\nhttps://t.co/ZeM2mYOQN4\n\nIn this post, I share guidance for developer tooling companies and concrete advice on how to graduate from F-tier to S-tier.",
+                "urls": [
+                  {
+                    "url": "https://t.co/ZeM2mYOQN4",
+                    "expanded_url": "https://ghuntley.com/tier/",
+                    "display_url": "ghuntley.com/tier/"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUK8VrGboAAlAWY.jpg",
+                    "width": 1616,
+                    "height": 1434
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 5,
+                  "repost_count": 3,
+                  "quote_count": 0,
+                  "like_count": 28,
+                  "impression_count": 2498
+                }
+              },
+              {
+                "id": "2108356041092337883",
+                "url": "https://x.com/thdxr/status/2108356041092337883",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-09T00:37:06.000Z",
+                "text": "a few companies have made MCP servers but make you register a custom oauth app for it\n\nslack is one of these, it makes the whole flow suck\n\nwhy are they doing this?",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 85,
+                  "repost_count": 15,
+                  "quote_count": 7,
+                  "like_count": 706,
+                  "impression_count": 50529
+                }
+              }
+            ],
+            "callout": {
+              "kind": "why",
+              "text": "If an agent can learn a tool from its own `--help`, you skip skill packs and server setup. **Tool calls to success** is the number to tune."
+            }
+          },
+          {
+            "heading": "Personal AI that runs itself",
+            "body": "**Thariq** [@trq212](https://x.com/trq212/status/2108312534222778407) open-sourced [ai-newtab](https://github.com/ThariqS/ai-newtab), a Chrome extension where **Claude generates a daily new tab page** from the sites you read. He uses it every day.\n\n**Simon Willison** [@simonw](https://x.com/simonw/status/2108547065634844839) [built a Newsletters page for his blog](https://simonwillison.net/2026/Oct/9/built-using-my-voice/) **entirely by voice** with Codex Desktop while cooking dinner.\n\n**DHH** [@dhh](https://x.com/dhh/status/2108518418081054724) said this is the first time he has preferred **Codex as main and Claude as secondary** for an extended stretch. **Kun Chen** [@kunchenguid](https://x.com/kunchenguid/status/2108431557824500204) noted his dot has run astra **non-stop for about 72 hours** with no quota limit so far.\n\n**Addy Osmani** [@addyosmani](https://x.com/addyosmani/status/2108444852820066711) framed why engineers split on agents: it depends on whether your joy comes from **making, knowing, or mattering**.",
+            "tweets": [
+              {
+                "id": "2108312534222778407",
+                "url": "https://x.com/trq212/status/2108312534222778407",
+                "author": {
+                  "name": "Thariq",
+                  "username": "trq212",
+                  "avatar": "https://pbs.twimg.com/profile_images/1976939058741039104/r3GgzqRh_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-08T21:44:13.000Z",
+                "text": "whoops I hit send and went to a meeting, didn't realize the repo wasnt public- it is now! \n\nit's a chrome extension I use every day now https://t.co/OroAeTafj0 https://t.co/3AE65z3VqK",
+                "urls": [
+                  {
+                    "url": "https://t.co/OroAeTafj0",
+                    "expanded_url": "https://github.com/ThariqS/ai-newtab",
+                    "display_url": "github.com/ThariqS/ai-new…"
+                  },
+                  {
+                    "url": "https://t.co/3AE65z3VqK",
+                    "expanded_url": "https://twitter.com/trq212/status/2108301668828004396",
+                    "display_url": "x.com/trq212/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 65,
+                  "repost_count": 62,
+                  "quote_count": 10,
+                  "like_count": 1539,
+                  "impression_count": 180364
+                }
+              },
+              {
+                "id": "2108547065634844839",
+                "url": "https://x.com/simonw/status/2108547065634844839",
+                "author": {
+                  "name": "Simon Willison",
+                  "username": "simonw",
+                  "avatar": "https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-09T13:16:10.000Z",
+                "text": "I built a new feature for my blog entirely by voice with Codex Desktop, while I was cooking dinner https://t.co/dQwOlgFeKT",
+                "urls": [
+                  {
+                    "url": "https://t.co/dQwOlgFeKT",
+                    "expanded_url": "https://simonwillison.net/2026/Oct/9/built-using-my-voice/",
+                    "display_url": "simonwillison.net/2026/Oct/9/bui…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 65,
+                  "repost_count": 2,
+                  "quote_count": 1,
+                  "like_count": 83,
+                  "impression_count": 6793
+                }
+              },
+              {
+                "id": "2108518418081054724",
+                "url": "https://x.com/dhh/status/2108518418081054724",
+                "author": {
+                  "name": "DHH",
+                  "username": "dhh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093715898204884992/goERjC9G_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-09T11:22:19.000Z",
+                "text": "This is the first time I've actually preferred with drive as Codex as main and Claude as secondary for an extended period of time. Amazing how good Sol 6.1 is!",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUL2B2qWIAAobkm.jpg",
+                    "width": 816,
+                    "height": 1135
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 130,
+                  "repost_count": 28,
+                  "quote_count": 14,
+                  "like_count": 891,
+                  "impression_count": 55998
+                }
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Harrison Chase: eval driven development **fits narrow tasks**, struggles with autonomous agents",
+          "Harrison Chase: label trajectories with **multiple typed answers**, not pass/fail",
+          "Geoffrey Huntley: tune CLI `--help` for **fewest tool calls to outcome**",
+          "Dax: custom OAuth apps make **MCP setup painful**",
+          "Thariq: **ai-newtab**, a daily Claude-generated new tab page",
+          "Simon Willison: a blog feature **built by voice** with Codex Desktop",
+          "DHH: **Codex main, Claude secondary** for an extended stretch"
+        ],
+        "actions": [
+          {
+            "label": "Harrison Chase - evals and Goodhart",
+            "url": "https://x.com/hwchase17/status/2108474622966444102"
+          },
+          {
+            "label": "Geoffrey Huntley - CLI help post",
+            "url": "https://ghuntley.com/tier/"
+          },
+          {
+            "label": "Thariq - ai-newtab repo",
+            "url": "https://github.com/ThariqS/ai-newtab"
+          },
+          {
+            "label": "Simon Willison - built by voice",
+            "url": "https://simonwillison.net/2026/Oct/9/built-using-my-voice/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2108474622966444102"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2108454712035209559"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2108356041092337883"
+          },
+          {
+            "label": "Thariq @trq212",
+            "url": "https://x.com/trq212/status/2108312534222778407"
+          },
+          {
+            "label": "Simon Willison @simonw",
+            "url": "https://x.com/simonw/status/2108547065634844839"
+          },
+          {
+            "label": "DHH @dhh",
+            "url": "https://x.com/dhh/status/2108518418081054724"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2108431557824500204"
+          },
+          {
+            "label": "Addy Osmani @addyosmani",
+            "url": "https://x.com/addyosmani/status/2108444852820066711"
+          }
+        ]
+      }
+    },
+    {
       "id": "ai-20261008-builders-today",
       "category": "ai",
       "title": "Builders today — Oct 8, 2026",
