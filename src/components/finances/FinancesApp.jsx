@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { TRADER_HUE } from "../research/useResearch.js";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { TriangleAlert, X } from "lucide-react";
@@ -225,6 +226,7 @@ export default function FinancesApp() {
                   key={s.id}
                   type="button"
                   className="sleeve"
+                  data-hue={TRADER_HUE[s.id] || "slate"}
                   aria-label={`${s.name} sleeve, open detail`}
                   onClick={() => setDetailSleeveId(s.id)}
                 >

@@ -4,24 +4,29 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ArrowUpRight,
+  BookmarkCheck,
   Check,
+  Clock,
   Footprints,
+  ListOrdered,
   Lightbulb,
   Link2,
   ListChecks,
   MousePointerClick,
-  WandSparkles,
+  Target,
   Zap,
 } from "lucide-react";
+import { topicIcon, bulletFallbackIcon } from "../topicIcons.js";
 import { CATEGORY_ICONS, CATEGORY_LABELS, ICON_STROKE } from "../icons.js";
 import { renderInline } from "./inline.jsx";
 import { TweetStack } from "./TweetCard.jsx";
+import { SourceShotStack } from "./SourceShot.jsx";
 
 /** Section color rotation (vivid, never orange). */
 export const HUES = ["blue", "violet", "emerald", "pink", "cyan", "gold"];
 
 export const CATEGORY_HUES = {
-  ai: "violet",
+  ai: "emerald",
   aws: "blue",
   deal: "emerald",
   tax: "cyan",
@@ -110,6 +115,7 @@ export function collectBriefBlocks(detail, card) {
       callout: s.callout || null,
       quote: s.quote || null,
       tweets: Array.isArray(s.tweets) ? s.tweets : null,
+      screenshots: Array.isArray(s.screenshots) ? s.screenshots : null,
     });
   }
   if (d.bullets?.length) {
@@ -221,8 +227,8 @@ export function PullQuote({ text, by }) {
 }
 
 const CALLOUTS = {
-  why: { label: "Why it matters", Icon: Lightbulb },
-  try: { label: "Try this", Icon: WandSparkles },
+  why: { label: "Why it matters", Icon: Target },
+  try: { label: "Try this", Icon: Lightbulb },
 };
 
 export function Callout({ kind = "why", text }) {
@@ -379,9 +385,13 @@ function CaughtUp({ sectionCount, readMinutes, isRead, onMarkRead, nextCard }) {
       </span>
       <h2 className="caught-up__title">You’re caught up</h2>
       <p className="caught-up__line">
-        {sectionCount > 1
-          ? `You read all ${sectionCount} sections in about ${readMinutes} min.`
-          : `That’s the whole brief, about ${readMinutes} min.`}
+        <Clock size={13} strokeWidth={2.2} aria-hidden="true" /> {readMinutes} min
+        {sectionCount > 1 ? (
+          <>
+            {" · "}
+            <ListOrdered size={13} strokeWidth={2.2} aria-hidden="true" /> {sectionCount} sections
+          </>
+        ) : null}
       </p>
       {onMarkRead ? (
         isRead ? (
@@ -390,7 +400,7 @@ function CaughtUp({ sectionCount, readMinutes, isRead, onMarkRead, nextCard }) {
           </p>
         ) : (
           <button type="button" className="caught-up__mark" onClick={onMarkRead}>
-            Mark as read
+            <BookmarkCheck size={16} strokeWidth={2.2} aria-hidden="true" /> Mark as read
           </button>
         )
       ) : null}
@@ -472,8 +482,18 @@ export default function DetailShell({
             {label}
           </span>
         ) : null}
-        {readMinutes ? <span className="detail-pill">{readMinutes} min read</span> : null}
-        {count > 1 ? <span className="detail-pill">{count} sections</span> : null}
+        {readMinutes ? (
+          <span className="detail-pill" title="Read time">
+            <Clock size={13} strokeWidth={2.2} aria-hidden="true" />
+            {readMinutes} min
+          </span>
+        ) : null}
+        {count > 1 ? (
+          <span className="detail-pill" title="Sections">
+            <ListOrdered size={13} strokeWidth={2.2} aria-hidden="true" />
+            {count}
+          </span>
+        ) : null}
       </div>
       <h1>{title}</h1>
       {tldrLines.length || bullets.length ? (
@@ -483,7 +503,6 @@ export default function DetailShell({
               <Zap size={13} strokeWidth={2.4} aria-hidden="true" />
               TLDR
             </span>
-            <span className="detail-tldr__hint">The 30-second version</span>
           </p>
           <div className="detail-tldr__body">
             {tldrLines.map((line, i) => (
@@ -493,11 +512,17 @@ export default function DetailShell({
             ))}
             {bullets.length ? (
               <ul className="detail-tldr__bullets">
-                {bullets.map((b, i) => (
-                  <li key={i} data-hue={HUES[i % HUES.length]}>
-                    <LeadText text={b} />
-                  </li>
-                ))}
+                {bullets.map((b, i) => {
+                  const BIcon = topicIcon(b) || bulletFallbackIcon(b);
+                  return (
+                    <li key={i} data-hue={HUES[i % HUES.length]} className="has-icon">
+                      <span className="tldr-ico" aria-hidden="true">
+                        <BIcon size={14} strokeWidth={2.2} />
+                      </span>
+                      <span className="tldr-txt"><LeadText text={b} /></span>
+                    </li>
+                  );
+                })}
               </ul>
             ) : null}
           </div>
@@ -512,7 +537,10 @@ export default function DetailShell({
       ) : null}
       {jumpItems.length >= 2 ? (
         <nav className="detail-jump" aria-label="Jump to a section">
-          <p className="detail-jump__label">Jump to</p>
+          <p className="detail-jump__label" title="Jump to a section">
+            <ListOrdered size={14} strokeWidth={2.2} aria-hidden="true" />
+            <span>Jump to</span>
+          </p>
           <ol className="detail-jump__list">
             {jumpItems.map((s, i) => (
               <li key={s.id}>
@@ -521,7 +549,12 @@ export default function DetailShell({
                   data-hue={s.hue || HUES[i % HUES.length]}
                   onClick={(e) => onJumpClick(e, s.id)}
                 >
-                  <span className="detail-jump__num">{i + 1}</span>
+                  <span className="detail-jump__num">
+                    {(() => {
+                      const JIcon = topicIcon(s.heading);
+                      return JIcon ? <JIcon size={13} strokeWidth={2.4} aria-hidden="true" /> : i + 1;
+                    })()}
+                  </span>
                   <span className="detail-jump__text">{s.heading}</span>
                 </a>
               </li>
@@ -558,7 +591,7 @@ const BLOCK_ICONS = {
 };
 
 function SectionHead({ heading, hue, index, total, iconKey }) {
-  const Icon = iconKey ? BLOCK_ICONS[iconKey] : null;
+  const Icon = iconKey ? BLOCK_ICONS[iconKey] : topicIcon(heading);
   return (
     <>
       <header className="sec-head">
@@ -566,8 +599,8 @@ function SectionHead({ heading, hue, index, total, iconKey }) {
           {Icon ? <Icon size={18} strokeWidth={2.2} /> : index || "•"}
         </span>
         {index && total ? (
-          <span className="sec-count">
-            {Icon ? `${index} of ${total}` : `of ${total}`}
+          <span className="sec-count tabular-nums">
+            {index}/{total}
           </span>
         ) : null}
       </header>
@@ -576,15 +609,19 @@ function SectionHead({ heading, hue, index, total, iconKey }) {
   );
 }
 
-export function Section({ heading, body, id: idProp, hue = "blue", index, total, callout, quote, tweets }) {
+export function Section({ heading, body, id: idProp, hue = "blue", index, total, callout, quote, tweets, screenshots }) {
   const id = idProp || (heading ? `section-${slugify(heading)}` : undefined);
   return (
     <section className="detail-section" id={id} data-hue={hue}>
       <SectionHead heading={heading} hue={hue} index={index} total={total} />
-      <BodyBlocks text={body} />
+      {/* Visual first: the posts lead, the prose follows lighter */}
       <TweetStack tweets={tweets} />
-      {quote?.text ? <PullQuote text={quote.text} by={quote.by} /> : null}
+      <SourceShotStack shots={screenshots} />
       {callout?.text ? <Callout kind={callout.kind} text={callout.text} /> : null}
+      <div className={tweets?.length || screenshots?.length ? "sec-prose sec-prose--after-media" : "sec-prose"}>
+        <BodyBlocks text={body} />
+      </div>
+      {quote?.text ? <PullQuote text={quote.text} by={quote.by} /> : null}
     </section>
   );
 }
@@ -689,6 +726,7 @@ export function BriefBlocks({ blocks }) {
             callout={b.callout}
             quote={b.quote}
             tweets={b.tweets}
+            screenshots={b.screenshots}
           />
         );
       })}

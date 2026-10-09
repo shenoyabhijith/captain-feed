@@ -1,125 +1,55 @@
+import { Sun, CloudRain, CloudLightning, Snowflake, CloudFog, CloudSun, MapPin } from "lucide-react";
 import { formatTemp, wmoCondition } from "../lib/dallasWeather";
 
 export { wmoCondition };
 
-function ConditionIcon({ condition, className = "" }) {
-  const stroke = "currentColor";
-  const common = {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    xmlns: "http://www.w3.org/2000/svg",
-    className,
-    "aria-hidden": "true",
-  };
-  if (condition === "Clear") {
-    return (
-      <svg {...common}>
-        <circle cx="12" cy="12" r="4" stroke={stroke} strokeWidth="1.5" />
-        <path
-          d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"
-          stroke={stroke}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-    );
-  }
-  if (condition === "Rain") {
-    return (
-      <svg {...common}>
-        <path
-          d="M7.5 10.5a4.5 4.5 0 0 1 8.7-1.5A3.5 3.5 0 0 1 17.5 16H8a3.5 3.5 0 0 1-.5-5.5z"
-          stroke={stroke}
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M9 18.5v2M12 17.5v2M15 18.5v2"
-          stroke={stroke}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-    );
-  }
-  if (condition === "Storms") {
-    return (
-      <svg {...common}>
-        <path
-          d="M7.5 10a4.5 4.5 0 0 1 8.7-1.5A3.5 3.5 0 0 1 17.5 15.5H8A3.5 3.5 0 0 1 7.5 10z"
-          stroke={stroke}
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M12 14l-2 4h3l-1.5 3.5"
-          stroke={stroke}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-  if (condition === "Snow") {
-    return (
-      <svg {...common}>
-        <path
-          d="M12 5v14M7 7.5l10 9M17 7.5l-10 9"
-          stroke={stroke}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-    );
-  }
-  if (condition === "Fog") {
-    return (
-      <svg {...common}>
-        <path
-          d="M4 9h16M5 12.5h14M6 16h12"
-          stroke={stroke}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-    );
-  }
-  return (
-    <svg {...common}>
-      <path
-        d="M7.5 14a4.5 4.5 0 0 1 8.3-2.4A3.5 3.5 0 0 1 17.5 18H8a3.5 3.5 0 0 1-.5-4z"
-        stroke={stroke}
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M7 8.5a3 3 0 0 1 5.4-1.8"
-        stroke={stroke}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+const CONDITION_ICONS = {
+  Clear: Sun,
+  Rain: CloudRain,
+  Storms: CloudLightning,
+  Snow: Snowflake,
+  Fog: CloudFog,
+};
+
+/** Lucide weather glyph (same icon family as the rest of the app). */
+function ConditionIcon({ condition, className = "", size = 18 }) {
+  const Icon = CONDITION_ICONS[condition] || CloudSun;
+  return <Icon className={className} size={size} strokeWidth={1.75} aria-hidden="true" />;
+}
+
+/** "Good morning" / "Good afternoon" / "Good evening" in Chicago time. */
+function greeting(now = new Date()) {
+  const h = Number(now.toLocaleString("en-US", { hour: "numeric", hourCycle: "h23", timeZone: "America/Chicago" }));
+  return h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening";
 }
 
 /**
- * Quiet Dallas current + 7-day block for the feed home.
- * Forecast comes from useDallasWeather (shared with WelcomeHero).
+ * Home "Today" card: greeting + Dallas now + 7-day strip in one compact block
+ * (replaces the separate welcome hero and weather card).
+ * Forecast comes from useDallasWeather.
  */
-export default function DallasWeather({ forecast }) {
-  if (!forecast) return null;
-
+export default function DallasWeather({ forecast, unreadCount = 0 }) {
+  const sub = unreadCount > 0 ? `${unreadCount} new` : "All caught up";
   return (
-    <section className="dallas-weather" aria-label="Dallas weather">
-      <div className="dallas-weather-now">
-        <div className="dallas-weather-label">Dallas</div>
-        <div className="dallas-weather-temp tabular-nums">
-          {formatTemp(forecast.temp)}
+    <section className="dallas-weather today-card" aria-label="Today in Dallas">
+      <div className="today-card__head">
+        <div className="today-card__hello">
+          <div className="today-card__greet">{greeting()}</div>
+          <div className="today-card__sub">
+            <MapPin size={12} strokeWidth={2.2} aria-hidden="true" /> Dallas · {sub}
+          </div>
         </div>
-        <div className="dallas-weather-cond">{forecast.condition}</div>
+        {forecast ? (
+          <div className="today-card__now">
+            <ConditionIcon condition={forecast.condition} className="dallas-weather-now-icon" size={26} />
+            <div>
+              <div className="dallas-weather-temp tabular-nums">{formatTemp(forecast.temp)}</div>
+              <div className="dallas-weather-cond">{forecast.condition}</div>
+            </div>
+          </div>
+        ) : null}
       </div>
-      <ul className="dallas-weather-week">
+      {forecast ? <ul className="dallas-weather-week">
         {forecast.days.map((d) => (
           <li key={d.date} className="dallas-weather-day">
             <span className="dallas-weather-dow">{d.label}</span>
@@ -136,7 +66,7 @@ export default function DallasWeather({ forecast }) {
             </span>
           </li>
         ))}
-      </ul>
+      </ul> : null}
     </section>
   );
 }

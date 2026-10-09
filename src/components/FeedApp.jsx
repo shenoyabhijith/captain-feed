@@ -27,7 +27,6 @@ import {
 } from "../lib/motion.js";
 import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
-import WelcomeHero from "./WelcomeHero.jsx";
 import DallasWeather from "./DallasWeather.jsx";
 import TopicsSheet from "./TopicsSheet.jsx";
 import FinancesApp from "./finances/FinancesApp.jsx";
@@ -199,7 +198,6 @@ function Home({
   onDismissInstall,
   dallasWeather,
 }) {
-  const readCount = feed.cards.filter((c) => feed.prefs.read[c.id]).length;
   const savedCount = feed.cards.filter((c) => feed.prefs.saved[c.id]).length;
   const unreadCount = feed.cards.filter((c) => !feed.prefs.read[c.id]).length;
   const [chromeHidden, setChromeHidden] = useState(false);
@@ -539,6 +537,11 @@ function Home({
               onClick={() => setSegmentView(tab.id)}
             >
               {tab.label}
+              {tab.id === "foryou" && unreadCount > 0 ? (
+                <span className="tab-badge tabular-nums" aria-label={`${unreadCount} unread`}>{unreadCount}</span>
+              ) : tab.id === "saved" && savedCount > 0 ? (
+                <span className="tab-badge tabular-nums" aria-label={`${savedCount} saved`}>{savedCount}</span>
+              ) : null}
             </button>
           ))}
         </div>
@@ -581,13 +584,11 @@ function Home({
             ) : null}
           </button>
         </div>
-        <div className="stats feed-meta">
-          {feed.status === "loading"
-            ? "Loading feed…"
-            : feed.status === "error"
-              ? "Could not load feed.json"
-              : `${readCount}/${feed.cards.length} read · ${savedCount} saved`}
-        </div>
+        {feed.status === "loading" || feed.status === "error" ? (
+          <div className="stats feed-meta" role="status">
+            {feed.status === "loading" ? "Loading feed…" : "Could not load feed.json"}
+          </div>
+        ) : null}
         {showInstallHint ? (
           <p className="install-hint">
             Android Chrome: menu → Install app or Add to Home screen
@@ -597,8 +598,7 @@ function Home({
 
       {feed.status === "ready" ? (
         <>
-          <WelcomeHero unreadCount={unreadCount} weather={dallasWeather} />
-          <DallasWeather forecast={dallasWeather} />
+          <DallasWeather forecast={dallasWeather} unreadCount={unreadCount} />
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={segmentView}

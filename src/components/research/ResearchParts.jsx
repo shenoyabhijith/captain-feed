@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ExternalLink, ChevronDown, Check, X as XIcon, Eye, ShieldAlert, Receipt, Target, Gauge, Zap } from "lucide-react";
+import { Activity, ExternalLink, ChevronDown, Check, X as XIcon, Eye, ShieldAlert, Receipt, Target, Gauge, Zap } from "lucide-react";
 import { SOURCE_META, SESSION_LABEL, ACTION_LABEL, TRADER_HUE, fmtPct, fmtMoney, fmtTime, fmtX, hostOf, pnlSince, whenLabel } from "./useResearch.js";
+import { TraderAvatar, SourceIcon, STAT_ICON, ACTION_ICON } from "./researchIcons.jsx";
 import { SLEEVE_SPRING, motionTransition, useMotionOn } from "../../lib/motion.js";
 
 export function RegimeCard({ regime, compact = false }) {
@@ -15,7 +16,7 @@ export function RegimeCard({ regime, compact = false }) {
   return (
     <section className={`rs-regime ${compact ? "rs-regime--compact" : ""}`} data-hue={regime.riskOn ? "emerald" : "pink"} aria-label="Market regime">
       <div className="rs-regime__top">
-        <span className="rs-kicker">Market regime · close {regime.asOf}</span>
+        <span className="rs-kicker" title={`Market regime, close ${regime.asOf}`}><Activity size={12} strokeWidth={2.4} aria-hidden="true" /> {regime.asOf}</span>
         <span className="rs-pill" data-hue={regime.riskOn ? "emerald" : "pink"}>{regime.riskOn ? "Risk-on" : "Risk-off"}</span>
       </div>
       <p className="rs-regime__label">{regime.label}</p>
@@ -23,7 +24,10 @@ export function RegimeCard({ regime, compact = false }) {
       <div className="rs-stats">
         {stats.map((s) => (
           <div key={s.k} className="rs-stat">
-            <span className="rs-stat__k">{s.k}</span>
+            <span className="rs-stat__k">
+              {(() => { const I = STAT_ICON[s.k]; return I ? <I size={13} strokeWidth={2.2} aria-hidden="true" /> : null; })()}
+              {s.k}
+            </span>
             <span className="rs-stat__v tabular-nums">{s.v ?? "—"}</span>
             <span className={`rs-stat__sub ${s.up == null ? "" : s.up ? "up" : "down"}`}>{s.sub}</span>
           </div>
@@ -50,7 +54,7 @@ export function SourceChips({ sources }) {
       {groups.map((g) => (
         <div key={g.t} className="rs-srcgroup" data-hue={SOURCE_META[g.t].hue}>
           <div className="rs-srcgroup__head">
-            <span className="rs-srcbadge">{SOURCE_META[g.t].label}</span>
+            <span className="rs-srcbadge" title={SOURCE_META[g.t].long}><SourceIcon type={g.t} size={13} /></span>
             <span className="rs-srcgroup__title">{SOURCE_META[g.t].long}</span>
             <span className="rs-count">{g.items.length}</span>
           </div>
@@ -175,8 +179,8 @@ export function ActivityCard({ traders, activity, frugality }) {
   return (
     <section className="rs-activity" aria-label="Trading activity">
       <div className="rs-activity__head">
-        <span className="rs-kicker"><Zap size={12} aria-hidden="true" /> Activity · frugal by design</span>
-        <span className="rs-meta">soft limit {soft.softTradesPerDay}/day · {soft.softTradesPerWeek}/wk · edge ≥ {soft.edgeMultiple}× cost</span>
+        <span className="rs-kicker"><Zap size={12} aria-hidden="true" /> Activity</span>
+        <span className="rs-meta" title={`Soft limit ${soft.softTradesPerDay}/day, ${soft.softTradesPerWeek}/week; edge must beat ${soft.edgeMultiple}× cost`}>≤{soft.softTradesPerDay}/day · edge ≥{soft.edgeMultiple}×</span>
       </div>
       <div className="rs-activity__rows">
         {traders.map((t) => {
@@ -185,7 +189,7 @@ export function ActivityCard({ traders, activity, frugality }) {
           const hot = a.tradesToday > soft.softTradesPerDay || a.tradesWeek > soft.softTradesPerWeek;
           return (
             <div key={t.id} className="rs-act" data-hue={TRADER_HUE[t.id]}>
-              <span className="rs-avatar rs-avatar--sm" aria-hidden="true">{t.name[0]}</span>
+              <TraderAvatar id={t.id} name={t.name} size={14} className="rs-avatar rs-avatar--sm" />
               <span className="rs-act__name">{t.name}</span>
               <span className={`rs-act__n tabular-nums ${hot ? "down" : ""}`} title="Trades today / this week"><b>{a.tradesToday}</b> today · <b>{a.tradesWeek}</b> wk</span>
               <span className="rs-act__t tabular-nums" title="Turnover today / this week (share of NAV)">{fmtMoney(a.turnoverToday)}{a.turnoverTodayPct != null ? ` (${a.turnoverTodayPct}%)` : ""} · {fmtMoney(a.turnoverWeek)} wk</span>
@@ -225,17 +229,20 @@ export function DecisionCard({ rec, marks, trader, defaultOpen = false, onStrate
       transition={motionTransition(motionOn, SLEEVE_SPRING)}
     >
       <button type="button" className="rs-card__head" aria-expanded={open} onClick={() => setOpen(!open)}>
-        <span className="rs-avatar" aria-hidden="true">{rec.traderName?.[0]}</span>
+        <TraderAvatar id={rec.trader} name={rec.traderName} size={18} />
         <span className="rs-card__who">
           <span className="rs-card__name">{rec.traderName}</span>
           <span className="rs-card__sub">{whenLabel(rec)} · {rec.strategy?.name || "—"}{rec.strategy ? ` v${rec.strategy.version}` : ""}</span>
         </span>
-        <span className="rs-action" data-action={d.action}>{ACTION_LABEL[d.action] || "—"}</span>
+        <span className="rs-action" data-action={d.action}>
+          {(() => { const I = ACTION_ICON[d.action]; return I ? <I size={13} strokeWidth={2.4} aria-hidden="true" /> : null; })()}
+          {ACTION_LABEL[d.action] || "—"}
+        </span>
       </button>
       <p className="rs-card__summary">{d.summary}</p>
       <div className="rs-card__foot">
         {counts.map(([t, n]) => (
-          <span key={t} className="rs-mini" data-hue={SOURCE_META[t].hue}>{SOURCE_META[t].label} {n}</span>
+          <span key={t} className="rs-mini" data-hue={SOURCE_META[t].hue} title={SOURCE_META[t].long}><SourceIcon type={t} size={12} /> {n}</span>
         ))}
         {d.confidence != null ? (
           <span className="rs-conf" title="Confidence">

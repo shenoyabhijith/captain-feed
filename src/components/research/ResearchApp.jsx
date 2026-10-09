@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { motion } from "motion/react";
-import { ArrowLeft, RefreshCw, BookOpen } from "lucide-react";
+import { ArrowLeft, RefreshCw, BookOpen, Brain, Globe, ArrowLeftRight, Receipt, CheckCheck } from "lucide-react";
+import { TraderAvatar, TRADER_ICON } from "./researchIcons.jsx";
 import FeedDock from "../finances/FeedDock.jsx";
 import { useResearch, TRADER_HUE, fmtDate } from "./useResearch.js";
 import { RegimeCard, DecisionCard, ActivityCard } from "./ResearchParts.jsx";
@@ -50,7 +51,7 @@ export default function ResearchApp() {
 
   return (
     <div className="rs-root">
-      <Header title="Research" sub="Every call, the research behind it, and why · paper only" onBack={() => navigate("/finances")} onReload={reload} />
+      <Header title="Research" sub="Paper trading" onBack={() => navigate("/finances")} onReload={reload} />
       {status === "loading" ? <p className="rs-empty rs-pad">Loading research…</p> : null}
       {status === "error" ? <p className="rs-empty rs-pad">Could not load trading-index.json.</p> : null}
       {status === "ready" ? (
@@ -59,10 +60,10 @@ export default function ResearchApp() {
             <div className="rs-desktop-only"><RegimeCard regime={latestRegime} /></div>
             <ActivityCard traders={traders} activity={data.activity} frugality={data.frugality} />
             <div className="rs-totals" aria-label="Research totals">
-              <div><b className="tabular-nums">{totals.sessions}</b><span>decisions</span></div>
-              <div><b className="tabular-nums">{totals.sources}</b><span>sources read</span></div>
-              <div><b className="tabular-nums">{totals.orders}</b><span>orders</span></div>
-              <div><b className="tabular-nums">${totals.fees.toFixed(2)}</b><span>fees</span></div>
+              <div><Brain size={16} aria-hidden="true" /><b className="tabular-nums">{totals.sessions}</b><span>decisions</span></div>
+              <div><Globe size={16} aria-hidden="true" /><b className="tabular-nums">{totals.sources}</b><span>sources</span></div>
+              <div><ArrowLeftRight size={16} aria-hidden="true" /><b className="tabular-nums">{totals.orders}</b><span>orders</span></div>
+              <div><Receipt size={16} aria-hidden="true" /><b className="tabular-nums">${totals.fees.toFixed(2)}</b><span>fees</span></div>
             </div>
             <nav className="rs-strats" aria-label="Strategies">
               <p className="rs-kicker">Strategies</p>
@@ -70,7 +71,7 @@ export default function ResearchApp() {
                 const s = data.strategies?.[t.id];
                 return (
                   <button key={t.id} type="button" className="rs-stratlink" data-hue={TRADER_HUE[t.id]} onClick={() => navigate(`/finances/research/${t.id}`)}>
-                    <span className="rs-avatar rs-avatar--sm" aria-hidden="true">{t.name[0]}</span>
+                    <TraderAvatar id={t.id} name={t.name} size={14} className="rs-avatar rs-avatar--sm" />
                     <span className="rs-stratlink__text"><b>{t.name}</b><span>{s ? `${s.name} · v${s.version}` : "No strategy yet"}</span></span>
                     <BookOpen size={16} aria-hidden="true" />
                   </button>
@@ -83,7 +84,7 @@ export default function ResearchApp() {
             <div className="rs-rail" role="tablist" aria-label="Filter by trader">
               {[{ id: "all", name: "All traders" }, ...traders].map((t) => (
                 <button key={t.id} type="button" role="tab" aria-selected={who === t.id} className="rs-railchip" data-hue={TRADER_HUE[t.id] || "slate"} onClick={() => setWho(t.id)}>
-                  {t.id !== "all" ? <i aria-hidden="true" /> : null}{t.name}
+                  {(() => { const I = TRADER_ICON[t.id]; return I ? <I size={14} strokeWidth={2.2} aria-hidden="true" /> : null; })()}{t.id === "all" ? "All" : t.name}
                 </button>
               ))}
             </div>
@@ -99,7 +100,7 @@ export default function ResearchApp() {
             ))}
             {!days.length ? <p className="rs-empty">No research records yet.</p> : null}
             <motion.p className="rs-caught" initial={motionOn ? { opacity: 0, scale: 0.96 } : false} animate={{ opacity: 1, scale: 1 }} transition={motionTransition(motionOn, SLEEVE_SPRING)}>
-              You're caught up. Traders watch the market about every 20 minutes on market days and trade only when the edge beats costs 3×.
+              <CheckCheck size={16} aria-hidden="true" /> You're caught up
             </motion.p>
           </main>
         </div>
