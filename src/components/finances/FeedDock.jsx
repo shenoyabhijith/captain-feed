@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import { Glass } from "@samasante/liquid-glass";
 import {
   VIEW_ICONS,
   VIEW_LABELS,
@@ -40,6 +41,16 @@ export default function FeedDock({
 
   return (
     <nav className="dock dock--five" aria-label={ariaLabel}>
+      {/* LIQUID-GLASS: refracting lens plate (bends the page in Chromium; frost + rim in Safari) */}
+      <Glass
+        className="dock__glass"
+        aria-hidden="true"
+        style={{ position: "absolute", inset: 0, width: "auto", borderRadius: 999 }}
+        optics={{ frost: 14, saturate: 1.8, bend: 0.35, curvature: 0.12, dispersion: 0.25, brightness: 0.06 }}
+      >
+        {/* a child switches the lib into "material" mode (refracts what is behind) */}
+        <span className="dock__glass-body" />
+      </Glass>
       {["all", "unread", "saved"].map((id) => {
         const Icon = VIEW_ICONS[id];
         const label = VIEW_LABELS[id];

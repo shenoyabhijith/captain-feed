@@ -14,6 +14,7 @@ import App from "./App.jsx";
 /* coss.css loads Inter Variable + Geist Mono; styles.css maps feed chrome to Inter */
 import "./coss.css";
 import "./styles.css";
+import "./liquid-glass.css";
 
 const UPDATE_INTERVAL_MS = 5 * 60 * 1000;
 
