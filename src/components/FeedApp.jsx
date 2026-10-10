@@ -6,7 +6,7 @@ import {
   syncStandaloneDomFlag,
   subscribeDisplayMode,
 } from "../installGate.js";
-import { Routes, Route, useParams, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { loadTheme, saveTheme, loadFeedLayout, saveFeedLayout } from "../storage";
 import {
@@ -42,11 +42,7 @@ import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
 import DallasWeather from "./DallasWeather.jsx";
 import TopicsSheet from "./TopicsSheet.jsx";
-import FinancesApp from "./finances/FinancesApp.jsx";
-import FinancesAdmin from "./finances/FinancesAdmin.jsx";
-import MetricsApp from "./finances/MetricsApp.jsx";
-import ResearchApp, { StrategyPage } from "./research/ResearchApp.jsx";
-import FeedDock from "./finances/FeedDock.jsx";
+import FeedDock from "./chrome/FeedDock.jsx";
 import { useDallasWeather } from "../hooks/useDallasWeather";
 
 /** Persist feed window scroll across Home ↔ Detail (HashRouter remounts Home). */
@@ -177,11 +173,8 @@ export default function FeedApp() {
               </div>
             }
           />
-          <Route path="/finances" element={<FinancesApp />} />
-          <Route path="/finances/admin" element={<FinancesAdmin />} />
-          <Route path="/finances/research" element={<ResearchApp />} />
-          <Route path="/finances/research/:trader" element={<StrategyPage />} />
-          <Route path="/metrics" element={<MetricsApp />} />
+          {/* Finances / Metrics / Research desk were removed (Oct 9 2026): any old link lands on the feed. */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
@@ -274,20 +267,6 @@ function Home({
     return () => {
       if (toastTimer.current) clearTimeout(toastTimer.current);
     };
-  }, []);
-
-  // Apply dock view requested from Finances navigation
-  useEffect(() => {
-    try {
-      const v = sessionStorage.getItem("captain-feed-dock-view");
-      if (v && ["all", "unread", "saved"].includes(v)) {
-        feed.setView(v);
-        sessionStorage.removeItem("captain-feed-dock-view");
-      }
-    } catch {
-      /* ignore */
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- apply once on Home mount
   }, []);
 
   useEffect(() => {

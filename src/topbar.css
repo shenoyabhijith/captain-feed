@@ -1,5 +1,5 @@
 /* =====================================================================
-   SLIM-HEADER — one quiet 44px glass row (Home / Finances / Metrics).
+   SLIM-HEADER — one quiet 44px glass row (Home).
    Small mark + wordmark left; search + "…" icon buttons right.
    Radix jade on sand, Lucide icons, no orange.
    ===================================================================== */
@@ -30,15 +30,6 @@
   border-top: 1px solid var(--glass-stroke);
 }
 .topbar.top.is-peek { box-shadow: inset 0 1px 0 var(--glass-hi), 0 8px 22px -12px var(--sand-a9); }
-
-/* Finances / Metrics: same capsule in the flex column */
-.finances-root .topbar.app-header {
-  flex-shrink: 0;
-  width: min(452px, calc(100% - 24px));
-  margin: max(6px, env(safe-area-inset-top, 0px)) auto 4px;
-  border-radius: 999px;
-  border-top: 1px solid var(--glass-stroke);
-}
 
 .topbar__brand {
   display: flex;

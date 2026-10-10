@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "prebuild": "node scripts/research-kit.mjs index && mkdir -p public/data && cp data/feed.json public/data/feed.json && cp data/finances-ledger.json public/data/finances-ledger.json && cp data/trading/index.json public/data/trading-index.json",
+    "prebuild": "mkdir -p public/data && cp data/feed.json public/data/feed.json",
     "dev": "npm run prebuild && vite",
     "build": "vite build && node scripts/pages-helpers.mjs",
     "preview": "vite preview",

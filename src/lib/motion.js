@@ -58,8 +58,5 @@ export function routePresence(pathname, enabled) {
 /** Stable presence key: one slot per dock surface; per-card for detail. */
 export function routePresenceKey(pathname = "") {
   if (isCardDetailPath(pathname)) return pathname;
-  if (pathname.startsWith("/finances/admin")) return "/finances/admin";
-  if (pathname.startsWith("/finances")) return "/finances";
-  if (pathname.startsWith("/metrics")) return "/metrics";
   return "/";
 }

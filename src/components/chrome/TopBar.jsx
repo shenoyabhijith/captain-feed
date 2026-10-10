@@ -4,8 +4,8 @@ import { Menu, MenuTrigger, MenuPopup } from "../ui/menu";
 import { ICON_STROKE } from "../icons.js";
 
 /**
- * SLIM-HEADER: one quiet ~44px glass row shared by Home / Finances / Metrics.
- *   left : small mark + wordmark (optional tiny badge, e.g. "Paper")
+ * SLIM-HEADER: one quiet ~44px glass row for Home.
+ *   left : small mark + wordmark (optional tiny badge)
  *   right: optional search icon (expands to an in-bar search field) + "…" menu
  * Menu is the coss/base-ui Menu already in src/components/ui (no new dependency);
  * callers pass MenuItem / MenuSeparator children.
