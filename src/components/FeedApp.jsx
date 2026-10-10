@@ -6,7 +6,8 @@ import {
   syncStandaloneDomFlag,
   subscribeDisplayMode,
 } from "../installGate.js";
-import { Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
+import { Routes, Route, useParams, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { loadTheme, saveTheme, loadFeedLayout, saveFeedLayout } from "../storage";
 import {
