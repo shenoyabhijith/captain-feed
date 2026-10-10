@@ -7,7 +7,6 @@ import {
   subscribeDisplayMode,
 } from "../installGate.js";
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { loadTheme, saveTheme, loadFeedLayout, saveFeedLayout } from "../storage";
 import {
@@ -43,6 +42,7 @@ import CardList from "./CardList.jsx";
 import CardDetail from "./CardDetail.jsx";
 import DallasWeather from "./DallasWeather.jsx";
 import TopicsSheet from "./TopicsSheet.jsx";
+import { Navigate } from "react-router-dom";
 import FeedDock from "./chrome/FeedDock.jsx";
 import { useDallasWeather } from "../hooks/useDallasWeather";
 
