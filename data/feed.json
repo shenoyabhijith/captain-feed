@@ -1,8 +1,378 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-08T09:48:33-05:00",
+  "updated": "2026-10-12T09:33:14-05:00",
   "cards": [
+    {
+      "id": "ai-20261012-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 12, 2026",
+      "body": "Weekend consensus: **verification closes the agent loop**, durable workflows make subagents inspectable, and **Matt’s /chief-of-staff** skill is already doing side-by-side latency checks humans would skip.",
+      "source": "X builders watch · weekend Oct 10–12, 2026 CT · Lauren Tan · Addy Osmani · Matt Pocock · Harrison Chase · Mario Zechner · Dax · Armin Ronacher · Tibo",
+      "tags": [
+        "ai",
+        "builders",
+        "verification",
+        "durable-agents",
+        "skills",
+        "workflows",
+        "evals",
+        "claude-code"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/builders-today-20261012/800/520",
+      "link": "https://x.com/poteto/status/2109436202554372476",
+      "detail": {
+        "tldr": "**Lauren Tan** and **Addy Osmani** say the agentic loop starts with **verification** (run it like a user, produce reviewable evidence).\n**Harrison Chase** maps the future agent stack (durable workflows, memory, triggers, evals), and **Mario Zechner** shows durable dynamic workflows with steerable subagents.",
+        "tldrBullets": [
+          "Lauren Tan: give agents a way to **verify their own work** before skill packs matter",
+          "Addy Osmani: define **done**, cheap checks, review **evidence not just diffs**",
+          "Matt Pocock: blame the **codebase harness** for bad tests; /chief-of-staff does bonkers verification",
+          "Harrison Chase: managed deep agents need durable workflows, computer use, memory, triggers, evals",
+          "Mario Zechner: **durable** execution makes Claude-style dynamic workflows inspectable"
+        ],
+        "summary": "A verification-heavy weekend: builders argued that quality comes from **loops agents can run themselves**, not from cleaner diffs, and showed durable runtimes plus experimental skills that already over-verify.",
+        "sections": [
+          {
+            "heading": "Verification closes the loop",
+            "body": "**Lauren** [@poteto](https://x.com/poteto/status/2109436202554372476): start with verification so agents can close the loop, and prefer artifacts (video, screenshots) that are **easier to review than the whole PR**.\n\n**Addy** [@addyosmani](https://x.com/addyosmani/status/2109358790298787931): define **done** before review, give the agent checks it can run, then ship when nothing blocks.\n\n**Matt** [@mattpocockuk](https://x.com/mattpocockuk/status/2109589900706083024): don't blame the agent for a bad test; blame the codebase that allowed it.",
+            "tweets": [
+              {
+                "id": "2109436202554372476",
+                "url": "https://x.com/poteto/status/2109436202554372476",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-12T00:09:16.000Z",
+                "text": "okay now that we're past that tired discussion, let's talk about how we get agents to write more correct code (note: this won't mean the code will be Good, but it should at least work)\n\nthis is the entrypoint into your most basic agentic loop: verification. it means giving your agent the ability to verify its own work, most commonly by actually running and interacting with it like a real user would. whether your interface is a cli/api/ui/whatever, you want to start here so that your agents can close the loop. if you want you can even have your agents model the problem in TLA+ and attempt to verify if you have things like state machine bugs.\n\nthe point is to give yourself confidence in the agents' work by them producing some kind of artifact that proves that 1) that the work is correct, 2) that it matches what you intended, and 3) is easier to review than reading the whole PR. most commonly this would be a video and/or screenshots for UI work.\n\neverything else like skill packs are really bonus and optional, all you need is a way for your agents to verify their own work to start using them more autonomously. some caveats are that not all domains can be verified easily yet, and that verification is just approximation and can still be wrong. it's no different than trusting that a human actually ran the code they wrote and trusting it\n\nso start here!",
+                "urls": [
+                  {
+                    "url": "https://t.co/WSqMTNcNQ0",
+                    "expanded_url": "https://twitter.com/poteto/status/2082874054483255805",
+                    "display_url": "x.com/poteto/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 154,
+                  "repost_count": 102,
+                  "quote_count": 30,
+                  "like_count": 2369,
+                  "impression_count": 117658
+                }
+              },
+              {
+                "id": "2109358790298787931",
+                "url": "https://x.com/addyosmani/status/2109358790298787931",
+                "author": {
+                  "name": "Addy Osmani",
+                  "username": "addyosmani",
+                  "avatar": "https://pbs.twimg.com/profile_images/2090232066021769216/IwGLjoSy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-11T19:01:40.000Z",
+                "text": "Verification is one of the most important things for getting great results out of your agent.\n\nClearly define \"done\" before code review starts. \nA reviewer, human or agent, asked to find bugs without this may still find something that could be improved. \n\nGive Claude checks it can run (bash commands, tests, clicking through the app in a browser) and have it pass that too before it says it's finished. \n\nWhen nothing blocks merge and ship.",
+                "urls": [
+                  {
+                    "url": "https://t.co/cPlLLTakbw",
+                    "expanded_url": "https://twitter.com/lucas_builds/status/2109252687477031014",
+                    "display_url": "x.com/lucas_builds/s…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 79,
+                  "repost_count": 45,
+                  "quote_count": 14,
+                  "like_count": 488,
+                  "impression_count": 36125
+                }
+              },
+              {
+                "id": "2109589900706083024",
+                "url": "https://x.com/mattpocockuk/status/2109589900706083024",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-12T10:20:01.000Z",
+                "text": "Don't blame the agent for writing the bad test\n\nBlame the codebase for allowing the bad test to be written",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 95,
+                  "repost_count": 26,
+                  "quote_count": 10,
+                  "like_count": 706,
+                  "impression_count": 37304
+                }
+              }
+            ],
+            "callout": {
+              "kind": "try",
+              "text": "Before asking an agent to ship, give it a runnable done check (tests, CLI, or a browser click-through) and require a short evidence artifact."
+            }
+          },
+          {
+            "heading": "Evidence, not just diffs",
+            "body": "**Addy** [@addyosmani](https://x.com/addyosmani/status/2109384286763958742): agents make checks cheap, so quality comes from **loops the agent can run itself**, and taste compounds when mistakes become shared config, hooks, or tests.\n\n**Matt’s** experimental [`/chief-of-staff`](https://x.com/mattpocockuk/status/2109314001704194090) skill ran a side-by-side latency comparison against OBS that he says he would never have done himself.",
+            "tweets": [
+              {
+                "id": "2109384286763958742",
+                "url": "https://x.com/addyosmani/status/2109384286763958742",
+                "author": {
+                  "name": "Addy Osmani",
+                  "username": "addyosmani",
+                  "avatar": "https://pbs.twimg.com/profile_images/2090232066021769216/IwGLjoSy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-11T20:42:59.000Z",
+                "text": "Agents write code \"much better on average at scale\" is right. The \"at scale\" part comes from verification. Agents make checking cheap.\n\nThe stuff that made \"Good Code\" expensive (tests, benchmarks, specs, real e2e runs) is now a cheap thing you can ask an agent for. You can improve the checks.\n\nSo our work is less \"review every line\" and more \"build loops the agent can run itself\". Give the agent a way to verify the work. That loop is where quality comes from.\n\nAnd make taste compound. When the agent gets something wrong, write it down (shared config, a hook, a test) so it doesn't happen twice. A human still owns what ships but now they're reviewing evidence and not just diffs.",
+                "urls": [
+                  {
+                    "url": "https://t.co/TtqCJRUtfQ",
+                    "expanded_url": "https://twitter.com/poteto/status/2109110547824378140",
+                    "display_url": "x.com/poteto/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 69,
+                  "repost_count": 43,
+                  "quote_count": 12,
+                  "like_count": 517,
+                  "impression_count": 37165
+                }
+              },
+              {
+                "id": "2109314001704194090",
+                "url": "https://x.com/mattpocockuk/status/2109314001704194090",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-11T16:03:41.000Z",
+                "text": "Having a pretty fun time with Opus this weekend\n\nMy (experimental) /chief-of-staff skill is trying to replace OBS with a homebrew video recorder.\n\nSo it's running a side-by-side latency comparison where it has asked me to:\n\n1. Download a video it made itself to my phone\n2. Prop it up and show it to my camera\n3. Point my microphone at it\n4. Simultaneously record my screen and play sounds\n5. Check all available inputs for latency\n6. Compare against OBS and my own setup\n\nTruly bonkers levels of verification and I freaking love it, I would never be this thorough if I were developing this myself",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 76,
+                  "repost_count": 19,
+                  "quote_count": 5,
+                  "like_count": 707,
+                  "impression_count": 62748
+                }
+              }
+            ]
+          },
+          {
+            "heading": "Durable agents you can steer",
+            "body": "**Harrison** [@hwchase17](https://x.com/hwchase17/status/2109307704346853833) shared a slide of the future agent stack: durable workflows, computer use, memory and skills, triggers, connectors, channels, payments and identity, evals, observability.\n\n**Mario** [@badlogicgames](https://x.com/badlogicgames/status/2109413968552820840) says Claude Code-style dynamic workflows fall out of **durable execution**, with inspectable (and steerable) subagents. His [chat mode](https://x.com/badlogicgames/status/2109369789042876886) steers with undelivered chat instead of a queue.",
+            "tweets": [
+              {
+                "id": "2109307704346853833",
+                "url": "https://x.com/hwchase17/status/2109307704346853833",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-11T15:38:40.000Z",
+                "text": "this is the summary slide that describes how all agents in the future will look\n\nvery much aligns with our vision for managed deepagents https://t.co/VFsgW1OFjF\n\ndurable workflows: builds on LangGraph/LSD https://t.co/SOJPBqx8q2\n\ncan use a computer: uses Langsmith Sandboxes https://t.co/oKZ3n6dhtK\n\nmemory and skills: langsmith context hub https://t.co/rgD1p31nCb\n\nTriggers and scheduled jobs: schedules https://t.co/w6r7Cfr8Xx\n\nconnectors and auth https://t.co/kTfxQbm7al \n\ntext and voice channels https://t.co/G2iy7jMeKB\n\npayments and identity - only one missing!\n\nevals https://t.co/mcNsaWhTt4\n\nobservability: massively, through langsmith https://t.co/SdVkVnjR8y",
+                "urls": [
+                  {
+                    "url": "https://t.co/bXc78RL145",
+                    "expanded_url": "https://docs.langchain.com/langsmith/python/managed-deep-agents-overview",
+                    "display_url": "docs.langchain.com/langsmith/pyth…"
+                  },
+                  {
+                    "url": "https://t.co/uWayApPuuV",
+                    "expanded_url": "https://docs.langchain.com/langsmith/deployment",
+                    "display_url": "docs.langchain.com/langsmith/depl…"
+                  },
+                  {
+                    "url": "https://t.co/FivPNMTJ8Q",
+                    "expanded_url": "https://twitter.com/leerob/status/2108650243365736855",
+                    "display_url": "x.com/leerob/status/…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUXDOt7XwAE3wZL.jpg",
+                    "width": 1920,
+                    "height": 1080
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 50,
+                  "repost_count": 40,
+                  "quote_count": 7,
+                  "like_count": 356,
+                  "impression_count": 19747
+                }
+              },
+              {
+                "id": "2109413968552820840",
+                "url": "https://x.com/badlogicgames/status/2109413968552820840",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-11T22:40:55.000Z",
+                "text": "also cool: things like claude code's dynamic workflows fall out for free, durably :D\n\nand i can even inspect everything subagents of such a workflow do (or steer them if absolutely needed) https://t.co/g1ZiqJgEzn https://t.co/OzVmnSVham",
+                "urls": [
+                  {
+                    "url": "https://t.co/OzVmnSVham",
+                    "expanded_url": "https://twitter.com/badlogicgames/status/2109402647933702520",
+                    "display_url": "x.com/badlogicgames/…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2109413844976095232/img/agvI64PF98utvjJG.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2109413844976095232/img/agvI64PF98utvjJG.jpg",
+                    "width": 1080,
+                    "height": 2410
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 27,
+                  "repost_count": 4,
+                  "quote_count": 3,
+                  "like_count": 262,
+                  "impression_count": 16614
+                }
+              },
+              {
+                "id": "2109369789042876886",
+                "url": "https://x.com/badlogicgames/status/2109369789042876886",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-11T19:45:22.000Z",
+                "text": "introducing chat mode :p\n\nmuch better than queuing. instead, mention the agent, and it gets a steering message with all the chat messages not delivered up until that point.",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUX8hvjWUAADRWN.jpg",
+                    "width": 1080,
+                    "height": 2410
+                  },
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUX8hvWWUAAMXYz.jpg",
+                    "width": 1080,
+                    "height": 2410
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 22,
+                  "repost_count": 4,
+                  "quote_count": 0,
+                  "like_count": 217,
+                  "impression_count": 16648
+                }
+              }
+            ],
+            "screenshots": [
+              {
+                "url": "https://docs.langchain.com/langsmith/python/managed-deep-agents-overview",
+                "image": "media/sources/8e41b80b84ad005d.webp",
+                "title": "Managed Deep Agents - Docs by LangChain",
+                "capturedAt": "2026-10-12T14:33:25.928Z"
+              },
+              {
+                "url": "https://ghuntley.com/unikernels/",
+                "image": "media/sources/e3fafb81a608f51f.webp",
+                "title": "unikernels were hard. key word: were.",
+                "capturedAt": "2026-10-12T14:33:29.367Z"
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Lauren Tan: verification first, skill packs optional",
+          "Addy Osmani: review evidence; compound taste into hooks and tests",
+          "Matt Pocock: harness quality beats blaming the model",
+          "Harrison Chase: deep agents need durable + computer + memory + evals",
+          "Mario Zechner: durable runtime unlocks inspectable subagent workflows",
+          "Tibo: Codex GPT-6.1 Sol default context up to 500k"
+        ],
+        "actions": [
+          {
+            "label": "Lauren - verification loop",
+            "url": "https://x.com/poteto/status/2109436202554372476"
+          },
+          {
+            "label": "Addy - define done",
+            "url": "https://x.com/addyosmani/status/2109358790298787931"
+          },
+          {
+            "label": "Matt - chief-of-staff skill",
+            "url": "https://x.com/mattpocockuk/status/2109314001704194090"
+          },
+          {
+            "label": "Harrison - deep agents slide",
+            "url": "https://x.com/hwchase17/status/2109307704346853833"
+          },
+          {
+            "label": "Mario - durable workflows",
+            "url": "https://x.com/badlogicgames/status/2109413968552820840"
+          },
+          {
+            "label": "LangSmith managed deep agents",
+            "url": "https://docs.langchain.com/langsmith/python/managed-deep-agents-overview"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto"
+          },
+          {
+            "label": "Addy Osmani @addyosmani",
+            "url": "https://x.com/addyosmani"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames"
+          },
+          {
+            "label": "Tibo @thsottiaux",
+            "url": "https://x.com/thsottiaux"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261009-builders-today",
       "category": "ai",
