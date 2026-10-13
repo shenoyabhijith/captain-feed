@@ -1,8 +1,424 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-12T09:33:14-05:00",
+  "updated": "2026-10-13T09:45:00-05:00",
   "cards": [
+    {
+      "id": "ai-20261013-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 13, 2026",
+      "body": "**Matt Pocock** lists the agent mistakes he sees most, **Geoffrey Huntley** says pre-commit hooks beat skill packs, and **Harrison Chase** asks how async subagents should report back.",
+      "source": "X builders watch · Oct 12–13, 2026 CT · Matt Pocock · Geoffrey Huntley · Harrison Chase · Kun Chen · DHH · Lauren Tan · Armin Ronacher",
+      "tags": [
+        "ai",
+        "builders",
+        "skills",
+        "verification",
+        "subagents",
+        "hooks",
+        "agents"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/builders-today-20261013/800/520",
+      "link": "https://x.com/mattpocockuk/status/2109973273924579720",
+      "detail": {
+        "tldr": "Less steering, more enforcement: **short skills**, **deterministic checks**, and agents that verify their own work.\nPlus an open design question on how a finished **async subagent** should notify its parent.",
+        "tldrBullets": [
+          "Matt Pocock: skills too long, checks too lax, **steering files overloaded**",
+          "Geoffrey Huntley: replace skill packs with **pre-commit hooks**",
+          "Harrison Chase: async subagent results, **steer or queue**?",
+          "Kun Chen: good software is a **strong core, headless service, fluid interface**",
+          "Armin Ronacher: agent keeps **kid-friendly docs** linked to the code"
+        ],
+        "summary": "A day about trimming the harness: fewer and shorter instructions, more checks that run on their own.",
+        "sections": [
+          {
+            "heading": "Mistakes you might be making",
+            "tweets": [
+              {
+                "id": "2109973273924579720",
+                "url": "https://x.com/mattpocockuk/status/2109973273924579720",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T11:43:24.000Z",
+                "text": "Some mistakes you might be making:\n\nYour effort level is too high\nYour skills are too long\nYou're not aligning before you start work\nYou're aligning too often, and too hard\nYour automated checks are too lax\nYour custom tooling is too token-inefficient\nYou aren't doing enough automated review\nYou aren't reviewing previous coding sessions (with an agent)\nYou're doing too much human review\nYou aren't vibe coding enough prototypes\nYour agent can't verify its own work\nYou're babysitting the agent too much\nYou've overloaded your global steering files\nYour codebase is hard to navigate\nYou aren't building a shared language\nYour codebase architecture allows bad tests to be written\nYou aren't thinking strategically enough\nYou aren't thinking enough",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 144,
+                  "repost_count": 77,
+                  "quote_count": 25,
+                  "like_count": 1575,
+                  "impression_count": 60214
+                }
+              },
+              {
+                "id": "2109974442302480670",
+                "url": "https://x.com/mattpocockuk/status/2109974442302480670",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T11:48:03.000Z",
+                "text": "1. Pull more of your code into deep modules\n2. Force your tests only to test code at the interface of the module (with dependency-cruiser in TS, for instance)\n3. Tell automated review to push tests up\n4. Use /improve-codebase-architecture to move tests into deep modules",
+                "reply_to": [
+                  "coskar4422"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 0,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 3,
+                  "impression_count": 198
+                }
+              },
+              {
+                "id": "2109974133798797670",
+                "url": "https://x.com/mattpocockuk/status/2109974133798797670",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T11:46:49.000Z",
+                "text": "Every week, on a schedule:\n\n\"/writing-for-agents find ways to cull my global steering files\"",
+                "reply_to": [
+                  "asmirkn"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 1,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 23,
+                  "impression_count": 1616
+                }
+              }
+            ],
+            "body": "Matt's fixes in the replies: pull code into **deep modules**, test only at module interfaces, and run `/writing-for-agents` weekly to cull global steering files."
+          },
+          {
+            "heading": "Hooks over skill packs",
+            "tweets": [
+              {
+                "id": "2109895308587249888",
+                "url": "https://x.com/GeoffreyHuntley/status/2109895308587249888",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T06:33:36.000Z",
+                "text": "🗞️ nobody should type code by hand anymore. here's what's left.\n\nhttps://t.co/MOkQkM1rmB",
+                "urls": [
+                  {
+                    "url": "https://t.co/MOkQkM1rmB",
+                    "expanded_url": "https://ghuntley.com/agency/",
+                    "display_url": "ghuntley.com/agency/"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUfakhhacAAMAqE.jpg",
+                    "width": 1416,
+                    "height": 1526
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 21,
+                  "repost_count": 15,
+                  "quote_count": 5,
+                  "like_count": 218,
+                  "impression_count": 15593
+                }
+              },
+              {
+                "id": "2109914044580958515",
+                "url": "https://x.com/GeoffreyHuntley/status/2109914044580958515",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T07:48:03.000Z",
+                "text": "yeah i’ll expand in upcoming. they are useful for workflows but the skill should execute a sidecar deterministic python tool. \n\nhowever\n\nlean more towards not needing skills in the first place!",
+                "reply_to": [
+                  "poteto"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 6,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 7,
+                  "impression_count": 1529
+                }
+              }
+            ],
+            "body": "His fix for an agent ignoring a pattern: a **pre-commit hook** that fails the commit and tells the agent what to use. He also suggests deleting skills and `AGENTS.md` every few months to check they still help.",
+            "screenshots": [
+              {
+                "url": "https://ghuntley.com/agency/",
+                "image": "media/sources/c35d05344617f978.webp",
+                "title": "nobody should type code by hand anymore. here's what's left.",
+                "capturedAt": "2026-10-13T14:23:28.933Z"
+              }
+            ]
+          },
+          {
+            "heading": "How subagents report back",
+            "tweets": [
+              {
+                "id": "2109938151472890070",
+                "url": "https://x.com/hwchase17/status/2109938151472890070",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T09:23:50.000Z",
+                "text": "we are thinking a lot about how to make deepagents more async native. specifically about making async subagents work better/more prominent\n\none key question is how does a finished subagent \"notify\" the parent agent? some default behaviors we're considering for when the parent is still running:\n\n1/ interrupt parent run, apply subagent update, continue (basically same as \"steer\")\n\n2/ wait for parent run to finish, then batch subagent update with any other new messages (basically same as \"queue\")\n\nanother question is how to handle human in the loop? what if main agent is not running but paused and waiting explicit human response to an action?\n\na/ wait for human to respond, then batch the subagent update with that\n\nb/ resume thread (which would cancel the human interrupt) with the subagent update (thread could then re-ask for the same human approval)\n\nany other options we're missing?",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 85,
+                  "repost_count": 2,
+                  "quote_count": 3,
+                  "like_count": 81,
+                  "impression_count": 6437
+                }
+              }
+            ],
+            "body": "Two defaults on the table for deepagents: **interrupt** the running parent (steer) or **batch** the update after it finishes (queue)."
+          },
+          {
+            "heading": "Strong core, headless service",
+            "tweets": [
+              {
+                "id": "2109879371058332062",
+                "url": "https://x.com/kunchenguid/status/2109879371058332062",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T05:30:16.000Z",
+                "text": "let me break down “software is dead” for you\n\nthe latest argument is “you just tell your agent what you want, and your agent will vibe code software on the fly to get that done, so no one will need real software any more”\n\nsounds reasonable, until you realize it costs tokens, compute, and wall clock time to build those software on the fly\n\nso instead of one-click launching an app, the bet is people will prefer to write a prompt, wait for 15 minutes, then get something that may or may not do what they want, and at the end of the month pay more $$$ for the token spend, higher than all their software combined\n\nthat’s literally the argument\n\nand if we look at the world in aggregate, most people would just end up building the exact same “personal” software repeatedly\n\noh - your agent just spent 3 days and $500 of tokens vibe coding your terminal multiplexer? mine just did exactly the same! let’s celebrate how personal our terminal multiplexers are!\n\nsorry - i just don’t see that as being a happy scenario for anyone, other than people who profit from telling others how to waste $ on tokens\n\nto be constructive, here’s what i believe as the future state -\n\n- high quality software that takes high cost to make will continue to thrive. just like good restaurants don’t compete with your air fryer and microwave \n\n- most of those software will be offered headlessly for people to use via their agents, and they can continue to monetize such usage. this is already the case with products like jira, linear, stripe\n\n- human-facing software will all offer dynamic UI that can be adjusted with natural language on the fly so they can be personalized easily, but their core doesn’t have to be rebuilt by every user repeatedly\n\ninstead of “software is dead”, i believe good software becomes “strong core, headless service, fluid interface”\n\nwhich future do you think is more likely?",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 194,
+                  "repost_count": 64,
+                  "quote_count": 28,
+                  "like_count": 989,
+                  "impression_count": 71380
+                }
+              },
+              {
+                "id": "2109783581065421056",
+                "url": "https://x.com/dhh/status/2109783581065421056",
+                "author": {
+                  "name": "DHH",
+                  "username": "dhh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093715898204884992/goERjC9G_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-12T23:09:38.000Z",
+                "text": "Agent contributions to Omarchy are not only very welcome, but I usually prefer them! Rare is the human who has the patience to match an agent in providing all the pertinent details in a bug report. Also, PRs are mostly just proofs of concept now anyway.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 80,
+                  "repost_count": 34,
+                  "quote_count": 12,
+                  "like_count": 1146,
+                  "impression_count": 42145
+                }
+              }
+            ],
+            "body": "Kun argues regenerating the same app per user wastes tokens; DHH says he now prefers agent-written Omarchy bug reports and PRs."
+          },
+          {
+            "heading": "Words are the interface",
+            "tweets": [
+              {
+                "id": "2109885001584292091",
+                "url": "https://x.com/poteto/status/2109885001584292091",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T05:52:38.000Z",
+                "text": "i love writing. i never let agents write for me. whether it's docs, or tweets, or shitposts, or even prompts (okay maybe that one's harder as agents manage other agents) \n\nthere's a simple reason for that: i still strongly believe that writing is thinking. it's a skill i hope to never give up. it's also important to me that whatever i say is always authentic, mistakes and all. my favorite posts are the ones that i just full send without any editing\n\ni suspect it also helps with prompting. being able to clearly express what i want, and knowing the vocabulary i need to be able to direct my agents does seem to make for more effective usage of agents. in the same way that engineers have an advantage when we prompt agents to write code, because we are intimately familiar with the words that make up the discipline\n\nknowing the right word incantations to get an agent to produce a desired goal almost feels like spellcasting. as models get more capable, and that input box looks more and more like a magic box that can output anything, words become the interface between you and the genie\n\nthere may come a time when we give up the keyboard in exchange for brain-computer interfaces. but until then, i'm writing every word.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 342,
+                  "repost_count": 290,
+                  "quote_count": 109,
+                  "like_count": 4905,
+                  "impression_count": 169771
+                }
+              },
+              {
+                "id": "2109893162093183306",
+                "url": "https://x.com/mitsuhiko/status/2109893162093183306",
+                "author": {
+                  "name": "Armin Ronacher ⇌",
+                  "username": "mitsuhiko",
+                  "avatar": "https://pbs.twimg.com/profile_images/1905698833084174336/jcHMkWFA_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T06:25:04.000Z",
+                "text": "Honestly one of the coolest things is that not only can you build a game with kids with AI, you can also have the agent maintain kids friendly interactive documentation along the way that explains how it works, linked up to the actual game code.",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2109893053192306688/img/QDqxyvAx9K4maJeT.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2109893053192306688/img/QDqxyvAx9K4maJeT.jpg",
+                    "width": 2838,
+                    "height": 2000
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 22,
+                  "repost_count": 5,
+                  "quote_count": 0,
+                  "like_count": 121,
+                  "impression_count": 7507
+                }
+              },
+              {
+                "id": "2109988164169576959",
+                "url": "https://x.com/mitsuhiko/status/2109988164169576959",
+                "author": {
+                  "name": "Armin Ronacher ⇌",
+                  "username": "mitsuhiko",
+                  "avatar": "https://pbs.twimg.com/profile_images/1905698833084174336/jcHMkWFA_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T12:42:34.000Z",
+                "text": "Is it still AI slop if it’s nice to read? Opus made this explanation for the kids and honestly: it reads way better than the programming book I bought for them. Particularly the German version. https://t.co/EJngOA1IHv",
+                "urls": [
+                  {
+                    "url": "https://t.co/EJngOA1IHv",
+                    "expanded_url": "https://mitsuhiko.github.io/dungeon-crawler/learn/code.html#text",
+                    "display_url": "mitsuhiko.github.io/dungeon-crawle…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 27,
+                  "repost_count": 5,
+                  "quote_count": 0,
+                  "like_count": 150,
+                  "impression_count": 11340
+                }
+              }
+            ],
+            "body": "Lauren writes every word herself because writing is thinking; Armin has his agent maintain interactive docs that link to the game's code.",
+            "screenshots": [
+              {
+                "url": "https://mitsuhiko.github.io/dungeon-crawler/learn/code.html",
+                "image": "media/sources/224a8954813701ca.webp",
+                "title": "Reading Code · Kids' Guide to Cube Crawler",
+                "capturedAt": "2026-10-13T14:23:32.873Z"
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Matt Pocock: short skills, strict checks, agent self-verification",
+          "Geoffrey Huntley: deterministic hooks beat probabilistic skills",
+          "Harrison Chase: steer vs queue for async subagent updates",
+          "Kun Chen: strong core, headless service, fluid interface",
+          "DHH: agent bug reports beat most human ones",
+          "Simon Willison: notes on Python 3.15 with uv",
+          "Hamel Husain: neatlogs is a promising new eval tool"
+        ],
+        "actions": [
+          {
+            "label": "Matt - mistakes list",
+            "url": "https://x.com/mattpocockuk/status/2109973273924579720"
+          },
+          {
+            "label": "Geoffrey - agency, not AGENTS.md",
+            "url": "https://ghuntley.com/agency/"
+          },
+          {
+            "label": "Harrison - async subagents",
+            "url": "https://x.com/hwchase17/status/2109938151472890070"
+          },
+          {
+            "label": "Kun - software is not dead",
+            "url": "https://x.com/kunchenguid/status/2109879371058332062"
+          },
+          {
+            "label": "Simon - Python 3.15 notes",
+            "url": "https://simonwillison.net/2026/Oct/12/python-3-15/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2109973273924579720"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2109895308587249888"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2109938151472890070"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2109879371058332062"
+          },
+          {
+            "label": "DHH @dhh",
+            "url": "https://x.com/dhh/status/2109783581065421056"
+          },
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2109885001584292091"
+          },
+          {
+            "label": "Armin Ronacher @mitsuhiko",
+            "url": "https://x.com/mitsuhiko/status/2109893162093183306"
+          },
+          {
+            "label": "Simon Willison @simonw",
+            "url": "https://x.com/simonw/status/2109711203077619768"
+          },
+          {
+            "label": "Hamel Husain @HamelHusain",
+            "url": "https://x.com/HamelHusain/status/2109655278786683305"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261012-builders-today",
       "category": "ai",
