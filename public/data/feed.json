@@ -1,8 +1,489 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-13T09:45:00-05:00",
+  "updated": "2026-10-14T08:55:00-05:00",
   "cards": [
+    {
+      "id": "ai-20261014-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 14, 2026",
+      "body": "**Matt Pocock** proposes a `GRILL.md` to customize grilling, **Lauren** replaces comments with lint and types, and **Harrison Chase** puts the **model router** in the harness.",
+      "source": "X builders watch · Oct 13–14, 2026 CT · Matt Pocock · Lauren Tan · Mario Zechner · Harrison Chase · DHH · Geoffrey Huntley · Kun Chen · swyx",
+      "tags": [
+        "ai",
+        "builders",
+        "skills",
+        "grill",
+        "comments",
+        "subagents",
+        "routing",
+        "evals"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/builders-today-20261014/800/520",
+      "link": "https://x.com/mattpocockuk/status/2110271202740560215",
+      "detail": {
+        "tldr": "Less skill editing, more **config files** and **deterministic checks**.\nPlus a **harness-side model router** that cut coding-agent cost by **64%**.",
+        "tldrBullets": [
+          "Matt Pocock: proposed **GRILL.md** to customize `/grill-me`",
+          "Lauren: ban stale comments; move prose into **lint and types**",
+          "Mario: subagents as a **context firewall**, not a swarm",
+          "Harrison: **router in the harness**, not a gateway",
+          "DHH: **Sol** near Opus on Rails tasks at ~1/10 the cost"
+        ],
+        "summary": "A day about configuring the grill, deleting comment weeds, isolating agent context, and picking cheaper models when the harness already knows the task.",
+        "sections": [
+          {
+            "heading": "Customize the grill",
+            "tweets": [
+              {
+                "id": "2110271202740560215",
+                "url": "https://x.com/mattpocockuk/status/2110271202740560215",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T07:27:16.000Z",
+                "text": "Debating adding a GRILL.md file to customize how /grill-me works\n\nA few benefits:\n\n1. /grill-with-docs gets removed, you just have 'invoke the domain-modeling skill' in your GRILL.md and use /grill-me\n2. Customize what you care about/get asked about during planning (security, module strategy, etc)\n3. Choose whether you want to be grilled one at a time or all together\n\nPeople seem really, really reticent to actually edit the skill themselves, so this seems sensible to me.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 110,
+                  "repost_count": 4,
+                  "quote_count": 9,
+                  "like_count": 508,
+                  "impression_count": 37726
+                }
+              },
+              {
+                "id": "2110301164717654254",
+                "url": "https://x.com/mattpocockuk/status/2110301164717654254",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T09:26:19.000Z",
+                "text": "This would actually make things less complicated:\n\n- /grilling gets removed, folded into /grill-me\n- /grill-with-docs gets removed\n- GRILL.md is self-evident what it's for, gets set up for you in /setup-matt-pocock-skills",
+                "reply_to": [
+                  "JaeTask"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 3,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 13,
+                  "impression_count": 1039
+                }
+              },
+              {
+                "id": "2110359114492871063",
+                "url": "https://x.com/mattpocockuk/status/2110359114492871063",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T13:16:36.000Z",
+                "text": "They're not interfaces - they have fewer constraints than actual execution-based API's.\n\nThey're just blog posts that you install on your machine",
+                "reply_to": [
+                  "JaeTask"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 2,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 0,
+                  "impression_count": 87
+                }
+              }
+            ],
+            "body": "Matt wants a project-local **GRILL.md** so people stop editing skill files: fold `/grill-with-docs` into `/grill-me`, pick topics (security, modules), and choose one-at-a-time vs batch. He also calls skills **blog posts you install**, not stable interfaces.",
+            "screenshots": [
+              {
+                "url": "https://github.com/mattpocock/skills",
+                "image": "media/sources/76608378b6647553.webp",
+                "title": "mattpocock/skills: Skills for Real Engineers. Straight from my .agents directory.",
+                "capturedAt": "2026-10-14T13:53:57.543Z"
+              }
+            ]
+          },
+          {
+            "heading": "Comments are weeds",
+            "tweets": [
+              {
+                "id": "2110149626133438732",
+                "url": "https://x.com/poteto/status/2110149626133438732",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T23:24:10.000Z",
+                "text": "ban and delete most if not all code comments!\n\nagents love copying what already exists. a seemingly harmless comment explaining some temporary workaround is one of the worst viruses you can have in your codebase. like a weed it'll spread quickly as a tool for agents to quickly get their job done. before you know it, your codebase is overrun with hacks and stale comments. just one more workaround bro \n\nyou can use pstack's /no-comments skill as a weedkiller. it'll seek out useless comments while keeping the ones that actually should exist (like explaining a browser quirk), and figure out how to solve them on a first principles basis\n\nhere's a prompt you can try asking @bot:\n\ncreate a project agent that uses /poteto-mode to spawn a /swarm to use /no-comments and identify useless code comments we can prune in my repo. come back with a high level plan of which of these workarounds would be best solved by refactoring and which we can straight up delete\n\nhttps://t.co/nqeRdY62ee",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 246,
+                  "repost_count": 152,
+                  "quote_count": 95,
+                  "like_count": 3809,
+                  "impression_count": 247152
+                }
+              },
+              {
+                "id": "2110214162400137637",
+                "url": "https://x.com/poteto/status/2110214162400137637",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T03:40:36.000Z",
+                "text": "• comments go stale very quickly and confuse agents and people\n• they are often used by agents to explain workarounds that would've been better off actually fixing the code instead\n• they are not enforceable and waste your agents' tokens\n\nmy point is that moving prose (comments, rules, agent.md, skills) into deterministic lint rules, better API design/types, is far more effective, enforceable, and token efficient.\n\ncomments are simply a crutch that agents will happily misuse",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 33,
+                  "repost_count": 12,
+                  "quote_count": 8,
+                  "like_count": 462,
+                  "impression_count": 16957
+                }
+              },
+              {
+                "id": "2110047236369547621",
+                "url": "https://x.com/poteto/status/2110047236369547621",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T16:37:18.000Z",
+                "text": "this is now a new skill /in-your-own-words in pstack 0.15.23! \n\nextremely useful to ensure that you and your agent are aligned on the goal and that it understands your intent clearly",
+                "urls": [
+                  {
+                    "url": "https://t.co/3dIimxHJEt",
+                    "expanded_url": "https://twitter.com/poteto/status/2104744961904394699",
+                    "display_url": "x.com/poteto/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 109,
+                  "repost_count": 72,
+                  "quote_count": 9,
+                  "like_count": 2139,
+                  "impression_count": 92691
+                }
+              }
+            ],
+            "body": "Lauren's `/no-comments` skill treats workaround comments as a virus agents copy. Prefer **lint rules**, better APIs, and types. Separately, `/in-your-own-words` ships so the agent restates the goal before coding."
+          },
+          {
+            "heading": "Subagents as firewalls",
+            "tweets": [
+              {
+                "id": "2110112810420351326",
+                "url": "https://x.com/badlogicgames/status/2110112810420351326",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T20:57:52.000Z",
+                "text": "how i use subagents 99.99% of the time.",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUigai0WkAAJPT0.jpg",
+                    "width": 1080,
+                    "height": 659
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 37,
+                  "repost_count": 9,
+                  "quote_count": 0,
+                  "like_count": 567,
+                  "impression_count": 25305
+                }
+              },
+              {
+                "id": "2110250238783246459",
+                "url": "https://x.com/badlogicgames/status/2110250238783246459",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T06:03:58.000Z",
+                "text": "https://t.co/AERGgMRyLi",
+                "reply_to": [
+                  "vaibhavshn"
+                ],
+                "urls": [
+                  {
+                    "url": "https://t.co/AERGgMRyLi",
+                    "expanded_url": "https://github.com/badlogic/pi-subagent",
+                    "display_url": "github.com/badlogic/pi-su…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 2,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 14,
+                  "impression_count": 821
+                }
+              },
+              {
+                "id": "2110308164776100275",
+                "url": "https://x.com/badlogicgames/status/2110308164776100275",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T09:54:08.000Z",
+                "text": "recommended reading. liking this perspective.\n\nhttps://t.co/901SfaJu22",
+                "urls": [
+                  {
+                    "url": "https://t.co/901SfaJu22",
+                    "expanded_url": "https://smallcultfollowing.com/babysteps/blog/2026/10/14/agentic-dev-and-rust/",
+                    "display_url": "smallcultfollowing.com/babysteps/blog…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 7,
+                  "repost_count": 7,
+                  "quote_count": 0,
+                  "like_count": 195,
+                  "impression_count": 17393
+                }
+              }
+            ],
+            "body": "Mario's default: fire a subagent so huge tool output never hits the main context. His `pi-subagent` plugin is the lazy-goose path. He also recommends Niko Matsakis on why **Rust guardrails** fit agentic coding.",
+            "callout": {
+              "kind": "try",
+              "text": "For noisy research or greps, spawn a subagent and keep only the summary in the parent thread."
+            },
+            "screenshots": [
+              {
+                "url": "https://smallcultfollowing.com/babysteps/blog/2026/10/14/agentic-dev-and-rust/",
+                "image": "media/sources/c2de06a2d0b0268e.webp",
+                "title": "What agents mean for Rust (and vice versa) · baby steps",
+                "capturedAt": "2026-10-14T13:53:47.345Z"
+              },
+              {
+                "url": "https://github.com/badlogic/pi-subagent",
+                "image": "media/sources/4e10ae77cd25ad39.webp",
+                "title": "badlogic/pi-subagent",
+                "capturedAt": "2026-10-14T13:53:52.715Z"
+              }
+            ]
+          },
+          {
+            "heading": "Router in the harness",
+            "tweets": [
+              {
+                "id": "2110041909284745578",
+                "url": "https://x.com/hwchase17/status/2110041909284745578",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T16:16:08.000Z",
+                "text": "router lives in the harness, not a gateway, bc the harness knows the task\n\nblog: https://t.co/k9b306ikK1\n\nhttps://t.co/4FggNo00jY",
+                "urls": [
+                  {
+                    "url": "https://t.co/k9b306ikK1",
+                    "expanded_url": "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness",
+                    "display_url": "langchain.com/blog/how-to-bu…"
+                  },
+                  {
+                    "url": "https://t.co/4FggNo00jY",
+                    "expanded_url": "https://x.com/neil_xbt/status/2109979966859510156",
+                    "display_url": "x.com/neil_xbt/statu…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 60,
+                  "repost_count": 15,
+                  "quote_count": 6,
+                  "like_count": 133,
+                  "impression_count": 8601
+                }
+              },
+              {
+                "id": "2110148376755097938",
+                "url": "https://x.com/dhh/status/2110148376755097938",
+                "author": {
+                  "name": "DHH",
+                  "username": "dhh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093715898204884992/goERjC9G_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T23:19:12.000Z",
+                "text": "Sol completes the tasks less than 5 percentage points off Opus, but at less than a tenth of the cost!! $0.80 vs $10.53. Incredible performance from @openai 💪 https://t.co/0si7j2dGRi",
+                "urls": [
+                  {
+                    "url": "https://t.co/0si7j2dGRi",
+                    "expanded_url": "https://twitter.com/rails/status/2110054366707093578",
+                    "display_url": "x.com/rails/status/2…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 125,
+                  "repost_count": 47,
+                  "quote_count": 13,
+                  "like_count": 1358,
+                  "impression_count": 54136
+                }
+              },
+              {
+                "id": "2110048573593374836",
+                "url": "https://x.com/GeoffreyHuntley/status/2110048573593374836",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-13T16:42:37.000Z",
+                "text": "the big discount on intelligence \n\nhttps://t.co/o9mGqnLhsJ\n\n“We stopped the individual engineering subscriptions to Claude and Codex on the engineers’ Macs, and routed all engineering work through the API. The team and backlog didn’t change, and we didn’t ask the engineers to work more.\n\nBefore this, five engineers collectively paid $800 to $1000 per month for Max and Pro plans.\n\nAfter this, the bill was approximately $1000 per day for the same work. So in one fell swoop, the cost went up thirty times.”",
+                "urls": [
+                  {
+                    "url": "https://t.co/6bsVItUptl",
+                    "expanded_url": "https://arunabhdastidar.substack.com/p/the-big-discount-on-intelligence?r=5a0uxx&utm_medium=ios",
+                    "display_url": "arunabhdastidar.substack.com/p/the-big-disc…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 21,
+                  "repost_count": 13,
+                  "quote_count": 4,
+                  "like_count": 233,
+                  "impression_count": 30288
+                }
+              }
+            ],
+            "body": "Harrison: put the **model router in the harness** (it knows the task); Open SWE cut median cost **64%**. DHH notes Sol within ~5 points of Opus on Agents on Rails Stage 3 at under a tenth the spend. Geoffrey amplifies a team that saw API routing cost **30×** their old Max/Pro seats.",
+            "screenshots": [
+              {
+                "url": "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness",
+                "image": "media/sources/c766e15e4023d1eb.webp",
+                "title": "How to Build a Model Router in the Harness",
+                "capturedAt": "2026-10-14T13:53:39.910Z"
+              },
+              {
+                "url": "https://rubyonrails.org/2026/10/13/agents-on-rails-stage-3",
+                "image": "media/sources/ff3a85683670edec.webp",
+                "title": "Agents on Rails: Stage 3. Can a model build on its own work?",
+                "capturedAt": "2026-10-14T13:53:43.084Z"
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Matt: GRILL.md config over editing skill packs",
+          "Lauren: deterministic lint beats comment prose",
+          "Mario: subagents shield the main context",
+          "Harrison: harness router, 64% cheaper threads",
+          "DHH / Rails: Sol is the cost/accuracy sweet spot",
+          "Kun: Character.ai bankruptcy shows engagement without unit economics",
+          "Tibo: Codex/ChatGPT desktop disk use down ~60%"
+        ],
+        "actions": [
+          {
+            "label": "Matt - GRILL.md proposal",
+            "url": "https://x.com/mattpocockuk/status/2110271202740560215"
+          },
+          {
+            "label": "Lauren - no-comments skill",
+            "url": "https://x.com/poteto/status/2110149626133438732"
+          },
+          {
+            "label": "Mario - how I use subagents",
+            "url": "https://x.com/badlogicgames/status/2110112810420351326"
+          },
+          {
+            "label": "Harrison - model router blog",
+            "url": "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+          },
+          {
+            "label": "Agents on Rails Stage 3",
+            "url": "https://rubyonrails.org/2026/10/13/agents-on-rails-stage-3"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2110271202740560215"
+          },
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2110149626133438732"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames/status/2110112810420351326"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2110041909284745578"
+          },
+          {
+            "label": "DHH @dhh",
+            "url": "https://x.com/dhh/status/2110148376755097938"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2110048573593374836"
+          },
+          {
+            "label": "swyx @swyx",
+            "url": "https://x.com/swyx/status/2110065576764686421"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2110234716729463195"
+          },
+          {
+            "label": "Tibo @thsottiaux",
+            "url": "https://x.com/thsottiaux/status/2110151780478927344"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261013-builders-today",
       "category": "ai",
