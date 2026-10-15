@@ -4,6 +4,520 @@
   "updated": "2026-10-14T08:55:00-05:00",
   "cards": [
     {
+      "id": "ai-20261015-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 15, 2026",
+      "body": "**Lauren** compresses skills into short named **principles**, **Antithesis** lets agents time-travel debug distributed systems, and **Vercel** shares a $1M sandbox escape challenge.",
+      "source": "X builders watch · Oct 14–15, 2026 CT · Lauren Tan · Matt Pocock · Geoffrey Huntley · Guillermo Rauch · Armin Ronacher · Mario Zechner · Thariq · Lee Robinson · Harrison Chase · Kun Chen",
+      "tags": [
+        "ai",
+        "builders",
+        "principles",
+        "skills",
+        "verification",
+        "sandbox",
+        "durable-agents",
+        "open-source"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/builders-today-20261015/800/520",
+      "link": "https://x.com/poteto/status/2110496830429839869",
+      "detail": {
+        "tldr": "Skills shrink into **named principles**; verification moves to **running the system**.\nPlus a real **kernel-level sandbox escape** and pi-durable agents showing up everywhere.",
+        "tldrBullets": [
+          "Lauren: pstack's **24 principles**, cited by name in every reply",
+          "Antithesis: agents drive the **Multiverse Debugger** themselves",
+          "Vercel: $1M challenge found a **Linux kernel zero day**",
+          "Armin: iOS Python IDE built in an afternoon with **pi-durable**",
+          "Geoffrey: **closed to PRs, open to remix** via Nix overlays"
+        ],
+        "summary": "A day about smaller, sharper agent rules, evidence from real runs, and how far sandboxes and agents can be pushed.",
+        "sections": [
+          {
+            "heading": "Principles over skill packs",
+            "tweets": [
+              {
+                "id": "2110496830429839869",
+                "url": "https://x.com/poteto/status/2110496830429839869",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T22:23:50.000Z",
+                "text": "perhaps one of the most durable parts of pstack are its engineering principles: very concise skills (~10-20 loc) that distill down good practices into its core. \n\nas models get smarter, i expect most of pstack skills to compress into short principles or workflows (a generic list of steps) and that i will be able to delete a few of them. \n\nhow it works is that /poteto-mode contains a short index of available principles and tells agents \"In your reply, name each principle that shaped a decision and the specific choice it changed.\" this is why you'll often see a Principles Named or Used section at the end of the agent's response\n\nmany of these principles were extracted from my sessions correcting agents since the start of this year. some are inspired by problems i see people talk about, like Attack the Premise, inspired by @VictorTaelin's post https://t.co/qTGVfoKSyD\n\nyou can also use the principles as skills if you want greater control, by invoking /principle-<name> \n\nhttps://t.co/wuTWsflVN3",
+                "urls": [
+                  {
+                    "url": "https://t.co/bDIpHhE1cM",
+                    "expanded_url": "https://twitter.com/unclebobmartin/status/2110476094704910407",
+                    "display_url": "x.com/unclebobmartin…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 100,
+                  "repost_count": 99,
+                  "quote_count": 17,
+                  "like_count": 2855,
+                  "impression_count": 152614
+                }
+              },
+              {
+                "id": "2110400432132530260",
+                "url": "https://x.com/mattpocockuk/status/2110400432132530260",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T16:00:47.000Z",
+                "text": "Do you need agent skills if you're following a great process?\n\nOf course not\n\nIt's just that skills make it easier to follow that process",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 87,
+                  "repost_count": 15,
+                  "quote_count": 5,
+                  "like_count": 523,
+                  "impression_count": 37064
+                }
+              }
+            ],
+            "body": "pstack's `/poteto-mode` reads a short principle index and makes the agent **name each principle and the decision it changed**. A citation with no decision is the tell it name-dropped.",
+            "screenshots": [
+              {
+                "url": "https://github.com/cursor/plugins/blob/main/pstack/docs/guide/08-principles.md",
+                "image": "media/sources/3067e36b1a38399d.webp",
+                "title": "plugins/pstack/docs/guide/08-principles.md at main · cursor/plugins",
+                "capturedAt": "2026-10-15T14:06:00.704Z"
+              }
+            ]
+          },
+          {
+            "heading": "Run it, don't just read it",
+            "tweets": [
+              {
+                "id": "2110731428573180351",
+                "url": "https://x.com/GeoffreyHuntley/status/2110731428573180351",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T13:56:02.000Z",
+                "text": "Do you remember when @bcherny said Claude couldn't build distributed systems? \n\nWe have a fix for that. 🫡\n\nhttps://t.co/eetiXcdnPV https://t.co/WRkqydK0y3",
+                "urls": [
+                  {
+                    "url": "https://t.co/eetiXcdnPV",
+                    "expanded_url": "https://antithesis.com/blog/2026/time-traveling-agents/",
+                    "display_url": "antithesis.com/blog/2026/time…"
+                  },
+                  {
+                    "url": "https://t.co/WRkqydK0y3",
+                    "expanded_url": "https://twitter.com/antithesishq/status/2110724768571732044",
+                    "display_url": "x.com/antithesishq/s…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 2,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 2,
+                  "impression_count": 447
+                }
+              }
+            ],
+            "body": "Antithesis now lets agents rewind a failing deterministic run, inspect state, and re-test the fix before the PR reaches review.",
+            "screenshots": [
+              {
+                "url": "https://antithesis.com/blog/2026/time-traveling-agents/",
+                "image": "media/sources/d78e19c1c9668703.webp",
+                "title": "Your agent can now ship reliable distributed systems | Antithesis",
+                "capturedAt": "2026-10-15T14:06:04.048Z"
+              }
+            ]
+          },
+          {
+            "heading": "Sandbox escapes are real",
+            "tweets": [
+              {
+                "id": "2110514201559228606",
+                "url": "https://x.com/rauchg/status/2110514201559228606",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T23:32:51.000Z",
+                "text": "This is one of the most exhilarating times in technology, and this challenge was yet another jaw-dropping moment.\n\nWhen the details of OpenAI’s agent escape and Hugging Face hack started to emerge, it became clear that agent containment would be one of the most important priorities for any AI infra company.\n\nThere are two classes of escapes: ① \"escape the network\" and ② “escape the matrix” 😁, as in, break the spell of virtualization. OpenAI was the former, where an agent not supposed to have internet access… gained it by hacking another system. Genuinely astonishing and worrisome.\n\nThrough this challenge, however, we discovered something even more groundbreaking. A talented white-hat researcher, armed with a swarm of AI agents, expertise and perseverance, \"pierced through\" the Linux virtualization boundary that nearly every cloud sandbox provider in the world banks on today.\n\nI'm very thankful we got the report, were able to quickly move to protect our customers, found no evidence of customer data compromise, and collaborated with many industry partners to protect the wider internet.\n\nOur confidence and conviction in Vercel Sandbox are even greater now, after some of the smartest, most motivated researchers in the world, and their agents, gave it their best shot.",
+                "urls": [
+                  {
+                    "url": "https://t.co/bxVxrPcvIT",
+                    "expanded_url": "https://twitter.com/vercel/status/2110509321939509421",
+                    "display_url": "x.com/vercel/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 114,
+                  "repost_count": 22,
+                  "quote_count": 9,
+                  "like_count": 643,
+                  "impression_count": 68840
+                }
+              }
+            ],
+            "body": "==1,285== reports, $242,000 paid, and one Linux kernel networking bug that reached the host from inside a microVM.",
+            "screenshots": [
+              {
+                "url": "https://vercel.com/blog/findings-from-the-1-million-dollar-vercel-sandbox-challenge",
+                "image": "media/sources/eda9fd244dfbac42.webp",
+                "title": "Findings from the $1M Vercel Sandbox challenge - Vercel",
+                "capturedAt": "2026-10-15T14:06:07.663Z"
+              }
+            ]
+          },
+          {
+            "heading": "pi-durable everywhere",
+            "tweets": [
+              {
+                "id": "2110680120843444589",
+                "url": "https://x.com/mitsuhiko/status/2110680120843444589",
+                "author": {
+                  "name": "Armin Ronacher ⇌",
+                  "username": "mitsuhiko",
+                  "avatar": "https://pbs.twimg.com/profile_images/1905698833084174336/jcHMkWFA_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T10:32:10.000Z",
+                "text": "These new models are pretty crazy. In an afternoon (mostly passive) + one flight I built an IDE for Python for iOS that runs Pyodide, has a debugger, embeds linter and formatter, pi-durable powered coding agent and does iCloud Drive and all the other things too.",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2110679311967522816/img/d7rkSzUg9Awz5GGS.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2110679311967522816/img/d7rkSzUg9Awz5GGS.jpg",
+                    "width": 1180,
+                    "height": 2556
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 44,
+                  "repost_count": 8,
+                  "quote_count": 8,
+                  "like_count": 296,
+                  "impression_count": 19085
+                }
+              },
+              {
+                "id": "2110462202188533862",
+                "url": "https://x.com/badlogicgames/status/2110462202188533862",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T20:06:14.000Z",
+                "text": "designing a new plugin system. everything leads back to pi-durable concepts.\n\ni'm pi-durableing all the things now.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 23,
+                  "repost_count": 15,
+                  "quote_count": 3,
+                  "like_count": 602,
+                  "impression_count": 58282
+                }
+              },
+              {
+                "id": "2110628270903292017",
+                "url": "https://x.com/badlogicgames/status/2110628270903292017",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T07:06:08.000Z",
+                "text": "time and time again i fall into the trap of designing a big piece of infra with an agent, only to find out that my context window is smaller than the agent's.\n\ni keep forgetting things that were already discussed, while clanker mcclankerface knows all the things.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 44,
+                  "repost_count": 12,
+                  "quote_count": 6,
+                  "like_count": 430,
+                  "impression_count": 12743
+                }
+              }
+            ],
+            "body": "Armin embeds a pi-durable agent in an iOS Python IDE and a kids' coding game. Mario notes the agent now remembers the design discussion better than he does."
+          },
+          {
+            "heading": "Agent desktops and a CompanyOS",
+            "tweets": [
+              {
+                "id": "2110463962877989276",
+                "url": "https://x.com/trq212/status/2110463962877989276",
+                "author": {
+                  "name": "Thariq",
+                  "username": "trq212",
+                  "avatar": "https://pbs.twimg.com/profile_images/1976939058741039104/r3GgzqRh_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T20:13:13.000Z",
+                "text": "Claude Code Desktop is now so much aware of its own capabilities and how it can work with you, like spinning off subsessions.\n\nI think of this almost like a v2, so many small details went into make it great. https://t.co/dpgj4fd8sQ",
+                "urls": [
+                  {
+                    "url": "https://t.co/dpgj4fd8sQ",
+                    "expanded_url": "https://twitter.com/ClaudeDevs/status/2110445844675838148",
+                    "display_url": "x.com/ClaudeDevs/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 373,
+                  "repost_count": 106,
+                  "quote_count": 25,
+                  "like_count": 5074,
+                  "impression_count": 281459
+                }
+              },
+              {
+                "id": "2110730965056131375",
+                "url": "https://x.com/leerob/status/2110730965056131375",
+                "author": {
+                  "name": "Lee Robinson",
+                  "username": "leerob",
+                  "avatar": "https://pbs.twimg.com/profile_images/1862717563311968256/xfgt1L9l_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T13:54:12.000Z",
+                "text": "This architecture is also the future of coding btw.\n\nYou can think about Cursor Projects like \"Grok Bot for Coding\". It's the same idea, just with more visibility into subagents, context, etc if you want.\n\nIt's like GarageBand vs. Logic Pro, for my music friends. https://t.co/5LwahgZa5r",
+                "urls": [
+                  {
+                    "url": "https://t.co/5LwahgZa5r",
+                    "expanded_url": "https://twitter.com/leerob/status/2108650243365736855",
+                    "display_url": "x.com/leerob/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 11,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 22,
+                  "impression_count": 1769
+                }
+              },
+              {
+                "id": "2110696529808048500",
+                "url": "https://x.com/hwchase17/status/2110696529808048500",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T11:37:22.000Z",
+                "text": "Coding agents (Claude code, codex) -&gt; personal agents (instinct, muse) -&gt; companyOS (???) https://t.co/BK8Wl6MGJT",
+                "urls": [
+                  {
+                    "url": "https://t.co/BK8Wl6MGJT",
+                    "expanded_url": "https://twitter.com/yoheinakajima/status/2110499885099393171",
+                    "display_url": "x.com/yoheinakajima/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 76,
+                  "repost_count": 5,
+                  "quote_count": 1,
+                  "like_count": 63,
+                  "impression_count": 4482
+                }
+              }
+            ],
+            "body": "Claude Code Desktop can spin off subsessions; Lee calls Cursor Projects \"Grok Bot for Coding\"; Harrison sees coding agents leading to personal agents, then a company OS."
+          },
+          {
+            "heading": "Closed to PRs, open to remix",
+            "tweets": [
+              {
+                "id": "2110515103778881661",
+                "url": "https://x.com/GeoffreyHuntley/status/2110515103778881661",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T23:36:26.000Z",
+                "text": "🗞️ a new model for open source: closed to pull requests, open to remix.\n\nhttps://t.co/kJAllc39mc",
+                "urls": [
+                  {
+                    "url": "https://t.co/kJAllc39mc",
+                    "expanded_url": "https://ghuntley.com/remix",
+                    "display_url": "ghuntley.com/remix"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUoNDJ4WQAAnHcr.jpg",
+                    "width": 1482,
+                    "height": 1286
+                  },
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUoN_OWXcAAPQhg.jpg",
+                    "width": 1626,
+                    "height": 1662
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 13,
+                  "repost_count": 8,
+                  "quote_count": 3,
+                  "like_count": 84,
+                  "impression_count": 6154
+                }
+              },
+              {
+                "id": "2110491888033972375",
+                "url": "https://x.com/GeoffreyHuntley/status/2110491888033972375",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-14T22:04:11.000Z",
+                "text": "I'm going to try a different approach to how open source is done. I'm going to close pull requests. \n\nI'll keep issues and discussions open, but the way to use Kittens is to patch the world with Nix overlays. \n\nThat way, if you want to add something or change something, you can literally just point your agent at it and personalize it to your needs. 😎",
+                "urls": [
+                  {
+                    "url": "https://t.co/F4CMCD1lEo",
+                    "expanded_url": "https://twitter.com/GeoffreyHuntley/status/2110235922281500971",
+                    "display_url": "x.com/GeoffreyHuntle…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUn5DHDWEAAw_7q.jpg",
+                    "width": 2400,
+                    "height": 508
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 12,
+                  "repost_count": 4,
+                  "quote_count": 0,
+                  "like_count": 66,
+                  "impression_count": 5150
+                }
+              }
+            ],
+            "body": "Ideas over patches: publish source and intent, and let people point their agent at a Nix overlay instead of sending pull requests.",
+            "screenshots": [
+              {
+                "url": "https://ghuntley.com/remix",
+                "image": "media/sources/ee43f7a6f8aa78ba.webp",
+                "title": "a new model for open source: closed to pull requests, open to remix.",
+                "capturedAt": "2026-10-15T14:06:13.778Z"
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Lauren: principles named in replies, ~10-20 line skills",
+          "Matt: skills just make a good process easier to follow",
+          "Antithesis: agents debug from deterministic replays",
+          "Vercel: kernel zero day found, no customer data accessed",
+          "Kun: B2C should let people bring their own LLM subscription",
+          "Dax: OpenCode heading for 2M daily active users"
+        ],
+        "actions": [
+          {
+            "label": "pstack principles guide",
+            "url": "https://github.com/cursor/plugins/blob/main/pstack/docs/guide/08-principles.md"
+          },
+          {
+            "label": "Antithesis - time-traveling agents",
+            "url": "https://antithesis.com/blog/2026/time-traveling-agents/"
+          },
+          {
+            "label": "Vercel - $1M sandbox findings",
+            "url": "https://vercel.com/blog/findings-from-the-1-million-dollar-vercel-sandbox-challenge"
+          },
+          {
+            "label": "Geoffrey - the remix model",
+            "url": "https://ghuntley.com/remix"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2110496830429839869"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2110400432132530260"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2110731428573180351"
+          },
+          {
+            "label": "Guillermo Rauch @rauchg",
+            "url": "https://x.com/rauchg/status/2110514201559228606"
+          },
+          {
+            "label": "Armin Ronacher @mitsuhiko",
+            "url": "https://x.com/mitsuhiko/status/2110680120843444589"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames/status/2110462202188533862"
+          },
+          {
+            "label": "Thariq @trq212",
+            "url": "https://x.com/trq212/status/2110463962877989276"
+          },
+          {
+            "label": "Lee Robinson @leerob",
+            "url": "https://x.com/leerob/status/2110730965056131375"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2110696529808048500"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2110410852025458810"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2110544790764794231"
+          }
+        ]
+      }
+    },
+    {
       "id": "ai-20261014-builders-today",
       "category": "ai",
       "title": "Builders today: Oct 14, 2026",
