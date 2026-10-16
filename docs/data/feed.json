@@ -1,8 +1,508 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-14T08:55:00-05:00",
+  "updated": "2026-10-16T08:55:00-05:00",
   "cards": [
+    {
+      "id": "ai-20261016-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 16, 2026",
+      "body": "**Geoffrey** and **Armin** drop State of Agentic Coding #11 (curiosity test, Pi Durable, code mode), **Dax** runs long project sessions via subagents, and **Simon** shows write/verify/fix burning millions of tokens.",
+      "source": "X builders watch · Oct 15–16, 2026 CT · Armin Ronacher · Geoffrey Huntley · Dax · Simon Willison · Harrison Chase · Mitchell Hashimoto · Lauren Tan · Mario Zechner · Boris Cherny",
+      "tags": [
+        "ai",
+        "builders",
+        "agentic-coding",
+        "durable-agents",
+        "subagents",
+        "verification",
+        "skills",
+        "prompt-injection"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/builders-today-20261016/800/520",
+      "link": "https://x.com/mitsuhiko/status/2111053302079410595",
+      "detail": {
+        "tldr": "Harness talk shifts from chat loops to **durable state**, **hive sessions**, and **verify-or-burn**.\nPlus skills that **self-install**, and a $300k prompt-injection challenge.",
+        "tldrBullets": [
+          "Armin/Geoffrey: State of Agentic Coding #11 + **curiosity test** writeup",
+          "Dax: long-running **per-project sessions** that spawn subagents",
+          "Simon: Ultracode **write/verify/fix** burned 3.4M tokens on READMEs",
+          "Mitchell: Rex **skill + docs MCP** so the agent sets itself up",
+          "Boris: Gray Swan **$300k** indirect prompt-injection contest"
+        ],
+        "summary": "A day about durable harnesses, multi-session agent coordination, and making verification the default even when it costs tokens.",
+        "sections": [
+          {
+            "heading": "Curiosity test and Pi Durable",
+            "tweets": [
+              {
+                "id": "2111053302079410595",
+                "url": "https://x.com/mitsuhiko/status/2111053302079410595",
+                "author": {
+                  "name": "Armin Ronacher ⇌",
+                  "username": "mitsuhiko",
+                  "avatar": "https://pbs.twimg.com/profile_images/1905698833084174336/jcHMkWFA_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-16T11:15:03.000Z",
+                "text": "🎙️ New Episode of State of Agentic Coding with @bentlegen and me is out. This time with @GeoffreyHuntley as guest.\n\n- Code mode and self modifying harnesses\n- @dhh's rails keynote\nand a lot of other things",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2111052091095482368/img/QVc5_lI3qnLFqPj7.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2111052091095482368/img/QVc5_lI3qnLFqPj7.jpg",
+                    "width": 1920,
+                    "height": 1080
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 12,
+                  "repost_count": 8,
+                  "quote_count": 2,
+                  "like_count": 64,
+                  "impression_count": 5757
+                }
+              },
+              {
+                "id": "2111060058197119387",
+                "url": "https://x.com/GeoffreyHuntley/status/2111060058197119387",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-16T11:41:54.000Z",
+                "text": "🗞️ state of agentic coding #11: the curiosity test, lisp, and labs that can't fail\n\nhttps://t.co/hzIwzZI7Vf https://t.co/KzWZdgkabs https://t.co/Zfs4wq0fQB",
+                "urls": [
+                  {
+                    "url": "https://t.co/hzIwzZI7Vf",
+                    "expanded_url": "https://ghuntley.com/toronto/",
+                    "display_url": "ghuntley.com/toronto/"
+                  },
+                  {
+                    "url": "https://t.co/Zfs4wq0fQB",
+                    "expanded_url": "https://twitter.com/mitsuhiko/status/2111053302079410595",
+                    "display_url": "x.com/mitsuhiko/stat…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUv93HPaYAAA99r.jpg",
+                    "width": 1566,
+                    "height": 1462
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 2,
+                  "repost_count": 2,
+                  "quote_count": 1,
+                  "like_count": 11,
+                  "impression_count": 1436
+                }
+              }
+            ],
+            "screenshots": [
+              {
+                "url": "https://ghuntley.com/toronto/",
+                "image": "media/sources/721d3eb1bcd48dbd.webp",
+                "title": "state of agentic coding #11: the curiosity test, lisp, and labs that can't fail",
+                "capturedAt": "2026-10-16T13:59:28.759Z"
+              }
+            ],
+            "body": "Armin and Ben host Geoffrey for episode 11: **code mode**, self-modifying harnesses, and why **Pi Durable** survives restarts. Geoffrey's writeup pushes deleting stale **AGENTS.md** after model releases.",
+            "callout": {
+              "kind": "try",
+              "text": "Read the toronto writeup, then ask which of our skill files would fail a curiosity test against the latest models."
+            }
+          },
+          {
+            "heading": "Long sessions and hive primitives",
+            "tweets": [
+              {
+                "id": "2110898321976164393",
+                "url": "https://x.com/thdxr/status/2110898321976164393",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-16T00:59:13.000Z",
+                "text": "one change the mobile app fully pushed me to is just have a bunch of long running sessions per project\n\ni tell it do everything using subagents so i can work on many things at once if needed",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUtq1iGWsAA7ae0.jpg",
+                    "width": 889,
+                    "height": 1174
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 31,
+                  "repost_count": 1,
+                  "quote_count": 2,
+                  "like_count": 88,
+                  "impression_count": 11941
+                }
+              },
+              {
+                "id": "2111037032659079517",
+                "url": "https://x.com/GeoffreyHuntley/status/2111037032659079517",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-16T10:10:24.000Z",
+                "text": "crossSessionInbound=accept is a very very [1] interesting setting in claude code.\n\n[1] appears to be key primitive behind hive swarms",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 8,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 14,
+                  "impression_count": 2246
+                }
+              },
+              {
+                "id": "2110813795245249018",
+                "url": "https://x.com/hwchase17/status/2110813795245249018",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T19:23:20.000Z",
+                "text": "Most of the interesting agent harness work is happening at intersection of harness and infra:\n\n1/ dreaming \n2/ async subagents\n3/ heartbeats\n4/ letting agent schedule reminders\n\nPart of reason im so bullish on managed agents platforms!\n\nAll of these in managed deep agents!",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 125,
+                  "repost_count": 30,
+                  "quote_count": 6,
+                  "like_count": 403,
+                  "impression_count": 18768
+                }
+              }
+            ],
+            "body": "Dax keeps **one long session per project** and forces subagents for parallel work. Geoffrey flags `crossSessionInbound=accept` as the hive-swarm primitive. Harrison lists dreaming, async subagents, heartbeats, and agent-scheduled reminders.",
+            "screenshots": [
+              {
+                "url": "https://ghuntley.com/bot/",
+                "image": "media/sources/818c6fa30213a78d.webp",
+                "title": "revisiting some of my priors about openclaw",
+                "capturedAt": "2026-10-16T14:00:21.218Z"
+              }
+            ]
+          },
+          {
+            "heading": "Write, verify, fix (and burn tokens)",
+            "tweets": [
+              {
+                "id": "2110765766312382928",
+                "url": "https://x.com/simonw/status/2110765766312382928",
+                "author": {
+                  "name": "Simon Willison",
+                  "username": "simonw",
+                  "avatar": "https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T16:12:29.000Z",
+                "text": "It BURNS tokens though - it likes to put everything through a write/verify/fix cycle - I asked it to add some extra READMEs and it's burned 3.4M tokens just on that already",
+                "reply_to": [
+                  "patio11"
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HUryRxzbMAE-vs1.jpg",
+                    "width": 1098,
+                    "height": 2048,
+                    "alt_text": "Screenshot of a Claude Code workflow progress panel. Header reads \"Workflow 1h 10m\", \"22 agents 3.4M tokens\", with the task \"Write a README.md for each finished sparqlite crate, fact-check it against the source, fix inaccuracies\". Under \"Phases\" there are three stages, each with a progress bar of squares and a table of Agent, Tokens and Time. \"Write 9/9\" is complete: nine agents (write:sq-core, write:sq-sqlite, write:sq-plan, write:sq-exec, write:sq-expr, write:sq-memstore, write:sq-oracle, write:sq-results, write:sq-sqlgen) each used roughly 140K to 270K tokens and took about 6 to 13 minutes. \"Verify 4/9\" is in progress: verify agents for the same nine crates, with the first four (sq-core, sq-sqlite, sq-plan, sq-exec) finished at around 215K to 285K tokens and 9 to 12 minutes each, two (sq-expr, sq-memstore) still running, and three (sq-results, sq-oracle, sq-sqlgen) not yet started."
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 11,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 13,
+                  "impression_count": 4805
+                }
+              },
+              {
+                "id": "2110758747815784768",
+                "url": "https://x.com/simonw/status/2110758747815784768",
+                "author": {
+                  "name": "Simon Willison",
+                  "username": "simonw",
+                  "avatar": "https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T15:44:36.000Z",
+                "text": "I fired off \"Write a SQLite extension in Rust that implants SPARQL and runs really fast because it can hit the rows directly\" twelve hours ago and it's just finishing now",
+                "reply_to": [
+                  "patio11"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 6,
+                  "repost_count": 2,
+                  "quote_count": 0,
+                  "like_count": 25,
+                  "impression_count": 7279
+                }
+              }
+            ],
+            "body": "Simon left Claude Code in **Ultracode** overnight on a Rust SPARQL SQLite extension. A README fact-check alone ran **22 agents** and **3.4M tokens** through write/verify/fix."
+          },
+          {
+            "heading": "Skills that set the agent up",
+            "tweets": [
+              {
+                "id": "2110843805733945344",
+                "url": "https://x.com/mitchellh/status/2110843805733945344",
+                "author": {
+                  "name": "Mitchell Hashimoto",
+                  "username": "mitchellh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2082830624415698944/bRo7PB2S_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T21:22:35.000Z",
+                "text": "We just shipped a skill (use command palette to install) and a docs mcp. Pair those together and the agent can set everything up for you!",
+                "reply_to": [
+                  "tomguthrie"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 1,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 14,
+                  "impression_count": 1614
+                }
+              },
+              {
+                "id": "2110840796954202186",
+                "url": "https://x.com/poteto/status/2110840796954202186",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T21:10:38.000Z",
+                "text": "did you know you can submit Grok Bot (and Grok, Cursor) plugins? submit them here! \n\nhttps://t.co/4KRkVkAz3Y",
+                "urls": [
+                  {
+                    "url": "https://t.co/4KRkVkAz3Y",
+                    "expanded_url": "https://x.ai/bot/marketplace/submit-a-plugin",
+                    "display_url": "x.ai/bot/marketplac…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2110492916892459008/img/XfzhkftUkIJwRels.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2110492916892459008/img/XfzhkftUkIJwRels.jpg",
+                    "width": 3252,
+                    "height": 2160
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 86,
+                  "repost_count": 54,
+                  "quote_count": 14,
+                  "like_count": 739,
+                  "impression_count": 43279
+                }
+              }
+            ],
+            "screenshots": [],
+            "body": "Mitchell shipped a Rex **skill plus docs MCP** so the agent can install and configure itself. Lauren points at the **Grok Bot / Cursor plugin** submit flow."
+          },
+          {
+            "heading": "Own the harness, chase coherence",
+            "tweets": [
+              {
+                "id": "2110969572065214885",
+                "url": "https://x.com/GeoffreyHuntley/status/2110969572065214885",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-16T05:42:20.000Z",
+                "text": "Source code is not available yet; it will be available in the coming weeks. Launching the website now to get the project qualified for @AnthropicAI [1] Glasswing\n\nhttps://t.co/o1MPNCRzy1\n\n[1] 🐜 folks, hit me up in DMs.",
+                "urls": [
+                  {
+                    "url": "https://t.co/o1MPNCRzy1",
+                    "expanded_url": "https://overalls.dev/",
+                    "display_url": "overalls.dev"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 17,
+                  "repost_count": 18,
+                  "quote_count": 5,
+                  "like_count": 212,
+                  "impression_count": 9326
+                }
+              },
+              {
+                "id": "2110988380435615971",
+                "url": "https://x.com/badlogicgames/status/2110988380435615971",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-16T06:57:04.000Z",
+                "text": "recommended reading. i like the term \"coherence\" over \"taste\".\n\nhistorically, simplified, a human would approach a software writing human, asking them to build a thing. that's an iterative process, until software writing human truely understands what the other human needs and wants. which is also why we moved away from waterfall. you often can't know what you want before you've build a first shitty solution you can feel out. and your wants might change.\n\nin this scenario, the outcome is what matters, not the program structure itself, unless that makes the outcome worse/impossible (bugs, perf, ease of adding features). \n\nthe software writing human's skill is not so much programming itself, but understanding the other humans wants, pulling out domain knowledge from the other human, asking questions, and ultimately translating the other human's wants into programs, while ensuring the program structure is fit to be modified for future needs.\n\nnow, can you replace the software writing human with an agent? for simple one-off stuff, yes. if the human with a want is technically minded that extends to more complex programs. \n\nmost humans suuuuuck at this iterative colab with agents tho, as they are bad at structuring and communicating their wants. \n\nand agents currently still suck at the software writing human skill of colaborating with another human to understand their wants and translate them to a program.\n\nmy gut tells me that this is because the training data and RL for coding agent tasks is largely composed of trajectories where a software writing human and an agent colaborate. that missed the other half of the problem: the human with a want and software writing human interaction.\n\nand until we can encode that agents for writing programs will likely only be effective in the hands of software writing humans, or very technically minded humans.\n\nanother thing agents currently suck ar is translating software writing human shallow instructions into architecture that's not a house of cards. i think this too is a consequence of the lack of training data/RL-able trajectories that encode the process a team of software writing humans go through when building a thing. we do have digitized artifacts (design docs, commits/PRs, issue trackers) that capture some but not all of that.\n\ni think this will improve, as we all are now doing design sessions with our agents, so labs could in theory train on that. however, even if this data were available and becomes part of training, the pretraining data still has tons of shit code from around the internet in it, ehich posttraining would have to combat.\n\nwelcome to my morning word salad.",
+                "urls": [
+                  {
+                    "url": "https://t.co/ZKA2fjvjl7",
+                    "expanded_url": "https://twitter.com/davis7/status/2110470658866266614",
+                    "display_url": "x.com/davis7/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 51,
+                  "repost_count": 20,
+                  "quote_count": 9,
+                  "like_count": 349,
+                  "impression_count": 14531
+                }
+              }
+            ],
+            "screenshots": [
+              {
+                "url": "https://overalls.dev/",
+                "image": "media/sources/dc95a4ea353ffd55.webp",
+                "title": "Overalls: an AI-first developer platform that you own",
+                "capturedAt": "2026-10-16T13:59:31.602Z"
+              }
+            ],
+            "body": "Geoffrey launches **Overalls** (self-hosted Firecracker machines for agents; source soon). Mario prefers **coherence** over taste: outcome and changeable structure first, while agents still miss the human-wants half of the loop."
+          },
+          {
+            "heading": "Prompt injection still pays",
+            "tweets": [
+              {
+                "id": "2110791698611855624",
+                "url": "https://x.com/bcherny/status/2110791698611855624",
+                "author": {
+                  "name": "Boris Cherny",
+                  "username": "bcherny",
+                  "avatar": "https://pbs.twimg.com/profile_images/1902044548936953856/J2jeik0t_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-15T17:55:32.000Z",
+                "text": "Over the last few years, we have made significant progress on prompt injection for Claude models. As agents do more, it is increasingly urgent that we solve it across the industry. \n\nReally excited to partner with Gray Swan to host this competition. Can’t wait to see what you find!",
+                "urls": [
+                  {
+                    "url": "https://t.co/CFLqGn29kh",
+                    "expanded_url": "https://twitter.com/grayswanai/status/2110746350983737460",
+                    "display_url": "x.com/grayswanai/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 127,
+                  "repost_count": 42,
+                  "quote_count": 6,
+                  "like_count": 689,
+                  "impression_count": 70318
+                }
+              }
+            ],
+            "body": "Boris highlights progress on Claude prompt injection and backs Gray Swan's **$300k** indirect prompt-injection red-team challenge with frontier-lab sponsors."
+          }
+        ],
+        "bullets": [
+          "Geoffrey: delete stale AGENTS.md / skills on model cadence",
+          "Dax: long project sessions + mandatory subagents",
+          "Simon: verification loops are expensive and worth it",
+          "Harrison: heartbeats and agent-scheduled reminders belong in the harness",
+          "Mario: optimize for coherence with human wants, not vibes"
+        ],
+        "actions": [
+          {
+            "label": "Armin - State of Agentic Coding #11",
+            "url": "https://x.com/mitsuhiko/status/2111053302079410595"
+          },
+          {
+            "label": "Geoffrey - toronto writeup",
+            "url": "https://ghuntley.com/toronto/"
+          },
+          {
+            "label": "Geoffrey - Overalls",
+            "url": "https://overalls.dev/"
+          },
+          {
+            "label": "Lauren - submit a plugin",
+            "url": "https://x.ai/bot/marketplace/submit-a-plugin"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Armin Ronacher @mitsuhiko",
+            "url": "https://x.com/mitsuhiko"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr"
+          },
+          {
+            "label": "Simon Willison @simonw",
+            "url": "https://x.com/simonw"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17"
+          },
+          {
+            "label": "Mitchell Hashimoto @mitchellh",
+            "url": "https://x.com/mitchellh"
+          },
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames"
+          },
+          {
+            "label": "Boris Cherny @bcherny",
+            "url": "https://x.com/bcherny"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261015-builders-today",
       "category": "ai",
