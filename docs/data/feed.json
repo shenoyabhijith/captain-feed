@@ -1,8 +1,434 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-16T08:55:00-05:00",
+  "updated": "2026-10-19T09:05:00-05:00",
   "cards": [
+    {
+      "id": "ai-20261019-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 19, 2026",
+      "body": "**Lauren** ships a formal-verification **meta-skill**, **Addy** says verify-or-stall when agents outpace review, and **Matt** treats a self-owned wiki as agent memory.",
+      "source": "X builders watch · Oct 16–19, 2026 CT · Lauren Tan · Addy Osmani · Matt Pocock · Dax · Kun Chen · Geoffrey Huntley · Mario Zechner · DHH",
+      "tags": [
+        "ai",
+        "builders",
+        "verification",
+        "formal-methods",
+        "skills",
+        "wiki",
+        "local-browsers",
+        "agent-loops"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/builders-today-20261019/800/520",
+      "link": "https://x.com/poteto/status/2111926622278521253",
+      "detail": {
+        "tldr": "Verification graduates from tests to **proof meta-skills**, and memory moves off vendors into a **wiki you own**.\nLocal browsers and kick-off/check-in loops keep agents useful while you step away.",
+        "tldrBullets": [
+          "Lauren: `/create-formal-verification-skill` builds TLA+/Kani suites",
+          "Addy: agent output needs **multi-layer verify**, not line review",
+          "Matt: self-built **wiki** as lock-in-free agent memory",
+          "Dax: **local browsers** via OpenCode beat hosted login walls",
+          "Kun/Geoff/Mario: kick-off loops, Overalls Android, voice coding"
+        ],
+        "summary": "Weekend into Monday: prove agent work, own the memory layer, and keep harnesses local enough that the web cannot block them.",
+        "sections": [
+          {
+            "heading": "Prove it, don't just test it",
+            "tweets": [
+              {
+                "id": "2111926622278521253",
+                "url": "https://x.com/poteto/status/2111926622278521253",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-18T21:05:19.000Z",
+                "text": "pstack v0.15.27 ships with a new skill /create-formal-verification-skill! \n\nit's still in beta, and similar to /create-verification-skill, this is a meta-skill that creates a new skill and formal verification suite based on the characteristics you want to verify. for example, you may want to model state machines and systems with concurrency using TLA+, or use kani in rust to check for undefined behavior. \n\nif you're new to formal verification, think of it as mathematically proving properties and invariants (something that must always be true) or \"laws\" of your system. usually, this means modeling your programs in a separate language like with TLA+ and then running the solver on that spec. newer approaches like with kani and @bendlang take a different approach where there is no separate language: you write kani in rust, and bend in bend (it's also a programming language, and the proofs are written as laws and expressed in its type system).\n\nhistorically formal verification never reached mainstream status because of the difficulty in modeling and writing proofs. it's quite difficult to model your business requirements and keep them in sync! but i expect that we will see more innovation in formal verification in the future as being able to formally verifiy that the code does what you intended gives your agents superpowers in writing correct software.\n\nin the meantime though, i've been experimenting with modeling our code with TLA+ and have already found several bugs with the skill created by /create-formal-verification-skill. \n\ntry it out and let me know how it goes!",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HU8SDLJbcAA_51s.png",
+                    "width": 160,
+                    "height": 160
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 146,
+                  "repost_count": 135,
+                  "quote_count": 37,
+                  "like_count": 2496,
+                  "impression_count": 99817
+                }
+              },
+              {
+                "id": "2111604705340326393",
+                "url": "https://x.com/addyosmani/status/2111604705340326393",
+                "author": {
+                  "name": "Addy Osmani",
+                  "username": "addyosmani",
+                  "avatar": "https://pbs.twimg.com/profile_images/2090232066021769216/IwGLjoSy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-17T23:46:08.000Z",
+                "text": "Give your agent a way to verify its work. This can dramatically improve the quality of output.\n\nWith this process in place, Claude Code was able to write 90%+ of its code itself. When generating software at a faster rate than you can review it, the bottleneck shifts to proving that it works. @bcherny and team invested enough in verification, we've been able to move fast while maintaining stability.\n\nCode reviews aren't going away, but you need to think of it differently. One human reading through line-by-line is no longer going to work as a gate, it needs to evolve into a multi-layered verification system, built with fast deterministic feedback loops for your agents. \n\nThis is where e2e tests, feature maps (as @poteto has been advocating), property tests and multi-agent adversarial reviews come in. These all provide opportunities to catch errors early and fix them before things get out of hand.\n\nYou don't have enough eyeballs for the amount of code being written so your focus needs to be on product intent, risk assessment and evaluating evidence rather than reviewing code. Delegate the code checking work to your automated tests, scale your approvals based on risk, and turn your test failures into living evaluations. This approach helps maintain speed without losing reliability.\n\nLet the agents do what they do best and let you focus on what makes you irreplaceable: judgement, direction, and ownership. We tried to capture how we handle code review and verification in this writeup. Hopefully it's helpful.",
+                "urls": [
+                  {
+                    "url": "https://t.co/1KhqoOzdbN",
+                    "expanded_url": "https://twitter.com/ClaudeDevs/status/2111168901723906176",
+                    "display_url": "x.com/ClaudeDevs/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 203,
+                  "repost_count": 172,
+                  "quote_count": 51,
+                  "like_count": 2445,
+                  "impression_count": 172430
+                }
+              }
+            ],
+            "body": "Lauren's pstack meta-skill writes a project-local **formal verification** suite (TLA+ or Kani) from the property you care about. Addy: when agents write faster than you can read, the gate is **evidence**, not eyeballs.",
+            "callout": {
+              "kind": "try",
+              "text": "Point `/create-formal-verification-skill` at one concurrency or state-machine path in a repo you own, and keep the generated verify skill beside `tdd` / `code-review`."
+            },
+            "screenshots": [
+              {
+                "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+                "image": "media/sources/9a7394432446bffe.webp",
+                "title": "How the Claude Code team does code review / claude.dev Blog",
+                "capturedAt": "2026-10-19T14:05:41.103Z"
+              },
+              {
+                "url": "https://github.com/cursor/plugins/blob/main/pstack/skills/create-formal-verification-skill/SKILL.md",
+                "image": "media/sources/db18dfe6788c1ed1.webp",
+                "title": "plugins/pstack/skills/create-formal-verification-skill/SKILL.md at main · cursor/plugins",
+                "capturedAt": "2026-10-19T14:05:45.416Z"
+              }
+            ]
+          },
+          {
+            "heading": "Own the wiki, not the vendor",
+            "tweets": [
+              {
+                "id": "2112131671097020895",
+                "url": "https://x.com/mattpocockuk/status/2112131671097020895",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T10:40:06.000Z",
+                "text": "3 months on, and my personal wiki has become critical infrastructure for my business.\n\nHugely enriches my courses and makes \"agents that run my business\" actually viable.\n\nVery, very glad that I built this myself. Relying on a vendor for memory feels like a recipe for lock-in. https://t.co/dIxos7GGqW",
+                "urls": [
+                  {
+                    "url": "https://t.co/dIxos7GGqW",
+                    "expanded_url": "https://twitter.com/mattpocockuk/status/2075315723631497705",
+                    "display_url": "x.com/mattpocockuk/s…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 66,
+                  "repost_count": 7,
+                  "quote_count": 4,
+                  "like_count": 585,
+                  "impression_count": 41604
+                }
+              }
+            ],
+            "body": "Three months in, Matt's **personal wiki** is business infrastructure: agents that run the business only work when memory is files he owns. Vendor memory is lock-in."
+          },
+          {
+            "heading": "Local browsers, adversarial web",
+            "tweets": [
+              {
+                "id": "2112004726589919326",
+                "url": "https://x.com/thdxr/status/2112004726589919326",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T02:15:40.000Z",
+                "text": "for a long time it felt like the world was fully optimized against you\n\nyou go to buy something, you get a bunch of ads and upsells and micro optimizations to get you to spend more\n\nyou go to consume some specific content and the algo puts in things that are hard to ignore and designed to get you to spend more time\n\nagents are the first time i've felt like maybe things can go in a different direction. send your robot into that mess and it can ignore it all and do your task\n\ni'm not naive, this is going to be an insane battle with entrenched interests doing their best to fight it\n\nbut there's a small chance that in the end we can finally be free of this (until the next new problem)",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 105,
+                  "repost_count": 52,
+                  "quote_count": 14,
+                  "like_count": 1379,
+                  "impression_count": 54944
+                }
+              },
+              {
+                "id": "2112165568757309693",
+                "url": "https://x.com/thdxr/status/2112165568757309693",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T12:54:48.000Z",
+                "text": "related - no one on the team really uses these hosted ai assistants. mostly because it's annoying to keep everything logged in everywhere\n\none nice side effect of that is since opencode is orchestrating our local browsers it's not as simple to block as \"all of Muse's ip range\" https://t.co/4QgwlKVL8A",
+                "urls": [
+                  {
+                    "url": "https://t.co/4QgwlKVL8A",
+                    "expanded_url": "https://twitter.com/thdxr/status/2112005224718291214",
+                    "display_url": "x.com/thdxr/status/2…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 33,
+                  "repost_count": 4,
+                  "quote_count": 5,
+                  "like_count": 159,
+                  "impression_count": 12096
+                }
+              }
+            ],
+            "body": "Dax: send a robot into ads and upsells and it **ignores the mess**. OpenCode driving **local browsers** also dodges the \"block our IP range\" problem of hosted assistants."
+          },
+          {
+            "heading": "Kick off, live, check in",
+            "tweets": [
+              {
+                "id": "2111971331659166157",
+                "url": "https://x.com/kunchenguid/status/2111971331659166157",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T00:02:58.000Z",
+                "text": "agents just enabled a new type of work life balance\n\nwork - kick off 10 agents\n\nlife - get coffee and breakfast\n\nwork - come back to answer their questions, make decisions, and kick off more agents\n\nlife - workout\n\nwork - come back...\n\nlife - play video games",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 66,
+                  "repost_count": 14,
+                  "quote_count": 12,
+                  "like_count": 495,
+                  "impression_count": 17438
+                }
+              },
+              {
+                "id": "2112101503938777464",
+                "url": "https://x.com/badlogicgames/status/2112101503938777464",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T08:40:14.000Z",
+                "text": "building software in my car with voice mode (still working on latency)",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2112101351446474752/img/g4exuvJFlDU2loo5.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2112101351446474752/img/g4exuvJFlDU2loo5.jpg",
+                    "width": 1080,
+                    "height": 2410
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 28,
+                  "repost_count": 1,
+                  "quote_count": 1,
+                  "like_count": 100,
+                  "impression_count": 9009
+                }
+              }
+            ],
+            "body": "Kun's loop is launch **10 agents**, do life, come back for decisions. Mario is already **voice-coding** from the car (latency still WIP)."
+          },
+          {
+            "heading": "Overalls goes mobile, Tailscale routes",
+            "tweets": [
+              {
+                "id": "2111966793615249435",
+                "url": "https://x.com/GeoffreyHuntley/status/2111966793615249435",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-18T23:44:56.000Z",
+                "text": "big plans big plans\n\noveralls now supports running android as a firecracker guest on linux with software rendering and display+interaction in the browser.\n\njust picked up my first android device in 10 years. mobile phone client build (ios+android+desktop) starts now. https://t.co/mKxlFpU8b1 https://t.co/TnMVwGv1xC",
+                "urls": [
+                  {
+                    "url": "https://t.co/TnMVwGv1xC",
+                    "expanded_url": "https://twitter.com/geoffreyhuntley/status/2111923781241339970",
+                    "display_url": "x.com/geoffreyhuntle…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HU82mn6a0AAk2hk.jpg",
+                    "width": 2048,
+                    "height": 1536
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 13,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 59,
+                  "impression_count": 3852
+                }
+              },
+              {
+                "id": "2112095267873014079",
+                "url": "https://x.com/dhh/status/2112095267873014079",
+                "author": {
+                  "name": "DHH",
+                  "username": "dhh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093715898204884992/goERjC9G_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T08:15:27.000Z",
+                "text": "No, I route all my Claude Code use over my tailscale network 😄",
+                "reply_to": [
+                  "buaaxhm"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 70,
+                  "repost_count": 22,
+                  "quote_count": 36,
+                  "like_count": 722,
+                  "impression_count": 67019
+                }
+              },
+              {
+                "id": "2112025818457071854",
+                "url": "https://x.com/GeoffreyHuntley/status/2112025818457071854",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T03:39:29.000Z",
+                "text": "got some cool news folks. the theory below is right?!\n\nit's 2pm in australia. inferencing capacity is short.\n\nswitched to germany for inferencing. no capacity issues.\n\ngermany will be good until germany wakes up at which point switch back to australia. https://t.co/NQvWzOTN2f",
+                "urls": [
+                  {
+                    "url": "https://t.co/NQvWzOTN2f",
+                    "expanded_url": "https://twitter.com/GeoffreyHuntley/status/2111367787629195767",
+                    "display_url": "x.com/GeoffreyHuntle…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 9,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 59,
+                  "impression_count": 3839
+                }
+              }
+            ],
+            "body": "Geoffrey runs **Android in Firecracker** inside Overalls and routes inference by timezone to chase capacity. DHH keeps Claude Code on **Tailscale** so the account stays reachable abroad.",
+            "screenshots": [
+              {
+                "url": "https://overalls.dev",
+                "image": "media/sources/abb599db2aea1cf9.webp",
+                "title": "Overalls: an AI-first developer platform that you own",
+                "capturedAt": "2026-10-19T14:05:48.297Z"
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Lauren: meta-skill that **generates** formal verification skills",
+          "Addy: review becomes **risk + evidence**, not line-by-line",
+          "Matt: wiki you own beats vendor memory for agent businesses",
+          "Dax: local browser orchestration resists IP blocks and dark patterns",
+          "Kun/Mario/Geoff/DHH: async agent loops, voice, mobile VMs, Tailscale"
+        ],
+        "actions": [
+          {
+            "label": "Lauren - formal verification skill",
+            "url": "https://x.com/poteto/status/2111926622278521253"
+          },
+          {
+            "label": "Addy - verify agent work",
+            "url": "https://x.com/addyosmani/status/2111604705340326393"
+          },
+          {
+            "label": "Matt - personal wiki",
+            "url": "https://x.com/mattpocockuk/status/2112131671097020895"
+          },
+          {
+            "label": "Claude Code review writeup",
+            "url": "https://claude.dev/blog/solving-code-review-at-anthropic/"
+          },
+          {
+            "label": "pstack formal verification skill",
+            "url": "https://github.com/cursor/plugins/blob/main/pstack/skills/create-formal-verification-skill/SKILL.md"
+          },
+          {
+            "label": "Overalls",
+            "url": "https://overalls.dev"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2111926622278521253"
+          },
+          {
+            "label": "Addy Osmani @addyosmani",
+            "url": "https://x.com/addyosmani/status/2111604705340326393"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2112131671097020895"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2112004726589919326"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2111971331659166157"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2111966793615249435"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames/status/2112101503938777464"
+          },
+          {
+            "label": "DHH @dhh",
+            "url": "https://x.com/dhh/status/2112095267873014079"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261016-builders-today",
       "category": "ai",
