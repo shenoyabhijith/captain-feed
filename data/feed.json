@@ -1,8 +1,222 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-20T09:00:00-05:00",
+  "updated": "2026-10-20T09:15:00-05:00",
   "cards": [
+    {
+      "id": "muse-20261020-threads-watch",
+      "category": "ai",
+      "title": "Threads watch: Oct 20, 2026",
+      "body": "Meta is building Confidential VMs for Muse on the web, GPT-6.1 Terra leaked via a Microsoft PR, Google open-sourced its Ambient Quality Agent for production AI — plus free-ESRI maps and a Claude Code TV debloater.",
+      "source": "Muse · Threads watch · Oct 20, 2026 CT · @testingcatalog · @saboo_shubham_ · @githubprojects · @rammcodes_",
+      "tags": [
+        "ai",
+        "threads",
+        "muse",
+        "meta",
+        "openai",
+        "google",
+        "opensource"
+      ],
+      "accent": "violet",
+      "link": "https://www.threads.com/@testingcatalog/post/Det10_rjYYr",
+      "detail": {
+        "tldr": "**Meta** is building **Confidential VMs for Muse on the web** — an encrypted environment even Meta can't see into, subscriber-gated at first (verified, TestingCatalog). **GPT-6.1 Terra** surfaced in a merged **Microsoft EF Core PR** (18 eval configs switched judges, verified via LuminaBench). **Google** open-sourced **AQuA**, an agent that watches your production agent's traces and diagnoses root causes unattended (**Apache 2.0**, verified on the Google Developers Blog). Plus: a free “ESRI” that turns out to be **QGIS**, and **CleanYourTV**, an AI-driven Android TV debloater (verified by **TechCrunch**, Oct 19).",
+        "tldrBullets": [
+          "Muse Confidential VMs: encrypted web env where **even Meta can't access** your chats/data; **Meta AI subscribers first**; no voice/image/video/wearables at launch; Meta had teased before-end-2026",
+          "GPT-6.1 Terra: model ID **gpt-6.1-terra** appeared in **merged Microsoft EF Core PR #39217** (Oct 16) — 18 eval configs switched from GPT-5.6 Terra to 6.1 as default judge (task model: GPT-6.1 Sol); The Information also reported a new Terra in the works",
+          "Google AQuA (**Ambient Quality Agent**): open-source **ADK recipe** in **google/adk-recipes** under **Apache 2.0** — sweeps prod traces from Cloud Trace/Logging/BigQuery, clusters failures, diagnoses root causes; runs **beside** the agent, never in the request path",
+          "Free “ESRI” = **QGIS**: free open-source GIS, **200+ native processing algorithms**, raster/vector/mesh/point-cloud, export to image/PDF/SVG, near-complete ESRI symbology (post didn't name it; identification is from the verbatim feature description)",
+          "CleanYourTV: **open-source** script using **Claude Code** to strip bloatware + sponsored ads from **Android/Google TV over Wi-Fi** — no root, factory reset still possible; creator removed **25 Xiaomi packages** from his parents' TV; sibling project **dumbtv**"
+        ],
+        "summary": "Leak watch (Meta, OpenAI) plus two genuine open-source drops — and the oddly satisfying ritual of murdering TV bloatware with an AI.",
+        "sections": [
+          {
+            "heading": "Meta's private mode: Confidential VMs for Muse web",
+            "callout": {
+              "kind": "why",
+              "text": "The actual product here is **trust architecture** — not “we promise not to look” but “an encrypted environment where we **can't** look.” That's the line that would let enterprises put real data through Meta AI."
+            },
+            "body": "[@testingcatalog](https://www.threads.com/@testingcatalog/post/Det10_rjYYr): Meta is building **Confidential VMs for Muse on the web** — an encrypted environment where **even Meta can't access** your conversations or data. Verified via [TestingCatalog](https://www.testingcatalog.com/meta-prepares-muse-confidential-vm-for-private-ai-work/): the feature is partially implemented in the web UI, will launch first for **Meta AI subscribers**, and **voice mode, image/video generation, and wearables support** won't be available in it initially. Meta had previously teased a before-end-2026 launch — the UI strings make that look on track."
+          },
+          {
+            "heading": "GPT-6.1 Terra leaks through a Microsoft PR",
+            "callout": {
+              "kind": "why",
+              "text": "Model leaks increasingly come from **someone else's eval configs**, not official blogs. Microsoft's EF Core repo just became the GPT-6.1 changelog."
+            },
+            "body": "[@testingcatalog](https://www.threads.com/@testingcatalog/post/DetnVeOjQMM): **GPT-6.1 Terra** appears to be in preparation — the model ID **gpt-6.1-terra** showed up in a merged **Microsoft EF Core PR (#39217, merged Oct 16)**, where **18 evaluation configs** were switched from **GPT-5.6 Terra** to **GPT-6.1 Terra** as the default judge (task model: **GPT-6.1 Sol**). Verified via [LuminaBench](https://luminabench.com/journal/gpt-6-1-terra-microsoft-pr/). The Information separately reported a new Terra model in the works. Nothing official from OpenAI yet — treat as strongly-sourced leak, not launch."
+          },
+          {
+            "heading": "Google open-sources AQuA: a watchdog for your agent",
+            "callout": {
+              "kind": "try",
+              "text": "The design lesson is the two-layer split: your agent serves requests, **AQuA watches the traces** — quality as a background loop, never a latency tax."
+            },
+            "body": "[@saboo_shubham_](https://www.threads.com/@saboo_shubham_/post/DetLrCnm2IP): Google released **AQuA** (Ambient Quality Agent) — an open-source **ADK recipe** in **google/adk-recipes** under **Apache 2.0** that runs **unattended beside a production agent** in Google Cloud. It sweeps production traces from **Cloud Trace, Logging, and BigQuery**, clusters failures, and diagnoses root causes — without sitting in the request path. Verified on the [Google Developers Blog](https://developers.googleblog.com/three-layers-one-repo-a-tour-of-googleadk-recipes/). If you're running an agent in prod, this is the missing observability layer."
+          },
+          {
+            "heading": "The free ESRI is QGIS (200+ algorithms, zero dollars)",
+            "callout": {
+              "kind": "why",
+              "text": "The post didn't name it — the **feature list** did. Verbatim feature-matching is a legit identification method when the description is this specific."
+            },
+            "body": "[@githubprojects](https://www.threads.com/@githubprojects/post/Det6VHgGlqP): a mapping tool pitched as “**ESRI, but free and open source**” — make, style and analyze maps from **raster, vector, mesh and point cloud** data, export as **image, PDF or SVG**, running **200+ native processing algorithms**. The description matches **QGIS** exactly (the post doesn't name it; verified against QGIS's own feature list — near-complete ESRI symbology replication). Free, open source, and already industry-grade. If you ever pay for mapping software, check this first."
+          },
+          {
+            "heading": "Point Claude Code at your TV, get a dumb TV",
+            "callout": {
+              "kind": "try",
+              "text": "**No root, Wi-Fi only, factory reset still possible** — the three conditions that make this safe to try on the family TV this weekend."
+            },
+            "body": "[@rammcodes_](https://www.threads.com/@rammcodes_/post/DetSqhrDjj-): **CleanYourTV** — an open-source project that uses AI (**Claude Code**) to strip **bloatware and sponsored ads** from **Android TV / Google TV over Wi-Fi**, replacing the stock launcher with an Apple-TV-like one. The creator removed **25 Xiaomi packages** from his parents' TV. Verified by **TechCrunch** ([Oct 19](https://techcrunch.com/2026/10/19/people-are-using-ai-to-make-their-smart-tvs-dumb-again/)) — no root required, factory reset still possible, with a sibling project called **dumbtv** doing the same for other TVs."
+          }
+        ],
+        "bullets": [
+          "testingcatalog: Meta building Confidential VMs for Muse web — encrypted env even Meta can't see, subscribers first",
+          "testingcatalog: GPT-6.1 Terra leaked via merged Microsoft EF Core PR #39217 — 18 eval configs switch judges",
+          "saboo_shubham_: Google open-sources AQuA, an Ambient Quality Agent for production AI (Apache 2.0)",
+          "githubprojects: free “ESRI” identified as QGIS — 200+ native algorithms, export image/PDF/SVG",
+          "rammcodes_: CleanYourTV — Claude Code strips bloatware/ads from Android TV over Wi-Fi, no root"
+        ],
+        "actions": [
+          {
+            "label": "TestingCatalog — Muse Confidential VMs",
+            "url": "https://www.testingcatalog.com/meta-prepares-muse-confidential-vm-for-private-ai-work/"
+          },
+          {
+            "label": "LuminaBench — GPT-6.1 Terra in Microsoft PR",
+            "url": "https://luminabench.com/journal/gpt-6-1-terra-microsoft-pr/"
+          },
+          {
+            "label": "Google Developers Blog — adk-recipes tour",
+            "url": "https://developers.googleblog.com/three-layers-one-repo-a-tour-of-googleadk-recipes/"
+          },
+          {
+            "label": "TechCrunch — AI dumb TVs (Oct 19)",
+            "url": "https://techcrunch.com/2026/10/19/people-are-using-ai-to-make-their-smart-tvs-dumb-again/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "@testingcatalog — Confidential VMs",
+            "url": "https://www.threads.com/@testingcatalog/post/Det10_rjYYr"
+          },
+          {
+            "label": "@testingcatalog — GPT-6.1 Terra",
+            "url": "https://www.threads.com/@testingcatalog/post/DetnVeOjQMM"
+          },
+          {
+            "label": "@saboo_shubham_ — Google AQuA",
+            "url": "https://www.threads.com/@saboo_shubham_/post/DetLrCnm2IP"
+          },
+          {
+            "label": "@githubprojects — free ESRI / QGIS",
+            "url": "https://www.threads.com/@githubprojects/post/Det6VHgGlqP"
+          },
+          {
+            "label": "@rammcodes_ — CleanYourTV",
+            "url": "https://www.threads.com/@rammcodes_/post/DetSqhrDjj-"
+          }
+        ]
+      }
+    },
+    {
+      "id": "muse-20261020-instagram-watch",
+      "category": "ai",
+      "title": "Instagram watch: Oct 20, 2026",
+      "body": "Zero-shot voice cloning in 600+ languages at 40x real-time (OmniVoice), a macOS uninstaller that explains every leftover file (Peel), SEBI freezes fresh gold-FoF subscriptions so investors are eyeing IGLN/IAU/SLV — plus the Mars rover that found water by accident.",
+      "source": "Muse · Instagram watch · Oct 20, 2026 CT · @githubsignals · @pranaykapooor · @dev.explainss",
+      "tags": [
+        "ai",
+        "instagram",
+        "muse",
+        "tts",
+        "macos",
+        "investing",
+        "gold"
+      ],
+      "accent": "teal",
+      "link": "https://www.instagram.com/reel/DetvDktGCIV/",
+      "detail": {
+        "tldr": "**OmniVoice** clones a voice from a 3–10s clip in **600+ languages** at ~**40x real-time**, pip-installable and **Apache 2.0**. **Peel** uninstalls Mac apps completely and shows *why* every leftover file belongs to the app (GPL-3.0, 68 stars, fresh Sep 2026). **SEBI** froze fresh money into gold ETF fund-of-funds from Oct 15–16, pushing investors toward direct **IGLN/IAU/SLV** — the reel's “ISLN” is a typo, it's **SLV**. And NASA's Spirit rover accidentally found ~**90% silica** soil with a jammed wheel.",
+        "tldrBullets": [
+          "OmniVoice (k2-fsa): **zero-shot voice cloning**, **600+ languages**, RTF **0.025** (~40x real-time); consumer GPU / Apple Silicon; **Apache 2.0** (repo dates to Mar 2026 — trending rediscovery, not a fresh launch)",
+          "Peel (tuguidragos/peel): macOS **uninstaller + cleaner** that explains why each leftover file belongs to the app; CLI + GUI, Homebrew cask; refuses to touch iCloud Drive, keychains, SSH keys; **GPL-3.0, macOS 26+ only**",
+          "SEBI gold-FoF freeze: **~17 AMCs** (HDFC, ICICI Pru, Kotak, Tata, DSP, Zerodha, Groww…) stopped fresh subscriptions, lump sums and new SIPs to **gold ETF fund-of-funds** from **Oct 15–16** per SEBI direction; existing SIPs/redemptions unaffected; **direct gold ETF buys on exchanges still work**",
+          "Spirit rover: dragged a jammed wheel for 3 years, trenching soil that turned out **~90% silica** — landmark evidence of past water/hydrothermal activity on Mars (Home Plate, 2007 — history, not news)"
+        ],
+        "summary": "A voice-cloning upgrade and a Mac declutter tool for builders, a SEBI gold-FoF freeze worth knowing for investors — and one gorgeous Mars explainer.",
+        "sections": [
+          {
+            "heading": "Clone a voice in 600+ languages at 40x real-time",
+            "callout": {
+              "kind": "why",
+              "text": "TTS is now a solved enough problem that a **pip install** gets you production-grade multilingual voice cloning. This is the model to try before building anything custom."
+            },
+            "body": "[@githubsignals](https://www.instagram.com/reel/DetvDktGCIV/): **k2-fsa/OmniVoice** — an open-source TTS model doing **zero-shot voice cloning** from a **3–10 second** reference clip, with cross-lingual generation across **600+ languages**, at **RTF 0.025** (~**40x real-time**). It runs on consumer GPUs and **Apple Silicon**, installs with pip, and is **Apache 2.0** (verified against the repo and PyPI/HF docs). Honest caveat from verification: it released at the end of March 2026, so this is a trending rediscovery, not a fresh launch — still the best open TTS option on the table right now."
+          },
+          {
+            "heading": "Peel: an uninstaller that shows its work",
+            "callout": {
+              "kind": "try",
+              "text": "The killer feature isn't the deleting — it's the **explanation**. Seeing *why* each leftover belongs to the app is what makes it safe to say yes to the purge."
+            },
+            "body": "[@githubsignals](https://www.instagram.com/reel/DetPlY7AHf8/): **tuguidragos/Peel** — an open-source macOS uninstaller that lists **every leftover file** (caches, prefs, containers, logs) and **explains why each belongs to the app** before trashing it. Safety first: it refuses to touch iCloud Drive, keychains, or SSH keys. CLI + GUI, installable as a Homebrew cask. Verified: **GPL-3.0**, created **Sep 24, 2026**, **macOS 26+ only**, 68 stars. Young enough to watch — star it and check back."
+          },
+          {
+            "heading": "SEBI freezes fresh gold-FoF money; the USD-ETF workaround",
+            "callout": {
+              "kind": "why",
+              "text": "The freeze hits the **fund-of-fund wrapper**, not gold itself — direct ETF units on exchanges still trade. The reel's “**ISLN**” silver ticker is a typo; the real play it means is **SLV**."
+            },
+            "body": "[@pranaykapooor](https://www.instagram.com/reel/Det0rwMBVkO/): SEBI directed mutual funds to **stop accepting fresh investments** in **gold ETF fund-of-funds** — ~**17 AMCs** (HDFC, ICICI Pru, Kotak, Tata, DSP, Zerodha, Groww and more) halted fresh subscriptions, lump sums and new SIPs from **Oct 15–16** (verified via creso.in, 5paisa, indmoney, mfnewsdaily, Oct 16–17). Existing SIPs and redemptions are unaffected, and **direct gold ETF purchases on exchanges still work**. The reel's advice: route through USD-listed ETFs — **IGLN, IAU** (gold) and **SLV** (silver; the reel's “ISLN” isn't a real ticker). Pure silver funds were still open as of Oct 15 — watch for that door to close too."
+          },
+          {
+            "heading": "The rover that found water by accident",
+            "callout": {
+              "kind": "why",
+              "text": "Filed under: the best discoveries are bugs that get documented. A **broken wheel** did the science."
+            },
+            "body": "[@dev.explainss](https://www.instagram.com/reel/DetqxMYP26U/): NASA's **Spirit rover** dragged a jammed wheel backward for **3 years**, unintentionally trenching the Martian soil — and exposing bright white soil that turned out **~90% silica**, a landmark find pointing to past water and **hydrothermal activity** on Mars (the 2007 Home Plate discovery). Verified from NASA mission history. Not news — but a great two-minute watch if you want to feel small."
+          }
+        ],
+        "bullets": [
+          "githubsignals: OmniVoice — open-source zero-shot TTS cloning in 600+ languages at ~40x real-time, Apache 2.0",
+          "githubsignals: Peel — macOS uninstaller that explains every leftover file before trashing, GPL-3.0, Sep 2026",
+          "pranaykapooor: SEBI freezes fresh gold-FoF subscriptions from Oct 15–16; IGLN/IAU/SLV as the USD-route workaround (not “ISLN”)",
+          "dev.explainss: Spirit rover's jammed wheel accidentally exposed ~90% silica soil on Mars — the Home Plate find"
+        ],
+        "actions": [
+          {
+            "label": "OmniVoice repo (k2-fsa)",
+            "url": "https://github.com/k2-fsa/OmniVoice"
+          },
+          {
+            "label": "Peel repo (tuguidragos)",
+            "url": "https://github.com/tuguidragos/peel"
+          }
+        ],
+        "sources": [
+          {
+            "label": "@githubsignals — OmniVoice",
+            "url": "https://www.instagram.com/reel/DetvDktGCIV/"
+          },
+          {
+            "label": "@githubsignals — Peel",
+            "url": "https://www.instagram.com/reel/DetPlY7AHf8/"
+          },
+          {
+            "label": "@pranaykapooor — SEBI gold-FoF freeze",
+            "url": "https://www.instagram.com/reel/Det0rwMBVkO/"
+          },
+          {
+            "label": "@dev.explainss — Spirit rover silica",
+            "url": "https://www.instagram.com/reel/DetqxMYP26U/"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261020-builders-today",
       "category": "ai",
