@@ -1,8 +1,511 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-16T08:55:00-05:00",
+  "updated": "2026-10-20T09:00:00-05:00",
   "cards": [
+    {
+      "id": "ai-20261020-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 20, 2026",
+      "body": "**Kun** runs a nightly **24h dev audit**, **Dax** steers one pinned session that farms work to subagents, and **Harrison** says start from a harness, not a graph.",
+      "source": "X builders watch · Oct 19–20, 2026 CT · Kun Chen · Geoffrey Huntley · Dax · Thariq · Harrison Chase · Guillermo Rauch · DHH · Mitchell Hashimoto",
+      "tags": [
+        "ai",
+        "builders",
+        "self-audit",
+        "watchdogs",
+        "subagents",
+        "harness",
+        "durable-agents",
+        "quota"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/kunchenguid/status/2112245086725841047",
+      "detail": {
+        "tldr": "Agents that **audit and unstick themselves**, plus one pinned session as the switchboard for subagents.\nHarness first, prompts over rigid code, and durable agents that survive a crash.",
+        "tldrBullets": [
+          "Kun: nightly **24h dev audit** finds bottlenecks",
+          "Geoff: free-model **watchdog** nudges hung sessions",
+          "Dax: one pinned session, **subagents** do the work",
+          "Harrison: harness, then context, then graph",
+          "Kun: Grok Bot now **shares the coding quota**"
+        ],
+        "summary": "Monday into Tuesday: make the loop improve itself, keep one session as the control tower, and build on harnesses instead of if/else workflows.",
+        "sections": [
+          {
+            "heading": "Audit the last 24 hours",
+            "tweets": [
+              {
+                "id": "2112245086725841047",
+                "url": "https://x.com/kunchenguid/status/2112245086725841047",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T18:10:46.000Z",
+                "text": "sharing a very high value loop i run everyday at 3am\n\n\"audit my development work in the last 24h, identify bottlenecks that slowed down my velocity, and propose improvements\"\n\nit feels great to see your work gets smoother every day",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 63,
+                  "repost_count": 47,
+                  "quote_count": 5,
+                  "like_count": 1577,
+                  "impression_count": 66449
+                }
+              },
+              {
+                "id": "2112252991122407771",
+                "url": "https://x.com/kunchenguid/status/2112252991122407771",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T18:42:11.000Z",
+                "text": "- smarter test selection to speed up test suite and CI\n- parallelizing my CI lanes\n- refactoring some files frequently causing conflicts",
+                "reply_to": [
+                  "din0s_"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 0,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 5,
+                  "impression_count": 1739
+                }
+              },
+              {
+                "id": "2112222982844420286",
+                "url": "https://x.com/GeoffreyHuntley/status/2112222982844420286",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T16:42:56.000Z",
+                "text": "new fun automation trick; use a free model in opencode to scrape sessions in herdr and nudge them if the session is hung.\n\nala free, yet, expensive (compute wise) watchdog service.",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVAfZLsW4AEmNcY.jpg",
+                    "width": 2500,
+                    "height": 1778
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 12,
+                  "repost_count": 4,
+                  "quote_count": 1,
+                  "like_count": 65,
+                  "impression_count": 4181
+                }
+              }
+            ],
+            "body": "Kun's 3am prompt audits a day of dev work for **bottlenecks**; his fixes were smarter test selection, parallel CI lanes, and splitting conflict-prone files. Geoff adds a free-model **watchdog** that scrapes sessions and nudges the hung ones.",
+            "callout": {
+              "kind": "try",
+              "text": "Point Kun's prompt at yesterday's agent transcripts and git log, and file the proposals as tickets instead of auto-applying them."
+            }
+          },
+          {
+            "heading": "One pinned session, many subagents",
+            "tweets": [
+              {
+                "id": "2112196633463046289",
+                "url": "https://x.com/thdxr/status/2112196633463046289",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T14:58:14.000Z",
+                "text": "i'm doing a bunch of work on our desktop app\n\nmy flow is a single pinned \"gooey\" session where i tell it to do all work in subagents\n\nthen as i use it i keep telling it ideas/fixes i want and it goes off in a subagent to implement them - these can even be in different worktrees if it's complicated\n\nit'll pop open html documents with screenshots to communicate before/after and give me options to pick\n\nbecause a lot is going on in parallel i often will ask \"what do you need from me\" so it tells me what is ready for review",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVAHb4YXwAAqW4_.png",
+                    "width": 2196,
+                    "height": 1244
+                  },
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVAHmm0XkAEzpU2.jpg",
+                    "width": 3536,
+                    "height": 2242
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 113,
+                  "repost_count": 11,
+                  "quote_count": 6,
+                  "like_count": 541,
+                  "impression_count": 35698
+                }
+              },
+              {
+                "id": "2112219173288120531",
+                "url": "https://x.com/trq212/status/2112219173288120531",
+                "author": {
+                  "name": "Thariq",
+                  "username": "trq212",
+                  "avatar": "https://pbs.twimg.com/profile_images/1976939058741039104/r3GgzqRh_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T16:27:48.000Z",
+                "text": "I think most people multi-tasking with agents could benefit from slowing down\n\nmost of the stuff you're doing wont really matter- what's your P0? what would it look like if you gave it your full attention?",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 515,
+                  "repost_count": 329,
+                  "quote_count": 144,
+                  "like_count": 6001,
+                  "impression_count": 341962
+                }
+              },
+              {
+                "id": "2112538272601616551",
+                "url": "https://x.com/thdxr/status/2112538272601616551",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T13:35:47.000Z",
+                "text": "a weird thing about OSS pull requests these days is we don't know what model was used for it and our internal setup provides better tools to the agent\n\nso they're almost always worse than sending the prompt ourselves\n\nit's mostly useful for environments we cannot recreate",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 36,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 126,
+                  "impression_count": 6033
+                }
+              }
+            ],
+            "body": "Dax keeps a single **pinned session** that sends each idea to a subagent (in its own worktree if needed), shows before/after HTML with screenshots, and answers \"what do you need from me\". Thariq's counterweight: name your **P0** and give it full attention."
+          },
+          {
+            "heading": "Harness first, then context",
+            "tweets": [
+              {
+                "id": "2112471992435667163",
+                "url": "https://x.com/hwchase17/status/2112471992435667163",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T09:12:25.000Z",
+                "text": "had a lot of fun talking with @HarryStebbings about all things ai\n\none line of questioning we went done - vertical vs horizontal agents, and how to build them\n\nim bullish on vertical agents, and i think you can create differentiation (from horizontal agents) in three ways:\n\n1/ context: prompts, skills, tools - all of this is specific to your domain, pretty easy to provide, and gives domain specific context to the agent\n\n2/ harness: harder to tweak than context, but can alter fundemental behavior of the agent\n\n3/ model: hardest to tweak of all, but obviously changes behavior greatly\n\ni think most agent engineers these days are still tweaking 1 and 2 (in that order)\n\nnb: regardless of what layer you tweak at, as the base models change you should revisit your context/harness/model every 3-6 months (and generally remove cruft that is no longer needed)\n\nhttps://t.co/gmA8oyfxiX",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVEBYwKXYAAzgbI.jpg",
+                    "width": 1124,
+                    "height": 580
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 46,
+                  "repost_count": 9,
+                  "quote_count": 1,
+                  "like_count": 49,
+                  "impression_count": 4159
+                }
+              },
+              {
+                "id": "2112489626061738209",
+                "url": "https://x.com/hwchase17/status/2112489626061738209",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T10:22:29.000Z",
+                "text": "Would agree with this\n\nStart with a harness (I like deepagents)\n\nAdd context (skills, tools)\n\nThen if needed modify harness slightly (middleware in deepagents is goated for this)\n\nThen if needed make workflow with langgraph https://t.co/x2qTscyehR",
+                "urls": [
+                  {
+                    "url": "https://t.co/x2qTscyehR",
+                    "expanded_url": "https://twitter.com/verrsane/status/2112396922354806942",
+                    "display_url": "x.com/verrsane/statu…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 58,
+                  "repost_count": 3,
+                  "quote_count": 1,
+                  "like_count": 84,
+                  "impression_count": 7133
+                }
+              },
+              {
+                "id": "2112202961862750604",
+                "url": "https://x.com/kunchenguid/status/2112202961862750604",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T15:23:23.000Z",
+                "text": "ironically, LLMs themselves have NOT internalized the bitter lesson\n\nwhen using LLMs to write LLM powered systems, they keep building rigid knowledge with deterministic code, and don’t know where to cut the line of writing prompts instead",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 37,
+                  "repost_count": 9,
+                  "quote_count": 4,
+                  "like_count": 233,
+                  "impression_count": 15694
+                }
+              }
+            ],
+            "body": "Harrison's order: start from a **harness**, add skills and tools, tweak the harness, and only then build a graph; revisit all three every few months and cut cruft. Kun: LLMs still over-build **deterministic code** where a prompt would do.",
+            "screenshots": [
+              {
+                "url": "https://github.com/langchain-ai/deepagents",
+                "image": "media/sources/88a615e85700cda3.webp",
+                "title": "langchain-ai/deepagents: The batteries-included agent harness.",
+                "capturedAt": "2026-10-20T14:01:37.697Z"
+              }
+            ]
+          },
+          {
+            "heading": "Durable agents, agent QA",
+            "tweets": [
+              {
+                "id": "2112247046082363821",
+                "url": "https://x.com/rauchg/status/2112247046082363821",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T18:18:34.000Z",
+                "text": "We open sourced a *really fast* HTML artifact builder. It's powered by libfx, making the agent durable.\n\nBuilding the low-level plumbing for v0 to survive server crashes, flaky LLMs, function limits was a huge pain.\n\nNow it's easy, free, and OSS: https://t.co/aUP1vKeIsP.\n\nPS: I built this floating container in a few minutes… it's delightful, and it's just HTML!",
+                "urls": [
+                  {
+                    "url": "https://t.co/vMm0spaZiR",
+                    "expanded_url": "https://fx0.vercel.dev",
+                    "display_url": "fx0.vercel.dev"
+                  },
+                  {
+                    "url": "https://t.co/eRubyIHJ8g",
+                    "expanded_url": "https://twitter.com/vercel_dev/status/2112245199808434614",
+                    "display_url": "x.com/vercel_dev/sta…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2112245358327959552/img/geVQoIKVi3Ivh-qd.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2112245358327959552/img/geVQoIKVi3Ivh-qd.jpg",
+                    "width": 2690,
+                    "height": 1814
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 174,
+                  "repost_count": 119,
+                  "quote_count": 22,
+                  "like_count": 1995,
+                  "impression_count": 113675
+                }
+              },
+              {
+                "id": "2112209965377302998",
+                "url": "https://x.com/dhh/status/2112209965377302998",
+                "author": {
+                  "name": "DHH",
+                  "username": "dhh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093715898204884992/goERjC9G_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T15:51:13.000Z",
+                "text": "You wouldn't believe the hours I spent manually testing and verifying Omarchy releases during the first year. With Prime's stellar work leading the QA effort, we can finally replace all that toil with agents 🤘 https://t.co/QWqzQWXzfB",
+                "urls": [
+                  {
+                    "url": "https://t.co/QWqzQWXzfB",
+                    "expanded_url": "https://twitter.com/ThePrimeagen/status/2112178301208858808",
+                    "display_url": "x.com/ThePrimeagen/s…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 98,
+                  "repost_count": 43,
+                  "quote_count": 6,
+                  "like_count": 1999,
+                  "impression_count": 95179
+                }
+              },
+              {
+                "id": "2112286460309364845",
+                "url": "https://x.com/mitchellh/status/2112286460309364845",
+                "author": {
+                  "name": "Mitchell Hashimoto",
+                  "username": "mitchellh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2082830624415698944/bRo7PB2S_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T20:55:11.000Z",
+                "text": "The latest Rex preview release includes a very important subsystem I've been working on for weeks to enable full forwards+backwards API compatibility with clients and servers. This was gating the Linux test program and massively opening up the Mac test program. \n\nWe just invited another 1,000 (to Mac) and if it goes well this will step up considerably this week. The Linux test program will likely start this week (separate invite waves amongst existing testers). \n\nThe API compatibility system is super cool. At a high level:\n\nEvery API change is a rule on a JSON pointer (RFC 6901). \n\nFor each message, we compile all the rules between your version and ours into a trie keyed by JSON path tokens. This happens lazily since we don't want a full quadratic explosion (a message with N revisions has N possible chains of length 1 to N). We don't want to build N^2/2 trie nodes when most WON'T be visited.\n\nNext, we wrote a custom recursive descent streaming JSON editor (forward-pass only). If a key doesn't match any subtree in the trie, we fast-path copy the full value onto the wire (nothing in it can possibly matter for compatibility). \n\nEqual chains of changes are interned to the same pointer, so when we broadcast an event to many old clients, we translate it once per distinct chain, not once per client.\n\nThe result of all this plus some other work is that we simulated various shapes of 10,000 long revision chains (note: we're on revision 4 at the moment...) with pathological changes of various shapes and an upgrade costs about 35 _microseconds_ on a 20KB JSON body.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 67,
+                  "repost_count": 9,
+                  "quote_count": 3,
+                  "like_count": 789,
+                  "impression_count": 43294
+                }
+              }
+            ],
+            "body": "Vercel open-sourced **fx0**, a libfx design agent that saves every step so a crashed function resumes mid-reply. DHH is retiring manual Omarchy release testing for Prime's **agent QA harness**, and Mitchell shipped Rex's JSON-pointer **API compatibility** layer.",
+            "screenshots": [
+              {
+                "url": "https://fx0.vercel.dev",
+                "image": "media/sources/72592274809c96f0.webp",
+                "title": "fx0",
+                "capturedAt": "2026-10-20T14:01:32.829Z"
+              }
+            ]
+          },
+          {
+            "heading": "Shared quota, residential IPs",
+            "tweets": [
+              {
+                "id": "2112307458848997803",
+                "url": "https://x.com/kunchenguid/status/2112307458848997803",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T22:18:37.000Z",
+                "text": "i got slightly surprised by this so sharing in case it’s helpful -\n\nafter unifying your X subscription, your Grok Bot is no longer running on its own quota like before! it’s now sharing the same weekly quota as coding\n\nthis is actually a good thing - previously the grok bot quota was a bit tight and now it draws from the larger pool - but you’ll need to plan for this or otherwise may end up like me and used up all the quota for coding and got surprised why grok bot stopped working\n\nmy plan is to start using grok bot as the ONLY interface for my X subscription quota. i will no longer use my X sub from Pi and other harnesses\n\nmy grok bot has become increasingly capable as i replicated my firstmate there https://t.co/KC0bhgoPMi and for most of my open source maintenance work, i find almost no reason to do them locally now\n\nthe combination of an always-on VM, automated routines, cursor cloud agents, and continuously self-improving bots is quite a powerful combination of primitives for doing pretty much everything",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 40,
+                  "repost_count": 15,
+                  "quote_count": 0,
+                  "like_count": 274,
+                  "impression_count": 19014
+                }
+              },
+              {
+                "id": "2112414941970145509",
+                "url": "https://x.com/kunchenguid/status/2112414941970145509",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T05:25:43.000Z",
+                "text": "more and more products are straight blocking access from cloud data centers because they are 99%+ agents\n\nat this rate, owning a local machine with a residential IP might become one of the things that prove you are a human",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 32,
+                  "repost_count": 4,
+                  "quote_count": 0,
+                  "like_count": 165,
+                  "impression_count": 7698
+                }
+              }
+            ],
+            "body": "After unifying his X subscription, Kun found Grok Bot **draws from the same weekly quota** as coding, so a heavy coding week can stall the bot. He also expects a **residential IP** to become proof of being human as products block cloud ranges."
+          }
+        ],
+        "bullets": [
+          "Kun: nightly **self-audit** turns bottlenecks into CI and test fixes",
+          "Geoff: free-model watchdog nudges hung agent sessions",
+          "Dax: pinned session plus subagents; ask \"what do you need from me\"",
+          "Harrison: harness, context, harness tweaks, then graph; prune often",
+          "Rauch/DHH/Mitchell: durable fx0, agent QA on nightlies, Rex API compat"
+        ],
+        "actions": [
+          {
+            "label": "Kun - nightly 24h audit loop",
+            "url": "https://x.com/kunchenguid/status/2112245086725841047"
+          },
+          {
+            "label": "Dax - pinned session flow",
+            "url": "https://x.com/thdxr/status/2112196633463046289"
+          },
+          {
+            "label": "Harrison - context, harness, model",
+            "url": "https://x.com/hwchase17/status/2112471992435667163"
+          },
+          {
+            "label": "fx0 durable design agent",
+            "url": "https://fx0.vercel.dev"
+          },
+          {
+            "label": "deepagents on GitHub",
+            "url": "https://github.com/langchain-ai/deepagents"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2112245086725841047"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2112222982844420286"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2112196633463046289"
+          },
+          {
+            "label": "Thariq @trq212",
+            "url": "https://x.com/trq212/status/2112219173288120531"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2112471992435667163"
+          },
+          {
+            "label": "Guillermo Rauch @rauchg",
+            "url": "https://x.com/rauchg/status/2112247046082363821"
+          },
+          {
+            "label": "DHH @dhh",
+            "url": "https://x.com/dhh/status/2112209965377302998"
+          },
+          {
+            "label": "Mitchell Hashimoto @mitchellh",
+            "url": "https://x.com/mitchellh/status/2112286460309364845"
+          }
+        ]
+      }
+    },
     {
       "id": "muse-20261019-threads-watch",
       "category": "ai",
@@ -223,6 +726,432 @@
           {
             "label": "@asarmiento85 — K8s hardening",
             "url": "https://www.instagram.com/p/Der_BNgF8HA/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ai-20261019-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 19, 2026",
+      "body": "**Lauren** ships a formal-verification **meta-skill**, **Addy** says verify-or-stall when agents outpace review, and **Matt** treats a self-owned wiki as agent memory.",
+      "source": "X builders watch · Oct 16–19, 2026 CT · Lauren Tan · Addy Osmani · Matt Pocock · Dax · Kun Chen · Geoffrey Huntley · Mario Zechner · DHH",
+      "tags": [
+        "ai",
+        "builders",
+        "verification",
+        "formal-methods",
+        "skills",
+        "wiki",
+        "local-browsers",
+        "agent-loops"
+      ],
+      "accent": "teal",
+      "image": "https://picsum.photos/seed/builders-today-20261019/800/520",
+      "link": "https://x.com/poteto/status/2111926622278521253",
+      "detail": {
+        "tldr": "Verification graduates from tests to **proof meta-skills**, and memory moves off vendors into a **wiki you own**.\nLocal browsers and kick-off/check-in loops keep agents useful while you step away.",
+        "tldrBullets": [
+          "Lauren: `/create-formal-verification-skill` builds TLA+/Kani suites",
+          "Addy: agent output needs **multi-layer verify**, not line review",
+          "Matt: self-built **wiki** as lock-in-free agent memory",
+          "Dax: **local browsers** via OpenCode beat hosted login walls",
+          "Kun/Geoff/Mario: kick-off loops, Overalls Android, voice coding"
+        ],
+        "summary": "Weekend into Monday: prove agent work, own the memory layer, and keep harnesses local enough that the web cannot block them.",
+        "sections": [
+          {
+            "heading": "Prove it, don't just test it",
+            "tweets": [
+              {
+                "id": "2111926622278521253",
+                "url": "https://x.com/poteto/status/2111926622278521253",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-18T21:05:19.000Z",
+                "text": "pstack v0.15.27 ships with a new skill /create-formal-verification-skill! \n\nit's still in beta, and similar to /create-verification-skill, this is a meta-skill that creates a new skill and formal verification suite based on the characteristics you want to verify. for example, you may want to model state machines and systems with concurrency using TLA+, or use kani in rust to check for undefined behavior. \n\nif you're new to formal verification, think of it as mathematically proving properties and invariants (something that must always be true) or \"laws\" of your system. usually, this means modeling your programs in a separate language like with TLA+ and then running the solver on that spec. newer approaches like with kani and @bendlang take a different approach where there is no separate language: you write kani in rust, and bend in bend (it's also a programming language, and the proofs are written as laws and expressed in its type system).\n\nhistorically formal verification never reached mainstream status because of the difficulty in modeling and writing proofs. it's quite difficult to model your business requirements and keep them in sync! but i expect that we will see more innovation in formal verification in the future as being able to formally verifiy that the code does what you intended gives your agents superpowers in writing correct software.\n\nin the meantime though, i've been experimenting with modeling our code with TLA+ and have already found several bugs with the skill created by /create-formal-verification-skill. \n\ntry it out and let me know how it goes!",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HU8SDLJbcAA_51s.png",
+                    "width": 160,
+                    "height": 160
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 146,
+                  "repost_count": 135,
+                  "quote_count": 37,
+                  "like_count": 2496,
+                  "impression_count": 99817
+                }
+              },
+              {
+                "id": "2111604705340326393",
+                "url": "https://x.com/addyosmani/status/2111604705340326393",
+                "author": {
+                  "name": "Addy Osmani",
+                  "username": "addyosmani",
+                  "avatar": "https://pbs.twimg.com/profile_images/2090232066021769216/IwGLjoSy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-17T23:46:08.000Z",
+                "text": "Give your agent a way to verify its work. This can dramatically improve the quality of output.\n\nWith this process in place, Claude Code was able to write 90%+ of its code itself. When generating software at a faster rate than you can review it, the bottleneck shifts to proving that it works. @bcherny and team invested enough in verification, we've been able to move fast while maintaining stability.\n\nCode reviews aren't going away, but you need to think of it differently. One human reading through line-by-line is no longer going to work as a gate, it needs to evolve into a multi-layered verification system, built with fast deterministic feedback loops for your agents. \n\nThis is where e2e tests, feature maps (as @poteto has been advocating), property tests and multi-agent adversarial reviews come in. These all provide opportunities to catch errors early and fix them before things get out of hand.\n\nYou don't have enough eyeballs for the amount of code being written so your focus needs to be on product intent, risk assessment and evaluating evidence rather than reviewing code. Delegate the code checking work to your automated tests, scale your approvals based on risk, and turn your test failures into living evaluations. This approach helps maintain speed without losing reliability.\n\nLet the agents do what they do best and let you focus on what makes you irreplaceable: judgement, direction, and ownership. We tried to capture how we handle code review and verification in this writeup. Hopefully it's helpful.",
+                "urls": [
+                  {
+                    "url": "https://t.co/1KhqoOzdbN",
+                    "expanded_url": "https://twitter.com/ClaudeDevs/status/2111168901723906176",
+                    "display_url": "x.com/ClaudeDevs/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 203,
+                  "repost_count": 172,
+                  "quote_count": 51,
+                  "like_count": 2445,
+                  "impression_count": 172430
+                }
+              }
+            ],
+            "body": "Lauren's pstack meta-skill writes a project-local **formal verification** suite (TLA+ or Kani) from the property you care about. Addy: when agents write faster than you can read, the gate is **evidence**, not eyeballs.",
+            "callout": {
+              "kind": "try",
+              "text": "Point `/create-formal-verification-skill` at one concurrency or state-machine path in a repo you own, and keep the generated verify skill beside `tdd` / `code-review`."
+            },
+            "screenshots": [
+              {
+                "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+                "image": "media/sources/9a7394432446bffe.webp",
+                "title": "How the Claude Code team does code review / claude.dev Blog",
+                "capturedAt": "2026-10-19T14:05:41.103Z"
+              },
+              {
+                "url": "https://github.com/cursor/plugins/blob/main/pstack/skills/create-formal-verification-skill/SKILL.md",
+                "image": "media/sources/db18dfe6788c1ed1.webp",
+                "title": "plugins/pstack/skills/create-formal-verification-skill/SKILL.md at main · cursor/plugins",
+                "capturedAt": "2026-10-19T14:05:45.416Z"
+              }
+            ]
+          },
+          {
+            "heading": "Own the wiki, not the vendor",
+            "tweets": [
+              {
+                "id": "2112131671097020895",
+                "url": "https://x.com/mattpocockuk/status/2112131671097020895",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T10:40:06.000Z",
+                "text": "3 months on, and my personal wiki has become critical infrastructure for my business.\n\nHugely enriches my courses and makes \"agents that run my business\" actually viable.\n\nVery, very glad that I built this myself. Relying on a vendor for memory feels like a recipe for lock-in. https://t.co/dIxos7GGqW",
+                "urls": [
+                  {
+                    "url": "https://t.co/dIxos7GGqW",
+                    "expanded_url": "https://twitter.com/mattpocockuk/status/2075315723631497705",
+                    "display_url": "x.com/mattpocockuk/s…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 66,
+                  "repost_count": 7,
+                  "quote_count": 4,
+                  "like_count": 585,
+                  "impression_count": 41604
+                }
+              }
+            ],
+            "body": "Three months in, Matt's **personal wiki** is business infrastructure: agents that run the business only work when memory is files he owns. Vendor memory is lock-in."
+          },
+          {
+            "heading": "Local browsers, adversarial web",
+            "tweets": [
+              {
+                "id": "2112004726589919326",
+                "url": "https://x.com/thdxr/status/2112004726589919326",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T02:15:40.000Z",
+                "text": "for a long time it felt like the world was fully optimized against you\n\nyou go to buy something, you get a bunch of ads and upsells and micro optimizations to get you to spend more\n\nyou go to consume some specific content and the algo puts in things that are hard to ignore and designed to get you to spend more time\n\nagents are the first time i've felt like maybe things can go in a different direction. send your robot into that mess and it can ignore it all and do your task\n\ni'm not naive, this is going to be an insane battle with entrenched interests doing their best to fight it\n\nbut there's a small chance that in the end we can finally be free of this (until the next new problem)",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 105,
+                  "repost_count": 52,
+                  "quote_count": 14,
+                  "like_count": 1379,
+                  "impression_count": 54944
+                }
+              },
+              {
+                "id": "2112165568757309693",
+                "url": "https://x.com/thdxr/status/2112165568757309693",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T12:54:48.000Z",
+                "text": "related - no one on the team really uses these hosted ai assistants. mostly because it's annoying to keep everything logged in everywhere\n\none nice side effect of that is since opencode is orchestrating our local browsers it's not as simple to block as \"all of Muse's ip range\" https://t.co/4QgwlKVL8A",
+                "urls": [
+                  {
+                    "url": "https://t.co/4QgwlKVL8A",
+                    "expanded_url": "https://twitter.com/thdxr/status/2112005224718291214",
+                    "display_url": "x.com/thdxr/status/2…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 33,
+                  "repost_count": 4,
+                  "quote_count": 5,
+                  "like_count": 159,
+                  "impression_count": 12096
+                }
+              }
+            ],
+            "body": "Dax: send a robot into ads and upsells and it **ignores the mess**. OpenCode driving **local browsers** also dodges the \"block our IP range\" problem of hosted assistants."
+          },
+          {
+            "heading": "Kick off, live, check in",
+            "tweets": [
+              {
+                "id": "2111971331659166157",
+                "url": "https://x.com/kunchenguid/status/2111971331659166157",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T00:02:58.000Z",
+                "text": "agents just enabled a new type of work life balance\n\nwork - kick off 10 agents\n\nlife - get coffee and breakfast\n\nwork - come back to answer their questions, make decisions, and kick off more agents\n\nlife - workout\n\nwork - come back...\n\nlife - play video games",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 66,
+                  "repost_count": 14,
+                  "quote_count": 12,
+                  "like_count": 495,
+                  "impression_count": 17438
+                }
+              },
+              {
+                "id": "2112101503938777464",
+                "url": "https://x.com/badlogicgames/status/2112101503938777464",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T08:40:14.000Z",
+                "text": "building software in my car with voice mode (still working on latency)",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2112101351446474752/img/g4exuvJFlDU2loo5.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2112101351446474752/img/g4exuvJFlDU2loo5.jpg",
+                    "width": 1080,
+                    "height": 2410
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 28,
+                  "repost_count": 1,
+                  "quote_count": 1,
+                  "like_count": 100,
+                  "impression_count": 9009
+                }
+              }
+            ],
+            "body": "Kun's loop is launch **10 agents**, do life, come back for decisions. Mario is already **voice-coding** from the car (latency still WIP)."
+          },
+          {
+            "heading": "Overalls goes mobile, Tailscale routes",
+            "tweets": [
+              {
+                "id": "2111966793615249435",
+                "url": "https://x.com/GeoffreyHuntley/status/2111966793615249435",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-18T23:44:56.000Z",
+                "text": "big plans big plans\n\noveralls now supports running android as a firecracker guest on linux with software rendering and display+interaction in the browser.\n\njust picked up my first android device in 10 years. mobile phone client build (ios+android+desktop) starts now. https://t.co/mKxlFpU8b1 https://t.co/TnMVwGv1xC",
+                "urls": [
+                  {
+                    "url": "https://t.co/TnMVwGv1xC",
+                    "expanded_url": "https://twitter.com/geoffreyhuntley/status/2111923781241339970",
+                    "display_url": "x.com/geoffreyhuntle…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HU82mn6a0AAk2hk.jpg",
+                    "width": 2048,
+                    "height": 1536
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 13,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 59,
+                  "impression_count": 3852
+                }
+              },
+              {
+                "id": "2112095267873014079",
+                "url": "https://x.com/dhh/status/2112095267873014079",
+                "author": {
+                  "name": "DHH",
+                  "username": "dhh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093715898204884992/goERjC9G_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T08:15:27.000Z",
+                "text": "No, I route all my Claude Code use over my tailscale network 😄",
+                "reply_to": [
+                  "buaaxhm"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 70,
+                  "repost_count": 22,
+                  "quote_count": 36,
+                  "like_count": 722,
+                  "impression_count": 67019
+                }
+              },
+              {
+                "id": "2112025818457071854",
+                "url": "https://x.com/GeoffreyHuntley/status/2112025818457071854",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-19T03:39:29.000Z",
+                "text": "got some cool news folks. the theory below is right?!\n\nit's 2pm in australia. inferencing capacity is short.\n\nswitched to germany for inferencing. no capacity issues.\n\ngermany will be good until germany wakes up at which point switch back to australia. https://t.co/NQvWzOTN2f",
+                "urls": [
+                  {
+                    "url": "https://t.co/NQvWzOTN2f",
+                    "expanded_url": "https://twitter.com/GeoffreyHuntley/status/2111367787629195767",
+                    "display_url": "x.com/GeoffreyHuntle…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 9,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 59,
+                  "impression_count": 3839
+                }
+              }
+            ],
+            "body": "Geoffrey runs **Android in Firecracker** inside Overalls and routes inference by timezone to chase capacity. DHH keeps Claude Code on **Tailscale** so the account stays reachable abroad.",
+            "screenshots": [
+              {
+                "url": "https://overalls.dev",
+                "image": "media/sources/abb599db2aea1cf9.webp",
+                "title": "Overalls: an AI-first developer platform that you own",
+                "capturedAt": "2026-10-19T14:05:48.297Z"
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Lauren: meta-skill that **generates** formal verification skills",
+          "Addy: review becomes **risk + evidence**, not line-by-line",
+          "Matt: wiki you own beats vendor memory for agent businesses",
+          "Dax: local browser orchestration resists IP blocks and dark patterns",
+          "Kun/Mario/Geoff/DHH: async agent loops, voice, mobile VMs, Tailscale"
+        ],
+        "actions": [
+          {
+            "label": "Lauren - formal verification skill",
+            "url": "https://x.com/poteto/status/2111926622278521253"
+          },
+          {
+            "label": "Addy - verify agent work",
+            "url": "https://x.com/addyosmani/status/2111604705340326393"
+          },
+          {
+            "label": "Matt - personal wiki",
+            "url": "https://x.com/mattpocockuk/status/2112131671097020895"
+          },
+          {
+            "label": "Claude Code review writeup",
+            "url": "https://claude.dev/blog/solving-code-review-at-anthropic/"
+          },
+          {
+            "label": "pstack formal verification skill",
+            "url": "https://github.com/cursor/plugins/blob/main/pstack/skills/create-formal-verification-skill/SKILL.md"
+          },
+          {
+            "label": "Overalls",
+            "url": "https://overalls.dev"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2111926622278521253"
+          },
+          {
+            "label": "Addy Osmani @addyosmani",
+            "url": "https://x.com/addyosmani/status/2111604705340326393"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2112131671097020895"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2112004726589919326"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2111971331659166157"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2111966793615249435"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames/status/2112101503938777464"
+          },
+          {
+            "label": "DHH @dhh",
+            "url": "https://x.com/dhh/status/2112095267873014079"
           }
         ]
       }
