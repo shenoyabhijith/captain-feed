@@ -1,8 +1,597 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-20T09:15:00-05:00",
+  "updated": "2026-10-21T09:00:00-05:00",
   "cards": [
+    {
+      "id": "ai-20261021-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 21, 2026",
+      "body": "**Hamel** says tune your judge's threshold before trusting it, **Peter** let one loop land ~600 PRs for a framework swap, and **Vercel** made any harness survive a crash.",
+      "source": "X builders watch · Oct 20–21, 2026 CT · Hamel Husain · Harrison Chase · Peter Steinberger · Lauren Tan · Guillermo Rauch · Geoffrey Huntley · Kun Chen · Tibo · Dax",
+      "tags": [
+        "ai",
+        "builders",
+        "evals",
+        "llm-judge",
+        "long-loops",
+        "durable-agents",
+        "agent-zones",
+        "model-cost"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/HamelHusain/status/2112588257104216294",
+      "detail": {
+        "tldr": "Treat judges like classifiers: **tune the threshold** on labels, then feed prod failures back into evals.\nLong unattended loops now land real migrations, and harnesses are getting crash-proof logs.",
+        "tldrBullets": [
+          "Hamel: don't trust the **0.5 default** threshold",
+          "Harrison: prod judge flags become **new evals**",
+          "Peter: one loop, ~600 PRs, Lit to Solid",
+          "Vercel: **durable-harness** resumes crashed turns",
+          "Kun: cost per accepted task across 2000 tasks"
+        ],
+        "summary": "Tuesday into Wednesday: measure the grader, let loops run longer, and make sure a crash or a stale reminder doesn't cost you.",
+        "sections": [
+          {
+            "heading": "Tune the judge, then mine prod",
+            "tweets": [
+              {
+                "id": "2112588257104216294",
+                "url": "https://x.com/HamelHusain/status/2112588257104216294",
+                "author": {
+                  "name": "Hamel Husain",
+                  "username": "HamelHusain",
+                  "avatar": "https://pbs.twimg.com/profile_images/1287206199088173057/ixE4fKy1_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T16:54:25.000Z",
+                "text": "New blog post 🎉: How To Use Decision Models For Evals\n\nIn this post, we show you how to choose a decision model for your task, tune its threshold (don't assume the 0.5 default is good!), and interpret its scores.\n\nLots of cool interactive charts here. https://t.co/uYAfte9Kb5",
+                "urls": [
+                  {
+                    "url": "https://t.co/uYAfte9Kb5",
+                    "expanded_url": "https://x.com/i/article/2112552453422104576",
+                    "display_url": "x.com/i/article/2112…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 133,
+                  "repost_count": 215,
+                  "quote_count": 50,
+                  "like_count": 1944,
+                  "impression_count": 237619
+                }
+              },
+              {
+                "id": "2112621016518377491",
+                "url": "https://x.com/hwchase17/status/2112621016518377491",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T19:04:35.000Z",
+                "text": "the useful part of a judge on production traffic is what happens to the outputs it flags\n\ncalibrate it on human labels, flag low scorers, confirm the real failures, add them to evals, fix, rerun\n\nprod finds the failures your offline dataset never had\n\nhttps://t.co/7iUK4e1Fj1",
+                "urls": [
+                  {
+                    "url": "https://t.co/7iUK4e1Fj1",
+                    "expanded_url": "https://x.com/PyTorch/status/2112584339599106509",
+                    "display_url": "x.com/PyTorch/status…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 43,
+                  "repost_count": 1,
+                  "quote_count": 2,
+                  "like_count": 48,
+                  "impression_count": 4815
+                }
+              },
+              {
+                "id": "2112770876206915903",
+                "url": "https://x.com/HamelHusain/status/2112770876206915903",
+                "author": {
+                  "name": "Hamel Husain",
+                  "username": "HamelHusain",
+                  "avatar": "https://pbs.twimg.com/profile_images/1287206199088173057/ixE4fKy1_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T05:00:04.000Z",
+                "text": "BenchGate still exists and is very pervasive.  \n\nLook at a handful of traces from failing tests in almost any public benchmark you will be shocked. https://t.co/9LIFV5jIrl",
+                "urls": [
+                  {
+                    "url": "https://t.co/9LIFV5jIrl",
+                    "expanded_url": "https://twitter.com/charles_irl/status/1738054905510711315",
+                    "display_url": "x.com/charles_irl/st…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 32,
+                  "repost_count": 1,
+                  "quote_count": 2,
+                  "like_count": 30,
+                  "impression_count": 3256
+                }
+              }
+            ],
+            "body": "Hamel's post: set **minimum precision and recall**, tune each judge's threshold with cross-validation on labeled traces, and check calibration before reading scores as confidence. Harrison: calibrate a prod judge on human labels, confirm flagged failures, and **add them to evals**.",
+            "callout": {
+              "kind": "try",
+              "text": "The post includes copy-paste prompts for threshold tuning and Platt calibration that reuse saved scores with no new model calls."
+            },
+            "screenshots": [
+              {
+                "url": "https://hamel.dev/blog/posts/decision-model-evals/",
+                "image": "media/sources/f76880ab8f87440e.webp",
+                "title": "How To Use Decision Models for Evals – Hamel’s Blog",
+                "capturedAt": "2026-10-21T13:57:50.702Z"
+              }
+            ]
+          },
+          {
+            "heading": "Let the loop land it",
+            "tweets": [
+              {
+                "id": "2112597162924351909",
+                "url": "https://x.com/steipete/status/2112597162924351909",
+                "author": {
+                  "name": "Peter Steinberger 🦞",
+                  "username": "steipete",
+                  "avatar": "https://pbs.twimg.com/profile_images/1131851609774985216/OcsssQ9J_normal.png",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T17:29:48.000Z",
+                "text": "Two weeks ago I kicked off a loop to move OpenClaw's Lit-based Web frontend to Solid 2.0.\n\nTook ~6 days until we could remove Lit, and another week to move patterns to idiomatic Solid.\n\nI checked in with the session every other day, overall the process was mostly automatic. Took about ~600 PRs.\n\nResult: Smaller JS and CSS footprint and much more fine-grained update control. Everything feeling more snappy and responsive. https://t.co/rYAuaXH2xN",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVFxsUJbcAAlGap.jpg",
+                    "width": 2894,
+                    "height": 2990
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 113,
+                  "repost_count": 43,
+                  "quote_count": 20,
+                  "like_count": 1104,
+                  "impression_count": 151093
+                }
+              },
+              {
+                "id": "2112736749281759566",
+                "url": "https://x.com/poteto/status/2112736749281759566",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T02:44:28.000Z",
+                "text": "there's something really cool about asking your agent to draw a statechart (hypothetical example in this image), then using the /create-formal-verification-skill you made with pstack to find bugs through something like TLA+. you can both understand your code better and how the user flow should work, and fix issues users would otherwise see",
+                "urls": [
+                  {
+                    "url": "https://t.co/20K5pzAiny",
+                    "expanded_url": "https://twitter.com/poteto/status/2111926622278521253",
+                    "display_url": "x.com/poteto/status/…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVHyOOYa4AA9MlZ.jpg",
+                    "width": 2484,
+                    "height": 2802
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 163,
+                  "repost_count": 211,
+                  "quote_count": 22,
+                  "like_count": 3701,
+                  "impression_count": 136686
+                }
+              },
+              {
+                "id": "2112571535731106013",
+                "url": "https://x.com/steipete/status/2112571535731106013",
+                "author": {
+                  "name": "Peter Steinberger 🦞",
+                  "username": "steipete",
+                  "avatar": "https://pbs.twimg.com/profile_images/1131851609774985216/OcsssQ9J_normal.png",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T15:47:58.000Z",
+                "text": "Moved to tsrs over the weekend. Drop-in replacement. Around 5x faster for OC.\n\nKind of amazing that it took Microsoft a team and two years to rewrite the TS compiler in go, and now you can just let an agent rip and get sth significantly better within weeks. https://t.co/Ky4uHlqh8d",
+                "urls": [
+                  {
+                    "url": "https://t.co/Ky4uHlqh8d",
+                    "expanded_url": "https://twitter.com/voidzerodev/status/2112531443591020965",
+                    "display_url": "x.com/voidzerodev/st…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 113,
+                  "repost_count": 65,
+                  "quote_count": 15,
+                  "like_count": 2358,
+                  "impression_count": 195154
+                }
+              }
+            ],
+            "body": "Peter ran one loop that moved OpenClaw from Lit to **Solid 2.0** in about two weeks and ~600 PRs, checking in every other day. Lauren has the agent draw a **statechart**, then checks it with a formal verification skill (TLA+) to find user-flow bugs.",
+            "screenshots": [
+              {
+                "url": "https://team.openclaw.ai/chat/roboclaw/timeline-of-solid-js-to-lit-pr-refactors-5ba10f632c29434c9f79a92c3c16a7a3",
+                "image": "media/sources/86d48371ab7f0355.webp",
+                "title": "Timeline of Solid JS to Lit PR refactors · OpenClaw",
+                "capturedAt": "2026-10-21T13:57:54.609Z"
+              }
+            ]
+          },
+          {
+            "heading": "Harnesses that survive a crash",
+            "tweets": [
+              {
+                "id": "2112658577110520122",
+                "url": "https://x.com/rauchg/status/2112658577110520122",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T21:33:50.000Z",
+                "text": "Much like we did with @aisdk, we're bringing a truly open-source, runtime-agnostic solution to harness durability.\n\nWe're extending the durability infra that powers @eve and Workflows to all harnesses, like Pi and OpenCode. Local, Vercel, or DIY.\n\nFun fact: even Claude Code and Codex can be made durable (and observable!) this way. The catch: they're not (currently) designed for embedding, which makes them less efficient, less portable, and brings an extra sandbox requirement compared to Pi or Fx.",
+                "urls": [
+                  {
+                    "url": "https://t.co/N6JMyefClw",
+                    "expanded_url": "https://twitter.com/vercel/status/2112653833382027729",
+                    "display_url": "x.com/vercel/status/…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVGqvU2bQAAUbsX.jpg",
+                    "width": 2620,
+                    "height": 1612
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 110,
+                  "repost_count": 33,
+                  "quote_count": 6,
+                  "like_count": 586,
+                  "impression_count": 46897
+                }
+              },
+              {
+                "id": "2112650555852275951",
+                "url": "https://x.com/hwchase17/status/2112650555852275951",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T21:01:58.000Z",
+                "text": "this is great deepdive into what a managed harness looks like! some quick thoughts while reading:\n\n- many diff types of agents built on it. doesnt surprise me - a lot of agents look very similar inside these days\n\n- why not use off the shelf? (1) model and provider agnostic), (2) co-build with product teams, (3) own observability stack. I very much agree with points 1 and 3!!! and is something we obviously emphasize at langchain\n\n- \"The simplest agent harnesses are truly just a while loop, but when you want to support a wide array of agentic products in production, the responsibility of the harness or framework expands quite a bit\" - +100 to this, is why were investing in deepagents so much\n\n- \"Using the “sandbox-as-a-tool” paradigm\" - the massive trend seems to be going this way (is how deepagents is architected)\n\n- \"Supporting non-blocking async agents as the default\". we are working on this right now for deepagents! agree is the future\n\n- \"The Connectors Service is the standard interface through which agents at Ramp interact with data sources. It centralizes authentication, credential management, access controls, and tool execution behind one API. This allows us to build and maintain integrations once, and reuse them across products.\" Also very important! and something we're thinking a bunch about for managed deepagents",
+                "urls": [
+                  {
+                    "url": "https://t.co/KpdupPx4xN",
+                    "expanded_url": "https://twitter.com/kir_lev/status/2112632058837344749",
+                    "display_url": "x.com/kir_lev/status…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 26,
+                  "repost_count": 7,
+                  "quote_count": 0,
+                  "like_count": 117,
+                  "impression_count": 13664
+                }
+              },
+              {
+                "id": "2112602732984938689",
+                "url": "https://x.com/hwchase17/status/2112602732984938689",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T17:51:56.000Z",
+                "text": "deep agents is the harness - the agent loop\n\nmanaged deep agents adds what you need once lots of people call the same agent: each user's own credentials and their own memory\n\nhttps://t.co/4A8g59xI0D\n\nhttps://t.co/ZmqN2llWkz",
+                "urls": [
+                  {
+                    "url": "https://t.co/4A8g59xI0D",
+                    "expanded_url": "https://www.langchain.com/blog/langsmith-managed-deep-agents-whats-new",
+                    "display_url": "langchain.com/blog/langsmith…"
+                  },
+                  {
+                    "url": "https://t.co/ZmqN2llWkz",
+                    "expanded_url": "https://x.com/LangChain/status/2112589667287617946",
+                    "display_url": "x.com/LangChain/stat…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 39,
+                  "repost_count": 4,
+                  "quote_count": 2,
+                  "like_count": 67,
+                  "impression_count": 6514
+                }
+              }
+            ],
+            "body": "Vercel's open-source **durable-harness** logs every model and tool call so Pi, OpenCode, Codex or Claude Code resume mid-turn; tools declare `replay: 'safe'` or `'never'`. Harrison on Ramp's in-house harness and **user-scoped memory** in Managed Deep Agents.",
+            "screenshots": [
+              {
+                "url": "https://vercel.com/blog/making-every-harness-durable",
+                "image": "media/sources/3005eb1ae04e5309.webp",
+                "title": "Making every harness durable - Vercel",
+                "capturedAt": "2026-10-21T13:57:59.094Z"
+              }
+            ]
+          },
+          {
+            "heading": "Agent zones, self-expiring notes",
+            "tweets": [
+              {
+                "id": "2112639259496849830",
+                "url": "https://x.com/GeoffreyHuntley/status/2112639259496849830",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T20:17:05.000Z",
+                "text": "alright i’ve added an agent message board into https://t.co/OUk2nJDivd. here’s how it works:\n\nmachines/threads are assigned profiles\n\nprofiles are like infosec classification groups. there is oss, standard, customer.\n\ncustomer has no outbound connectivity and is used for customer material. sensitive stuff.\n\nthink about zones in qubeos\n\nokay now that’s out of the way\n\neach zone (“profile”) has a message board that agents in the same zone can use.\n\nwhen a machine is suspended or turned off it wipes its entries from the message board because it’s no longer doing work\n\nfrom there agents in a zone can coordinate work between each other\n\nthe message board isolated per user account, then by zone. \n\ntldr; overalls now has hive mode. 🐝🐝🐝",
+                "urls": [
+                  {
+                    "url": "https://t.co/MQvAMLNLbW",
+                    "expanded_url": "https://overalls.dev",
+                    "display_url": "overalls.dev"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 9,
+                  "repost_count": 4,
+                  "quote_count": 0,
+                  "like_count": 38,
+                  "impression_count": 3213
+                }
+              },
+              {
+                "id": "2112577998796783697",
+                "url": "https://x.com/GeoffreyHuntley/status/2112577998796783697",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-20T16:13:39.000Z",
+                "text": "idk if you saw but eMudhra CA got popped. big deal folks. https://t.co/AMjv2Arc6D\n\nHave monkey-patched https://t.co/OUk2nJCKFF and found a new cute trick. My new favorite prompt follows:\n\n> \"add a note to agents.md to unblacklist ca when upstream is patched, and it should check again in two days; once done, remove from blacklist and remove agents.md reminder\"\n\nsecurity patch management via prompts, no more tech-debt, automatic cleanup :D\n\nPATCH THE WORLD @fmzakari",
+                "urls": [
+                  {
+                    "url": "https://t.co/VEpRI9E1RM",
+                    "expanded_url": "https://emudhra.we-have-a-problem.com/",
+                    "display_url": "emudhra.we-have-a-problem.com"
+                  },
+                  {
+                    "url": "https://t.co/MQvAMLNdmo",
+                    "expanded_url": "https://overalls.dev",
+                    "display_url": "overalls.dev"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVFiNc_XUAAqMau.png",
+                    "width": 840,
+                    "height": 548
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 8,
+                  "repost_count": 15,
+                  "quote_count": 4,
+                  "like_count": 151,
+                  "impression_count": 32358
+                }
+              },
+              {
+                "id": "2112729479730864132",
+                "url": "https://x.com/thdxr/status/2112729479730864132",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T02:15:35.000Z",
+                "text": "wow this flow is amazing, take a screenshot on your phone and send straight to an opencode session\n\ni just took one of DMs on X scheduling a call and send it to opencode saying \"schedule this\"",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVHsQ0FXAAA1XA2.jpg",
+                    "width": 942,
+                    "height": 2048
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 52,
+                  "repost_count": 4,
+                  "quote_count": 0,
+                  "like_count": 162,
+                  "impression_count": 24184
+                }
+              }
+            ],
+            "body": "Geoff's Overalls adds a per-zone **agent message board** that wipes a machine's entries when it stops. His favorite prompt: add an AGENTS.md reminder to recheck a blocked fix in two days, then **remove the reminder** once done. Dax sends phone screenshots straight into an agent session.",
+            "screenshots": [
+              {
+                "url": "https://overalls.dev",
+                "image": "media/sources/abb599db2aea1cf9.webp",
+                "title": "Overalls: an AI-first developer platform that you own",
+                "capturedAt": "2026-10-21T13:58:02.220Z"
+              }
+            ]
+          },
+          {
+            "heading": "Cost per accepted task",
+            "tweets": [
+              {
+                "id": "2112714875264979449",
+                "url": "https://x.com/kunchenguid/status/2112714875264979449",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T01:17:33.000Z",
+                "text": "interesting data from my most recent 2000 real tasks\n\nall of these tasks' outcome got accepted by me, so consider them all successful. when a model didn't give me good results, i would get it to do more iterations until it succeeded\n\nthe main caveat is the \"plan\" bucket - if i didn't like a model's plan, i would sometimes just abandon it and it wouldn't show up here. sometimes i also explicitly ask astra / fable for difficult plans. so take the plan row with a grain of salt. the other rows are mostly randomized and fair\n\nreasoning effort was set at xhigh for plan, medium for others\n\nexplaining the task types:\n- research: these are mostly answering my questions\n- plan: these are technical planning. it could be designing a new feature, or reproducing a bug\n- implement: implementing an already defined spec\n- fix: fix a bug that's already reproduced\n\na few interesting signals:\n\n- sol 6.1 and sonnet 5.5 are almost exact equivalents, and they are both 5-10x more efficient at my implement and fix tasks than opus and astra\n\n- grok 4.7 is efficient at read-only tasks, but quite expensive for writing code - this is likely because of its high price point for cached tokens so long coding sessions become very costly\n\n- astra is a lot more expensive than opus 5.5, despite its token efficiency advantage. this is awkward because if sonnet matches sol, opus is better than astra, fable 5.5 is coming, and openai's subscription's $ value is getting cut in half, how do they compete?",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVHYv8na4AAswWO.png",
+                    "width": 842,
+                    "height": 474
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 23,
+                  "repost_count": 5,
+                  "quote_count": 0,
+                  "like_count": 65,
+                  "impression_count": 5604
+                }
+              },
+              {
+                "id": "2112712984644784534",
+                "url": "https://x.com/thsottiaux/status/2112712984644784534",
+                "author": {
+                  "name": "Tibo",
+                  "username": "thsottiaux",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093807917833281537/2yBgpwVV_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T01:10:02.000Z",
+                "text": "Day 16/\n\nYou can now cache for 12h in the API and for logged in users across Codex &amp; Work we keep cache forever and you don’t have any penalty for coming back to an old conversation or resuming after a few hours and are now guaranteed to hit the cache. https://t.co/0HYeB01KVh",
+                "urls": [
+                  {
+                    "url": "https://t.co/0HYeB01KVh",
+                    "expanded_url": "https://twitter.com/OpenAIDevs/status/2112603916076781778",
+                    "display_url": "x.com/OpenAIDevs/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 2256,
+                  "repost_count": 626,
+                  "quote_count": 982,
+                  "like_count": 13595,
+                  "impression_count": 1919679
+                }
+              }
+            ],
+            "body": "Kun bucketed 2000 accepted tasks by type (research, plan, implement, fix) and found big **cost gaps per bucket** between models. OpenAI now caches for **12h in the API** and keeps cache indefinitely for signed-in Codex users."
+          }
+        ],
+        "bullets": [
+          "Hamel: set precision/recall floors, tune thresholds, check calibration",
+          "Harrison: prod judge flags, confirm, add to evals, rerun",
+          "Peter: long-running loop finished a ~600 PR framework migration",
+          "Vercel: durable-harness logs intents and outcomes, replays only safe tools",
+          "Geoff: zone message boards and self-deleting AGENTS.md reminders",
+          "Kun: measure cost per accepted task by task type"
+        ],
+        "actions": [
+          {
+            "label": "Hamel - decision models for evals",
+            "url": "https://hamel.dev/blog/posts/decision-model-evals/"
+          },
+          {
+            "label": "Vercel - making every harness durable",
+            "url": "https://vercel.com/blog/making-every-harness-durable"
+          },
+          {
+            "label": "Peter - Lit to Solid loop",
+            "url": "https://x.com/steipete/status/2112597162924351909"
+          },
+          {
+            "label": "Overalls (self-hosted agent VMs)",
+            "url": "https://overalls.dev"
+          },
+          {
+            "label": "Kun - 2000 task cost data",
+            "url": "https://x.com/kunchenguid/status/2112714875264979449"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Hamel Husain @HamelHusain",
+            "url": "https://x.com/HamelHusain/status/2112588257104216294"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2112621016518377491"
+          },
+          {
+            "label": "Peter Steinberger @steipete",
+            "url": "https://x.com/steipete/status/2112597162924351909"
+          },
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2112736749281759566"
+          },
+          {
+            "label": "Guillermo Rauch @rauchg",
+            "url": "https://x.com/rauchg/status/2112658577110520122"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2112639259496849830"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2112729479730864132"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2112714875264979449"
+          },
+          {
+            "label": "Tibo @thsottiaux",
+            "url": "https://x.com/thsottiaux/status/2112712984644784534"
+          }
+        ]
+      }
+    },
     {
       "id": "muse-20261020-threads-watch",
       "category": "ai",
