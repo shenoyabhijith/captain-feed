@@ -1,8 +1,660 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-21T09:00:00-05:00",
+  "updated": "2026-10-22T09:00:00-05:00",
   "cards": [
+    {
+      "id": "ai-20261022-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 22, 2026",
+      "body": "**Matt** shipped a `/software-factory` skill to pair with `/grill-me`, **Kun** says build the agent instead of relaying it, and **Harrison** turns good traces into a fine-tuned small model.",
+      "source": "X builders watch · Oct 21–22, 2026 CT · Matt Pocock · Kun Chen · Cat Wu · Addy Osmani · Harrison Chase · Hamel Husain · Geoffrey Huntley · Guillermo Rauch · Mario Zechner · Peter Steinberger · Armin Ronacher",
+      "tags": [
+        "ai",
+        "builders",
+        "skills",
+        "software-factory",
+        "proactive-agents",
+        "traces",
+        "evals",
+        "security"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/mattpocockuk/status/2113196247964074322",
+      "detail": {
+        "tldr": "Skills are becoming **factory blueprints**, and proactive agents are the new product race.\nTraces double as training data, and a rough security week says patch and redeploy fast.",
+        "tldrBullets": [
+          "Matt: `/grill-me` plus a new **software-factory** skill",
+          "Kun: don't relay, **be the automator**",
+          "Anthropic: **Claude Duet**, a proactive agent",
+          "Harrison: fine-tune a small model on **good traces**",
+          "Peter: the PHP bug was **found by a model**"
+        ],
+        "summary": "Wednesday into Thursday: design the factory, take yourself out of the loop, and measure with your own traces.",
+        "sections": [
+          {
+            "heading": "Skills that design a factory",
+            "tweets": [
+              {
+                "id": "2113196247964074322",
+                "url": "https://x.com/mattpocockuk/status/2113196247964074322",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T09:10:21.000Z",
+                "text": "Prompt of the day:\n\n/grill-me on how a /software-factory might help us\n\nHelps you figure out if a software factory can help you, and brainstorms the infra you need to set it up.\n\nhttps://t.co/sCojBeJw1D",
+                "urls": [
+                  {
+                    "url": "https://t.co/sCojBeJw1D",
+                    "expanded_url": "https://github.com/mattpocock/skills/pull/1316",
+                    "display_url": "github.com/mattpocock/ski…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 58,
+                  "repost_count": 44,
+                  "quote_count": 6,
+                  "like_count": 1063,
+                  "impression_count": 52217
+                }
+              },
+              {
+                "id": "2113198957480366468",
+                "url": "https://x.com/mattpocockuk/status/2113198957480366468",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T09:21:07.000Z",
+                "text": "Also includes initial research docs on:\n\nOrchestrators\nGit hosts\nTicket trackers\nRunners\n\nTo help you set up the infra",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 1,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 27,
+                  "impression_count": 7839
+                }
+              },
+              {
+                "id": "2113264229453033684",
+                "url": "https://x.com/mattpocockuk/status/2113264229453033684",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T13:40:29.000Z",
+                "text": "The code, not the spec, should be the center of your universe",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 17,
+                  "repost_count": 3,
+                  "quote_count": 2,
+                  "like_count": 61,
+                  "impression_count": 4166
+                }
+              }
+            ],
+            "body": "The PR adds a glossary skill (task, trigger, run, runner) with surveys of trackers, git hosts, runners and observability, and advice to **start slow** with brakes on every trigger.",
+            "screenshots": [
+              {
+                "url": "https://github.com/mattpocock/skills/pull/1316",
+                "image": "media/sources/b3ab6e9d628e364f.webp",
+                "title": "software-factory: glossary skill for designing a factory by mattpocock · Pull Request #1316 · mattpocock/skills",
+                "capturedAt": "2026-10-22T13:50:05.579Z"
+              }
+            ]
+          },
+          {
+            "heading": "Be the automator",
+            "tweets": [
+              {
+                "id": "2113123377674387940",
+                "url": "https://x.com/kunchenguid/status/2113123377674387940",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T04:20:47.000Z",
+                "text": "be very careful if you find yourself simply passing messages to and from your agents\n\ne.g. people ask you a question on slack, and you simply ask an agent and pass its response back - it should be obvious that your job can be automated in that case\n\ninstead, you should try and build an agent (or sometimes just skills) that can reliably answer similar questions moving forward and remove yourself from the loop\n\nyour value then becomes improving said agents and skills, and your impact can easily scale and manifest even when you sleep\n\ndon’t be automated. be the automator",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 48,
+                  "repost_count": 9,
+                  "quote_count": 0,
+                  "like_count": 388,
+                  "impression_count": 17333
+                }
+              },
+              {
+                "id": "2113052559397245146",
+                "url": "https://x.com/kunchenguid/status/2113052559397245146",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T23:39:23.000Z",
+                "text": "poll result on why people haven't adopted personal agents\n\ni suspect all the other 3 reasons are solvable, but looks like most people simply don't see real need for having an agent handle their personal life\n\nis consumer-facing personal agent all a bubble? https://t.co/9JAjdeJrla https://t.co/hX87lZTuER",
+                "urls": [
+                  {
+                    "url": "https://t.co/hX87lZTuER",
+                    "expanded_url": "https://twitter.com/kunchenguid/status/2112372460125569207",
+                    "display_url": "x.com/kunchenguid/st…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVMRJoWbYAABxOQ.png",
+                    "width": 589,
+                    "height": 192
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 57,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 51,
+                  "impression_count": 6323
+                }
+              },
+              {
+                "id": "2112984659953152284",
+                "url": "https://x.com/kunchenguid/status/2112984659953152284",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T19:09:34.000Z",
+                "text": "interesting read walking through a practical example of building a reasonably polished app with ~1hr of human time\n\nnot sure how i feel about “shotgun prompting” though! what i like to do is “ramble prompting” with voice 😄 https://t.co/x9oA7tubbv",
+                "urls": [
+                  {
+                    "url": "https://t.co/x9oA7tubbv",
+                    "expanded_url": "https://twitter.com/calvingrunewald/status/2112979178526323056",
+                    "display_url": "x.com/calvingrunewal…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 2,
+                  "repost_count": 2,
+                  "quote_count": 0,
+                  "like_count": 58,
+                  "impression_count": 7520
+                }
+              }
+            ],
+            "body": "Kun: if you just pass questions to an agent and back, **build an agent or skill** that answers them and step out of the loop."
+          },
+          {
+            "heading": "Proactive agents arrive",
+            "tweets": [
+              {
+                "id": "2112988751576330487",
+                "url": "https://x.com/_catwu/status/2112988751576330487",
+                "author": {
+                  "name": "cat",
+                  "username": "_catwu",
+                  "avatar": "https://pbs.twimg.com/profile_images/1645578728532246528/Llilll47_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T19:25:50.000Z",
+                "text": "We heard your feedback that you want Claude to proactively take more off your plate! Claude Duet is a large step in this direction - it'll notice work that needs to be done, and then do it before you ask. \n\nJoin the waitlist here: https://t.co/f3PfUuXIox https://t.co/y0DfQS4RHI",
+                "urls": [
+                  {
+                    "url": "https://t.co/f3PfUuXIox",
+                    "expanded_url": "https://claude.com/product/claude-duet",
+                    "display_url": "claude.com/product/claude…"
+                  },
+                  {
+                    "url": "https://t.co/y0DfQS4RHI",
+                    "expanded_url": "https://twitter.com/claudeai/status/2112984664256241837",
+                    "display_url": "x.com/claudeai/statu…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 87,
+                  "repost_count": 24,
+                  "quote_count": 3,
+                  "like_count": 870,
+                  "impression_count": 47697
+                }
+              },
+              {
+                "id": "2113015448203862255",
+                "url": "https://x.com/addyosmani/status/2113015448203862255",
+                "author": {
+                  "name": "Addy Osmani",
+                  "username": "addyosmani",
+                  "avatar": "https://pbs.twimg.com/profile_images/2090232066021769216/IwGLjoSy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T21:11:55.000Z",
+                "text": "Claude Duet is our new app where Claude is your proactive agent! Runs on Opus 5.5 across 6,000 connectors/plugins. Duet lets you know what needs your attention and keeps going when you step away.\n\nJoin the waitlist for the research preview! https://t.co/I30nm850gk https://t.co/cNFCwkdGHU",
+                "urls": [
+                  {
+                    "url": "https://t.co/I30nm850gk",
+                    "expanded_url": "https://claude.com/product/claude-duet",
+                    "display_url": "claude.com/product/claude…"
+                  },
+                  {
+                    "url": "https://t.co/cNFCwkdGHU",
+                    "expanded_url": "https://twitter.com/claudeai/status/2112984664256241837",
+                    "display_url": "x.com/claudeai/statu…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 57,
+                  "repost_count": 12,
+                  "quote_count": 2,
+                  "like_count": 368,
+                  "impression_count": 38334
+                }
+              },
+              {
+                "id": "2112992485823914355",
+                "url": "https://x.com/kunchenguid/status/2112992485823914355",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T19:40:40.000Z",
+                "text": "it’s interesting how anthropic has the best model yet slowest to market with a personal agent that shows no clear differentiation \n\nwhy do you think that’s the case? https://t.co/cmQhZ5Owyu",
+                "urls": [
+                  {
+                    "url": "https://t.co/cmQhZ5Owyu",
+                    "expanded_url": "https://twitter.com/claudeai/status/2112984664256241837",
+                    "display_url": "x.com/claudeai/statu…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 210,
+                  "repost_count": 4,
+                  "quote_count": 5,
+                  "like_count": 347,
+                  "impression_count": 61680
+                }
+              }
+            ],
+            "body": "Claude Duet notices work and does it before you ask; waitlist for the research preview.",
+            "screenshots": [
+              {
+                "url": "https://claude.com/product/claude-duet",
+                "image": "media/sources/5dbb54a005401fc7.webp",
+                "title": "Claude Duet | Your personal AI assistant",
+                "capturedAt": "2026-10-22T13:50:09.027Z"
+              }
+            ]
+          },
+          {
+            "heading": "Traces are training data",
+            "tweets": [
+              {
+                "id": "2112983115215802417",
+                "url": "https://x.com/hwchase17/status/2112983115215802417",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T19:03:26.000Z",
+                "text": "the traces you already log are training data - keep the runs that did the task well, fine-tune a small model on them, eval on your task\n\na 9B model beating frontier models makes sense when it's trained on exactly your task\n\nsmithtune: https://t.co/RYcGRwzaye\n\nhttps://t.co/weSLQ77VvN",
+                "urls": [
+                  {
+                    "url": "https://t.co/fJtQFIKgZq",
+                    "expanded_url": "https://www.langchain.com/blog/langsmith-fine-tuning",
+                    "display_url": "langchain.com/blog/langsmith…"
+                  },
+                  {
+                    "url": "https://t.co/weSLQ77VvN",
+                    "expanded_url": "https://x.com/LangChain/status/2112962642985762962",
+                    "display_url": "x.com/LangChain/stat…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 77,
+                  "repost_count": 10,
+                  "quote_count": 1,
+                  "like_count": 97,
+                  "impression_count": 6084
+                }
+              },
+              {
+                "id": "2113024734078345568",
+                "url": "https://x.com/HamelHusain/status/2113024734078345568",
+                "author": {
+                  "name": "Hamel Husain",
+                  "username": "HamelHusain",
+                  "avatar": "https://pbs.twimg.com/profile_images/1287206199088173057/ixE4fKy1_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T21:48:49.000Z",
+                "text": "Career progression \n\n2003: Data Analyst\n2010: Data Scientist\n2016: Machine Learning Engineer \n\nNow: Data Analyst of Traces 😅",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 47,
+                  "repost_count": 7,
+                  "quote_count": 2,
+                  "like_count": 253,
+                  "impression_count": 14482
+                }
+              },
+              {
+                "id": "2112937350070448508",
+                "url": "https://x.com/HamelHusain/status/2112937350070448508",
+                "author": {
+                  "name": "Hamel Husain",
+                  "username": "HamelHusain",
+                  "avatar": "https://pbs.twimg.com/profile_images/1287206199088173057/ixE4fKy1_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T16:01:35.000Z",
+                "text": "BenchmarkGate is a real thing \n\nDon’t blindly trust benchmarks even popular ones\n\nWe need to be doing evals on our evals https://t.co/JU7uYx1L4L",
+                "urls": [
+                  {
+                    "url": "https://t.co/JU7uYx1L4L",
+                    "expanded_url": "https://twitter.com/dejavucoder/status/2112910513982292256",
+                    "display_url": "x.com/dejavucoder/st…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 37,
+                  "repost_count": 6,
+                  "quote_count": 3,
+                  "like_count": 137,
+                  "impression_count": 7347
+                }
+              }
+            ],
+            "body": "Keep the runs that did the task well, fine-tune a small model, **eval on your task**. Hamel: run evals on your evals, not just public benchmarks.",
+            "screenshots": [
+              {
+                "url": "https://www.langchain.com/blog/langsmith-fine-tuning",
+                "image": "media/sources/db41a5294b4a4f76.webp",
+                "title": "Introducing LangSmith Fine-Tuning",
+                "capturedAt": "2026-10-22T13:50:12.505Z"
+              }
+            ]
+          },
+          {
+            "heading": "Cheap subagents, phone-sized harnesses",
+            "tweets": [
+              {
+                "id": "2113010010766913815",
+                "url": "https://x.com/rauchg/status/2113010010766913815",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T20:50:19.000Z",
+                "text": "DeepSeek v4.1 Flash (1017) is now included in ▲ Token Pass.\n\nFast, mind-bogglingly cheap, and served with ZDR (zero-data retention).\n\nIt's a phenomenal model to run subagents that execute plans conceived by larger and more expensive models. You can port TypeScript to Rust 10 times and not run out of credits 😂",
+                "urls": [
+                  {
+                    "url": "https://t.co/L1gpRXRFBg",
+                    "expanded_url": "https://twitter.com/vercel_dev/status/2113005104911757598",
+                    "display_url": "x.com/vercel_dev/sta…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2113008634091507712/img/IJ1NkoR81EFeeayc.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2113008634091507712/img/IJ1NkoR81EFeeayc.jpg",
+                    "width": 1554,
+                    "height": 1000
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 88,
+                  "repost_count": 20,
+                  "quote_count": 8,
+                  "like_count": 756,
+                  "impression_count": 44015
+                }
+              },
+              {
+                "id": "2112934299288912085",
+                "url": "https://x.com/rauchg/status/2112934299288912085",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T15:49:28.000Z",
+                "text": "Pi is one of the coolest projects in the AI world today. I'm on their team. Giving developers and companies choice of model, control over the runtime, data, skills, plugins… Excited to have great support on @vercel:\nhttps://t.co/WG1TltrVP9 https://t.co/Uk1GdrI7Q6",
+                "urls": [
+                  {
+                    "url": "https://t.co/WG1TltrVP9",
+                    "expanded_url": "https://vercel.com/blog/making-every-harness-durable",
+                    "display_url": "vercel.com/blog/making-ev…"
+                  },
+                  {
+                    "url": "https://t.co/Uk1GdrI7Q6",
+                    "expanded_url": "https://twitter.com/pidotdev/status/2112910333744431146",
+                    "display_url": "x.com/pidotdev/statu…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 87,
+                  "repost_count": 59,
+                  "quote_count": 11,
+                  "like_count": 1229,
+                  "impression_count": 83386
+                }
+              },
+              {
+                "id": "2113236214891610241",
+                "url": "https://x.com/badlogicgames/status/2113236214891610241",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T11:49:10.000Z",
+                "text": "total slop, but oh so nice. all my devices are connected as envs within which any (sub)agent can operate.\n\nand the agents themselves plus the server serving the web ui/tui runs on my phone, so always with me :D",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVO4-nYWQAAHVsx.jpg",
+                    "width": 3680,
+                    "height": 2392
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 32,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 132,
+                  "impression_count": 7890
+                }
+              }
+            ],
+            "body": "Guillermo pitches DeepSeek v4.1 Flash for **subagents that execute plans** from bigger models. Mario runs his agents and web UI on his phone, with every device as an env."
+          },
+          {
+            "heading": "A rough week for security",
+            "tweets": [
+              {
+                "id": "2112913060709228764",
+                "url": "https://x.com/steipete/status/2112913060709228764",
+                "author": {
+                  "name": "Peter Steinberger 🦞",
+                  "username": "steipete",
+                  "avatar": "https://pbs.twimg.com/profile_images/1131851609774985216/OcsssQ9J_normal.png",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T14:25:04.000Z",
+                "text": "That PHP vulnerability that’s gonna cause havoc this week was found with… GPT‑5.6 Sol. https://t.co/2djri1GYn4",
+                "urls": [
+                  {
+                    "url": "https://t.co/2djri1GYn4",
+                    "expanded_url": "https://twitter.com/openai/status/2112907856018309586",
+                    "display_url": "x.com/openai/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 218,
+                  "repost_count": 594,
+                  "quote_count": 73,
+                  "like_count": 11525,
+                  "impression_count": 701562
+                }
+              },
+              {
+                "id": "2113050053724221732",
+                "url": "https://x.com/rauchg/status/2113050053724221732",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T23:29:26.000Z",
+                "text": "Vercel has proactively rolled out Firewall-level mitigations for today's Node.js RCE vulnerability, in advance of the official patch release. \n\nAll traffic for all deployments is automatically protected. We're actively monitoring and rolling out managed runtime upgrades. https://t.co/fSgaLf99o7",
+                "urls": [
+                  {
+                    "url": "https://t.co/fSgaLf99o7",
+                    "expanded_url": "https://twitter.com/vercel_dev/status/2113048861526852004",
+                    "display_url": "x.com/vercel_dev/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 101,
+                  "repost_count": 104,
+                  "quote_count": 24,
+                  "like_count": 2050,
+                  "impression_count": 176191
+                }
+              },
+              {
+                "id": "2112969696069005567",
+                "url": "https://x.com/mitsuhiko/status/2112969696069005567",
+                "author": {
+                  "name": "Armin Ronacher ⇌",
+                  "username": "mitsuhiko",
+                  "avatar": "https://pbs.twimg.com/profile_images/1905698833084174336/jcHMkWFA_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-21T18:10:07.000Z",
+                "text": "Just looking at that PHP patch I’m starting to get the sense that there might be more like this. If you can afford it, it’s probably not the worst idea to run it via fil-C for the foreseeable future.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 15,
+                  "repost_count": 10,
+                  "quote_count": 3,
+                  "like_count": 272,
+                  "impression_count": 24320
+                }
+              }
+            ],
+            "body": "A model found the PHP bug, Vercel shipped firewall mitigations for a Node.js RCE ahead of the patch, and Armin expects more like it."
+          }
+        ],
+        "bullets": [
+          "Matt: software-factory glossary skill with slot surveys",
+          "Kun: replace message relaying with agents and skills",
+          "Cat and Addy: Claude Duet waitlist",
+          "Harrison: smithtune fine-tunes on your logged traces",
+          "Guillermo: cheap fast model for plan-executing subagents",
+          "Peter and Guillermo: model-found PHP bug, Node.js RCE mitigations"
+        ],
+        "actions": [
+          {
+            "label": "Matt - software-factory skill PR",
+            "url": "https://github.com/mattpocock/skills/pull/1316"
+          },
+          {
+            "label": "LangChain - LangSmith fine-tuning",
+            "url": "https://www.langchain.com/blog/langsmith-fine-tuning"
+          },
+          {
+            "label": "Claude Duet waitlist",
+            "url": "https://claude.com/product/claude-duet"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2113196247964074322"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2113123377674387940"
+          },
+          {
+            "label": "Cat Wu @_catwu",
+            "url": "https://x.com/_catwu/status/2112988751576330487"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2112983115215802417"
+          },
+          {
+            "label": "Hamel Husain @HamelHusain",
+            "url": "https://x.com/HamelHusain/status/2112937350070448508"
+          },
+          {
+            "label": "Guillermo Rauch @rauchg",
+            "url": "https://x.com/rauchg/status/2113010010766913815"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames/status/2113236214891610241"
+          },
+          {
+            "label": "Peter Steinberger @steipete",
+            "url": "https://x.com/steipete/status/2112913060709228764"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261021-builders-today",
       "category": "ai",
