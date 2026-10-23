@@ -1,8 +1,642 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-22T09:00:00-05:00",
+  "updated": "2026-10-23T09:00:00-05:00",
   "cards": [
+    {
+      "id": "ai-20261023-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 23, 2026",
+      "body": "**Kun**'s Firstmate now rewrites other bots' instructions from their mistakes, **swyx** wants agents to estimate in agent hours, and **Vercel** says retire long-lived static keys.",
+      "source": "X builders watch · Oct 22–23, 2026 CT · Kun Chen · Mitchell Hashimoto · swyx · Matt Pocock · Lauren · Mario Zechner · Harrison Chase · Guillermo Rauch · Armin Ronacher · Boris Cherny · Tibo",
+      "tags": [
+        "ai",
+        "builders",
+        "orchestration",
+        "self-improving-agents",
+        "estimates",
+        "grill-me",
+        "durable-agents",
+        "oidc",
+        "agent-skills"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/kunchenguid/status/2113535815133561271",
+      "detail": {
+        "tldr": "Orchestrator agents are starting to **coach the bots they run**, and estimates are recalibrating to agent speed.\nOn the platform side: standing durable agents, short-lived credentials, and skills as an open standard.",
+        "tldrBullets": [
+          "Kun: Firstmate **fixes other bots' instructions**",
+          "swyx: estimate in **agent hours**, base it on past work",
+          "Matt: `/grill-me` **one question at a time**",
+          "Daniel: **standing agents** and notes on Pi Durable",
+          "Vercel: **death to static credentials**"
+        ],
+        "summary": "Thursday into Friday: let the orchestrator learn from its crew, plan carefully when the fog is thick, and stop handing agents keys that never expire.",
+        "sections": [
+          {
+            "heading": "Bots that coach bots",
+            "tweets": [
+              {
+                "id": "2113535815133561271",
+                "url": "https://x.com/kunchenguid/status/2113535815133561271",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-23T07:39:40.000Z",
+                "text": "when my firstmate grok bot orchestrates work through other bots, it would observe how those bots did their work, catch their mistakes and inefficiencies, and automatically improve their instructions\n\nlink to import to your grok bot: https://t.co/dolBSZN49q",
+                "urls": [
+                  {
+                    "url": "https://t.co/dolBSZN49q",
+                    "expanded_url": "https://x.ai/bot/__4FfrkUdvpdMk6-LKg5r",
+                    "display_url": "x.ai/bot/__4FfrkUdv…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVTIJ3xagAAmjqV.png",
+                    "width": 581,
+                    "height": 368
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 15,
+                  "repost_count": 1,
+                  "quote_count": 1,
+                  "like_count": 72,
+                  "impression_count": 5612
+                }
+              },
+              {
+                "id": "2113488697178141083",
+                "url": "https://x.com/kunchenguid/status/2113488697178141083",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-23T04:32:26.000Z",
+                "text": "i just got into Rex beta, so... firstmate now has full support for Rex! \n\nif you are using Rex, this is the most advanced chief of staff agent distro that allows you to talk to a single agent that orchestrates your entire crew across your projects and machines\n\nhttps://t.co/jtjlzK8Mdq\n\nfree oss, dead simple to use - literally just clone the repo and launch your agent harness in it. supports claude code, codex, pi, opencode, grok build, cursor cli and many other harnesses\n\nbesides Rex, it also works with other existing session managers like herdr, tmux, cmux, orca",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVSc-K7bgAA8opb.jpg",
+                    "width": 2550,
+                    "height": 1352
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 46,
+                  "repost_count": 11,
+                  "quote_count": 2,
+                  "like_count": 246,
+                  "impression_count": 19110
+                }
+              },
+              {
+                "id": "2113346052090925406",
+                "url": "https://x.com/mitchellh/status/2113346052090925406",
+                "author": {
+                  "name": "Mitchell Hashimoto",
+                  "username": "mitchellh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2082830624415698944/bRo7PB2S_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T19:05:37.000Z",
+                "text": "The Rex iOS app testing program started today with external testers and includes dedicated iPad and Duo support. Lots of polish to go on this one, but excited to get this in the App Store soon (free).",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/media/HVQdBO5bcAARqSA.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/media/HVQdBO5bcAARqSA.jpg",
+                    "width": 942,
+                    "height": 2048
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 70,
+                  "repost_count": 23,
+                  "quote_count": 13,
+                  "like_count": 1279,
+                  "impression_count": 71234
+                }
+              }
+            ],
+            "body": "Kun's orchestrator watches how crew bots work, catches mistakes, and **updates their instructions**. Firstmate also gained a Rex session backend.",
+            "screenshots": [
+              {
+                "url": "https://github.com/kunchenguid/firstmate",
+                "image": "media/sources/ee38e66d68757017.webp",
+                "title": "kunchenguid/firstmate: Talk to one agent. Ship with a crew.",
+                "capturedAt": "2026-10-23T13:58:45.578Z"
+              }
+            ]
+          },
+          {
+            "heading": "Estimate in agent hours",
+            "tweets": [
+              {
+                "id": "2113283272130412684",
+                "url": "https://x.com/swyx/status/2113283272130412684",
+                "author": {
+                  "name": "swyx",
+                  "username": "swyx",
+                  "avatar": "https://pbs.twimg.com/profile_images/2073162797354217472/hNny55eF_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T14:56:09.000Z",
+                "text": "Opus 5.5 is the best work estimator model i've ever used. This is calibration that is increasingly important as we delegate more and more work — don't tell me that it's going to take 2-3 working days (what a human would do) when for you, an enthusiastic, indefatigable, and embarrasingly parallelizable AGI, can get it done in 2-3 hours.",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVPjrs_aQAERi-g.jpg",
+                    "width": 1381,
+                    "height": 1174
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 204,
+                  "repost_count": 8,
+                  "quote_count": 9,
+                  "like_count": 308,
+                  "impression_count": 28174
+                }
+              },
+              {
+                "id": "2113509413537693703",
+                "url": "https://x.com/swyx/status/2113509413537693703",
+                "author": {
+                  "name": "swyx",
+                  "username": "swyx",
+                  "avatar": "https://pbs.twimg.com/profile_images/2073162797354217472/hNny55eF_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-23T05:54:45.000Z",
+                "text": "extremely impt for pipelining... estimating ETA for its own pipeline fixes while running the pipeline still",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVSxivDbcAAyyM-.jpg",
+                    "width": 1656,
+                    "height": 1656
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 16,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 9,
+                  "impression_count": 2982
+                }
+              },
+              {
+                "id": "2113347025307889789",
+                "url": "https://x.com/swyx/status/2113347025307889789",
+                "author": {
+                  "name": "swyx",
+                  "username": "swyx",
+                  "avatar": "https://pbs.twimg.com/profile_images/2073162797354217472/hNny55eF_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T19:09:29.000Z",
+                "text": "just /loop and ask it to base estimates on recent past work",
+                "reply_to": [
+                  "R4ph_T"
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 1,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 7,
+                  "impression_count": 726
+                }
+              }
+            ],
+            "body": "swyx: an estimate in human days is miscalibrated when the agent will do it in hours. His tip: ask it to **base estimates on recent past work**."
+          },
+          {
+            "heading": "Plan when the fog is thick",
+            "tweets": [
+              {
+                "id": "2113278944594325761",
+                "url": "https://x.com/mattpocockuk/status/2113278944594325761",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T14:38:57.000Z",
+                "text": "I still sometimes say:\n\n/grill-me about this, one question at a time\n\nUsually when I REALLY have no idea what I'm building. When the problem is hugely underspecified and a single Q&amp;A round could send us in massively different directions",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 62,
+                  "repost_count": 16,
+                  "quote_count": 5,
+                  "like_count": 816,
+                  "impression_count": 60762
+                }
+              },
+              {
+                "id": "2113307744992387097",
+                "url": "https://x.com/mattpocockuk/status/2113307744992387097",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T16:33:24.000Z",
+                "text": "For folks asking, I use /wayfinder as an escape valve for when a task will obviously take more than one session to plan",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 1,
+                  "repost_count": 1,
+                  "quote_count": 0,
+                  "like_count": 31,
+                  "impression_count": 5293
+                }
+              },
+              {
+                "id": "2113398433977659654",
+                "url": "https://x.com/poteto/status/2113398433977659654",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T22:33:46.000Z",
+                "text": "i've been a bit quiet - working on a new companion skill that will help your agents draw these beautiful statecharts/diagrams + check them against the specs you made with /create-formal-verification-skill in pstack! \n\nit now uses Pele from @kepano too which is why they look so good. \n\nwill release soon!",
+                "urls": [
+                  {
+                    "url": "https://t.co/TjuGJGcXv4",
+                    "expanded_url": "https://twitter.com/poteto/status/2112736749281759566",
+                    "display_url": "x.com/poteto/status/…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVRMTNQbMAAz6DK.jpg",
+                    "width": 3018,
+                    "height": 2846
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 192,
+                  "repost_count": 183,
+                  "quote_count": 24,
+                  "like_count": 4386,
+                  "impression_count": 133219
+                }
+              }
+            ],
+            "body": "Matt switches `/grill-me` to **one question at a time** when the problem is hugely underspecified, and reaches for `/wayfinder` when planning spans sessions. Lauren is building a skill that draws statecharts and checks them against your formal specs."
+          },
+          {
+            "heading": "Standing agents, durable history",
+            "tweets": [
+              {
+                "id": "2113546440769519715",
+                "url": "https://x.com/badlogicgames/status/2113546440769519715",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-23T08:21:53.000Z",
+                "text": "recommended reading. https://t.co/BxAqLRdvrP",
+                "urls": [
+                  {
+                    "url": "https://t.co/BxAqLRdvrP",
+                    "expanded_url": "https://twitter.com/DanielGri/status/2113544750972194852",
+                    "display_url": "x.com/DanielGri/stat…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 0,
+                  "repost_count": 2,
+                  "quote_count": 0,
+                  "like_count": 135,
+                  "impression_count": 14562
+                }
+              },
+              {
+                "id": "2113322519205720320",
+                "url": "https://x.com/badlogicgames/status/2113322519205720320",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T17:32:06.000Z",
+                "text": "history tool is where it's at",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVQHnWCXUAAaCEa.jpg",
+                    "width": 1080,
+                    "height": 2410
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 29,
+                  "repost_count": 0,
+                  "quote_count": 4,
+                  "like_count": 201,
+                  "impression_count": 15362
+                }
+              },
+              {
+                "id": "2113339406299853076",
+                "url": "https://x.com/hwchase17/status/2113339406299853076",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T18:39:13.000Z",
+                "text": "is agent server a good name?\n\nagent os? agent? agent kernel?",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVQWN--WQAAWzlf.jpg",
+                    "width": 2320,
+                    "height": 1920
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 103,
+                  "repost_count": 2,
+                  "quote_count": 3,
+                  "like_count": 110,
+                  "impression_count": 11935
+                }
+              }
+            ],
+            "body": "Daniel's harness on Pi Durable runs coordinators with workers and reviewers per worktree, a **lander** that merges only on green, and **notes** that inform an agent without waking it.",
+            "screenshots": [
+              {
+                "url": "https://danielgriesser.com/posts/ultimate/",
+                "image": "media/sources/f46a508a93be5a1f.webp",
+                "title": "Ultimate | Daniel Griesser",
+                "capturedAt": "2026-10-23T13:58:48.391Z"
+              }
+            ]
+          },
+          {
+            "heading": "Death to static credentials",
+            "tweets": [
+              {
+                "id": "2113399539227136084",
+                "url": "https://x.com/rauchg/status/2113399539227136084",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T22:38:09.000Z",
+                "text": "It’s time to kill “static credentials”.\n\nAttacks and breaches can happen. But imagine if thieves could only steal “self-destructing keys” to your data and tokens.\n\nThe industry once came together to deliver “green locks” encryption for every site (TLS). Let’s do it for OIDC! 💪 https://t.co/RfzNgsBORY",
+                "urls": [
+                  {
+                    "url": "https://t.co/RfzNgsBORY",
+                    "expanded_url": "https://twitter.com/vercel/status/2113397272943976560",
+                    "display_url": "x.com/vercel/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 134,
+                  "repost_count": 58,
+                  "quote_count": 12,
+                  "like_count": 1499,
+                  "impression_count": 77896
+                }
+              },
+              {
+                "id": "2113269188714242345",
+                "url": "https://x.com/mitsuhiko/status/2113269188714242345",
+                "author": {
+                  "name": "Armin Ronacher ⇌",
+                  "username": "mitsuhiko",
+                  "avatar": "https://pbs.twimg.com/profile_images/1905698833084174336/jcHMkWFA_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T14:00:11.000Z",
+                "text": "I think instead of OIDC more services could consider macaroon like tokens. Where any party can restrict token lifetime along the way.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 13,
+                  "repost_count": 6,
+                  "quote_count": 1,
+                  "like_count": 131,
+                  "impression_count": 13917
+                }
+              },
+              {
+                "id": "2113462657059639505",
+                "url": "https://x.com/rauchg/status/2113462657059639505",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-23T02:48:58.000Z",
+                "text": "TL;DR of this week.\n\nYour aunt’s password: “P4ssword!” (on a Post-it note in the kitchen)\n\nThe stewards and guardians of the internet’s encryption’s password: “4”\n\nYes, just 4. This key could be used to target and decrypt ~everything, and we’re still cleaning up residual risk.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 93,
+                  "repost_count": 29,
+                  "quote_count": 14,
+                  "like_count": 1171,
+                  "impression_count": 72900
+                }
+              }
+            ],
+            "body": "Vercel surveyed 1,000+ SaaS vendors, found only 8.4% support secure auth, and is pushing **short-lived OIDC tokens** for apps and agents.",
+            "screenshots": [
+              {
+                "url": "https://vercel.com/blog/death-to-long-lived-static-credentials",
+                "image": "media/sources/7f47d88fd3cf1349.webp",
+                "title": "Death to long-lived static credentials - Vercel",
+                "capturedAt": "2026-10-23T13:58:52.325Z"
+              }
+            ]
+          },
+          {
+            "heading": "Open standards for agents",
+            "tweets": [
+              {
+                "id": "2113333859907747871",
+                "url": "https://x.com/bcherny/status/2113333859907747871",
+                "author": {
+                  "name": "Boris Cherny",
+                  "username": "bcherny",
+                  "avatar": "https://pbs.twimg.com/profile_images/1902044548936953856/J2jeik0t_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T18:17:10.000Z",
+                "text": "Agent Skills started as an experiment in Claude Code. Many across the industry have come to adopt it, so we at Anthropic found it more fitting to donate it to the @AgenticAIFdn, next to MCP. https://t.co/rn33HmNxav",
+                "urls": [
+                  {
+                    "url": "https://t.co/rn33HmNxav",
+                    "expanded_url": "https://twitter.com/ClaudeDevs/status/2113328526413996100",
+                    "display_url": "x.com/ClaudeDevs/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 184,
+                  "repost_count": 76,
+                  "quote_count": 18,
+                  "like_count": 2037,
+                  "impression_count": 157005
+                }
+              },
+              {
+                "id": "2113492187770175603",
+                "url": "https://x.com/thsottiaux/status/2113492187770175603",
+                "author": {
+                  "name": "Tibo",
+                  "username": "thsottiaux",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093807917833281537/2yBgpwVV_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-23T04:46:19.000Z",
+                "text": "Day 18/ Decisions API is GA, OpenResponses joined the Linux Foundation, we shipped some performance improvements and Uber is going all-in on codex &amp; work. But yes… that’s a reset!",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 1277,
+                  "repost_count": 342,
+                  "quote_count": 528,
+                  "like_count": 8559,
+                  "impression_count": 1015540
+                }
+              },
+              {
+                "id": "2113357674989650307",
+                "url": "https://x.com/rauchg/status/2113357674989650307",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-22T19:51:48.000Z",
+                "text": "Agents are pulling software into two extremes: deep backends and just-in-time frontends.\n\nAt Ship we presented the building blocks for hosting backends, agents &amp; APIs.\n\nWith 𝚝𝚖𝚙.𝚗𝚘𝚠 deploys, we're deleting all friction for agents to ship just-in-time software. Even signup! https://t.co/WHa6NJMFyS",
+                "urls": [
+                  {
+                    "url": "https://t.co/WHa6NJMFyS",
+                    "expanded_url": "https://twitter.com/vercel_dev/status/2113350334701781485",
+                    "display_url": "x.com/vercel_dev/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 72,
+                  "repost_count": 10,
+                  "quote_count": 9,
+                  "like_count": 328,
+                  "impression_count": 53995
+                }
+              }
+            ],
+            "body": "Anthropic is donating **Agent Skills** to the Agentic AI Foundation next to MCP, and OpenResponses joined the Linux Foundation."
+          }
+        ],
+        "bullets": [
+          "Kun: orchestrator audits crew bots and improves their instructions",
+          "swyx: calibrate agent estimates against recent past work",
+          "Matt: one-question grilling for underspecified work, /wayfinder for multi-session plans",
+          "Lauren: statechart skill to pair with formal-verification specs (coming soon)",
+          "Daniel: standing agents, a green-only lander, and non-waking notes",
+          "Guillermo and Armin: short-lived OIDC or macaroon-style tokens over static keys",
+          "Boris: Agent Skills donated to the Agentic AI Foundation"
+        ],
+        "actions": [
+          {
+            "label": "Kun - Firstmate repo",
+            "url": "https://github.com/kunchenguid/firstmate"
+          },
+          {
+            "label": "Daniel Griesser - Ultimate on Pi Durable",
+            "url": "https://danielgriesser.com/posts/ultimate/"
+          },
+          {
+            "label": "Vercel - Death to long-lived static credentials",
+            "url": "https://vercel.com/blog/death-to-long-lived-static-credentials"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2113535815133561271"
+          },
+          {
+            "label": "swyx @swyx",
+            "url": "https://x.com/swyx/status/2113283272130412684"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2113278944594325761"
+          },
+          {
+            "label": "Lauren @poteto",
+            "url": "https://x.com/poteto/status/2113398433977659654"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames/status/2113546440769519715"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2113339406299853076"
+          },
+          {
+            "label": "Guillermo Rauch @rauchg",
+            "url": "https://x.com/rauchg/status/2113399539227136084"
+          },
+          {
+            "label": "Armin Ronacher @mitsuhiko",
+            "url": "https://x.com/mitsuhiko/status/2113269188714242345"
+          },
+          {
+            "label": "Boris Cherny @bcherny",
+            "url": "https://x.com/bcherny/status/2113333859907747871"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261022-builders-today",
       "category": "ai",
