@@ -4,6 +4,525 @@
   "updated": "2026-10-23T09:00:00-05:00",
   "cards": [
     {
+      "id": "ai-20261026-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 26, 2026",
+      "body": "**Claude Code** shares how it reviews 30,000 changes a day, **Thorsten Ball** and **Mario** say how they work with agents, and **Harrison Chase** lays out the company harness.",
+      "source": "X builders watch · Oct 23–26, 2026 CT · Addy Osmani · Mario Zechner · Harrison Chase · Lauren · Matt Pocock · Guillermo Rauch · Kun Chen · Geoffrey Huntley · Dax · Hamel Husain",
+      "tags": [
+        "ai",
+        "builders",
+        "code-review",
+        "verification",
+        "company-harness",
+        "agent-languages",
+        "human-attention",
+        "benchmarks"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/addyosmani/status/2114604912520921136",
+      "detail": {
+        "tldr": "The weekend theme: **spend human attention only where it matters** and let layered agent checks do the rest.\nPlus: codebases and even languages shaped for agents, and a reminder to read benchmark data before trusting it.",
+        "tldrBullets": [
+          "Claude Code: **six review layers**, one human max",
+          "Thorsten: **ask for irrefutable proof**",
+          "Harrison: five parts of a **company harness**",
+          "Lauren: **types and tests** are agent feedback",
+          "Hamel: **inspect benchmark failures** first"
+        ],
+        "summary": "Friday through Monday morning: review at agent scale, how builders actually run their agents, and making code legible to machines.",
+        "sections": [
+          {
+            "heading": "How Claude Code does review",
+            "tweets": [
+              {
+                "id": "2114604912520921136",
+                "url": "https://x.com/addyosmani/status/2114604912520921136",
+                "author": {
+                  "name": "Addy Osmani",
+                  "username": "addyosmani",
+                  "avatar": "https://pbs.twimg.com/profile_images/2090232066021769216/IwGLjoSy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-26T06:27:53.000Z",
+                "text": "How the Claude Code team does code review https://t.co/4Hfk0dYIBI",
+                "urls": [
+                  {
+                    "url": "https://t.co/4Hfk0dYIBI",
+                    "expanded_url": "https://x.com/i/article/2114435487905808384",
+                    "display_url": "x.com/i/article/2114…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 177,
+                  "repost_count": 386,
+                  "quote_count": 95,
+                  "like_count": 4448,
+                  "impression_count": 423914
+                }
+              }
+            ],
+            "body": "PRs merged doubled while reverts fell **over 40%**: verification before the PR, parallel bug hunters with a vote to drop false positives, and a goal of at most one human per PR."
+          },
+          {
+            "heading": "How builders work with agents",
+            "tweets": [
+              {
+                "id": "2114386050638336082",
+                "url": "https://x.com/thorstenball/status/2114386050638336082",
+                "author": {
+                  "name": "Thorsten Ball",
+                  "username": "thorstenball",
+                  "avatar": "https://pbs.twimg.com/profile_images/2073288299528024064/3itOM_L5_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-25T15:58:12.000Z",
+                "text": "Finally summarized what I've been sending to friends in DMs https://t.co/rnf3M16NzI",
+                "urls": [
+                  {
+                    "url": "https://t.co/rnf3M16NzI",
+                    "expanded_url": "https://x.com/i/article/2114385531811319808",
+                    "display_url": "x.com/i/article/2114…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 186,
+                  "repost_count": 376,
+                  "quote_count": 175,
+                  "like_count": 4353,
+                  "impression_count": 452150
+                }
+              },
+              {
+                "id": "2114444636303364349",
+                "url": "https://x.com/badlogicgames/status/2114444636303364349",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-25T19:51:00.000Z",
+                "text": "how i work with agents in 2026.\n\nignore all other guides on here. https://t.co/4Wl2oOozxf",
+                "urls": [
+                  {
+                    "url": "https://t.co/4Wl2oOozxf",
+                    "expanded_url": "https://twitter.com/badlogicgames/status/2114422274338288069",
+                    "display_url": "x.com/badlogicgames/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 50,
+                  "repost_count": 40,
+                  "quote_count": 7,
+                  "like_count": 746,
+                  "impression_count": 50098
+                }
+              },
+              {
+                "id": "2114085432749347086",
+                "url": "https://x.com/rauchg/status/2114085432749347086",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-24T20:03:39.000Z",
+                "text": "There’ll be times where you over-guide the AI. It knows better than you and is more intelligent than you.\n\nThere’ll be times where you under-guide the AI. It can go off-track, have the wrong biases, or miss context.\n\nHow well you manage this superpower is the #0 skill I look for.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 367,
+                  "repost_count": 161,
+                  "quote_count": 89,
+                  "like_count": 3113,
+                  "impression_count": 279036
+                }
+              }
+            ],
+            "body": "Prompt the what, not the how. Ask for proof, let agents build tools to iterate, and test whether your skills and docs actually help with blind agents."
+          },
+          {
+            "heading": "The company harness",
+            "tweets": [
+              {
+                "id": "2114041443836903662",
+                "url": "https://x.com/hwchase17/status/2114041443836903662",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-24T17:08:51.000Z",
+                "text": "The five components of building a \"company harness\" https://t.co/1RVHfb9BXX",
+                "urls": [
+                  {
+                    "url": "https://t.co/1RVHfb9BXX",
+                    "expanded_url": "https://x.com/i/article/2113972199694675968",
+                    "display_url": "x.com/i/article/2113…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 86,
+                  "repost_count": 99,
+                  "quote_count": 22,
+                  "like_count": 943,
+                  "impression_count": 81644
+                }
+              },
+              {
+                "id": "2114624706037022938",
+                "url": "https://x.com/GeoffreyHuntley/status/2114624706037022938",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-26T07:46:32.000Z",
+                "text": "the best way to use @bot is to create lots of little bots. think posix/unix composition. then pipeline them together. it’s basically reactive stream programming tbh.",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVin9HFa0AAiY8D.jpg",
+                    "width": 1320,
+                    "height": 1929
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 26,
+                  "repost_count": 3,
+                  "quote_count": 1,
+                  "like_count": 54,
+                  "impression_count": 4324
+                }
+              },
+              {
+                "id": "2114071326411690209",
+                "url": "https://x.com/poteto/status/2114071326411690209",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-24T19:07:36.000Z",
+                "text": "one of my favorite things to do is to have our bots collaborate with each other! just add your bots to slack and work alongside them like teammates 🤍",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVawCRwbIAAmGUJ.jpg",
+                    "width": 954,
+                    "height": 638
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 222,
+                  "repost_count": 38,
+                  "quote_count": 24,
+                  "like_count": 1433,
+                  "impression_count": 107581
+                }
+              }
+            ],
+            "body": "Live where people work, know who is asking, scope memory, sandbox code, and run most jobs on a schedule."
+          },
+          {
+            "heading": "Codebases built for agents",
+            "tweets": [
+              {
+                "id": "2114626630429913383",
+                "url": "https://x.com/poteto/status/2114626630429913383",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-26T07:54:11.000Z",
+                "text": "so many gems and great tips in this talk from @yminsky about how to improve your codebase for agents\n\n• agents thrive on feedback, and types are one of the best kinds \n• make illegal states unrepresentable with types, and it enforces global rules across your codebase\n• property based tests, fuzzing, and even full-system deterministic simulation testing\n• expect tests: just print stuff out and capture it in the test. makes behavior legible. it's very similar to how compilers have fixture tests, it reduces the review surface area\n• formal methods used to be very expensive: seL4 is about 8,700 lines of C and took around 25 person-years, with 23 lines of proof for every line of C code, but agents change the roi \n\nhttps://t.co/0zDb5euxhr",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 86,
+                  "repost_count": 96,
+                  "quote_count": 20,
+                  "like_count": 1311,
+                  "impression_count": 100486
+                }
+              },
+              {
+                "id": "2114407583167705279",
+                "url": "https://x.com/mattpocockuk/status/2114407583167705279",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-25T17:23:46.000Z",
+                "text": "The next great \"language for agents\" should be:\n\n- As fast as Rust\n- As little design space as Go\n- Have the strictest type/verification system ever written\n\nBend seems like an interesting first effort",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 430,
+                  "repost_count": 173,
+                  "quote_count": 96,
+                  "like_count": 5093,
+                  "impression_count": 475154
+                }
+              },
+              {
+                "id": "2114311664069718370",
+                "url": "https://x.com/mattpocockuk/status/2114311664069718370",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-25T11:02:37.000Z",
+                "text": "It feels possible to me to check deterministically if a PR can be automerged or not.\n\nGiven very, very strict constraints:\n\n- Only reorganises code\n- Does not change the module graph\n- Does not make test coverage worse\n- X other rules\n\nFeels like there is a tool here waiting to be created.\n\nObviously doesn't work for new features. Might not even work for bugfixes. But it might enable a class of refactorings that help us all make changes more confidently.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 158,
+                  "repost_count": 17,
+                  "quote_count": 11,
+                  "like_count": 1049,
+                  "impression_count": 99671
+                }
+              }
+            ],
+            "body": "Types, property tests and expect tests give agents feedback. Matt wants a deterministic check for refactor-only PRs that can automerge.",
+            "screenshots": [
+              {
+                "url": "https://www.youtube.com/watch?v=rUYP4C29yCw",
+                "image": "media/sources/b93c3162647a09d2.webp",
+                "title": "Now more than ever: building reliable software in the age of agents | Ron Minsky | Bug Bash 2026 - YouTube",
+                "capturedAt": "2026-10-26T13:58:01.948Z"
+              }
+            ]
+          },
+          {
+            "heading": "Minimize human attention",
+            "tweets": [
+              {
+                "id": "2113773744925921289",
+                "url": "https://x.com/kunchenguid/status/2113773744925921289",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-23T23:25:07.000Z",
+                "text": "totally agree minimizing human attention is the key unlock now and moving forward\n\nthis view from calvin on workflow changes correlating with productivity gain is also quite interesting - i think mine was similar\n\nmy step function gains came from:\n- overnight loops (gnhf)\n- adversarial review, validation and risk assessment (no-mistakes)\n- interactive artifacts for planning (lavish-axi)\n- use an agent to orchestrate agents (firstmate)\n- remote ssh setup (sshhip)",
+                "urls": [
+                  {
+                    "url": "https://t.co/HZwYgB08cv",
+                    "expanded_url": "https://twitter.com/CalvinGrunewald/status/2113757494015410598",
+                    "display_url": "x.com/CalvinGrunewal…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVWg4CDawAAQ7Mo.jpg",
+                    "width": 1040,
+                    "height": 587
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 27,
+                  "repost_count": 28,
+                  "quote_count": 3,
+                  "like_count": 585,
+                  "impression_count": 41369
+                }
+              },
+              {
+                "id": "2113757494015410598",
+                "url": "https://x.com/CalvinGrunewald/status/2113757494015410598",
+                "author": {
+                  "name": "Calvin Grunewald",
+                  "username": "CalvinGrunewald",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093393722239238144/XJUFuKIl_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-23T22:20:32.000Z",
+                "text": "Sharing an update on my agentic workflow! \n\nToday, there are only two REAL bottlenecks left in software development. Compute and Human Attention. Not PRs, Planning, CI/CD. Those aren't real bottlenecks. You only think they are because they consume your Human Attention.\n\nYou can solve the Compute problem by throwing money at it. You can solve the Human Attention problem by throwing Compute at it.\n\nI reframed my workflow optimization around minimizing places that need my attention (and continue to do so). This blog post talks about my new setup. \n\nI hope...\n\nhttps://t.co/I3BVMK5V5H",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 19,
+                  "repost_count": 23,
+                  "quote_count": 5,
+                  "like_count": 384,
+                  "impression_count": 60887
+                }
+              },
+              {
+                "id": "2114554647411351966",
+                "url": "https://x.com/kunchenguid/status/2114554647411351966",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-26T03:08:09.000Z",
+                "text": "chatgpt chat, chatgpt work, codex, dots, claude web, claude code, claude cowork, claude desktop, claude duet, cursor, grok bot, grok build...\n\nthey are all just LLM + harness + connectors + machines + UI\n\ndo people actually want them to be separate products?",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 141,
+                  "repost_count": 10,
+                  "quote_count": 2,
+                  "like_count": 237,
+                  "impression_count": 13916
+                }
+              }
+            ],
+            "body": "Kun's step-function gains: overnight loops, adversarial review, interactive planning artifacts, and an agent that orchestrates agents.",
+            "screenshots": [
+              {
+                "url": "https://open.substack.com/pub/thebuildingmachine/p/my-new-agentic-workflow",
+                "image": "media/sources/4fe0c443620f1e0e.webp",
+                "title": "My New Agentic Workflow - by Calvin Grunewald",
+                "capturedAt": "2026-10-26T13:58:18.231Z"
+              }
+            ]
+          },
+          {
+            "heading": "Look at the benchmark data",
+            "tweets": [
+              {
+                "id": "2114434195854684330",
+                "url": "https://x.com/HamelHusain/status/2114434195854684330",
+                "author": {
+                  "name": "Hamel Husain",
+                  "username": "HamelHusain",
+                  "avatar": "https://pbs.twimg.com/profile_images/1287206199088173057/ixE4fKy1_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-25T19:09:31.000Z",
+                "text": "I've been looking into public benchmarks and am astounded by the poor quality vs. how much we rely on them as an industry.  \n\n@xeophon pointed me to this excellent site https://t.co/xt5uUSyrcA which is an independent third party which scrutinizes benchmarks and \"looks at the data\" 💪\n\nFor example, here are some popular benchmarks we all rely on.   Before trusting a benchmark its worth running them and inspecting examples the grader failed carefully, to get a sense of the quality.\n\nI'm continuing to look more into this, and will write something up eventually once I've collected more data, but I think this is an important subject.",
+                "urls": [
+                  {
+                    "url": "https://t.co/x2dPYc2qP8",
+                    "expanded_url": "https://epoch.ai/benchmarks/",
+                    "display_url": "epoch.ai/benchmarks/"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVf5Q0ZbwAAz2Xl.jpg",
+                    "width": 1586,
+                    "height": 1658
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 107,
+                  "repost_count": 59,
+                  "quote_count": 24,
+                  "like_count": 556,
+                  "impression_count": 36024
+                }
+              }
+            ],
+            "body": "Before trusting a benchmark, run it and read the examples the grader failed.",
+            "screenshots": [
+              {
+                "url": "https://epoch.ai/benchmarks/",
+                "image": "media/sources/d89663ddda6fd106.webp",
+                "title": "AI benchmarks & capabilities | Epoch AI",
+                "capturedAt": "2026-10-26T13:58:13.114Z"
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Addy Osmani: Claude Code fixes repeat review findings at the source (skill, lint rule, or CLAUDE.md)",
+          "Thorsten Ball: put \"this is not evidence\" in AGENTS.md",
+          "Harrison Chase: agents act on behalf of the user in DMs, with their own identity in the background",
+          "Dax: have the agent post progress, screenshots and videos to a Slack thread",
+          "Matt Pocock: a fast, strict language with little design space would suit agents"
+        ],
+        "actions": [
+          {
+            "label": "Addy Osmani - How the Claude Code team does code review",
+            "url": "https://x.com/addyosmani/status/2114604912520921136"
+          },
+          {
+            "label": "Thorsten Ball - How I work with Agents",
+            "url": "https://x.com/thorstenball/status/2114386050638336082"
+          },
+          {
+            "label": "Harrison Chase - company harness",
+            "url": "https://x.com/hwchase17/status/2114041443836903662"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Addy Osmani @addyosmani",
+            "url": "https://x.com/addyosmani/status/2114604912520921136"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames/status/2114444636303364349"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2114041443836903662"
+          },
+          {
+            "label": "Lauren @poteto",
+            "url": "https://x.com/poteto/status/2114626630429913383"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2114311664069718370"
+          },
+          {
+            "label": "Guillermo Rauch @rauchg",
+            "url": "https://x.com/rauchg/status/2114085432749347086"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2113773744925921289"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2114624706037022938"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2113781360934408360"
+          },
+          {
+            "label": "Hamel Husain @HamelHusain",
+            "url": "https://x.com/HamelHusain/status/2114434195854684330"
+          }
+        ]
+      }
+    },
+    {
       "id": "ai-20261023-builders-today",
       "category": "ai",
       "title": "Builders today: Oct 23, 2026",
