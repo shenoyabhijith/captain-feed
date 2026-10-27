@@ -4,6 +4,385 @@
   "updated": "2026-10-23T09:00:00-05:00",
   "cards": [
     {
+      "id": "ai-20261027-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 27, 2026",
+      "body": "**Kun Chen** turns logs into a daily self-improvement loop, **Addy Osmani** asks whether you really need that subagent, and **Matt Pocock** splits risky PRs in two.",
+      "source": "X builders watch · Oct 26–27, 2026 CT · Kun Chen · Addy Osmani · Matt Pocock · Dax · Guillermo Rauch · Hamel Husain · Tibo · Peter Steinberger",
+      "tags": [
+        "ai",
+        "builders",
+        "self-improving",
+        "subagents",
+        "skills",
+        "pull-requests",
+        "session-memory",
+        "sandboxing",
+        "evals"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/kunchenguid/status/2114772499686998221",
+      "detail": {
+        "tldr": "Today's theme: **let agents close the loop themselves**, from reading logs every day to searching their own session history.\nPlus: fewer subagents, safer PRs, and agents that can talk through shared CPUs.",
+        "tldrBullets": [
+          "Kun: **logs plus a daily loop** improve any program",
+          "Addy: **a skill often beats a subagent**",
+          "Matt: split PRs into **two-way and one-way doors**",
+          "Dax: agents **search their own history**",
+          "Rauch: **covert chat** across microVMs"
+        ],
+        "summary": "Monday morning through Tuesday morning: feedback loops, leaner agent setups, and sandbox security.",
+        "sections": [
+          {
+            "heading": "Make programs improve themselves",
+            "tweets": [
+              {
+                "id": "2114772499686998221",
+                "url": "https://x.com/kunchenguid/status/2114772499686998221",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-26T17:33:49.000Z",
+                "text": "you can make almost any program self-improve btw\n\nstep 1: prompt your agent \"help me plan comprehensive logging such that we can replay what the user experienced, meaningful internal operations, and visible outcomes\"\n\nstep 2: setup a daily loop with this prompt \"analyze my logs from this program in the past 24h thoroughly, identify broken behaviors, user friction, inefficiencies, and propose improvements sorted by estimated impact\"\n\nstep 3: watch your code get better every day\n\nif your program collect telemetry from users, you can do aggregated analysis which will give you even better results",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 67,
+                  "repost_count": 61,
+                  "quote_count": 2,
+                  "like_count": 1394,
+                  "impression_count": 56711
+                }
+              }
+            ],
+            "body": "Log enough to replay what the user saw, then have an agent read the last 24 hours every day and propose fixes ranked by impact."
+          },
+          {
+            "heading": "When a subagent earns its place",
+            "tweets": [
+              {
+                "id": "2114967833708732607",
+                "url": "https://x.com/addyosmani/status/2114967833708732607",
+                "author": {
+                  "name": "Addy Osmani",
+                  "username": "addyosmani",
+                  "avatar": "https://pbs.twimg.com/profile_images/2090232066021769216/IwGLjoSy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T06:30:00.000Z",
+                "text": "Before adding another subagent ask what problem it's solving. A bloated system prompt is often the issue.\n\nSkills and tool search can fix that without splitting context across agents. My rule of thumb is to keep a subagent when the work is parallel, needs fresh context or one agent really can't pick the right tools. \n\nOtherwise, fold it into the main loop, turn its prompt into a skill, run your evals and keep whatever wins.\n\nGood write-up:\nhttps://t.co/1gcrNNpQru",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2114442378996285440/img/dZh1nN1DYmErCZKE.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2114442378996285440/img/dZh1nN1DYmErCZKE.jpg",
+                    "width": 1280,
+                    "height": 564
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 119,
+                  "repost_count": 61,
+                  "quote_count": 17,
+                  "like_count": 714,
+                  "impression_count": 40576
+                }
+              }
+            ],
+            "body": "Keep a subagent for parallel work, fresh context, or too many tools. Otherwise fold its prompt into a skill and let your evals decide.",
+            "screenshots": [
+              {
+                "url": "https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop",
+                "image": "media/sources/6d403bbe93797ac5.webp",
+                "title": "Building agents: When to fold subagents into your main agent loop | Claude by Anthropic",
+                "capturedAt": "2026-10-27T13:58:09.635Z"
+              }
+            ]
+          },
+          {
+            "heading": "Tasks and PRs agents handle well",
+            "tweets": [
+              {
+                "id": "2114749427889979405",
+                "url": "https://x.com/mattpocockuk/status/2114749427889979405",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-26T16:02:08.000Z",
+                "text": "Prompt of the day:\n\nSplit this \"one-way door\" PR into two:\n\n1. A PR that implements everything, except it can be easily reverted (a two-way door)\n2. A followup PR (stacked on top) that actually goes through the one-way door\n\nAKA expand/contract. Use feature flags as needed.\n\n---\n\nLets you de-risk a huge PR by testing large chunks of it in production first.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 101,
+                  "repost_count": 19,
+                  "quote_count": 4,
+                  "like_count": 850,
+                  "impression_count": 63039
+                }
+              },
+              {
+                "id": "2115035446627459461",
+                "url": "https://x.com/mattpocockuk/status/2115035446627459461",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T10:58:40.000Z",
+                "text": "I feel like I need a word for the type of task that agents are really good at\n\nI.e. where it has 100% of the data, it can run experiments, verify independently, and hill-climb towards its destination\n\nOn these tasks my trust level is totally maxed-out and the results are incredible\n\nJust need a word for them",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 245,
+                  "repost_count": 7,
+                  "quote_count": 15,
+                  "like_count": 454,
+                  "impression_count": 39469
+                }
+              },
+              {
+                "id": "2115023694942662985",
+                "url": "https://x.com/mattpocockuk/status/2115023694942662985",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T10:11:58.000Z",
+                "text": "An absolutely GOATed example of domain knowledge being important\n\nI'm working on my video editor.\n\nI know enough about phonetics to know that certain consonants can fiddle around with silence detection.\n\nI tell my agent that.\n\nThe word 'fricative' is enough for it to start busting out full IPA (international phonetic alphabet) and we brainstorm which consonants are the most troublesome.\n\nTurns out, knowing things is really fucking valuable.",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVoSXK1WAAAdG_i.png",
+                    "width": 940,
+                    "height": 430
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 70,
+                  "repost_count": 26,
+                  "quote_count": 11,
+                  "like_count": 722,
+                  "impression_count": 36802
+                }
+              }
+            ],
+            "body": "Ship the revertible part of a big change first, then a small stacked PR for the irreversible step. Agents shine when they can verify their own work, and one expert word can unlock a lot."
+          },
+          {
+            "heading": "Session memory and narrow keys",
+            "tweets": [
+              {
+                "id": "2114754693255602450",
+                "url": "https://x.com/thdxr/status/2114754693255602450",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-26T16:23:03.000Z",
+                "text": "since OpenCode has access to its own api, it can query history of the current session\n\ncombined with codemode it can do a targeted search that doesn't bloat context\n\nhere it's looking up how it dealt with uber eats in the past, something it lost in compaction",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVkde8oXkAAaRID.jpg",
+                    "width": 2352,
+                    "height": 1534
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 95,
+                  "repost_count": 14,
+                  "quote_count": 5,
+                  "like_count": 896,
+                  "impression_count": 40198
+                }
+              },
+              {
+                "id": "2115066429657715004",
+                "url": "https://x.com/thdxr/status/2115066429657715004",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T13:01:47.000Z",
+                "text": "it's a lot easier to use hyper granular least privilege keys for everything now, just ask your agent to set it up\n\nhaving 100s of these doesn't feel painful anymore",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 32,
+                  "repost_count": 5,
+                  "quote_count": 2,
+                  "like_count": 131,
+                  "impression_count": 8519
+                }
+              },
+              {
+                "id": "2114849715065860129",
+                "url": "https://x.com/thdxr/status/2114849715065860129",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-26T22:40:38.000Z",
+                "text": "now that a lot of the team is doing permanent sessions that run forever we're discovering some performance issues related to this\n\nwill fix",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 50,
+                  "repost_count": 0,
+                  "quote_count": 2,
+                  "like_count": 701,
+                  "impression_count": 34054
+                }
+              }
+            ],
+            "body": "OpenCode can query its own session history to recover what compaction dropped, and agents make hundreds of least-privilege keys painless."
+          },
+          {
+            "heading": "Agents whispering on shared hardware",
+            "tweets": [
+              {
+                "id": "2114770919436808572",
+                "url": "https://x.com/rauchg/status/2114770919436808572",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-26T17:27:32.000Z",
+                "text": "I built 𝚌𝚙𝚞-𝚌𝚑𝚊𝚝, a reproduction of @openai's findings of covert communication using the CPU.\n\nIt runs on a generic host with 2+ Firecracker microVMs with no internet access. Works on x86 and even my M5 chip.\n\nI was able to chat via 3 separate mechanisms:\n① CPU contention\n② Cache eviction timing\n③ DRAM bandwidth contention \n\n… across multiple CPUs, defeating all Firecracker's production recommendations (no SMT, no KSM, tenants pinned to different cores.)\n\nEssentially, if shared hardware is involved, there's a good chance your agents can communicate covertly. And with really decent latency.\n\nThe good news: this is decidedly different from a *side-channel attack* where the agents could steal information (Meltdown/Spectre), a category of attack that providers like Vercel Sandbox mitigate. Further, in our real-world environment, these 'whispering' techniques are much harder to pull off and easier for us to monitor and detect (sampling hardware counters + lots of at-scale statistical data.)\n\nNoteworthy: ironically, OpenAI and Anthropic's models refused to do this work. Open weight models got the job done. I'm worried the labs' stance might backfire and get in the way of helping developers build correct and secure systems. e.g: building a secure sandbox requires having this kind of analysis, and without it, we'll have a less secure world.",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2114770494595760128/img/RfkLhO59NgPTFvOE.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2114770494595760128/img/RfkLhO59NgPTFvOE.jpg",
+                    "width": 2446,
+                    "height": 1252
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 241,
+                  "repost_count": 219,
+                  "quote_count": 80,
+                  "like_count": 2364,
+                  "impression_count": 182387
+                }
+              }
+            ],
+            "body": "A reproduction of covert channels between Firecracker microVMs through CPU, cache and memory contention. Not data theft, but worth monitoring."
+          },
+          {
+            "heading": "Trust your own evals",
+            "tweets": [
+              {
+                "id": "2114935968604299552",
+                "url": "https://x.com/HamelHusain/status/2114935968604299552",
+                "author": {
+                  "name": "Hamel Husain",
+                  "username": "HamelHusain",
+                  "avatar": "https://pbs.twimg.com/profile_images/1287206199088173057/ixE4fKy1_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T04:23:23.000Z",
+                "text": "I've seen a lot of pushback to this, with the following complaints:\n\n1. \"The benchmark owners already know about the flaws, and are working on it.\"\n2. \"Why are they spending time critiquing and not contributing to the benchmark\" OR \"critiquing known issues are not helpful\".\n3. \"The flawed verdict is too binary\"\n\nI find this pushback to be misguided.  These benchmarks are used to move millions of dollars of token spend, and many people blindly trust how well these benchmarks generalize to their own products, and don't look any further than the headline numbers.\n\nFor example, whenever a new model drops, you'll find thousands of youtube videos analyzing the pareto frontier using one of these benchmarks as the primary quality metric without questioning the benchmark.\n\nI think we would all be better served by inviting skepticism and encouraging people to develop an independent opinion of how well these benchmarks represent the tasks they care about.  Concretely:\n\n- For the failing tasks within the benchmark, are they: realistic, have a proper harness, graded properly, sufficiently disambiguated user intent?\n- Are models and API calls configured properly (ex: inconsistent context windows, reasoning levels). \n- Are the models equipped with a modern harness and minimal retrieval that is sufficiently realistic?\n- Does the score even make sense ex: is it just a LLM judge committee that produces a score on a 0-100 scale that isn't aligned with ground truth?\n\nIt's often the case you'll see many of these issues while looking at traces of a failing benchmark tasks, and it doesn't take long! Often the **very first trace you look at** has a serious issue.\n\nI also don't think there is an issue with verified vs. flawed verdict.  It's good to have opinions.  If you look through enough of what's behind their opinions and you find that you usually agree with their verdict, then they have earned your trust, the same way that a benchmark can lose your trust.  \n\nI think this eval of benchmarks is a red pill that motivates investing in your own private evals.",
+                "urls": [
+                  {
+                    "url": "https://t.co/f4TP9SgJ1c",
+                    "expanded_url": "https://twitter.com/EpochAIResearch/status/2100704765332394255",
+                    "display_url": "x.com/EpochAIResearc…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 54,
+                  "repost_count": 4,
+                  "quote_count": 0,
+                  "like_count": 94,
+                  "impression_count": 6283
+                }
+              }
+            ],
+            "body": "The first failing trace you read often shows a broken task or grader, which is the case for private evals."
+          }
+        ],
+        "bullets": [
+          "Kun Chen: with user telemetry, the daily log review works across all users",
+          "Matt Pocock: expand/contract with feature flags de-risks a huge PR",
+          "Dax: permanent sessions are now surfacing performance issues",
+          "Tibo: OpenAI's Terra model is out, stronger at writing and computer use",
+          "Peter Steinberger: Bun's AOT compiler gave him 2-3x speed at under half the memory"
+        ],
+        "actions": [
+          {
+            "label": "Kun Chen - self-improving program prompts",
+            "url": "https://x.com/kunchenguid/status/2114772499686998221"
+          },
+          {
+            "label": "Addy Osmani - when to fold subagents",
+            "url": "https://x.com/addyosmani/status/2114967833708732607"
+          },
+          {
+            "label": "Matt Pocock - one-way door PR prompt",
+            "url": "https://x.com/mattpocockuk/status/2114749427889979405"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2114772499686998221"
+          },
+          {
+            "label": "Addy Osmani @addyosmani",
+            "url": "https://x.com/addyosmani/status/2114967833708732607"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2114749427889979405"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2114754693255602450"
+          },
+          {
+            "label": "Guillermo Rauch @rauchg",
+            "url": "https://x.com/rauchg/status/2114770919436808572"
+          },
+          {
+            "label": "Hamel Husain @HamelHusain",
+            "url": "https://x.com/HamelHusain/status/2114935968604299552"
+          },
+          {
+            "label": "Tibo @thsottiaux",
+            "url": "https://x.com/thsottiaux/status/2114800277677092936"
+          },
+          {
+            "label": "Peter Steinberger @steipete",
+            "url": "https://x.com/steipete/status/2114879798434758905"
+          }
+        ]
+      }
+    },
+    {
       "id": "ai-20261026-builders-today",
       "category": "ai",
       "title": "Builders today: Oct 26, 2026",
