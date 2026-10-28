@@ -4,6 +4,453 @@
   "updated": "2026-10-23T09:00:00-05:00",
   "cards": [
     {
+      "id": "ai-20261028-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 28, 2026",
+      "body": "**Matt Pocock** wants a black hole of success for agents, **Harrison Chase** says review is the new bottleneck, and **Thariq** wants forks that merge upstream on their own.",
+      "source": "X builders watch · Oct 27–28, 2026 CT · Matt Pocock · Lauren Tan · Dax · Harrison Chase · Thariq · Mitchell Hashimoto · Kun Chen · Peter Steinberger",
+      "tags": [
+        "ai",
+        "builders",
+        "guardrails",
+        "pull-requests",
+        "review",
+        "forks",
+        "libghostty",
+        "security"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/mattpocockuk/status/2115368342898848021",
+      "detail": {
+        "tldr": "Today's theme: **make the right thing the only thing agents can do**, then make their work easy to review.\nPlus: self-updating forks, libghostty in JetBrains, and leaked agent sessions.",
+        "tldrBullets": [
+          "Matt: a **black hole of success** for agents",
+          "Matt: a PR body with **evidence and merge danger**",
+          "Harrison: **reviewing** is the bottleneck",
+          "Thariq: forks that **auto-merge upstream**",
+          "Kun: your **agent sessions may be sold**"
+        ],
+        "summary": "Tuesday morning through Wednesday morning: guardrails, reviewable output, and supply chain care.",
+        "sections": [
+          {
+            "heading": "Make great code inevitable",
+            "tweets": [
+              {
+                "id": "2115368342898848021",
+                "url": "https://x.com/mattpocockuk/status/2115368342898848021",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T09:01:29.000Z",
+                "text": "We used to talk about a \"pit of success\".\n\nHumans would be dragged towards writing the right code by well-designed API's, a good test suite, sensible lint rules.\n\nYou couldn't make the pit too steep, otherwise the humans would get annoyed. There was a social contract.\n\nFeels like what we need now is a black hole of success. An inescapable event horizon agents cannot cross.\n\nAgents don't feel annoyed, so you can crank up the pressure to infinity. There is no social contract to break.\n\nIn other words, increase the forces on agents to the maximum. Make great code inevitable.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 111,
+                  "repost_count": 18,
+                  "quote_count": 10,
+                  "like_count": 392,
+                  "impression_count": 24054
+                }
+              },
+              {
+                "id": "2115133011352240581",
+                "url": "https://x.com/poteto/status/2115133011352240581",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T17:26:21.000Z",
+                "text": "the Grok Bot team ships quality at an incredible pace! we've invested in making our code friendly for agents, by making the easy thing the right thing. \n\nengineers, designers, and PMs all contribute multiple hundreds of PRs a day: fixing bugs, polishing the user experience, and making our apps faster and more reliable. it isn't perfect of course and we do make mistakes, but we aim to learn from each occurrence and improve our workflows so our bots don't make the same mistake twice.\n\ni personally think that Grok Bot is the best example today in the industry of where all those tokens are going: quality and velocity, without compromise. something i think people forget in the discussion around token usage is that software development is an iceberg - new features are only a small fraction of the work in maintaining high quality software. \n\nand we will keep accelerating and improving!",
+                "urls": [
+                  {
+                    "url": "https://t.co/bcQbUVw3d4",
+                    "expanded_url": "https://twitter.com/i/status/2115111897397628974",
+                    "display_url": "x.com/i/status/21151…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVp0r_hboAEEF31.jpg",
+                    "width": 1090,
+                    "height": 819
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 157,
+                  "repost_count": 102,
+                  "quote_count": 25,
+                  "like_count": 1967,
+                  "impression_count": 113219
+                }
+              },
+              {
+                "id": "2115141414384525605",
+                "url": "https://x.com/thdxr/status/2115141414384525605",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T17:59:45.000Z",
+                "text": "when working on apis or protocols or schemas i used to put a lot of effort in making them beautiful because human eyes had to consume them\n\nnow i care more about explicitness even if its ugly",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 59,
+                  "repost_count": 8,
+                  "quote_count": 7,
+                  "like_count": 540,
+                  "impression_count": 26814
+                }
+              }
+            ],
+            "body": "Agents don't get annoyed, so turn lint, types and tests up as far as they go. Favor explicit over pretty in APIs and schemas."
+          },
+          {
+            "heading": "A PR body that shows its work",
+            "tweets": [
+              {
+                "id": "2115394392273895644",
+                "url": "https://x.com/mattpocockuk/status/2115394392273895644",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T10:44:59.000Z",
+                "text": "Banger PR\n\nSummary, evidence, merge danger on point\n\nA great example of my /pr skill in action\n\nhttps://t.co/q7K2uwGUQd",
+                "urls": [
+                  {
+                    "url": "https://t.co/q7K2uwGUQd",
+                    "expanded_url": "https://github.com/mattpocock/course-video-manager/pull/2399",
+                    "display_url": "github.com/mattpocock/cou…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 39,
+                  "repost_count": 2,
+                  "quote_count": 1,
+                  "like_count": 151,
+                  "impression_count": 21546
+                }
+              }
+            ],
+            "body": "Summary as a diff sketch, real evidence, and a merge danger section, plus a reading order and what was left out.",
+            "screenshots": [
+              {
+                "url": "https://github.com/mattpocock/course-video-manager/pull/2399",
+                "image": "media/sources/19f073a1763a4d10.webp",
+                "title": "Article Writer: edit Choose Screenshots and delete blocks while the document streams by mattpocock · Pull Request #2399 · mattpocock/course-",
+                "capturedAt": "2026-10-28T13:55:19.641Z"
+              }
+            ]
+          },
+          {
+            "heading": "Review is the new bottleneck",
+            "tweets": [
+              {
+                "id": "2115161782079897946",
+                "url": "https://x.com/hwchase17/status/2115161782079897946",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T19:20:41.000Z",
+                "text": "the hex team consistently gets what it means to build agents, and software to support them\n\nthree things that caught my eye from Hex 4.0 that mirror what we've done at LangChain and that I think speak to the future of building agents\n\n1/ use code as a backbone. they moved from yaml to more flexible code. agents are really good at writing code, and people want lots of flexibility in UI, so i think we will see more teams have parts of their UI that are powered by code. We did this in LangSmith with Custom Apps (completely custom UI)\n\n2/ UX focused on reviewing. \"A new, intuitive Hex UI, built for reviewing and understanding\". As agents do more work, the bottleneck becomes reviewing work. We did a similar thing in LangSmith with our new Trajectory view, focused on being a new view over agent trajectories that make it easy to review\n\n3/ rebuilt core infra. \"An all-new, ridiculously faster execution engine\". agents will still use infra/software. and it will need to be faster/better to accomodate more usage. We did this in LangSmith with SmithDB, our custom database for agent traces\n\nI think all these three things (lets agents write custom UIs as code, invest in UI/UX that make it easier to review, make your core infra more scalable) are all generalizable to any company building agents\n\ncongrats to Hex team on a great milestone and great launch!",
+                "urls": [
+                  {
+                    "url": "https://t.co/IxXDprJTbP",
+                    "expanded_url": "https://twitter.com/barrald/status/2115095682004726173",
+                    "display_url": "x.com/barrald/status…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 74,
+                  "repost_count": 5,
+                  "quote_count": 3,
+                  "like_count": 89,
+                  "impression_count": 10113
+                }
+              },
+              {
+                "id": "2115130348187349104",
+                "url": "https://x.com/hwchase17/status/2115130348187349104",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T17:15:46.000Z",
+                "text": "deepdive into how we built our design agent (along with oss code)\n\ni use this at least a few times a week for slides, gifs, images, etc https://t.co/OL0kleGVGA",
+                "urls": [
+                  {
+                    "url": "https://t.co/OL0kleGVGA",
+                    "expanded_url": "https://twitter.com/LangChain/status/2115124503093121121",
+                    "display_url": "x.com/LangChain/stat…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 43,
+                  "repost_count": 15,
+                  "quote_count": 2,
+                  "like_count": 178,
+                  "impression_count": 11927
+                }
+              }
+            ],
+            "body": "Let agents write UI as code, build views made for reviewing their trajectories, and make the core infra faster."
+          },
+          {
+            "heading": "Forks that keep up with upstream",
+            "tweets": [
+              {
+                "id": "2115188992861970693",
+                "url": "https://x.com/trq212/status/2115188992861970693",
+                "author": {
+                  "name": "Thariq",
+                  "username": "trq212",
+                  "avatar": "https://pbs.twimg.com/profile_images/1976939058741039104/r3GgzqRh_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T21:08:48.000Z",
+                "text": "feels like there needs to be a new way to distribute opensource software such that people can modify via agents but also get upstream automatically merged in\n\ncoding agents can do this but they won’t do it automatically https://t.co/6iejoVGp1D",
+                "urls": [
+                  {
+                    "url": "https://t.co/6iejoVGp1D",
+                    "expanded_url": "https://twitter.com/trq212/status/2115135857669881939",
+                    "display_url": "x.com/trq212/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 258,
+                  "repost_count": 69,
+                  "quote_count": 38,
+                  "like_count": 2966,
+                  "impression_count": 161055
+                }
+              },
+              {
+                "id": "2115135857669881939",
+                "url": "https://x.com/trq212/status/2115135857669881939",
+                "author": {
+                  "name": "Thariq",
+                  "username": "trq212",
+                  "avatar": "https://pbs.twimg.com/profile_images/1976939058741039104/r3GgzqRh_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T17:37:40.000Z",
+                "text": "experimenting with a lil personal project: an AI-native macOS dock with custom modes (writing, building, etc.) to help me stay focused\n\nmy agent is able to customize mode behavior and add new modes, it uses jev to classify my activity + notifications in real time &amp; act on them",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2115135312884281344/img/tGrnS50MPt9nXJS6.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2115135312884281344/img/tGrnS50MPt9nXJS6.jpg",
+                    "width": 1920,
+                    "height": 1080
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 476,
+                  "repost_count": 251,
+                  "quote_count": 104,
+                  "like_count": 9121,
+                  "impression_count": 676614
+                }
+              }
+            ],
+            "body": "Agents can keep your local changes while merging upstream, but nothing does it automatically yet."
+          },
+          {
+            "heading": "libghostty everywhere",
+            "tweets": [
+              {
+                "id": "2115101011518095385",
+                "url": "https://x.com/mitchellh/status/2115101011518095385",
+                "author": {
+                  "name": "Mitchell Hashimoto",
+                  "username": "mitchellh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2082830624415698944/bRo7PB2S_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T15:19:12.000Z",
+                "text": "JetBrains IDEs are now powered by libghostty! This brings huge feature and performance improvements to JB terminals! Based on their own annual reports, that's over 12.5 million active users across all platforms about to get a libghostty-powered terminal. https://t.co/DOG78NoGBp\n\nI'll repeat myself: libghostty is and was always the primary goal of the Ghostty project (I said this in the first public talk I ever gave about Ghostty). The importance and impact of a free, liberally licensed, high quality terminal emulator library that runs anywhere and everywhere dwarfs any single terminal emulator application on its own.\n\nI've estimated Ghostty's (GUI, not libghostty) own users at around a couple million. Overnight, 6x that are using a libghostty-powered terminal. From one integration. \n\nHappy to see this, happy to hear JetBrains had a positive experience, and looking forward to continuing to improve and ship a stable libghostty tag soon!",
+                "urls": [
+                  {
+                    "url": "https://t.co/WFKcQ4pPyq",
+                    "expanded_url": "https://blog.jetbrains.com/platform/2026/10/jetbrains-terminal-now-uses-ghostty/?utm_campaign=jb-ides-263-release&utm_medium=social&utm_source=x",
+                    "display_url": "blog.jetbrains.com/platform/2026/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 88,
+                  "repost_count": 138,
+                  "quote_count": 16,
+                  "like_count": 2871,
+                  "impression_count": 86999
+                }
+              },
+              {
+                "id": "2115124583170974193",
+                "url": "https://x.com/mitchellh/status/2115124583170974193",
+                "author": {
+                  "name": "Mitchell Hashimoto",
+                  "username": "mitchellh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2082830624415698944/bRo7PB2S_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-27T16:52:52.000Z",
+                "text": "Ghostty 1.4 is now out! Full Kitty graphics with animation (the first terminal besides Kitty to do it), scrollback compression for much lower memory usage, macOS 27 support, a new OpenGL renderer on Linux, ghostty +ssh, big performance gains, and hundreds more changes.\n\nThe highlights:\n\n- Scrollback compression: scrollback compresses ~90+% on average, meaning your terminals use that much less live memory\n- Huge memory savings across the board: no single large thing, just lots of good improvements lowers memory usage everywhere, netting anywhere from 50 to 90% less memory usage depending on workload\n- Kitty graphics is now 100% complete, including animation and relative placements, after a full conformance pass against the spec and Kitty itself\n- The Kitty clipboard protocol, with an image preview when a program asks to read your clipboard\n- Split drag and drop on Linux, including between windows\n- ghostty +ssh installs terminfo on remote hosts automatically, so things just work over SSH\n- Lots of terminal emulation accuracy fixes\n\nThis release is 7 months of work from 172 contributors over 2,889 commits. It also fixes 10 security advisories, so please update.\n\nFull release notes: https://t.co/T72oUV895k",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 116,
+                  "repost_count": 297,
+                  "quote_count": 61,
+                  "like_count": 4228,
+                  "impression_count": 138216
+                }
+              }
+            ],
+            "body": "JetBrains terminals now run on libghostty, and Ghostty 1.4 ships scrollback compression and full Kitty graphics.",
+            "screenshots": [
+              {
+                "url": "https://ghostty.org/docs/install/release-notes/1-4-0",
+                "image": "media/sources/068ca2c5cfaca264.webp",
+                "title": "1.4.0 - Release Notes",
+                "capturedAt": "2026-10-28T13:55:26.824Z"
+              }
+            ]
+          },
+          {
+            "heading": "Watch what your tools ship",
+            "tweets": [
+              {
+                "id": "2115236691455947134",
+                "url": "https://x.com/kunchenguid/status/2115236691455947134",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T00:18:21.000Z",
+                "text": "many people aren’t aware that their agent sessions are being sold for money\n\nthere are literally companies whose business model is to help other companies sell people’s agent sessions (search for “magma ai” if ur curious)\n\nbe careful what you use and install",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 42,
+                  "repost_count": 18,
+                  "quote_count": 2,
+                  "like_count": 403,
+                  "impression_count": 27756
+                }
+              },
+              {
+                "id": "2115441568119398592",
+                "url": "https://x.com/thdxr/status/2115441568119398592",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T13:52:27.000Z",
+                "text": "with supply chain attacks becoming a bigger problem AUR really has to become more sophisticated or get replaced\n\nit's impossible to securely publish packages there",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 1,
+                  "repost_count": 0,
+                  "quote_count": 0,
+                  "like_count": 13,
+                  "impression_count": 830
+                }
+              }
+            ],
+            "body": "Some companies resell agent session data, and package registries like the AUR are a supply chain risk. Be careful what you install."
+          }
+        ],
+        "bullets": [
+          "Dax: OpenCode 2.0 hit 1M daily active users in two weeks",
+          "Lauren Tan: shared tibot, a Grok Bot that digests your X mentions",
+          "Peter Steinberger: OpenClaw's web UI now works offline",
+          "Dax: open source models still trail frontier demand"
+        ],
+        "actions": [
+          {
+            "label": "Matt Pocock - black hole of success",
+            "url": "https://x.com/mattpocockuk/status/2115368342898848021"
+          },
+          {
+            "label": "Matt Pocock - /pr skill example",
+            "url": "https://github.com/mattpocock/course-video-manager/pull/2399"
+          },
+          {
+            "label": "Harrison Chase - lessons from Hex 4.0",
+            "url": "https://x.com/hwchase17/status/2115161782079897946"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2115368342898848021"
+          },
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2115133011352240581"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2115141414384525605"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2115161782079897946"
+          },
+          {
+            "label": "Thariq @trq212",
+            "url": "https://x.com/trq212/status/2115188992861970693"
+          },
+          {
+            "label": "Mitchell Hashimoto @mitchellh",
+            "url": "https://x.com/mitchellh/status/2115101011518095385"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2115236691455947134"
+          },
+          {
+            "label": "Peter Steinberger @steipete",
+            "url": "https://x.com/steipete/status/2115397368229060636"
+          }
+        ]
+      }
+    },
+    {
       "id": "ai-20261027-builders-today",
       "category": "ai",
       "title": "Builders today: Oct 27, 2026",
