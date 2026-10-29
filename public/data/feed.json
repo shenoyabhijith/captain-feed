@@ -4,6 +4,463 @@
   "updated": "2026-10-23T09:00:00-05:00",
   "cards": [
     {
+      "id": "ai-20261029-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 29, 2026",
+      "body": "**Kun Chen** says CI is the next bottleneck, **Matt Pocock** makes every subagent start fresh, and **Addy Osmani** says you're probably overprompting Claude.",
+      "source": "X builders watch · Oct 28–29, 2026 CT · Kun Chen · Guillermo Rauch · Geoffrey Huntley · Matt Pocock · Addy Osmani · Harrison Chase · Simon Willison · Boris Cherny · Dax",
+      "tags": [
+        "ai",
+        "builders",
+        "ci",
+        "subagents",
+        "prompting",
+        "crons",
+        "model-routing"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/kunchenguid/status/2115565245293039814",
+      "detail": {
+        "tldr": "Today's theme: **with review automated, CI and context hygiene are the new limits**.\nPlus: prompt less, crons for agents, and model aliases.",
+        "tldrBullets": [
+          "Kun: **CI is the next bottleneck**",
+          "Matt: subagents get a **fresh context window**",
+          "Addy: **prompt less**, give a way to verify",
+          "Harrison: **crons** unlock memory and proactiveness",
+          "Guillermo: **model aliases** like DNS"
+        ],
+        "summary": "Wednesday morning through Thursday morning: faster CI, cleaner subagents, and lighter prompts.",
+        "sections": [
+          {
+            "heading": "CI is the next bottleneck",
+            "tweets": [
+              {
+                "id": "2115565245293039814",
+                "url": "https://x.com/kunchenguid/status/2115565245293039814",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T22:03:54.000Z",
+                "text": "now that we all agreed to not review most of the code any more, CI became the next bottleneck\n\nat agent speed, if our CI pipeline is simply \"run all the build, lint, tests\", it'll become a major slow down\n\nhere are a few things i suggest for how to optimize:\n\n1. balance load between CI and CD\n\nCI protects main branch. CD protects production. if you can tolerate some delay in deploying your main branch to production, then you can do less in CI and do more in CD\n\nfor example, for a cross platform app i made my CI pipeline skip most mac and windows tests because linux already covered the same functionality\n\nthe tradeoff is occasionally i'd catch a mac or windows-only bug in CD before release, but in exchange, my CI pipeline became 15x faster - well worth it\n\n2. modularize your codebase such that changes are isolated\n\nthen you can make your CI only run build, lint, test for the module being touched\n\nthis requires careful consideration for cross-module protocols. they should likely be their own modules, so when they do change, you know you probably need to test all dependent modules\n\n3. for large modules, invest in test selection\n\nin CI, try to only run tests that are covering the areas being changed. doing accurate test selection is not easy though, and often requires continuous tuning\n\ni have a nightly loop specifically doing audit of past test runs and tweak my test selection to be more accurate. a big codebase of mine got pretty good at this - 20x faster CI compared to running all tests, and almost never miss any real problem",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 80,
+                  "repost_count": 28,
+                  "quote_count": 12,
+                  "like_count": 673,
+                  "impression_count": 44396
+                }
+              },
+              {
+                "id": "2115539426684408300",
+                "url": "https://x.com/rauchg/status/2115539426684408300",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T20:21:18.000Z",
+                "text": "Vercel CI solves the \"AI coding bottleneck\" via:\n① Fast and stable infrastructure (faster work)\n② Turborepo integration (less work)\n③ Agentic CI\n\n① is obvious. Your CI is slow, flaky, goes down. We solve that. We operate 20 worldwide clusters doing millions of microVMs per day.\n\n② is less obvious, but very powerful. Turborepo was designed to intelligently skip and cache prior work. The graph of dependencies is computed, not written. \n\nAsk your agent to migrate to @turborepo and start saving money and time. Even if you don't use us. But you should, it's really good.\n\n③ is a game-changer. 𝚟𝚎𝚛𝚌𝚎𝚕 𝚌𝚒 in the CLI is the first step, because now your agents can inspect, abort, trigger, replay CI. Vercel Agent can help optimize it. And this is just the start.\n\nYou can expect a lot of hooks and capabilities to make CI something far more intelligent, that can even capture the nuance and judgment an engineer would have (\"Are those tests even worth running?\")\n\nAgentic CI is the future of how we ship software. Excited to build it with you all!",
+                "urls": [
+                  {
+                    "url": "https://t.co/r99XYMGVQI",
+                    "expanded_url": "https://twitter.com/vercel/status/2115526935636021696",
+                    "display_url": "x.com/vercel/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 111,
+                  "repost_count": 15,
+                  "quote_count": 3,
+                  "like_count": 438,
+                  "impression_count": 42638
+                }
+              },
+              {
+                "id": "2115679404194156590",
+                "url": "https://x.com/GeoffreyHuntley/status/2115679404194156590",
+                "author": {
+                  "name": "geoff",
+                  "username": "GeoffreyHuntley",
+                  "avatar": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T05:37:32.000Z",
+                "text": "This is what I've been building since Dec 2024; I've taken circa three cracks at it. The primitives are starting to settle and make sense. In short, I think this is the shape of CI/CD, code review, and ultimately what displaces GitHub itself. Blog post incoming.",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVxmr47bQAA3_4Y.jpg",
+                    "width": 3280,
+                    "height": 3040
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 25,
+                  "repost_count": 13,
+                  "quote_count": 4,
+                  "like_count": 285,
+                  "impression_count": 16052
+                }
+              }
+            ],
+            "body": "Kun moves slow checks to CD, runs CI only for touched modules, and has a nightly loop tune test selection. Guillermo wants CI agents can inspect, abort and replay."
+          },
+          {
+            "heading": "Every subagent starts fresh",
+            "tweets": [
+              {
+                "id": "2115751897558614073",
+                "url": "https://x.com/mattpocockuk/status/2115751897558614073",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T10:25:35.000Z",
+                "text": "Just shipped an important skill fix for Codex users.\n\nCodex was biasing most of its subagents to inherit its context window from the parent agent. I.e. forking it.\n\nThis has a big negative impact on a lot of my skills, that rely on a clean context window (for code review, implement-spec etc)\n\nSo, a fix:\n\nhttps://t.co/nHgEAezn7B",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 75,
+                  "repost_count": 8,
+                  "quote_count": 6,
+                  "like_count": 390,
+                  "impression_count": 26247
+                }
+              },
+              {
+                "id": "2115756445862134157",
+                "url": "https://x.com/mattpocockuk/status/2115756445862134157",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T10:43:40.000Z",
+                "text": "This is the most 2026 PR I've ever merged\n\nLiterally fixed a bug with an adjective\n\nhttps://t.co/GiSGrHO2RS",
+                "urls": [
+                  {
+                    "url": "https://t.co/GiSGrHO2RS",
+                    "expanded_url": "https://github.com/mattpocock/skills/pull/1342",
+                    "display_url": "github.com/mattpocock/ski…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 42,
+                  "repost_count": 8,
+                  "quote_count": 1,
+                  "like_count": 177,
+                  "impression_count": 21330
+                }
+              }
+            ],
+            "body": "Codex can fork the parent's context into subagents, which defeats review and implementer skills. The fix is one sentence per dispatch site.",
+            "screenshots": [
+              {
+                "url": "https://github.com/mattpocock/skills/pull/1341",
+                "image": "media/sources/3f332c71cbb63025.webp",
+                "title": "Start subagents with a fresh context window, not a fork by mattpocock · Pull Request #1341 · mattpocock/skills",
+                "capturedAt": "2026-10-29T13:57:44.341Z"
+              }
+            ]
+          },
+          {
+            "heading": "You're probably overprompting",
+            "tweets": [
+              {
+                "id": "2115688494865465370",
+                "url": "https://x.com/addyosmani/status/2115688494865465370",
+                "author": {
+                  "name": "Addy Osmani",
+                  "username": "addyosmani",
+                  "avatar": "https://pbs.twimg.com/profile_images/2090232066021769216/IwGLjoSy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T06:13:39.000Z",
+                "text": "https://t.co/1txsLAxxM5",
+                "urls": [
+                  {
+                    "url": "https://t.co/1txsLAxxM5",
+                    "expanded_url": "https://x.com/i/article/2115682550723313664",
+                    "display_url": "x.com/i/article/2115…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 107,
+                  "repost_count": 108,
+                  "quote_count": 50,
+                  "like_count": 1369,
+                  "impression_count": 84306
+                }
+              }
+            ],
+            "body": "One prompt with a clear goal and a pass or fail check, then prune instructions written for older models."
+          },
+          {
+            "heading": "Crons in the harness",
+            "tweets": [
+              {
+                "id": "2115479787145929060",
+                "url": "https://x.com/hwchase17/status/2115479787145929060",
+                "author": {
+                  "name": "Harrison Chase",
+                  "username": "hwchase17",
+                  "avatar": "https://pbs.twimg.com/profile_images/1569345624935485442/R67C4wCQ_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T16:24:19.000Z",
+                "text": "crons are a simple technology but can be used in a bunch of ways to unlock new capabilities in agent harnesses:\n- memory (dreaming)\n- proactiveness\n- user reminders\n\nand more! https://t.co/QkLy6woRyz",
+                "urls": [
+                  {
+                    "url": "https://t.co/QkLy6woRyz",
+                    "expanded_url": "https://twitter.com/ndrezn/status/2115477935482118345",
+                    "display_url": "x.com/ndrezn/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 110,
+                  "repost_count": 10,
+                  "quote_count": 2,
+                  "like_count": 216,
+                  "impression_count": 14111
+                }
+              }
+            ],
+            "body": "Scheduled runs give agents memory consolidation, proactive work and reminders."
+          },
+          {
+            "heading": "Models behind an alias",
+            "tweets": [
+              {
+                "id": "2115573969369845855",
+                "url": "https://x.com/rauchg/status/2115573969369845855",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T22:38:34.000Z",
+                "text": "This is like DNS for models. An alias that *resolves* to a model, giving you traffic-steering abilities.\n\nSolves a huge number of problems. From not having teams stuck on old model versions, to saving on costs, to removing “decision paralysis”. Try it! https://t.co/8Tap7STV09",
+                "urls": [
+                  {
+                    "url": "https://t.co/8Tap7STV09",
+                    "expanded_url": "https://twitter.com/vercel/status/2115571121622073355",
+                    "display_url": "x.com/vercel/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 129,
+                  "repost_count": 7,
+                  "quote_count": 8,
+                  "like_count": 291,
+                  "impression_count": 27943
+                }
+              },
+              {
+                "id": "2115670709779513720",
+                "url": "https://x.com/kunchenguid/status/2115670709779513720",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T05:02:59.000Z",
+                "text": "oct 30 is coming soon and the $200 codex subscription will then get its 50% quota cut\n\nif you feel your quota is burning fast now, imagine running out 2x as fast. and it’s unclear how frequently the resets will continue to happen\n\nwhy would openai do this cut now, especially at a moment when opus 5.5 is totally crushing it? \n\nmy speculation is that they are conceding the consumer coding use case, and focusing on non-technical work (chatgpt, dots) and enterprise market (api deals) instead\n\nsubsidized consumer coding usage is simply not very lucrative and it’s hard to compete with anthropic head on in this space regardless\n\nunfortunately this means your use case is primarily coding and you are using it through the consumer subscriptions, after this cut there’s almost no good reason to justify choosing codex subscription over claude. the value difference is simply day and night\n\nbut what i’m most afraid of is the second order effect where it ends up releasing the competitive pressure for anthropic and claude cuts their quota too\n\nwhere is grok 5? we need to keep the competition hot!",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 67,
+                  "repost_count": 10,
+                  "quote_count": 8,
+                  "like_count": 279,
+                  "impression_count": 15040
+                }
+              }
+            ],
+            "body": "An alias that resolves to a model lets you steer traffic as plans and quotas change. Kun notes the $200 Codex plan quota halves on Oct 30."
+          },
+          {
+            "heading": "What agents are shipping",
+            "tweets": [
+              {
+                "id": "2115444742595260551",
+                "url": "https://x.com/simonw/status/2115444742595260551",
+                "author": {
+                  "name": "Simon Willison",
+                  "username": "simonw",
+                  "avatar": "https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T14:05:04.000Z",
+                "text": "I think October represents another inflection point in capabilities for coding agents and the models that drive them: Claude Opus 5.5 can now build video games that are actually fun https://t.co/aPsJ14RHR0",
+                "urls": [
+                  {
+                    "url": "https://t.co/aPsJ14RHR0",
+                    "expanded_url": "https://simonwillison.net/2026/Oct/28/vibe-game-development/",
+                    "display_url": "simonwillison.net/2026/Oct/28/vi…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 355,
+                  "repost_count": 70,
+                  "quote_count": 64,
+                  "like_count": 1248,
+                  "impression_count": 95537
+                }
+              },
+              {
+                "id": "2115491259381072269",
+                "url": "https://x.com/bcherny/status/2115491259381072269",
+                "author": {
+                  "name": "Boris Cherny",
+                  "username": "bcherny",
+                  "avatar": "https://pbs.twimg.com/profile_images/1902044548936953856/J2jeik0t_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-28T17:09:54.000Z",
+                "text": "Utah gave Claude Code to 34 developers across 10 state agencies. 80% had a working environment within 30 minutes, 71% reported saving 20+ hours by the end of the four-week pilot. https://t.co/ERZpBFuYSa",
+                "urls": [
+                  {
+                    "url": "https://t.co/ERZpBFuYSa",
+                    "expanded_url": "https://twitter.com/anthropicai/status/2115207004293853358",
+                    "display_url": "x.com/anthropicai/st…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 212,
+                  "repost_count": 99,
+                  "quote_count": 31,
+                  "like_count": 2712,
+                  "impression_count": 172932
+                }
+              },
+              {
+                "id": "2115624925407092962",
+                "url": "https://x.com/thdxr/status/2115624925407092962",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T02:01:03.000Z",
+                "text": "here are our teams commits since january\nsomething is happening",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVw1qDSXsAA0-sp.jpg",
+                    "width": 2000,
+                    "height": 813
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 65,
+                  "repost_count": 8,
+                  "quote_count": 12,
+                  "like_count": 538,
+                  "impression_count": 50653
+                }
+              }
+            ],
+            "body": "Fun games from Opus 5.5, a state government pilot with Claude Code, and a team commit chart that keeps climbing.",
+            "screenshots": [
+              {
+                "url": "https://simonwillison.net/2026/Oct/28/vibe-game-development/",
+                "image": "media/sources/93b9dc1d31289278.webp",
+                "title": "The October inflection point for vibe game development",
+                "capturedAt": "2026-10-29T13:57:47.343Z"
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Matt Pocock: software factory course starts Nov 9",
+          "Matt Pocock: a team replaced a licensed component with an agent-built one",
+          "Addy Osmani: an Anthropic team dropped coding interviews",
+          "Dax: open model demand follows products like OpenCode",
+          "Mitchell Hashimoto: Rex beta invited 12,000 more this week"
+        ],
+        "actions": [
+          {
+            "label": "Kun Chen - optimizing CI at agent speed",
+            "url": "https://x.com/kunchenguid/status/2115565245293039814"
+          },
+          {
+            "label": "Matt Pocock - fresh-context subagents PR",
+            "url": "https://github.com/mattpocock/skills/pull/1341"
+          },
+          {
+            "label": "Addy Osmani - you're probably overprompting Claude",
+            "url": "https://x.com/addyosmani/status/2115688494865465370"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2115565245293039814"
+          },
+          {
+            "label": "Guillermo Rauch @rauchg",
+            "url": "https://x.com/rauchg/status/2115539426684408300"
+          },
+          {
+            "label": "Geoffrey Huntley @GeoffreyHuntley",
+            "url": "https://x.com/GeoffreyHuntley/status/2115679404194156590"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2115751897558614073"
+          },
+          {
+            "label": "Addy Osmani @addyosmani",
+            "url": "https://x.com/addyosmani/status/2115688494865465370"
+          },
+          {
+            "label": "Harrison Chase @hwchase17",
+            "url": "https://x.com/hwchase17/status/2115479787145929060"
+          },
+          {
+            "label": "Simon Willison @simonw",
+            "url": "https://x.com/simonw/status/2115444742595260551"
+          },
+          {
+            "label": "Boris Cherny @bcherny",
+            "url": "https://x.com/bcherny/status/2115491259381072269"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2115624925407092962"
+          }
+        ]
+      }
+    },
+    {
       "id": "ai-20261028-builders-today",
       "category": "ai",
       "title": "Builders today: Oct 28, 2026",
