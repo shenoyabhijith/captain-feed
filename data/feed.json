@@ -1,8 +1,426 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-23T09:00:00-05:00",
+  "updated": "2026-10-30T14:10:00.000Z",
   "cards": [
+    {
+      "id": "ai-20261030-builders-today",
+      "category": "ai",
+      "title": "Builders today: Oct 30, 2026",
+      "body": "**Lauren Tan** ships a statechart skill that finds real bugs, **Kun Chen** turns his write-ups into a skill, and **Guillermo Rauch** has agents filing feedback.",
+      "source": "X builders watch · Oct 29–30, 2026 CT · Lauren Tan · Kun Chen · Guillermo Rauch · Mario Zechner · Matt Pocock · Thariq · DHH",
+      "tags": [
+        "ai",
+        "builders",
+        "skills",
+        "formal-verification",
+        "durable-agents",
+        "pr-format",
+        "feedback"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/poteto/status/2115880102601101414",
+      "detail": {
+        "tldr": "Today's theme: **skills that verify, remember, and report back**.\nPlus: durable agent runs and a PR format agents seem to agree on.",
+        "tldrBullets": [
+          "Lauren: **/statechart** models state machines to find bugs",
+          "Kun: write-ups **auto-distilled** into a /kun skill",
+          "Guillermo: let agents **send product feedback**",
+          "Mario: pi-durable saves **every step as a commit**",
+          "Thariq: busy with agents is **not the same as done**"
+        ],
+        "summary": "Thursday morning through Friday morning.",
+        "sections": [
+          {
+            "heading": "Statecharts that find bugs",
+            "tweets": [
+              {
+                "id": "2115880102601101414",
+                "url": "https://x.com/poteto/status/2115880102601101414",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T18:55:02.000Z",
+                "text": "the /statechart skill in pstack v0.15.36 is now stable and ready for use! it's best combined with /create-formal-verification-skill to abstractly model state machines and distributed systems to find bugs.\n\nthe skill contains a mini tlc compiler that parses, lowers to a small IR, and has a backend that outputs mmd syntax. if you want you can also ask your agent to create charts in whatever style you like, the skills tells it to use https://t.co/bbZicR5ePc which is very themeable so you can make blueprints, hand drawn encyclopedia illustrations or whatever you like\n\nhere's a chart of the /statechart skill and 2 real bugs i just found. try it out and let me know what you think!",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HV0cQgMbAAAdj9Y.jpg",
+                    "width": 3223,
+                    "height": 4096
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 319,
+                  "repost_count": 350,
+                  "quote_count": 53,
+                  "like_count": 6200,
+                  "impression_count": 302341
+                }
+              }
+            ],
+            "body": "The `/statechart` skill in pstack pairs with `/create-formal-verification-skill` to model state machines and distributed systems, and emits Mermaid charts you can theme with [pele.run](https://pele.run/).",
+            "screenshots": [
+              {
+                "url": "https://pele.run/",
+                "image": "media/sources/6881e07bf0c9f6a6.webp",
+                "title": "Pele · Mermaid diagrams as themeable SVG",
+                "capturedAt": "2026-10-30T13:58:29.491Z"
+              }
+            ]
+          },
+          {
+            "heading": "Your write-ups as a skill",
+            "tweets": [
+              {
+                "id": "2115864882637922809",
+                "url": "https://x.com/kunchenguid/status/2115864882637922809",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T17:54:33.000Z",
+                "text": "every write-up from me is automatically distilled into my /kun skill and kun grok bot\n\nthis may be a bit surprising to hear, but even i myself talk to my own kun bot quite a lot 😄 because it saves me from having to repeat what i already know and believe\n\nsee example here - just got kun bot to optimize CI for a repo that’s grown big, and got some instant easy wins, because the bot knows about what i shared in this post yesterday \n\n/kun skill - https://t.co/GNYTr1OuRj\nkun bot - https://t.co/CYD6DFPTtL",
+                "urls": [
+                  {
+                    "url": "https://t.co/5NVJv69ric",
+                    "expanded_url": "https://twitter.com/kunchenguid/status/2115565245293039814",
+                    "display_url": "x.com/kunchenguid/st…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HV0P5a3bIAAxToB.jpg",
+                    "width": 942,
+                    "height": 2048
+                  },
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HV0P5a-aQAADXJN.jpg",
+                    "width": 942,
+                    "height": 2048
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 13,
+                  "repost_count": 2,
+                  "quote_count": 0,
+                  "like_count": 71,
+                  "impression_count": 7528
+                }
+              }
+            ],
+            "body": "Every post Kun writes is distilled into the `/kun` skill and Kun bot, which he used to speed up CI on a large repo.",
+            "screenshots": [
+              {
+                "url": "https://github.com/kunchenguid/kun",
+                "image": "media/sources/0d5ca7c90bca205d.webp",
+                "title": "kunchenguid/kun: Think and build like a principal engineer. Leverage Kun's experience, knowledge, tools, workflows, and skills to help you g",
+                "capturedAt": "2026-10-30T13:58:33.556Z"
+              }
+            ]
+          },
+          {
+            "heading": "Agents that file feedback",
+            "tweets": [
+              {
+                "id": "2115874115118834153",
+                "url": "https://x.com/rauchg/status/2115874115118834153",
+                "author": {
+                  "name": "Guillermo Rauch",
+                  "username": "rauchg",
+                  "avatar": "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T18:31:14.000Z",
+                "text": "The future of software engineering is agents talking to other agents. Even across different companies.\n\nWe’re learning daily from the feedback agents send us on how to make a better Vercel.\n\nPut in your 𝙰𝙶𝙴𝙽𝚃𝚂.𝚖𝚍: send Vercel feedback when something could be better. https://t.co/evIxQmgS5p",
+                "urls": [
+                  {
+                    "url": "https://t.co/evIxQmgS5p",
+                    "expanded_url": "https://twitter.com/vercel_dev/status/2115835041876222134",
+                    "display_url": "x.com/vercel_dev/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 237,
+                  "repost_count": 36,
+                  "quote_count": 22,
+                  "like_count": 673,
+                  "impression_count": 44604
+                }
+              },
+              {
+                "id": "2115835041876222134",
+                "url": "https://x.com/vercel_dev/status/2115835041876222134",
+                "author": {
+                  "name": "Vercel Developers",
+                  "username": "vercel_dev",
+                  "avatar": "https://pbs.twimg.com/profile_images/1978602411490205696/oLOuP7a2_normal.png",
+                  "verified": true,
+                  "verified_type": "business"
+                },
+                "created_at": "2026-10-29T15:55:58.000Z",
+                "text": "Your agent can now send feedback to Vercel.\n\nUse plain language to explain a bug or feature request, and your agent will use 𝚜𝚞𝚋𝚖𝚒𝚝_𝚏𝚎𝚎𝚍𝚋𝚊𝚌𝚔 via Vercel MCP to attach structured context and submit the comment.\nhttps://t.co/soLvbXs00f",
+                "urls": [
+                  {
+                    "url": "https://t.co/soLvbXs00f",
+                    "expanded_url": "https://vercel.com/changelog/send-feedback-from-vercel-mcp",
+                    "display_url": "vercel.com/changelog/send…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 9,
+                  "repost_count": 2,
+                  "quote_count": 16,
+                  "like_count": 146,
+                  "impression_count": 49372
+                }
+              }
+            ],
+            "body": "Vercel MCP now has a `submit_feedback` tool, so an agent can report a bug or request with structured context.",
+            "screenshots": [
+              {
+                "url": "https://vercel.com/changelog/send-feedback-from-vercel-mcp",
+                "image": "media/sources/2663b0fc908e0c8e.webp",
+                "title": "Send feedback from the Vercel MCP - Vercel",
+                "capturedAt": "2026-10-30T13:58:37.631Z"
+              }
+            ]
+          },
+          {
+            "heading": "Durable agent runs",
+            "tweets": [
+              {
+                "id": "2116078693827428383",
+                "url": "https://x.com/badlogicgames/status/2116078693827428383",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-30T08:04:10.000Z",
+                "text": "people of pi (durable). i did a round of performance optimizations in pi-durable.\n\nquick primer. every step of an agent run is saved to a db before the agent moves on. 1 save = 1 commit. thats what makes it durable, crash mid run, resume from the last commit. ~12 commits per run",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HV3QbhyWsAArFHP.jpg",
+                    "width": 1600,
+                    "height": 900
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 35,
+                  "repost_count": 25,
+                  "quote_count": 6,
+                  "like_count": 432,
+                  "impression_count": 18952
+                }
+              },
+              {
+                "id": "2116082498115657878",
+                "url": "https://x.com/badlogicgames/status/2116082498115657878",
+                "author": {
+                  "name": "Mario Zechner",
+                  "username": "badlogicgames",
+                  "avatar": "https://pbs.twimg.com/profile_images/1553485821767991296/87k3l720_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-30T08:19:17.000Z",
+                "text": "recommended reading. describes codemode in pinand pi durable accurately, and also explains why durable codemode is pretty sweet. https://t.co/8axoJhPpWH",
+                "urls": [
+                  {
+                    "url": "https://t.co/8axoJhPpWH",
+                    "expanded_url": "https://twitter.com/manojlds/status/2115868615333327059",
+                    "display_url": "x.com/manojlds/statu…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 2,
+                  "repost_count": 9,
+                  "quote_count": 0,
+                  "like_count": 174,
+                  "impression_count": 9251
+                }
+              }
+            ],
+            "body": "pi-durable saves each agent step to a database before moving on, so a crashed run resumes from the last commit."
+          },
+          {
+            "heading": "A PR format agents agree on",
+            "tweets": [
+              {
+                "id": "2115855541285122189",
+                "url": "https://x.com/mattpocockuk/status/2115855541285122189",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T17:17:26.000Z",
+                "text": "Don't tell me /pr is in the model weights already https://t.co/agZu3bx04C",
+                "urls": [
+                  {
+                    "url": "https://t.co/agZu3bx04C",
+                    "expanded_url": "https://twitter.com/0x15f/status/2115820820870070417",
+                    "display_url": "x.com/0x15f/status/2…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 55,
+                  "repost_count": 6,
+                  "quote_count": 0,
+                  "like_count": 573,
+                  "impression_count": 56551
+                }
+              },
+              {
+                "id": "2115820820870070417",
+                "url": "https://x.com/0x15f/status/2115820820870070417",
+                "author": {
+                  "name": "Jake Casto",
+                  "username": "0x15f",
+                  "avatar": "https://pbs.twimg.com/profile_images/2067808253333929984/9m-tee9X_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T14:59:28.000Z",
+                "text": "The agents seem to have mutually agreed on a new PR format and I really like it",
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HVzn0ljXwAARj0n.jpg",
+                    "width": 1844,
+                    "height": 1600
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 7,
+                  "repost_count": 1,
+                  "quote_count": 1,
+                  "like_count": 98,
+                  "impression_count": 72856
+                }
+              }
+            ]
+          },
+          {
+            "heading": "Busy is not done",
+            "tweets": [
+              {
+                "id": "2115937378674372783",
+                "url": "https://x.com/trq212/status/2115937378674372783",
+                "author": {
+                  "name": "Thariq",
+                  "username": "trq212",
+                  "avatar": "https://pbs.twimg.com/profile_images/1976939058741039104/r3GgzqRh_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-29T22:42:37.000Z",
+                "text": "There’s 100% a kind of mania you can get into with coding agents, where it feels like you’re getting a lot done and working all the time but nothing is really happening.\n\nI think it's often a form of avoidance of something else in life.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 620,
+                  "repost_count": 626,
+                  "quote_count": 319,
+                  "like_count": 12875,
+                  "impression_count": 892447
+                }
+              },
+              {
+                "id": "2116109588554498081",
+                "url": "https://x.com/dhh/status/2116109588554498081",
+                "author": {
+                  "name": "DHH",
+                  "username": "dhh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093715898204884992/goERjC9G_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-30T10:06:55.000Z",
+                "text": "The real AI psychosis is thinking \"this is just another tool\" or \"it's just a stochastic parrot\" and \"humans still need to review every line\". You gotta snap out of it.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 297,
+                  "repost_count": 209,
+                  "quote_count": 58,
+                  "like_count": 3058,
+                  "impression_count": 106770
+                }
+              }
+            ]
+          }
+        ],
+        "bullets": [
+          "Lauren: /statechart plus formal verification found 2 real bugs",
+          "Kun: a personal skill saves repeating what you already know",
+          "Guillermo: add a feedback line to AGENTS.md",
+          "Mario: 1 save = 1 commit, about 12 per run"
+        ],
+        "actions": [
+          {
+            "label": "Lauren Tan - /statechart skill",
+            "url": "https://x.com/poteto/status/2115880102601101414"
+          },
+          {
+            "label": "Kun Chen - /kun skill",
+            "url": "https://github.com/kunchenguid/kun"
+          },
+          {
+            "label": "Vercel - feedback from MCP",
+            "url": "https://vercel.com/changelog/send-feedback-from-vercel-mcp"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2115880102601101414"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2115864882637922809"
+          },
+          {
+            "label": "Guillermo Rauch @rauchg",
+            "url": "https://x.com/rauchg/status/2115874115118834153"
+          },
+          {
+            "label": "Mario Zechner @badlogicgames",
+            "url": "https://x.com/badlogicgames/status/2116078693827428383"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2115855541285122189"
+          },
+          {
+            "label": "Thariq @trq212",
+            "url": "https://x.com/trq212/status/2115937378674372783"
+          },
+          {
+            "label": "DHH @dhh",
+            "url": "https://x.com/dhh/status/2116109588554498081"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261029-builders-today",
       "category": "ai",
