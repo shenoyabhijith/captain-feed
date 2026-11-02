@@ -1,8 +1,630 @@
 {
   "title": "Captain Feed",
   "subtitle": "Daily doses. Tap any card for the full brief.",
-  "updated": "2026-10-30T14:10:00.000Z",
+  "updated": "2026-11-02T15:05:00.000Z",
   "cards": [
+    {
+      "id": "ai-20261102-builders-today",
+      "category": "ai",
+      "title": "Builders today: Nov 2, 2026",
+      "body": "**Armin Ronacher** says agents can write their own test suites for ports, **swyx** argues low effort plus a critique loop beats max effort, and **Lauren Tan** shares how she runs a small, sharp bot team.",
+      "source": "X builders watch · Oct 30 to Nov 2, 2026 CT · Armin Ronacher · swyx · Addy Osmani · Lauren Tan · Matt Pocock · Kun Chen · Andrej Karpathy · Dax · Mitchell Hashimoto · Boris Cherny",
+      "tags": [
+        "ai",
+        "builders",
+        "tests",
+        "effort-levels",
+        "agent-teams",
+        "weekend-builds",
+        "terminals"
+      ],
+      "accent": "teal",
+      "link": "https://x.com/mitsuhiko/status/2116895016249434134",
+      "detail": {
+        "tldr": "Weekend theme: **agents writing their own guardrails**.\nPlus: effort levels, small bot teams, and builds shipped in an afternoon.",
+        "tldrBullets": [
+          "Armin: let the agent **build its own test suite**",
+          "swyx: **low effort + critique loop** beats max effort",
+          "Lauren: a **few good bots**, each writing its own skills",
+          "Andrej: HackerTube built in **~2 hours**",
+          "Boris: Claude **5-hour limit removed** for Ultra"
+        ],
+        "summary": "Friday morning through Monday morning.",
+        "sections": [
+          {
+            "heading": "Agents write their own tests",
+            "tweets": [
+              {
+                "id": "2116895016249434134",
+                "url": "https://x.com/mitsuhiko/status/2116895016249434134",
+                "author": {
+                  "name": "Armin Ronacher ⇌",
+                  "username": "mitsuhiko",
+                  "avatar": "https://pbs.twimg.com/profile_images/1905698833084174336/jcHMkWFA_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T14:07:56.000Z",
+                "text": "A pretty common reply today is \"the value is in the testsuite\". I'm not sure if this is LLM slop or genuine replies, but you don't actually need a test suite to rebuild something. In fact, you're probably better off having the agent builds its own test suite specifically for porting if that's what you're after. In part because lots of pre-existing tests are bad for hill climbing.\n\nAn existing test-suite helps for sure, but I'm not at all convinced that it's necessary. For instance I had an agent a few weeks ago re-implement excel's formula engine and it build its own test suite from scratch.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 69,
+                  "repost_count": 9,
+                  "quote_count": 8,
+                  "like_count": 310,
+                  "impression_count": 51332
+                }
+              },
+              {
+                "id": "2117029133418983576",
+                "url": "https://x.com/mitsuhiko/status/2117029133418983576",
+                "author": {
+                  "name": "Armin Ronacher ⇌",
+                  "username": "mitsuhiko",
+                  "avatar": "https://pbs.twimg.com/profile_images/1905698833084174336/jcHMkWFA_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T23:00:52.000Z",
+                "text": "On my point about the tests. This is readline reimplemented against synthetic tests that the agent first created against the original readline. Basically a GPL to MIT laundromat. https://t.co/EAsAFp7g4b",
+                "urls": [
+                  {
+                    "url": "https://t.co/EAsAFp7g4b",
+                    "expanded_url": "https://github.com/mitsuhiko/lineread",
+                    "display_url": "github.com/mitsuhiko/line…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 19,
+                  "repost_count": 7,
+                  "quote_count": 3,
+                  "like_count": 156,
+                  "impression_count": 14725
+                }
+              },
+              {
+                "id": "2116861021927227421",
+                "url": "https://x.com/mitsuhiko/status/2116861021927227421",
+                "author": {
+                  "name": "Armin Ronacher ⇌",
+                  "username": "mitsuhiko",
+                  "avatar": "https://pbs.twimg.com/profile_images/1905698833084174336/jcHMkWFA_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T11:52:51.000Z",
+                "text": "I'm convinced that at this point, you could have an Opus 5.5 agent re-implement all of CPython probably within two weeks without any human input, against just the tests, and probably with full compatibility with including ABI, no GIL, a jit and probably beat it on all measurable metrics. It's completely crazy.",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 203,
+                  "repost_count": 86,
+                  "quote_count": 42,
+                  "like_count": 2363,
+                  "impression_count": 193311
+                }
+              }
+            ],
+            "body": "Armin had an agent write synthetic tests against the original readline, then reimplement it against them as [lineread](https://github.com/mitsuhiko/lineread).",
+            "screenshots": [
+              {
+                "url": "https://github.com/mitsuhiko/lineread",
+                "image": "media/sources/481a92553ce98cb6.webp",
+                "title": "mitsuhiko/lineread: Like readline but not copyleft",
+                "capturedAt": "2026-11-02T14:55:52.653Z"
+              }
+            ]
+          },
+          {
+            "heading": "Low effort plus a critique loop",
+            "tweets": [
+              {
+                "id": "2116642586387730593",
+                "url": "https://x.com/swyx/status/2116642586387730593",
+                "author": {
+                  "name": "swyx",
+                  "username": "swyx",
+                  "avatar": "https://pbs.twimg.com/profile_images/2073162797354217472/hNny55eF_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-31T21:24:52.000Z",
+                "text": "join me all the way on the light side guys\n\nlow effort + critique loop &gt; superultramaxhighwhatever\n\n(for the throughput-constrained; see swyxio/skills/babysit-runs) https://t.co/TuAWCwUPR1",
+                "urls": [
+                  {
+                    "url": "https://t.co/TuAWCwUPR1",
+                    "expanded_url": "https://twitter.com/theo/status/2116420089411145913",
+                    "display_url": "x.com/theo/status/21…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 213,
+                  "repost_count": 2,
+                  "quote_count": 16,
+                  "like_count": 262,
+                  "impression_count": 91658
+                }
+              },
+              {
+                "id": "2116773135668404286",
+                "url": "https://x.com/swyx/status/2116773135668404286",
+                "author": {
+                  "name": "swyx",
+                  "username": "swyx",
+                  "avatar": "https://pbs.twimg.com/profile_images/2073162797354217472/hNny55eF_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T06:03:37.000Z",
+                "text": "btw @karpathy uses medium on opus 5.5 on his latest project (Hackertube launched today).\n\noverall i think having strong opinions on effort levels is like the tabs vs spaces of our time. just tweak to taste. altho mine is definitely superior to yours. https://t.co/oSCPvlogKc https://t.co/3OIWb03BtY",
+                "urls": [
+                  {
+                    "url": "https://t.co/3OIWb03BtY",
+                    "expanded_url": "https://twitter.com/swyx/status/2116642586387730593",
+                    "display_url": "x.com/swyx/status/21…"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HWBJ6PNbEAAHuO6.jpg",
+                    "width": 2124,
+                    "height": 1884
+                  },
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HWBJ8i0bQAA2-A5.jpg",
+                    "width": 2054,
+                    "height": 1832
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 272,
+                  "repost_count": 29,
+                  "quote_count": 41,
+                  "like_count": 807,
+                  "impression_count": 78902
+                }
+              },
+              {
+                "id": "2116986087390486816",
+                "url": "https://x.com/addyosmani/status/2116986087390486816",
+                "author": {
+                  "name": "Addy Osmani",
+                  "username": "addyosmani",
+                  "avatar": "https://pbs.twimg.com/profile_images/2090232066021769216/IwGLjoSy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T20:09:49.000Z",
+                "text": "Claude Code tip: if a task turns out harder than you expected, type ultrathink while Claude is working. It raises the effort for the rest of that turn. In the terminal on the latest release. https://t.co/IKTyFzuoWa",
+                "urls": [
+                  {
+                    "url": "https://t.co/IKTyFzuoWa",
+                    "expanded_url": "https://twitter.com/dmwlff/status/2115614417689944066",
+                    "display_url": "x.com/dmwlff/status/…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 104,
+                  "repost_count": 28,
+                  "quote_count": 9,
+                  "like_count": 918,
+                  "impression_count": 73244
+                }
+              }
+            ],
+            "body": "swyx points to his `babysit-runs` skill for supervising long runs. Addy: type `ultrathink` mid-turn to raise effort only when a task turns out hard.",
+            "screenshots": [
+              {
+                "url": "https://github.com/swyxio/skills/tree/main/babysit-runs",
+                "image": "media/sources/2dc2f4c4d643fa96.webp",
+                "title": "skills/babysit-runs at main · swyxio/skills",
+                "capturedAt": "2026-11-02T14:55:56.493Z"
+              }
+            ]
+          },
+          {
+            "heading": "Design the system agents flow through",
+            "tweets": [
+              {
+                "id": "2116191971714953262",
+                "url": "https://x.com/poteto/status/2116191971714953262",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-30T15:34:17.000Z",
+                "text": "we will need to rebuild and rewrite much of software to adapt to a new, faster pace. \n\ncode used to arrive one drop at a time. soon, if not already, code will be written as if it were a continuous stream, like a violent river twisting and turning as it pleases. \n\nthis is not a new thing: big tech cos have had to deal with this with the enormous scale of their engineering teams. but now ai has brought an incredibly elastic and capable workforce wielded by every engineer. this is your problem now, and the only way to adapt is to evolve your systems so agents - even and especially the ones with little context about the right way of doing things - can thrive. make the easy thing the right thing. \n\nyour codebase is becoming organic architecture. agent contributions grow around the constraints and guardrails you’ve designed. good software engineering matters even more now! and no, the continuous stream of code is not something you have to watch helplessly. be more ambitious and design systems, frameworks, and languages to control the chaos. \n\nthe time for mourning coding is long over",
+                "urls": [
+                  {
+                    "url": "https://t.co/Ap5vcY0zJf",
+                    "expanded_url": "https://twitter.com/josephfcox/status/2115868430897385497",
+                    "display_url": "x.com/josephfcox/sta…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 311,
+                  "repost_count": 455,
+                  "quote_count": 123,
+                  "like_count": 5982,
+                  "impression_count": 329350
+                }
+              },
+              {
+                "id": "2116988157933560144",
+                "url": "https://x.com/mattpocockuk/status/2116988157933560144",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T20:18:03.000Z",
+                "text": "Maybe Redux, or a Redux-like framework needs a comeback\n\nHaving state in ONLY ONE PLACE sounds pretty beneficial to agents\n\nI.e. restrict the decision space, only allow one way of doing things",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 240,
+                  "repost_count": 23,
+                  "quote_count": 34,
+                  "like_count": 1077,
+                  "impression_count": 117898
+                }
+              },
+              {
+                "id": "2116599592703918305",
+                "url": "https://x.com/kunchenguid/status/2116599592703918305",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-31T18:34:02.000Z",
+                "text": "i’m now fully convinced that chatting with agents is absolutely the wrong UX\n\nwatching my son learn to create things, he prefers literally any other tool than prompting AI\n\nhe likes to write, draw, and animate, all with his fingers on an ipad and he likes to recording real sound effects to use in his games\n\nhe could have gotten much better results by chatting with an AI, but he hates the wait and doesn’t feel the result is “his work”\n\nwe need a complete rethink",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 167,
+                  "repost_count": 25,
+                  "quote_count": 23,
+                  "like_count": 804,
+                  "impression_count": 58284
+                }
+              }
+            ],
+            "body": "Make the easy thing the right thing: fewer ways to do something means fewer ways for an agent to get it wrong."
+          },
+          {
+            "heading": "Running a small agent team",
+            "tweets": [
+              {
+                "id": "2116576229319233596",
+                "url": "https://x.com/poteto/status/2116576229319233596",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-31T17:01:11.000Z",
+                "text": "here’s a short grok bot guide on how i create high quality bots and manage my team. ask @bot to read this post and help you improve your team!\n\n• add dr eggbot to your team! he’s my bot designer that i use to create bots\n• you don’t need a lot of bots. a few good bots can be more useful and easier to manage than a large team\n• tell your bots to create skills for itself as you give it instructions on how to do tasks. this lets them do them more consistently even over long conversations. you can even ask it to create a private github repo for you to store all your skills if you want them preserved independently\n• add connectors, use the vault, and give access to all the tools you use to do your work. you can also ask your bot to setup its own email and it can sign up for its own accounts for better separation \n• thinking about all the work you do by hand, or steps in your workflows where you have to copy and paste information back to your bot. ask your bot how it can do that for you instead!\n• imagine you hired an intern, how would you onboard them and help them do the work correctly and efficiently? introduce yourself to your bot and describe the work you do, then ask it how it can help you automate it\n\nand my favorite tip: use voice mode or the transcription option! it’s a good way to just brain dump a lot of information. then, at the end, tell your bot to “restate this in your own words” so you can confirm it understood you\n\nhttps://t.co/ajrjeHdzUO",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 2418,
+                  "repost_count": 814,
+                  "quote_count": 416,
+                  "like_count": 10351,
+                  "impression_count": 1223991
+                }
+              },
+              {
+                "id": "2116805878187794740",
+                "url": "https://x.com/mattpocockuk/status/2116805878187794740",
+                "author": {
+                  "name": "Matt Pocock",
+                  "username": "mattpocockuk",
+                  "avatar": "https://pbs.twimg.com/profile_images/1666460461884211204/SmBm505D_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T08:13:44.000Z",
+                "text": "Putting in a ton of work into Sandcastle v1. Going to reshape it a lot.\n\nHow does this sound as a pitch:\n\n- Sandcastle helps you build your software factory\n- Use our 6 built-in harnesses (Claude Code, Codex, etc) or your own\n- Integrates with all the top Sandbox providers (Daytona, Vercel, E2B, etc)\n- Ships with templates to work with Inngest/Trigger.dev for a durable factory\n- Support for HITL (over Slack and Discord) as well as AFK runs\n\nAnd one more thing...\n\n- Every skill in my repo becomes an Agent(), a function you can invoke to get that workflow\n- CodeReview(), ImplementSpec(), Retro(), ImproveCodebaseArchitecture()\n\nSo effectively, you just plug my skills into infrastructure you provision, into services you already use.\n\nA software factory running on your infra with opinionated, mattpocock/skills-based defaults but infinitely extensible.\n\nWDYT?",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 231,
+                  "repost_count": 33,
+                  "quote_count": 10,
+                  "like_count": 1279,
+                  "impression_count": 94579
+                }
+              },
+              {
+                "id": "2116770835944157243",
+                "url": "https://x.com/kunchenguid/status/2116770835944157243",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T05:54:29.000Z",
+                "text": "now that i solved the code review and ci bottleneck, the next bottleneck revealed itself\n\nTIL github limits 5000 request per user per hour. that's not enough when \"a user\" means \"hundreds of agents working for a human\"\n\nwhat's the solve?",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 99,
+                  "repost_count": 5,
+                  "quote_count": 4,
+                  "like_count": 305,
+                  "impression_count": 32398
+                }
+              }
+            ],
+            "body": "Matt plans to turn each of his skills into a callable `Agent()` in Sandcastle v1. Kun hit GitHub's ==5000== requests per hour cap with hundreds of agents on one account."
+          },
+          {
+            "heading": "Weekend builds",
+            "tweets": [
+              {
+                "id": "2116957135661945283",
+                "url": "https://x.com/karpathy/status/2116957135661945283",
+                "author": {
+                  "name": "Andrej Karpathy",
+                  "username": "karpathy",
+                  "avatar": "https://pbs.twimg.com/profile_images/1296667294148382721/9Pr6XrPB_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T18:14:46.000Z",
+                "text": "Weekend hack: HackerTube. I was annoyed with YouTube's recommendations so I had Claude filter down 43M comments over 20 years of HN to 6,454 videos that keep being recommended. *Significantly* better viewing experience, ~2 hours with Opus 5.5:\nhttps://t.co/JIhXN7OSh1\n\n- Excellent recs without any logins (state is kept in local browser session)\n- Thumbnail is a representative frame from middle of the video instead of the super duper A/B test hyper-optimized user uploads\n- Underlying data from the comment analysis as one zip file, point your Claude at it and ask for your own version\n- HackerTube Longs ✊\n\nA bit more on the process:\nI use Claude Code (desktop app for Mac), Opus 5.5 on Medium effort as my default. I only talk to Claude and have it do everything, the only \"manual work\" I helped with in tandem was in the browser (reminiscent of MenuGen): 1) I had to create some kind of API key from Google Cloud UI to query YouTube for video metadata, 2) I booted up a VPS box for serving and 3) I bought the domain name. Once the box was up I gave Claude the IP and told it update, secure, harden, deploy and optimize the code, and it did the whole thing.\n\nMany awesome projects that would have normally taken weeks/months even can now be few-shotted for breakfast. What else are we not thinking of.",
+                "urls": [
+                  {
+                    "url": "https://t.co/xULTGY6VhH",
+                    "expanded_url": "https://hackertube.org/",
+                    "display_url": "hackertube.org"
+                  }
+                ],
+                "media": [
+                  {
+                    "type": "photo",
+                    "url": "https://pbs.twimg.com/media/HWDnuuCaIAA__wa.jpg",
+                    "width": 2482,
+                    "height": 1442
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 1838,
+                  "repost_count": 3979,
+                  "quote_count": 1436,
+                  "like_count": 44057,
+                  "impression_count": 3881838
+                }
+              },
+              {
+                "id": "2117004709198475365",
+                "url": "https://x.com/poteto/status/2117004709198475365",
+                "author": {
+                  "name": "lauren",
+                  "username": "poteto",
+                  "avatar": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T21:23:49.000Z",
+                "text": "Day 28/ tibo's game has landed\n\ni spent $5.99 on this domain, but i had a blast making it with grok bot and cursor! i hope you enjoy it and find all the easter eggs 🤍 \n\nif i did it right you should be able to play it inside of X too\n\nhttps://t.co/diV7PyPaqv",
+                "urls": [
+                  {
+                    "url": "https://t.co/diV7PyPaqv",
+                    "expanded_url": "https://tibo.dog",
+                    "display_url": "tibo.dog"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 1425,
+                  "repost_count": 795,
+                  "quote_count": 748,
+                  "like_count": 12665,
+                  "impression_count": 1386210
+                }
+              },
+              {
+                "id": "2116204573333274666",
+                "url": "https://x.com/thdxr/status/2116204573333274666",
+                "author": {
+                  "name": "dax",
+                  "username": "thdxr",
+                  "avatar": "https://pbs.twimg.com/profile_images/1602333093485891584/mmVqjFNI_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-30T16:24:22.000Z",
+                "text": "this is the workflow we've been using to make video games\n\nyou can use these high quality image gen models to dial in the exact model you want to build and get shots from all different angles\n\nthen the agent can build it in 3D referencing those images\n\nit also works really well for playing with mood, lighting, and other aesthetics as well",
+                "urls": [
+                  {
+                    "url": "https://t.co/A97AYxYM71",
+                    "expanded_url": "https://twitter.com/opencode/status/2116203934033354866",
+                    "display_url": "x.com/opencode/statu…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 53,
+                  "repost_count": 7,
+                  "quote_count": 5,
+                  "like_count": 589,
+                  "impression_count": 36473
+                }
+              }
+            ],
+            "body": "Andrej ran Opus 5.5 on medium effort and only stepped in for an API key, a VPS, and a domain.",
+            "screenshots": [
+              {
+                "url": "https://hackertube.org/",
+                "image": "media/sources/4f8a81f9d17febcf.webp",
+                "title": "HackerTube",
+                "capturedAt": "2026-11-02T14:55:59.516Z"
+              }
+            ]
+          },
+          {
+            "heading": "Terminals and limits",
+            "tweets": [
+              {
+                "id": "2116296333506359646",
+                "url": "https://x.com/mitchellh/status/2116296333506359646",
+                "author": {
+                  "name": "Mitchell Hashimoto",
+                  "username": "mitchellh",
+                  "avatar": "https://pbs.twimg.com/profile_images/2082830624415698944/bRo7PB2S_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-30T22:28:59.000Z",
+                "text": "A quick demo of floating panes in Rex, some of their features, and how I use them in my daily workflow. I think our implementation of floating panes looks great and feels great and I think you'll love it! These are also all scriptable and API driven, too, of course!",
+                "media": [
+                  {
+                    "type": "video",
+                    "url": "https://pbs.twimg.com/amplify_video_thumb/2116296129537245184/img/3uLeJhcssQ9SVSd2.jpg",
+                    "preview_image_url": "https://pbs.twimg.com/amplify_video_thumb/2116296129537245184/img/3uLeJhcssQ9SVSd2.jpg",
+                    "width": 2564,
+                    "height": 1878
+                  }
+                ],
+                "public_metrics": {
+                  "reply_count": 148,
+                  "repost_count": 86,
+                  "quote_count": 50,
+                  "like_count": 2824,
+                  "impression_count": 233279
+                }
+              },
+              {
+                "id": "2116978736071651460",
+                "url": "https://x.com/kunchenguid/status/2116978736071651460",
+                "author": {
+                  "name": "Kun Chen",
+                  "username": "kunchenguid",
+                  "avatar": "https://pbs.twimg.com/profile_images/1946076752024895489/ScNir1Fy_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-11-01T19:40:36.000Z",
+                "text": "been testing the new multiplexer Rex for a while, and my feelings are very mixed\n\ntl;dr i think i'll stick with herdr for now\n\nwhile it's a beautifully designed app, i couldn't quite find any real reason yet to prefer Rex other than it being beautiful\n\nbiggest sticking point is that it's a middle ground between GUI and TUI. with a full on GUI like t3code we get rich visuals and interactions. with a full on TUI like tmux and herdr we get pure keyboard interaction and can run it from any ssh client consistently\n\nwith Rex i get neither of that. and i have to use Rex everywhere or otherwise i'm locked out of my own work. if i'm going to abandon some of the benefits of full TUI over simple ssh, i'd probably just go full GUI at that point, instead of locking my terminal sessions behind another GUI app\n\nthis also makes me question the new herdr app, because it seems to be heading in the same direction as Rex. they will both end up competing with other GUI apps without the strength of being a real terminal program\n\ni hope herdr TUI stays because that's still my favorite. perhaps turn it into a client for herdr-core so people can choose to access the same sessions from either a GUI or a TUI?",
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 45,
+                  "repost_count": 5,
+                  "quote_count": 3,
+                  "like_count": 226,
+                  "impression_count": 24716
+                }
+              },
+              {
+                "id": "2116222842413142111",
+                "url": "https://x.com/bcherny/status/2116222842413142111",
+                "author": {
+                  "name": "Boris Cherny",
+                  "username": "bcherny",
+                  "avatar": "https://pbs.twimg.com/profile_images/1902044548936953856/J2jeik0t_normal.jpg",
+                  "verified": true,
+                  "verified_type": "blue"
+                },
+                "created_at": "2026-10-30T17:36:57.000Z",
+                "text": "We're removing the 5-hour limit for verified Ultra accounts. https://t.co/CewlkJkBmj",
+                "urls": [
+                  {
+                    "url": "https://t.co/CewlkJkBmj",
+                    "expanded_url": "https://twitter.com/claudeai/status/2116220869479428500",
+                    "display_url": "x.com/claudeai/statu…"
+                  }
+                ],
+                "media": [],
+                "public_metrics": {
+                  "reply_count": 813,
+                  "repost_count": 211,
+                  "quote_count": 145,
+                  "like_count": 9806,
+                  "impression_count": 783374
+                }
+              }
+            ],
+            "body": "Kun is sticking with herdr over Rex: he wants a real TUI that works from any SSH client."
+          }
+        ],
+        "bullets": [
+          "Armin: existing tests are often bad for hill climbing",
+          "swyx: tune effort levels to taste, then add a critique pass",
+          "Lauren: have bots write skills as you teach them",
+          "Kun: GitHub rate limits are the next agent bottleneck"
+        ],
+        "actions": [
+          {
+            "label": "swyx - babysit-runs skill",
+            "url": "https://github.com/swyxio/skills/tree/main/babysit-runs"
+          },
+          {
+            "label": "Armin Ronacher - lineread",
+            "url": "https://github.com/mitsuhiko/lineread"
+          },
+          {
+            "label": "Andrej Karpathy - HackerTube",
+            "url": "https://hackertube.org/"
+          }
+        ],
+        "sources": [
+          {
+            "label": "Armin Ronacher @mitsuhiko",
+            "url": "https://x.com/mitsuhiko/status/2116895016249434134"
+          },
+          {
+            "label": "swyx @swyx",
+            "url": "https://x.com/swyx/status/2116642586387730593"
+          },
+          {
+            "label": "Addy Osmani @addyosmani",
+            "url": "https://x.com/addyosmani/status/2116986087390486816"
+          },
+          {
+            "label": "Lauren Tan @poteto",
+            "url": "https://x.com/poteto/status/2116576229319233596"
+          },
+          {
+            "label": "Matt Pocock @mattpocockuk",
+            "url": "https://x.com/mattpocockuk/status/2116805878187794740"
+          },
+          {
+            "label": "Kun Chen @kunchenguid",
+            "url": "https://x.com/kunchenguid/status/2116770835944157243"
+          },
+          {
+            "label": "Andrej Karpathy @karpathy",
+            "url": "https://x.com/karpathy/status/2116957135661945283"
+          },
+          {
+            "label": "Dax @thdxr",
+            "url": "https://x.com/thdxr/status/2116204573333274666"
+          },
+          {
+            "label": "Mitchell Hashimoto @mitchellh",
+            "url": "https://x.com/mitchellh/status/2116296333506359646"
+          },
+          {
+            "label": "Boris Cherny @bcherny",
+            "url": "https://x.com/bcherny/status/2116222842413142111"
+          }
+        ]
+      }
+    },
     {
       "id": "ai-20261030-builders-today",
       "category": "ai",
